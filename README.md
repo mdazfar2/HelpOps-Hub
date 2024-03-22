@@ -27,7 +27,7 @@ Welcome to the DevOps Shell Script Toolkit repository! Here, you'll find a colle
 # Contributions -
 Contributions to this repository are welcome! If you have a script you'd like to share or an improvement to an existing script, feel free to submit a pull request.
 
-***If you want to know more about ShellScript, feel free to ask anything. I love to help you. You can contact me on [LinkedIn](https://linkedin.com/in/md-azfar-alam), [Instagram](https://instagram.com/azfarxx_/)or [Discord](https://discordapp.com/users/877531143610708028)***
+***If you want to know more about ShellScript, feel free to ask anything. I love to help you. You can contact me on [LinkedIn](https://linkedin.com/in/md-azfar-alam), [Instagram](https://instagram.com/azfarxx_/) or [Discord](https://discordapp.com/users/877531143610708028).***
 
 # License
 This repository is licensed under the [MIT License](LICENSE), allowing you to freely use and modify the provided scripts.
