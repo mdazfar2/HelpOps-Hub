@@ -1,4 +1,4 @@
-# DevOps Shell Script Toolkit ....,.
+# DevOps Shell Script Toolkit ....,
 
 ## Explore Diverse DevOps Scripts for Efficient Automation-
 ![ShellScript Banner](https://i.ibb.co/YfqRBvJ/azfar-script-modified.png)
