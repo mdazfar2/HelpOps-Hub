@@ -23,7 +23,7 @@ Welcome to the DevOps Shell Script Toolkit repository! Here, you'll find a colle
 
 ## Usage -
 
-  - If you want to create something, make a file with a .sh extension. For example, if you intend to use Jenkins, create a file named ``bash vim jenkins.sh``.
+  - If you want to create something, make a file with a .sh extension. For example, if you intend to use Jenkins, create a file named `` vim jenkins.sh``.
   - Next, copy the entire .sh code from the above file and paste it into the ```jenkins.sh``` file.
   - Then execute the script using this command: ```chmod +x ./jenkins.sh```.
   - The final and last step is to run the script command this: ```./jenkins.sh```.
