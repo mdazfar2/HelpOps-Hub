@@ -3,7 +3,7 @@
 ## Explore Diverse DevOps Scripts for Efficient Automation-
 ![ShellScript Banner](https://i.ibb.co/YfqRBvJ/azfar-script-modified.png)
 
-# Description
+# Description.
 Welcome to the DevOps Shell Script Toolkit repository! Here, you'll find a collection of shell scripts for various DevOps tools including Docker, Terraform, AWS CLI, Trivy, Jenkins, and Kubernetes. These scripts are designed to simplify and automate common tasks, allowing you to focus more on building and deploying your applications rather than managing infrastructure.
 
 ## Features -
