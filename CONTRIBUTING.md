@@ -19,7 +19,7 @@ Thank you for taking the time to contribute to our project. Please take a moment
 
 ## How to Contribute 🤔
 
-To get started, look at the existing [**Issues**](https://github.com/mdazfar2/ShellScript-Toolkit) or [**create a new issue**](https://github.com/mdazfar2/ShellScript-Toolkit/issues/new/choose)!
+To get started, look at the existing [**create a new issue**](https://github.com/mdazfar2/ShellScript-Toolkit/issues/new)!
 
 ### Setup guidelines 🪜
 Follow these steps to setup ShellScript-Toolkit on your local machine
