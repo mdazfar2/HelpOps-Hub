@@ -101,13 +101,7 @@ We follow a standardized commit message format using Commitlint to ensure consis
 - `chore: Update dependencies to latest versions`
 - `fix: Handle edge case in data processing (#456)`
 
-#### ❌ Examples of Invalid Commit Messages
 
-- `Added new stuff`
-- `Fixed a bug`
-- `Updated code`
-- `auth feature update`
-- `chore: fixed some stuff`
 
 ### Commit Example with Commitlint
 
