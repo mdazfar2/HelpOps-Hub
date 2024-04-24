@@ -47,8 +47,6 @@ Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/ShellScr
 <a name="building-with-gitpod"></a>
 
 
-***If you want to know more about ShellScript, feel free to ask anything. I love to help you. You can contact me on [LinkedIn](https://linkedin.com/in/md-azfar-alam), [Instagram](https://instagram.com/azfarxx_/) or [Discord](https://discordapp.com/users/877531143610708028).***
-
 # License
 This repository is licensed under the [MIT License](LICENSE), allowing you to freely use and modify the provided scripts.
 
