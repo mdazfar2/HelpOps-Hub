@@ -81,13 +81,7 @@ sudo systemctl start kubelet
 sudo kubeadm init
 ```
 
- **Troubleshoot-**
-
-   - When running `sudo kubeadm init`, you might encounter pre-flight errors related to insufficient CPU and RAM. Below are the commands to troubleshoot and potentially bypass these errors:
-
-      ```bash
-       sudo kubeadm init --ignore-preflight-errors=NumCPU,Mem
-      ```
+ 
 
 2. Create Kubernetes config directory, copy admin config, and set correct permissions.
    
