@@ -1,4 +1,4 @@
-# DevOps Shell Script Toolkit ..
+# DevOps Shell Script Toolkit
 
 ## Explore Diverse DevOps Scripts for Efficient Automation-
 ![azfar-script-modified](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/3df2957c-ea58-45c4-ad42-2cecfcb5ff57)
@@ -13,12 +13,7 @@ Welcome to the DevOps Shell Script Toolkit repository! Here, you'll find a colle
 - **Comprehensive Coverage**: From containerization with Docker to infrastructure provisioning with Terraform, and managing Kubernetes clusters, we've got you covered with scripts for various DevOps tasks.
 - **Easy to Use**: Whether you're a seasoned DevOps engineer or just getting started, scripts are designed to be intuitive and straightforward to use.
 
--  - lauch Sonarqube using this -
-     
-    
-    ```bash
-    docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
-    ```
+
 
 
 ## Usage -
