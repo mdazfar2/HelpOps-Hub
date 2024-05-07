@@ -5,4 +5,4 @@ sudo systemctl enable docker
 docker --version
 sudo usermod -aG docker $(whoami)
 newgrp docker
-sudo systemctl status docker.
+sudo systemctl status docker
