@@ -51,6 +51,6 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
     ```
 10. Copy that password and paste it via browser on `password` section.
 
-**Now enjoy your ArgoCD journey deploying using different web or anything you want.**
+**Now enjoy your ArgoCD journey deploying using different web or anything you want. ✨**
    
 
