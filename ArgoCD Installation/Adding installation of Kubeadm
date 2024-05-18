@@ -1,4 +1,4 @@
-# Installing ArgoCD in the AKS Cluster
+# Installing ArgoCD in the Kubernetes Cluster
 Once the cluster is running, you can install ArgoCD inside the cluster. You will use ArgoCD for deploying your application.
 
 ## To install ArgoCD, use these commands
