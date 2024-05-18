@@ -78,21 +78,36 @@ Whether you're new to Kubernetes or looking to deploy it on your Ubuntu EC2 inst
      ```bash
      sudo kubeadm init
      ```
-  3. To set up kubeconfig for managing the Kubernetes cluster, run the following commands which helps in enabling you to use kubectl to manage your cluster.
+      ### Troubleshoot-
+      If you facing issue while running `sudo kubeadm init` related this-
+       > [init] Using Kubernetes version: v1.30.1
+[preflight] Running pre-flight checks
+error execution phase preflight: [preflight] Some fatal errors occurred:
+        [ERROR FileContent--proc-sys-net-ipv4-ip_forward]: /proc/sys/net/ipv4/ip_forward contents are not set to 1
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+To see the stack trace of this error execute with --v=5 or higher
+
+      **Then you must have to use the below command-**
+
+        ```bash
+         sudo sysctl net.ipv4.ip_forward=1
+        ```   
+     
+  4. To set up kubeconfig for managing the Kubernetes cluster, run the following commands which helps in enabling you to use kubectl to manage your cluster.
      ```bash
      mkdir -p $HOME/.kube
      sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
      sudo chown $(id -u):$(id -g) $HOME/.kube/config
      ```
-  4. Sets the environment variable KUBECONFIG to the Kubernetes admin configuration file for cluster management.
+  5. Sets the environment variable KUBECONFIG to the Kubernetes admin configuration file for cluster management.
      ```bash
       export KUBECONFIG=/etc/kubernetes/admin.conf
      ```
-  5. Now, change the permissions of the Kubernetes admin configuration file to read-only for the owner and group.
+  6. Now, change the permissions of the Kubernetes admin configuration file to read-only for the owner and group.
      ```bash
       sudo chmod 644 /etc/kubernetes/admin.conf
      ```
-  6. Now, check if the Kubernetes cluster is running or not.
+  7. Now, check if the Kubernetes cluster is running or not.
      ```bash
       kubectl get pods
      ```
@@ -101,12 +116,12 @@ Whether you're new to Kubernetes or looking to deploy it on your Ubuntu EC2 inst
      
      ![image](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/0048afea-ffd5-45f2-80a5-ab6962ccdd2d)
 
-  7. Now, apply the Calico networking manifest from a URL to the Kubernetes cluster for network configuration.
+  8. Now, apply the Calico networking manifest from a URL to the Kubernetes cluster for network configuration.
      
      ```bash
       kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
      ```
-  8. The below command taints all nodes with the "control-plane" role to prevent regular pods from being scheduled on them.
+  9. The below command taints all nodes with the "control-plane" role to prevent regular pods from being scheduled on them.
      ```bash
      kubectl taint nodes --all node-role.kubernetes.io/control-plane-
      ```
