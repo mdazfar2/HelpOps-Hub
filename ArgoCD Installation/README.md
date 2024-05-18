@@ -16,5 +16,5 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
    ```bash
     kubectl get all --namespace argocd
    ```
-5. 
+5. Wait! work is in progress
 
