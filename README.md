@@ -1,9 +1,14 @@
-<article align="center">
-
-
 ![HelpOps cover](https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/c6d22673-5dd4-482b-8c5c-e84a50cd0ccd)
+<p align="center">
+ <a href="https://github.com/mdazfar2/HelpOps-Hub"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"></a>
+     <a href="https://github.com/mdazfar2/"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?v=103"></a>
+<a href="https://github.com/mdazfar2/HelpOps-Hub/blob/main/LICENSE"><img src="https://img.shields.io/badge/MIT-Licence-blue.svg?v=103"></a>  
+    <a href="https://github.com/mdazfar2/HelpOps-Hub/graphs/contributors"><img src="https://img.shields.io/github/contributors/mdazfar2/HelpOps-Hub?color=brightgreen"></a>
+    <a href="https://github.com/mdazfar2/HelpOps-Hub/stargazers"><img src="https://img.shields.io/github/stars/mdazfar2/HelpOps-Hub?color=0059b3"></a>
+<a href="https://github.com/mdazfar2/HelpOps-Hub/network/members"><img src="https://img.shields.io/github/forks/mdazfar2/HelpOps-Hub?color=yellow"></a>
+<a href="https://github.com/mdazfar2/HelpOps-Hub/issues"><img src="https://img.shields.io/github/issues/mdazfar2/HelpOps-Hub?color=0059b3"></a>
 
-</article><hr>
+<hr/>
 
 <a name="Welcome to HelpOps-Hub "></a>
 
