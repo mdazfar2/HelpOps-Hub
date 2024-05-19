@@ -5,10 +5,10 @@
 
 </article><hr>
 
-<a name="HelpOps-Hub - Never get stuck again!"></a>
+<a name="Welcome to HelpOps-Hub "></a>
 
-# HelpOps-Hub - Never get stuck again!
-Welcome to HelpOps-Hub: your ultimate resource for all things DevOps. Discover essential tools, comprehensive guides, and best practices to streamline your DevOps processes. We’re here to ensure you never get stuck in DevOps again. Join us and enhance your DevOps expertise today!
+# Welcome to HelpOps-Hub 👋
+HelpOps-Hub is your ultimate resource for all things DevOps. Discover essential tools, comprehensive guides, and best practices to streamline your DevOps processes. We’re here to ensure you never get stuck in DevOps again. Join us and enhance your DevOps expertise today!
 
 ## Features -
 
