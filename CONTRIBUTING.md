@@ -72,20 +72,6 @@ Follow these steps to setup ShellScript-Toolkit on your local machine
 
 ---
 
-## 🧑‍💻 Engage in Discussions 
-Join our community [discussions](https://github.com/mdazfar2/HelpOps-Hub/discussions) to share insights and collaborate with others:
-- **Visit the Forum**: Head over to our community forum.
-- **Participate Actively**: Engage in ongoing discussions or start new ones on topics you're passionate about.
-
-## ✅ Guidelines for Good Commit Messages 
-We follow a standardized commit message format using Commitlint to ensure consistency and clarity in our commit history. Each commit message should adhere to the following guidelines:
-
-1. **Be Concise and Descriptive**: Summarize the change in a way that’s easy to understand at a glance.
-2. **Use the Imperative Mood**: Write as if giving a command (e.g., `Add`, `Fix`, `Update`), which is a convention in many projects.
-3. **Include Context**: Provide context or reason for the change if it’s not immediately obvious from the summary.
-4. **Reference Issues and Pull Requests**: Include `issue numbers` or PR references if the commit addresses them.
-5. **Issue reference** (Optional): Include the issue number associated with the commit (e.g., `#123`).
-
 ## 📝 Commit Message Examples 
 ### Adding New Tools or Resources
 - `Add Jenkins setup guide to CI/CD section`
