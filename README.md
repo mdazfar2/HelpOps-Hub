@@ -7,7 +7,7 @@
 
 <a name="Welcome to HelpOps-Hub "></a>
 
-# Welcome to HelpOps-Hub 👋,
+# Welcome to HelpOps-Hub 👋
 HelpOps-Hub is your ultimate resource for all things DevOps. Discover essential tools, comprehensive guides, and best practices to streamline your DevOps processes. We’re here to ensure you never get stuck in the field of DevOps again. Join us and enhance your DevOps expertise today!
 
 ## Features -
