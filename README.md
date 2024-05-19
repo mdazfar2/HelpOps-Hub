@@ -1,9 +1,14 @@
-# HelpOps-Hub - Never get stuck again!
+<article align="center">
 
-## Explore Diverse DevOps Scripts for Efficient Automation-
-![azfar-script-modified](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/3df2957c-ea58-45c4-ad42-2cecfcb5ff57)
-# Description
-Welcome to the DevOps Shell Script Toolkit repository! Here, you'll find a collection of shell scripts for various DevOps tools including Docker, Terraform, AWS CLI, Trivy, Jenkins, and Kubernetes. These scripts are designed to simplify and automate common tasks, allowing you to focus more on building and deploying your applications rather than managing infrastructure.
+
+![HelpOps cover](https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/c6d22673-5dd4-482b-8c5c-e84a50cd0ccd)
+
+</article><hr>
+
+<a name="HelpOps-Hub - Never get stuck again!"></a>
+
+# HelpOps-Hub - Never get stuck again!
+Welcome to HelpOps-Hub: your ultimate resource for all things DevOps. Discover essential tools, comprehensive guides, and best practices to streamline your DevOps processes. We’re here to ensure you never get stuck in DevOps again. Join us and enhance your DevOps expertise today!
 
 ## Features -
 
