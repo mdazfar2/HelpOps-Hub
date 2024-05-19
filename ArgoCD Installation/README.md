@@ -34,8 +34,11 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
    <br/>
 
       ![nodeport screenshot](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/dbed61fd-788d-4ae4-99ed-348f16b18863)
+   <br/>
+   
+      > If you deploy it using AKS or Eks then you must have to write `LoadBalancer`.
 
-7. Now again run the service command for checking the exposed Port
+8. Now again run the service command for checking the exposed Port
    ```bash
     kubectl get svc -n argocd
    ```
@@ -44,12 +47,12 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
 
       ![Exposed port](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/b73c4912-9732-4634-a89e-6d483367619b)
 
-8. Now Copy that Port and paste it via your `<Public-IP:32236>`  & then Enter you will get ArgoCD dashboard
-9. Enter `admin` in username and for password use the below command-
+9. Now Copy that Port and paste it via your `<Public-IP:32236>`  & then Enter you will get ArgoCD dashboard
+10. Enter `admin` in username and for password use the below command-
     ```bash
      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     ```
-10. Copy that password and paste it via browser on `password` section.
+11. Copy that password and paste it via browser on `password` section.
 
 **Now enjoy your ArgoCD journey deploying using different web or anything you want. ✨**
    
