@@ -25,7 +25,7 @@ After that, it will automatically open Firefox inside the Docker container. Enjo
 1. 📝 **Create `Dockerfile` and build it-**
    
 > [!NOTE]
-> Create Dockerfile from here, you will get Dockerfile here.
+> Create Dockerfile from here, you will get Dockerfile [here](https://github.com/mdazfar2/HelpOps-Hub/blob/main/Dockerized%20Mozilla%20Firefox/Dockerfile).
 
 3. 🛠️ **Build the Docker `Images`**
 
