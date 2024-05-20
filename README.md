@@ -34,17 +34,11 @@ Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issue
 4. **Community Focused**: We believe in the power of community. Contribute your knowledge, ask questions, and collaborate with other DevOps enthusiasts.
 5. **Quality Assurance**: Trust in vetted tools and resources rigorously assessed for accuracy, relevance, and real-world effectiveness.
 6. **Empowerment**: Equip yourself with the knowledge, tools, and support needed to succeed in DevOps and drive organizational impact.
--  - lauch Sonarqube using this -
-     
-    
-    ```bash
-    docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
-    ```
 ---
 
 ## 🤝 Want to Contribute? 
 
-We welcome contributions from the DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
+We welcome contributors from the DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
 
 - Setup HelpOps-Hub on your local machine
 - Append new Documentation of Installation or anything
