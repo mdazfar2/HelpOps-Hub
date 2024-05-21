@@ -13,6 +13,9 @@
       ```bash
       docker run -it --rm --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" azfaralam440/firefox:latest
       ```
+      
+  After that, it will automatically open Firefox inside the Docker container. Enjoy your Firefox browser! 🎉
+
 ---
 
 # 🔄 Or
