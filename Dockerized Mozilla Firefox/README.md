@@ -1,4 +1,4 @@
-# Run Firefox inside Docker Container on Red Hat 🐧🐳.
+# Run Firefox inside Docker Container on Red Hat 🐧🐳
 
 **This steps provide a simple way to run Mozilla Firefox 🌐 browser inside a Docker container on `Red Hat-based` systems.**
   
@@ -13,8 +13,6 @@
       ```bash
       docker run -it --rm --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" azfaralam440/firefox:latest
       ```
-After that, it will automatically open Firefox inside the Docker container. Enjoy your Firefox browser! 🎉
-
 ---
 
 # 🔄 Or
