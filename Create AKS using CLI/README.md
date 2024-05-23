@@ -16,14 +16,3 @@
    ```
 > It takes few minutes
 
-**now create credentials of the above AKS cluster**
-   ```bash
-     az aks get-credentials --name azfar-aks --resource-group azfarRG
-   ```
-> now that's all done
-
-**then see your nodes**
-   ```bash
-    kubectl get nodes
-   ```
-    
