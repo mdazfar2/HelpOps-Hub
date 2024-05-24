@@ -86,33 +86,33 @@ We follow a standardized commit message format using Commitlint to ensure consis
 4. **Reference Issues and Pull Requests**: Include `issue numbers` or PR references if the commit addresses them.
 5. **Issue reference** (Optional): Include the issue number associated with the commit (e.g., `#123`).
 
-## 📝 Commit Message Examples 
+## 📝 Commit Message Examples ✅
 ### Adding New Tools or Resources
-- `Add Jenkins setup guide to CI/CD section`
-- `Include Terraform best practices in infrastructure as code`
-- `Add Kubernetes cheat sheet to containerization`
+- `Add - Jenkins setup guide to CI/CD section`
+- `Include - Terraform best practices in infrastructure as code`
+- `Add - Kubernetes cheat sheet to containerization`
 
 ### Fixing Errors or Bugs
-- `Fix typo in Docker installation guide`
-- `Correct broken link in Ansible playbook documentation`
-- `Resolve issue #42: Misleading description in Helm chart guide`
+- `Fix - typo in Docker installation guide`
+- `Correct - broken link in Ansible playbook documentation`
+- `Resolve - issue #42: Misleading description in Helm chart guide`
 
 ### Updating Existing Content
-- `Update Jenkins pipeline examples with new syntax`
-- `Revise Docker security best practices`
-- `Refresh CI/CD tools comparison chart`
+- `Update - Jenkins pipeline examples with new syntax`
+- `Revise - Docker security best practices`
+- `Refresh - CI/CD tools comparison chart`
 
 ### Enhancing Documentation
-- `Improve readability of Kubernetes deployment tutorial`
-- `Add examples to Terraform variable documentation`
-- `Enhance troubleshooting section in Prometheus guide`
+- `Improve - readability of Kubernetes deployment tutorial`
+- `Add - examples to Terraform variable documentation`
+- `Enhance - troubleshooting section in Prometheus guide`
 
 ### General Maintenance
-- `Refactor README for better clarity`
+- `Refactor - README for better clarity`
 - `Reorganize repository structure for easier navigation`
-- `Remove outdated CI/CD tools from recommendations`
+- `Remove - outdated CI/CD tools from recommendations`
 
-#### ❌ Examples of Invalid Commit Messages
+# ❌ Examples of Invalid Commit Messages
 
 - `Added new stuff`
 - `Fixed a bug`
@@ -120,7 +120,7 @@ We follow a standardized commit message format using Commitlint to ensure consis
 - `auth feature update`
 - `chore: fixed some stuff`
 
-### Commit Example with Commitlint
+## Commit Example with Commitlint
 
 ```bash
 git commit -m "feat(auth): Implement user signup process (#789)"
