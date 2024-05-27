@@ -19,6 +19,30 @@ At HelpOps-Hub, we're building a comprehensive collection of resources, guides, 
 ## Do You Have a New Problem? 💭
 Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issues/new), and our community or maintainers will provide a quick solution to it as soon as possible.
 
+<hr>
+<!-- Open Source Programs -->
+  <div>
+    <h2><img src="https://github.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/blob/master/Emojis/Hand%20gestures/Flexed%20Biceps.png?raw=true" width="35" height="35" > Open Source Programs</h2>
+  </div>
+
+  <table border="1" cellpadding="10">
+        <tr>
+            <td rowspan="2">
+                <img src="https://github.com/Meetjain1/wanderlust/assets/133582566/21b2bc42-bdd5-487a-a083-1b262c2f6d9b" alt="GSSOC Logo" width="100" height="55">
+            </td>
+            <td>
+                <strong>GSSOC 2024</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                This project is part of GirlScript Summer of Code. We warmly welcome contributions from the community to help elevate Wanderlust.
+            </td>
+        </tr>
+    </table>
+
+<hr>
+
 ## 🤩 Benefits 
 - **Curated Tools**: A handpicked selection of the best DevOps tools across various categories, from CI/CD pipelines to containerization and orchestration.
 - **Pro Projects:** You will get many DevOps projects that you can use on your resume.
@@ -36,7 +60,14 @@ Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issue
 6. **Empowerment**: Equip yourself with the knowledge, tools, and support needed to succeed in DevOps and drive organizational impact.
 ---
 
-## 🤝 Want to Contribute? 
+<br>
+
+<!-- Contributing -->
+
+<div align="left">
+<h2><font size="6"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Handshake.png" alt="Handshake" width="40" height="40" /> Want to Contribute? </font></h2>
+</div>
+<br>
 
 We welcome contributors from the DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
 
@@ -54,3 +85,27 @@ We welcome contributors from the DevOps community to enrich HelpOps-Hub and make
 This repository is licensed under the [MIT License](LICENSE), allowing you to freely use and modify the provided scripts.
 
 ***Together, we can continue to improve and expand this resource hub for people worldwide! 💪***
+
+<div align="center">
+
+</div>
+<br>
+<br>
+<!-- a big thanks to all the contributors -->
+<div align="center">
+<h2><font size="6"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" alt="Red Heart" width="40" height="40" /> Contributors </font></h2>
+</div>
+<br>
+
+- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating HelpOps-Hub to greater heights.
+- Make sure you show some love by giving ⭐ to our repository
+
+<br>
+
+<center>
+<a href="https://github.com/mdazfar2/HelpOps-Hub/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mdazfar2/HelpOps-Hub" />
+</a>
+</center>
+<br>
+<p align="right"><a href="#top">Back to top</a></p>
