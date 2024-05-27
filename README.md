@@ -16,6 +16,9 @@
 # Welcome to HelpOps-Hub 👋
 At HelpOps-Hub, we're building a comprehensive collection of resources, guides, and tools to empower DevOps enthusiasts and professionals of all experience levels.  Navigate the vast landscape of DevOps with ease –  whether you're a beginner looking to get started or an experienced engineer seeking advanced solutions, our repository is designed to ensure you never get stuck again.
 
+## Do You Have a New Problem? 💭
+Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issues/new), and our community or maintainers will provide a quick solution to it as soon as possible.
+
 <hr>
 <!-- Open Source Programs -->
   <div>
