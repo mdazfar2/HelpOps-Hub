@@ -1,0 +1,34 @@
+name: "📝 Project Proposal"
+description: "Suggest a new project or resource for HelpOps-Hub"
+title: "Project Proposal: "
+labels: [project, enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: "Overview"
+      description: "What is the goal of the project? Why is it valuable for the DevOps community?"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "Key Features"
+      description: "List the key features and functionalities that this project will include."
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: "Additional Information"
+      description: "Any extra details or context."
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: "Record"
+      options:
+        - label: "I agree to follow this project's Code of Conduct"
+          required: true
+        - label: "I'm a GSSOC'24 contributor"
+        - label: "I want to work on this project proposal"
