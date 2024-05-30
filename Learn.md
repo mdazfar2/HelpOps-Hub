@@ -18,6 +18,8 @@ DevOps is a set of practices that combines software development (Dev) and IT ope
 - **Continuous Delivery (CD)**: Automatically deploying code changes to a production environment after passing the CI pipeline.
 - **Infrastructure as Code (IaC)**: Managing and provisioning computing infrastructure through machine-readable configuration files.
 - **Monitoring and Logging**: Continuously observing systems to identify and troubleshoot issues.
+- **Security and Compliance**: Integrate security and ensure compliance in DevOps workflows.
+
 
 ## Getting Started with HelpOps-Hub
 HelpOps-Hub is your go-to resource for DevOps tools, guides, and community support. Here's how you can get started:
