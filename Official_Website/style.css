@@ -81,7 +81,8 @@ header {
 .folder-card {
   flex: 0 0 calc(25% - 20px); /* Four cards per row (adjust margin as needed) */
   margin: 10px;
-  padding: 10px;
+  justify-content: center;
+  padding: 1.5rem;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -93,10 +94,10 @@ header {
 .folder-card:hover {
   background-color: white;
   box-shadow: 5px 5px 20px #00ccff;
-  padding: 1.5rem;
+ transform: scale(1.23);
   transition: 0.5s;
   border-radius: 1.5rem;
-  font-family: cursive;
+  /* font-family: cursive; */
   font-size: 0.9rem;
 }
 

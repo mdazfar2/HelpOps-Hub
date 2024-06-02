@@ -87,8 +87,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       .then((data) => {
         if (data) {
           const filteredData = data.filter((file) => {
-            const isWebsite =
-              file.name.toLowerCase() === "helpos-hub official website";
+            const isWebsite = file.name.toLowerCase() === "official_website";
             return !file.name.includes(".") && !isWebsite;
           });
 
