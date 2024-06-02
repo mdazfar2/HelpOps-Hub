@@ -44,7 +44,7 @@ p {
 }
 
 #search-bar:hover {
-  border: 2px solid #00ccff; /* Color of border after hover the cursor*/
+  border: 2.5px solid #00ccff; /* Color of border after hover the cursor*/
   box-shadow: 4px 4px 20px #00ccff; /*Shadow effect after hover the cursor*/
 }
 
