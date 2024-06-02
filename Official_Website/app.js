@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
   const token = await getkey();
-  // Fetch repository contents using the GitHub APi
+
   async function fetchRepository(url) {
     try {
       const response = await fetch(url, {
@@ -101,8 +101,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
             const commitData = await commitResponse.json();
             const createdAt = commitData.length
-              ? commitData[0].commit.committer.date
+              ? commitData[commitData.length - 1].commit.committer.date
               : "N/A";
+            if (createdAt === "N/A") {
+              console.warn(`No commit data found for folder: ${folder.name}`);
+            }
             return {
               ...folder,
               created_at: createdAt,
@@ -110,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           })
         );
 
-        // Sort folders by creation date
+        // Sort folders by creation date in ascending order (oldest first)
         foldersWithDates.sort(
           (a, b) => new Date(a.created_at) - new Date(b.created_at)
         );
@@ -139,8 +142,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (item.type === "dir") {
         const folderCard = document.createElement("div");
         folderCard.classList.add("folder-card");
+        const createdDate = new Date(item.created_at);
         folderCard.innerHTML = `
           <h3>${item.name}</h3>
+          <p>${item.path}</p>
+          <p>Created on: ${
+            createdDate.toLocaleString() !== "Invalid Date"
+              ? createdDate.toLocaleString()
+              : "N/A"
+          }</p>
         `;
         folderCard.addEventListener("click", () => {
           window.location.href = item.html_url;
