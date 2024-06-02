@@ -78,7 +78,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   const token = await getkey();
 
   async function fetchRepository(url) {
+    const skeletonContainer = document.getElementById("skeleton-container");
+    const foldersContainer = document.getElementById("folders-container");
+
     try {
+      // Show skeleton loader and hide folders container
+      skeletonContainer.style.display = "flex";
+      foldersContainer.style.display = "none";
+
       const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -132,6 +139,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      // Hide skeleton loader and show folders container
+      skeletonContainer.style.display = "none";
+      foldersContainer.style.display = "flex";
     }
   }
 
