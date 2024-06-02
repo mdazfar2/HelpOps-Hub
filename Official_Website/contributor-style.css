@@ -11,7 +11,7 @@ p {
   align-items: center;
   justify-content: center;
 }
-/*for icons */
+/*for icons css */
 .icons {
   display: flex;
   gap: 10px;
@@ -62,6 +62,7 @@ body {
   background-color: #f5f5f5;
   font-family: Arial, sans-serif;
 }
+/* css for logo */
 .logo {
   position: absolute;
   top: 20px;
@@ -105,6 +106,8 @@ header {
   margin: 0 auto;
 }
 
+/* css for gear */
+
 .gear {
   position: absolute;
   width: 50px;
@@ -125,6 +128,7 @@ header {
   animation: spin 2s linear infinite reverse;
 }
 
+/* css for spin */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
