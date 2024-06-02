@@ -73,6 +73,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: auto;
   /* justify-content: space-between; Distribute cards evenly */
   margin-top: 20px;
 }

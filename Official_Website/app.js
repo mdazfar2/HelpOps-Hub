@@ -76,35 +76,63 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
   const token = await getkey();
-  // Fetch repository contents using the GitHub APi
-  function fetchRepository(url) {
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          const filteredData = data.filter((file) => {
-            const isWebsite = file.name.toLowerCase() === "official_website";
-            return !file.name.includes(".") && !isWebsite;
-          });
 
-          displayFolders(filteredData);
+  async function fetchRepository(url) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (data) {
+        const filteredData = data.filter((file) => {
+          const isWebsite = file.name.toLowerCase() === "official_website";
+          return !file.name.includes(".") && !isWebsite;
+        });
 
-          // Search functionality
-          const searchBar = document.getElementById("search-bar");
-          searchBar.addEventListener("input", () => {
-            const searchTerm = searchBar.value.toLowerCase();
-            const filteredResults = filteredData.filter((item) =>
-              item.name.toLowerCase().includes(searchTerm)
-            );
-            displayFolders(filteredResults);
-          });
-        }
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+        const foldersWithDates = await Promise.all(
+          filteredData.map(async (folder) => {
+            const commitsUrl = `https://api.github.com/repos/mdazfar2/HelpOps-Hub/commits?path=${folder.path}`;
+            const commitResponse = await fetch(commitsUrl, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            const commitData = await commitResponse.json();
+            const createdAt = commitData.length
+              ? commitData[commitData.length - 1].commit.committer.date
+              : "N/A";
+            if (createdAt === "N/A") {
+              console.warn(`No commit data found for folder: ${folder.name}`);
+            }
+            return {
+              ...folder,
+              created_at: createdAt,
+            };
+          })
+        );
+
+        // Sort folders by creation date in ascending order (oldest first)
+        foldersWithDates.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+
+        displayFolders(foldersWithDates);
+
+        // Search functionality
+        const searchBar = document.getElementById("search-bar");
+        searchBar.addEventListener("input", () => {
+          const searchTerm = searchBar.value.toLowerCase();
+          const filteredResults = foldersWithDates.filter((item) =>
+            item.name.toLowerCase().includes(searchTerm)
+          );
+          displayFolders(filteredResults);
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
   function displayFolders(data) {
@@ -114,9 +142,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (item.type === "dir") {
         const folderCard = document.createElement("div");
         folderCard.classList.add("folder-card");
+        const createdDate = new Date(item.created_at);
         folderCard.innerHTML = `
           <h3>${item.name}</h3>
           <p>${item.path}</p>
+          <p>Created on: ${
+            createdDate.toLocaleString() !== "Invalid Date"
+              ? createdDate.toLocaleString()
+              : "N/A"
+          }</p>
         `;
         folderCard.addEventListener("click", () => {
           window.location.href = item.html_url;
@@ -125,5 +159,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     });
   }
+
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
 });
