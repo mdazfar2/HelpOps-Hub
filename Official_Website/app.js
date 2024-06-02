@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Sort folders by creation date
         foldersWithDates.sort(
-          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
         );
 
         displayFolders(foldersWithDates);
@@ -141,7 +141,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         folderCard.classList.add("folder-card");
         folderCard.innerHTML = `
           <h3>${item.name}</h3>
-          <p>Created on: ${new Date(item.created_at).toLocaleDateString()}</p>
         `;
         folderCard.addEventListener("click", () => {
           window.location.href = item.html_url;
