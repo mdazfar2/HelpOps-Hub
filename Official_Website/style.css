@@ -186,3 +186,34 @@ width: 40px;
   font-size: 14px;
   color: #777;
 }
+/* sponser button */
+.sponsor-button {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  color: black;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px; /* Padding around text */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  outline: none;
+  position: absolute; /* Absolute positioning */
+  top: 20px; /* Distance from the top */
+  right: 20px; /* Distance from the right */
+  transition: 0.5s;
+}
+
+.heart {
+  color: #ff5c5c; /* Heart color */
+  margin-right: 8px; /* Space between heart and text */
+  font-size: 18px; /* Heart size */
+}
+
+.sponsor-button:hover {
+  transform: scale(1.2);
+  background-color: white;
+  /* color: black;
+  box-shadow: 5px 5px 20px #00ccff; */
+}
