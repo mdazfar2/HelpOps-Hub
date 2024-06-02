@@ -87,32 +87,44 @@ document.addEventListener("DOMContentLoaded", async function () {
       .then((data) => {
         if (data) {
           const filteredData = data.filter((file) => {
-            const iswebsite =
-              file.name.toLowerCase() == "HelpOps-Hub Official Website";
-            return !file.name.includes(".") && !iswebsite;
+            const isWebsite =
+              file.name.toLowerCase() === "helpos-hub official website";
+            return !file.name.includes(".") && !isWebsite;
           });
 
-          const foldersContainer = document.getElementById("folders-container");
-          filteredData.forEach((item) => {
-            if (item.type === "dir") {
-              // Create a card for each folder
-              const folderCard = document.createElement("div");
-              folderCard.classList.add("folder-card");
-              folderCard.innerHTML = `
-                            <h3>${item.name}</h3>
-                            <p>${item.path}</p>
-                        `;
-              // Add click event to redirect to folder
-              folderCard.addEventListener("click", () => {
-                window.location.href = item.html_url;
-              });
-              foldersContainer.appendChild(folderCard);
-            }
+          displayFolders(filteredData);
+
+          // Search functionality
+          const searchBar = document.getElementById("search-bar");
+          searchBar.addEventListener("input", () => {
+            const searchTerm = searchBar.value.toLowerCase();
+            const filteredResults = filteredData.filter((item) =>
+              item.name.toLowerCase().includes(searchTerm)
+            );
+            displayFolders(filteredResults);
           });
         }
       })
-
       .catch((error) => console.error("Error fetching data:", error));
+  }
+
+  function displayFolders(data) {
+    const foldersContainer = document.getElementById("folders-container");
+    foldersContainer.innerHTML = "";
+    data.forEach((item) => {
+      if (item.type === "dir") {
+        const folderCard = document.createElement("div");
+        folderCard.classList.add("folder-card");
+        folderCard.innerHTML = `
+          <h3>${item.name}</h3>
+          <p>${item.path}</p>
+        `;
+        folderCard.addEventListener("click", () => {
+          window.location.href = item.html_url;
+        });
+        foldersContainer.appendChild(folderCard);
+      }
+    });
   }
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
 });
