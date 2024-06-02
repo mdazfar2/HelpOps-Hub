@@ -1,6 +1,4 @@
-/* styles.css */
-
-/* Reset some default styles */
+/* styles.css */ /* Reset some default styles */
 body,
 h1,
 p {
@@ -13,6 +11,22 @@ p {
   align-items: center;
   justify-content: center;
 }
+/*for icons */
+.icons {
+  display: flex;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 130px; /* Distance from the top */
+  right: 165px; /* Distance from the right */
+}
+.icons a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 20px; /* Adjust as needed */
+}
+
 /* Style for the search bar */
 #search-bar {
   width: 30%;
@@ -62,10 +76,10 @@ body {
 }
 /* maincontainer */
 #maincontainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 500px;;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
 }
 /* Header styles */
 header {
@@ -75,8 +89,8 @@ header {
   padding: 1rem;
 }
 /* loading  */
-.loading{
-  margin-top:20px ;
+.loading {
+  margin-top: 20px;
   font-size: x-large;
   display: flex;
   align-items: center;
@@ -113,10 +127,10 @@ header {
 
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 /* .loading:after {
@@ -148,6 +162,7 @@ width: 40px;
   justify-content: center;
   margin: auto;
   /* justify-content: space-between; Distribute cards evenly */
+  margin-top: 20px;
 }
 
 /* Individual folder card */
@@ -216,18 +231,134 @@ width: 40px;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
 }
-/* icons */
-.icons {
+
+.container {
   display: flex;
-  gap: 10px;
+  width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.intro {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+/* .intro h1 {
+  margin: 0;
+  color: black;
+}
+
+.intro p {
+  margin: 5px 0 0;
+  color: black;
+} */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.team-member {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #36d0ef;
+  border-radius: 10px;
+  padding: 20px;
+  background-image: linear-gradient(
+      to right,
+      rgb(128, 238, 244),
+      rgba(2, 151, 156, 0.995)
+    ),
+    url("/PROJECTS/MediGo/Assets 2/Medication\ Adherence\ 2.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card {
+  background-color: #00ccff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  align-items: center;
+  position: relative;
+}
+
+.image-div {
+  flex: none;
+  text-align: center;
+}
+
+.image-div img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.info-div {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.info-div h2 {
+  margin: 10px 0 5px;
+  font-size: 1.3em;
+  color: whitesmoke;
+}
+
+.info-div p {
+  margin: 5px 0;
+  font-size: 0.8em;
+  color: whitesmoke;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.8em;
+}
+
+.founder {
+  background-color: #f8a5a5;
+  color: #fff;
+}
+
+.maintainer {
+  background-color: #dc9af8;
+  color: #fff;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.social-links a {
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 130px; /* Distance from the top */
-  right: 165px; /* Distance from the right */
-}
-.icons a {
-  color: inherit;
+  color: #ffffff;
+  margin: 5px 0;
   text-decoration: none;
-  font-size: 20px; /* Adjust as needed */
+}
+
+.social-links a i {
+  margin-right: 5px;
+}
+
+.social-links a:hover {
+  color: #ffffff;
 }
