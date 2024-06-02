@@ -65,7 +65,7 @@ body {
    display: flex;
    align-items: center;
    justify-content: center;
-   height: 700px;;
+   height: 500px;;
 }
 /* Header styles */
 header {
@@ -148,7 +148,6 @@ width: 40px;
   justify-content: center;
   margin: auto;
   /* justify-content: space-between; Distribute cards evenly */
-  margin-top: 20px;
 }
 
 /* Individual folder card */
@@ -216,4 +215,19 @@ width: 40px;
   background-color: white;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
+}
+/* icons */
+.icons {
+  display: flex;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px; /* Distance from the top */
+  right: 20px; /* Distance from the right */
+}
+.icons a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 20px; /* Adjust as needed */
 }
