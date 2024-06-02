@@ -95,7 +95,7 @@ header {
 .folder-card:hover {
   background-color: white;
   box-shadow: 5px 5px 20px #00ccff;
- transform: scale(1.23);
+  transform: scale(1.1);
   transition: 0.5s;
   border-radius: 1.5rem;
   /* font-family: cursive; */
