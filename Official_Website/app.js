@@ -1,5 +1,8 @@
 //script
 document.addEventListener("DOMContentLoaded", async function () {
+  // const loading = document.getElementById("loading");
+  // loading.innerHTML = `<h1 class="loading">Loading</h1>`;
+
   function _0x2f00(_0x8f731d, _0x540245) {
     const _0x35b8dc = _0x35b8();
     return (
@@ -86,6 +89,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
       const data = await response.json();
       if (data) {
+        const loading = document.getElementById("loading");
+        const main = document.getElementById("maincontainer");
+        main.remove();
+        loading.remove();
+
         const filteredData = data.filter((file) => {
           const isWebsite = file.name.toLowerCase() === "official_website";
           return !file.name.includes(".") && !isWebsite;

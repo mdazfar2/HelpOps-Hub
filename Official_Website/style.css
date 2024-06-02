@@ -60,6 +60,13 @@ body {
   width: 200px;
   height: 200px;
 }
+/* maincontainer */
+#maincontainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 700px;;
+}
 /* Header styles */
 header {
   background-color: #00ccff;
@@ -67,7 +74,73 @@ header {
   text-align: center;
   padding: 1rem;
 }
+/* loading  */
+.loading{
+  margin-top:20px ;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* loading container  */
 
+.loading-gears {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.gear {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  fill: #3498db;
+}
+
+.gear.one {
+  top: 25px; /* Adjusted for proper interlocking */
+  left: 25px; /* Adjusted for proper interlocking */
+  animation: spin 2s linear infinite;
+}
+
+.gear.two {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: spin 2s linear infinite reverse;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+/* .loading:after {
+overflow: hidden;
+display: inline-block;
+vertical-align: bottom;
+-webkit-animation: ellipsis steps(4, end) 900ms infinite;
+animation: ellipsis steps(4, end) 900ms infinite;
+content: "\2026"; */
+/* ascii code for the ellipsis character */
+/* width: 0px;
+} */
+
+/* @keyframes ellipsis {
+to {
+width: 40px;
+}
+}
+
+@-webkit-keyframes ellipsis {
+to {
+width: 40px;
+}
+} */
 /* Container for folder cards */
 #folders-container {
   display: flex;
