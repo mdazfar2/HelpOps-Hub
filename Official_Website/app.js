@@ -90,7 +90,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       const data = await response.json();
       if (data) {
         const loading = document.getElementById("loading");
+        const main = document.getElementById("maincontainer");
+        main.remove();
         loading.remove();
+
         const filteredData = data.filter((file) => {
           const isWebsite = file.name.toLowerCase() === "official_website";
           return !file.name.includes(".") && !isWebsite;

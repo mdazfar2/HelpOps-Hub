@@ -60,6 +60,13 @@ body {
   width: 200px;
   height: 200px;
 }
+/* maincontainer */
+#maincontainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 700px;;
+}
 /* Header styles */
 header {
   background-color: #00ccff;
@@ -69,14 +76,14 @@ header {
 }
 /* loading  */
 .loading{
-   
-  margin-top:100px ;
+  margin-top:20px ;
   font-size: x-large;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 /* loading container  */
+
 .loading-gears {
   position: relative;
   width: 100px;
