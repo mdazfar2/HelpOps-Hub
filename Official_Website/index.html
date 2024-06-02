@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>HelpOps-Hub</title>
     <!-- Added Favicon for website -->
-    <link rel="shortcut icon" href="Favicon.png" type="Favicon"> 
+    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon"> 
+    <link rel="stylesheet" href="dark_mode.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,15 +19,21 @@
         </div>
         <h1>HelpOps-Hub</h1>
         <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-        <button class="sponsor-button" onclick="window.location.href=`https://github.com/sponsors/mdazfar2`">
+        <div class="icons">
+            <a href="https://github.com" target="_blank" class="fab fa-github"></a>
+            <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+            <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+            <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+        </div>
+        <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
             <span class="heart">&#10084;</span> Sponsor
         </button>
     </header>
-        <div id="search-container">
-            <input type="text" id="search-bar" placeholder="Search repositories...">
-        </div>
+    <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Search repositories...">
+    </div>
 
-        <div id="maincontainer">
+    <div id="maincontainer">
         <div id="loading" class="loading-gears">
             <svg class="gear one" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                 <path d="M78.9,50c0-1.6-0.1-3.1-0.2-4.6l9.4-7.2c0.7-0.5,0.9-1.5,0.4-2.2l-8.8-15.3c-0.5-0.7-1.5-0.9-2.2-0.4l-11,6.4
@@ -47,6 +55,7 @@
     </div>
     <div id="folders-container"></div>
     <script src="app.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 
 </html>
