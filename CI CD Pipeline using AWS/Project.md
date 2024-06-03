@@ -16,7 +16,7 @@ This repository contains a complete CI/CD pipeline setup using AWS CodeBuild, Co
 -   An AWS account
 -   AWS CLI installed and configured
 -   Basic knowledge of AWS services
--   A source code repository (Eg: Github, CodeCommi)
+-   A source code repository (Eg: Github, CodeCommit)
 ## Setup Instructions
 ### 🚀****Step 1: Create IAM Role for EC2 and AWS CodeDeploy****
 
