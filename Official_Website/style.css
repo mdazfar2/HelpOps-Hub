@@ -218,6 +218,17 @@ width: 40px;
   box-shadow: 5px 5px 20px #00ccff; */
 }
 
+@media (max-width: 769px) {
+  .logo img {
+    width: 150px;
+    height: 150px;
+  }
+  .logo {
+    top: 70px;
+    left: 10px;
+  }
+}
+
 @media (max-width: 426px) {
   header h1 {
     font-size: 2rem;
@@ -228,7 +239,7 @@ width: 40px;
   }
   .logo {
     left: 0px;
-    top: 60px;
+    top: 70px;
   }
   #search-bar {
     width: 80%;
@@ -237,8 +248,8 @@ width: 40px;
   .sponsor-button {
     margin-top: 40px;
     right: 5px;
-    top: 50px;
-    font-size: 0.5rem;
+    top: 55px;
+    font-size: 0.8rem;
     padding: 5px 10px;
   }
   header p {
