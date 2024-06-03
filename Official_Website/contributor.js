@@ -100,7 +100,7 @@ async function fetchAllContributors() {
       //   </div>;
 
       const contributorCard = document.createElement("div");
-      contributorCard.classList.add("team-member");
+      contributorCard.classList.add("team-member7");
       const avatarImg = document.createElement("img");
       avatarImg.src = contributor.avatar_url;
       avatarImg.alt = `${contributor.login}'s Picture`;
@@ -111,6 +111,30 @@ async function fetchAllContributors() {
       loginLink1.href = `https://github.com/sponsors/${name}`;
       loginLink.href = contributor.html_url;
       loginLink.target = "_blank";
+<<<<<<< HEAD
+      contributorCard.innerHTML = `  <div class="card7">
+          <div class="badge7">Developer</div>
+          <div class="image-div7">
+            <img src=${avatarImg.src} alt=${avatarImg.alt} />
+          </div>
+          <div class="info-div7">
+            <h2>${name}</h2>
+            <p>Open Source Contributor</p>
+          </div>
+        </div>
+        <div class="data7">
+          <div class="contributions7">
+            <div class="contributions-count7">73</div>
+            <div class="contributions-label7">Contributions</div>
+          </div>
+          <div class="social-links7">
+            <a href=${loginLink}>
+              <i class="fab fa-github"></i>
+            </a>
+            <div class="github-label7">GitHub</div>
+          </div>
+        </div>`;
+=======
       contributorCard.innerHTML = `  <div class="card">
          <div class="image-div">
            <img src=${avatarImg.src} alt=${avatarImg.alt} />
@@ -129,6 +153,7 @@ async function fetchAllContributors() {
            <i class="fab fa-github"></i> GitHub
          </a>
        </div>`;
+>>>>>>> 9c6f6abe56337b418a5e0a3fcf3fc01f472f8ff2
       //   loginLink.appendChild(avatarImg);
 
       //   contributorCard.appendChild(loginLink);
