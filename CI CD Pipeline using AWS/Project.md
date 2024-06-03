@@ -8,7 +8,7 @@ This repository contains a complete CI/CD pipeline setup using AWS CodeBuild, Co
 - [Conclusion ](#🎉Conclusion)
 ## Architecture
 ![enter image description here](https://miro.medium.com/v2/resize:fit:1120/0*ANP5G9udLJX3z5Rr.png)
--   **Source**: Code is stored in a repository (CodeCommit).
+-   **Source**: Code is stored in a repository (Eg: Github, CodeCommit).
 -   **Build**: CodeBuild compiles the code and runs tests.
 -   **Deploy**: CodeDeploy deploys the built code to EC2 instances or another service.
 
@@ -16,7 +16,7 @@ This repository contains a complete CI/CD pipeline setup using AWS CodeBuild, Co
 -   An AWS account
 -   AWS CLI installed and configured
 -   Basic knowledge of AWS services
--   A source code repository (CodeCommit)
+-   A source code repository (Eg: Github, CodeCommi)
 ## Setup Instructions
 ### 🚀****Step 1: Create IAM Role for EC2 and AWS CodeDeploy****
 
