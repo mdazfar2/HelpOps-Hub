@@ -118,7 +118,7 @@ async function fetchAllContributors() {
          <div class="info-div">
          <span class="badge maintainer">Contributor</span>
            <h2>${name}</h2>
-           <p>Open-sourec contributor</p>
+           <p>Open-source contributor</p>
          </div>
        </div>
        <div class="social-links">
