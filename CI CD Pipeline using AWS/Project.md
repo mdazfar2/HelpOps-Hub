@@ -4,8 +4,8 @@ This repository contains a complete CI/CD pipeline setup using AWS CodeBuild, Co
 - [Architecture](#architecture) 
 - [Prerequisites](#prerequisites) 
 -  [Setup Instructions](#setup-instructions)
-- [Cleanup Steps](#🧹cleanup-steps)
-- [Conclusion ](#🎉conclusion)
+- [Cleanup Steps](#🧹Cleanup-steps)
+- [Conclusion ](#🎉Conclusion)
 ## Architecture
 ![enter image description here](https://miro.medium.com/v2/resize:fit:1120/0*ANP5G9udLJX3z5Rr.png)
 -   **Source**: Code is stored in a repository (CodeCommit).
