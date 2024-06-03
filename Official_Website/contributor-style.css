@@ -261,7 +261,7 @@ width: 40px;
   color: black;
 } */
 
-.team-grid {
+#team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
@@ -366,3 +366,6 @@ width: 40px;
 .social-links a:hover {
   color: #ffffff;
 }
+ #group{
+  color: rgb(29, 129, 29);
+ }
