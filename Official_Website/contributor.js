@@ -111,6 +111,7 @@ async function fetchAllContributors() {
       loginLink1.href = `https://github.com/sponsors/${name}`;
       loginLink.href = contributor.html_url;
       loginLink.target = "_blank";
+      const contri = contributor.contributions;
       contributorCard.innerHTML = `  <div class="card7">
           <div class="badge7">Developer</div>
           <div class="image-div7">
@@ -123,7 +124,7 @@ async function fetchAllContributors() {
         </div>
         <div class="data7">
           <div class="contributions7">
-            <div class="contributions-count7">73</div>
+            <div class="contributions-count7">${contri}</div>
             <div class="contributions-label7">Contributions</div>
           </div>
           <div class="social-links7">
