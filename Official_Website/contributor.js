@@ -111,6 +111,7 @@ async function fetchAllContributors() {
       loginLink1.href = `https://github.com/sponsors/${name}`;
       loginLink.href = contributor.html_url;
       loginLink.target = "_blank";
+<<<<<<< HEAD
       contributorCard.innerHTML = `  <div class="card7">
           <div class="badge7">Developer</div>
           <div class="image-div7">
@@ -133,6 +134,26 @@ async function fetchAllContributors() {
             <div class="github-label7">GitHub</div>
           </div>
         </div>`;
+=======
+      contributorCard.innerHTML = `  <div class="card">
+         <div class="image-div">
+           <img src=${avatarImg.src} alt=${avatarImg.alt} />
+         </div>
+         <div class="info-div">
+         <span class="badge maintainer">Contributor</span>
+           <h2>${name}</h2>
+           <p>Open-source contributor</p>
+         </div>
+       </div>
+       <div class="social-links">
+           <a href=${loginLink1}>
+           <i class="fas fa-heart"></i> Sponsor
+         </a>
+         <a href=${loginLink}>
+           <i class="fab fa-github"></i> GitHub
+         </a>
+       </div>`;
+>>>>>>> 9c6f6abe56337b418a5e0a3fcf3fc01f472f8ff2
       //   loginLink.appendChild(avatarImg);
 
       //   contributorCard.appendChild(loginLink);

@@ -38,7 +38,21 @@ p {
 #search-bar::placeholder {
   color: #9e9e9e;
 }
-
+/* scrollbar.css */
+::-webkit-scrollbar {
+  width: 12px; 
+}
+::-webkit-scrollbar-track {
+  background: #00ccff; 
+}
+::-webkit-scrollbar-thumb {
+  background: darkgray;    
+  border-radius: 10px;   
+  min-height: 10px; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darkgrey;
+}
 header h1 {
   font-size: 80px;
   margin: 10px;
@@ -179,7 +193,24 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
-
+.about-button{
+  display: flex;
+  align-items: center;
+  color: black;
+  color: #00ccff;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  padding:5px 5px ;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s;
+}
+.about-button:hover{
+  transform: scale(1.2);
+  background-color: white;
+}
 /* Path text */
 .folder-card p {
   font-size: 14px;
@@ -230,4 +261,28 @@ width: 40px;
   color: inherit;
   text-decoration: none;
   font-size: 20px; /* Adjust as needed */
+}
+/*Scroll to top*/
+.scrollToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: #00ccff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+.scrollToTopBtn.show {
+  opacity: 1;
+  visibility: visible;
 }
