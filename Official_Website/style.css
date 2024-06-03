@@ -62,10 +62,10 @@ body {
 }
 /* maincontainer */
 #maincontainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 700px;;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
 }
 /* Header styles */
 header {
@@ -75,8 +75,8 @@ header {
   padding: 1rem;
 }
 /* loading  */
-.loading{
-  margin-top:20px ;
+.loading {
+  margin-top: 20px;
   font-size: x-large;
   display: flex;
   align-items: center;
@@ -113,10 +113,10 @@ header {
 
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 /* .loading:after {
@@ -216,4 +216,45 @@ width: 40px;
   background-color: white;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
+}
+
+@media (max-width: 426px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo {
+    left: 0px;
+    top: 60px;
+  }
+  #search-bar {
+    width: 80%;
+    margin-top: 40px;
+  }
+  .sponsor-button {
+    margin-top: 40px;
+    right: 5px;
+    top: 50px;
+    font-size: 0.5rem;
+    padding: 5px 10px;
+  }
+  header p {
+    font-size: 0.7rem;
+  }
+  #folders-container {
+    padding: 20px 20px;
+    gap: 8px;
+    /* justify-content: space-between; Distribute cards evenly */
+    margin-top: 10px;
+  }
+
+  .folder-card {
+    margin: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    flex: 0 0 calc(100% - 20px);
+  }
 }
