@@ -116,8 +116,9 @@ async function fetchAllContributors() {
            <img src=${avatarImg.src} alt=${avatarImg.alt} />
          </div>
          <div class="info-div">
-         <span class="badge maintainer">Maintainer</span>
+         <span class="badge maintainer">Contributor</span>
            <h2>${name}</h2>
+           <p>Open-sourec contributor</p>
          </div>
        </div>
        <div class="social-links">

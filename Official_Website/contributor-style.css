@@ -332,8 +332,8 @@ width: 40px;
 
 .image-div img {
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 20px;
+  height: 20px;
 }
 
 .info-div {
@@ -343,15 +343,16 @@ width: 40px;
 
 .info-div h2 {
   margin: 10px 0 5px;
-  font-size: 1.3em;
+  font-size: 2em;
   color: black;
 }
 
 .info-div p {
   margin: 5px 0;
-  font-size: 0.8em;
-  color: whitesmoke;
+  font-size: 1em;
+  color: black;
 }
+
 #team-grid1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
