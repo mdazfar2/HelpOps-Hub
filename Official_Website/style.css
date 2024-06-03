@@ -193,7 +193,24 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
-
+.about-button{
+  display: flex;
+  align-items: center;
+  color: black;
+  color: #00ccff;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  padding:5px 5px ;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s;
+}
+.about-button:hover{
+  transform: scale(1.2);
+  background-color: white;
+}
 /* Path text */
 .folder-card p {
   font-size: 14px;
