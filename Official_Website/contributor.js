@@ -20,6 +20,101 @@ const owner = "mdazfar2";
 const repoName = "HelpOps-Hub";
 
 async function fetchContributors(pageNumber) {
+  const apiUrl = "https://script.google.com/macros/s/AKfycbzipat1oQlBel7YwZaPl7mCpshjRpvyouFSRgunjqGlKC-0gv46hypYD0EnSMsOEBeC-Q/exec";
+
+  async function getkey() {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data);
+      return data.apik[0].apikey;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  const token = await getkey();
+  const perPage = 100;
+  const url = `https://api.github.com/repos/${owner}/${repoName}/contributors?page=${pageNumber}&per_page=${perPage}`;
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch contributors data. Status code: ${response.status}`);
+  }
+
+  const contributorsData = await response.json();
+  return contributorsData;
+}
+
+async function fetchAllContributors() {
+  let allContributors = [];
+  let pageNumber = 1;
+
+  try {
+    while (true) {
+      const contributorsData = await fetchContributors(pageNumber);
+      if (contributorsData.length === 0) {
+        break;
+      }
+      allContributors = allContributors.concat(contributorsData);
+      pageNumber++;
+    }
+
+    allContributors.forEach((contributor) => {
+      if (contributor.login === owner) {
+        return;
+      }
+
+      const contributorCard = document.createElement("div");
+      contributorCard.classList.add("team-member");
+
+      const name = contributor.name || contributor.login;
+      const avatarUrl = contributor.avatar_url;
+      const githubUrl = contributor.html_url;
+      const sponsorUrl = `https://github.com/sponsors/${name}`;
+
+      contributorCard.innerHTML = `
+        <div class="card">
+          <div class="image-div">
+            <img src="${avatarUrl}" alt="${name}'s Picture" loading="lazy"/>
+          </div>
+          <div class="info-div">
+            <span class="badge maintainer">Contributor</span>
+            <h2>${name}</h2>
+            <p>Open-source contributor</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="${sponsorUrl}">
+            <i class="fas fa-heart"></i> Sponsor
+          </a>
+          <a href="${githubUrl}" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>`;
+
+      cont.appendChild(contributorCard);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+fetchAllContributors();
+
+
+/* const cont = document.getElementById("team-grid1");
+const owner = "mdazfar2";
+const repoName = "HelpOps-Hub";
+
+async function fetchContributors(pageNumber) {
   const apiUrl =
     "https://script.google.com/macros/s/AKfycbzipat1oQlBel7YwZaPl7mCpshjRpvyouFSRgunjqGlKC-0gv46hypYD0EnSMsOEBeC-Q/exec";
 
@@ -140,7 +235,8 @@ async function fetchAllContributors() {
   }
 }
 
-fetchAllContributors();
+fetchAllContributors(); */
+
 
 // let calcScrollValue = () => {
 //   let scrollProg = document.getElementById("progress");
