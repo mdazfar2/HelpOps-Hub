@@ -100,7 +100,7 @@ async function fetchAllContributors() {
       //   </div>;
 
       const contributorCard = document.createElement("div");
-      contributorCard.classList.add("team-member7");
+      contributorCard.classList.add("team-member");
       const avatarImg = document.createElement("img");
       avatarImg.src = contributor.avatar_url;
       avatarImg.alt = `${contributor.login}'s Picture`;
@@ -111,29 +111,26 @@ async function fetchAllContributors() {
       loginLink1.href = `https://github.com/sponsors/${name}`;
       loginLink.href = contributor.html_url;
       loginLink.target = "_blank";
-      contributorCard.innerHTML = `  <div class="card7">
-          <div class="badge7">Developer</div>
-          <div class="image-div7">
-            <img src=${avatarImg.src} alt=${avatarImg.alt} />
-          </div>
-          <div class="info-div7">
-            <h2>${name}</h2>
-            <p>Open Source Contributor</p>
-          </div>
-        </div>
-        <div class="data7">
-          <div class="contributions7">
-            <div class="contributions-count7">73</div>
-            <div class="contributions-label7">Contributions</div>
-          </div>
-          <div class="social-links7">
-            <a href=${loginLink}>
-              <i class="fab fa-github"></i>
-            </a>
-            <div class="github-label7">GitHub</div>
-          </div>
-        </div>`;
+      contributorCard.innerHTML = `  <div class="card">
+         <div class="image-div">
+           <img src=${avatarImg.src} alt=${avatarImg.alt} />
+         </div>
+         <div class="info-div">
+         <span class="badge maintainer">Contributor</span>
+           <h2>${name}</h2>
+           <p>Open-source contributor</p>
+         </div>
+       </div>
+       <div class="social-links">
+           <a href=${loginLink1}>
+           <i class="fas fa-heart"></i> Sponsor
+         </a>
+         <a href=${loginLink}>
+           <i class="fab fa-github"></i> GitHub
+         </a>
+       </div>`;
       //   loginLink.appendChild(avatarImg);
+
       //   contributorCard.appendChild(loginLink);
       if (cheak > 0) cont.appendChild(contributorCard);
       cheak++;

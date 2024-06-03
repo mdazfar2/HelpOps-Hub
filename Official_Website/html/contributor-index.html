@@ -8,46 +8,47 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <title>HelpOps-Hub</title>
     <!-- Added Favicon for website -->
-    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="contributor-style.css" />
-    <link rel="stylesheet" href="newCards.css" />
+    <link rel="shortcut icon" href="../mediafiles/Favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/contributor-style.css" />
+    <link rel="stylesheet" href="../styles/dark_mode.css">
+    <link rel="stylesheet" href="../styles/style.css">
   </head>
   <body>
     <header>
       <!-- Website Logo -->
       <div class="logo">
-        <a  href="index.html">
-        <img src="logo.png" alt="HelpOps-Hub Logo" />
+        <a  href="../index.html">
+        <img src="../mediafiles/logo.png" alt="HelpOps-Hub Logo" />
         </a>
       </div>
+      <a href="javascript:void(0);" class="fas fa-adjust theme-change-button" onclick="toggleTheme()"></a>
+
       <h1>HelpOps-Hub</h1>
       <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+      <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+        <span class="heart">&#10084;</span>
+    </button>
       <!-- Website Social Icons -->
       <div class="icons">
-        <a  id="group" class="fa-solid fa-people-group"></a>
-        <a href="https://github.com" target="_blank" class="fab fa-github"></a>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          class="fab fa-linkedin"></a>
-        <a
-          href="https://discord.com"
-          target="_blank"
-          class="fab fa-discord"></a>
+<!--
         <a
           href="javascript:void(0);"
           class="fas fa-adjust"
-          onclick="toggleTheme()"></a>
-      </div>
-      <button
-        class="sponsor-button"
-        onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
-        <span class="heart">&#10084;</span> Sponsor
+          onclick="toggleTheme()"></a> -->
+          <button class="about-button">
+            <a href="../html/about.html">Know Why</a>
+        </button>
+        <button class="about-button">
+          <a href="../index.html">Resources</a>
       </button>
+      </div>
+
+
     </header>
     <div class="container">
       <main class="main-content">
         <div class="intro">
+          <br><br>
           <h1>Our Team</h1>
           <p>
             Meet Our Team, Passionate About Open Source and Making
@@ -59,7 +60,7 @@
           <div class="team-member">
             <div class="card1">
               <div class="image-div1">
-                <img src="Screenshot (251).png" alt="Azfar Alam" />
+                <img src="../mediafiles/Screenshot (251).png" alt="Azfar Alam" />
               </div>
               <div class="info-div">
                 <span class="badge founder">Founder</span>
@@ -76,7 +77,7 @@
           <div class="team-member">
             <div class="card2">
               <div class="image-div1">
-                <img src="Screenshot (250).png" alt="Azfar Alam" />
+                <img src="../mediafiles/Screenshot (250).png" alt="Azfar Alam" />
               </div>
               <div class="info-div">
                 <span class="badge founder">Maintainer</span>
@@ -94,7 +95,18 @@
       </main>
     </div>
     <div id="team-grid1"></div>
-    <script src="contributor.js"></script>
-    <script src="dark_mode.js"></script>
+    <script src="../js/contributor.js"></script>
+    <script src="../js/darkmode.js"></script>
   </body>
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 HelpOps-Hub. All rights reserved.</p>
+        <div class="footer-icons">
+            <a href="https://github.com" target="_blank" class="fab fa-github"></a>
+            <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+            <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+        </div>
+    </div>
+</footer>
+
 </html>

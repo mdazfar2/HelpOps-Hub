@@ -159,14 +159,41 @@ document.addEventListener("DOMContentLoaded", async function () {
               ? createdDate.toLocaleString()
               : "N/A"
           }</p>
+          <div class="icons">
+            <a href="javascript:void(0);" class="far fa-copy" title="Copy link"></a>
+            <a href="javascript:void(0);" class="fab fa-linkedin" title="Share on LinkedIn"></a>
+          </div>
         `;
         folderCard.addEventListener("click", () => {
           window.location.href = item.html_url;
         });
+        const copyLinkButton = folderCard.querySelector(".fa-copy");
+        const linkedInButton = folderCard.querySelector(".fa-linkedin");
+        copyLinkButton.addEventListener("click", () => {
+          // Implement copy link functionality here
+          // You can use document.execCommand('copy') or Clipboard API
+          // Example: navigator.clipboard.writeText(item.html_url);
+          // Replace item.html_url with the actual link to copy
+                  navigator.clipboard.writeText(item.html_url)
+                  .then(() => {
+                      alert("Link copied to clipboard!");
+                  })
+                  .catch((err) => {
+                      console.error("Error copying link: ", err);
+                  });
+          });
+
+        linkedInButton.addEventListener("click", () => {
+          // Implement share on LinkedIn functionality here
+          // You can use the LinkedIn Share API or redirect to LinkedIn sharing URL
+          // Example: window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(item.html_url));
+          // Replace item.html_url with the actual link to share
+          window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(item.html_url));
+        });
         foldersContainer.appendChild(folderCard);
       }
     });
-  }
+}
 
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
 });
