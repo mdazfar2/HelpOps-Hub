@@ -171,7 +171,7 @@ width: 40px;
 
 /* Individual folder card */
 .folder-card {
-  flex: 0 0 calc(25% - 20px); /* Four cards per row (adjust margin as needed) */
+  flex: 0 0 calc(50% - 20px); /* Four cards per row (adjust margin as needed) */
   margin: 10px;
   justify-content: center;
   padding: 1.5rem;
@@ -202,7 +202,7 @@ width: 40px;
 /* Path text */
 .folder-card p {
   font-size: 14px;
-  color: #777;
+  color: black;
 }
 /* sponser button */
 .sponsor-button {
@@ -263,40 +263,68 @@ width: 40px;
 
 #team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
   gap: 20px;
+  height: 400px;
+  /* margin: 20px; */
+ 
 }
 
 .team-member {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #36d0ef;
-  border-radius: 10px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  /* border: solid; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   padding: 20px;
-  background-image: linear-gradient(
-      to right,
-      rgb(128, 238, 244),
-      rgba(2, 151, 156, 0.995)
-    ),
-    url("/PROJECTS/MediGo/Assets 2/Medication\ Adherence\ 2.jpg");
+ /* background-color: gray; */
+  margin-left: 20px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  transition: 0.5s;
 }
-
+.team-member:hover{
+  transform: scale(1.07);
+}
 .card {
-  background-color: #00ccff;
+  background-color: #ceedff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
+  border-color: #3498db;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 300px;
+  height: 200px;
   align-items: center;
   position: relative;
 }
-
+.card1 {
+  background-color: #fff0f0;
+  padding: 20px;
+  border-radius: 20px;
+  border-color: #3498db;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 300px;
+  align-items: center;
+  position: relative;
+}
+.card2 {
+  background-color: #fcedfe;
+  padding: 20px;
+  border-radius: 20px;
+  border-color: #3498db;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 300px;
+  align-items: center;
+  position: relative;
+}
 .image-div {
   flex: none;
   text-align: center;
@@ -316,13 +344,18 @@ width: 40px;
 .info-div h2 {
   margin: 10px 0 5px;
   font-size: 1.3em;
-  color: whitesmoke;
+  color: black;
 }
 
 .info-div p {
   margin: 5px 0;
   font-size: 0.8em;
   color: whitesmoke;
+}
+#team-grid1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 15px;
 }
 
 .badge {
@@ -332,7 +365,7 @@ width: 40px;
   display: inline-block;
   padding: 2px 10px;
   border-radius: 20px;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .founder {
@@ -349,12 +382,38 @@ width: 40px;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  font-size: large;
 }
+#social-links{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  font-size: XX-large;
+}
+#social-links a {
+  display: flex;
+  align-items: center;
+  color: black;
+  margin: 5px 0;
+  text-decoration: none;
+}
+
+
+#social-links a i {
+  margin-right: 5px;
+}
+
+#social-links a:hover {
+  color: #89d2fc;
+}
+ #group{
+  color: black;
+ }
 
 .social-links a {
   display: flex;
   align-items: center;
-  color: #ffffff;
+  color: black;
   margin: 5px 0;
   text-decoration: none;
 }
@@ -364,8 +423,18 @@ width: 40px;
 }
 
 .social-links a:hover {
-  color: #ffffff;
+  color: #89d2fc;
 }
  #group{
-  color: rgb(29, 129, 29);
+  color: black;
  }
+ .image-div img{
+  height: 150px;
+  width: 150px;
+ }
+ .image-div1 img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+ }
+

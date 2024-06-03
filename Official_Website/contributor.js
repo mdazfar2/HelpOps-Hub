@@ -15,7 +15,7 @@
 //   nMenu.classList.toggle("active");
 // }
 
-const cont = document.getElementById("team-grid");
+const cont = document.getElementById("team-grid1");
 const owner = "mdazfar2";
 const repoName = "HelpOps-Hub";
 
@@ -70,6 +70,7 @@ async function fetchAllContributors() {
       allContributors = allContributors.concat(contributorsData);
       pageNumber++;
     }
+    var cheak = 0;
     allContributors.forEach((contributor) => {
       if (contributor.login === owner) {
         return;
@@ -130,8 +131,8 @@ async function fetchAllContributors() {
       //   loginLink.appendChild(avatarImg);
 
       //   contributorCard.appendChild(loginLink);
-
-      cont.appendChild(contributorCard);
+      if (cheak > 0) cont.appendChild(contributorCard);
+      cheak++;
     });
   } catch (error) {
     console.error(error);
