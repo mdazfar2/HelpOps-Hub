@@ -118,6 +118,12 @@ p{
     animation: img-animate1 1s forwards ease-in;
 
 }
+.card-body{
+    font-size: 1.3rem !important;
+}
+.btn{
+    font-size: 1.5rem !important;
+}
 .mt{
     margin-top: 10px;
 }
@@ -126,4 +132,25 @@ p,li{
 }
 .mb{
     margin-bottom: 50px;
+}
+.container{
+    border: solid black 1px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.btn{
+    color: #02566b;
+}
+.btn:focus{
+    box-shadow: none;
+}
+.show{
+    animation: card-animate 1s forwards;
+}
+@keyframes card-animate {
+    from{
+        height: 0px;
+    }to{
+        height: 100px;
+    }
 }
