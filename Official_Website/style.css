@@ -1,4 +1,4 @@
-/* styles.css *//* Reset some default styles */
+/* styles.css */ /* Reset some default styles */
 body,
 h1,
 p {
@@ -365,14 +365,26 @@ width: 40px;
 }
 
 /* Feedback section */
+.feedback {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.feedback img {
+  margin-left: 8rem;
+  align-items: center;
+  width: 40rem;
+}
+
 #feedback-section {
   background-color: #f9f9f9;
   padding: 1.5rem;
   margin: 2rem auto;
   width: 30%;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
 }
 
 #feedback-section h2 {
@@ -489,4 +501,21 @@ width: 40px;
 }
 #team h4 {
   font-size: 10px;
+}
+
+/* Adding footer in the website */
+.footer {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Heart styling */
+#heart {
+  font-size: 2rem;
+  color: #00ccff;
+  margin-bottom: 2rem;
 }
