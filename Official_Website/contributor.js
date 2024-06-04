@@ -52,7 +52,9 @@ async function fetchContributors(pageNumber) {
   }
 
   const contributorsData = await response.json();
-  //   loading.innerHTML = ``;
+  const loading = document.getElementById("team-grid1");
+  loading.removeChild(loading.firstChild);
+
   return contributorsData;
 }
 
@@ -104,7 +106,11 @@ async function fetchAllContributors() {
       const avatarImg = document.createElement("img");
       avatarImg.src = contributor.avatar_url;
       avatarImg.alt = `${contributor.login}'s Picture`;
-      const name = contributor.name || contributor.login;
+      let name = contributor.name || contributor.login;
+
+      if (name.length > 12) {
+        name = name.slice(0, 10) + "...";
+      }
 
       const loginLink = document.createElement("a");
       const loginLink1 = document.createElement("a");
@@ -113,7 +119,6 @@ async function fetchAllContributors() {
       loginLink.target = "_blank";
       const contri = contributor.contributions;
       contributorCard.innerHTML = `  <div class="card7">
-          <div class="badge7">Developer</div>
           <div class="image-div7">
             <img src=${avatarImg.src} alt=${avatarImg.alt} />
           </div>

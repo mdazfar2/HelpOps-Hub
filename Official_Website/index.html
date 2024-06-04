@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>HelpOps-Hub</title>
     <!-- Added Favicon for website -->
+    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="Favicon.png" type="image/x-icon"> 
     <link rel="stylesheet" href="dark_mode.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,7 +21,11 @@
         <h1>HelpOps-Hub</h1>
         <p>Ensuring You Never Get Stuck In DevOps Again!</p>
         <div class="icons">
-            <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+            <!-- <div id="team"> -->
+            <a   id="team"  href="contributor-index.html" class="fa-solid fa-people-group">
+                <h4>Our team</h4>
+            </a>
+            <!-- </div> -->
             <a href="https://github.com" target="_blank" class="fab fa-github"></a>
             <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
             <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
@@ -61,7 +65,7 @@
             </svg>
         </div>
     </div>
-    <button id="scrollToTopBtn" class="scrollToTopBtn">▲</button>
+    <!-- <button id="scrollToTopBtn" class="scrollToTopBtn">▲</button> -->
     <div id="folders-container"></div>
     <script src="app.js"></script>
     <script src="darkmode.js"></script>
