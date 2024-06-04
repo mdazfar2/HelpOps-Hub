@@ -247,8 +247,10 @@ width: 40px;
 }
 
 .intro {
-  margin-top: 15px;
-  margin-bottom: 20px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left:24px;
+  margin-right:24px;
 }
 
 /* .intro h1 {

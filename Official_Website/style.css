@@ -76,10 +76,11 @@ body {
 }
 /* maincontainer */
 #maincontainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 500px;;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+
 }
 /* Header styles */
 header {
@@ -89,8 +90,8 @@ header {
   padding: 1rem;
 }
 /* loading  */
-.loading{
-  margin-top:20px ;
+.loading {
+  margin-top: 20px;
   font-size: x-large;
   display: flex;
   align-items: center;
@@ -127,10 +128,10 @@ header {
 
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 /* .loading:after {
@@ -247,6 +248,60 @@ width: 40px;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
 }
+
+
+@media (max-width: 769px) {
+  .logo img {
+    width: 150px;
+    height: 150px;
+  }
+  .logo {
+    top: 70px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 426px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo {
+    left: 0px;
+    top: 70px;
+  }
+  #search-bar {
+    width: 80%;
+    margin-top: 40px;
+  }
+  .sponsor-button {
+    margin-top: 40px;
+    right: 5px;
+    top: 55px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  header p {
+    font-size: 0.7rem;
+  }
+  #folders-container {
+    padding: 20px 20px;
+    gap: 8px;
+    /* justify-content: space-between; Distribute cards evenly */
+    margin-top: 10px;
+  }
+
+  .folder-card {
+    margin: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    flex: 0 0 calc(100% - 20px);
+  }
+}
+
 /* icons */
 .icons {
   display: flex;
@@ -263,6 +318,99 @@ width: 40px;
   text-decoration: none;
   font-size: 20px; /* Adjust as needed */
 }
+
+/* Feedback section */
+#feedback-section {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  width: 30%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#feedback-section h2 {
+  text-align: center;
+  color: #00ccff;
+  margin-bottom: 1rem;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 0.5rem;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.feedback-form textarea {
+  resize: vertical;
+  height: 100px; /* Fixed height for textarea */
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 1.5rem;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating input:checked ~ label ~ label {
+  color: #ffc700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffc700;
+}
+
+.feedback-form button {
+  padding: 0.75rem;
+  font-size: 16px;
+  color: #fff;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #009ec3;
+}
+
+
 /*Scroll to top*/
 .scrollToTopBtn {
   position: fixed;
@@ -287,6 +435,7 @@ width: 40px;
   opacity: 1;
   visibility: visible;
 }
+
 /* team */
 #team {
   gap:5px ;
