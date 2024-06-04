@@ -133,29 +133,6 @@ async function fetchAllContributors() {
       if (contributor.login === owner) {
         return;
       }
-      //   <div class="team-member">
-      //     <div class="card">
-      //       <div class="image-div">
-      //         <img src="Screenshot (251).png" alt="Azfar Alam" />
-      //       </div>
-      //       <div class="info-div">
-      //         <span class="badge founder">Founder</span>
-      //         <h2>Azfar Alam</h2>
-      //         <p>DevOps Engineer</p>
-      //       </div>
-      //     </div>
-      //     <div class="social-links">
-      //       <a href="#">
-      //         <i class="fas fa-heart"></i> Sponsor
-      //       </a>
-      //       <a href="#">
-      //         <i class="fab fa-github"></i> GitHub
-      //       </a>
-      //       <a href="#">
-      //         <i class="fab fa-twitter"></i> Twitter
-      //       </a>
-      //     </div>
-      //   </div>;
 
       const contributorCard = document.createElement("div");
       contributorCard.classList.add("team-member7");
@@ -175,6 +152,7 @@ async function fetchAllContributors() {
       loginLink.target = "_blank";
       const contri = contributor.contributions;
       contributorCard.innerHTML = `  <div class="card7">
+       <div class="badge7" >Developer</div>
           <div class="image-div7">
             <img src=${avatarImg.src} alt=${avatarImg.alt} />
           </div>
@@ -187,6 +165,7 @@ async function fetchAllContributors() {
           <div class="contributions7">
             <div class="contributions-count7">${contri}</div>
             <div class="contributions-label7">Contributions</div>
+           
           </div>
           <div class="social-links7">
             <a href=${loginLink}>
