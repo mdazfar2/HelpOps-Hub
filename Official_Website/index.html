@@ -10,22 +10,23 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="Favicon.png" type="image/x-icon"> 
     <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="navstyle.css">
+
 </head>
 
 <body>
-    <header>
+    <header class="header">
+
         <div class="logo">
-            <!-- New Website Logo -->
             <img src="logo.png" alt="HelpOps-Hub Logo">
         </div>
-        <h1>HelpOps-Hub</h1>
-        <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-        <div class="icons">
-            <!-- <div id="team"> -->
-            <a   id="team"  href="contributor-index.html" class="fa-solid fa-people-group">
-                <h4>Our team</h4>
-            </a>
-            <!-- </div> -->
+        <div>
+
+            <h1>HelpOps-Hub</h1>
+            <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+        </div>
+        <!-- <div class="icons">
+            <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
             <a href="https://github.com" target="_blank" class="fab fa-github"></a>
             <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
             <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
@@ -42,11 +43,58 @@
                 FAQ's
             </a>
         </button>
-        </div>
-        <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
-            <span class="heart">&#10084;</span> Sponsor
-        </button>
+        </div> -->
+       
     </header>
+        
+    
+
+        <nav class="nav " id="navbar">
+           
+
+
+            <ul class="nav__list" id="navlinkitems">
+                <li class="nav__item">
+                    <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://github.com" target="_blank" class="fab fa-github"></a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+                </li>
+                <li>
+                    <button class="about-button">
+
+                        <a  href="./about.html">
+                            About Us
+                        </a>
+                    </button>
+                   
+                </li>
+                <li><button class="about-button">
+          
+                    <a  href="./faq.html">
+                        FAQ's
+                    </a>
+                </button></li>
+                <li>
+                    <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                        <span class="heart">&#10084;</span> Sponsor
+                    </button>
+                </li>
+                
+            </ul>
+
+        </nav>
+
     <div id="search-container">
         <input type="text" id="search-bar" placeholder="Search repositories...">
     </div>
