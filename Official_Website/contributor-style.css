@@ -14,7 +14,7 @@ p {
 /*for icons css */
 .icons {
   display: flex;
-  gap: 10px;
+  gap: 22px;
   display: flex;
   align-items: center;
   position: absolute;
@@ -440,3 +440,12 @@ width: 40px;
   width: 200px;
   border-radius: 50%;
  }
+ #team {
+  gap:5px ;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+}
+#team h4{
+  font-size: 10px;
+}

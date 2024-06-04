@@ -305,12 +305,13 @@ width: 40px;
 /* icons */
 .icons {
   display: flex;
-  gap: 10px;
+  gap: 22px;
   display: flex;
   align-items: center;
   position: absolute;
   top: 130px; /* Distance from the top */
   right: 165px; /* Distance from the right */
+  
 }
 .icons a {
   color: inherit;
@@ -435,3 +436,13 @@ width: 40px;
   visibility: visible;
 }
 
+/* team */
+#team {
+  gap:5px ;
+  display: flex;
+  display: flex;
+  align-items: center;
+}
+#team h4{
+  font-size: 10px;
+}
