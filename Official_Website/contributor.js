@@ -18,7 +18,8 @@
 const cont = document.getElementById("team-grid1");
 const owner = "mdazfar2";
 const repoName = "HelpOps-Hub";
-
+// const loading = document.getElementById("skeleton-wrapper");
+//   cont.appendChild(loading);
 async function fetchContributors(pageNumber) {
   const apiUrl =
     "https://script.google.com/macros/s/AKfycbzipat1oQlBel7YwZaPl7mCpshjRpvyouFSRgunjqGlKC-0gv46hypYD0EnSMsOEBeC-Q/exec";
@@ -30,7 +31,6 @@ async function fetchContributors(pageNumber) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log(data); // Log the response data
       return data.apik[0].apikey;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -52,8 +52,8 @@ async function fetchContributors(pageNumber) {
   }
 
   const contributorsData = await response.json();
-  const loading = document.getElementById("team-grid1");
-  loading.removeChild(loading.firstChild);
+  const cont = document.getElementById("team-grid1");
+  cont.removeChild(cont.firstChild);
 
   return contributorsData;
 }
