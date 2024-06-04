@@ -7,7 +7,9 @@ header.dark-mode {
     background-color: #1e1e1e;
     color: #e0e0e0;
 }
-
+.dark-mode .nav{
+    background-color: #1e1e1e !important;
+}
 .icons a.dark-mode {
     color: #e0e0e0;
 }
