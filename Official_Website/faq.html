@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion with Animation</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon"> 
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="aboutstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navstyle.css">
+    <style>
+        /* Custom CSS for Accordion */
+        .accordion .card-header {
+            cursor: pointer;
+        }
+        .accordion .card-header .btn {
+            text-align: left;
+            width: 100%;
+        }
+        .accordion .card-header i {
+            transition: transform 0.2s;
+        }
+        .accordion .collapse.show .card-header i {
+            transform: rotate(180deg);
+        }
+        .accordion .card-body {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body{
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+
+        <div class="logo">
+            <img src="logo.png" alt="HelpOps-Hub Logo">
+        </div>
+        <div>
+
+            <h1>FAQ's</h1>
+        </div>
+       
+       
+    </header>
+    <nav class="nav " id="navbar">
+           
+
+
+        <ul class="nav__list" id="navlinkitems">
+            <li class="nav__item">
+                <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://github.com" target="_blank" class="fab fa-github"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+            </li>
+
+            <li class="nav__item">
+                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+            </li>
+            <li>
+                <button class="about-button">
+
+                    <a  href="./about.html">
+                        About Us
+                    </a>
+                </button>
+               
+            </li>
+            <li><button class="about-button">
+      
+                <a  href="./index.html">
+                    BACK
+                </a>
+            </button></li>
+            <li>
+                <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                    <span class="heart">&#10084;</span> Sponsor
+                </button>
+            </li>
+            
+        </ul>
+
+    </nav>
+
+<div class="container mt-5">
+   
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn abeezee-regular"  type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        1. What is HelpOps-Hub? <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    HelpOps-Hub is a platform designed to assist developers and DevOps engineers in solving complex DevOps issues, ensuring you never get stuck again.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        2. How can I use HelpOps-Hub? <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    Simply navigate through our various resources, guides, and tutorials tailored to help you overcome DevOps challenges.
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        3. Is there a cost associated with using HelpOps-Hub?
+                        <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                   No there is No Cost Associated with it but May be in future it may contains cost for some resources .
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        4. How can I contribute to HelpOps-Hub?
+                        <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    4. You can contribute by sharing your own solutions, writing tutorials, or joining our Github Reporsitory https://github.com/mdazfar2/HelpOps-Hub.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h5 class="mb-0">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        5. Who can benefit from HelpOps-Hub?
+                        <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    5. HelpOps-Hub is ideal for developers, DevOps engineers, and IT professionals looking to enhance their DevOps practices and problem-solving skills.
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

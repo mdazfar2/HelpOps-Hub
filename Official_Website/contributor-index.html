@@ -6,45 +6,96 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+      <link rel="stylesheet" href="skeleton.css">
     <title>HelpOps-Hub</title>
     <!-- Added Favicon for website -->
     <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="contributor-style.css" />
     <link rel="stylesheet" href="newCards.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="navstyle.css" />
+
   </head>
   <body>
-    <header>
-      <!-- Website Logo -->
-      <div class="logo">
-        <a  href="index.html">
-        <img src="logo.png" alt="HelpOps-Hub Logo" />
-        </a>
-      </div>
-      <h1>HelpOps-Hub</h1>
-      <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-      <!-- Website Social Icons -->
-      <div class="icons">
-        <a  id="group" class="fa-solid fa-people-group"></a>
-        <a href="https://github.com" target="_blank" class="fab fa-github"></a>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          class="fab fa-linkedin"></a>
-        <a
-          href="https://discord.com"
-          target="_blank"
-          class="fab fa-discord"></a>
-        <a
-          href="javascript:void(0);"
-          class="fas fa-adjust"
-          onclick="toggleTheme()"></a>
-      </div>
-      <button
-        class="sponsor-button"
-        onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
-        <span class="heart">&#10084;</span> Sponsor
-      </button>
+    <header class="header">
+
+        <div class="logo">
+            <img src="logo.png" alt="HelpOps-Hub Logo">
+        </div>
+        <div>
+
+            <h1>HelpOps-Hub</h1>
+            <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+        </div>
+        <!-- <div class="icons">
+            <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+            <a href="https://github.com" target="_blank" class="fab fa-github"></a>
+            <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+            <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+            <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+          <button class="about-button">
+
+              <a  href="./about.html">
+                  About Us
+              </a>
+          </button>
+          <button class="about-button">
+
+            <a  href="./faq.html">
+                FAQ's
+            </a>
+        </button>
+        </div> -->
+       
     </header>
+        
+    
+
+        <nav class="nav " id="navbar">
+           
+
+
+            <ul class="nav__list" id="navlinkitems">
+                <li class="nav__item">
+                    <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://github.com" target="_blank" class="fab fa-github"></a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+                </li>
+                <li class="nav__item">
+                    <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+                </li>
+                <li>
+                    <button class="about-button">
+
+                        <a  href="./about.html">
+                            About Us
+                        </a>
+                    </button>
+                   
+                </li>
+                <li><button class="about-button">
+          
+                    <a  href="./faq.html">
+                        FAQ's
+                    </a>
+                </button></li>
+                <li>
+                    <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                        <span class="heart">&#10084;</span> Sponsor
+                    </button>
+                </li>
+                
+            </ul>
+
+        </nav>
     <div class="container">
       <main class="main-content">
         <div class="intro">
@@ -85,15 +136,356 @@
               </div>
             </div>
             <div id="social-links">
-              <a href="https://www.linkedin.com/in/anuragpandey0711/"><i class="fab fa-linkedin"></i>linkedin</a>
+              <a href="https://github.com/sponsors/pandeyji711"><i class="fas fa-heart"></i> Sponsor</a>
               <a href="https://github.com/pandeyji711"><i class="fab fa-github"></i> GitHub</a>
-              <a href="https://x.com/home"><i class="fab fa-twitter"></i>twitter</a>
+              <a href="https://www.linkedin.com/in/anuragpandey0711/"><i class="fab fa-linkedin"></i>linkedin</a>
             </div>
           </div>
         </div>
       </main>
     </div>
-    <div id="team-grid1"></div>
+    <button id="scrollToTopBtn" class="scrollToTopBtn">▲</button>
+    <div id="team-grid1">
+      <div id="skeleton-wrapper" >
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-contributor-card">
+                <div id="short">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-icons">
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                        <div class="skeleton-icon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <script src="contributor.js"></script>
     <script src="dark_mode.js"></script>
   </body>

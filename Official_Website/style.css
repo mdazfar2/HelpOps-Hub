@@ -62,12 +62,6 @@ body {
   background-color: #f5f5f5;
   font-family: Arial, sans-serif;
 }
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1; /* Ensure it's above other content */
-}
 
 /* Adjust the logo size as needed */
 .logo img {
@@ -219,7 +213,6 @@ width: 40px;
 }
 /* sponser button */
 .sponsor-button {
-  margin-top: 100px;
   display: flex;
   align-items: center;
   color: black;
@@ -230,7 +223,6 @@ width: 40px;
   font-size: 16px; /* Text size */
   cursor: pointer;
   outline: none;
-  position: absolute; /* Absolute positioning */
   top: 20px; /* Distance from the top */
   right: 20px; /* Distance from the right */
   transition: 0.5s;
@@ -248,7 +240,17 @@ width: 40px;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
 }
-
+.logo {
+  width: 30%;
+  z-index: 1; /* Ensure it's above other content */
+}
+@media only screen and (max-width:672px){
+ 
+  .logo{
+    width: 100%;
+    
+  }
+}
 
 @media (max-width: 769px) {
   .logo img {
@@ -259,9 +261,26 @@ width: 40px;
     top: 70px;
     left: 10px;
   }
-}
 
-@media (max-width: 426px) {
+}
+.header{
+  height: 9rem;
+}
+@media only screen and (max-width:812px){
+  .header{
+    height: auto !important;
+  }
+}
+@media only screen and (max-width:544px){
+  .header{
+    flex-direction: column !important;
+  }
+}
+.header{
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 544px) {
   header h1 {
     font-size: 2rem;
   }
@@ -272,6 +291,9 @@ width: 40px;
   .logo {
     left: 0px;
     top: 70px;
+  }
+  .header{
+    flex-direction: column !important;
   }
   #search-bar {
     width: 80%;
@@ -305,12 +327,13 @@ width: 40px;
 /* icons */
 .icons {
   display: flex;
-  gap: 10px;
+  gap: 22px;
   display: flex;
   align-items: center;
   position: absolute;
   top: 130px; /* Distance from the top */
   right: 165px; /* Distance from the right */
+  
 }
 .icons a {
   color: inherit;
@@ -435,3 +458,13 @@ width: 40px;
   visibility: visible;
 }
 
+/* team */
+#team {
+  gap:5px ;
+  display: flex;
+  display: flex;
+  align-items: center;
+}
+#team h4{
+  font-size: 10px;
+}

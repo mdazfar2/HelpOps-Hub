@@ -14,7 +14,7 @@ p {
 /*for icons css */
 .icons {
   display: flex;
-  gap: 10px;
+  gap: 22px;
   display: flex;
   align-items: center;
   position: absolute;
@@ -63,18 +63,10 @@ body {
   font-family: Arial, sans-serif;
 }
 /* css for logo */
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1; /* Ensure it's above other content */
-}
+
 
 /* Adjust the logo size as needed */
-.logo img {
-  width: 200px;
-  height: 200px;
-}
+
 /* maincontainer */
 #maincontainer {
   display: flex;
@@ -205,23 +197,6 @@ width: 40px;
   color: black;
 }
 /* sponser button */
-.sponsor-button {
-  margin-top: 100px;
-  display: flex;
-  align-items: center;
-  color: black;
-  box-shadow: 5px 5px 20px #00ccff;
-  border: none;
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px 20px; /* Padding around text */
-  font-size: 16px; /* Text size */
-  cursor: pointer;
-  outline: none;
-  position: absolute; /* Absolute positioning */
-  top: 20px; /* Distance from the top */
-  right: 20px; /* Distance from the right */
-  transition: 0.5s;
-}
 
 .heart {
   color: #ff5c5c; /* Heart color */
@@ -426,3 +401,12 @@ width: 40px;
   width: 200px;
   border-radius: 50%;
  }
+ #team {
+  gap:5px ;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+}
+#team h4{
+  font-size: 10px;
+}
