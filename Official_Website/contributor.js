@@ -140,7 +140,6 @@ async function fetchAllContributors() {
       avatarImg.src = contributor.avatar_url;
       avatarImg.alt = `${contributor.login}'s Picture`;
       let name = contributor.name || contributor.login;
-
       if (name.length > 12) {
         name = name.slice(0, 10) + "...";
       }
@@ -176,7 +175,7 @@ async function fetchAllContributors() {
         </div>`;
       //   loginLink.appendChild(avatarImg);
       //   contributorCard.appendChild(loginLink);
-      if (cheak > 0) cont.appendChild(contributorCard);
+      if (cheak > 0 && name != "azfar-2") cont.appendChild(contributorCard);
       cheak++;
     });
   } catch (error) {

@@ -110,8 +110,8 @@ header {
   padding: 1rem;
 }
 /* loading  */
-.loading {
-  margin-top: 20px;
+.loading{
+  margin-top:20px ;
   font-size: x-large;
   display: flex;
   align-items: center;
@@ -148,10 +148,10 @@ header {
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+      transform: rotate(360deg);
   }
 }
 /* .loading:after {
@@ -214,7 +214,7 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
-.about-button {
+.about-button{
   display: flex;
   align-items: center;
   color: black;
@@ -227,6 +227,7 @@ width: 40px;
   cursor: pointer;
   outline: none;
   transition: 0.5s;
+  text-decoration: none;
 }
 .about-button:hover {
   transform: scale(1.2);

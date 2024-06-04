@@ -41,6 +41,35 @@
         body{
             overflow-y: scroll;
         }
+        .about-button1 {
+  display: flex;
+  align-items: center;
+  color: black;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  color: #00ccff;
+  background-color: #00ccff;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s;
+}
+        .about-button1:hover {
+  transform: scale(1.2);
+  /* background-color: white; */
+}
+.about-button1 a{
+    text-decoration: none;
+}
+.nav_item {
+    text-decoration: none;
+}
+
     </style>
 </head>
 <body>
@@ -76,15 +105,6 @@
 
             <li class="nav__item">
                 <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
-            </li>
-            <li>
-                <button class="about-button">
-
-                    <a  href="./about.html">
-                        About Us
-                    </a>
-                </button>
-               
             </li>
             <li><button class="about-button">
       
@@ -185,6 +205,9 @@
         </div>
     </div>
 </div>
+    <button class="about-button1">
+      <a href="./about.html"> About Us </a>
+    </button>
 
 <!-- jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
