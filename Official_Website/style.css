@@ -76,10 +76,11 @@ body {
 }
 /* maincontainer */
 #maincontainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 500px;;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+
 }
 /* Header styles */
 header {
@@ -89,8 +90,8 @@ header {
   padding: 1rem;
 }
 /* loading  */
-.loading{
-  margin-top:20px ;
+.loading {
+  margin-top: 20px;
   font-size: x-large;
   display: flex;
   align-items: center;
@@ -127,10 +128,10 @@ header {
 
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 /* .loading:after {
@@ -247,6 +248,60 @@ width: 40px;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
 }
+
+
+@media (max-width: 769px) {
+  .logo img {
+    width: 150px;
+    height: 150px;
+  }
+  .logo {
+    top: 70px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 426px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo {
+    left: 0px;
+    top: 70px;
+  }
+  #search-bar {
+    width: 80%;
+    margin-top: 40px;
+  }
+  .sponsor-button {
+    margin-top: 40px;
+    right: 5px;
+    top: 55px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  header p {
+    font-size: 0.7rem;
+  }
+  #folders-container {
+    padding: 20px 20px;
+    gap: 8px;
+    /* justify-content: space-between; Distribute cards evenly */
+    margin-top: 10px;
+  }
+
+  .folder-card {
+    margin: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    flex: 0 0 calc(100% - 20px);
+  }
+}
+
 /* icons */
 .icons {
   display: flex;
@@ -379,3 +434,4 @@ width: 40px;
   opacity: 1;
   visibility: visible;
 }
+
