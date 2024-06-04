@@ -489,3 +489,20 @@ width: 40px;
 #team h4 {
   font-size: 10px;
 }
+
+/* Adding footer in the website */
+.footer{
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Heart styling */
+#heart{
+  font-size: 2rem;
+  color: #00ccff;
+  margin-bottom: 2rem;
+}
