@@ -15,7 +15,7 @@
 //   nMenu.classList.toggle("active");
 // }
 
-const cont = document.getElementById("team-grid");
+const cont = document.getElementById("team-grid1");
 const owner = "mdazfar2";
 const repoName = "HelpOps-Hub";
 
@@ -70,6 +70,7 @@ async function fetchAllContributors() {
       allContributors = allContributors.concat(contributorsData);
       pageNumber++;
     }
+    var cheak = 0;
     allContributors.forEach((contributor) => {
       if (contributor.login === owner) {
         return;
@@ -99,7 +100,7 @@ async function fetchAllContributors() {
       //   </div>;
 
       const contributorCard = document.createElement("div");
-      contributorCard.classList.add("team-member");
+      contributorCard.classList.add("team-member7");
       const avatarImg = document.createElement("img");
       avatarImg.src = contributor.avatar_url;
       avatarImg.alt = `${contributor.login}'s Picture`;
@@ -110,28 +111,33 @@ async function fetchAllContributors() {
       loginLink1.href = `https://github.com/sponsors/${name}`;
       loginLink.href = contributor.html_url;
       loginLink.target = "_blank";
-      contributorCard.innerHTML = `  <div class="card">
-         <div class="image-div">
-           <img src=${avatarImg.src} alt=${avatarImg.alt} />
-         </div>
-         <div class="info-div">
-         <span class="badge maintainer">Maintainer</span>
-           <h2>${name}</h2>
-         </div>
-       </div>
-       <div class="social-links">
-           <a href=${loginLink1}>
-           <i class="fas fa-heart"></i> Sponsor
-         </a>
-         <a href=${loginLink}>
-           <i class="fab fa-github"></i> GitHub
-         </a>
-       </div>`;
+      const contri = contributor.contributions;
+      contributorCard.innerHTML = `  <div class="card7">
+          <div class="badge7">Developer</div>
+          <div class="image-div7">
+            <img src=${avatarImg.src} alt=${avatarImg.alt} />
+          </div>
+          <div class="info-div7">
+            <h2>${name}</h2>
+            <p>Open Source Contributor</p>
+          </div>
+        </div>
+        <div class="data7">
+          <div class="contributions7">
+            <div class="contributions-count7">${contri}</div>
+            <div class="contributions-label7">Contributions</div>
+          </div>
+          <div class="social-links7">
+            <a href=${loginLink}>
+              <i class="fab fa-github"></i>
+            </a>
+            <div class="github-label7">GitHub</div>
+          </div>
+        </div>`;
       //   loginLink.appendChild(avatarImg);
-
       //   contributorCard.appendChild(loginLink);
-
-      cont.appendChild(contributorCard);
+      if (cheak > 0) cont.appendChild(contributorCard);
+      cheak++;
     });
   } catch (error) {
     console.error(error);

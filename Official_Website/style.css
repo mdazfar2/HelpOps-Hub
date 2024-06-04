@@ -173,8 +173,8 @@ width: 40px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
@@ -193,7 +193,24 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
-
+.about-button{
+  display: flex;
+  align-items: center;
+  color: black;
+  color: #00ccff;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  padding:5px 5px ;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s;
+}
+.about-button:hover{
+  transform: scale(1.2);
+  background-color: white;
+}
 /* Path text */
 .folder-card p {
   font-size: 14px;
@@ -328,4 +345,29 @@ width: 40px;
 
 .feedback-form button:hover {
   background-color: #009ec3;
+}
+
+/*Scroll to top*/
+.scrollToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: #00ccff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+.scrollToTopBtn.show {
+  opacity: 1;
+  visibility: visible;
 }
