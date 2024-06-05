@@ -1,5 +1,4 @@
-/* styles.css */ /* Reset some default styles */
-body,
+/* styles.css */ /* Reset some default styles */body,
 h1,
 p {
   margin: 0;
@@ -63,7 +62,6 @@ body {
   font-family: Arial, sans-serif;
 }
 /* css for logo */
-
 
 /* Adjust the logo size as needed */
 
@@ -229,46 +227,42 @@ width: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   margin: 30px;
   justify-content: center;
 }
 
-/* .intro h1 {
-  margin: 0;
+.intro h1 {
   color: black;
 }
 
 .intro p {
-  margin: 5px 0 0;
+  font-size: large;
   color: black;
-} */
+}
 
 #team-grid {
-  
   display: flex;
   flex-direction: row;
-justify-content: center;
- min-height: 300px;
- height: auto;
+  justify-content: center;
+  min-height: 300px;
+  height: auto;
   gap: 30px;
 }
 
-@media only screen and (max-width:944px) {
-    #team-grid{
-      flex-direction: column;
-
-    }
-    .intro{
-      align-items: center;
-    }
+@media only screen and (max-width: 944px) {
+  #team-grid {
+    flex-direction: column;
+  }
+  .intro {
+    align-items: center;
+  }
 }
-@media only screen and (max-width:520px) {
-  .team-member{
+@media only screen and (max-width: 520px) {
+  .team-member {
     display: flex;
     flex-direction: column !important;
   }
-  .intro{
+  .intro {
     align-items: center;
   }
 }
@@ -281,15 +275,15 @@ justify-content: center;
   /* border: solid; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   padding: 20px;
- /* background-color: gray; */
- gap: 10px;
+  /* background-color: gray; */
+  gap: 10px;
   margin-left: 20px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   transition: 0.5s;
 }
-.team-member:hover{
+.team-member:hover {
   transform: scale(1.07);
 }
 
@@ -377,7 +371,7 @@ justify-content: center;
   margin-left: 20px;
   font-size: large;
 }
-#social-links{
+#social-links {
   display: flex;
   flex-direction: column;
   margin-left: 20px;
@@ -391,7 +385,6 @@ justify-content: center;
   text-decoration: none;
 }
 
-
 #social-links a i {
   margin-right: 5px;
 }
@@ -399,9 +392,9 @@ justify-content: center;
 #social-links a:hover {
   color: #89d2fc;
 }
- #group{
+#group {
   color: black;
- }
+}
 
 .social-links a {
   display: flex;
@@ -418,24 +411,24 @@ justify-content: center;
 .social-links a:hover {
   color: #89d2fc;
 }
- #group{
+#group {
   color: black;
- }
- .image-div img{
+}
+.image-div img {
   height: 150px;
   width: 150px;
- }
- .image-div1 img{
+}
+.image-div1 img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
- }
- #team {
-  gap:5px ;
+}
+#team {
+  gap: 5px;
   display: flex;
   align-items: center;
   color: rgb(0, 0, 0);
 }
-#team h4{
+#team h4 {
   font-size: 10px;
 }
