@@ -554,3 +554,16 @@ width: 40px;
   color: #00ccff;
   margin-bottom: 2rem;
 }
+/* logo styling */
+.logo-link {
+  display: inline-block;
+}
+
+.logo img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2); 
+}
