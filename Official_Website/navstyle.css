@@ -12,6 +12,11 @@
     /* transition: transform 400ms ease-in-out; */
     /* position: fixed; */
   }
+.nav-fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+}
   ul{
     flex-wrap: wrap;
     justify-content: center;
@@ -32,6 +37,7 @@
     /* margin: auto; */
     padding: 0vh 4vw;
   }
+
   
   .nav__link {
     color: inherit;
@@ -188,9 +194,37 @@
     color: white ;
     font-size: 2rem;
   }
-    .nav-open {
-      overflow: hidden;
+
+  .sponsor-button-mobile{
+    display: none;
+  }
+  @media only screen and (max-width:600px){
+    .nav__list{
+      width: 100%;
+      margin: 1em 0;
     }
+    .nav__link-mobile{
+      font-size:1.5rem;
+    }
+    .faq-mobile{
+      font-size:.875rem;
+    }
+    .sponsor-button{
+      display:none;
+    }
+    .sponsor-button-mobile{
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 0;
+    }
+    .heart{
+      margin: 0;
+      font-size: .875rem;
+    }
+  }
+  .nav-open {
+    overflow: hidden;
+  }
   
     .nav-open .nav {
       transform: translateX(0);

@@ -1,4 +1,5 @@
 //script
+const navbar = document.querySelector(".nav")
 document.addEventListener("DOMContentLoaded", async function () {
   // const loading = document.getElementById("loading");
   // loading.innerHTML = `<h1 class="loading">Loading</h1>`;
@@ -167,21 +168,28 @@ document.addEventListener("DOMContentLoaded", async function () {
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
 });
 //Scroll to top js
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
+// const scrollToTopBtn = document.getElementById("scrollToTopBtn")[0];
+// function scrollToTop() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: "smooth",
+//   });
+// }
+const navbarHeight = navbar.offsetHeight;
 function handleScroll() {
-  if (window.pageYOffset > 100) {
-    scrollToTopBtn.classList.add("show");
-  } else {
-    scrollToTopBtn.classList.remove("show");
+  // if (window.pageYOffset > 100) {
+  //   scrollToTopBtn.classList.add("show");
+  // } else {
+  //   scrollToTopBtn.classList.remove("show");
+  // }
+  if(window.scrollY>navbarHeight){
+    navbar.classList.add("nav-fixed")
+  }
+  else{
+    navbar.classList.remove("nav-fixed")
   }
 }
 // Add scroll event listener
 window.addEventListener("scroll", handleScroll);
 // Add click event listener
-scrollToTopBtn.addEventListener("click", scrollToTop);
+// scrollToTopBtn.addEventListener("click", scrollToTop);

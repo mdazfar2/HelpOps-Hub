@@ -14,6 +14,8 @@
     <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="dark_mode.css" />
     <link rel="stylesheet" href="navstyle.css" />
+    <script src="app.js" defer></script>
+    <script src="darkmode.js" defer></script>
   </head>
 
   <body>
@@ -31,30 +33,30 @@
     <nav class="nav" id="navbar">
       <ul class="nav__list" id="navlinkitems">
         <li class="nav__item">
-          <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+          <a href="contributor-index.html" class="fa-solid fa-people-group nav__link-mobile"></a>
         </li>
         <li class="nav__item">
           <a
             href="https://github.com/mdazfar2/HelpOps-Hub"
             target="_blank"
-            class="fab fa-github"></a>
+            class="fab fa-github nav__link-mobile"></a>
         </li>
         <li class="nav__item">
-          <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+          <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin nav__link-mobile"></a>
         </li>
         <li class="nav__item">
-          <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+          <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord nav__link-mobile"></a>
         </li>
         <li class="nav__item">
           <a
             href="javascript:void(0);"
-            class="fas fa-adjust"
+            class="fas fa-adjust nav__link-mobile"
             onclick="toggleTheme()"
           ></a>
         </li>
         <li>
           <button class="about-button">
-            <a href="./faq.html"> FAQ's </a>
+            <a href="./faq.html" class="faq-mobile"> FAQ's </a>
           </button>
         </li>
         <li>
@@ -63,6 +65,12 @@
             onclick="window.location.href='https://github.com/sponsors/mdazfar2'"
           >
             <span class="heart">&#10084;</span> Sponsor
+          </button>
+          <button
+            class="sponsor-button sponsor-button-mobile"
+            onclick="window.location.href='https://github.com/sponsors/mdazfar2'"
+          >
+            <span class="heart">&#10084;</span> 
           </button>
         </li>
       </ul>
@@ -160,8 +168,7 @@
       </div>
     </footer>
 
-    <script src="app.js"></script>
-    <script src="darkmode.js"></script>
+    
     <script>
       //feedback js
       document.getElementById("feedback-form").addEventListener("submit", function(event) {

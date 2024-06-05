@@ -1,4 +1,10 @@
 /* styles.css */ /* Reset some default styles */
+html{
+  box-sizing: border-box;
+}
+*{
+  box-sizing: inherit;
+}
 body,
 h1,
 p {
@@ -382,23 +388,25 @@ width: 40px;
 .feedback {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+.feedback-image{
+  width: 40%;
 }
 
 .feedback img {
-  margin-left: 8rem;
-  align-items: center;
-  width: 40rem;
+  width: 100%;
 }
 
 #feedback-section {
   background-color: #f9f9f9;
-  padding: 1.5rem;
-  margin: 2rem auto;
-  width: 30%;
+  width: 50%;
   border: 1px solid #ddd;
   border-radius: 20px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+  padding:2em;
 }
 
 #feedback-section h2 {
@@ -479,6 +487,16 @@ width: 40px;
 
 .feedback-form button:hover {
   background-color: #009ec3;
+}
+
+@media only screen and (max-width:600px){
+  .feedback{
+    flex-direction: column;
+    width: 90%;
+  }
+  #feedback-section, .feedback-image{
+    width: 100%;
+  }
 }
 
 /*Scroll to top*/
