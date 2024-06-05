@@ -19,7 +19,35 @@ At HelpOps-Hub, we're building a comprehensive collection of resources, guides, 
 ## Do You Have a New Problem? 💭
 Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issues/new), and our community or maintainers will provide a quick solution to it as soon as possible.
 
-<hr>
+<div>
+  <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/4a07b161-b8d6-4803-804a-3b0db699023e" width="35" height="35"> Goal of our project </h2>
+</div>
+
+The goal of our project is to empower DevOps professionals by providing a comprehensive, community-driven platform that consolidates tools, best practices, tutorials, and real-world examples. We aim to streamline workflows, enhance productivity, and foster collaboration, innovation, and continuous learning within the DevOps community.
+
+<div>
+  <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/1ee5934a-27be-4502-a7bf-e6a8c78fe5a3" width="35" height="35"> Benefits</h2>
+</div>
+
+- **Curated Tools**: A handpicked selection of the best DevOps tools across various categories, from CI/CD pipelines to containerization and orchestration.
+- **Pro Projects:** You will get many DevOps projects that you can use on your resume.
+- **In-Depth Guides**: Step-by-step tutorials and how-tos for setting up, configuring, and optimizing DevOps tools.
+- **Best Practices**: Proven strategies and practices to help you implement and maintain efficient DevOps workflows.
+- **Community Contributions**: Insights and tips from DevOps experts and practitioners around the world.
+- **Regular Updates**: Continuous additions and updates to keep you informed about the latest trends and innovations in DevOps.
+
+## 🤔 Why HelpOps-Hub? 
+1. **Comprehensive Coverage**: Find everything you need for DevOps—from CI/CD to monitoring—all conveniently gathered in one place.
+2. **100% correct**: We are updating anything like documentation or any solution after hands-on about 3 to 7 times, and after correction each time, we update it.
+3. **User-Friendly**: Our guides and resources are designed to be easy to follow, with clear instructions and helpful examples.
+4. **Community Focused**: We believe in the power of community. Contribute your knowledge, ask questions, and collaborate with other DevOps enthusiasts.
+5. **Quality Assurance**: Trust in vetted tools and resources rigorously assessed for accuracy, relevance, and real-world effectiveness.
+6. **Empowerment**: Equip yourself with the knowledge, tools, and support needed to succeed in DevOps and drive organizational impact.
+
+<br>
+
+---
+
 <!-- Open Source Programs -->
   <div>
     <h2><img src="https://github.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/blob/master/Emojis/Hand%20gestures/Flexed%20Biceps.png?raw=true" width="35" height="35" > Open Source Programs</h2>
@@ -41,26 +69,8 @@ Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issue
         </tr>
     </table>
 
-<hr>
-
-## 🤩 Benefits 
-- **Curated Tools**: A handpicked selection of the best DevOps tools across various categories, from CI/CD pipelines to containerization and orchestration.
-- **Pro Projects:** You will get many DevOps projects that you can use on your resume.
-- **In-Depth Guides**: Step-by-step tutorials and how-tos for setting up, configuring, and optimizing DevOps tools.
-- **Best Practices**: Proven strategies and practices to help you implement and maintain efficient DevOps workflows.
-- **Community Contributions**: Insights and tips from DevOps experts and practitioners around the world.
-- **Regular Updates**: Continuous additions and updates to keep you informed about the latest trends and innovations in DevOps.
-
-## 🤔 Why HelpOps-Hub? 
-1. **Comprehensive Coverage**: Find everything you need for DevOps—from CI/CD to monitoring—all conveniently gathered in one place.
-2. **100% correct**: We are updating anything like documentation or any solution after hands-on about 3 to 7 times, and after correction each time, we update it.
-3. **User-Friendly**: Our guides and resources are designed to be easy to follow, with clear instructions and helpful examples.
-4. **Community Focused**: We believe in the power of community. Contribute your knowledge, ask questions, and collaborate with other DevOps enthusiasts.
-5. **Quality Assurance**: Trust in vetted tools and resources rigorously assessed for accuracy, relevance, and real-world effectiveness.
-6. **Empowerment**: Equip yourself with the knowledge, tools, and support needed to succeed in DevOps and drive organizational impact.
 ---
 
-<br>
 
 <!-- Contributing -->
 
@@ -103,9 +113,8 @@ This repository is licensed under the [MIT License](LICENSE), allowing you to fr
 <br>
 
 <center>
+<div>
 <a href="https://github.com/mdazfar2/HelpOps-Hub/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=mdazfar2/HelpOps-Hub" />
+  <img width="90%" src="https://contrib.rocks/image?repo=mdazfar2/HelpOps-Hub" />
 </a>
-</center>
-<br>
-<p align="right"><a href="#top">Back to top</a></p>
+</div>
