@@ -8,6 +8,7 @@ function toggleTheme() {
     icon.classList.toggle("dark-mode");
   });
   document.getElementById("search-bar").classList.toggle("dark-mode");
+  document.getElementById("search-box").classList.toggle("dark-mode");
   document.querySelectorAll("#folders-container div").forEach((folder) => {
     folder.classList.toggle("dark-mode");
   });
