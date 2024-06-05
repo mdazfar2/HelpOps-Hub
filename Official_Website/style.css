@@ -4,6 +4,7 @@ h1,
 p {
   margin: 0;
   padding: 0;
+  cursor:none;
 }
 .team-grid{
   display: flex;
@@ -545,4 +546,3 @@ width: 40px;
   pointer-events: none;
   transition: transform 0.1s, left 0.1s, top 0.1s;
 }
-
