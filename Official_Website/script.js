@@ -1,11 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-      document.getElementById('loader').style.display = 'none';
-      document.getElementById('main').style.display = 'block';
-  }, 2000);
-});
-
-
 // Custom Cursor
 
 const coords = { x: 0, y: 0 };
