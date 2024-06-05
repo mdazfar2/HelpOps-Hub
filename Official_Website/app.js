@@ -176,9 +176,9 @@ function scrollToTop() {
 }
 function handleScroll() {
   if (window.pageYOffset > 100) {
-    scrollToTopBtn.classList.add("show");
+    scrollToTopBtn.classList.add("showBtn");
   } else {
-    scrollToTopBtn.classList.remove("show");
+    scrollToTopBtn.classList.remove("showBtn");
   }
 }
 // Add scroll event listener
