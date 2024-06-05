@@ -1,5 +1,3 @@
-// Custom Cursor
-
 const coords = { x: 0, y: 0 };
 const circles = document.querySelectorAll(".circle");
 
@@ -35,10 +33,17 @@ circles.forEach(function (circle, index) {
   circle.style.backgroundColor = colors[index % colors.length];
 });
 
-window.addEventListener("mousemove", function (e) {
-  coords.x = e.pageX;
-  coords.y = e.pageY;
-});
+function updateCoords(e) {
+  if (e.type === "mousemove") {
+    coords.x = e.pageX;
+    coords.y = e.pageY;
+  } else if (e.type === "scroll") {
+    coords.y = window.scrollY + window.innerHeight / 2;
+  }
+}
+
+window.addEventListener("mousemove", updateCoords);
+window.addEventListener("scroll", updateCoords);
 
 function animateCircles() {
   let x = coords.x;
