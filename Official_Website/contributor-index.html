@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="newCards.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="navstyle.css" />
-
-  </head>
   <body>
     <header class="header">
 
@@ -493,5 +491,18 @@
     </div>
     <script src="contributor.js"></script>
     <script src="dark_mode.js"></script>
+    <script>
+        const navbarHeight = navbar.offsetHeight;
+        function handleScroll() {
+        if(window.scrollY>navbarHeight){
+            navbar.classList.add("nav-fixed")
+        }
+        else{
+            navbar.classList.remove("nav-fixed")
+        }
+        }
+        // Add scroll event listener
+        window.addEventListener("scroll", handleScroll);
+    </script>
   </body>
 </html>
