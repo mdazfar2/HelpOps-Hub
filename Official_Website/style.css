@@ -5,6 +5,20 @@ p {
   margin: 0;
   padding: 0;
 }
+.team-grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap !important;
+}
+.img-div{
+  width: 40%;
+
+}
+.team-member{
+  display: flex;
+  flex-direction: row;
+position: relative;
+}
 /* style search container */
 .search-container {
   display: flex;
