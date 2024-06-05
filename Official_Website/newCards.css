@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
 }
 
 .card7 {
@@ -22,7 +23,9 @@
   border-radius: 10px;
   text-align: center;
 }
-
+.team-member7:hover{
+transform: scale(1.05);
+}
 .badge7 {
   left: 120px;
   bottom:60px ;
