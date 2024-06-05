@@ -4,6 +4,7 @@ h1,
 p {
   margin: 0;
   padding: 0;
+  cursor:none;
 }
 .team-grid{
   display: flex;
@@ -209,7 +210,7 @@ width: 40px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+  cursor: none;
   transition: background-color 0.3s ease;
 }
 
@@ -238,7 +239,7 @@ width: 40px;
   padding: 5px 5px;
   border-radius: 8px; /* Rounded corners */
   font-size: 16px; /* Text size */
-  cursor: pointer;
+  cursor: none;
   outline: none;
   transition: 0.5s;
   text-decoration: none;
@@ -262,7 +263,7 @@ width: 40px;
   border-radius: 8px; /* Rounded corners */
   padding: 10px 20px; /* Padding around text */
   font-size: 16px; /* Text size */
-  cursor: pointer;
+  cursor:none;
   outline: none;
   top: 20px; /* Distance from the top */
   right: 20px; /* Distance from the right */
@@ -453,7 +454,7 @@ width: 40px;
 .rating label {
   font-size: 1.5rem;
   color: #ddd;
-  cursor: pointer;
+  cursor: none;
 }
 
 .rating input:checked ~ label,
@@ -473,7 +474,7 @@ width: 40px;
   background-color: #00ccff;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: none;
   transition: background-color 0.3s ease;
 }
 
@@ -495,7 +496,7 @@ width: 40px;
   text-align: center;
   line-height: 50px;
   font-size: 24px;
-  cursor: pointer;
+  cursor: none;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
   visibility: hidden;
@@ -532,4 +533,16 @@ width: 40px;
   font-size: 2rem;
   color: #00ccff;
   margin-bottom: 2rem;
+}
+
+/* cursor */
+
+.circle {
+  position: absolute;
+  z-index:100;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.1s, left 0.1s, top 0.1s;
 }
