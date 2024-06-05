@@ -45,7 +45,8 @@
     line-height: 16px;
     font-weight: 700;
     transition: color 0.1s, background-color 0.1s, padding 0.2s ease-in;
-    color: #111;
+    /* color: #111; */
+    text-decoration: none;
   }
   
   .nav-toggle {
@@ -59,6 +60,7 @@
     bottom: 3px;
     left: 0;
     height: 3px;
+    text-decoration: none;
     width: 100%;
     background-color: #000;
     transform-origin: right top;
@@ -74,6 +76,7 @@
   .nav__link:focus::before {
     transform-origin: left top;
     transform: scale(1, 1);
+    text-decoration: none;
   }
   nav{
     background-color: #00ccff;
@@ -98,6 +101,7 @@
   a {
     text-decoration: none;
     color: #111;
+    text-decoration: none;
   }
   
   /* @media (max-width: 800px) {
@@ -157,21 +161,24 @@
       right: 0.5rem;
       top: 1.1rem;
       /* left: 29rem; */
-      z-index: 1000;
+      /* z-index: 1000;
       outline: none;
-    }
+    } */
   
     .nav__link {
       margin: 0;
       color: #fff;
+      outline: none;
     }
   .nav__list{
     gap: 20px;
     align-items: end;
+    outline: none;
   }
   li button{
     background-color: white;
     color: black !important;
+    outline: none;
   }
   li button a{
     color: #00ccff !important;
@@ -193,7 +200,9 @@
     .nav-open .logo {
       display: none;
     }
-  
+  *{
+    outline: none;;
+  }
     .nav-open .hamburger {
       transform: rotate(0.625turn);
       background-color: #fff;
@@ -221,6 +230,7 @@
       height: 3px;
       border-radius: 1em;
       transition: transform 250ms ease-in-out;
+      text-decoration: none;
     }
   
     .hamburger::before,
@@ -259,29 +269,34 @@
   
     .nav__link:active::before {
       background-color: #fff;
+      text-decoration: none;
     }
   
     .nav__link:hover::before,
     .nav__link:focus::before {
       transform-origin: left top;
       transform: scale(1, 1);
+      text-decoration: none;
     }
-  } */
+  
   
   section {
     width: 100%;
     display: flex;
     margin: auto;
+    text-decoration: none;
     align-items: center;
     min-height: 110vh;
   }
   
   .one {
     background-color: #fff;
+    text-decoration: none;
   }
   
   .two {
     background-color: rgb(190, 183, 170);
+    text-decoration: none;
   }
   
   .three {

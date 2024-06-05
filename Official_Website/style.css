@@ -1,6 +1,4 @@
-/* styles.css */
-
-/* Reset some default styles */
+/* styles.css */ /* Reset some default styles */
 body,
 h1,
 p {
@@ -22,30 +20,59 @@ p {
 position: relative;
 }
 /* style search container */
-#search-container {
+.search-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 13px;
 }
+
 /* Style for the search bar */
-#search-bar {
+#search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30%;
   height: 2rem;
-  margin: 10px;
+  /* margin: 10px; */
   margin-top: 1rem;
-  padding: 10px; /* Adjust padding as needed */
+  padding: 17px;
   font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 24px;
+  background-color: white;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+#search-box:hover {
+  border: 2px solid #00ccff; /* Color of border after hover the cursor*/
+  box-shadow: 4px 4px 20px #00ccff; /*Shadow effect after hover the cursor*/
+}
+
+input {
+  width: 90%;
+  margin-left: 12px;
+  outline: none;
+  border: none;
+  font-size: 20px;
   border: none;
   outline: none; /*Not display the default color border*/
   border-radius: 24px; /* Rounded corners */
   background-color: white; /* Light grey background */
-  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.1); /* Inner shadow effect */
-  position: relative; /* For positioning the search icon */
+  position: relative;
+  z-index: 1;
 }
 
-#search-bar:hover {
-  border: 2px solid #00ccff; /* Color of border after hover the cursor*/
-  box-shadow: 4px 4px 20px #00ccff; /*Shadow effect after hover the cursor*/
+.icon {
+  position: relative;
+  align-self: left;
+  font-size: 21px;
+  color: #00ccff; /* Icon color */
+  pointer-events: none;
 }
 
 /* Placeholder text color */
@@ -54,15 +81,15 @@ position: relative;
 }
 /* scrollbar.css */
 ::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: #00ccff; 
+  background: #00ccff;
 }
 ::-webkit-scrollbar-thumb {
-  background: darkgray;    
-  border-radius: 10px;   
-  min-height: 10px; 
+  background: darkgray;
+  border-radius: 10px;
+  min-height: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: darkgrey;
@@ -88,7 +115,6 @@ body {
   align-items: center;
   justify-content: center;
   height: 700px;
-
 }
 /* Header styles */
 header {
@@ -98,8 +124,8 @@ header {
   padding: 1rem;
 }
 /* loading  */
-.loading {
-  margin-top: 20px;
+.loading{
+  margin-top:20px ;
   font-size: x-large;
   display: flex;
   align-items: center;
@@ -136,10 +162,10 @@ header {
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+      transform: rotate(360deg);
   }
 }
 /* .loading:after {
@@ -183,7 +209,7 @@ width: 40px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
@@ -209,14 +235,15 @@ width: 40px;
   color: #00ccff;
   box-shadow: 5px 5px 20px #00ccff;
   border: none;
-  padding:5px 5px ;
+  padding: 5px 5px;
   border-radius: 8px; /* Rounded corners */
   font-size: 16px; /* Text size */
   cursor: pointer;
   outline: none;
   transition: 0.5s;
+  text-decoration: none;
 }
-.about-button:hover{
+.about-button:hover {
   transform: scale(1.2);
   background-color: white;
 }
@@ -258,11 +285,9 @@ width: 40px;
   width: 30%;
   z-index: 1; /* Ensure it's above other content */
 }
-@media only screen and (max-width:672px){
- 
-  .logo{
+@media only screen and (max-width: 672px) {
+  .logo {
     width: 100%;
-    
   }
 }
 
@@ -275,22 +300,21 @@ width: 40px;
     top: 70px;
     left: 10px;
   }
-
 }
-.header{
+.header {
   height: 9rem;
 }
-@media only screen and (max-width:812px){
-  .header{
+@media only screen and (max-width: 812px) {
+  .header {
     height: auto !important;
   }
 }
-@media only screen and (max-width:544px){
-  .header{
+@media only screen and (max-width: 544px) {
+  .header {
     flex-direction: column !important;
   }
 }
-.header{
+.header {
   display: flex;
   flex-direction: row;
 }
@@ -306,7 +330,7 @@ width: 40px;
     left: 0px;
     top: 70px;
   }
-  .header{
+  .header {
     flex-direction: column !important;
   }
   #search-bar {
@@ -347,7 +371,6 @@ width: 40px;
   position: absolute;
   top: 130px; /* Distance from the top */
   right: 165px; /* Distance from the right */
-  
 }
 .icons a {
   color: inherit;
@@ -356,14 +379,26 @@ width: 40px;
 }
 
 /* Feedback section */
+.feedback {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.feedback img {
+  margin-left: 8rem;
+  align-items: center;
+  width: 40rem;
+}
+
 #feedback-section {
   background-color: #f9f9f9;
   padding: 1.5rem;
   margin: 2rem auto;
   width: 30%;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
 }
 
 #feedback-section h2 {
@@ -446,7 +481,6 @@ width: 40px;
   background-color: #009ec3;
 }
 
-
 /*Scroll to top*/
 .scrollToTopBtn {
   position: fixed;
@@ -474,11 +508,28 @@ width: 40px;
 
 /* team */
 #team {
-  gap:5px ;
+  gap: 5px;
   display: flex;
   display: flex;
   align-items: center;
 }
-#team h4{
+#team h4 {
   font-size: 10px;
+}
+
+/* Adding footer in the website */
+.footer {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Heart styling */
+#heart {
+  font-size: 2rem;
+  color: #00ccff;
+  margin-bottom: 2rem;
 }
