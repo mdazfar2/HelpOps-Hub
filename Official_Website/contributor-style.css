@@ -262,6 +262,9 @@ justify-content: center;
     .intro{
       align-items: center;
     }
+    .team-member{
+      justify-content: space-between;
+    }
 }
 @media only screen and (max-width:520px) {
   .team-member{
@@ -272,10 +275,22 @@ justify-content: center;
     align-items: center;
   }
 }
+.pink{
+  background-color: #fcedfe;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+}
+.peach{
+  background-color: #fff0f0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+}
 .team-member {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+
   background-color: whitesmoke;
   border-radius: 20px;
   /* border: solid; */
@@ -318,7 +333,10 @@ justify-content: center;
   position: relative;
 }
 .image-div {
-  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
   text-align: center;
 }
 
