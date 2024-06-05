@@ -1,23 +1,11 @@
-// const hamBurger = document.querySelector(".hamburger");
-// const nMenu = document.querySelector(".nav-menu");
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   setTimeout(function () {
-//     document.querySelector("body").classList.add("loaded");
-//   }, 500);
-// });
-// const loading = document.getElementById("loading1");
-// loading.innerHTML = `<h1 class="loading">Loading</h1>`;
-// Hamburger menu
-// hamBurger.addEventListener("click", mobileMenu);
-// function mobileMenu() {
-//   hamBurger.classList.toggle("active");
-//   nMenu.classList.toggle("active");
-// }
-
 const cont = document.getElementById("team-grid1");
+const loadMoreButton = document.getElementById("load-more");
 const owner = "mdazfar2";
 const repoName = "HelpOps-Hub";
+const itemsPerPage = 10; // Number of items per page
+let currentPage = 1; // Initialize the page number
+let allContributors = []; // To store all contributors data
+let pageNumber = 1; // Initialize the page number
 // const loading = document.getElementById("skeleton-wrapper");
 //   cont.appendChild(loading);
 async function fetchContributors(pageNumber) {
@@ -110,107 +98,86 @@ async function fetchContributors(pageNumber) {
   const contributorsData = await response.json();
   const cont = document.getElementById("team-grid1");
   cont.removeChild(cont.firstChild);
-
+  console.log(cont.removeChild(cont.firstChild));
   return contributorsData;
 }
 
 // Function to fetch all contributors
-async function fetchAllContributors() {
-  let allContributors = [];
-  let pageNumber = 1;
-
-  try {
-    while (true) {
-      const contributorsData = await fetchContributors(pageNumber);
-      if (contributorsData.length === 0) {
-        break;
-      }
-      allContributors = allContributors.concat(contributorsData);
-      pageNumber++;
+function renderContributors(contributors) {
+  var cheak = 0;
+  contributors.forEach((contributor) => {
+    if (contributor.login === owner) {
+      return;
     }
-    var cheak = 0;
-    allContributors.forEach((contributor) => {
-      if (contributor.login === owner) {
-        return;
-      }
 
-      const contributorCard = document.createElement("div");
-      contributorCard.classList.add("team-member7");
-      const avatarImg = document.createElement("img");
-      avatarImg.src = contributor.avatar_url;
-      avatarImg.alt = `${contributor.login}'s Picture`;
-      let name = contributor.name || contributor.login;
-      if (name.length > 12) {
-        name = name.slice(0, 10) + "...";
-      }
+    const contributorCard = document.createElement("div");
+    contributorCard.classList.add("team-member7");
+    const avatarImg = document.createElement("img");
+    avatarImg.src = contributor.avatar_url;
+    avatarImg.alt = `${contributor.login}'s Picture`;
+    let name = contributor.name || contributor.login;
+    if (name.length > 12) {
+      name = name.slice(0, 10) + "...";
+    }
 
-      const loginLink = document.createElement("a");
-      const loginLink1 = document.createElement("a");
-      loginLink1.href = `https://github.com/sponsors/${name}`;
-      loginLink.href = contributor.html_url;
-      loginLink.target = "_blank";
-      const contri = contributor.contributions;
-      contributorCard.innerHTML = `  <div class="card7">
-       <div class="badge7" >Developer</div>
-          <div class="image-div7">
-            <img src=${avatarImg.src} alt=${avatarImg.alt} />
-          </div>
-          <div class="info-div7">
-            <h2>${name}</h2>
-            <p>Open Source Contributor</p>
-          </div>
+    const loginLink = document.createElement("a");
+    loginLink.href = contributor.html_url;
+    loginLink.target = "_blank";
+    const contri = contributor.contributions;
+    contributorCard.innerHTML = `
+      <div class="card7">
+        <div class="badge7">Developer</div>
+        <div class="image-div7">
+          <img src=${avatarImg.src} alt=${avatarImg.alt} />
         </div>
-        <div class="data7">
-          <div class="contributions7">
-            <div class="contributions-count7">${contri}</div>
-            <div class="contributions-label7">Contributions</div>
-           
-          </div>
-          <div class="social-links7">
-            <a href=${loginLink}>
-              <i class="fab fa-github"></i>
-            </a>
-            <div class="github-label7">GitHub</div>
-          </div>
-        </div>`;
-      //   loginLink.appendChild(avatarImg);
-      //   contributorCard.appendChild(loginLink);
-      if (cheak > 0 && name != "azfar-2") cont.appendChild(contributorCard);
-      cheak++;
-    });
+        <div class="info-div7">
+          <h2>${name}</h2>
+          <p>Open Source Contributor</p>
+        </div>
+      </div>
+      <div class="data7">
+        <div class="contributions7">
+          <div class="contributions-count7">${contri}</div>
+          <div class="contributions-label7">Contributions</div>
+        </div>
+        <div class="social-links7">
+          <a href=${loginLink}>
+            <i class="fab fa-github"></i>
+          </a>
+          <div class="github-label7">GitHub</div>
+        </div>
+      </div>`;
+
+    if (cheak > 0 && name != "azfar-2") cont.appendChild(contributorCard);
+    cheak++;
+  });
+}
+// Fetch all contributors with pagination
+
+// Initial fetch
+
+async function fetchAllContributors() {
+  try {
+    const contributorsData = await fetchContributors();
+    allContributors = contributorsData;
+    renderContributors(allContributors.slice(0, itemsPerPage));
+    if (allContributors.length > itemsPerPage) {
+      loadMoreButton.style.display = "block"; // Show the Load More button if more data exists
+    }
   } catch (error) {
     console.error(error);
   }
 }
 
+loadMoreButton.addEventListener("click", () => {
+  const start = currentPage * itemsPerPage;
+  const end = start + itemsPerPage;
+  renderContributors(allContributors.slice(start, end));
+  currentPage++;
+  if (end >= allContributors.length) {
+    loadMoreButton.style.display = "none"; // Hide the Load More button if no more data
+  }
+});
+
+// Initial fetch
 fetchAllContributors();
-
-// let calcScrollValue = () => {
-//   let scrollProg = document.getElementById("progress");
-//   let pos = document.documentElement.scrollTop;
-//   let calcHeight =
-//     document.documentElement.scrollHeight -
-//     document.documentElement.clientHeight;
-//   let scrollValue = Math.round((pos * 100) / calcHeight);
-//   if (pos > 100) {
-//     scrollProg.style.display = "grid";
-//   } else {
-//     scrollProg.style.display = "none";
-//   }
-//   scrollProg.addEventListener("click", () => {
-//     document.documentElement.scrollTop = 0;
-//   });
-//   scrollProg.style.background = `conic-gradient(#0063ba ${scrollValue}%, #d499de ${scrollValue}%)`;
-// };
-
-// window.addEventListener("scroll", function () {
-//   var scrollToTopButton = document.getElementById("progress");
-//   if (window.pageYOffset > 200) {
-//     scrollToTopButton.style.display = "block";
-//   } else {
-//     scrollToTopButton.style.display = "none";
-//   }
-// });
-
-// window.onscroll = calcScrollValue;
-// window.onload = calcScrollValue;
