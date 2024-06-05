@@ -382,7 +382,7 @@ width: 40px;
 .feedback {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  align-items: center;
 }
 
 .feedback img {
