@@ -1,6 +1,12 @@
 # Ansible Playbook for Configuring HTTPD inside Docker
 
-This repository contains an Ansible playbook to configure an HTTPD (Apache) server inside a Docker container. Follow the steps below to set up and run the playbook.
+This repository contains an Ansible playbook to set up an HTTPD (Apache) server inside a Docker container. By following the steps in this guide, you can easily install and configure the Apache server in a Docker container. The playbook automates everything from installing Docker and HTTPD to configuring the server and running the container.
+
+
+
+https://github.com/mayaworld13/HelpOps-Hub/assets/127987256/15e3429d-9e79-48a5-a98d-14120711402c
+
+
 
 ## Steps
 
