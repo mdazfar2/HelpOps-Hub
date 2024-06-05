@@ -229,8 +229,8 @@ width: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   margin: 30px;
-  align-items: center;
   justify-content: center;
 }
 
@@ -259,11 +259,17 @@ justify-content: center;
       flex-direction: column;
 
     }
+    .intro{
+      align-items: center;
+    }
 }
 @media only screen and (max-width:520px) {
   .team-member{
     display: flex;
     flex-direction: column !important;
+  }
+  .intro{
+    align-items: center;
   }
 }
 .team-member {
