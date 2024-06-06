@@ -13,19 +13,19 @@ p {
   flex-wrap: wrap !important;
 }
 #collapseThree{
-  height: 30vh !important;
+  height: fit-content !important;
 }
 #collapseOne{
-  height: 35vh !important;
+  height: fit-content !important;
 }
 #collapseTwo{
-  height: 33vh !important;
+  height: fit-content !important;
 }
 #collapseFour{
-  height: 33vh !important;
+  height: fit-content !important;
 }
 #collapseFive{
-  height: 33vh !important;
+  height: fit-content !important;
 }
 .img-div {
   width: 40%;
