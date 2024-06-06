@@ -603,12 +603,17 @@ width: 40px;
 .footer a{
   color: black !important;
   text-decoration: underline;
-  font-size: 18px;
+}
+.h{
+  line-height: 1.75rem !important;
 }
 .footer{
   flex-direction: column;
-  gap: 6px;
-  font-size: 18px ;
+  font-family: sans-serif;
+
+}
+.font{
+  font-size: .875rem;
 }
 #collapseOne{
   height: auto !important;
