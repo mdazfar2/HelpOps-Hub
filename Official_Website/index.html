@@ -10,6 +10,9 @@
   <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="dark_mode.css" />
   <link rel="stylesheet" href="navstyle.css" />
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
 </head>
 <body>
   <header class="header">
@@ -77,19 +80,19 @@
     </div>
     <div id="feedback-section">
       <h2>Feedback</h2>
-      <form class="feedback-form" id="feedback-form">
+      <form class="feedback-form"  id="feedback-form">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required />
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="user_email" required />
 
         <label for="comments">Comments</label>
-        <textarea id="comments" name="comments" required></textarea>
+        <textarea id="comments" name="message" required></textarea>
 
         <label for="rating">Rating</label>
         <div class="rating">
-          <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">&#9733;</label>
+     <label for="star1" title="1 star">&#9733;</label>     <input type="radio" id="star1" name="rating" value="1" />
           <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">&#9733;</label>
           <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">&#9733;</label>
           <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">&#9733;</label>
@@ -110,11 +113,46 @@
 
   <script src="app.js"></script>
   <script src="darkmode.js"></script>
+  <script type="text/javascript">
+    (function(){
+       emailjs.init({
+         publicKey: "rId2aw03Pj2ZNq2U5",
+       });
+    })();
+  </script>
+  <script>
+                 document.getElementById("feedback-form").reset();
+
+  </script>
   <script>
     // Feedback JS
     document.getElementById("feedback-form").addEventListener("submit", function(event) {
      event.preventDefault();
-     
+     var rating = document.querySelector('input[name="rating"]:checked').value
+      if (!rating) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = "Please select a Rating!";
+        errorMessage.style.display = "block";
+        setTimeout(function() {
+          errorMessage.style.display = "none";
+        }, 3000);
+        return;
+      }
+      let temp=document.getElementById('comments').value
+      document.getElementById('comments').value= `Comments : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
+
+    emailjs.sendForm('service_hrz8hfg', 'template_na7xjc4',"#feedback-form").then(
+  (response) => {
+    console.log('SUCCESS!', response.status, response.text);
+  },
+  (error) => {
+    console.log('FAILED...', error);
+  },
+);
+document.getElementById('comments').value= temp   
+
+
+
      if (!document.querySelector('input[name="rating"]:checked')) {
          var errorMessage = document.getElementById("error-message");
          errorMessage.innerText = "Please select a rating!";
@@ -130,34 +168,47 @@
        comments: document.getElementById("comments").value,
        rating: document.querySelector('input[name="rating"]:checked').value
      };
-     console.log(formData);
-     fetch('https://helpops-hub.vercel.app/feedback', {
-         method: 'POST',
-         headers: {
-             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(formData)
-     })
-     .then(response => response.json())
-     .then(data => {
-         console.log('Success:', data);
-         document.getElementById("message").innerText = "Thank you for your feedback!";
-         document.getElementById("message").style.display = "block";
-         setTimeout(function() {
-             document.getElementById("message").style.display = "none";
-             document.getElementById("feedback-form").reset();
-         }, 3000);
-     })
-     .catch((error) => {
-         console.error('Error:', error);
-         var errorMessage = document.getElementById("error-message");
-         errorMessage.innerText = "There was an error submitting your feedback.";
-         errorMessage.style.display = "block";
-         setTimeout(function() {
-             errorMessage.style.display = "none";
-         }, 3000);
-     }); 
- });
+    //  fetch('https://helpops-hub.vercel.app/feedback', {
+    //      method: 'POST',
+    //      headers: {
+    //          'Content-Type': 'application/json'
+    //      },
+    //      body: JSON.stringify(formData)
+    //  })
+    //  .then(response => response.json())
+    //  .then(data => {
+    //      console.log('Success:', data);
+    //      document.getElementById("message").innerText = "Thank you for your feedback!";
+    //      document.getElementById("message").style.display = "block";
+    //      setTimeout(function() {
+    //          document.getElementById("message").style.display = "none";
+    //          document.getElementById("feedback-form").reset();
+    //      }, 3000);
+    //  })
+    //  .catch((error) => {
+    //      console.error('Error:', error);
+    //      var errorMessage = document.getElementById("error-message");
+    //      errorMessage.innerText = "There was an error submitting your feedback.";
+    //      errorMessage.style.display = "block";
+    //      setTimeout(function() {
+    //          errorMessage.style.display = "none";
+    //      }, 3000);
+    //  }); 
+   var messageElement = document.getElementById("message");
+      messageElement.innerText = "Thank you for your feedback!";
+      messageElement.style.display = "block";
+
+      setTimeout(function() {
+        messageElement.style.display = "none";
+        document.getElementById("feedback-form").reset();
+      }, 3000);
+  
+
+    
+
+
+
+    });
   </script>
 </body>
 </html>
