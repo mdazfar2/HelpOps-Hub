@@ -787,7 +787,7 @@ text-decoration: none;
   background-color: black;
 }
 .dark-mode .team-member{
-  background-color: #555;
+  background-color: #333333;
   color: whitesmoke;
 }
 .team-member{
@@ -838,4 +838,10 @@ color: white;
 }
 .dark-mode .github-label7{
   color:white;
+}
+.dark-mode .card1{
+  background-color: #1c1c1c;
+}
+.dark-mode .card2{
+  background-color: #1c1c1c;
 }
