@@ -616,9 +616,9 @@ width: 40px;
 }
 
 .im {
-  width: 100px !important;
-  position: absolute !important;
-  right: 0px !important;
+  width: 100px;
+  position: absolute important;
+  right: 0px;
 }
 @media only screen and (max-width: 447px) {
   .feedback img {
@@ -803,9 +803,8 @@ body {
   display: flex;
   align-items: center;
   color: black;
-  position: fixed;
   bottom: 50px;
-  right: 50px;
+  align-items: center;
   color: #00ccff;
   background-color: #00ccff;
   box-shadow: 5px 5px 20px #00ccff;
