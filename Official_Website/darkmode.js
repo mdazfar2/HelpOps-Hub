@@ -1,15 +1,47 @@
 /* app.js */
 
-function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
-  document.querySelector("header").classList.toggle("dark-mode");
-  document.querySelector(".sponsor-button").classList.toggle("dark-mode");
-  document.querySelectorAll(".icons a").forEach((icon) => {
-    icon.classList.toggle("dark-mode");
-  });
-  document.getElementById("search-bar").classList.toggle("dark-mode");
-  document.getElementById("search-box").classList.toggle("dark-mode");
-  document.querySelectorAll("#folders-container div").forEach((folder) => {
-    folder.classList.toggle("dark-mode");
-  });
+const toggleButton = document.getElementById('theme-toggle');
+
+const enableDarkMode = () => {
+  document.body.classList.add('dark-mode');
+  document.querySelector('header').classList.add('dark-mode');
+  document.querySelector('#navbar').classList.add('dark-mode');
+  document.querySelector('.search-box').classList.add('dark-mode');
+  document.querySelector('.search-box').classList.add('border');
+  document.querySelector('.search-bar').classList.add('dark-mode');
+  document.querySelector('#name').classList.add('dark-mode');
+  document.querySelector('#email').classList.add('dark-mode');
+  document.querySelector('#comments').classList.add('dark-mode');
 }
+
+const disableDarkMode = () => {
+  document.body.classList.remove('dark-mode');
+  document.querySelector('header').classList.remove('dark-mode');
+  document.querySelector('#navbar').classList.remove('dark-mode');
+  document.querySelector('.search-box').classList.remove('dark-mode');
+  document.querySelector('.search-box').classList.remove('border');
+  document.querySelector('.search-bar').classList.remove('dark-mode');
+  document.querySelector('#name').classList.remove('dark-mode');
+  document.querySelector('#email').classList.remove('dark-mode');
+  document.querySelector('#comments').classList.remove('dark-mode');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const currentTheme = localStorage.getItem('isDarkMode');
+  if(currentTheme === 'true'){
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
+
+toggleButton.addEventListener('click', () => {
+  let prevTheme = localStorage.getItem('isDarkMode');
+  localStorage.setItem('isDarkMode',prevTheme === 'false' ? 'true' : 'false');
+  let getTheme = localStorage.getItem('isDarkMode');
+  if(getTheme === 'true'){
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
