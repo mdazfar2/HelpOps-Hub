@@ -16,69 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="navstyle.css">
-    <style>
-        /* Custom CSS for Accordion */
-        .accordion .card-header {
-            cursor: pointer;
-        }
-        .accordion .card-header .btn {
-            text-align: left;
-            width: 100%;
-        }
-        .accordion .card-header i {
-            transition: transform 0.2s;
-        }
-        .accordion .card-header i.collapsed {
-            transform: rotate(0deg);
-        }
-        .accordion .collapse {
-  height: auto;
-  overflow: hidden;
-  transition: height 0.3s ease-in-out;
-}
-
-.accordion .collapse.show {
-  height: auto;
-}
-        .accordion .card-body {
-            height: auto;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        body{
-            overflow-y: scroll;
-        }
-        .about-button1 {
-            display: flex;
-            align-items: center;
-            color: black;
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-            color: #00ccff;
-            background-color: #00ccff;
-            box-shadow: 5px 5px 20px #00ccff;
-            border: none;
-            padding: 5px 5px;
-            border-radius: 8px; /* Rounded corners */
-            font-size: 16px; /* Text size */
-            cursor: pointer;
-            text-decoration: none;
-            transition: 0.5s;
-        }
-        .about-button1:hover {
-            transform: scale(1.2);
-        }
-        .about-button1 a{
-            text-decoration: none;
-        }
-        .nav_item {
-            text-decoration: none;
-        }
-    </style>
+    <script src="darkmode.js"></script>
+   
 </head>
 <body>
     <header class="header">
@@ -135,10 +74,9 @@
 <div class="container mt-5">
    
     <div class="accordion" id="accordionExample">
-
         <div class="card">
             <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
+                <h5 class="mb-0 collapse-heading">
                     <button class="btn abeezee-regular"  type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         1. What is HelpOps-Hub? <i class="fas fa-chevron-down float-right"></i>
                     </button>
@@ -153,7 +91,7 @@
         </div>
         <div class="card">
             <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
+                <h5 class="mb-0 collapse-heading">
                     <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         2. How can I use HelpOps-Hub? <i class="fas fa-chevron-down float-right"></i>
                     </button>
@@ -168,7 +106,7 @@
         </div>
         <div class="card">
             <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
+                <h5 class="mb-0 collapse-heading">
                     <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         3. Is there a cost associated with using HelpOps-Hub?
                         <i class="fas fa-chevron-down float-right"></i>
@@ -183,7 +121,7 @@
         </div>
         <div class="card">
             <div class="card-header" id="headingFour">
-                <h5 class="mb-0">
+                <h5 class="mb-0 collapse-heading">
                     <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                         4. How can I contribute to HelpOps-Hub?
                         <i class="fas fa-chevron-down float-right"></i>
@@ -197,7 +135,7 @@
         </div>
         <div class="card">
             <div class="card-header" id="headingFive">
-                <h5 class="mb-0">
+                <h5 class="mb-0 collapse-heading">
                     <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                         5. Who can benefit from HelpOps-Hub?
                         <i class="fas fa-chevron-down float-right"></i>
@@ -216,17 +154,15 @@
         </div>
     </div>
 </div>
-
-
     <button class="about-button1">
       <a href="./about.html"> About Us </a>
     </button>
     <div id="scrollToTopBtn" class="scrollToTopBtn_FAQ" onclick="scrollToTop() "><img src="scrollToTop.png"></div>
+    <script src="app.js"></script>
 <!-- jQuery and Bootstrap Bundle (includes Popper) -->
-<script src="app.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

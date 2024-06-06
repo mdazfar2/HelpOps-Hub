@@ -248,7 +248,6 @@ width: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: whitesmoke;
   border-radius: 20px;
   /* border: solid; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -323,17 +322,7 @@ width: 40px;
   margin-top: 5px;
 }
 
-.info-div h2 {
-  margin: 10px 0 5px;
-  font-size: 2em;
-  color: black;
-}
 
-.info-div p {
-  margin: 5px 0;
-  font-size: 1em;
-  color: black;
-}
 
 #team-grid1 {
   display: grid;
@@ -374,13 +363,7 @@ width: 40px;
   margin-left: 20px;
   font-size: XX-large;
 }
-#social-links a {
-  display: flex;
-  align-items: center;
-  color: black;
-  margin: 5px 0;
-  text-decoration: none;
-}
+
 
 
 #social-links a i {
