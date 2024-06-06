@@ -407,7 +407,7 @@ width: 40px;
 /* .feedback {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  align-items: center;
 }
 
 .feedback img {
@@ -523,14 +523,35 @@ width: 40px;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
-  visibility: hidden;
   z-index: 1000;
 }
-.scrollToTopBtn.show {
+.scrollToTopBtn.showBtn {
   opacity: 1;
-  visibility: visible;
 }
-
+.scrollToTopBtn img{
+  width:100%;
+}
+/* FAQ Page has the scrollToTopBtn on left */
+.scrollToTopBtn_FAQ{
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 1000;
+}
+.scrollToTopBtn_FAQ.showBtn {
+  opacity: 1;
+}
+.scrollToTopBtn_FAQ img{
+  width:100%;
+}
 /* team */
 #team {
   gap: 5px;
