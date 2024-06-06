@@ -698,13 +698,16 @@ width: 40px;
   gap:20px;
 }
 
-#feedback-section{
-  margin-top: 100px;
-  box-shadow: 1px 1px 2px;
-  height: 600px;
-  width: 600px;
-  border-radius: 10px;
-  margin-left: 50px;
+#feedback-section {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  height: 60%;
+  margin-top: 150px;
+  width: 60%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -717,6 +720,7 @@ width: 40px;
 @media  (max-width: 767px) {
   #feedback-section{
     width: auto;
+    height: 100%;
     margin: 0px 10px;
   }
 }
