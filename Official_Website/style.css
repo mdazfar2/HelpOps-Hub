@@ -75,7 +75,7 @@ p {
 
 input {
   width: 90%;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   outline: none;
   border: none;
   font-size: 20px;
@@ -667,6 +667,67 @@ width: 40px;
 .logo img:hover {
   transform: scale(1.1);
   filter: brightness(1.2);
+}
+
+@media (min-width: 768px) {
+  .feedback {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+}
+
+@media  (max-width: 767px) {
+  #feedback-section{
+    width: auto;
+    height: 100%;
+    margin: 0px 10px;
+  }
+}
+
+.rating {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.rating input[type="radio"] {
+  display: none;
+}
+
+.rating label {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.rating input[type="radio"]:checked + label {
+  color: orange;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#message,
+#error-message {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.feedback-form input.dark-mode,
+.feedback-form textarea.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
 }
 
 /* Rating stars */
