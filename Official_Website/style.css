@@ -784,3 +784,56 @@ text-decoration: none;
 .dark-mode .card-body{
   background-color: black;
 }
+.dark-mode .team-member{
+  background-color: #555;
+  color: whitesmoke;
+}
+.team-member{
+    background-color: #fff2f2;
+}
+#social-links a {
+  display: flex;
+  align-items: center;
+  color: black;
+  margin: 5px 0;
+  text-decoration: none;
+}
+.dark-mode #social-links a {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin: 5px 0;
+  text-decoration: none;
+}
+.info-div h2 {
+  margin: 10px 0 5px;
+  font-size: 2em;
+  color: black;
+}
+
+.dark-mode .info-div h2 {
+  margin: 10px 0 5px;
+  font-size: 2em;
+  color: white;
+}
+
+.dark-mode .info-div p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: blwhiteack;
+}
+.dark-mode .team-member7{
+  background-color: #333;
+}
+.dark-mode .card7{
+  background-color: #1a1a1a;
+}
+.dark-mode .contributions-label7{
+color: white;
+}
+.dark-mode .social-links7 a{
+  color:white;
+}
+.dark-mode .github-label7{
+  color:white;
+}
