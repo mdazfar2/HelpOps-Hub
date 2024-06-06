@@ -849,3 +849,11 @@ color: white;
 .dark-mode .card2{
   background-color: #1c1c1c;
 }
+.trophy-card{
+background-color: white;
+color:black;
+}
+.dark-mode .trophy-card{
+  background-color: black;
+  color:white;
+}
