@@ -165,7 +165,28 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
+
+  const accordionButtons = document.querySelectorAll('.btn.abeezee-regular');
+
+  accordionButtons.forEach(button => {
+      button.addEventListener('click', function () {
+          const targetId = this.getAttribute('aria-controls');
+          const targetCollapse = document.getElementById(targetId);
+
+          if (targetCollapse.classList.contains('show')) {
+              targetCollapse.classList.remove('show');
+              this.querySelector('i').classList.remove('fa-chevron-up');
+              this.querySelector('i').classList.add('fa-chevron-down');
+          } else {
+              targetCollapse.classList.add('show');
+              this.querySelector('i').classList.remove('fa-chevron-down');
+              this.querySelector('i').classList.add('fa-chevron-up');
+          }
+      });
+  });
+  
 });
+
 //Scroll to top js
 const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 function scrollToTop() {
