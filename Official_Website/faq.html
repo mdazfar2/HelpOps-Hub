@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="navstyle.css">
     <style>
         /* Custom CSS for Accordion */
+        .card,.btn,.btn:hover{
+            background-color: inherit;
+            color: inherit;
+        }
         .accordion .card-header {
             cursor: pointer;
         }
@@ -106,7 +110,7 @@
             </li>
 
             <li class="nav__item">
-                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+                <a href="javascript:void(0);" class="fas fa-adjust" id="theme-toggle"></a>
             </li>
             <li><button class="about-button">
       
@@ -216,6 +220,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="darkmode.js"></script>
 </body>
 </html>
