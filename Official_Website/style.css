@@ -12,7 +12,21 @@ p {
   flex-direction: row;
   flex-wrap: wrap !important;
 }
-
+#collapseThree{
+  height: 30vh !important;
+}
+#collapseOne{
+  height: 35vh !important;
+}
+#collapseTwo{
+  height: 33vh !important;
+}
+#collapseFour{
+  height: 33vh !important;
+}
+#collapseFive{
+  height: 33vh !important;
+}
 .img-div {
   width: 40%;
 
