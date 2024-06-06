@@ -11,20 +11,24 @@ p {
   margin: 0;
   padding: 0;
 }
-.team-grid{
+
+.team-grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap !important;
 }
-.img-div{
+
+.img-div {
   width: 40%;
 
 }
-.team-member{
+
+.team-member {
   display: flex;
   flex-direction: row;
-position: relative;
+  position: relative;
 }
+
 /* style search container */
 .search-container {
   display: flex;
@@ -41,7 +45,6 @@ position: relative;
   align-items: center;
   width: 30%;
   height: 2rem;
-  /* margin: 10px; */
   margin-top: 1rem;
   padding: 2em 1em;
   font-size: 16px;
@@ -58,8 +61,10 @@ position: relative;
 }
 
 #search-box:hover {
-  border: 2px solid #00ccff; /* Color of border after hover the cursor*/
-  box-shadow: 4px 4px 20px #00ccff; /*Shadow effect after hover the cursor*/
+  border: 2px solid #00ccff;
+  /* Color of border after hover the cursor*/
+  box-shadow: 4px 4px 20px #00ccff;
+  /*Shadow effect after hover the cursor*/
 }
 
 input {
@@ -68,9 +73,12 @@ input {
   outline: none;
   border: none;
   border: none;
-  outline: none; /*Not display the default color border*/
-  border-radius: 24px; /* Rounded corners */
-  background-color: white; /* Light grey background */
+  outline: none;
+  /*Not display the default color border*/
+  border-radius: 24px;
+  /* Rounded corners */
+  background-color: white;
+  /* Light grey background */
   position: relative;
   z-index: 1;
 }
@@ -79,7 +87,8 @@ input {
   position: relative;
   align-self: left;
   font-size: 21px;
-  color: #00ccff; /* Icon color */
+  color: #00ccff;
+  /* Icon color */
   pointer-events: none;
 }
 
@@ -87,25 +96,31 @@ input {
 #search-bar::placeholder {
   color: #9e9e9e;
 }
+
 /* scrollbar.css */
 ::-webkit-scrollbar {
   width: 12px;
 }
+
 ::-webkit-scrollbar-track {
   background: #00ccff;
 }
+
 ::-webkit-scrollbar-thumb {
   background: darkgray;
   border-radius: 10px;
   min-height: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: darkgrey;
 }
+
 header h1 {
   font-size: 80px;
   margin: 10px;
 }
+
 /* Set a background color */
 body {
   background-color: #f5f5f5;
@@ -117,6 +132,7 @@ body {
   width: 200px;
   height: 200px;
 }
+
 /* maincontainer */
 #maincontainer {
   display: flex;
@@ -124,6 +140,7 @@ body {
   justify-content: center;
   height: 700px;
 }
+
 /* Header styles */
 header {
   background-color: #00ccff;
@@ -131,14 +148,16 @@ header {
   text-align: center;
   padding: 1rem;
 }
+
 /* loading  */
-.loading{
-  margin-top:20px ;
+.loading {
+  margin-top: 20px;
   font-size: x-large;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 /* loading container  */
 
 .loading-gears {
@@ -156,8 +175,10 @@ header {
 }
 
 .gear.one {
-  top: 25px; /* Adjusted for proper interlocking */
-  left: 25px; /* Adjusted for proper interlocking */
+  top: 25px;
+  /* Adjusted for proper interlocking */
+  left: 25px;
+  /* Adjusted for proper interlocking */
   animation: spin 2s linear infinite;
 }
 
@@ -170,12 +191,14 @@ header {
 
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
+
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
+
 /* .loading:after {
 overflow: hidden;
 display: inline-block;
@@ -209,7 +232,8 @@ width: 40px;
 
 /* Individual folder card */
 .folder-card {
-  flex: 0 0 calc(25% - 20px); /* Four cards per row (adjust margin as needed) */
+  flex: 0 0 calc(25% - 20px);
+  /* Four cards per row (adjust margin as needed) */
   margin: 10px;
   justify-content: center;
   padding: 1.5rem;
@@ -236,32 +260,42 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
+
 /* Dark mode styles */
 .dark-mode #folders-container {
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Light text color */
+  background-color: #333;
+  /* Dark background color */
+  color: #fff;
+  /* Light text color */
 }
 
 .dark-mode .folder-card {
-  background-color: #1a1a1a; /* Dark card background */
-  color: #fff; /* Light text color */
-  border-color: #555; /* Darker border color */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker box shadow */
+  background-color: #1a1a1a;
+  /* Dark card background */
+  color: #fff;
+  /* Light text color */
+  border-color: #555;
+  /* Darker border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  /* Darker box shadow */
 }
 
 .dark-mode .folder-card:hover {
-  background-color: #333; /* Dark hover background */
-  box-shadow: 5px 5px 20px #00ccff; /* Example hover effect in dark mode */
+  background-color: #333;
+  /* Dark hover background */
+  box-shadow: 5px 5px 20px #00ccff;
+  /* Example hover effect in dark mode */
   transform: scale(1.1);
   border-radius: 1.5rem;
 }
 
 /* Example: Dark mode heading for folder name */
 .dark-mode .folder-card h3 {
-  color: #fff; /* Light heading color */
+  color: #fff;
+  /* Light heading color */
 }
 
-.about-button{
+.about-button {
   display: flex;
   align-items: center;
   color: black;
@@ -269,22 +303,27 @@ width: 40px;
   box-shadow: 5px 5px 20px #00ccff;
   border: none;
   padding: 5px 5px;
-  border-radius: 8px; /* Rounded corners */
-  font-size: 16px; /* Text size */
+  border-radius: 8px;
+  /* Rounded corners */
+  font-size: 16px;
+  /* Text size */
   cursor: pointer;
   outline: none;
   transition: 0.5s;
   text-decoration: none;
 }
+
 .about-button:hover {
   transform: scale(1.2);
   background-color: white;
 }
+
 /* Path text */
 .folder-card p {
   font-size: 14px;
   color: #777;
 }
+
 /* sponser button */
 .sponsor-button {
   display: flex;
@@ -292,20 +331,28 @@ width: 40px;
   color: black;
   box-shadow: 5px 5px 20px #00ccff;
   border: none;
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px 20px; /* Padding around text */
-  font-size: 16px; /* Text size */
+  border-radius: 8px;
+  /* Rounded corners */
+  padding: 10px 20px;
+  /* Padding around text */
+  font-size: 16px;
+  /* Text size */
   cursor: pointer;
   outline: none;
-  top: 20px; /* Distance from the top */
-  right: 20px; /* Distance from the right */
+  top: 20px;
+  /* Distance from the top */
+  right: 20px;
+  /* Distance from the right */
   transition: 0.5s;
 }
 
 .heart {
-  color: #ff5c5c; /* Heart color */
-  margin-right: 8px; /* Space between heart and text */
-  font-size: 18px; /* Heart size */
+  color: #ff5c5c;
+  /* Heart color */
+  margin-right: 8px;
+  /* Space between heart and text */
+  font-size: 18px;
+  /* Heart size */
 }
 
 .sponsor-button:hover {
@@ -314,10 +361,13 @@ width: 40px;
   /* color: black;
   box-shadow: 5px 5px 20px #00ccff; */
 }
+
 .logo {
   width: 30%;
-  z-index: 1; /* Ensure it's above other content */
+  z-index: 1;
+  /* Ensure it's above other content */
 }
+
 @media only screen and (max-width: 672px) {
   .logo {
     width: 100%;
@@ -329,24 +379,29 @@ width: 40px;
     width: 150px;
     height: 150px;
   }
+
   .logo {
     top: 70px;
     left: 10px;
   }
 }
+
 .header {
   height: 9rem;
 }
+
 @media only screen and (max-width: 812px) {
   .header {
     height: auto !important;
   }
 }
+
 @media only screen and (max-width: 544px) {
   .header {
     flex-direction: column !important;
   }
 }
+
 .header {
   display: flex;
   flex-direction: row;
@@ -355,14 +410,17 @@ width: 40px;
   header h1 {
     font-size: 2rem;
   }
+
   .logo img {
     width: 80px;
     height: 80px;
   }
+
   .logo {
     left: 0px;
     top: 70px;
   }
+
   .header {
     flex-direction: column !important;
   }
@@ -370,6 +428,7 @@ width: 40px;
     width: 80%;
     font-size: .8rem;
   }
+
   .sponsor-button {
     margin-top: 40px;
     right: 5px;
@@ -377,9 +436,11 @@ width: 40px;
     font-size: 0.8rem;
     padding: 5px 10px;
   }
+
   header p {
     font-size: 0.7rem;
   }
+
   #folders-container {
     padding: 20px 20px;
     gap: 8px;
@@ -394,7 +455,6 @@ width: 40px;
     flex: 0 0 calc(100% - 20px);
   }
 }
-
 /* icons */
 .icons {
   display: flex;
@@ -402,13 +462,17 @@ width: 40px;
   display: flex;
   align-items: center;
   position: absolute;
-  top: 130px; /* Distance from the top */
-  right: 165px; /* Distance from the right */
+  top: 130px;
+  /* Distance from the top */
+  right: 165px;
+  /* Distance from the right */
 }
+
 .icons a {
   color: inherit;
   text-decoration: none;
-  font-size: 20px; /* Adjust as needed */
+  font-size: 20px;
+  /* Adjust as needed */
 }
 
 /* Feedback section */
@@ -486,13 +550,13 @@ width: 40px;
   cursor: pointer;
 }
 
-.rating input:checked ~ label,
-.rating input:checked ~ label ~ label {
+.rating input:checked~label,
+.rating input:checked~label~label {
   color: #ffc700;
 }
 
 .rating label:hover,
-.rating label:hover ~ label {
+.rating label:hover~label {
   color: #ffc700;
 }
 
@@ -529,14 +593,17 @@ width: 40px;
   opacity: 0;
   z-index: 1000;
 }
+
 .scrollToTopBtn.showBtn {
   opacity: 1;
 }
-.scrollToTopBtn img{
-  width:100%;
+
+.scrollToTopBtn img {
+  width: 100%;
 }
+
 /* FAQ Page has the scrollToTopBtn on left */
-.scrollToTopBtn_FAQ{
+.scrollToTopBtn_FAQ {
   position: fixed;
   bottom: 40px;
   left: 40px;
@@ -550,12 +617,15 @@ width: 40px;
   opacity: 0;
   z-index: 1000;
 }
+
 .scrollToTopBtn_FAQ.showBtn {
   opacity: 1;
 }
-.scrollToTopBtn_FAQ img{
-  width:100%;
+
+.scrollToTopBtn_FAQ img {
+  width: 100%;
 }
+
 /* team */
 #team {
   gap: 5px;
@@ -563,6 +633,7 @@ width: 40px;
   display: flex;
   align-items: center;
 }
+
 #team h4 {
   font-size: 10px;
 }
@@ -583,6 +654,7 @@ width: 40px;
   color: #00ccff;
   margin-bottom: 2rem;
 }
+
 /* logo styling */
 .logo-link {
   display: inline-block;
@@ -594,7 +666,7 @@ width: 40px;
 
 .logo img:hover {
   transform: scale(1.1);
-  filter: brightness(1.2); 
+  filter: brightness(1.2);
 }
 
 /* Feedback section */
@@ -623,12 +695,14 @@ width: 40px;
 #feedback-section.dark-mode {
   background-color: #1c1c1c;
   border: 1px solid #333333;
-  color:white;
+  color: white;
 
 }
-.dark-mode label{
-  color :white;
+
+.dark-mode label {
+  color: white;
 }
+
 #feedback-section h2 {
   text-align: center;
   color: #00ccff;
@@ -654,6 +728,7 @@ width: 40px;
   font-size: 16px;
   margin-bottom: 0.5rem;
 }
+
 .feedback-form.dark-mode label {
   color: white;
 }
@@ -709,13 +784,13 @@ width: 40px;
   cursor: pointer;
 }
 
-.rating input:checked ~ label,
-.rating input:checked ~ label ~ label {
+.rating input:checked~label,
+.rating input:checked~label~label {
   color: #ffc700;
 }
 
 .rating label:hover,
-.rating label:hover ~ label {
+.rating label:hover~label {
   color: #ffc700;
 }
 
@@ -736,8 +811,9 @@ width: 40px;
 
 .feedback-form button.dark-mode {
   background-color: #444444;
-  color:white;
+  color: white;
 }
+
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
