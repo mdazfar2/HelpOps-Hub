@@ -498,14 +498,35 @@ width: 40px;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
-  visibility: hidden;
   z-index: 1000;
 }
-.scrollToTopBtn.show {
+.scrollToTopBtn.showBtn {
   opacity: 1;
-  visibility: visible;
 }
-
+.scrollToTopBtn img{
+  width:100%;
+}
+/* FAQ Page has the scrollToTopBtn on left */
+.scrollToTopBtn_FAQ{
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 1000;
+}
+.scrollToTopBtn_FAQ.showBtn {
+  opacity: 1;
+}
+.scrollToTopBtn_FAQ img{
+  width:100%;
+}
 /* team */
 #team {
   gap: 5px;
@@ -532,4 +553,17 @@ width: 40px;
   font-size: 2rem;
   color: #00ccff;
   margin-bottom: 2rem;
+}
+/* logo styling */
+.logo-link {
+  display: inline-block;
+}
+
+.logo img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2); 
 }
