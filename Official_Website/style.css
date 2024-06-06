@@ -236,6 +236,31 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
+/* Dark mode styles */
+.dark-mode #folders-container {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
+.dark-mode .folder-card {
+  background-color: #1a1a1a; /* Dark card background */
+  color: #fff; /* Light text color */
+  border-color: #555; /* Darker border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker box shadow */
+}
+
+.dark-mode .folder-card:hover {
+  background-color: #333; /* Dark hover background */
+  box-shadow: 5px 5px 20px #00ccff; /* Example hover effect in dark mode */
+  transform: scale(1.1);
+  border-radius: 1.5rem;
+}
+
+/* Example: Dark mode heading for folder name */
+.dark-mode .folder-card h3 {
+  color: #fff; /* Light heading color */
+}
+
 .about-button{
   display: flex;
   align-items: center;
@@ -387,15 +412,10 @@ width: 40px;
 }
 
 /* Feedback section */
-.feedback {
+/* .feedback {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 70%;
-  margin: 0 auto;
-}
-.feedback-image{
-  width: 40%;
+  align-items: center;
 }
 
 .feedback img {
@@ -445,7 +465,7 @@ width: 40px;
 .feedback-form textarea {
   resize: vertical;
   height: 100px; /* Fixed height for textarea */
-}
+
 
 /* Rating stars */
 .rating {
@@ -489,18 +509,7 @@ width: 40px;
 
 .feedback-form button:hover {
   background-color: #009ec3;
-}
-
-@media only screen and (max-width:600px){
-  .feedback{
-    flex-direction: column;
-    width: 90%;
-  }
-  #feedback-section, .feedback-image{
-    width: 100%;
-  }
-}
-
+} 
 /*Scroll to top*/
 .scrollToTopBtn {
   position: fixed;
@@ -586,4 +595,165 @@ width: 40px;
 .logo img:hover {
   transform: scale(1.1);
   filter: brightness(1.2); 
+}
+
+/* Feedback section */
+.feedback {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.feedback img {
+  margin-left: 8rem;
+  align-items: center;
+  width: 40rem;
+}
+
+#feedback-section {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  width: 30%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+#feedback-section.dark-mode {
+  background-color: #1c1c1c;
+  border: 1px solid #333333;
+  color:white;
+
+}
+.dark-mode label{
+  color :white;
+}
+#feedback-section h2 {
+  text-align: center;
+  color: #00ccff;
+  margin-bottom: 1rem;
+}
+
+#feedback-section.dark-mode h2 {
+  color: #ffffff;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}
+.feedback-form.dark-mode label {
+  color: white;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 0.5rem;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.feedback-form input.dark-mode,
+.feedback-form textarea.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
+@media only screen and (max-width:600px){
+  .feedback{
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .feedback img{
+    margin: 0;
+    width: 100%;
+  }
+  #feedback-section{
+    margin: 0;
+    padding: 2rem;
+    width: 100%;
+  }
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 1.5rem;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating input:checked ~ label ~ label {
+  color: #ffc700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffc700;
+}
+
+.feedback-form button {
+  padding: 0.75rem;
+  font-size: 16px;
+  color: #fff;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #009ec3;
+}
+
+.feedback-form button.dark-mode {
+  background-color: #444444;
+  color:white;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.header.dark-mode {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
+
+.nav__item a.dark-mode {
+  color: #ffffff;
+}
+
+.about-button.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+  box-shadow: 5px 5px 20px #ffffff;
 }

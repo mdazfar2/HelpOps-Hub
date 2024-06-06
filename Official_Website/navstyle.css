@@ -188,15 +188,20 @@
   }
   li button a{
     color: #00ccff !important;
-    font-size: 1.5rem;
   }
   a{
     color: white ;
-    font-size: 2rem;
   }
 
   .sponsor-button-mobile{
     display: none;
+  }
+  .about-button{
+    font-size: 1.5rem;
+  }
+
+  .nav__link-mobile{
+    font-size:2.5rem;
   }
   @media only screen and (max-width:600px){
     .nav__list{
@@ -206,8 +211,8 @@
     .nav__link-mobile{
       font-size:1.5rem;
     }
-    .faq-mobile{
-      font-size:.875rem;
+    li .faq-mobile.faq-mobile{
+      font-size:.875rem !important;
     }
     .sponsor-button{
       display:none;

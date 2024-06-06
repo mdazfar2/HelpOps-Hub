@@ -168,20 +168,20 @@ document.addEventListener("DOMContentLoaded", async function () {
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
 });
 //Scroll to top js
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
+// const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+// function scrollToTop() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: "smooth",
+//   });
+// }
 const navbarHeight = navbar.offsetHeight;
 function handleScroll() {
-  if (window.pageYOffset > 100) {
-    scrollToTopBtn.classList.add("showBtn");
-  } else {
-    scrollToTopBtn.classList.remove("showBtn");
-  }
+  // if (window.pageYOffset > 100) {
+  //   scrollToTopBtn.classList.add("showBtn");
+  // } else {
+  //   scrollToTopBtn.classList.remove("showBtn");
+  // }
   if(window.scrollY>navbarHeight){
     navbar.classList.add("nav-fixed")
   }
@@ -192,4 +192,4 @@ function handleScroll() {
 // Add scroll event listener
 window.addEventListener("scroll", handleScroll);
 // Add click event listener
-scrollToTopBtn.addEventListener("click", scrollToTop);
+// scrollToTopBtn.addEventListener("click", scrollToTop);
