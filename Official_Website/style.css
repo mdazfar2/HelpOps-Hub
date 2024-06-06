@@ -600,7 +600,9 @@ width: 40px;
     width: 80% !important;
   }
 }
-
+.footer{
+  flex-direction: column;
+}
 #collapseOne{
   height: auto !important;
 }
