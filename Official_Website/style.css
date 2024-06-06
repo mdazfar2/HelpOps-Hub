@@ -705,6 +705,10 @@ body.dark-mode {
   background-color: #1c1c1c;
   color: #ffffff;
 }
+.dark-mode nav {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
 .nav__item a{
   color:black;
 }
