@@ -236,12 +236,12 @@ width: 40px;
 } */
 
 #team-grid {
-  /* margin-left: 2rem; */
-  /* margin-right: 2rem; */
+  margin-left: 2rem;
+  margin-right: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 5rem;
-  height: auto;
+  /* height: 300px; */
 }
 
 .team-member {
@@ -254,7 +254,7 @@ width: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   padding: 20px;
  /* background-color: gray; */
-  /* margin-left: 20px; */
+  margin-left: 20px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -338,8 +338,10 @@ width: 40px;
 #team-grid1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 15px;
+  gap: 10px;
   margin: 25px;
+  margin-left: 45px;
+  padding: 30px;
 }
 
 .badge {
