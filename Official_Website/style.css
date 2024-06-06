@@ -580,11 +580,65 @@ width: 40px;
 }
 
 .feedback img {
-  margin-left: 8rem;
+  width: 516px;
   align-items: center;
-  width: 40rem;
+}
+@media only screen and (max-width:940px){
+  .feedback{
+    flex-direction: column;
+
+  }
+  #search-box{
+    width: 50% !important;
+  }
+  #feedback-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #feedback-section{
+    width: 80% !important;
+  }
 }
 
+#collapseOne{
+  height: auto !important;
+}
+#collapseTwo{
+  height: auto !important;
+}
+#collapseThree{
+  height: auto !important;
+}
+#collapseFour{
+  height: auto !important;
+}
+#collapseFive{
+  height: auto !important;
+}
+
+
+
+.im{
+  width: 100px !important;
+    position: absolute !important;
+    right: 0px !important;
+}
+@media only screen and (max-width:447px){
+  .feedback img{
+    width: 450px !important;
+  }
+}
+@media only screen and (max-width:610px){
+  #search-box{
+    width: 70% !important;
+  }
+}
+@media only screen and (max-width:398px){
+  .feedback img{
+    width: 350px !important;
+  }
+}
 #feedback-section {
   background-color: #f9f9f9;
   padding: 1.5rem;
@@ -730,7 +784,7 @@ body.dark-mode {
       width: 100%;
   }
   
-  .accordion .card-header i {
+  /* .accordion .card-header i {
       transition: transform 0.2s;
   }
   .accordion .collapse.show .card-header i {
@@ -738,7 +792,7 @@ body.dark-mode {
   }
   .accordion .card-body {
       animation: fadeIn 0.3s ease-in-out;
-  }
+  } */
   @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
