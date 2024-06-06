@@ -600,8 +600,15 @@ width: 40px;
     width: 80% !important;
   }
 }
+.footer a{
+  color: black !important;
+  text-decoration: underline;
+  font-size: 18px;
+}
 .footer{
   flex-direction: column;
+  gap: 6px;
+  font-size: 18px ;
 }
 #collapseOne{
   height: auto !important;
