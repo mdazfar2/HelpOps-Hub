@@ -421,14 +421,12 @@ width: 40px;
   padding: 1.5rem;
   margin: 2rem auto;
   width: 30%;
-  border: 1px solid #ddd;
   border-radius: 20px;
-  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 15px 15px rgba(0, 0, 0, 0.8);
 }
 
 #feedback-section h2 {
   text-align: center;
-  color: #00ccff;
   margin-bottom: 1rem;
 }
 
@@ -452,7 +450,6 @@ width: 40px;
 .feedback-form textarea {
   padding: 0.5rem;
   font-size: 14px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
