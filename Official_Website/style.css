@@ -75,7 +75,7 @@ p {
 
 input {
   width: 90%;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   outline: none;
   border: none;
   font-size: 20px;
@@ -684,28 +684,6 @@ width: 40px;
   filter: brightness(1.2);
 }
 
-/* Feedback section */
-.feedback {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.feedback img {
-  margin-left: 8rem;
-  align-items: center;
-  width: 40rem;
-}
-
-#feedback-section {
-  background-color: #f9f9f9;
-  padding: 1.5rem;
-  margin: 2rem auto;
-  width: 30%;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
-}
 
 #feedback-section.dark-mode {
   background-color: #1c1c1c;
@@ -727,33 +705,108 @@ width: 40px;
 #feedback-section.dark-mode h2 {
   color: #ffffff;
 }
-
-.feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.feedback {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap:20px;
 }
 
-.feedback-form .form-group {
-  display: flex;
-  flex-direction: column;
+#feedback-section {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  height: 60%;
+  margin-top: 150px;
+  width: 60%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .feedback {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+}
+
+@media  (max-width: 767px) {
+  #feedback-section{
+    width: auto;
+    height: 100%;
+    margin: 0px 10px;
+  }
+}
+
+#feedback-image {
+  text-align: center;
+}
+
+#feedback-image img {
+  max-width: 70%;
+  /* height: auto; */
+}
+
+#feedback-section {
+  padding: 20px;
+}
+
+.feedback-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .feedback-form label {
-  font-size: 16px;
-  margin-bottom: 0.5rem;
-}
-
-.feedback-form.dark-mode label {
-  color: white;
+  font-weight: bold;
 }
 
 .feedback-form input,
 .feedback-form textarea {
-  padding: 0.5rem;
-  font-size: 14px;
+  width: 98%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.rating {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.rating input[type="radio"] {
+  display: none;
+}
+
+.rating label {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.rating input[type="radio"]:checked + label {
+  color: orange;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#message,
+#error-message {
+  margin-top: 20px;
+  font-size: 1.2em;
 }
 
 .feedback-form input.dark-mode,
