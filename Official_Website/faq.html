@@ -35,7 +35,17 @@
         .accordion .collapse.show .card-header i {
             transform: rotate(180deg);
         }
+        .accordion .collapse {
+  height: auto;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+.accordion .collapse.show {
+  height: auto;
+}
         .accordion .card-body {
+            height: auto;
             animation: fadeIn 0.3s ease-in-out;
         }
         @keyframes fadeIn {
