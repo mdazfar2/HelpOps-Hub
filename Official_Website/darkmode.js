@@ -9,9 +9,9 @@ const enableDarkMode = () => {
   document.querySelector('.search-box').classList.add('dark-mode');
   document.querySelector('.search-box').classList.add('border');
   document.querySelector('.search-bar').classList.add('dark-mode');
-  document.querySelector('#name').classList.add('dark-mode');
-  document.querySelector('#email').classList.add('dark-mode');
-  document.querySelector('#comments').classList.add('dark-mode');
+  document.querySelector('#name').classList.add('inputs');
+  document.querySelector('#email').classList.add('inputs');
+  document.querySelector('#comments').classList.add('inputs');
 }
 
 const disableDarkMode = () => {
@@ -21,9 +21,9 @@ const disableDarkMode = () => {
   document.querySelector('.search-box').classList.remove('dark-mode');
   document.querySelector('.search-box').classList.remove('border');
   document.querySelector('.search-bar').classList.remove('dark-mode');
-  document.querySelector('#name').classList.remove('dark-mode');
-  document.querySelector('#email').classList.remove('dark-mode');
-  document.querySelector('#comments').classList.remove('dark-mode');
+  document.querySelector('#name').classList.remove('inputs');
+  document.querySelector('#email').classList.remove('inputs');
+  document.querySelector('#comments').classList.remove('inputs');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
