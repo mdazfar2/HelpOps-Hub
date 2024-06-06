@@ -1,34 +1,13 @@
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+.dark-mode {
+    color: white;
+    background-color: #0f0f0ff6;
 }
 
-header.dark-mode {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-}
-.dark-mode .nav{
-    background-color: #1e1e1e !important;
-}
-.icons a.dark-mode {
-    color: #e0e0e0;
+.inputs {
+    color: white;
+    background-color: #232323;
 }
 
-.sponsor-button.dark-mode {
-    background-color: #bb86fc;
-    color: #121212;
-}
-
-#search-bar.dark-mode {
-    background-color: #2c2c2c;
-    color: #e0e0e0;
-}
-
-#folders-container div.dark-mode {
-    background-color: #2c2c2c;
-    border: 1px solid #444444;
-}
-
-#search-box.dark-mode{
-    background-color: #2c2c2c;
+.border {
+    box-shadow: 5px 5px 5px #00ccff;
 }
