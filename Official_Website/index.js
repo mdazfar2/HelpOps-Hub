@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express'; 
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -8,11 +9,10 @@ import Feedback from './models/feedback.js';
 
 app.use(bodyParser.json());
 app.use(cors());
-
-const URL='mongodb://localhost:27017/feedbackGSSCO';
+dotenv.config();
 
 const main = async()=>{
-    await mongoose.connect(URL)
+    await mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log(err));
 }
