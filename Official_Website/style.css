@@ -579,7 +579,7 @@ width: 40px;
 }
 
 .feedback img {
-  width: 516px;
+  margin-left: 8rem;
   align-items: center;
 }
 @media only screen and (max-width: 940px) {
@@ -635,6 +635,7 @@ width: 40px;
     width: 350px !important;
   }
 }
+
 #feedback-section {
   background-color: #f9f9f9;
   padding: 1.5rem;
@@ -779,15 +780,15 @@ body.dark-mode {
   width: 100%;
 }
 
-/* .accordion .card-header i {
-      transition: transform 0.2s;
-  }
-  .accordion .collapse.show .card-header i {
-      transform: rotate(180deg);
-  }
-  .accordion .card-body {
-      animation: fadeIn 0.3s ease-in-out;
-  } */
+.accordion .card-header i {
+  transition: transform 0.2s;
+}
+.accordion .collapse.show .card-header i {
+  transform: rotate(180deg);
+}
+.accordion .card-body {
+  animation: fadeIn 0.3s ease-in-out;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
