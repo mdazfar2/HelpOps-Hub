@@ -21,18 +21,18 @@
 
 <body>
     <header class="header">
-
         <div class="logo">
-            <a href="./index.html"
-            ><img src="logo.png" alt="HelpOps-Hub Logo"
-          /></a>
+            <a href="./index.html"><img src="logo.png" alt="HelpOps-Hub Logo"></a>
         </div>
         <div>
-            <h1>About Us</h1>
+            <h1>About us</h1>
+        </div>
+        <div class="burger-menu" id="burgerMenu">
+            <i class="fas fa-bars"></i>
         </div>
     </header>
-    <nav class="nav " id="navbar">
-           
+    <div class="overlay" id="overlay"></div>
+    <nav class="nav" id="navbar">
         <ul class="nav__list" id="navlinkitems">
             <li class="nav__item">
                 <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
@@ -46,33 +46,18 @@
             <li class="nav__item">
                 <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
             </li>
-
             <li class="nav__item">
-                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>   
-            </li>
-            <li>
-                <button class="about-button">
-
-                    <a  href="./index.html">
-                        BACK
-                    </a>
-                </button>
-               
+                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
             </li>
             <li><button class="about-button">
-      
-                <a  href="./faq.html">
-                    FAQ's
-                </a>
+                <a href="./index.html">BACK</a>
             </button></li>
             <li>
                 <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
                     <span class="heart">&#10084;</span> Sponsor
                 </button>
             </li>
-            
         </ul>
-
     </nav>
     <div>
         <div class="start">
@@ -130,6 +115,17 @@ community.
     <div id="scrollToTopBtn" class="scrollToTopBtn" onclick="scrollToTop()">
         <img src="scrollToTop.png" alt="Scroll to top">
       </div>
+
+      <footer>
+        <div class="footer-icons">
+            <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
+            <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+            <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+        </div>
+        <button class="about-button1" style="margin-right: 40px;">
+            <a href="./faq.html"> Faq's </a>
+          </button>
+    </footer>
       <script src="app.js"></script>
       
     

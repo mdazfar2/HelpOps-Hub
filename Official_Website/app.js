@@ -185,6 +185,22 @@ document.addEventListener("DOMContentLoaded", async function () {
           }
       });
   });
+
+  const burgerMenu = document.getElementById("burgerMenu");
+  const navLinks = document.getElementById("navlinkitems");
+  const overlay = document.getElementById("overlay");
+
+  burgerMenu.addEventListener("click", function() {
+      navLinks.classList.toggle("hidden");
+      navLinks.classList.toggle("visible");
+      overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener("click", function() {
+      navLinks.classList.add("hidden");
+      navLinks.classList.remove("visible");
+      overlay.classList.remove("active");
+  });
   
 });
 
