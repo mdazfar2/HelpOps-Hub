@@ -10,6 +10,9 @@
   <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="dark_mode.css" />
   <link rel="stylesheet" href="navstyle.css" />
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
 </head>
 <body>
   <header class="header">
@@ -75,17 +78,17 @@
     <div id="feedback-image">
       <img src="feedback.png" alt="feedback-image" />
     </div>
-    <div id="feedback-section">
+    <div id="feedback-section" >
       <h2>Feedback</h2>
-      <form class="feedback-form" id="feedback-form">
+      <form class="feedback-form" onsubmit="handleSubmit()" id="feedback-form">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required />
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="user_email" required />
 
         <label for="comments">Comments</label>
-        <textarea id="comments" name="comments" required></textarea>
+        <textarea id="comments" name="message" required></textarea>
 
         <label for="rating">Rating</label>
         <div class="rating">
@@ -96,7 +99,7 @@
           <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">&#9733;</label>
         </div>
 
-        <button type="submit">Submit Feedback</button>
+        <button  type="submit">Submit Feedback</button>
       </form>
       <div id="message" style="display: none; color: green; font-size: 1.2em; margin-top: 20px;"></div>
       <div id="error-message" style="display: none; color: red; font-size: 1.2em; margin-top: 20px;"></div>
@@ -110,6 +113,13 @@
 
   <script src="app.js"></script>
   <script src="darkmode.js"></script>
+  <script type="text/javascript">
+    (function(){
+       emailjs.init({
+         publicKey: "rId2aw03Pj2ZNq2U5",
+       });
+    })();
+  </script>
   <script>
     // Feedback JS
     document.getElementById("feedback-form").addEventListener("submit", function(event) {
@@ -129,6 +139,19 @@
         }, 3000);
         return;
       }
+      let temp=document.getElementById('comments').value
+document.getElementById('comments').value= `Comments : ${document.getElementById("comments").value}            Rating : ${rating.value}`;
+
+    emailjs.sendForm('service_hrz8hfg', 'template_na7xjc4',"#feedback-form").then(
+  (response) => {
+    console.log('SUCCESS!', response.status, response.text);
+  },
+  (error) => {
+    console.log('FAILED...', error);
+  },
+);
+document.getElementById('comments').value= temp       
+
 
       var messageElement = document.getElementById("message");
       messageElement.innerText = "Thank you for your feedback!";
@@ -140,5 +163,12 @@
       }, 3000);
     });
   </script>
+
+
+<script>
+  
+ 
+
+</script>
 </body>
 </html>
