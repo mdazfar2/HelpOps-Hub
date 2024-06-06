@@ -46,11 +46,9 @@
           <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
         </li>
         <li class="nav__item">
-          <a
-            href="javascript:void(0);"
-            class="fas fa-adjust"
-            onclick="toggleTheme()"
-          ></a>
+            <button id="theme-toggle">
+              <img src="moon-icon.png" height="30" width="32">
+            </button>
         </li>
         <li>
           <button class="about-button">
@@ -69,11 +67,11 @@
     </nav>
 
     <div class="search-container">
-      <div id="search-box">
+      <div class="search-box">
         <div class="icon">
           <i class="fas fa-duotone fa-magnifying-glass"></i>
         </div>
-        <input type="text" id="search-bar" placeholder="Search topics..." />
+        <input type="text" class="search-bar" placeholder="Search topics..." />
       </div>
     </div>
 
