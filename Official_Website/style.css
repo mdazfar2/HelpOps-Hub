@@ -79,7 +79,7 @@ input {
 }
 
 /* Placeholder text color */
-#search-bar::placeholder {
+.search-bar::placeholder {
   color: #9e9e9e;
 }
 /* scrollbar.css */
