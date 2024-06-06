@@ -131,7 +131,7 @@
        rating: document.querySelector('input[name="rating"]:checked').value
      };
      console.log(formData);
-     fetch('http://127.0.0.1:3000/feedback', {
+     fetch('https://helpops-hub.vercel.app/feedback', {
          method: 'POST',
          headers: {
              'Content-Type': 'application/json'
