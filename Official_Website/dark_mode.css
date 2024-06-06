@@ -1,6 +1,11 @@
 .dark-mode {
     color: white;
-    background-color: #121212f6;
+    background-color: #0f0f0ff6;
+}
+
+.inputs {
+    color: white;
+    background-color: #232323;
 }
 
 .border {
