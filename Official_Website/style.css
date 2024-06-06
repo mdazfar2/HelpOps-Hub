@@ -270,38 +270,12 @@ width: 40px;
 
 /* Dark mode styles */
 .dark-mode #folders-container {
-  background-color: #333;
-  /* Dark background color */
-  color: #fff;
-  /* Light text color */
-}
-
+ filter: invert(1);
+} 
 .dark-mode .folder-card {
-  background-color: #1a1a1a;
-  /* Dark card background */
-  color: #fff;
-  /* Light text color */
-  border-color: #555;
-  /* Darker border color */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  /* Darker box shadow */
+color: black;
+box-shadow: 0 2px 6px rgb(255, 255, 255);
 }
-
-.dark-mode .folder-card:hover {
-  background-color: #333;
-  /* Dark hover background */
-  box-shadow: 5px 5px 20px #00ccff;
-  /* Example hover effect in dark mode */
-  transform: scale(1.1);
-  border-radius: 1.5rem;
-}
-
-/* Example: Dark mode heading for folder name */
-.dark-mode .folder-card h3 {
-  color: #fff;
-  /* Light heading color */
-}
-
 .about-button {
   display: flex;
   align-items: center;
