@@ -6,19 +6,17 @@
 } */
 
 .team-member7 {
-  background-color: rgb(254, 251, 251);
   border-radius: 10px;
   padding: 20px;
   display: flex;
   gap: 10px;
   flex-direction: column;
   align-items: center;
-  box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.705);
   transition: 0.5s;
 }
 
 .card7 {
-  background-color: rgb(217, 244, 255);
   padding: 60px;
   border-radius: 10px;
   text-align: center;
@@ -62,7 +60,6 @@ transform: scale(1.05);
 .info-div7 p {
   margin: 5px 0;
   font-size: 0.9em;
-  color: black;
 }
 
 .data7 {
@@ -83,12 +80,10 @@ transform: scale(1.05);
   font-size: 24px;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #333;
 }
 
 .contributions-label7 {
   font-size: 14px;
-  color: #777;
 }
 
 .social-links7 {
@@ -98,13 +93,12 @@ transform: scale(1.05);
 }
 
 .social-links7 a {
-  color: black;
+  color: inherit;
   text-decoration: none;
   font-size: 24px;
 }
 
 .github-label7 {
   font-size: 14px;
-  color: #777;
   margin-top: 5px;
 }
