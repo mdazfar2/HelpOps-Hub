@@ -17,7 +17,21 @@ p {
   flex-direction: row;
   flex-wrap: wrap !important;
 }
-
+#collapseThree{
+  height: 30vh !important;
+}
+#collapseOne{
+  height: 35vh !important;
+}
+#collapseTwo{
+  height: 33vh !important;
+}
+#collapseFour{
+  height: 33vh !important;
+}
+#collapseFive{
+  height: 33vh !important;
+}
 .img-div {
   width: 40%;
 
@@ -832,4 +846,32 @@ body.dark-mode {
   background-color: #333333;
   color: #ffffff;
   box-shadow: 5px 5px 20px #ffffff;
+}
+
+/* Scroll to top */
+
+.scrollToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 115, 160, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  padding: 10px;
+}
+
+.scrollToTopBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scrollToTopBtn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
