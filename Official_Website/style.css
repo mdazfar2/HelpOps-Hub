@@ -611,7 +611,8 @@ width: 40px;
 @media only screen and (max-width:940px){
   .feedback{
     flex-direction: column;
-
+    justify-content: center;
+    align-items: center;
   }
   #search-box{
     width: 50% !important;
@@ -668,6 +669,8 @@ width: 40px;
   background-color: #f9f9f9;
   padding: 1.5rem;
   margin: 2rem auto;
+  margin-left: 0px ;
+  margin-right: 0px;
   width: 30%;
   border: 1px solid #ddd;
   border-radius: 20px;
