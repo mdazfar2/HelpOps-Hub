@@ -157,7 +157,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           }</p>
         `;
         folderCard.addEventListener("click", () => {
-          window.location.href = item.html_url;
+          window.open(item.html_url, "_blank");
+          // window.location.href = item.html_url;
         });
         foldersContainer.appendChild(folderCard);
       }
