@@ -1,193 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-    <title>HelpOps-Hub</title>
-    <link rel="stylesheet" href="square.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="dark_mode.css" />
-    <link rel="stylesheet" href="navstyle.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="logo">
-        <a href="/"><img src="logo.png" alt="HelpOps-Hub Logo" /></a>
-      </div>
-      <div>
-        <h1>HelpOps-Hub</h1>
-        <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-      </div>
-      <div class="burger-menu" id="burgerMenu">
-        <i class="fas fa-bars"></i>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <title>HelpOps-Hub</title>
+  <link rel="stylesheet" href="square.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="dark_mode.css" />
+  <link rel="stylesheet" href="navstyle.css" />
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="/"><img src="logo.png" alt="HelpOps-Hub Logo" /></a>
     </div>
-    </header>
-    <div class="overlay" id="overlay"></div>
-    <nav class="nav" id="navbar">
-        <ul class="nav__list" id="navlinkitems">
-            <li class="nav__item">
-                <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
-            </li>
-            <li class="nav__item">
-                <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
-            </li>
-            <li class="nav__item">
-                <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
-            </li>
-            <li class="nav__item">
-                <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
-            </li>
-            <li class="nav__item">
-                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
-            </li>
-            <li><button class="about-button">
-                <a href="./index.html">BACK</a>
-            </button></li>
-            <li>
-                <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
-                    <span class="heart">&#10084;</span> Sponsor
-                </button>
-            </li>
-        </ul>
-    </nav>
+    <div>
+      <h1>HelpOps-Hub</h1>
+      <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+    </div>
+    <div class="burger-menu" id="burgerMenu">
+      <i class="fas fa-bars"></i>
+  </div>
+  </header>
+  <nav class="nav" id="navbar">
+    <ul class="nav__list" id="navlinkitems">
+        <li class="nav__item">
+            <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+        </li>
+        <li class="nav__item">
+            <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
+        </li>
+        <li class="nav__item">
+            <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+        </li>
+        <li class="nav__item">
+            <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+        </li>
+        <li class="nav__item">
+            <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+        </li>
+        <li><button class="about-button">
+            <a href="./index.html">BACK</a>
+        </button></li>
+        <li>
+            <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                <span class="heart">&#10084;</span> Sponsor
+            </button>
+        </li>
+    </ul>
+</nav>
 
-    <div class="search-container">
-      <div id="search-box">
-        <div class="icon">
-          <i class="fas fa-duotone fa-magnifying-glass"></i>
+  <div class="search-container">
+    <div id="search-box">
+      <div class="icon">
+        <i class="fas fa-duotone fa-magnifying-glass"></i>
+      </div>
+      <input type="text" id="search-bar" placeholder="Search topics..." />
+    </div>
+  </div>
+
+  <div id="maincontainer">
+    <div id="loading">
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+    </div>
+  </div>
+  <div id="folders-container"></div>
+
+  <div class="feedback">
+    <div id="feedback-image">
+      <img src="feedback.png" alt="feedback-image" />
+    </div>
+    <div id="feedback-section">
+      <h2>Feedback</h2>
+      <form class="feedback-form"  id="feedback-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="user_email" required />
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="message" required></textarea>
+
+        <label for="rating">Rating</label>
+        <div class="rating">
+     <label for="star1" title="1 star">&#9733;</label>     <input type="radio" id="star1" name="rating" value="1" />
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">&#9733;</label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">&#9733;</label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">&#9733;</label>
+          <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">&#9733;</label>
         </div>
-        <input type="text" id="search-bar" placeholder="Search topics..." />
-      </div>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <div id="message" style="display: none; color: green; font-size: 1.2em; margin-top: 20px;"></div>
+      <div id="error-message" style="display: none; color: red; font-size: 1.2em; margin-top: 20px;"></div>
     </div>
-
-    <div id="maincontainer">
-      <div id="loading">
-        <div class="📦"></div>
-        <div class="📦"></div>
-        <div class="📦"></div>
-        <div class="📦"></div>
-        <div class="📦"></div>
-      </div>
+  </div>
+  <footer>
+    <div class="footer">
+      <p>&copy; 2024 | Unleashing the Power of DevOps by <span id="heart">&hearts;</span></p>
     </div>
-    <div id="folders-container"></div>
+  </footer>
 
-    <div class="feedback">
-      <div id="feedback-image">
-        <img src="feedback.png" alt="feedback-image" />
-      </div>
-      <div id="feedback-section">
-        <h2>Feedback</h2>
-        <form class="feedback-form" id="feedback-form">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
+  <script src="app.js"></script>
+  <script src="darkmode.js"></script>
+  <script type="text/javascript">
+    (function(){
+       emailjs.init({
+         publicKey: "rId2aw03Pj2ZNq2U5",
+       });
+    })();
+  </script>
+  <script>
+                 document.getElementById("feedback-form").reset();
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+  </script>
+  <script>
+    // Feedback JS
+    document.getElementById("feedback-form").addEventListener("submit", function(event) {
+     event.preventDefault();
+     var rating = document.querySelector('input[name="rating"]:checked').value
+      if (!rating) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = "Please select a Rating!";
+        errorMessage.style.display = "block";
+        setTimeout(function() {
+          errorMessage.style.display = "none";
+        }, 3000);
+        return;
+      }
+      let temp=document.getElementById('comments').value
+      document.getElementById('comments').value= `Comments : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
 
-          <label for="comments">Comments</label>
-          <textarea id="comments" name="comments" required></textarea>
+    emailjs.sendForm('service_hrz8hfg', 'template_na7xjc4',"#feedback-form").then(
+  (response) => {
+    console.log('SUCCESS!', response.status, response.text);
+  },
+  (error) => {
+    console.log('FAILED...', error);
+  },
+);
+document.getElementById('comments').value= temp   
 
-          <label for="rating">Rating</label>
-          <div class="rating">
-            <input type="radio" id="star1" name="rating" value="1" /><label
-              for="star1"
-              title="1 star"
-              >&#9733;</label
-            >
-            <input type="radio" id="star2" name="rating" value="2" /><label
-              for="star2"
-              title="2 stars"
-              >&#9733;</label
-            >
-            <input type="radio" id="star3" name="rating" value="3" /><label
-              for="star3"
-              title="3 stars"
-              >&#9733;</label
-            >
-            <input type="radio" id="star4" name="rating" value="4" /><label
-              for="star4"
-              title="4 stars"
-              >&#9733;</label
-            >
-            <input type="radio" id="star5" name="rating" value="5" /><label
-              for="star5"
-              title="5 stars"
-              >&#9733;</label
-            >
-          </div>
 
-          <button type="submit">Submit Feedback</button>
-        </form>
-        <div
-          id="message"
-          style="
-            display: none;
-            color: green;
-            font-size: 1.2em;
-            margin-top: 20px;
-          "
-        ></div>
-        <div
-          id="error-message"
-          style="display: none; color: red; font-size: 1.2em; margin-top: 20px"
-        ></div>
-      </div>
-    </div>
-    <footer>
-      <div class="footer-icons">
-        <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
-        <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
-        <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
-    </div>
-    <button class="about-button1" style="margin-right: 40px;">
-        <a href="./about.html"> About Us </a>
-      </button>
-      <div class="footer">
-        <p>
-          &copy; 2024 | Unleashing the Power of DevOps by
-          <span id="heart">&hearts;</span>
-        </p>
-      </div>
-    </footer>
 
-    <script src="app.js"></script>
-    <script src="darkmode.js"></script>
-    <script>
-      // Feedback JS
-      document
-        .getElementById("feedback-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
+     if (!document.querySelector('input[name="rating"]:checked')) {
+         var errorMessage = document.getElementById("error-message");
+         errorMessage.innerText = "Please select a rating!";
+         errorMessage.style.display = "block";
+         setTimeout(function() {
+             errorMessage.style.display = "none";
+         }, 3000);
+         return;
+     }
+     const formData = {
+       name: document.getElementById("name").value,
+       email: document.getElementById("email").value,
+       comments: document.getElementById("comments").value,
+       rating: document.querySelector('input[name="rating"]:checked').value
+     };
+    //  fetch('https://helpops-hub.vercel.app/feedback', {
+    //      method: 'POST',
+    //      headers: {
+    //          'Content-Type': 'application/json'
+    //      },
+    //      body: JSON.stringify(formData)
+    //  })
+    //  .then(response => response.json())
+    //  .then(data => {
+    //      console.log('Success:', data);
+    //      document.getElementById("message").innerText = "Thank you for your feedback!";
+    //      document.getElementById("message").style.display = "block";
+    //      setTimeout(function() {
+    //          document.getElementById("message").style.display = "none";
+    //          document.getElementById("feedback-form").reset();
+    //      }, 3000);
+    //  })
+    //  .catch((error) => {
+    //      console.error('Error:', error);
+    //      var errorMessage = document.getElementById("error-message");
+    //      errorMessage.innerText = "There was an error submitting your feedback.";
+    //      errorMessage.style.display = "block";
+    //      setTimeout(function() {
+    //          errorMessage.style.display = "none";
+    //      }, 3000);
+    //  }); 
+   var messageElement = document.getElementById("message");
+      messageElement.innerText = "Thank you for your feedback!";
+      messageElement.style.display = "block";
 
-          var name = document.getElementById("name").value;
-          var email = document.getElementById("email").value;
-          var comments = document.getElementById("comments").value;
-          var rating = document.querySelector('input[name="rating"]:checked');
+      setTimeout(function() {
+        messageElement.style.display = "none";
+        document.getElementById("feedback-form").reset();
+      }, 3000);
 
-          if (!rating) {
-            var errorMessage = document.getElementById("error-message");
-            errorMessage.innerText = "Please select a Rating!";
-            errorMessage.style.display = "block";
-            setTimeout(function () {
-              errorMessage.style.display = "none";
-            }, 3000);
-            return;
-          }
 
-          var messageElement = document.getElementById("message");
-          messageElement.innerText = "Thank you for your feedback!";
-          messageElement.style.display = "block";
-
-          setTimeout(function () {
-            messageElement.style.display = "none";
-            document.getElementById("feedback-form").reset();
-          }, 3000);
-        });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
