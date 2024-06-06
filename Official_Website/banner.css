@@ -4,9 +4,11 @@
     display: flex;
     align-items: center;
     background-color: white;
-    padding: 20px 30px;
+    padding: 24px 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    margin-left:70px;
+    margin-right:60px ;
 }
 
 .trophy {
@@ -28,6 +30,11 @@
     margin: 0;
     color: #666;
 }
+.trophy svg {
+    width: 24px;
+    height: 24px;
+    fill: #ffc107; /* Gold color */
+}
 
 .join-button {
     background-color: #7a5eff;
@@ -42,3 +49,4 @@
 .join-button:hover {
     background-color: #6749e8;
 }
+
