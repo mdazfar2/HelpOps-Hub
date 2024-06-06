@@ -155,56 +155,39 @@
       </div>
     </footer>
 
-  <script src="app.js"></script>
-  <script src="darkmode.js"></script>
-  <script>
-    // Feedback JS
-    document.getElementById("feedback-form").addEventListener("submit", function(event) {
-     event.preventDefault();
-     
-     if (!document.querySelector('input[name="rating"]:checked')) {
-         var errorMessage = document.getElementById("error-message");
-         errorMessage.innerText = "Please select a rating!";
-         errorMessage.style.display = "block";
-         setTimeout(function() {
-             errorMessage.style.display = "none";
-         }, 3000);
-         return;
-     }
-     const formData = {
-       name: document.getElementById("name").value,
-       email: document.getElementById("email").value,
-       comments: document.getElementById("comments").value,
-       rating: document.querySelector('input[name="rating"]:checked').value
-     };
-     console.log(formData);
-     fetch('http://127.0.0.1:3000/feedback', {
-         method: 'POST',
-         headers: {
-             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(formData)
-     })
-     .then(response => response.json())
-     .then(data => {
-         console.log('Success:', data);
-         document.getElementById("message").innerText = "Thank you for your feedback!";
-         document.getElementById("message").style.display = "block";
-         setTimeout(function() {
-             document.getElementById("message").style.display = "none";
-             document.getElementById("feedback-form").reset();
-         }, 3000);
-     })
-     .catch((error) => {
-         console.error('Error:', error);
-         var errorMessage = document.getElementById("error-message");
-         errorMessage.innerText = "There was an error submitting your feedback.";
-         errorMessage.style.display = "block";
-         setTimeout(function() {
-             errorMessage.style.display = "none";
-         }, 3000);
-     }); 
- });
-  </script>
-</body>
+    <script src="app.js"></script>
+    <script src="darkmode.js"></script>
+    <script>
+      // Feedback JS
+      document
+        .getElementById("feedback-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var name = document.getElementById("name").value;
+          var email = document.getElementById("email").value;
+          var comments = document.getElementById("comments").value;
+          var rating = document.querySelector('input[name="rating"]:checked');
+
+          if (!rating) {
+            var errorMessage = document.getElementById("error-message");
+            errorMessage.innerText = "Please select a Rating!";
+            errorMessage.style.display = "block";
+            setTimeout(function () {
+              errorMessage.style.display = "none";
+            }, 3000);
+            return;
+          }
+
+          var messageElement = document.getElementById("message");
+          messageElement.innerText = "Thank you for your feedback!";
+          messageElement.style.display = "block";
+
+          setTimeout(function () {
+            messageElement.style.display = "none";
+            document.getElementById("feedback-form").reset();
+          }, 3000);
+        });
+    </script>
+  </body>
 </html>
