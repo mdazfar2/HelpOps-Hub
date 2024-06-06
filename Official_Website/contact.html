@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>HelpOps-Hub</title>
+    <!-- Added Favicon for website -->
+       <link rel="stylesheet" href="square.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="dark_mode.css" />
+    <link rel="stylesheet" href="navstyle.css" />
+    <link rel="stylesheet" href="contact.css"/>
+  </head>
+<body>
+    <header class="header">
+        <div class="logo">
+          <a href="https://helpops-hub.vercel.app/"
+            ><img src="logo.png" alt="HelpOps-Hub Logo"
+          /></a>
+        </div>
+        <div>
+          <h1>HelpOps-Hub</h1>
+          <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+        </div>
+      </header>
+      <nav class="nav" id="navbar">
+        <ul class="nav__list" id="navlinkitems">
+          <li class="nav__item">
+            <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="https://github.com/mdazfar2/HelpOps-Hub"
+              target="_blank"
+              class="fab fa-github"></a>
+          </li>
+          <li class="nav__item">
+            <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+          </li>
+          <li class="nav__item">
+            <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+          </li>
+          <li class="nav__item">
+            <a
+              href="javascript:void(0);"
+              class="fas fa-adjust"
+              onclick="toggleTheme()"
+            ></a>
+          </li>
+          <li>
+            <button class="about-button">
+              <a href="./faq.html"> FAQ's </a>
+            </button>
+          </li>
+          <li>
+            <button class="about-button">
+              <a href="./index.html"> BACK </a>
+            </button>
+          </li>
+          <li>
+            <button
+              class="sponsor-button"
+              onclick="window.location.href='https://github.com/sponsors/mdazfar2'"
+            >
+              <span class="heart">&#10084;</span> Sponsor
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div  class="contact-container">
+		<form action="https://api.web3forms.com/submit" method="post" class="contact-left">
+			<div class="contact-left-title">
+				<h2>Get in Touch</h2>
+				<hr>
+			</div>
+            <input type="hidden" name="access_key" value="">
+
+			<input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+			<input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+			<textarea name="message" placeholder="Your Message" class="contact-inputs texta" required></textarea>
+			<button type="submit" class="contact-left-button">
+				Submit
+				<img src="arrow_icon.png" alt="Arrow Icon">
+			</button>
+		</form>
+		<div class="contact-right">
+			<img src="right_img.png" alt="Right Image">
+		</div>
+	</div>
+
+
+
+</body>
+</html>
