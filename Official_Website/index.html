@@ -1,201 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-    <title>HelpOps-Hub</title>
-    <!-- Added Favicon for website -->
-       <link rel="stylesheet" href="square.css">
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="dark_mode.css" />
-    <link rel="stylesheet" href="navstyle.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <title>HelpOps-Hub</title>
+  <link rel="stylesheet" href="square.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="dark_mode.css" />
+  <link rel="stylesheet" href="navstyle.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="/"><img src="logo.png" alt="HelpOps-Hub Logo" /></a>
+    </div>
+    <div>
+      <h1>HelpOps-Hub</h1>
+      <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+    </div>
+  </header>
+  <nav class="nav" id="navbar">
+    <ul class="nav__list" id="navlinkitems">
+      <li class="nav__item">
+        <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+      </li>
+      <li class="nav__item">
+        <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
+      </li>
+      <li class="nav__item">
+        <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+      </li>
+      <li class="nav__item">
+        <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+      </li>
+      <li class="nav__item">
+        <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+      </li>
+      <li>
+        <button class="about-button">
+          <a href="./faq.html"> FAQ's </a>
+        </button>
+      </li>
+      <li>
+        <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+          <span class="heart">&#10084;</span> Sponsor
+        </button>
+      </li>
+    </ul>
+  </nav>
 
-  <body>
-    <header class="header">
-      <div class="logo">
-        <a href="/"
-          ><img src="logo.png" alt="HelpOps-Hub Logo"
-        /></a>
+  <div class="search-container">
+    <div id="search-box">
+      <div class="icon">
+        <i class="fas fa-duotone fa-magnifying-glass"></i>
       </div>
-      <div>
-        <h1>HelpOps-Hub</h1>
-        <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-      </div>
-    </header>
-    <nav class="nav" id="navbar">
-      <ul class="nav__list" id="navlinkitems">
-        <li class="nav__item">
-          <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
-        </li>
-        <li class="nav__item">
-          <a
-            href="https://github.com/mdazfar2/HelpOps-Hub"
-            target="_blank"
-            class="fab fa-github"></a>
-        </li>
-        <li class="nav__item">
-          <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
-        </li>
-        <li class="nav__item">
-          <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
-        </li>
-        <li class="nav__item">
-          <a
-            href="javascript:void(0);"
-            class="fas fa-adjust"
-            onclick="toggleTheme()"
-          ></a>
-        </li>
-        <li>
-          <button class="about-button">
-            <a href="./faq.html"> FAQ's </a>
-          </button>
-        </li>
-        <li>
-          <button
-            class="sponsor-button"
-            onclick="window.location.href='https://github.com/sponsors/mdazfar2'"
-          >
-            <span class="heart">&#10084;</span> Sponsor
-          </button>
-        </li>
-      </ul>
-    </nav>
+      <input type="text" id="search-bar" placeholder="Search topics..." />
+    </div>
+  </div>
 
-    <div class="search-container">
-      <div id="search-box">
-        <div class="icon">
-          <i class="fas fa-duotone fa-magnifying-glass"></i>
+  <div id="maincontainer">
+    <div id="loading">
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+    </div>
+  </div>
+  <div id="folders-container"></div>
+
+  <div class="feedback">
+    <div id="feedback-image">
+      <img src="feedback.png" alt="feedback-image" />
+    </div>
+    <div id="feedback-section">
+      <h2>Feedback</h2>
+      <form class="feedback-form" id="feedback-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="comments" required></textarea>
+
+        <label for="rating">Rating</label>
+        <div class="rating">
+          <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">&#9733;</label>
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">&#9733;</label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">&#9733;</label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">&#9733;</label>
+          <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">&#9733;</label>
         </div>
-        <input type="text" id="search-bar" placeholder="Search topics..." />
-      </div>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <div id="message" style="display: none; color: green; font-size: 1.2em; margin-top: 20px;"></div>
+      <div id="error-message" style="display: none; color: red; font-size: 1.2em; margin-top: 20px;"></div>
     </div>
-
-    <div id="maincontainer">
-        <div id="loading">
-          <div class="📦"></div>
-          <div class="📦"></div>
-          <div class="📦"></div>
-          <div class="📦"></div>
-          <div class="📦"></div>
-       
-
+  </div>
+  <footer>
+    <div class="footer">
+      <p>&copy; 2024 | Unleashing the Power of DevOps by <span id="heart">&hearts;</span></p>
     </div>
-</div>
-    <div id="folders-container"></div>
+  </footer>
 
-    <!-- Feedback Section -->
-    <div class="feedback">
-      <div id="feedback-image">
-        <img src="feedback.png" alt="feedback-image" />
-      </div>
-      <div id="feedback-section">
-        <h2>Feedback</h2>
-        <form class="feedback-form" id="feedback-form">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
+  <script src="app.js"></script>
+  <script src="darkmode.js"></script>
+  <script>
+    // Feedback JS
+    document.getElementById("feedback-form").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var comments = document.getElementById("comments").value;
+      var rating = document.querySelector('input[name="rating"]:checked');
 
-          <label for="comments">Comments</label>
-          <textarea id="comments" name="comments" required></textarea>
-
-          <label for="rating">Rating</label>
-          <div class="rating">
-            <input
-              type="radio"
-              id="star1"
-              name="rating"
-              value="1"
-            /><label for="star1" title="1 star">&#9733;</label>
-            <input
-              type="radio"
-              id="star2"
-              name="rating"
-              value="2"
-            /><label for="star2" title="2 stars">&#9733;</label>
-            <input
-              type="radio"
-              id="star3"
-              name="rating"
-              value="3"
-            /><label for="star3" title="3 stars">&#9733;</label>
-            <input
-              type="radio"
-              id="star4"
-              name="rating"
-              value="4"
-            /><label for="star4" title="4 stars">&#9733;</label>
-            <input
-              type="radio"
-              id="star5"
-              name="rating"
-              value="5"
-            /><label for="star5" title="5 stars">&#9733;</label>
-          </div>
-
-          <button type="submit">Submit Feedback</button>
-        </form>
-        <div
-          id="message"
-          style="display: none; color: green; font-size: 1.2em; margin-top: 20px;"
-        ></div>
-        <div
-          id="error-message"
-          style="display: none; color: red; font-size: 1.2em; margin-top: 20px;"
-        ></div>
-      </div>
-    </div>
-    <!-- Footer Section -->
-    <footer>
-      <div class="footer">
-        <p>&copy; 2024 | Unleashing the Power of DevOps by <span id="heart">&hearts;</span></p>
-      </div>
-    </footer>
-    <div id="scrollToTopBtn" class="scrollToTopBtn" onclick="scrollToTop() "><img src="scrollToTop.png"></div>
-    <script src="app.js"></script>
-    <script src="darkmode.js"></script>
-    <script>
-      //feedback js
-      document.getElementById("feedback-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-    
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var comments = document.getElementById("comments").value;
-        var rating = document.querySelector('input[name="rating"]:checked');
-    
-       
-        if (!rating) {
-           
-            var errorMessage = document.getElementById("error-message");
-            errorMessage.innerText = "Please select a Rating!";
-            errorMessage.style.display = "block";
-    
-          
-            setTimeout(function() {
-                errorMessage.style.display = "none";
-            }, 3000);
-    
-            return; 
-        }
-  
-        var messageElement = document.getElementById("message");
-        messageElement.innerText = "Thank you for your feedback!";
-        messageElement.style.display = "block";
-    
+      if (!rating) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = "Please select a Rating!";
+        errorMessage.style.display = "block";
         setTimeout(function() {
-            messageElement.style.display = "none";
-            document.getElementById("feedback-form").reset();
+          errorMessage.style.display = "none";
         }, 3000);
-    });    
-    </script>
-  </body>
+        return;
+      }
+
+      var messageElement = document.getElementById("message");
+      messageElement.innerText = "Thank you for your feedback!";
+      messageElement.style.display = "block";
+
+      setTimeout(function() {
+        messageElement.style.display = "none";
+        document.getElementById("feedback-form").reset();
+      }, 3000);
+    });
+  </script>
+</body>
 </html>
