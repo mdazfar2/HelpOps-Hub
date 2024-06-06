@@ -601,7 +601,9 @@ width: 40px;
   color:white;
 
 }
-
+.dark-mode label{
+  color :white;
+}
 #feedback-section h2 {
   text-align: center;
   color: #00ccff;
@@ -625,7 +627,6 @@ width: 40px;
 
 .feedback-form label {
   font-size: 16px;
-  color: #333;
   margin-bottom: 0.5rem;
 }
 .feedback-form.dark-mode label {
