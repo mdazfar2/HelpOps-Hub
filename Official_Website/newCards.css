@@ -62,7 +62,6 @@ transform: scale(1.05);
 .info-div7 p {
   margin: 5px 0;
   font-size: 0.9em;
-  color: black;
 }
 
 .data7 {
@@ -83,7 +82,6 @@ transform: scale(1.05);
   font-size: 24px;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #333;
 }
 
 .contributions-label7 {
