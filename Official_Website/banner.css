@@ -3,7 +3,6 @@
 .join-team {
     display: flex;
     align-items: center;
-    background-color: white;
     padding: 20px 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -21,12 +20,10 @@
 .text-content h2 {
     margin: 0 0 5px 0;
     font-size: 18px;
-    color: #333;
 }
 
 .text-content p {
     margin: 0;
-    color: #666;
 }
 
 .join-button {
