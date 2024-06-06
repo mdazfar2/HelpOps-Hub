@@ -1,4 +1,4 @@
-/* app.js */
+// darkmode.js
 
 const toggleButton = document.getElementById('theme-toggle');
 

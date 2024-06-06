@@ -229,6 +229,31 @@ width: 40px;
   font-size: 18px;
   margin-bottom: 8px;
 }
+/* Dark mode styles */
+.dark-mode #folders-container {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
+.dark-mode .folder-card {
+  background-color: #1a1a1a; /* Dark card background */
+  color: #fff; /* Light text color */
+  border-color: #555; /* Darker border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker box shadow */
+}
+
+.dark-mode .folder-card:hover {
+  background-color: #333; /* Dark hover background */
+  box-shadow: 5px 5px 20px #00ccff; /* Example hover effect in dark mode */
+  transform: scale(1.1);
+  border-radius: 1.5rem;
+}
+
+/* Example: Dark mode heading for folder name */
+.dark-mode .folder-card h3 {
+  color: #fff; /* Light heading color */
+}
+
 .about-button{
   display: flex;
   align-items: center;
@@ -434,7 +459,7 @@ width: 40px;
 .feedback-form textarea {
   resize: vertical;
   height: 100px; /* Fixed height for textarea */
-}
+
 
 /* Rating stars */
 .rating {
@@ -478,7 +503,7 @@ width: 40px;
 
 .feedback-form button:hover {
   background-color: #009ec3;
-}
+} */
 
 /*Scroll to top*/
 .scrollToTopBtn {
