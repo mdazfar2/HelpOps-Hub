@@ -954,7 +954,16 @@ color: white;
 
 .scrollToTopBtn:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
 
+.footer{
+  justify-content: center;
+  display: flex;
+}
+
+.footer .footer-icons{
+  width: 100%;
+}
 .trophy-card{
 background-color: white;
 color:black;
