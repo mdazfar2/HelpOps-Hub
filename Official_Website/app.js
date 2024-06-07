@@ -92,7 +92,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const filteredData = data.filter((file) => {
           const isWebsite = file.name.toLowerCase() === "official_website";
-          return !file.name.includes(".") && !isWebsite;
+          const isupdate = file.name.toLowerCase() === "Update_website";
+          return !file.name.includes(".") && !isWebsite && !isupdate;
         });
 
         const foldersWithDates = await Promise.all(
@@ -167,24 +168,25 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   fetchRepository("https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents");
 
-  const accordionButtons = document.querySelectorAll('.btn.abeezee-regular');
+  const accordionButtons = document.querySelectorAll(".btn.abeezee-regular");
 
-  accordionButtons.forEach(button => {
-      button.addEventListener('click', function () {
-          const targetId = this.getAttribute('aria-controls');
-          const targetCollapse = document.getElementById(targetId);
+  accordionButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const targetId = this.getAttribute("aria-controls");
+      const targetCollapse = document.getElementById(targetId);
 
-          if (targetCollapse.classList.contains('show')) {
-              targetCollapse.classList.remove('show');
-              this.querySelector('i').classList.remove('fa-chevron-up');
-              this.querySelector('i').classList.add('fa-chevron-down');
-          } else {
-              targetCollapse.classList.add('show');
-              this.querySelector('i').classList.remove('fa-chevron-down');
-              this.querySelector('i').classList.add('fa-chevron-up');
-          }
-      });
+      if (targetCollapse.classList.contains("show")) {
+        targetCollapse.classList.remove("show");
+        this.querySelector("i").classList.remove("fa-chevron-up");
+        this.querySelector("i").classList.add("fa-chevron-down");
+      } else {
+        targetCollapse.classList.add("show");
+        this.querySelector("i").classList.remove("fa-chevron-down");
+        this.querySelector("i").classList.add("fa-chevron-up");
+      }
+    });
   });
+
 
   const burgerMenu = document.getElementById("burgerMenu");
   const navLinks = document.getElementById("navlinkitems");
