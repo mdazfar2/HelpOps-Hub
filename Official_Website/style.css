@@ -18,6 +18,31 @@ p {
   flex-direction: row;
   position: relative;
 }
+/* Add CSS for hover and transitions */
+.nav__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav__item {
+  margin-right: 15px;
+}
+.nav__item a {
+  color: #333;
+  font-size: 24px;
+  transition: color 0.3s, transform 0.3s;
+}
+.nav__item a:hover {
+  color: #007BFF;
+  transform: scale(1.2);
+}
+body.dark-mode .nav__item a {
+  color: #fff;
+}
+body.dark-mode .nav__item a:hover {
+  color: #FFD700; 
+}
 /* style search container */
 .search-container {
   display: flex;
@@ -902,7 +927,6 @@ body {
 .dark-mode .card2 {
   background-color: #1c1c1c;
 }
-
 .burger-menu {
   display: none;
   font-size: 24px;
@@ -1008,3 +1032,13 @@ footer {
 .icon-button:hover {
   background: #e05656;
 }
+
+.trophy-card{
+background-color: white;
+color:black;
+}
+.dark-mode .trophy-card{
+  background-color: black;
+  color:white;
+}
+
