@@ -21,18 +21,25 @@
 </head>
 <body>
     <header class="header">
+
         <div class="logo">
-            <a href="./index.html"><img src="logo.png" alt="HelpOps-Hub Logo"></a>
+            <a href="./index.html"
+            ><img src="logo.png" alt="HelpOps-Hub Logo"
+          /></a>
         </div>
         <div>
+
             <h1>FAQ's</h1>
         </div>
+       
         <div class="burger-menu" id="burgerMenu">
             <i class="fas fa-bars"></i>
         </div>
     </header>
-    <div class="overlay" id="overlay"></div>
-    <nav class="nav" id="navbar">
+    <nav class="nav " id="navbar">
+           
+
+
         <ul class="nav__list" id="navlinkitems">
             <li class="nav__item">
                 <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
@@ -46,19 +53,26 @@
             <li class="nav__item">
                 <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
             </li>
+
             <li class="nav__item">
                 <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
             </li>
             <li><button class="about-button">
-                <a href="./index.html">BACK</a>
+      
+                <a  href="./index.html">
+                    BACK
+                </a>
             </button></li>
             <li>
                 <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
                     <span class="heart">&#10084;</span> Sponsor
                 </button>
             </li>
+            
         </ul>
+
     </nav>
+
 <div class="container mt-5">
    
     <div class="accordion" id="accordionExample">
@@ -143,6 +157,7 @@
     </div>
 </div>
 
+
 <footer>
     <div class="footer-icons">
         <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
@@ -150,13 +165,20 @@
         <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
     </div>
     <button class="about-button1" style="margin-right: 40px;">
-        <a href="./about.html"> About us</a>
+        <a href="./faq.html"> Faq's </a>
       </button>
 </footer>
 
+    <div id="scrollToTopBtn" onclick="scrollToTop()">
+        <img src="scrollToTop.png" alt="Scroll to Top">
+    </div>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
     <script src="app.js"></script>
-
-
 <!-- jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
