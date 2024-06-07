@@ -124,7 +124,8 @@
   </div>
   <footer>
     <div class="footer">
-      <p>&copy; 2024 | Unleashing the Power of DevOps by <span id="heart">&hearts;</span></p>
+      <p class="font h">© HelpOps-Hub | MIT License</p>
+      <p class="font h"  >Developed by <a href="https://github.com/mdazfar2" target="_blank" class="font">Azfar Alam</a> & <a class="font" target="_blank" href="https://helpops-hub.vercel.app/contributor-index.html">Open Source Community</a> </p>
     </div>
   </footer>
 
@@ -133,7 +134,7 @@
   <script type="text/javascript">
     (function(){
        emailjs.init({
-         publicKey: "rId2aw03Pj2ZNq2U5",
+         publicKey: "Q-bwaE4CPQZ-cMlKt",
        });
     })();
   </script>
@@ -158,7 +159,7 @@
       let temp=document.getElementById('comments').value
       document.getElementById('comments').value= `Comments : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
 
-    emailjs.sendForm('service_hrz8hfg', 'template_na7xjc4',"#feedback-form").then(
+    emailjs.sendForm('service_y9hxdqs', 'template_h9uoq69',"#feedback-form").then(
   (response) => {
     console.log('SUCCESS!', response.status, response.text);
   },

@@ -626,7 +626,21 @@ width: 40px;
     width: 80% !important;
   }
 }
+.footer a{
+  color: black !important;
+  text-decoration: underline;
+}
+.h{
+  line-height: 1.75rem !important;
+}
+.footer{
+  flex-direction: column;
+  font-family: sans-serif;
 
+}
+.font{
+  font-size: .875rem;
+}
 #collapseOne{
   height: auto !important;
 }
