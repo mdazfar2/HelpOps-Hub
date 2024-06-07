@@ -157,11 +157,11 @@
         return;
       }
       let temp=document.getElementById('comments').value
-      document.getElementById('comments').value= `Comments : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
+      document.getElementById('comments').value= `Message : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
 
     emailjs.sendForm('service_y9hxdqs', 'template_h9uoq69',"#feedback-form").then(
   (response) => {
-    console.log('SUCCESS!', response.status, response.text);
+    console.log('SUCCESS!',  response.status, response.text);
   },
   (error) => {
     console.log('FAILED...', error);
