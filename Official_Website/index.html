@@ -134,7 +134,7 @@
   <script type="text/javascript">
     (function(){
        emailjs.init({
-         publicKey: "rId2aw03Pj2ZNq2U5",
+         publicKey: "Q-bwaE4CPQZ-cMlKt",
        });
     })();
   </script>
@@ -159,7 +159,7 @@
       let temp=document.getElementById('comments').value
       document.getElementById('comments').value= `Comments : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
 
-    emailjs.sendForm('service_hrz8hfg', 'template_na7xjc4',"#feedback-form").then(
+    emailjs.sendForm('service_y9hxdqs', 'template_h9uoq69',"#feedback-form").then(
   (response) => {
     console.log('SUCCESS!', response.status, response.text);
   },
