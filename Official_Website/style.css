@@ -19,6 +19,31 @@ p {
   flex-direction: row;
 position: relative;
 }
+/* Add CSS for hover and transitions */
+.nav__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav__item {
+  margin-right: 15px;
+}
+.nav__item a {
+  color: #333;
+  font-size: 24px;
+  transition: color 0.3s, transform 0.3s;
+}
+.nav__item a:hover {
+  color: #007BFF;
+  transform: scale(1.2);
+}
+body.dark-mode .nav__item a {
+  color: #fff;
+}
+body.dark-mode .nav__item a:hover {
+  color: #FFD700; 
+}
 /* style search container */
 .search-container {
   display: flex;
@@ -580,11 +605,65 @@ width: 40px;
 }
 
 .feedback img {
-  margin-left: 8rem;
+  width: 516px;
   align-items: center;
-  width: 40rem;
+}
+@media only screen and (max-width:940px){
+  .feedback{
+    flex-direction: column;
+
+  }
+  #search-box{
+    width: 50% !important;
+  }
+  #feedback-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #feedback-section{
+    width: 80% !important;
+  }
 }
 
+#collapseOne{
+  height: auto !important;
+}
+#collapseTwo{
+  height: auto !important;
+}
+#collapseThree{
+  height: auto !important;
+}
+#collapseFour{
+  height: auto !important;
+}
+#collapseFive{
+  height: auto !important;
+}
+
+
+
+.im{
+  width: 100px !important;
+    position: absolute !important;
+    right: 0px !important;
+}
+@media only screen and (max-width:447px){
+  .feedback img{
+    width: 450px !important;
+  }
+}
+@media only screen and (max-width:610px){
+  #search-box{
+    width: 70% !important;
+  }
+}
+@media only screen and (max-width:398px){
+  .feedback img{
+    width: 350px !important;
+  }
+}
 #feedback-section {
   background-color: #f9f9f9;
   padding: 1.5rem;
@@ -730,7 +809,7 @@ body.dark-mode {
       width: 100%;
   }
   
-  .accordion .card-header i {
+  /* .accordion .card-header i {
       transition: transform 0.2s;
   }
   .accordion .collapse.show .card-header i {
@@ -738,7 +817,7 @@ body.dark-mode {
   }
   .accordion .card-body {
       animation: fadeIn 0.3s ease-in-out;
-  }
+  } */
   @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -849,8 +928,6 @@ color: white;
 .dark-mode .card2{
   background-color: #1c1c1c;
 }
-
-
 /* Scroll to top */
 
 .scrollToTopBtn {
@@ -877,4 +954,12 @@ color: white;
 
 .scrollToTopBtn:hover {
   background-color: rgba(0, 0, 0, 0.8);
+
+.trophy-card{
+background-color: white;
+color:black;
+}
+.dark-mode .trophy-card{
+  background-color: black;
+  color:white;
 }
