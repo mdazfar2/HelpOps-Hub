@@ -1,5 +1,3 @@
-
-
 .join-team {
     display: flex;
     align-items: center;
@@ -10,8 +8,16 @@
 }
 
 .trophy {
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 15px;
+}
+
+.trophy svg {
+    width: 24px;
+    height: 24px;
+    fill: #ffc107; /* Gold color */
 }
 
 .text-content {
