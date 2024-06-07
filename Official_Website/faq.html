@@ -157,7 +157,15 @@
     <button class="about-button1">
       <a href="./about.html"> About Us </a>
     </button>
-    <div id="scrollToTopBtn" class="scrollToTopBtn_FAQ" onclick="scrollToTop() "><img src="scrollToTop.png"></div>
+    <div id="scrollToTopBtn" onclick="scrollToTop()">
+        <img src="scrollToTop.png" alt="Scroll to Top">
+    </div>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
     <script src="app.js"></script>
 <!-- jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

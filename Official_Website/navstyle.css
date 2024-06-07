@@ -308,4 +308,17 @@
   .five {
     background-color: rgb(163, 114, 8);
   }
-  
+  #scrollToTopBtn {
+    position: fixed;
+    bottom: 45px; 
+    left: 20px;    
+    cursor: pointer;
+    z-index: 1000; 
+}
+
+#scrollToTopBtn img {
+  width: 50px;
+  height: 50px;
+  background: #5fabee;
+  border-radius: 50%;
+}
