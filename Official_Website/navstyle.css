@@ -8,6 +8,7 @@
     align-content: center;
     align-items: center;
     font-weight: 300;
+    padding: .7rem 0;
     /* transition: 0.2s ease-in-out; */
     /* transition: transform 400ms ease-in-out; */
     /* position: fixed; */
@@ -16,24 +17,51 @@
   position: fixed;
   top: 0;
   left: 0;
+  background-color: #00ccff;
 }
   ul{
     flex-wrap: wrap;
     justify-content: center;
   }
-  .nav__list {
-    /* list-style: none;
+  .team-button {
     display: flex;
-    justify-content: flex-end;
-    margin-left: 55vh;
+    align-items: center;
+    color:white;
+    box-shadow: 5px 5px 20px #00ccff;
+    border: none;
+    gap: 7px;
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px 20px; /* Padding around text */
+    font-size: 20px; /* Text size */
+    cursor: pointer;
+    outline: none;
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    transition: 0.5s;
+  }
+  .team-button svg{
+    color: #00ccff;
+  
+  }
+  .team-button:hover {
+    transform: scale(1.2);
+    background-color: white;
+    /* color: black;
+    box-shadow: 5px 5px 20px #00ccff; */
+  }
+  .nav__list {
+   /* list-style: none; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 55vh;
     margin-top: -49px;
-    padding: 0vh 4vw; */
+    padding: 0vh 4vw;  */
     padding: 3vh 5vw;;
     list-style: none;
     display: flex;
     justify-content: center;
     /* margin-left: 55vh; */
-    margin-bottom: 40px;
     /* margin: auto; */
     padding: 0vh 4vw;
   }
@@ -58,6 +86,15 @@
   .nav-toggle {
     display: none;
   }
+  #ourteam{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+  }
+ #ourteam p{
+   font-size: 26px;
+ } 
   
   .nav__link::before {
     content: "";
@@ -84,9 +121,7 @@
     transform: scale(1, 1);
     text-decoration: none;
   }
-  nav{
-    background-color: #00ccff;
-  }
+  
   .logo1 {
     padding: 3vh 5vw;
     text-align: center;
@@ -291,7 +326,7 @@
     .nav__item {
       color: #fff;
     }
-  
+
     .nav__link::before {
       content: "";
       display: block;

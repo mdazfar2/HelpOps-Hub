@@ -138,9 +138,7 @@ p,li{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.btn{
-    color: #02566b;
-}
+
 .btn:focus{
     box-shadow: none;
 }
