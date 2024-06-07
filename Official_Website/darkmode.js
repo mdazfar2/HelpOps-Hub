@@ -1,44 +1,74 @@
-// darkmode.js
 
 function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
+  const body = document.body;
+  const themeIcon = document.getElementById('themeIcon');
 
-  // Check if dark mode is currently active and store the preference
-  if (document.body.classList.contains("dark-mode")) {
-    localStorage.setItem("theme", "dark");
+  // Toggle dark-mode class on the body
+  body.classList.toggle('dark-mode');
+
+  // Toggle the icon between moon and sun
+  if (body.classList.contains('dark-mode')) {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon-stars');
+      localStorage.setItem("theme", "dark");
   } else {
-    localStorage.setItem("theme", "light");
+      themeIcon.classList.remove('fa-moon-stars');
+      themeIcon.classList.add('fa-sun');
+      localStorage.setItem("theme", "light");
   }
 
   applyThemeToElements();
 }
 
+// Initialize the correct icon on page load based on the current theme
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const themeIcon = document.getElementById('themeIcon');
+  const theme = localStorage.getItem("theme");
+
+  if (theme === "dark") {
+      body.classList.add('dark-mode');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon-stars');
+  } else {
+      body.classList.remove('dark-mode');
+      themeIcon.classList.remove('fa-moon-stars');
+      themeIcon.classList.add('fa-sun');
+  }
+
+  applyThemeToElements();
+});
+
 function applyThemeToElements() {
   const darkMode = document.body.classList.contains("dark-mode");
   const elements = [
-    document.querySelector("header"),
-    document.querySelector(".sponsor-button"),
-    ...document.querySelectorAll(".icons a"),
-    document.getElementById("search-bar"),
-    document.getElementById("search-box"),
-    ...document.querySelectorAll("#folders-container div"),
-    document.querySelector(".feedback"),
-    document.querySelector("#feedback-section"),
-    ...document.querySelectorAll(".feedback-form input"),
-    ...document.querySelectorAll(".feedback-form textarea"),
-    ...document.querySelectorAll(".feedback-form button")
+      document.querySelector("header"),
+      document.querySelector(".sponsor-button"),
+      ...document.querySelectorAll(".icons a"),
+      document.getElementById("search-bar"),
+      document.getElementById("search-box"),
+      ...document.querySelectorAll("#folders-container div"),
+      document.querySelector(".feedback"),
+      document.querySelector("#feedback-section"),
+      ...document.querySelectorAll(".feedback-form input"),
+      ...document.querySelectorAll(".feedback-form textarea"),
+      ...document.querySelectorAll(".feedback-form button")
   ];
 
   elements.forEach((element) => {
-    if (element) {
-      if (darkMode) {
-        element.classList.add("dark-mode");
-      } else {
-        element.classList.remove("dark-mode");
+      if (element) {
+          if (darkMode) {
+              element.classList.add("dark-mode");
+          } else {
+              element.classList.remove("dark-mode");
+          }
       }
-    }
   });
 }
+
+
+
+
 
 function loadTheme() {
   const theme = localStorage.getItem("theme");

@@ -41,9 +41,9 @@ position: relative;
 body.dark-mode .nav__item a {
   color: #fff;
 }
-body.dark-mode .nav__item a:hover {
+/* body.dark-mode .nav__item a:hover {
   color: #FFD700; 
-}
+} */
 /* style search container */
 .search-container {
   display: flex;
