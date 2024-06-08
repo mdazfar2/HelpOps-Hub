@@ -1,0 +1,60 @@
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    margin: 25px;
+    padding: 10px 20px;
+    background-color: #FDD86C;
+    border-radius: 25px;
+    
+    box-shadow: 0 4px 6px #FF7D1F;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px 15px;
+    font-size: x-large;
+   
+}
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-btn, .sponsor-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  
+}
+
+.search-btn {
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 5px 10px;
+}

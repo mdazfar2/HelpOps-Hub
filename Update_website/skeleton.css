@@ -1,0 +1,124 @@
+
+
+#skeleton-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 25px;
+}
+
+.skeleton-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    width: 600px;
+}
+
+.skeleton-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.founder {
+    grid-column: span 2;
+}
+
+.maintainer {
+    grid-column: span 2;
+}
+
+.skeleton-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ccc;
+}
+
+.skeleton-text {
+    width: 60%;
+    height: 20px;
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.skeleton-text.short {
+    width: 40%;
+}
+
+.skeleton-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.skeleton-icon {
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.skeleton-contributors {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    grid-column: span 2;
+}
+#flex{
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 20px;
+    flex-direction: row;
+
+}
+.skeleton-contributor-card {
+    background: #FDD86C;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    height: fit-content;
+}
+
+.skeleton-contributor-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: loading 1.5s infinite;
+}
+#short{
+   background-color:#FF7D1F;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  /* box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.1); */
+}
