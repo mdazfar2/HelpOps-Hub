@@ -80,7 +80,7 @@ body.dark-mode .nav__item a:hover {
 
 input {
   width: 90%;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   outline: none;
   border: none;
   font-size: 20px;
