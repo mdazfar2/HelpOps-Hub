@@ -21,7 +21,15 @@
     overflow-y: scroll;
     height: auto;
 }
+.hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px;
+            transition: 0.4s;
+        }
    </style>
+   
 </head>
 <body>
     <header>
@@ -42,8 +50,23 @@
                     <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
                   </a>  
             </div>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </nav>
     </header>
+    <ul class="nav-links1" id="navlinks1">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="contributor.html">Team</a></li>
+        <li><a href="#">Contact</a></li>
+        <li>
+        <a href="https://github.com/sponsors/mdazfar2">
+            <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+          </a>  </li>
+    </ul>
     <main>
         <div class="main-content">
            
@@ -60,5 +83,15 @@
         </div>
     </main>
     <script src="scripts.js"></script>
+   <script>
+
+    // if(window.innerWidth>800){
+    //     document.getElementById("navlinks1").style.display='none'
+    // }
+    document.getElementById('hamburger').addEventListener('click',(e)=>{
+        let ele=document.getElementById("navlinks1")
+        document.querySelector('.nav-links1').classList.toggle('active');
+    })
+   </script>
 </body>
 </html>
