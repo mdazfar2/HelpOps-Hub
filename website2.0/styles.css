@@ -117,7 +117,7 @@ text-decoration: none;
     overflow: hidden;
     display: flex;
     position: relative;
-    top: 20px;
+    top: 30px;
     flex-direction: column;
     justify-content: space-around;
 }
