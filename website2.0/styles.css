@@ -13,10 +13,7 @@
     .nav-links{
         display: none !important;
     }
-    .nav-actions{
-
-        display: none !important;
-    }
+    
     .hamburger{
       display: block !important;
     }
@@ -30,6 +27,9 @@
         font-size: x-large;
        
     }
+}
+.isDisplay{
+    display: none;
 }
 .active{
     animation: animate forwards ease-in 0.2s;
@@ -50,25 +50,40 @@ text-decoration: none;
         gap: 10%;
     }
 }
+
 @media only screen and (max-width:409px) {
+    .isDisplay{
+        display: block;
+    }
     
+    .nav-actions{
+    
+        display: none !important;
+    }
    
     .logo{
         width: 100px;
     }
+    /* @keyframes animate {
+        from{
+            height: 0px;
+        }to{
+            height: 300px ;
+        }
+    } */
 }
 .nav-links1{
     height: 0px ;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    
+    justify-content: space-around;
 }
 @keyframes animate {
     from{
         height: 0px;
     }to{
-        height: 350px;
+        height: 270px ;
     }
 }
 .hamburger{
