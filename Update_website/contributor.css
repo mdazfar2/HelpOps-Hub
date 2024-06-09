@@ -200,7 +200,31 @@ body {
     font-size: 40px;
     gap: 60px;
   }
-  
+  .sponsor-btn {
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+    color: #000000; /* Black text color */
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Space between icon and text */
+    transition: transform 0.1s ease; /* Smooth click effect */
+    width: 150px;
+    padding: 7px 7px ;
+    font-family:cursive;
+    margin-right: 7px;
+
+}
+a{
+  text-decoration: none;
+}
+.sponsor-btn:active{
+  transform:translateY(1px) ;
+}
   
   
   #social-links a i {

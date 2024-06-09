@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
@@ -7,8 +7,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-}
+    /* height: 100vh; */
+/* } */
 
 header {
     width: 100%;
@@ -27,9 +27,17 @@ nav {
 }
 
 .logo img {
-    height: 100px;
-    width: 100px;
+    /* height: 100px;
+    width: 100px; */
     position: relative;
+    width: 89px;
+height: 89px;
+top: 10px;
+left: 80px;
+gap: 0px;
+opacity: 0px;
+
+
 }
 
 .nav-links {
@@ -64,7 +72,9 @@ nav {
     font-size: 18px;
   
 }
-
+a{
+    text-decoration: none;
+}
 .search-btn {
     background-color: transparent;
     border-radius: 5px;

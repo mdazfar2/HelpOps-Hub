@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HelpOps-Hub</title>
+    <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PRVV+ejsK+y4J0F5QKdKqz2xk5+6RzSyZjNzkRcbEXfz6/Rk+6RD7Vh+x2DlJ2CgWNLcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="square.css">
+    <link rel="stylesheet" href="resources.css">
    <style>
     body {
     margin: 0;
@@ -18,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
 }
    </style>
 </head>
@@ -36,28 +39,29 @@
                 <li><a href="contributor.html">Team</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            <div class="nav-actions">
-                <a href="https://github.com/sponsors/mdazfar2">
-                    <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-                  </a>  
-            </div>
+            <!-- <div id="search"><i class="fa fa-search"></i></div> -->
+<div class="toggle-switch">
+    <div id="search"><i class="fa fa-search"></i></div>
+    <input type="checkbox" id="toggle" />
+    <label for="toggle" class="switch"></label>
+</div>
+
+            <!-- <div class="nav-actions">
+                <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+            </div> -->
         </nav>
     </header>
-    <main>
-        <div class="main-content">
-           
-            <button class="star-button">
-                <i class="star-icon"><i class="fas fa-star"></i></i> <!-- This is a star character -->
-                Star Us
-              </button>
-              
-            <h1>HelpOps-Hub</h1>
-            <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-            <a href="resources.html">
-            <button class="get-started-btn">Get started</button>
-            </a>
+    <div class="heading"><h1>Resources</h1></div>
+    <div id="maincontainer">
+        <div id="loading">
+          <div class="📦"></div>
+          <div class="📦"></div>
+          <div class="📦"></div>
+          <div class="📦"></div>
+          <div class="📦"></div>
         </div>
-    </main>
-    <script src="scripts.js"></script>
+      </div>
+      <div id="folders-container"></div>
+    <script src="resources.js"></script>
 </body>
 </html>
