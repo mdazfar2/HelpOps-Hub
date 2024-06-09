@@ -18,39 +18,101 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    overflow-y: scroll;
+    height: auto;
+}
+.hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px;
+            transition: 0.4s;
+        }
+        @media only screen and (max-width:200px) {
+    .sponsor-btn{
+        font-size: 12px !important;
+        width: 90px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 12px !important;
+        width: 90px !important;
+    }
+}
+@media only screen and (max-width:497px){
+h1{
+    font-size: 40px !important;
+}
+.main-content{
+    gap: 30px;
+}
+}
+@media only screen and (max-width:347px){
+    .logo{
+        position: relative;
+        top: 40px;
+    }
+h1{
+    font-size: 30px !important;
+}
+.get-started-btn{
+    position: relative;
+}
+p{
+    font-size: 17px !important;
+}
 }
    </style>
+   
 </head>
 <body>
     <header>
         <nav>
             <a href="index.html">
-            <div class="logo">
-                <img src="HelpOps-H Fevicon.png" alt="Logo">
-            </div>
-        </a>
+                <div class="logo">
+                    <img src="HelpOps-H Fevicon.png" alt="Logo">
+                </div>
+            </a>
+       
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="contributor.html">Team</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
+          
             <div class="nav-actions">
                 <a href="https://github.com/sponsors/mdazfar2">
                     <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
                   </a>  
             </div>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </nav>
     </header>
+    <ul class="nav-links1" id="navlinks1">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="contributor.html">Team</a></li>
+        <li><a href="#">Contact</a></li>
+        
+    </ul>
     <main>
         <div class="main-content">
-           
-            <button class="star-button">
-                <i class="star-icon"><i class="fas fa-star"></i></i> <!-- This is a star character -->
-                Star Us
-              </button>
-              
+          <div class="conte">
+
+              <button class="star-button">
+                  <i class="star-icon"><i class="fas fa-star"></i></i> <!-- This is a star character -->
+                  Star Us
+                </button>
+                <li class="isDisplay">
+                  <a href="https://github.com/sponsors/mdazfar2">
+                      <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+                    </a>  </li>
+          </div> 
             <h1>HelpOps-Hub</h1>
             <p>Ensuring You Never Get Stuck In DevOps Again!</p>
             <a href="resources.html">
@@ -59,5 +121,15 @@
         </div>
     </main>
     <script src="scripts.js"></script>
+   <script>
+
+    // if(window.innerWidth>800){
+    //     document.getElementById("navlinks1").style.display='none'
+    // }
+    document.getElementById('hamburger').addEventListener('click',(e)=>{
+        let ele=document.getElementById("navlinks1")
+        document.querySelector('.nav-links1').classList.toggle('active');
+    })
+   </script>
 </body>
 </html>
