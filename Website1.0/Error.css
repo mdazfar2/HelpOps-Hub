@@ -1,0 +1,62 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f8ff;
+}
+
+.container {
+    text-align: center;
+    color: #333;
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 8em;
+    margin: 0;
+    color: #00ccff;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 20px 0;
+    color: #666;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #00ccff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1.5s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-100px); }
+    to { transform: translateY(0); }
+}
