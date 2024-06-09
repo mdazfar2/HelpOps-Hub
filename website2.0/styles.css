@@ -51,18 +51,21 @@ text-decoration: none;
     }
 }
 
-@media only screen and (max-width:409px) {
-    .isDisplay{
+@media only screen and (max-width:360px) {
+.isDisplay{
         display: block;
     }
     
     .nav-actions{
     
         display: none !important;
-    }
+    }}
+@media only screen and (max-width:409px) {
+    
    
-    .logo{
-        width: 100px;
+    .logo img{
+        width: 60px !important;
+        height: 60px !important;
     }
     /* @keyframes animate {
         from{
