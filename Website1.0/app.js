@@ -157,10 +157,10 @@ document.addEventListener("DOMContentLoaded", async function () {
               : "N/A"
           }</p>
         `;
-        folderCard.addEventListener("click", () => {
-          window.open(item.html_url, "_blank");
-          // window.location.href = item.html_url;
-        });
+        folderCard.addEventListener('click', () => {
+          const readmeUrl = `https://raw.githubusercontent.com/mdazfar2/HelpOps-Hub/main/${item.name}/README.md`;
+          window.location.href = `readme.html?readme=${readmeUrl}&htmlUrl=${item.html_url}`;
+      });
         foldersContainer.appendChild(folderCard);
       }
     });
