@@ -12,7 +12,7 @@
 
 header {
     width: 100%;
-    position: absolute;
+    position: relative;
     top: 0;
     background-color: transparent;
     padding: 10px 0;
@@ -21,6 +21,9 @@ header {
 nav {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
     align-items: center;
     width: 90%;
     margin: 0 auto;
@@ -33,7 +36,6 @@ nav {
     width: 89px;
 height: 89px;
 top: 10px;
-left: 80px;
 gap: 0px;
 opacity: 0px;
 
@@ -48,7 +50,8 @@ opacity: 0px;
     padding: 10px 20px;
     background-color: #FDD86C;
     border-radius: 25px;
-    
+    flex-wrap: wrap;
+    justify-content: center;
     box-shadow: 0 4px 6px #FF7D1F;
 }
 
@@ -105,6 +108,20 @@ a{
 }
 #heart{
     color: red;
+}
+@media only screen and (max-width:592px){
+    h1{
+        font-size: 60px !important;
+    }
+}
+@media only screen and (max-width:332px){
+    h1{
+        font-size: 40px !important;
+    }
+}
+main{
+    height: auto ;
+    min-height: 84vh !important;
 }
 
 .main-content {
