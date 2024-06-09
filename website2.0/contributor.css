@@ -2,6 +2,17 @@ body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
 }
+@media only screen and (max-width:536px){
+  #team-grid1{
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding: 0px !important;
+  }
+}
 #team-grid {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -20,14 +31,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #FF7D1FA8;
+    background-color: #FF7D1FA8;
 
     border-radius: 20px;
     /* border: solid; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     padding: 20px;
    /* background-color: gray; */
-    margin-left: 20px;
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -69,6 +79,8 @@ body {
     flex-direction: column;
     align-items: center;
     position: relative;
+    width: 80%;
+    min-width: 200px;
   }
   .margin{
     margin-left:180px ;
@@ -76,7 +88,8 @@ body {
   }
   .card2 {
     background: #FBBC0591;
-
+    width: 80%;
+    min-width: 200px;
 
     padding-top: 2rem;
     border-radius: 2rem;
@@ -86,6 +99,105 @@ body {
     align-items: center;
     position: relative;
     position: relative;
+  }
+  @media only screen and (max-width:335px){
+    .card1{
+      width: 60% !important;
+      min-width: none !important;
+    }
+  }
+  @media only screen and (max-width:592px){
+    h1{
+        font-size: 60px !important;
+    }
+}
+@media only screen and (max-width:332px){
+    h1{
+        font-size: 40px !important;
+    }
+}
+header {
+  width: 100%;
+  position: relative;
+  top: 0;
+  background-color: transparent;
+  padding: 10px 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
+body{
+  overflow-y: scroll;
+  height: auto;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin: 25px;
+  padding: 10px 20px;
+  background-color: #FDD86C;
+  border-radius: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 0 4px 6px #FF7D1F;
+}
+
+  @media only screen and (max-width:464px){
+    .trophy-card{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  @media only screen and (max-width:588px){
+    .main-content{
+      padding: 0px !important;
+      
+    }
+    #team-grid{
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    }
+    body{
+      margin: 0px !important;
+    }
+    #team-grid .team-member{
+      flex-direction: column;
+      justify-self: center;
+    }
+    .card1{
+      min-width: 0px !important;
+      width: 80% !important;
+    }
+    .margin{
+      margin: 0px !important;
+    }
+  }
+  @media only screen and (max-width:588px){
+    #team-grid .team-member{
+      flex-direction: column;
+      
+    }
+
+    #team-grid{
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+    #social-links{
+      flex-direction: row !important;
+      margin-top: 10px;
+    } 
+    .team-member{
+      width: 100%;
+      padding: 5px !important;
+    }
   }
   .card3 {
     background: #34A8535E;
@@ -99,6 +211,8 @@ body {
     align-items: center;
     position: relative;
     position: relative;
+    width: 80%;
+    min-width: 200px;
   }
   .card4 {
     background: #EA43354D;
@@ -112,6 +226,8 @@ body {
     align-items: center;
     position: relative;
     position: relative;
+    width: 80%;
+    min-width: 200px;
   }
   .image-div {
     flex: none;
@@ -143,12 +259,28 @@ body {
   #heart{
     color: red;
 }
-
+@media only screen and (max-width:492px){
+  .Maintainer{
+    position: relative !important;
+    left: 100px !important;
+  }
+  .UI{
+    position: relative !important;
+    left: 100px !important;
+  }
+  .founder{
+    position: relative !important;
+    left: 100px !important;
+  }
+  .Lead{
+    position: relative !important;
+    left: 100px !important;
+  }
+}
   #ourteam{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 160px;
     font-family: cursive;
     font-size: 24px;
   }
