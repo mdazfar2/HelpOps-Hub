@@ -116,6 +116,7 @@ function renderContributors(contributors) {
     avatarImg.src = contributor.avatar_url;
     avatarImg.alt = `${contributor.login}'s Picture`;
     let name = contributor.name || contributor.login;
+    const fname = name;
     if (name.length > 12) {
       name = name.slice(0, 10) + "...";
     }
@@ -148,7 +149,8 @@ function renderContributors(contributors) {
         </div>
       </div>`;
 
-    if (cheak > 0 && name != "azfar-2") cont.appendChild(contributorCard);
+    if (cheak > 0 && fname != "azfar-2" && fname != "Ayushmaanagarwal1211")
+      cont.appendChild(contributorCard);
     cheak++;
   });
 }
