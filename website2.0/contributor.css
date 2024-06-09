@@ -114,6 +114,47 @@ body {
     position: relative;
   }
 /* Common styles for all social links */
+.squre {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden; 
+}
+.squre a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit; 
+}
+.squre a i {
+  transition: color 0.3s ease-in-out; 
+}
+#squre1:hover {
+  background-color: #4285F45C; 
+  border-radius: 15px; 
+}
+#squre2:hover
+{
+  background-color: #FBBC0591; 
+  border-radius: 15px; 
+}
+#squre3:hover
+{
+  background-color: #34A8535E; 
+  border-radius: 15px; 
+}
+#squre4:hover
+{
+  background-color: #EA43354D; 
+  border-radius: 15px; 
+}
+.squre:hover a i {
+  color: white; 
+}
 #team-grid .team-member #social-links a i
 {
   transition: color 0.3s, transform 0.3s;
@@ -121,22 +162,22 @@ body {
 #team-grid .team-member:nth-child(1) #social-links a i:hover 
 {
   color: #4285F45C; 
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 #team-grid .team-member:nth-child(2) #social-links a i:hover 
 {
   color: #FBBC0591;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 #team-grid .team-member:nth-child(3) #social-links a i:hover 
 {
   color: #34A8535E; 
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 #team-grid .team-member:nth-child(4) #social-links a i:hover 
 {
   color: #EA43354D; 
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
   .image-div {
     flex: none;
