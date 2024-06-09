@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 700px;
+    
   }
   #folders-container {
     display: flex;
@@ -10,9 +11,10 @@
     justify-content: center;
     margin: auto;
     /* justify-content: space-between; Distribute cards evenly */
+    /* transition: all 0.5s ease; */
   }
   .heading{
-    margin-top: 150px;
+    /* margin-top: 50px; */
     font-family: cursive;
     /* font-size: xx-large; */
     margin-bottom: 20px;

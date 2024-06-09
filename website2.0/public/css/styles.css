@@ -9,7 +9,16 @@
     justify-content: center;
     /* height: 100vh; */
 /* } */
-
+html{
+    scroll-behavior: smooth;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+}
 header {
     width: 100%;
     position: absolute;
@@ -114,6 +123,7 @@ a{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height: 100vh;
 }
 
  .get-started-btn {
