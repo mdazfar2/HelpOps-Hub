@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpOps-Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnH/PRVV+ejsK+y4J0F5QKdKqz2xk5+6RzSyZjNzkRcbEXfz6/Rk+6RD7Vh+x2DlJ2CgWNLcA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* height: 100vh; */
+        }
+
+        #container {
+            max-width: 900px;
+            /* Adjust as needed */
+            margin: 0 auto;
+            /* Center the container */
+        }
+
+        #content {
+            margin: 120px 20px;
+            border-radius: 10px;
+            border: 3px solid #ccc;
+            padding: 20px;
+        }
+
+        img {
+            width: 600px;
+        }
+
+        p, li{
+            color: #000000;
+            font-size:18px;
+            font-family: cursive;
+        }
+
+        h1{
+            font-size:xx-large;
+        }
+
+        .repo-link {
+            position: absolute;
+            top: 8rem;
+            right: 16.7rem;
+            background-color: #000000;
+            color: white;
+            padding: 10px;
+            border-radius: 15px;
+            text-decoration: none;
+        }
+
+        pre {
+            position: relative;
+            overflow: auto;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background-color: #191919;
+            color: white;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: inherit;
+        }
+
+        a:hover {
+            color: #47a0ff;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 3px;
+            z-index: 1;
+            font-size: x-small;
+            font-weight: bold;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html">
+            <div class="logo">
+                <img src="HelpOps-H Fevicon.png" alt="Logo">
+            </div>
+        </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="contributor.html">Team</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/sponsors/mdazfar2">
+                    <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+                  </a>  
+            </div>
+        </nav>
+    </header>
+    <div id="container">
+        <a id="repo-link" class="repo-link fab fa-github" target="_blank"></a>
+        <div id="content">Loading...</div>
+    </div>
+    <div class="toast" id="toast">Code copied!</div>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const readmeUrl = urlParams.get('readme');
+            const htmlUrl = urlParams.get('htmlUrl');
+
+            if (htmlUrl) {
+                document.getElementById('repo-link').href = htmlUrl;
+            } else {
+                document.getElementById('repo-link').style.display = 'none';
+            }
+
+            if (readmeUrl) {
+                fetch(readmeUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(text => {
+                        const converter = new showdown.Converter();
+                        const html = converter.makeHtml(text);
+                        document.getElementById('content').innerHTML = html;
+
+                        const github = document.createElement('button');
+                        // Add copy buttons to code blocks
+                        document.querySelectorAll('pre').forEach(pre => {
+                            const button = document.createElement('button');
+                            button.className = 'copy-button';
+                            button.innerText = 'Copy';
+                            button.addEventListener('click', () => {
+                                const code = pre.querySelector('code').innerText;
+                                copyToClipboard(code);
+                            });
+                            pre.appendChild(button);
+                        });
+                    })
+                    .catch(error => {
+                        document.getElementById('content').innerHTML = 'Error loading README file.';
+                        console.error('Error fetching README:', error);
+                    });
+            } else {
+                document.getElementById('content').innerHTML = 'No README URL provided.';
+            }
+        });
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Show toast
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000); // Hide toast after 3 seconds
+        }
+    </script>
+    <script src="darkmode.js"></script>
+</body>
+
+</html>
