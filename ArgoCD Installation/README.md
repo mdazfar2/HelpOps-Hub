@@ -1,7 +1,3 @@
-Here's the properly aligned README file for installing ArgoCD in a Kubernetes cluster:
-
----
-
 # Installing ArgoCD in the Kubernetes Cluster
 
 Once the cluster is running, you can install ArgoCD inside the cluster. You will use ArgoCD for deploying your application.
