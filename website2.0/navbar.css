@@ -12,7 +12,7 @@ nav a {
     position: relative;
 }
 
-.nav-links a::before {
+.nav-links a::before{
     content: '';
     position: absolute;
     width: 100%;
@@ -26,13 +26,29 @@ nav a {
     transition: all 0.3s ease-in-out;
 }
 
-.nav-links a:hover::before,a
+.nav-links a:hover::before,.nav-links1 a:hover::before
  {
     visibility: visible;
     transform: scaleX(1);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,.nav-links1 a:hover {
     color: #ff5e00;
     text-shadow: 2px 2px 4px #ff847b;
+}
+
+.image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
 }
