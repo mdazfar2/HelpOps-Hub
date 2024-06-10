@@ -68,13 +68,13 @@ nav {
   margin: 0 auto;
 }
 
-.logo img {
+.size-handler{
   position: relative;
   width: 89px;
   height: 89px;
   top: 10px;
   gap: 0px;
-  opacity: 0px;
+  opacity: 0;
 }
 
 .nav-links {
@@ -209,8 +209,17 @@ a {
   text-align: center;
 }
 
-.img-container img {
+.logo{
+  width: 150px;
+  transition: transform 0.5s ease;
+  margin-right: 15px;
+}
+.mission {
   width: 300px;
+  transition: transform 0.5s ease;
+}
+.benefit{
+  width: 400px;
   transition: transform 0.5s ease;
 }
 .img-container img:hover {
@@ -221,7 +230,12 @@ a {
   .nav-links {
     display: none !important;
   }
-
+  .size-handler{
+    display: none;
+  }
+  .sponsor-btn{
+    margin-left: 25px;
+  }
   .hamburger {
     display: block !important;
   }
