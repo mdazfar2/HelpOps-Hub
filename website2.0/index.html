@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PRVV+ejsK+y4J0F5QKdKqz2xk5+6RzSyZjNzkRcbEXfz6/Rk+6RD7Vh+x2DlJ2CgWNLcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar.css">
     <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
    <style>
     body {
@@ -21,6 +22,11 @@
     overflow-y: scroll;
     height: auto;
 }
+        #home {
+            color: #ff5e00;
+            font-weight: bolder;
+            text-shadow: 2px 2px 4px #ff847b;
+        }
 .hamburger div {
             width: 25px;
             height: 3px;
@@ -69,8 +75,8 @@ p{
     <header>
         <nav>
             <a href="index.html">
-                <div class="logo">
-                    <img src="HelpOps-H Fevicon.png" alt="Logo">
+                <div class="logo image-container" onmouseleave="resetTilt()" onmousemove="tiltImage(event)">
+                    <img src="HelpOps-H Fevicon.png" alt="Logo" id="tilted-image">
                 </div>
             </a>
        
@@ -130,6 +136,19 @@ p{
         let ele=document.getElementById("navlinks1")
         document.querySelector('.nav-links1').classList.toggle('active');
     })
+   function tiltImage(event) {
+        const image = document.getElementById('tilted-image');
+        const boundingRect = image.getBoundingClientRect();
+        const offsetX = event.clientX - boundingRect.left - boundingRect.width / 2;
+        const offsetY = event.clientY - boundingRect.top - boundingRect.height / 2;
+        const angleX = offsetX;
+        const angleY = -offsetY;
+        image.style.transform = `perspective(1000px) rotateY(${angleX}deg) rotateX(${angleY}deg)`;
+    }
+    function resetTilt() {
+        const image = document.getElementById('tilted-image');
+        image.style.transform = 'none';
+    }
    </script>
 </body>
 </html>
