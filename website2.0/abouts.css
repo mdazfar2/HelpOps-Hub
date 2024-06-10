@@ -68,13 +68,13 @@ nav {
   margin: 0 auto;
 }
 
-.size-handler{
+.logo img {
   position: relative;
   width: 89px;
   height: 89px;
   top: 10px;
   gap: 0px;
-  opacity: 0;
+  opacity: 0px;
 }
 
 .nav-links {
@@ -182,13 +182,13 @@ a {
 .start .img-container {
   width: 50%;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
 }
 .end .img-container {
   width: 50%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 }
 .text-container {
@@ -209,8 +209,8 @@ a {
   text-align: center;
 }
 
-.logo{
-  width: 150px;
+.about_logo{
+  width: 180px;
   transition: transform 0.5s ease;
   margin-right: 15px;
 }
@@ -229,12 +229,6 @@ a {
 @media only screen and (max-width: 987px) {
   .nav-links {
     display: none !important;
-  }
-  .size-handler{
-    display: none;
-  }
-  .sponsor-btn{
-    margin-left: 25px;
   }
   .hamburger {
     display: block !important;
