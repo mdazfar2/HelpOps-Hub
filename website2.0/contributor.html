@@ -12,9 +12,14 @@
     <link rel="stylesheet" href="newCards.css">
     <link rel="stylesheet" href="skeleton.css">
     <link rel="stylesheet" href="banner.css">
+    <link rel="stylesheet" href="navbar.css">
 
     <style>
-
+    #contributor{
+        color: #ff5e00;
+        font-weight: bolder;
+        text-shadow: 2px 2px 4px #ff847b;
+    }
     </style>
 
    
@@ -23,8 +28,8 @@
     <header>
         <nav>
             <a href="index.html">
-            <div class="logo">
-              <img src="HelpOps-H Fevicon.png" alt="Logo">
+            <div class="image-container logo" onmouseleave="resetTilt()" onmousemove="tiltImage(event)">
+                    <img src="HelpOps-H Fevicon.png" alt="Logo" id="tilted-image">
             </div>
         </a>
             <ul class="nav-links">
@@ -515,5 +520,20 @@
       <script src="contributor.js"></script>
       <script src="dark_mode.js"></script>
     <script src="scripts.js"></script>
+    <script>
+         function tiltImage(event) {
+            const image = document.getElementById('tilted-image');
+            const boundingRect = image.getBoundingClientRect();
+            const offsetX = event.clientX - boundingRect.left - boundingRect.width / 2;
+            const offsetY = event.clientY - boundingRect.top - boundingRect.height / 2;
+            const angleX = offsetX;
+            const angleY = -offsetY;
+            image.style.transform = `perspective(1000px) rotateY(${angleX}deg) rotateX(${angleY}deg)`;
+        }
+        function resetTilt() {
+            const image = document.getElementById('tilted-image');
+            image.style.transform = 'none';
+        }
+    </script>
 </body>
 </html>
