@@ -147,6 +147,9 @@ nav {
     position: relative;
     align-items: center;
     width: 90%;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
     margin: 0 auto;
 }
 
@@ -162,6 +165,7 @@ opacity: 0px;
 
 
 }
+
 
 .nav-links {
     list-style: none;
