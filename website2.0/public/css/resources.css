@@ -16,10 +16,12 @@
     font-family: cursive;
     /* font-size: xx-large; */
     margin-bottom: 20px;
+    opacity: 0px;
   }
   .heading h1{
     font-family: cursive;
-    font-size: 24px;
+    font-size: 35px;
+    text-align: center;
   }
   /* Individual folder card */
   .folder-card {

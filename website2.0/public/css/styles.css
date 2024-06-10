@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 /* body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -26,6 +30,9 @@
         padding: 10px 15px;
         font-size: x-large;
        
+    }
+    .main-content{
+        height: 70vh !important;
     }
 }
 .isDisplay{
@@ -240,10 +247,7 @@ a{
         font-size: 40px !important;
     }
 }
-main{
-    height: auto ;
-    min-height: 84vh !important;
-}
+
 
 .main-content {
     text-align: center;
@@ -252,6 +256,7 @@ main{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height: 50vh;
 }
 
  .get-started-btn {
@@ -324,4 +329,47 @@ p {
     color: white;
     margin: 20px;
     font-family:cursive;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px;
+    transition: 0.4s;
+}
+@media only screen and (max-width:200px) {
+.sponsor-btn{
+font-size: 12px !important;
+width: 90px !important;
+height: 46px !important;
+}
+.star-button{
+font-size: 12px !important;
+width: 90px !important;
+}
+}
+@media only screen and (max-width:497px){
+h1{
+font-size: 40px !important;
+}
+.main-content{
+gap: 30px;
+height: 100vh;
+}
+}
+@media only screen and (max-width:347px){
+.logo{
+position: relative;
+top: 40px;
+}
+h1{
+font-size: 30px !important;
+}
+.get-started-btn{
+position: relative;
+}
+p{
+font-size: 17px !important;
+}
 }

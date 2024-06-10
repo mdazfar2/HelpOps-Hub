@@ -1,47 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HelpOps-Hub</title>
-    <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
+<%- include('../includes/navbar') %>
+    <link rel="stylesheet" href="./css/nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PRVV+ejsK+y4J0F5QKdKqz2xk5+6RzSyZjNzkRcbEXfz6/Rk+6RD7Vh+x2DlJ2CgWNLcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="contributor.css">
-    <link rel="stylesheet" href="newCards.css">
-    <link rel="stylesheet" href="skeleton.css">
-    <link rel="stylesheet" href="banner.css">
-
-    <style>
-
-    </style>
-
-   
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="index.html">
-            <div class="logo">
-              <img src="HelpOps-H Fevicon.png" alt="Logo">
-            </div>
-        </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
-              <a href="https://github.com/sponsors/mdazfar2">
-                <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-              </a>          
-              </div>
-            
-        </nav>
-    </header>
-    <div id="ourteam">Our Team</div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./css/contributor.css">
+    <link rel="stylesheet" href="./css/newCards.css">
+    <link rel="stylesheet" href="./css/skeleton.css">
+    <link rel="stylesheet" href="./css/banner.css">
+    <div id="ourteam" style="top: 0px;">Our Team</div>
     <main class="main-content">
         <div id="team-grid">
             <div class="team-member">
@@ -49,7 +14,7 @@
               <div class="card1">
                 <div class="margin">
                 <div class="image-div">
-                  <img src="Screenshot (251).png" alt="Azfar Alam" />
+                  <img src="./img/Screenshot (251).png" alt="Azfar Alam" />
                 </div>
                 <div class="info-div">
                   <h2>Azfar Alam</h2>
@@ -74,7 +39,7 @@
               <div class="card2">
                 <div class="margin">
                 <div class="image-div">
-                  <img src="Screenshot (250).png" alt="Anurag Pandey" />
+                  <img src="./img/Screenshot (250).png" alt="Anurag Pandey" />
                 </div>
                 <div class="info-div">
                   <h2>Anurag&nbsp;Pandey</h2>
@@ -100,7 +65,7 @@
                 <div class="card3">
                   <div class="margin">
                   <div class="image-div">
-                    <img src="card3.jpeg" alt="RamakrushnaBiswal" />
+                    <img src="./img/card3.jpeg" alt="RamakrushnaBiswal" />
                   </div>
                   <div class="info-div">
                     <h2>Ramakrushna</h2>
@@ -126,7 +91,7 @@
                 <div class="card4">
                   <div class="margin">
                   <div class="image-div">
-                    <img src="card4.jpeg" alt="Ayushmaan" />
+                    <img src="./img/card4.jpeg" alt="Ayushmaan" />
                   </div>
                   <div class="info-div">
                     <h2>Ayushmaan</h2>
@@ -499,7 +464,7 @@
         "
         class="trophy-card"
       >
-        <img src="trophy.png" alt="Trophy" class="trophy" />
+        <img src="./img/trophy.png" alt="Trophy" class="trophy" />
   
         <div style="display: block; margin-right: auto">
           <h2>Join our awesome team!</h2>
@@ -512,8 +477,5 @@
       </div>
   
       <button id="load-more" style="display: none">See More</button>
-      <script src="contributor.js"></script>
       <script src="dark_mode.js"></script>
-    <script src="scripts.js"></script>
-</body>
-</html>
+    <script src="../js/contributor.js"></script>
