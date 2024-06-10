@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
     <link rel="stylesheet" href="square.css">
     <link rel="stylesheet" href="resources.css">
+    <link rel="stylesheet" href="navbar.css">
    <style>
     body {
     margin: 0;
@@ -23,15 +24,20 @@
     justify-content: center;
     /* height: 100vh; */
 }
+         #home {
+            color: #ff5e00;
+            font-weight: bolder;
+            text-shadow: 2px 2px 4px #ff847b;
+        }
    </style>
 </head>
 <body>
     <header>
         <nav>
             <a href="index.html">
-            <div class="logo">
-                <img src="HelpOps-H Fevicon.png" alt="Logo">
-            </div>
+                <div class="image-container logo" onmouseleave="resetTilt()" onmousemove="tiltImage(event)">
+                    <img src="HelpOps-H Fevicon.png" alt="Logo" id="tilted-image">
+                </div>
         </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -63,5 +69,20 @@
       </div>
       <div id="folders-container"></div>
     <script src="resources.js"></script>
+    <script>
+        function tiltImage(event) {
+            const image = document.getElementById('tilted-image');
+            const boundingRect = image.getBoundingClientRect();
+            const offsetX = event.clientX - boundingRect.left - boundingRect.width / 2;
+            const offsetY = event.clientY - boundingRect.top - boundingRect.height / 2;
+            const angleX = offsetX;
+            const angleY = -offsetY;
+            image.style.transform = `perspective(1000px) rotateY(${angleX}deg) rotateX(${angleY}deg)`;
+        }
+        function resetTilt() {
+            const image = document.getElementById('tilted-image');
+            image.style.transform = 'none';
+        }
+    </script>
 </body>
 </html>
