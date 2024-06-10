@@ -1,0 +1,38 @@
+nav a {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    border-radius: 8px;
+    bottom: 0;
+    left: 0;
+    background-color: #FF7D1F;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover::before,a
+ {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.nav-links a:hover {
+    color: #ff5e00;
+    text-shadow: 2px 2px 4px #ff847b;
+}
