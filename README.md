@@ -1,3 +1,4 @@
+
 ![HelpOps cover](https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/c6d22673-5dd4-482b-8c5c-e84a50cd0ccd)
 
 <p align="center">
@@ -16,8 +17,10 @@
 # Welcome to HelpOps-Hub 👋
 At HelpOps-Hub, we're building a comprehensive collection of resources, guides, and tools to empower DevOps enthusiasts and professionals of all experience levels.  Navigate the vast landscape of DevOps with ease –  whether you're a beginner looking to get started or an experienced engineer seeking advanced solutions, our repository is designed to ensure you never get stuck again.
 
-## Do You Have a New Problem? 💭
-Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issues/new), and our community or maintainers will provide a quick solution to it as soon as possible.
+<a name="demo"></a>
+## 👩‍💻 Live demo 
+
+Visit https://www.helpopshub.com to see the live demo!
 
 <div>
   <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/4a07b161-b8d6-4803-804a-3b0db699023e" width="35" height="35"> Goal of our project </h2>
@@ -43,6 +46,16 @@ The goal of our project is to empower DevOps professionals by providing a compre
 4. **Community Focused**: We believe in the power of community. Contribute your knowledge, ask questions, and collaborate with other DevOps enthusiasts.
 5. **Quality Assurance**: Trust in vetted tools and resources rigorously assessed for accuracy, relevance, and real-world effectiveness.
 6. **Empowerment**: Equip yourself with the knowledge, tools, and support needed to succeed in DevOps and drive organizational impact.
+
+<br>
+
+<h2> 🚀Technology Used</h2>
+
+<p>
+  <a href="https://www.w3schools.com/html/"> <img src="https://img.icons8.com/color/70/000000/html-5--v1.png" alt="HTML" /></a>
+  <a href="https://www.w3schools.com/css/"> <img src="https://img.icons8.com/color/70/000000/css3.png" alt="CSS" /></a>
+  <a href="https://www.w3schools.com/js/"><img src="https://img.icons8.com/color/70/000000/javascript--v1.png" alt="JS" /></a>
+</p>
 
 <br>
 
@@ -98,22 +111,84 @@ The goal of our project is to empower DevOps professionals by providing a compre
 </div>
 <br>
 
-We welcome contributors from the DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
+- If you want to contribute to our [HelpOps-Hub](https://www.helpopshub.com/) website, the entire code is available in the root folder [website2.0](https://github.com/mdazfar2/HelpOps-Hub/tree/main/website2.0). Please visit and contribute to our website.
+- Fork the Repository
+- Clone the forked repository in your local system.
+  
+  ```bash
+   git clone https://github.com/<your-github-username>/HelpOps-Hub.git
+  ```
+ - Navigate to the [website2.0](https://github.com/mdazfar2/HelpOps-Hub/tree/main/website2.0) folder if you want to contribute to our website.
+   ```bash
+    cd website2.0
+   ```
+ - Open Index.html in your browser
+ - Create a new branch for your feature.
+   ```bash
+    git checkout -b <your_branch_name>
+   ```
+ - Perform your desired changes to the code base.
+ - Track and stage your changes.
+   ```bash
+    # Track the changes
+     git status
 
-- Setup HelpOps-Hub on your local machine
+    # Add changes to Index
+     git add .
+   ```
+- Commit your changes.
+  ```bash
+  git commit -m "your_commit_message"
+  ```
+- Push your committed changes to the remote repo.
+  ```bash
+  git push origin <your_branch_name>
+  ```
+- Go to your forked repository on GitHub and click on `Compare & pull request`.
+- Add an appropriate title and description to your pull request explaining your changes and efforts done.
+- Click on `Create pull request`.
+- Congrats! 🥳 You've made your first pull request to this project repo.
+- Wait for your pull request to be reviewed and if required suggestions would be provided to improve it.
+- Celebrate 🥳 your success after your pull request is merged successfully.
+
+## 💡 Want to contribute some documents related DevOps?
+- Just crate new folder in the root directory according to your requirement
+- and write everythig step by step in your own language in `README.md`
+- And then commit changes
 - Append new Documentation of Installation or anything
 - Append new DevOps Tools
 - Adding or Updating category description
 - And more!
 
 
+<h2> 📑 Contributing Guidelines</h2>
+
+Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for contributing to the HelpOps-Hub.
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h2>Code Of Conduct📑</h2>
+
+This project and everyone participating in it is governed by the [Code of Conduct](https://github.com/mdazfar2/HelpOps-Hub/blob/main/.github/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+
 <a name="building-with-gitpod"></a>
 
 
-# License
-This repository is licensed under the [MIT License](LICENSE), allowing you to freely use and modify the provided scripts.
+## License 📝
 
-***Together, we can continue to improve and expand this resource hub for people worldwide! 💪***
+
+<table>
+  <tr>
+     <td>
+       <p align="center"> <img src="https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/880c1c91-8d87-4349-afc4-b69b2d8daea1" width="80%"></img>
+    </td>
+    <td> 
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/> <br> 
+HelpOps-Hub is licensed under the terms of the MIT License. check out <a href="./LICENSE">LICENSE</a> for details. <img width=2300/>
+    </td>
+  </tr>
+</table>
 
 <div align="center">
 
@@ -137,3 +212,5 @@ This repository is licensed under the [MIT License](LICENSE), allowing you to fr
   <img width="90%" src="https://contrib.rocks/image?repo=mdazfar2/HelpOps-Hub" />
 </a>
 </div>
+
+<p align="right"><a href="![HelpOps cover]">back to top</a></p>
