@@ -122,6 +122,11 @@ text-decoration: none;
         width: 114px !important ;
     }
 }
+@media only screen and (max-width:407px) and (min-width:350px) {
+.logo img{
+    top: 54px !important;
+}
+}
 @media only screen and (max-width:300px) {
 
    
@@ -139,6 +144,7 @@ text-decoration: none;
     .logo img{
         width: 60px !important;
         height: 60px !important;
+        top: 30px;
     }
     .hamburger{
         width: 100% !important;

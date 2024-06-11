@@ -172,6 +172,19 @@ nav{
     }
 } */
 }
+@media only screen and (max-width:500px){
+  .data7{
+    display: none !important; 
+  }
+  .card7{
+    border-radius: 50% !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+  .team-member7{
+    border-radius: 50% !important;
+  }
+}
 .footer {
 height: auto;
 display: flex;
