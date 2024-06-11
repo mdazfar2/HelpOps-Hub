@@ -1,5 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+.iconsclass{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+gap: 20px;
+}
+.iconsclass >a{
+  color: white;
+  font-size: 1.1rem;
+}
+.mm{
+  margin: 0px !important;
+}
+.font{
+  font-size: 0.8rem;
+  font-family: sans-serif;
+  color: black;
+  font-weight:550;
+}
+.marg{
+  margin-bottom: 20px;
+}
+.font a{
+  text-decoration: underline;
+}
+.footer{
+  gap: 11px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
