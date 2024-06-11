@@ -12,35 +12,455 @@
     <link rel="stylesheet" href="newCards.css">
     <link rel="stylesheet" href="skeleton.css">
     <link rel="stylesheet" href="banner.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
 
     <style>
+      
+      body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+  
+  
+      overflow-y: scroll;
+      height: auto;
+  }
+  .hamburger div {
+              width: 25px;
+              height: 3px;
+              background-color: #333;
+              margin: 4px;
+              transition: 0.4s;
+          }
+          @media only screen and (max-width:200px) {
+      .sponsor-btn{
+          font-size: 12px !important;
+          width: 90px !important;
+          height: 46px !important;
+      }
+      .star-button{
+          font-size: 12px !important;
+          width: 90px !important;
+      }
+  }
+  @media only screen and (max-width:497px){
+  h1{
+      font-size: 40px !important;
+  }
+  .main-content{
+      gap: 30px;
+  }
+  }
+  @media only screen and (max-width:347px){
+      .logo{
+          position: relative;
+          top: 40px;
+      }
+  h1{
+      font-size: 30px !important;
+  }
+  .get-started-btn{
+      position: relative;
+  }
+  p{
+      font-size: 17px !important;
+  }
+  }
+  /* body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
 
-    </style>
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+/* } */
+@media only screen and (max-width:987px){
+    .nav-links{
+        display: none !important;
+    }
+    
+    .hamburger{
+      display: block !important;
+    }
+    /* nav{
+        gap: 30%;
+    } */
+    .nav-links1 li a {
+        text-decoration: none;
+        color: #000;
+        padding: 10px 15px;
+        font-size: x-large;
+       
+    }
+}
+.isDisplay{
+    display: none;
+}
+.active{
+    animation: animate forwards ease-in 0.2s;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 10px ;
+    background-color: #fdd76b;
+    flex-direction: column;
+align-items: center;
+text-decoration: none;
+
+    /* box-shadow: 0 4px 6px #FF7D1F; */
+    width: 100%;
+}
+@media only screen and (max-width:790px) {
+    nav{
+        gap: 10%;
+    }
+}
+
+
+@media only screen and (max-width:329px){
+    .hamburger{
+        width: 100% !important;
+       
+    }
+    .hamburger div{
+        position: relative;
+        left: 80%;
+    }
+    nav{
+        flex-direction: column-reverse;
+    }
+    .isDisplay{
+        display: block;
+    }
+    .conte{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .sponsor-btn{
+  position: relative;
+  top: 100px !important;
+}
+    .nav-actions{
+    
+        display: none !important;
+    }
+    .sponsor-btn{
+        font-size: 16px !important;
+        width: 114px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 16px !important;
+        width: 114px !important ;
+    }
+}
+@media only screen and (max-width:300px) {
+
+   
+    nav{
+        gap: 2% !important;
+    }
+   }
+@media only screen and (max-width:409px) {
+    nav{
+        gap: 5% !important;
+    }
+   
+    .logo img{
+        width: 60px !important;
+        height: 60px !important;
+    }
+    /* @keyframes animate {
+        from{
+            height: 0px;
+        }to{
+            height: 300px ;
+        }
+    } */
+}
+.footer {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-family: "Times New Roman", Times, serif;
+  }
+  .font{
+    font-size: 1rem;
+    text-align: center;
+  }
+  .h{
+    line-height: 1.75rem !important;
+  }
+  .icons{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    font-size: 26px;
+  }
+.nav-links1{
+    height: 0px ;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    top: 30px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+@keyframes animate {
+    from{
+        height: 0px;
+    }to{
+        height: 270px ;
+    }
+}
+.hamburger{
+display: none;
+}
+header {
+    width: 100%;
+    position: relative;
+    top: 0;
+    background-color: transparent;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo img {
+    /* height: 100px;
+    width: 100px; */
+    position: relative;
+    width: 89px;
+height: 89px;
+top: 10px;
+gap: 0px;
+opacity: 0px;
+
+
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    margin: 25px;
+    padding: 10px 20px;
+    background-color: #FDD86C;
+    border-radius: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 4px 6px #FF7D1F;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px 15px;
+    font-size: x-large;
+   
+}
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-btn, .sponsor-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  
+}
+a{
+    text-decoration: none;
+}
+.search-btn {
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.sponsor-btn {
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+    color: #000000; /* Black text color */
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Space between icon and text */
+    transition: transform 0.1s ease; /* Smooth click effect */
+    width: 150px;
+    padding: 7px 7px ;
+    font-family:cursive;
+    margin-right: 7px;
+
+}
+
+.sponsor-btn:active{
+  transform:translateY(1px) ;
+}
+#heart{
+    color: red;
+}
+@media only screen and (max-width:592px){
+    h1{
+        font-size: 60px !important;
+    }
+}
+@media only screen and (max-width:332px){
+    h1{
+        font-size: 40px !important;
+    }
+    a{
+      display: flex;
+      justify-content: center;
+    }
+}
+main{
+    height: auto ;
+    min-height: 84vh !important;
+}
+
+.main-content {
+    text-align: center;
+    margin-top: 80px;
+
+}
+
+ .get-started-btn {
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    
+
+}
+
+.star-button {
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+    color: #000000; /* Black text color */
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Space between icon and text */
+    transition: transform 0.1s ease; /* Smooth click effect */
+    width: 150px;
+    padding: 7px 7px ;
+    font-family:cursive;
+  }
+  
+  .star-button:active {
+    transform: translateY(1px); /* Slight move down on click */
+  }
+  
+  .star-icon {
+    color: #FFD700; /* Yellow star color */
+    font-size: 20px; /* Slightly larger than text */
+  }
+
+.get-started-btn {
+    /* background-color: #FFFFFF; White background */
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+    color: #000000; /* Black text color */
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Space between icon and text */
+    transition: transform 0.1s ease; /* Smooth click effect */
+    width: 180px;
+    background-color: whitesmoke;
+    font-family:cursive;
+}
+.get-started-btn:active {
+    transform: translateY(1px); /* Slight move down on click */
+  }
+
+h1 {
+    font-size: 96px;
+    color: #000;
+    margin: 0;
+    font-family: 'Arial Black', sans-serif;
+}
+
+p {
+    font-size: 24px;
+    color: white;
+    margin: 20px;
+    font-family:cursive;
+}
+     </style>
 
    
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">
+  <header>
+    <nav>
+        <a href="index.html">
             <div class="logo">
-              <img src="HelpOps-H Fevicon.png" alt="Logo">
+                <img src="HelpOps-H Fevicon.png" alt="Logo">
             </div>
         </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="abouts.html">About</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
-              <a href="https://github.com/sponsors/mdazfar2">
+   
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="abouts.html">About</a></li>
+            <li><a href="contributor.html">Team</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+      
+        <div class="nav-actions">
+            <a href="https://github.com/sponsors/mdazfar2">
                 <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-              </a>          
-              </div>
-            
-        </nav>
-    </header>
+              </a>  
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+</header>
+<ul class="nav-links1" id="navlinks1">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="contributor.html">Team</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="isDisplay">
+    <a href="https://github.com/sponsors/mdazfar2">
+        <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+      </a>  </div>
     <div id="ourteam">Our Team</div>
     <main class="main-content">
         <div id="team-grid">
@@ -515,5 +935,15 @@
       <script src="contributor.js"></script>
       <script src="dark_mode.js"></script>
     <script src="scripts.js"></script>
+    <script>
+
+      // if(window.innerWidth>800){
+      //     document.getElementById("navlinks1").style.display='none'
+      // }
+      document.getElementById('hamburger').addEventListener('click',(e)=>{
+          let ele=document.getElementById("navlinks1")
+          document.querySelector('.nav-links1').classList.toggle('active');
+      })
+     </script>
 </body>
 </html>
