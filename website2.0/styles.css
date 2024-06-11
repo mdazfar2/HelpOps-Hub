@@ -9,6 +9,41 @@
     justify-content: center;
     /* height: 100vh; */
 /* } */
+.iconsclass{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+gap: 20px;
+}
+.iconsclass >a{
+    color: white;
+    font-size: 1.3rem;
+}
+.mm{
+    margin: 0px !important;
+}
+.font{
+    font-size: 1rem;
+    font-family: sans-serif;
+    color: black;
+    font-weight: 400;
+}
+.marg{
+    margin-bottom: 20px;
+}
+.font a{
+    text-decoration: underline;
+}
+.footer{
+    gap: 11px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
 @media only screen and (max-width:987px){
     .nav-links{
         display: none !important;
