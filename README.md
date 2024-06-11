@@ -123,7 +123,7 @@ We welcome contributors from the Developers & DevOps community to enrich HelpOps
 <h1 align=center> Project Admin  🤵 </h1>
 
   <p align="center">
-  <a href="https://github.com/mdazfar2/mdazfar2/assets/100375390/e8dd3eb5-aa90-4f09-8dec-c53019c0e33a"><img src="https://github.com/mdazfar2/mdazfar2/assets/100375390/e8dd3eb5-aa90-4f09-8dec-c53019c0e33a" width="17%" /></a>
+  <a href="https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/869384cb-5020-4313-bddc-943064821d84"><img src="https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/869384cb-5020-4313-bddc-943064821d84" width="17%" /></a>
 
    <div align="center">
         <a href="https://www.linkedin.com/in/md-azfar-alam/"><img height="20" width="70" src="https://img.shields.io/badge/Linkedin-0077b5?style=flat&logo=linkedin" /></a>
