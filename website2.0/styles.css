@@ -133,10 +133,45 @@ text-decoration: none;
     nav{
         gap: 5% !important;
     }
-   
+   .main-content > a{
+    margin-top: 20px;
+   }
     .logo img{
         width: 60px !important;
         height: 60px !important;
+    }
+    .hamburger{
+        width: 100% !important;
+       
+    }
+    .hamburger div{
+        position: relative;
+        left: 80%;
+    }
+    nav{
+        flex-direction: column-reverse;
+    }
+    .isDisplay{
+        display: block;
+    }
+    .conte{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .nav-actions{
+    
+        display: none !important;
+    }
+    .sponsor-btn{
+        font-size: 16px !important;
+        width: 114px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 16px !important;
+        width: 114px !important ;
     }
     /* @keyframes animate {
         from{
