@@ -111,59 +111,15 @@ The goal of our project is to empower DevOps professionals by providing a compre
 </div>
 <br>
 
-- If you want to contribute to our [HelpOps-Hub](https://www.helpopshub.com/) website, the entire code is available in the root folder [website2.0](https://github.com/mdazfar2/HelpOps-Hub/tree/main/website2.0). Please visit and contribute to our website.
-- Fork the Repository
-- Clone the forked repository in your local system.
-  
-  ```bash
-   git clone https://github.com/<your-github-username>/HelpOps-Hub.git
-  ```
- - Navigate to the [website2.0](https://github.com/mdazfar2/HelpOps-Hub/tree/main/website2.0) folder if you want to contribute to our website.
-   ```bash
-    cd website2.0
-   ```
- - Open Index.html in your browser
- - Create a new branch for your feature.
-   ```bash
-    git checkout -b <your_branch_name>
-   ```
- - Perform your desired changes to the code base.
- - Track and stage your changes.
-   ```bash
-    # Track the changes
-     git status
+We welcome contributors from the Developers & DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
 
-    # Add changes to Index
-     git add .
-   ```
-- Commit your changes.
-  ```bash
-  git commit -m "your_commit_message"
-  ```
-- Push your committed changes to the remote repo.
-  ```bash
-  git push origin <your_branch_name>
-  ```
-- Go to your forked repository on GitHub and click on `Compare & pull request`.
-- Add an appropriate title and description to your pull request explaining your changes and efforts done.
-- Click on `Create pull request`.
-- Congrats! 🥳 You've made your first pull request to this project repo.
-- Wait for your pull request to be reviewed and if required suggestions would be provided to improve it.
-- Celebrate 🥳 your success after your pull request is merged successfully.
-
-## 💡 Want to contribute some documents related DevOps?
-- Just crate new folder in the root directory according to your requirement
-- and write everythig step by step in your own language in `README.md`
-- And then commit changes
+***Want to contribute to our website you must have to read [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md).***
+- Setup HelpOps-Hub on your local machine
 - Append new Documentation of Installation or anything
 - Append new DevOps Tools
 - Adding or Updating category description
 - And more!
 
-
-<h2> 📑 Contributing Guidelines</h2>
-
-Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for contributing to the HelpOps-Hub.
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
@@ -212,5 +168,3 @@ HelpOps-Hub is licensed under the terms of the MIT License. check out <a href=".
   <img width="90%" src="https://contrib.rocks/image?repo=mdazfar2/HelpOps-Hub" />
 </a>
 </div>
-
-<p align="right"><a href="![HelpOps cover]">back to top</a></p>
