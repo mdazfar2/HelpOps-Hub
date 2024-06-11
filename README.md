@@ -120,10 +120,10 @@ We welcome contributors from the Developers & DevOps community to enrich HelpOps
 - And more!
 
 
-<h1 align=center> Project Admin  🤵 </h1>
+<h1 align=center> Project Admin 👾 </h1>
 
   <p align="center">
-  <a href="https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/869384cb-5020-4313-bddc-943064821d84"><img src="https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/869384cb-5020-4313-bddc-943064821d84" width="17%" /></a>
+  <a href="https://github.com/mdazfar2"><img src="https://avatars.githubusercontent.com/mdazfar2" width="17%" /></a>
 
    <div align="center">
         <a href="https://www.linkedin.com/in/md-azfar-alam/"><img height="20" width="70" src="https://img.shields.io/badge/Linkedin-0077b5?style=flat&logo=linkedin" /></a>
