@@ -38,9 +38,20 @@
                 <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
               </a>          
               </div>
-            
+              <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </nav>
     </header>
+    <ul class="nav-links1" id="navlinks1">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="abouts.html">About</a></li>
+      <li><a href="contributor.html">Team</a></li>
+      <li><a href="#">Contact</a></li>
+      
+  </ul>
     <div id="ourteam">Our Team</div>
     <main class="main-content">
         <div id="team-grid">
@@ -527,5 +538,15 @@
       <script src="contributor.js"></script>
       <script src="dark_mode.js"></script>
     <script src="scripts.js"></script>
+    <script>
+
+      // if(window.innerWidth>800){
+      //     document.getElementById("navlinks1").style.display='none'
+      // }
+      document.getElementById('hamburger').addEventListener('click',(e)=>{
+          let ele=document.getElementById("navlinks1")
+          document.querySelector('.nav-links1').classList.toggle('active');
+      })
+     </script>
 </body>
 </html>

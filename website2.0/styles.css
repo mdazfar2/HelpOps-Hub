@@ -87,10 +87,13 @@ text-decoration: none;
 }
 
 
-@media only screen and (max-width:329px){
+@media only screen and (max-width:409px){
     .hamburger{
         width: 100% !important;
        
+    }
+    .logo img{
+        top: 46px !important;
     }
     .hamburger div{
         position: relative;

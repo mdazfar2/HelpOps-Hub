@@ -1215,7 +1215,21 @@ transform:translateY(1px) ;
 
 @media only screen and (min-width:1110px) {
   .badge{
-    bottom: 338px;
+    bottom: 328px;
+    right: 20px;
+  }
+  .founder{
+    left: 200px;
+  }
+  .Lead{
+    left: 180px;
+  }
+  .UI{
+    left: 178px;
+  }
+  .Maintainer{
+    left: 175px;
+    bottom: 302px;
   }
 }
 @media only screen and (max-width:829px) {
