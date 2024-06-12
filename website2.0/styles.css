@@ -318,7 +318,7 @@ main{
 
 .main-content {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -336,20 +336,15 @@ main{
 }
 
 .star-button {
-    background-color: whitesmoke;
-    border: none;
-    border-radius: 25px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+    /* Rounded corners */
     color: #000000; /* Black text color */
     font-size: 24px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px; /* Space between icon and text */
     transition: transform 0.1s ease; /* Smooth click effect */
     width: 150px;
-    padding: 7px 7px ;
+    padding: 9px 9px ;
     font-family:cursive;
   }
   

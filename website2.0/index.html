@@ -104,10 +104,12 @@ p{
           <div class="conte">
 
             <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
-              <button class="star-button">
+              <!-- <button class="star-button"> -->
+                <h3 class="star-button">
                   <i class="star-icon"><i class="fas fa-star"></i></i> <!-- This is a star character -->
                   Star Us
-                </button>
+                </h3>
+                <!-- </button> -->
             </a>
                 <li class="isDisplay">
                   <a href="https://github.com/sponsors/mdazfar2">
@@ -151,5 +153,12 @@ p{
         speed: 400, 
     }); 
 </script> 
-</body>
+<script type="module">
+    import { annotate } from 'https://unpkg.com/rough-notation?module';
+    
+    const e = document.querySelector('.star-button');
+    const annotation = annotate(e, { type: 'highlight', color: '#fff'});
+    annotation.show();
+  </script>
+  </body>
 </html>
