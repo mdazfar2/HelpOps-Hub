@@ -46,7 +46,49 @@ form label {
     margin-bottom: 5px;
     font-weight: bold;
 }
-
+.container img{
+    width: 30%;
+}
+@media only screen and (max-width:1212px){
+    .container img{
+        width: 40%;
+    }
+    .container {
+        gap: 100px;
+    }
+}
+@media only screen and (max-width:958px){
+    .container img{
+        width: 50%;
+    }
+    .container {
+        gap: 10px;
+    }
+}
+@media only screen and (max-width:558px){
+    .container img{
+        width: 70% !important;
+    }
+    .container{
+        margin-top: 120px !important;
+    }
+    
+}
+.container{
+    margin-top: 50px;
+}
+@media only screen and (max-width:781px){
+    .container img{
+        width: 50%;
+    }
+    .container {
+        flex-direction: column;
+        gap: 100px;
+    }
+    .form-container{
+        width: 70vw !important;
+    }
+}
 form input,
 form textarea {
     width: 100%;
