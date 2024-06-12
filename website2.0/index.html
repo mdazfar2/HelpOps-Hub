@@ -69,7 +69,7 @@ p{
     <header>
         <nav>
             <a href="index.html">
-                <div class="logo">
+                <div class="logo" data-tilt data-tilt-scale="1.1">
                     <img src="HelpOps-H Fevicon.png" alt="Logo">
                 </div>
             </a>
@@ -103,10 +103,12 @@ p{
         <div class="main-content">
           <div class="conte">
 
+            <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
               <button class="star-button">
                   <i class="star-icon"><i class="fas fa-star"></i></i> <!-- This is a star character -->
                   Star Us
                 </button>
+            </a>
                 <li class="isDisplay">
                   <a href="https://github.com/sponsors/mdazfar2">
                       <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
@@ -142,5 +144,12 @@ p{
         document.querySelector('.nav-links1').classList.toggle('active');
     })
    </script>
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
+   <script type="text/javascript"> 
+    VanillaTilt.init(document.querySelectorAll(".logo"), { 
+        max: 25, 
+        speed: 400, 
+    }); 
+</script> 
 </body>
 </html>
