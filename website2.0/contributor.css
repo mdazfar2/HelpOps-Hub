@@ -1213,7 +1213,16 @@ text-decoration: none;
 transform:translateY(1px) ;
 }
 
-
+@media only screen and (min-width:1110px) {
+  .badge{
+    bottom: 338px;
+  }
+}
+@media only screen and (max-width:829px) {
+  .badge{
+    bottom: 358px !important;
+  }
+}
 @media only screen and (max-width:587px) {
   #team-grid{
     display: flex !important;
