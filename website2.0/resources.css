@@ -108,3 +108,22 @@ input:checked + .switch {
 input:checked + .switch:before {
     transform: translateX(26px);
 }
+#scrollToTopBtn {
+  display: none; 
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99; 
+  border: none; 
+  outline: none; 
+  background-color: #be550a; 
+  color: white;
+  cursor: pointer;
+  padding: 15px; 
+  border-radius: 10px; 
+  font-size: 18px; 
+}
+
+#scrollToTopBtn:hover {
+  background-color: #555;
+}
