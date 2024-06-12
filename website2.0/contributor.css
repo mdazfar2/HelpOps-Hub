@@ -172,17 +172,73 @@ nav{
     }
 } */
 }
+
+
 @media only screen and (max-width:500px){
   .data7{
     display: none !important; 
+  }
+  .badge7{
+    visibility: hidden;
   }
   .card7{
     border-radius: 50% !important;
     padding-top: 30px !important;
     padding-bottom: 30px !important;
+    height: 205px !important;
+  width: 221px;
+  width: 207px !important;
+  margin-top: 8px;
+  padding: 0px !important;
   }
   .team-member7{
     border-radius: 50% !important;
+    height: 221px;
+  width: 221px;
+  padding: 0px !important;
+  }
+  .info-div7 p{
+    display: none;
+  }
+}
+@media only screen and (max-width:470px){
+  .card7{
+    height: 185px !important;
+  width: 187px !important;
+  }
+  .team-member7{
+    height: 201px !important;
+  width: 201px !important;
+  }
+}
+@media only screen and (max-width:430px){
+  .card7{
+    height: 155px !important;
+  width: 155px !important;
+  }
+  .info-div7 h2{
+    display: none !important;
+  }
+  .team-member7{
+    height: 171px !important;
+  width: 171px !important;
+  }
+}
+@media only screen and (max-width:370px){
+  .card7{
+    height: 125px !important;
+  width: 125px !important;
+  }
+  .info-div7 h2{
+    display: none !important;
+  }
+  .team-member7{
+    height: 141px !important;
+  width: 141px !important;
+  }
+  .image-div7 img{
+    height: 80px !important;
+    width: 80px !important;
   }
 }
 .footer {
