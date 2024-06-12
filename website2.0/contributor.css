@@ -2,6 +2,42 @@ body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
 }
+.iconsclass{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+gap: 20px;
+}
+.iconsclass >a{
+  color: white;
+  font-size: 1.1rem;
+}
+.mm{
+  margin: 0px !important;
+}
+.font{
+  font-size: 0.8rem;
+  font-family: sans-serif;
+  color: black;
+  font-weight:550;
+}
+.marg{
+  margin-bottom: 20px;
+  margin-top: 42px !important;
+}
+.font a{
+  text-decoration: underline;
+}
+.footer{
+  gap: 11px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
 #team-grid {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -113,6 +149,31 @@ body {
     position: relative;
     position: relative;
   }
+/* Common styles for all social links */
+#team-grid .team-member #social-links a i
+{
+  transition: color 0.3s, transform 0.3s;
+}
+#team-grid .team-member:nth-child(1) #social-links a i:hover 
+{
+  color: #4285F45C; 
+  transform: scale(1.1);
+}
+#team-grid .team-member:nth-child(2) #social-links a i:hover 
+{
+  color: #FBBC0591;
+  transform: scale(1.1);
+}
+#team-grid .team-member:nth-child(3) #social-links a i:hover 
+{
+  color: #34A8535E; 
+  transform: scale(1.1);
+}
+#team-grid .team-member:nth-child(4) #social-links a i:hover 
+{
+  color: #EA43354D; 
+  transform: scale(1.1);
+}
   .image-div {
     flex: none;
     text-align: center;
