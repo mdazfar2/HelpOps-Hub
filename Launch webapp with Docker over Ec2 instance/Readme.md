@@ -16,33 +16,33 @@ This guide provides a step-by-step process to host and launch a web application 
 ### Step 1: Launch an EC2 Instance 🚀
 
 1. **Log in to the AWS Management Console**:
-   ![AWS Management Console]
+
 
 2. **Navigate to the EC2 Dashboard** and click "Launch Instance":
-   ![EC2 Dashboard]
+   
 
 3. **Choose an Amazon Machine Image (AMI)**: Select the latest Ubuntu AMI.
-   ![Choose AMI]
+   
 
 4. **Choose an Instance Type**: Select t2.micro (eligible for the free tier).
-   ![Choose Instance Type]
+   
 
 5. **Configure Instance Details**: Keep the default settings.
-   ![Configure Instance Details]
+   
 
 6. **Add Storage**: Keep the default settings.
-   ![Add Storage]
+   
 
 7. **Add Tags**: Add a tag with Key = `Name` and Value = `Docker-WebApp`.
-   ![Add Tags]
+   
 
 8. **Configure Security Group**:
     - Create a new security group.
     - Add rules to allow SSH (port 22) and HTTP (port 80).
-   ![Configure Security Group]
+   
 
 9. **Review and Launch**: Click "Launch" and create a new key pair or use an existing one. Download the key pair.
-   ![Review and Launch]
+   
 
 ### Step 2: Connect to Your EC2 Instance 🔗
 
