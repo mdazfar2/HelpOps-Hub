@@ -121,3 +121,16 @@ input:checked + .switch:before {
   flex-direction: column;
   margin-top: 5rem;
 }
+
+@media (max-width: 768px) {
+    .folder-card {
+      flex: 0 0 calc(50% - 120px); /* Two cards per row (adjust margin as needed) */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .folder-card {
+      flex: 0 0 calc(100% - 120px); /* One card per row (adjust margin as needed) */
+    }
+  } 
+  
