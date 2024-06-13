@@ -11,12 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+});
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-  const form = document.getElementById("contact-form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert(
-      `Name: ${form.name.value}\nEmail: ${form.email.value}\nComment: ${form.comment.value}\nRating: ${selectedRating} stars`
-    );
-  });
+  const thankYouMessage = document.getElementById('thank-you-message');
+  thankYouMessage.style.display = 'block';
+
+  setTimeout(function() 
+  {
+    thankYouMessage.style.display = 'none';
+    document.getElementById('contact-form').reset();
+  }, 3000);
+
 });
