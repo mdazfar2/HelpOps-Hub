@@ -82,7 +82,7 @@ This guide provides a step-by-step process to host and launch a web application 
    git clone https://github.com/your-username/your-webapp.git
    cd your-webapp
 
-2. **Create a Dockerfile in the root of your project (if not already present):**
+2. **Create a Dockerfile in the root of your project (customize based on your project requirements,below is a sample):**
    ```dockerfile
    FROM node:14
 
