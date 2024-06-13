@@ -108,3 +108,16 @@ input:checked + .switch {
 input:checked + .switch:before {
     transform: translateX(26px);
 }
+.marg{
+  margin-bottom: 20px;
+}
+.footer{
+  gap: 11px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5rem;
+}
