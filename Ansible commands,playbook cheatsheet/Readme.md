@@ -1,21 +1,19 @@
 # Ansible Commands, Playbooks, and Cheatsheet 🚀
 
-## Ansible Commands
+# Installation
 
-### Installation
-
-# Install Ansible on Debian/Ubuntu
+### Install Ansible on Debian/Ubuntu
 ```sh
 sudo apt update
 sudo apt install ansible
 ```
 
-# Install Ansible on CentOS/RHEL
+### Install Ansible on CentOS/RHEL
 ```sh
 sudo yum install ansible
 ```
 
-### Basic Commands
+## Basic Commands
 
 **Check Ansible version**
 ```sh
@@ -31,7 +29,7 @@ ansible all -m ping
 ansible webserver -m yum -a "name=httpd state=latest"
 ```
 
-### Ansible Playbooks
+## Ansible Playbooks
 **Playbook Structure**
 ```sh
 ---
@@ -78,7 +76,7 @@ ansible webserver -m yum -a "name=httpd state=latest"
         state: restarted
 ```
 
-### Ansible Cheatsheet
+## Ansible Cheatsheet
 **Common Modules***
 >yum: Manages packages on RPM-based systems.
 >apt: Manages packages on Debian-based systems.
