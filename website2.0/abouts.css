@@ -189,15 +189,18 @@ a {
   justify-content: center;
   align-items: center;
   margin: 2rem 0rem;
-  width: 100%;
+  filter: drop-shadow(0 4px 6px #ff7d1f);
 }
 
-.video iframe {
+video{
+  border-top-left-radius : 40px;
+  border-bottom-right-radius : 40px;
+  border-top-right-radius : 40px;
+  border-bottom-left-radius : 40px;
   width: 80%;
-  height: 620px;
-  border-radius: 30px;
-  border: none;
+  height: 80%;
 }
+
 .start {
   width: 80%;
   display: flex;
