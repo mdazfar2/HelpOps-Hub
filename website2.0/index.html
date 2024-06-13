@@ -65,7 +65,7 @@ p{
    </style>
    
 </head>
-<body>
+<body >
     <header>
         <nav>
             <a href="index.html">
@@ -99,7 +99,7 @@ p{
         <li><a href="contactus.html">Contact</a></li>
         
     </ul>
-    <main>
+    <main id="particles-js">
         <div class="main-content">
           <div class="conte">
 
@@ -159,6 +159,12 @@ p{
     const e = document.querySelector('.star-button');
     const annotation = annotate(e, { type: 'highlight', color: '#fff'});
     annotation.show();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'particlesjs-config.json', function() {
+        console.log('callback - particles.js config loaded');
+    });
   </script>
   </body>
 </html>
