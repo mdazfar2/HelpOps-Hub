@@ -16,33 +16,33 @@ This guide provides a step-by-step process to host and launch a web application 
 ### Step 1: Launch an EC2 Instance 🚀
 
 1. **Log in to the AWS Management Console**:
-   ![AWS Management Console](https://d1.awsstatic.com/Developer%20Marketing/Cloud%20Computing.4e208de808476c71af24b19e7e152eed.png)
+   ![AWS Management Console]
 
 2. **Navigate to the EC2 Dashboard** and click "Launch Instance":
-   ![EC2 Dashboard](https://d2908q01vomqb2.cloudfront.net/6562cd234fbd38b69ab20c3650da0b0d3088bc2b/2021/04/22/1.png)
+   ![EC2 Dashboard]
 
 3. **Choose an Amazon Machine Image (AMI)**: Select the latest Ubuntu AMI.
-   ![Choose AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_ubuntu.png)
+   ![Choose AMI]
 
 4. **Choose an Instance Type**: Select t2.micro (eligible for the free tier).
-   ![Choose Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_instance_type.png)
+   ![Choose Instance Type]
 
 5. **Configure Instance Details**: Keep the default settings.
-   ![Configure Instance Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_configure_instance.png)
+   ![Configure Instance Details]
 
 6. **Add Storage**: Keep the default settings.
-   ![Add Storage](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_add_storage.png)
+   ![Add Storage]
 
 7. **Add Tags**: Add a tag with Key = `Name` and Value = `Docker-WebApp`.
-   ![Add Tags](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_add_tags.png)
+   ![Add Tags]
 
 8. **Configure Security Group**:
     - Create a new security group.
     - Add rules to allow SSH (port 22) and HTTP (port 80).
-   ![Configure Security Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_configure_security_group.png)
+   ![Configure Security Group]
 
 9. **Review and Launch**: Click "Launch" and create a new key pair or use an existing one. Download the key pair.
-   ![Review and Launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch_instance_review.png)
+   ![Review and Launch]
 
 ### Step 2: Connect to Your EC2 Instance 🔗
 
