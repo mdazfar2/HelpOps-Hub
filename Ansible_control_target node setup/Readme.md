@@ -64,7 +64,7 @@ This guide provides step-by-step instructions to set up a control node and two t
    ```yaml
    ---
   - hosts: targets
-    tasks:
+     tasks:
      - name: Ensure NTP (Network Time Protocol) is installed
        package:
          name: ntp
