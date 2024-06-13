@@ -1,10 +1,4 @@
-
-
-/* #team-grid1 {
-  display: flex;
-  gap: 20px;
-} */
-
+/* Light theme */
 .team-member7 {
   background-color: #FDD86C;
   border-radius: 10%;
@@ -25,12 +19,14 @@
   border-radius: 10%;
   text-align: center;
 }
-.team-member7:hover{
-transform: scale(0.90);
+
+.team-member7:hover {
+  transform: scale(0.90);
 }
+
 .badge7 {
   left: 120px;
-  bottom:60px ;
+  bottom: 60px;
   position: relative;
   background-color: rgb(94, 225, 109);
   color: #6e6e6e;
@@ -90,7 +86,9 @@ transform: scale(0.90);
   font-size: 14px;
   color: #777;
 }
-
+.dark .contributions-count7{
+  color: white;
+}
 .social-links7 {
   display: flex;
   flex-direction: column;
@@ -107,4 +105,36 @@ transform: scale(0.90);
   font-size: 14px;
   color: #777;
   margin-top: 5px;
+}
+
+/* Dark theme */
+.dark .team-member7 {
+  background-color: #2C3E50; /* Darker background color */
+  box-shadow: 4px 6px 10px rgba(255, 255, 255, 0.1); /* Adjust shadow for dark mode */
+}
+
+.dark .card7 {
+  background-color: #4CA1AF; /* Darker background color for card */
+  color: #ECF0F1; /* Light text color */
+}
+
+.dark .badge7 {
+  background-color: #5EE16D; /* Darker background color for badge */
+  color: #2C3E50; /* Darker text color for badge */
+}
+
+.dark .image-div7 img {
+  border-radius: 10%;
+  filter: brightness(0.8); /* Darken image for dark mode */
+}
+
+.dark .info-div7 h2,
+.dark .info-div7 p,
+.dark .contributions-label7,
+.dark .github-label7 {
+  color: white; /* Lighter text color */
+}
+
+.dark .social-links7 a {
+  color: white; /* Adjust link color for dark mode */
 }

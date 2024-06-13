@@ -1,164 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HelpOps-Hub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PRVV+ejsK+y4J0F5QKdKqz2xk5+6RzSyZjNzkRcbEXfz6/Rk+6RD7Vh+x2DlJ2CgWNLcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
-   <style>
-    body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow-y: scroll;
-    height: auto;
-}
-.hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin: 4px;
-            transition: 0.4s;
-        }
-        @media only screen and (max-width:200px) {
-    .sponsor-btn{
-        font-size: 12px !important;
-        width: 90px !important;
-        height: 46px !important;
-    }
-    .star-button{
-        font-size: 12px !important;
-        width: 90px !important;
-    }
-}
-@media only screen and (max-width:497px){
-h1{
-    font-size: 40px !important;
-}
-.main-content{
-    gap: 30px;
-}
-}
-@media only screen and (max-width:347px){
-    .logo{
-        position: relative;
-        top: 40px;
-    }
-h1{
-    font-size: 30px !important;
-}
-.get-started-btn{
-    position: relative;
-}
-p{
-    font-size: 17px !important;
-}
-}
-   </style>
-   
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="shortcut icon"
+      href="HelpOps-H Fevicon.png"
+      type="image/x-icon"
+    />
+    <script src="resources.js"></script>
+  </head>
+  <body style="height: auto;">
     <header>
-        <nav>
-            <a href="index.html">
-                <div class="logo" data-tilt data-tilt-scale="1.1">
-                    <img src="HelpOps-H Fevicon.png" alt="Logo">
-                </div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="abouts.html">About</a></li>
-                <li><a href="contributor.html">Team</a></li>
-                <li><a href="contactus.html">Contact</a></li>
-            </ul>
-          
-            <div class="nav-actions">
-                <a href="https://github.com/sponsors/mdazfar2">
-                    <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-                  </a>  
-            </div>
-            <div class="hamburger" id="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </nav>
+      <nav>
+        <a href="index.html">
+          <div class="logo" data-tilt data-tilt-scale="1.1">
+            <img src="HelpOps-H Fevicon.png" alt="Logo" />
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="abouts.html">About</a></li>
+          <li><a href="contributor.html">Team</a></li>
+          <li><a href="contactus.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions" style="display: flex;">
+          <a href="https://github.com/sponsors/mdazfar2">
+            <button class="sponsor-btn">
+              Sponsor <i id="heart" class="fas fa-heart"></i>
+            </button>
+          </a>
+          <button id="theme-toggle" class="sponsor-btn">Dark Mode</button>
+        </div>
+        <div class="hamburger" id="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </nav>
     </header>
     <ul class="nav-links1" id="navlinks1">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="abouts.html">About</a></li>
-        <li><a href="contributor.html">Team</a></li>
-        <li><a href="contactus.html">Contact</a></li>
-        
+      <li><a href="index.html">Home</a></li>
+      <li><a href="abouts.html">About</a></li>
+      <li><a href="contributor.html">Team</a></li>
+      <li><a href="contactus.html">Contact</a></li>
     </ul>
     <main>
-        <div class="main-content">
-          <div class="conte">
-
-            <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
-              <!-- <button class="star-button"> -->
-                <h3 class="star-button">
-                  <i class="star-icon"><i class="fas fa-star"></i></i> <!-- This is a star character -->
-                  Star Us
-                </h3>
-                <!-- </button> -->
+      <div class="main-content">
+        <div class="conte">
+          <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
+            <h3 class="star-button">
+              <i class="star-icon"><i class="fas fa-star"></i></i> Star Us
+            </h3>
+          </a>
+          <li class="isDisplay">
+            <a href="https://github.com/sponsors/mdazfar2">
+              <button class="sponsor-btn">
+                Sponsor <i id="heart" class="fas fa-heart"></i>
+              </button>
             </a>
-                <li class="isDisplay">
-                  <a href="https://github.com/sponsors/mdazfar2">
-                      <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-                    </a>  </li>
-          </div> 
-            <h1>HelpOps-Hub</h1>
-            <p>Ensuring You Never Get Stuck In DevOps Again!</p>
-            <a href="resources.html">
-            <button class="get-started-btn">Get started</button>
-            </a>
+          </li>
         </div>
+        <h1>HelpOps-Hub</h1>
+        <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+        <a href="resources.html">
+          <button class="get-started-btn">Get started</button>
+        </a>
+      </div>
     </main>
     <div class="marg">
-        <div class="footer">
-            <p class="iconsclass mm">
-                <a  href="https://www.linkedin.com/company/HelpOps-Hub/" target="_blank" class="fab fa-linkedin"></a>
-                <a href="https://discord.gg/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
-                <a  href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank" class="fab fa-github"></a>
+      <div class="footer">
+        <p class="iconsclass mm">
+          <a
+            href="https://www.linkedin.com/company/HelpOps-Hub/"
+            target="_blank"
+            class="fab fa-linkedin"
+          ></a>
+          <a
+            href="https://discord.gg/UWTrRhqywt"
+            target="_blank"
+            class="fab fa-discord"
+          ></a>
+          <a
+            href="https://github.com/mdazfar2/HelpOps-Hub/"
+            target="_blank"
+            class="fab fa-github"
+          ></a>
+        </p>
+        <p class="font h mm">© HelpOps-Hub | MIT License</p>
+        <p class="font h mm">
+          Developed by
+          <a href="https://github.com/mdazfar2" target="_blank" class="font"
+            >Azfar Alam</a
+          >
+          &
+          <a
+            class="font"
+            target="_blank"
+            href="https://helpops-hub.vercel.app/contributor-index.html"
+            >Open Source Community</a
+          >
+        </p>
+      </div>
+    </div>
+    <script>
+      document.getElementById("hamburger").addEventListener("click", (e) => {
+        document.querySelector(".nav-links1").classList.toggle("active");
+      });
 
-              </p>
-            <p class="font h mm">© HelpOps-Hub | MIT License</p>
-            <p class="font h mm"  >Developed by <a href="https://github.com/mdazfar2" target="_blank" class="font">Azfar Alam</a> & <a class="font" target="_blank" href="https://helpops-hub.vercel.app/contributor-index.html">Open Source Community</a> </p>
-          </div>
-        </div>
-    <script src="scripts.js"></script>
-   <script>
-
-    // if(window.innerWidth>800){
-    //     document.getElementById("navlinks1").style.display='none'
-    // }
-    document.getElementById('hamburger').addEventListener('click',(e)=>{
-        let ele=document.getElementById("navlinks1")
-        document.querySelector('.nav-links1').classList.toggle('active');
-    })
-   </script>
-    <script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
-   <script type="text/javascript"> 
-    VanillaTilt.init(document.querySelectorAll(".logo"), { 
-        max: 25, 
-        speed: 400, 
-    }); 
-</script> 
-<script type="module">
-    import { annotate } from 'https://unpkg.com/rough-notation?module';
-    
-    const e = document.querySelector('.star-button');
-    const annotation = annotate(e, { type: 'highlight', color: '#fff'});
-    annotation.show();
-  </script>
+      document
+        .getElementById("theme-toggle")
+        .addEventListener("click", toggleDarkMode);
+      document.addEventListener("DOMContentLoaded", loadTheme);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelectorAll(".logo"), {
+        max: 25,
+        speed: 400,
+      });
+    </script>
+    <script type="module">
+      import { annotate } from "https://unpkg.com/rough-notation?module";
+      const e = document.querySelector(".star-button");
+      const annotation = annotate(e, { type: "highlight", color: "#fff" });
+      annotation.show();
+    </script>
   </body>
 </html>

@@ -351,7 +351,10 @@ a{
     cursor: pointer;
     transition: background-color 0.2s;
   }
-  
+  .dark #load-more{
+    background: linear-gradient(180deg, #2C3E50 8.1%, #4CA1AF 100%);
+      color: #ECF0F1;
+  }
   #load-more:hover {
     background-color: #0056b3;
   }
@@ -360,12 +363,17 @@ a{
     color:black;
     border-radius: 18px;
     }
-    .dark-mode .trophy-card{
-      background-color: black;
-      color:white;
+    .dark .trophy-card{
+      background: black;
+      color: #ECF0F1;
     }
     .trophy{
       height: 66px;
       position: relative;
       top: 20px;
     }
+    body.dark {
+      background: linear-gradient(180deg, #2C3E50 8.1%, #4CA1AF 100%);
+      color: #ECF0F1;
+  }
+  

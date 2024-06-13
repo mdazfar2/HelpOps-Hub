@@ -1,3 +1,5 @@
+/* nav.css */
+
 header {
     width: 100%;
     position: absolute;
@@ -19,40 +21,38 @@ nav {
     width: 100px;
     position: relative;
 }
+
 .sponsor-btn {
     background-color: whitesmoke;
     border: none;
-    border-radius: 25px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
-    color: #000000; /* Black text color */
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: #000000;
     font-size: 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    gap: 7px;
+    transition: transform 0.1s ease;
     width: 150px;
-    padding: 7px 7px ;
-    font-family:cursive;
+    padding: 7px 7px;
+    font-family: cursive;
     margin-right: 7px;
+}
 
+.sponsor-btn:active {
+    transform: translateY(1px);
 }
-a{
-  text-decoration: none;
-}
-.sponsor-btn:active{
-  transform:translateY(1px) ;
-}
+
 .nav-links {
     list-style: none;
     display: flex;
     gap: 50px;
     margin: 25px;
     padding: 10px 20px;
-    background-color: #FDD86C;
+    background-color: #FDD86C; /* Default background color */
     border-radius: 25px;
-    
     box-shadow: 0 4px 6px #FF7D1F;
 }
 
@@ -61,35 +61,28 @@ a{
     color: #000;
     padding: 10px 15px;
     font-size: x-large;
-   
-}
-#social-links{
-    display: flex;
-    flex-direction: column;
-    /* margin-left: 20px; */
-    margin-right: 20px;
-    font-size: 40px;
-    gap: 60px;
-  }
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
-.search-btn, .sponsor-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-  
+/* Dark Mode Styles */
+
+.dark .nav-links {
+    background-color: #34495E;
+    box-shadow: 0 4px 6px #2C3E50;
 }
 
-.search-btn {
-    background-color: transparent;
-    border-radius: 5px;
-    padding: 5px 10px;
+.dark .nav-links li a {
+    color: #ECF0F1;
 }
-#heart{
-    color: red;;
+
+.dark .sponsor-btn {
+    background-color: #34495E;
+    color: #ECF0F1;
+}
+
+.dark .logo img {
+    filter: invert(1); /* Invert logo colors */
+}
+
+#heart {
+    color: red;
 }

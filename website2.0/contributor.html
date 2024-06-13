@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="skeleton.css">
     <link rel="stylesheet" href="banner.css">
 
-    <style>
-
-    </style>
+   <script src="resources.js"></script>
 
    
 </head>
@@ -33,10 +31,10 @@
           <li><a href="contributor.html">Team</a></li>
           <li><a href="contactus.html">Contact</a></li>
       </ul>
-            <div class="nav-actions">
+            <div class="nav-actions" style="display: flex;">
               <a href="https://github.com/sponsors/mdazfar2">
                 <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-              </a>          
+              </a>      <button id="theme-toggle" class="sponsor-btn">Dark Mode</button>    
               </div>
             
         </nav>
@@ -528,14 +526,31 @@
             </div>
           </div>
       <script src="contributor.js"></script>
-      <script src="dark_mode.js"></script>
-    <script src="scripts.js"></script>
     <script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
     <script type="text/javascript"> 
       VanillaTilt.init(document.querySelectorAll(".logo"), { 
           max: 25, 
           speed: 400, 
-      }); 
+      });     // JavaScript for Dark Mode Toggle
+
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("dark");
+  const theme = body.classList.contains("dark") ? "dark" : "light";
+  localStorage.setItem("theme", theme);
+}
+
+function loadTheme() {
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark") {
+    document.body.classList.add("dark");
+  }
+}
+
+document
+  .getElementById("theme-toggle")
+  .addEventListener("click", toggleDarkMode);
+document.addEventListener("DOMContentLoaded", loadTheme);
   </script>
 </body>
 </html>

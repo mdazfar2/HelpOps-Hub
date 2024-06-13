@@ -184,6 +184,9 @@ a {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
+.dark-mode .about_title{
+  color: white;
+}
 .video {
   display: flex;
   justify-content: center;
@@ -341,4 +344,82 @@ video{
   .text-container {
     width: 100% !important;
   }
+}
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  height: auto;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: linear-gradient(180deg, #2C3E50 8.1%, #4CA1AF 100%);
+  color: #ECF0F1;
+}
+.dark-mode .nav-links {
+  background-color: #34495E;
+  box-shadow: 0 4px 6px #2C3E50;
+}
+.dark-mode .nav-links li a {
+  color: #ECF0F1;
+}
+.dark-mode .sponsor-btn, .dark-mode .get-started-btn, .dark-mode .star-button {
+  background-color: #34495E;
+  color: #ECF0F1;
+}
+
+.dark-mode .iconsclass > a {
+  color: #ECF0F1;
+}
+.dark-mode .font {
+  color: #ECF0F1;
+}
+.dark-mode .logo img {
+  filter: invert(1);
+}
+.dark-mode .hamburger div {
+  background-color: #ECF0F1;
+}
+
+/* Rest of your CSS styles */
+.iconsclass {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.iconsclass > a {
+  color: white;
+  font-size: 1.1rem;
+}
+.mm {
+  margin: 0px !important;
+}
+.font {
+  font-size: 0.8rem;
+  font-family: sans-serif;
+  color: black;
+  font-weight: 550;
+}
+.marg {
+  margin-bottom: 20px;
+}
+.font a {
+  text-decoration: underline;
+}
+.footer {
+  gap: 11px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
 }

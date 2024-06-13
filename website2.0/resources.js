@@ -215,3 +215,34 @@ function handleScroll() {
 window.addEventListener("scroll", handleScroll);
 // Add click event listener
 scrollToTopBtn.addEventListener("click", scrollToTop);
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+  } else {
+      localStorage.setItem('theme', 'light');
+  }
+}
+
+// Function to load the theme from localStorage
+function loadTheme() {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+  } else {
+      document.body.classList.remove('dark-mode');
+  }
+}
+
+// Attach event listener to the theme toggle button
+document.addEventListener('DOMContentLoaded', (event) => {
+  const themeToggleButton = document.getElementById('theme-toggle');
+  if (themeToggleButton) {
+      themeToggleButton.addEventListener('click', toggleDarkMode);
+  }
+  loadTheme();
+});
+
+loadTheme();
