@@ -71,7 +71,7 @@ This guide provides step-by-step instructions to set up a control node and two t
             state: present
    
 ```
-    Customize the playbook tasks according to your requirements.
+Customize the playbook tasks according to your requirements.
 
 ### Step 5: Run Ansible Playbook
 
