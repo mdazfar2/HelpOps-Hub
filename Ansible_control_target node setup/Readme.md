@@ -63,12 +63,12 @@ This guide provides step-by-step instructions to set up a control node and two t
 **Create an Ansible playbook (e.g., setup.yml) to configure the target nodes:**
    ```yaml
    ---
-    - hosts: targets
+  - hosts: targets
     tasks:
-        - name: Ensure NTP (Network Time Protocol) is installed
-        package:
-            name: ntp
-            state: present
+     - name: Ensure NTP (Network Time Protocol) is installed
+       package:
+         name: ntp
+         state: present
    
 ```
 Customize the playbook tasks according to your requirements.
