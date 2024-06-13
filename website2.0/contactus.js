@@ -12,9 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+function handleError(){
+  document.getElementById('error').style.display=''
+  
+  setTimeout(()=>{
+      document.getElementById('error').style.display='none'
+  },2000)
+}
+
+
 document.getElementById('contact-form').addEventListener('submit', function(event) {
   event.preventDefault();
-
+  if(selectedRating==0){
+    return handleError()
+}
   const thankYouMessage = document.getElementById('thank-you-message');
   thankYouMessage.style.display = 'block';
 
