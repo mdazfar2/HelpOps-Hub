@@ -38,6 +38,20 @@
                 <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
               </a>          
               </div>
+              <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div> 
+        </nav>
+    </header>
+    <ul class="nav-links1" id="navlinks1">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="abouts.html">About</a></li>
+        <li><a href="contributor.html">Team</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+        
+    </ul>
             
         </nav>
     </header>
@@ -537,5 +551,18 @@
           speed: 400, 
       }); 
   </script>
+  <script>
+    document.getElementById('error').style.display='none'
+    </script>
+    <script>
+    
+        // if(window.innerWidth>800){
+        //     document.getElementById("navlinks1").style.display='none'
+        // }
+        document.getElementById('hamburger').addEventListener('click',(e)=>{
+            let ele=document.getElementById("navlinks1")
+            document.querySelector('.nav-links1').classList.toggle('active');
+        })
+       </script>
 </body>
 </html>
