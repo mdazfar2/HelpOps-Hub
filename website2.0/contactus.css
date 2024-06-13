@@ -10,6 +10,11 @@ body {
     margin-bottom: 100px;
     gap: 200px;
 }
+#error{
+     color: red;
+    font-size: 18px;
+    text-align: center;
+}
 input::placeholder{
     margin: 0px;
     font-family: Poppins;

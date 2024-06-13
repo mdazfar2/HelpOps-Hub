@@ -127,8 +127,8 @@ p{
                     <span class="star" data-value="4">&#9733;</span>
                     <span class="star" data-value="5">&#9733;</span>
                 </div>
-    
-                <button type="submit" id="button">Submit</button>
+    <p id="error">Please Give Any Rating</p>
+                <button type="submit" id="button" onclick="handleSubmit()">Submit</button>
             <p id="thank-you-message" style="color: white; display: none;">Thank you !!<br>We will connect soon.</p>
             </form>
             </div>
@@ -152,6 +152,22 @@ p{
         max: 25, 
         speed: 400, 
     }); 
+</script>
+
+
+<script>
+    const stars = document.querySelectorAll('.star');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedRating = star.getAttribute('data-value');            
+        });
+    });
+</script>
+
+<script>
+document.getElementById('error').style.display='none'
 </script>
 <script>
 
