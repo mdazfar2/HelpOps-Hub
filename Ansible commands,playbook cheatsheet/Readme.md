@@ -3,12 +3,14 @@
 # Installation
 
 ### Install Ansible on Debian/Ubuntu
+
 ```sh
 sudo apt update
 sudo apt install ansible
 ```
 
 ### Install Ansible on CentOS/RHEL
+
 ```sh
 sudo yum install ansible
 ```
@@ -30,6 +32,7 @@ ansible webserver -m yum -a "name=httpd state=latest"
 ```
 
 ## Ansible Playbooks
+
 **Playbook Structure**
 ```sh
 ---
@@ -77,6 +80,7 @@ ansible webserver -m yum -a "name=httpd state=latest"
 ```
 
 ## Ansible Cheatsheet
+
 **Common Modules***
 >yum: Manages packages on RPM-based systems.
 >apt: Manages packages on Debian-based systems.
