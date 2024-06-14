@@ -149,7 +149,12 @@ function renderContributors(contributors) {
         </div>
       </div>`;
 
-    if (cheak > 0 && fname != "azfar-2" && fname != "Ayushmaanagarwal1211")
+    if (
+      cheak > 0 &&
+      fname != "azfar-2" &&
+      fname != "Ayushmaanagarwal1211" &&
+      fname != "RamakrushnaBiswal"
+    )
       cont.appendChild(contributorCard);
     cheak++;
   });
