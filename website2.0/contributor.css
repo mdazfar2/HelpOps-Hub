@@ -856,3 +856,63 @@ a{
     transition: 0.4s;
 }
   
+@media (max-width:768px) {
+  .team-member{
+
+    flex-direction: column;
+    
+  }
+  #social-links{
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  .card1 , .card2 , .card3 , .card4{
+    width: -webkit-fill-available;
+  }
+ #team-grid{
+  margin-left: 0px;
+ }
+ #team-grid1{
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  margin-left: 50px !important;
+  margin-right: 0px !important;
+  padding: 0px !important;
+  }
+  .badge{
+  bottom: 295px !important;}
+
+  .trophy-card{
+    display: flex;
+    padding-left: 20px;
+    margin-left: 80px;
+    /* margin-right: -21px; */
+    flex-direction: column;
+    height: auto;
+  }
+  .trophy{
+    height: auto;
+    position: relative;
+    top: 20px;
+  }
+  nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: -webkit-fill-available;
+    gap: 116px;
+    flex-wrap: nowrap;
+  }
+  #ourteam{
+    margin-top: 0px;
+    justify-content: flex-end;
+    padding: 26px;
+    font-family: cursive;
+    font-size: 50px;
+    text-align: center;
+  }
+ }
+
+
