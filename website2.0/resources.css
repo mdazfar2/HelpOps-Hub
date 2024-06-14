@@ -134,3 +134,45 @@ input:checked + .switch:before {
     }
   } 
   
+/* Dark mode specific styles */
+body.dark-mode {
+  background: #1a1a1a; /* Dark background color */
+  color: #fff; /* White text color */
+}
+
+.dark-mode .form-container {
+  background: #333333; /* Darker background color */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #aaa; /* Placeholder text color in dark mode */
+}
+
+.dark-mode #get-started-btn {
+  background-color: #fff;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+      background: #1a1a1a;
+      color: #fff;
+  }
+
+  .form-container {
+      background: #333333;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+      color: #aaa;
+  }
+
+  #get-started-btn {
+      background-color: #fff;
+      color: #333;
+  }
+}
