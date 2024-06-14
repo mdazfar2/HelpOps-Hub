@@ -105,8 +105,12 @@
         </div>
    <script>
     document.getElementById('hamburger').addEventListener('click',(e)=>{
-        let ele=document.getElementById("navlinks1")
-        document.querySelector('.nav-links1').classList.toggle('active');
+        let navLinks = document.querySelector('.nav-links1');
+            navLinks.classList.toggle('active');
+
+            if (window.innerWidth > 980) {
+                navLinks.classList.remove('active')
+    }
     })
    </script>
     <script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
