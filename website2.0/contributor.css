@@ -209,7 +209,6 @@ gap: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 160px;
     font-family: cursive;
     font-size: 24px;
   }
@@ -828,7 +827,7 @@ a{
       display: flex;
       gap: 50px;
       margin: 25px;
-      padding: 10px 20px;
+      padding: 12px 20px;
       background-color: #FDD86C;
       border-radius: 25px;
       flex-wrap: wrap;
@@ -838,11 +837,17 @@ a{
   
   .nav-links li a {
       text-decoration: none;
-      color: #000;
+      color: #101010;
       padding: 10px 15px;
-      font-size: x-large;
+      font-size: 22px;
      
   }
+  .nav-links li a:hover{
+    background-color: #31313142;
+    border-radius: 25px;
+    padding: 7px 15px;
+    transition:0.25s;
+}
   .nav-actions {
       display: flex;
       align-items: center;
