@@ -10,7 +10,19 @@
     <link rel="stylesheet" href="dark_mode.css">
     <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
 </head>
-<body>
+<body >
+    <div id="loader-wrapper">
+        <div class="loaderbox">
+            <svg class="loader" width="240" height="240" viewBox="0 0 240 240">
+                <circle class="loader-ring loader-ring-a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+                <circle class="loader-ring loader-ring-b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+                <circle class="loader-ring loader-ring-c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+                <circle class="loader-ring loader-ring-d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            </svg>
+        </div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
     <header>
         <nav>
             <a href="index.html">
@@ -46,7 +58,7 @@
         <li><a href="contributor.html">Team</a></li>
         <li><a href="contactus.html">Contact</a></li>
     </ul>
-    <main>
+    <main id="particles-js">
         <div class="main-content">
             <div class="conte">
                 <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
@@ -79,25 +91,46 @@
         </div>
     </div>
     <script src="scripts.js"></script>
-    <script src="darkmode.js"></script>
-    <script>
-        document.getElementById('hamburger').addEventListener('click', (e) => {
-            let ele = document.getElementById("navlinks1");
-            document.querySelector('.nav-links1').classList.toggle('active');
-        });
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script type="module">
+        import { annotate } from 'https://unpkg.com/rough-notation?module';
+        
+        const e = document.querySelector('.star-button');
+        const annotation = annotate(e, { type: 'highlight', color: '#fff' });
+        annotation.show();
+    </script>
+    
     <script>
         VanillaTilt.init(document.querySelectorAll(".logo"), {
             max: 25,
             speed: 400,
         });
     </script>
-    <script type="module">
-        import { annotate } from 'https://unpkg.com/rough-notation?module';
-        const e = document.querySelector('.star-button');
-        const annotation = annotate(e, { type: 'highlight', color: '#fff' });
-        annotation.show();
+    
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', 'particlesjs-config.json', function() {
+            console.log('callback - particles.js config loaded');
+        });
     </script>
-</body>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                document.querySelector("body").classList.add("loaded");
+            }, 500)
+        });
+    </script>
+    
+    <script>
+        document.getElementById('hamburger').addEventListener('click', (e) => {
+            let navLinks = document.querySelector('.nav-links1');
+            navLinks.classList.toggle('active');
+            if (window.innerWidth > 980) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+    <script src="darkmode.js"></script>
+  </body>
 </html>
