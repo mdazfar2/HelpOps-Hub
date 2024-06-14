@@ -1986,4 +1986,20 @@ a{
     position: relative;
     top: 20px;
   }
+  nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: -webkit-fill-available;
+    gap: 116px;
+    flex-wrap: nowrap;
+  }
+  #ourteam{
+    margin-top: 0px;
+    justify-content: flex-end;
+    padding: 26px;
+    font-family: cursive;
+    font-size: 50px;
+    text-align: center;
+  }
  }
