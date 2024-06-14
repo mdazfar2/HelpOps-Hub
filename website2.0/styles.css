@@ -1,14 +1,4 @@
-/* body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* height: 100vh; */
-/* } */
 .iconsclass{
     width: 100%;
     display: flex;
@@ -241,6 +231,9 @@ nav {
     justify-content: center;
     box-shadow: 0 4px 6px #FF7D1F;
 }
+.nav-links li a:hover{
+  text-decoration: underline;
+}
 
 .nav-links li a {
     text-decoration: none;
@@ -402,6 +395,113 @@ p {
     margin: 20px;
     font-family:cursive;
 }
+
+.toggle-switch {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 50px;
+    /* gap: 200px; */
+    height: 24px;
+    margin: 0px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.switch:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .switch {
+    background-color: #2196F3;
+}
+
+input:checked + .switch:before {
+    transform: translateX(26px);
+}
+.marg{
+  margin-bottom: 20px;
+}
+    body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    height: auto;
+}
+.hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px;
+            transition: 0.4s;
+        }
+        @media only screen and (max-width:200px) {
+    .sponsor-btn{
+        font-size: 12px !important;
+        width: 90px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 12px !important;
+        width: 90px !important;
+    }
+}
+@media only screen and (max-width:497px){
+h1{
+    font-size: 40px !important;
+}
+.main-content{
+    gap: 30px;
+}
+}
+@media only screen and (max-width:347px){
+    .logo{
+        position: relative;
+        top: 40px;
+    }
+h1{
+    font-size: 30px !important;
+}
+.get-started-btn{
+    position: relative;
+}
+p{
+    font-size: 17px !important;
+}
+}
+
 
 /* particle.js canvas */
 canvas{
@@ -683,4 +783,3 @@ canvas{
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
-

@@ -55,7 +55,9 @@ a{
     
     box-shadow: 0 4px 6px #FF7D1F;
 }
-
+.nav-links a:hover{
+    text-decoration: underline;
+}
 .nav-links li a {
     text-decoration: none;
     color: #101010;
