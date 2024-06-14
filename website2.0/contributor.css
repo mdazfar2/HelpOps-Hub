@@ -369,6 +369,26 @@ a{
       position: relative;
       top: 20px;
     }
+    .nav-links1{
+      height: 0px ;
+      overflow: hidden;
+      position: relative;
+      top: 30px;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+    .active{
+      animation: animate forwards ease-in 0.2s;
+      list-style: none;
+      display: none;
+      gap: 20px;
+      padding: 10px 20px;
+      background-color: #fdd76b;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      width: 100%;
+  }
     @media only screen and (max-width:987px){
       .nav-links{
           display: none !important;
@@ -377,9 +397,9 @@ a{
       .hamburger{
         display: block !important;
       }
-      /* nav{
-          gap: 30%;
-      } */
+      .active{
+        display: flex;
+      }
       .nav-links1 li a {
           text-decoration: none;
           color: #000;
@@ -391,20 +411,7 @@ a{
   .isDisplay{
     display: none;
 }
-.active{
-    animation: animate forwards ease-in 0.2s;
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 10px 20px;
-    background-color: #fdd76b;
-    flex-direction: column;
-align-items: center;
-text-decoration: none;
 
-    /* box-shadow: 0 4px 6px #FF7D1F; */
-    width: 100%;
-}
   @media only screen and (max-width:329px){
     .hamburger{
         width: 100% !important;
@@ -501,15 +508,7 @@ text-decoration: none;
     } */
 }
 
-.nav-links1{
-    height: 0px ;
-    overflow: hidden;
-    display: flex;
-    position: relative;
-    top: 30px;
-    flex-direction: column;
-    justify-content: space-around;
-}
+
 @keyframes animate {
   from{
       height: 0px;
