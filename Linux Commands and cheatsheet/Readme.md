@@ -20,145 +20,145 @@ This cheat sheet covers essential Linux commands for understanding, implementati
   ls -l /home/user
   ```
 
-> **When to Use:**
+- **When to Use:**
   To view files and directories in a specified location.
 
 ### 2. 'cp'
-> **Meaning:**
+- **Meaning:**
   Copy files and directories.    
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   cp [options] source destination
   ```
-> **Example:**
+- **Example:**
   ```bash
   cp file1.txt /path/to/destination/
   ```
-> **When to Use:**
+- **When to Use:**
   To duplicate files or directories.  
 
 
 ### 3. 'mv'
-> **Meaning:**
+- **Meaning:**
   Move or rename files and directories.    
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   mv [options] source destination
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   mv file1.txt /new/path/
 
   ```
-> **When to Use:**
+- **When to Use:**
   To move files or rename them. 
 
 
 ### 4. 'rm'
-> **Meaning:**
+- **Meaning:**
   Remove files or directories.   
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   rm [options] file1 file2 ...
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   rm file.txt
 
   ```
-> **When to Use:**
+- **When to Use:**
   To delete files permanently.  
 
 
 ## System Administration 
 
 ### 5. 'sudo'
-> **Meaning:**
+- **Meaning:**
   Execute a command as the superuser or another user.   
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   sudo command_to_execute
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   sudo apt-get update
 
   ```
-> **When to Use:**
+- **When to Use:**
   To perform administrative tasks with elevated privileges.  
 
 ### 6. 'chmod'
-> **Meaning:**
+- **Meaning:**
   Change file mode bits (permissions).   
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   chmod [options] mode file
 
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   chmod +x script.sh
 
 
   ```
-> **When to Use:**
+- **When to Use:**
   To modify file permissions.
 
 ### 7. 'chwon'
-> **Meaning:**
+- **Meaning:**
   Change file owner and group.
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   chown [options] owner:group file
 
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   chown user1:group1 file.txt
 
 
   ```
-> **When to Use:**
+- **When to Use:**
   To change ownership of files.
 
 ## Networking    
 
 ### 8. 'ping'
-> **Meaning:**
+- **Meaning:**
   Send ICMP ECHO_REQUEST to network hosts.  
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   ping [options] host_or_ip
 
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   ping www.example.com
 
 
   ```
-> **When to Use:**
+- **When to Use:**
   To check network connectivity.  
 
 
 ### 9. 'ifconfig / ip'
-> **Meaning:**
+- **Meaning:**
   Configure network interfaces.
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   ifconfig [interface] [options]
   ```
@@ -166,23 +166,23 @@ This cheat sheet covers essential Linux commands for understanding, implementati
   ip [options] [object] [command]
   ```
 
-> **Example:**
+- **Example:**
   ```bash
   ifconfig eth0 up
   ```
   ```bash
   ip addr show eth0
   ```
-> **When to Use:**
+- **When to Use:**
   To manage network interfaces and IP addresses.
 
 ## Package Management
 
 ### 10. 'apt-get / yum'
-> **Meaning:**
+- **Meaning:**
   Package management tool for Debian-based (apt-get) or Red Hat-based (yum) distributions.
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   sudo apt-get [options] [package_name]
 
@@ -192,7 +192,7 @@ This cheat sheet covers essential Linux commands for understanding, implementati
 
   ```
 
-> **Example:**
+- **Example:**
   ```bash
   sudo apt-get install nginx
 
@@ -201,37 +201,37 @@ This cheat sheet covers essential Linux commands for understanding, implementati
  sudo yum update
 
   ```
-> **When to Use:**
+- **When to Use:**
   To install, update, or remove software packages.
 
 ## Process Management
 
 ### 11. 'ps'
-> **Meaning:**
+- **Meaning:**
   Display information about running processes.
 
-> **How to Use:**
+- **How to Use:**
   ```bash
   ps [options]
 
 
 
   ```
-> **Example:**
+- **Example:**
   ```bash
   ps aux | grep nginx
 
 
 
   ```
-> **When to Use:**
+- **When to Use:**
   To monitor processes and system resource usage.
 
 ## User and Group Management
 ### 12. 'useradd / usermod'
-> **Meaning:**
+- **Meaning:**
   Add or modify user accounts.
-> **How to Use:**
+- **How to Use:**
   ```bash
   sudo useradd [options] username
 
@@ -243,12 +243,12 @@ This cheat sheet covers essential Linux commands for understanding, implementati
 
   ```
 
-> **Example:**
+- **Example:**
   ```bash
   sudo useradd -m -s /bin/bash john
 
 
   ```
   
-> **When to Use:**
+- **When to Use:**
   To create or update user accounts.
