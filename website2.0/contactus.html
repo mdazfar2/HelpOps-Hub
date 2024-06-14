@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="banner.css">
     <link rel="stylesheet" href="contactus.css">
     <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="dark_mode.css">
     <style>
   textarea::placeholder {
             color: #0000006B; /* Change placeholder text color to black */
@@ -89,6 +89,10 @@ p{
                 <a href="https://github.com/sponsors/mdazfar2">
                     <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
                   </a>  
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="toggle" />
+                    <label for="toggle" class="switch" id="toggle"></label>
+                </div>
             </div>
             <!-- <div class="hamburger" id="hamburger">
                 <div></div>
@@ -179,5 +183,6 @@ document.getElementById('error').style.display='none'
         document.querySelector('.nav-links1').classList.toggle('active');
     })
    </script>
+   <script src="darkmode.js"></script>
 </body>
 </html>

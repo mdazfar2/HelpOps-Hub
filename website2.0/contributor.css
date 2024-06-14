@@ -2,6 +2,10 @@ body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
 }
+/* body.dark-mode{
+  transition: 0.3s;
+  background: black;
+} */
 .iconsclass{
   width: 100%;
   display: flex;

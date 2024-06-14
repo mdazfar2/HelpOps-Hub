@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="newCards.css">
     <link rel="stylesheet" href="skeleton.css">
     <link rel="stylesheet" href="banner.css">
-
+    <link rel="stylesheet" href="resources.css">
+    <link rel="stylesheet" href="dark_mode.css">
+    <!-- <script src="darkmode.js"></script> -->
     <style>
 
     </style>
@@ -33,11 +35,15 @@
           <li><a href="contributor.html">Team</a></li>
           <li><a href="contactus.html">Contact</a></li>
       </ul>
-            <div class="nav-actions">
-              <a href="https://github.com/sponsors/mdazfar2">
-                <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
-              </a>          
-              </div>
+      <div class="nav-actions">
+        <a href="https://github.com/sponsors/mdazfar2">
+            <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+          </a>  
+          <div class="toggle-switch">
+            <input type="checkbox" id="toggle" />
+            <label for="toggle" class="switch" id="toggle"></label>
+        </div>
+    </div>
             
         </nav>
     </header>
@@ -528,7 +534,6 @@
             </div>
           </div>
       <script src="contributor.js"></script>
-      <script src="dark_mode.js"></script>
     <script src="scripts.js"></script>
     <script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
     <script type="text/javascript"> 
@@ -537,5 +542,6 @@
           speed: 400, 
       }); 
   </script>
+  <script src="darkmode.js"></script>
 </body>
 </html>
