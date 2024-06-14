@@ -128,12 +128,24 @@ nav {
   color: #101010;
   padding: 10px 15px;
   font-size: 22px;
+  position: relative;
 }
-.nav-links li a:hover{
-  background-color: #31313142;
-  border-radius: 25px;
-  padding: 7px 15px;
-  transition:0.25s;
+.nav-links li a::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 4px;
+  left: 0;
+  background-color: #FF7D1F;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-links li a:hover::after{ 
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 .nav-actions {
   display: flex;
