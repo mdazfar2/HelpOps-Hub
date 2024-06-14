@@ -223,12 +223,10 @@ nav {
     width: 100px; */
     position: relative;
     width: 89px;
-height: 89px;
-top: 10px;
-gap: 0px;
-opacity: 0px;
-
-
+    height: 89px;
+    top: 10px;
+    gap: 0px;
+    opacity: 0px;
 }
 
 .nav-links {
@@ -236,7 +234,7 @@ opacity: 0px;
     display: flex;
     gap: 50px;
     margin: 25px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     background-color: #FDD86C;
     border-radius: 25px;
     flex-wrap: wrap;
@@ -246,17 +244,33 @@ opacity: 0px;
 
 .nav-links li a {
     text-decoration: none;
-    color: #000;
+    color: #101010;
     padding: 10px 15px;
-    font-size: x-large;
-   
+    font-size: 22px;
+    position: relative;
 }
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+.nav-links li a::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 4px;
+  left: 0;
+  background-color: #FF7D1F;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
 
+.nav-links li a:hover::after{ 
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 .search-btn, .sponsor-btn {
     background: none;
     border: none;
