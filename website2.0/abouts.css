@@ -54,7 +54,7 @@ body {
 .active {
   animation: animate forwards ease-in 0.2s;
   list-style: none;
-  display: flex;
+  display: none;
   gap: 20px;
   padding: 10px 20px;
   background-color: #fdd76b;
@@ -66,7 +66,6 @@ body {
 .nav-links1 {
   height: 0px;
   overflow: hidden;
-  display: flex;
   position: relative;
   top: 30px;
   flex-direction: column;
@@ -269,6 +268,9 @@ video{
   }
   .hamburger {
     display: block !important;
+  }
+  .active{
+    display: flex;
   }
   .nav-links1 li a {
     text-decoration: none;

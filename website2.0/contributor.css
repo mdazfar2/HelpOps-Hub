@@ -640,3 +640,219 @@ a{
         -webkit-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out;
     }
+
+.nav-links1{
+      height: 0px ;
+      overflow: hidden;
+      position: relative;
+      top: 30px;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+    .active{
+      animation: animate forwards ease-in 0.2s;
+      list-style: none;
+      display: none;
+      gap: 20px;
+      padding: 10px 20px;
+      background-color: #fdd76b;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      width: 100%;
+  }
+    @media only screen and (max-width:987px){
+      .nav-links{
+          display: none !important;
+      }
+      
+      .hamburger{
+        display: block !important;
+      }
+      .active{
+        display: flex;
+      }
+      .nav-links1 li a {
+          text-decoration: none;
+          color: #000;
+          padding: 10px 15px;
+          font-size: x-large;
+         
+      }
+  }
+  .isDisplay{
+    display: none;
+}
+
+  @media only screen and (max-width:329px){
+    .hamburger{
+        width: 100% !important;
+       
+    }
+    .hamburger div{
+        position: relative;
+        left: 80%;
+    }
+    nav{
+        flex-direction: column-reverse;
+    }
+    .isDisplay{
+        display: block;
+    }
+    .conte{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .nav-actions{
+    
+        display: none !important;
+    }
+    .sponsor-btn{
+        font-size: 16px !important;
+        width: 114px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 16px !important;
+        width: 114px !important ;
+    }
+}
+@media only screen and (max-width:300px) {
+
+   
+    nav{
+        gap: 2% !important;
+    }
+   }
+@media only screen and (max-width:409px) {
+    nav{
+        gap: 5% !important;
+    }
+    .hamburger{
+        width: 100% !important;
+       
+    }
+    .logo img{
+        top: 46px !important;
+    }
+    .hamburger div{
+        position: relative;
+        left: 80%;
+    }
+    nav{
+        flex-direction: column-reverse;
+    }
+    .isDisplay{
+        display: block;
+    }
+    .conte{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .nav-actions{
+    
+        display: none !important;
+    }
+    .sponsor-btn{
+        font-size: 16px !important;
+        width: 114px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 16px !important;
+        width: 114px !important ;
+    }
+
+    .logo img{
+        width: 60px !important;
+        height: 60px !important;
+    }
+    /* @keyframes animate {
+        from{
+            height: 0px;
+        }to{
+            height: 300px ;
+        }
+    } */
+}
+
+
+@keyframes animate {
+  from{
+      height: 0px;
+  }to{
+      height: 270px ;
+  }
+}
+.hamburger{
+  display: none;
+  }
+  header {
+      width: 100%;
+      position: relative;
+      top: 0;
+      background-color: transparent;
+      padding: 10px 0;
+  }
+  
+  nav {
+      display: flex;
+      justify-content: space-between !important;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+      width: 90%;
+      margin: 0 auto;
+  }
+  
+  .logo img {
+      /* height: 100px;
+      width: 100px; */
+      position: relative;
+      width: 89px;
+  height: 89px;
+  top: 10px;
+  gap: 0px;
+  opacity: 0px;
+  
+  
+  }
+  
+  .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 50px;
+      margin: 25px;
+      padding: 10px 20px;
+      background-color: #FDD86C;
+      border-radius: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      box-shadow: 0 4px 6px #FF7D1F;
+  }
+  
+  .nav-links li a {
+      text-decoration: none;
+      color: #000;
+      padding: 10px 15px;
+      font-size: x-large;
+     
+  }
+  .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px;
+    transition: 0.4s;
+}
+  
