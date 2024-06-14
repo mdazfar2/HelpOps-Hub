@@ -15,7 +15,7 @@ This cheat sheet covers essential Linux commands for understanding, implementati
   ```bash
   ls [options] [directory]
   ```
-> **Example:**
+- **Example:**
   ```bash
   ls -l /home/user
   ```
