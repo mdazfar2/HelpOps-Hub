@@ -11,6 +11,9 @@
     <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
     <link rel="stylesheet" href="square.css">
     <link rel="stylesheet" href="resources.css">
+    <link rel="stylesheet" href="dark_mode.css">
+
+
    <style>
     body {
     margin: 0;
@@ -62,6 +65,10 @@
                 <a href="https://github.com/sponsors/mdazfar2">
                     <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
                   </a>  
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="toggle" />
+                    <label for="toggle" class="switch" id="toggle"></label>
+                </div>
             </div>
             <div class="hamburger" id="hamburger">
                 <div></div>
@@ -119,5 +126,6 @@
                 document.querySelector('.nav-links1').classList.toggle('active');
             })
            </script>
+           <script src="darkmode.js"></script>
 </body>
 </html>
