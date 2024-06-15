@@ -876,3 +876,20 @@ a{
     transition: 0.4s;
 }
   
+#sun{
+  font-size: 30px !important;
+display: none;
+color: white ;
+}
+.sun {
+  content: '\2600'; /* Sun icon */
+}
+
+#moon{
+  display: none;
+}
+.moon1{
+  display: none ;
+  font-size: 30px !important;
+  transform: rotateZ(-30deg );
+}
