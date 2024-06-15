@@ -781,6 +781,8 @@ canvas{
   display: none ;
   font-size: 30px !important;
   transform: rotateZ(-30deg );
+  
+  cursor: pointer;
 }
 .loaded .loaderbox {
     opacity: 0;
@@ -791,12 +793,17 @@ canvas{
 #sun{
   font-size: 30px !important;
 display: none;
+
+cursor: pointer;
 color: white ;
 }
 .sun {
-  content: '\2600'; /* Sun icon */
+  content: '\2600';
+  
+  cursor: pointer; /* Sun icon */
 }
 
 #moon{
   display: none;
+  cursor: pointer;
 }
