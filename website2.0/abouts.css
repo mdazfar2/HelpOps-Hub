@@ -178,7 +178,7 @@ a {
   transition: transform 0.1s ease;
   width: 150px;
   padding: 7px 7px;
-  font-family: cursive;
+  font-family: Arial, Helvetica, sans-serif !important;
   margin-right: 7px;
 }
 .sponsor-btn:active {
@@ -582,6 +582,13 @@ video{
       stroke-dashoffset: -440;
     }
   }
+  /* .text-container p{
+    color: black !important;
+  } */
+   .text-container p{
+    color: black !important;
+   }
+ 
   #loader-wrapper {
     position: fixed;
     top: 0;
@@ -636,4 +643,11 @@ video{
     opacity: 0;
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-}
+} 
+.dark-mode .text-desc{
+    color: white !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .test-desc{
+    font-family: Arial, Helvetica, sans-serif;
+  }
