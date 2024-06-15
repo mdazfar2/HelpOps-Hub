@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="newCards.css">
     <link rel="stylesheet" href="skeleton.css">
     <link rel="stylesheet" href="banner.css">
+    <link rel="stylesheet" href="rank.css">
+
     <!-- <link rel="stylesheet" href="resources.css"> -->
     <link rel="stylesheet" href="dark_mode.css">
     <!-- <script src="darkmode.js"></script> -->
@@ -232,6 +234,32 @@ input:checked + .switch:before {
               </div>
           </div>
     </main>
+    <div class="container">
+      <h1>Top 3 Contributors</h1>
+      <div id="contributors">
+          <div class="contributor" id="card2">
+              <img  class="circle" id="id2">
+                  <div class="rank"><h1>2</h1></div>
+              <div class="crown" id="rank" class="left"><img src="crown.png"></div>
+              <p id="name2"></p>
+              <p id="co2"></p>
+          </div>
+          <div class="contributor" >
+              <img class="circle" id="id1">
+                  <div class="rank"><h1>1</h1></div>
+              <div class="crown" id="rank1"><img src="crown.png"></div>
+              <p id="name1"></p>
+              <p id="co1"></p>
+          </div>
+          <div class="contributor" id="card3">
+              <img  class="circle" id="id3">
+                  <div class="rank"><h1>3</h1></div>
+              <div class="crown" id="rank"><img src="crown.png"></div>
+              <p id="name3"></p>
+              <p id="co3"></p>
+      </div>
+  </div>
+  </div>
     <div id="team-grid1">
         <div id="skeleton-wrapper">
           <div class="skeleton-contributor-card">
@@ -639,5 +667,7 @@ input:checked + .switch:before {
         })
        </script>
 <script src="darkmode.js"></script>
+<script src="rank.js"></script>
+
 </body>
 </html>
