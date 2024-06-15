@@ -144,7 +144,14 @@ body.dark-mode {
   background: #333333; /* Darker background color */
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
+@media only screen and (max-width:409px){
+  .toggle-switch{
+    position: fixed;
+    top:15px;
+    left: 3% !important;
 
+  }
+}
 .dark-mode input::placeholder,
 .dark-mode textarea::placeholder {
   color: #aaa; /* Placeholder text color in dark mode */
