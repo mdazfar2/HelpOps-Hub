@@ -137,5 +137,5 @@ This will display the service details, including the external IP address.
 
 Open a web browser and navigate to the external IP address to access your Flask app!
 
-Note: I want to make sure everything is as followed in the above steps and I do want to attach screenshots but 
-I'm on ubuntu 24.01LTS so docker isn't supported on my system as of now. and if any one feel stuck or doesn't understand, feel free to reach me out.
+## Note: I want to make sure everything is as followed in the above steps and I do want to attach screenshots but 
+## I'm on ubuntu 24.01LTS so docker isn't supported on my system as of now. and if any one feel stuck or doesn't understand, feel free to reach me out.
