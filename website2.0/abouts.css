@@ -181,8 +181,14 @@ a {
   font-family: Arial, Helvetica, sans-serif !important;
   margin-right: 7px;
 }
+.text-desc{
+  padding-left: 0px !important;
+}
 .sponsor-btn:active {
   transform: translateY(1px);
+}
+.text-container p{
+  margin-left: 0px !important;
 }
 #heart {
   color: red;
