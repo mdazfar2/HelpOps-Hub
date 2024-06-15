@@ -65,3 +65,6 @@ body.dark-mode {
 .dark-mode .logo img {
   opacity: 1;
 }
+.drak-mode .rank{
+  background:black;
+}
