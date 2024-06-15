@@ -121,7 +121,10 @@ gap: 20px;
 .toggle-switch1{
   display: none !important;
 }
-
+.sponsor-btn{
+  height: 100% !important;
+  width: 100% !important;
+}
 @media only screen and (max-width:300px) {
 
    
@@ -134,6 +137,19 @@ gap: 20px;
       right: 10%;
 
     }
+   }
+   .conte a{
+    height: 40px !important;
+    display: block !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white ;
+    border-radius: 40px !important;
+   }
+   .conte h3{
+    padding: 0px !important;
+    margin-top: 4px !important;
    }
 @media only screen and (max-width:409px) {
   .nav-actions{
@@ -148,9 +164,9 @@ gap: 20px;
         width: 100% !important;
        
     }
-    .logo img{
+    /* .logo img{
         top: 46px !important;
-    }
+    } */
     .hamburger div{
         position: relative;
         left: 80%;

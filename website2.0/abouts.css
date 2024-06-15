@@ -181,6 +181,13 @@ a {
   font-family: Arial, Helvetica, sans-serif !important;
   margin-right: 7px;
 }
+@media only screen and (max-width:409px){
+  .nav-actions{
+    position: fixed;
+    top: 10px;
+    left: 3% !important;
+  }
+}
 .text-desc{
   padding-left: 0px !important;
 }
@@ -324,7 +331,7 @@ video{
   .isDisplay {
     display: block;
   }
-  .nav-actions {
+  .nav-actions  !{
     display: none !important;
   }
   .sponsor-btn {
