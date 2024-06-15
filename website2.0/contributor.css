@@ -14,8 +14,14 @@ body {
 gap: 20px;
 }
 .iconsclass >a{
-  color: white;
+  color: black;
+  padding: 8px;
+  border-radius: 50%;
   font-size: 1.1rem;
+}
+.iconsclass > a:hover{
+  box-shadow: 0 0px 8px rgba(224, 224, 224, 1);
+  color: #e0e0e0;
 }
 .mm{
   margin: 0px !important;
@@ -708,7 +714,7 @@ a{
         justify-content: space-around;
     }
     
-    .nav-actions{
+    .nav-actions a{
     
         display: none !important;
     }
@@ -737,9 +743,6 @@ a{
         width: 100% !important;
        
     }
-    .logo img{
-        top: 46px !important;
-    }
     .hamburger div{
         position: relative;
         left: 80%;
@@ -756,7 +759,7 @@ a{
         justify-content: space-around;
     }
     
-    .nav-actions{
+    .nav-actions a{
     
         display: none !important;
     }
@@ -846,6 +849,13 @@ a{
       font-size: 22px;
      position: relative;
   }
+  @media only screen and (max-width:409px){
+    .nav-actions{
+      position: fixed;
+      top: 10px;
+      left: 3% !important;
+    }
+  }
   .nav-links li a::after{
     content: '';
     position: absolute;
@@ -876,3 +886,25 @@ a{
     transition: 0.4s;
 }
   
+#sun{
+  font-size: 30px !important;
+display: none;
+color: white ;
+cursor: pointer;
+}
+.sun {
+  content: '\2600'; /* Sun icon */
+  cursor: pointer;
+}
+
+#moon{
+  display: none;
+  cursor: pointer;
+}
+.moon1{
+  display: none ;
+  font-size: 30px !important;
+  transform: rotateZ(-30deg );
+  
+  cursor: pointer;
+}

@@ -11,6 +11,12 @@
     <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
 </head>
 <body >
+    <!-- <div class="toggle-switch1">
+     
+       <i class="fa-regular moon1 fa-moon" onclick="toggleMode()" id="moon"></i><svg onclick="toggleMode1()"  id="sun" class="sun1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+      </svg>
+    </div> -->
     <div id="loader-wrapper">
         <div class="loaderbox">
             <svg class="loader" width="240" height="240" viewBox="0 0 240 240">
@@ -41,8 +47,12 @@
                     <button class="sponsor-btn">Sponsor <i id="heart" class="fas fa-heart"></i></button>
                 </a>
                 <div class="toggle-switch">
-                    <input type="checkbox" id="toggle" />
-                    <label for="toggle" class="switch" id="toggle"></label>
+                    <!-- <input type="checkbox" id="toggle" /> -->
+                    <!-- <label for="toggle" class="switch" id="toggle"></label> -->
+
+                   <i class="fa-regular moon1 fa-moon" onclick="toggleMode()" id="moon"></i><svg onclick="toggleMode1()"  id="sun" class="sun1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                  </svg>
                 </div>
             </div>
             <div class="hamburger" id="hamburger">
@@ -57,6 +67,7 @@
         <li><a href="abouts.html">About</a></li>
         <li><a href="contributor.html">Team</a></li>
         <li><a href="contactus.html">Contact</a></li>
+     
     </ul>
     <main id="particles-js">
         <div class="main-content">
@@ -91,14 +102,14 @@
         </div>
     </div>
     <script src="scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-    <script type="module">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script> -->
+    <!-- <script type="module">
         import { annotate } from 'https://unpkg.com/rough-notation?module';
         
         const e = document.querySelector('.star-button');
         const annotation = annotate(e, { type: 'highlight', color: '#fff' });
         annotation.show();
-    </script>
+    </script> -->
     
     <script>
         VanillaTilt.init(document.querySelectorAll(".logo"), {

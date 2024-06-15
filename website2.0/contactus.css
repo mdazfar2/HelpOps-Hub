@@ -10,6 +10,7 @@ body {
     margin-bottom: 100px;
     gap: 200px;
 }
+
 #error{
      color: red;
     font-size: 18px;
@@ -137,6 +138,16 @@ textarea::placeholder{
     cursor: pointer;
     color: black;
 
+}
+@media only screen and (max-width:409px){
+  .nav-actions a{
+    display: none !important;
+  }
+  .nav-actions{
+    position: fixed;
+    top: 10px;
+    left: 3% !important;
+  }
 }
 #rate{
     font-family: Poppins;
