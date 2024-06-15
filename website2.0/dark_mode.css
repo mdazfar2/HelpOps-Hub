@@ -54,6 +54,10 @@ body.dark-mode {
   color: #e0e0e0;
 }
 
+.dark-mode .about_title{
+  color: #e0e0e0;
+}
+
 .dark-mode .main-content {
   gap: 30px;
 }
