@@ -167,7 +167,7 @@ async function fetchAllContributors() {
   try {
     const contributorsData = await fetchContributors();
     allContributors = contributorsData;
-    renderContributors(allContributors.slice(0, itemsPerPage));
+    renderContributors(allContributors.slice(0, 11));
     if (allContributors.length > itemsPerPage) {
       loadMoreButton.style.display = "block"; // Show the Load More button if more data exists
     }
