@@ -121,10 +121,7 @@ gap: 20px;
 .toggle-switch1{
   display: none !important;
 }
-.sponsor-btn{
-  height: 100% !important;
-  width: 100% !important;
-}
+
 @media only screen and (max-width:300px) {
 
    
@@ -839,4 +836,8 @@ color: white ;
 #moon{
   display: none;
   cursor: pointer;
+}
+.sponsor-btn{
+  height: 100% !important;
+  width: 100% !important;
 }
