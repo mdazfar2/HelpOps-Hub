@@ -841,3 +841,6 @@ color: white ;
   height: 100% !important;
   width: 100% !important;
 }
+.star-button{
+  font-weight: 500 !important;
+}
