@@ -327,6 +327,7 @@ video{
     height: 46px !important;
   }
 }
+
 @media only screen and (max-width: 300px) {
   nav {
     gap: 2% !important;
@@ -362,7 +363,10 @@ video{
     width: 100% !important;
   }
 }
-
+.text-container h1{
+  font-size: 40px !important;
+  text-align: left;
+}
 /* loader css */
 .loaderbox {
   display: block;
