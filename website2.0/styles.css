@@ -777,9 +777,26 @@ canvas{
     -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-
+.moon1{
+  display: none ;
+  font-size: 30px !important;
+  transform: rotateZ(-30deg );
+}
 .loaded .loaderbox {
     opacity: 0;
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
+  
+}
+#sun{
+  font-size: 30px !important;
+display: none;
+color: white ;
+}
+.sun {
+  content: '\2600'; /* Sun icon */
+}
+
+.moon {
+  content: '\1F319'; /* Moon icon */
 }
