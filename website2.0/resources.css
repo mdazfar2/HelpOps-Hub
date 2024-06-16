@@ -121,7 +121,15 @@ input:checked + .switch:before {
   flex-direction: column;
   margin-top: 5rem;
 }
-
+.folder-card {
+  color: black;
+}
+.dark-mode .folder-card {
+  color: white;
+}
+.folder-card p{
+  color: black;
+}
 @media (max-width: 768px) {
     .folder-card {
       flex: 0 0 calc(50% - 120px); /* Two cards per row (adjust margin as needed) */
