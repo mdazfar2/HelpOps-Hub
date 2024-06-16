@@ -1,14 +1,14 @@
-const cont = document.getElementById("team-grid1");
-const loadMoreButton = document.getElementById("load-more");
-const owner = "mdazfar2";
-const repoName = "HelpOps-Hub";
-const itemsPerPage = 11; // Number of items per page
-let currentPage = 1; // Initialize the page number
-let allContributors = []; // To store all contributors data
-let pageNumber = 1; // Initialize the page number
+// const cont1 = document.getElementById("contributors");
+// const loadMoreButton = document.getElementById("load-more");
+const owner1 = "mdazfar2";
+const repoName1 = "HelpOps-Hub";
+// const itemsPerPage = 11; // Number of items per page
+// let currentPage = 1; // Initialize the page number
+// let allContributors = []; // To store all contributors data
+let pageNumber1 = 1; // Initialize the page number
 // const loading = document.getElementById("skeleton-wrapper");
 //   cont.appendChild(loading);
-async function fetchContributors(pageNumber) {
+async function fetchContributors1(pageNumber1) {
   const _0x57c7a2 = _0x55df;
   (function (_0x7afde4, _0x279ad2) {
     const _0x373dbd = _0x55df,
@@ -81,8 +81,8 @@ async function fetchContributors(pageNumber) {
     return _0x470c();
   }
   const token = await getkey();
-  const perPage = 100;
-  const url = `https://api.github.com/repos/${owner}/${repoName}/contributors?page=${pageNumber}&per_page=${perPage}`;
+  const perPage1 = 100;
+  const url = `https://api.github.com/repos/${owner1}/${repoName1}/contributors?page=${pageNumber1}&per_page=${perPage1}`;
 
   const response = await fetch(url, {
     headers: {
@@ -96,22 +96,23 @@ async function fetchContributors(pageNumber) {
   }
 
   const contributorsData = await response.json();
-  const cont = document.getElementById("team-grid1");
-  cont.removeChild(cont.firstChild);
-  console.log(cont.removeChild(cont.firstChild));
+  // const cont = document.getElementById("team-grid1");
+  // cont.removeChild(cont.firstChild);
+  // console.log(cont.removeChild(cont.firstChild));
   return contributorsData;
 }
 
 // Function to fetch all contributors
-function renderContributors(contributors) {
-  var cheak = 0;
+function renderContributors1(contributors) {
+  var r = 1;
+
   contributors.forEach((contributor) => {
     if (contributor.login === owner) {
       return;
     }
-
-    const contributorCard = document.createElement("div");
-    contributorCard.classList.add("team-member7");
+    // if ((r) => 4) return;
+    // const contributorCard = document.createElement("div");
+    // contributorCard.classList.add("contributors");
     const avatarImg = document.createElement("img");
     avatarImg.src = contributor.avatar_url;
     avatarImg.alt = `${contributor.login}'s Picture`;
@@ -125,66 +126,61 @@ function renderContributors(contributors) {
     loginLink.href = contributor.html_url;
     loginLink.target = "_blank";
     const contri = contributor.contributions;
-    contributorCard.innerHTML = `
-      <div class="card7">
-        <div class="badge7">Developer</div>
-        <div class="image-div7">
-          <img src=${avatarImg.src} alt=${avatarImg.alt} />
-        </div>
-        <div class="info-div7">
-          <h2>${name}</h2>
-          <p>Open Source Contributor</p>
-        </div>
-      </div>
-      <div class="data7">
-        <div class="contributions7">
-          <div class="contributions-count7">${contri}</div>
-          <div class="contributions-label7">Contributions</div>
-        </div>
-        <div class="social-links7">
-          <a href=${loginLink}>
-            <i class="fab fa-github"></i>
-          </a>
-          <div class="github-label7">GitHub</div>
-        </div>
-      </div>`;
+    // contributorCard.innerHTML = `
+    //     <div class="contributor">
+    //             <img src=${avatarImg.src} class="circle">
+    //                 <div class="rank">${r}</div>
+    //             <div class="crown" id="rank"><img src="crown.png"></div>
+    //             <p>${name}</p>
+    //             <p>Contributions ${contri}</p>
+    //         </div>`;
 
     if (
-      cheak > 5 &&
+      r < 4 &&
       fname != "azfar-2" &&
       fname != "Ayushmaanagarwal1211" &&
-      fname != "RamakrushnaBiswal"
-    )
-      cont.appendChild(contributorCard);
-    cheak++;
+      fname != "RamakrushnaBiswal" &&
+      fname != "pandeyji711"
+    ) {
+      const img = document.getElementById(`id${r}`);
+      document.getElementById(`id${r}`).src = avatarImg.src;
+      // loginLink.appendChild(img);
+      img.parentNode.insertBefore(loginLink, img);
+      loginLink.appendChild(img);
+      document.getElementById(`name${r}`).innerHTML = name;
+      document.getElementById(`co${r}`).innerHTML = `contribution ${contri}`;
+
+      r++;
+    }
   });
 }
 // Fetch all contributors with pagination
 
 // Initial fetch
 
-async function fetchAllContributors() {
-  try {
-    const contributorsData = await fetchContributors();
-    allContributors = contributorsData;
-    renderContributors(allContributors.slice(0, 11));
-    if (allContributors.length > itemsPerPage) {
-      loadMoreButton.style.display = "block"; // Show the Load More button if more data exists
-    }
-  } catch (error) {
-    console.error(error);
-  }
+async function fetchAllContributors1() {
+  const contributorsData1 = await fetchContributors1();
+  allContributors1 = contributorsData1;
+  // console.log(allContributors1.slice(0, 10));
+  renderContributors1(allContributors1.slice(0, 7));
+  //   if (allContributors.length > itemsPerPage) {
+  //     loadMoreButton.style.display = "block"; // Show the Load More button if more data exists
+  //   }
+  // } catch (error) {
+  //   console.error(error);
+  // }
 }
 
-loadMoreButton.addEventListener("click", () => {
-  const start = currentPage * itemsPerPage;
-  const end = start + itemsPerPage;
-  renderContributors(allContributors.slice(start, end));
-  currentPage++;
-  if (end >= allContributors.length) {
-    loadMoreButton.style.display = "none"; // Hide the Load More button if no more data
-  }
-});
+// loadMoreButton.addEventListener("click", () => {
+//   const start = currentPage * itemsPerPage;
+//   const end = start + itemsPerPage;
+//   renderContributors(allContributors.slice(start, end));
+//   currentPage++;
+//   if (end >= allContributors.length) {
+//     loadMoreButton.style.display = "none"; // Hide the Load More button if no more data
+//   }
+// });
 
 // Initial fetch
-fetchAllContributors();
+// const contributorsData = await fetchContributors();
+fetchAllContributors1();
