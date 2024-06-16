@@ -98,6 +98,9 @@ color:#00000094;
     box-shadow: 1px 5px 6.8px 4px #00000040;
 
 }
+.circle img :hover{
+    transform: scale(1.7);
+}
 .circle .rank {
     font-size: 24px;
     color: white;
