@@ -652,6 +652,7 @@ a{
       flex-direction: column;
       justify-content: space-around;
   }
+ 
     .active{
       animation: animate forwards ease-in 0.2s;
       list-style: none;
@@ -729,6 +730,7 @@ a{
         gap: 2% !important;
     }
    }
+   
 @media only screen and (max-width:409px) {
     nav{
         gap: 5% !important;
@@ -901,4 +903,6 @@ cursor: pointer;
   transform: rotateZ(-30deg );
   
   cursor: pointer;
-}
+} .card1,.card2,.card3,.card4{
+    width: 86% !important;
+   }
