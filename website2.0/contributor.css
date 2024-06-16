@@ -14,8 +14,14 @@ body {
 gap: 20px;
 }
 .iconsclass >a{
-  color: white;
+  color: black;
+  padding: 8px;
+  border-radius: 50%;
   font-size: 1.1rem;
+}
+.iconsclass > a:hover{
+  box-shadow: 0 0px 8px rgba(224, 224, 224, 1);
+  color: #e0e0e0;
 }
 .mm{
   margin: 0px !important;

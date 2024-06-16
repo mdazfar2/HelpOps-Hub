@@ -16,8 +16,10 @@
 # Welcome to HelpOps-Hub 👋
 At HelpOps-Hub, we're building a comprehensive collection of resources, guides, and tools to empower DevOps enthusiasts and professionals of all experience levels.  Navigate the vast landscape of DevOps with ease –  whether you're a beginner looking to get started or an experienced engineer seeking advanced solutions, our repository is designed to ensure you never get stuck again.
 
-## Do You Have a New Problem? 💭
-Don't worry! Just raise an [issue](https://github.com/mdazfar2/HelpOps-Hub/issues/new), and our community or maintainers will provide a quick solution to it as soon as possible.
+<a name="demo"></a>
+## 👩‍💻 Live demo 
+
+Visit https://www.helpopshub.com to see the live demo!
 
 <div>
   <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/4a07b161-b8d6-4803-804a-3b0db699023e" width="35" height="35"> Goal of our project </h2>
@@ -43,6 +45,16 @@ The goal of our project is to empower DevOps professionals by providing a compre
 4. **Community Focused**: We believe in the power of community. Contribute your knowledge, ask questions, and collaborate with other DevOps enthusiasts.
 5. **Quality Assurance**: Trust in vetted tools and resources rigorously assessed for accuracy, relevance, and real-world effectiveness.
 6. **Empowerment**: Equip yourself with the knowledge, tools, and support needed to succeed in DevOps and drive organizational impact.
+
+<br>
+
+<h2> 🚀Technology Used</h2>
+
+<p>
+  <a href="https://www.w3schools.com/html/"> <img src="https://img.icons8.com/color/70/000000/html-5--v1.png" alt="HTML" /></a>
+  <a href="https://www.w3schools.com/css/"> <img src="https://img.icons8.com/color/70/000000/css3.png" alt="CSS" /></a>
+  <a href="https://www.w3schools.com/js/"><img src="https://img.icons8.com/color/70/000000/javascript--v1.png" alt="JS" /></a>
+</p>
 
 <br>
 
@@ -98,8 +110,9 @@ The goal of our project is to empower DevOps professionals by providing a compre
 </div>
 <br>
 
-We welcome contributors from the DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
+We welcome contributors from the Developers & DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
 
+***Want to contribute to our website you must have to read [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md).***
 - Setup HelpOps-Hub on your local machine
 - Append new Documentation of Installation or anything
 - Append new DevOps Tools
@@ -107,18 +120,37 @@ We welcome contributors from the DevOps community to enrich HelpOps-Hub and make
 - And more!
 
 
+<h1 align=center> Project Admin 👾 </h1>
+
+  <p align="center">
+  <a href="https://github.com/mdazfar2"><img src="https://avatars.githubusercontent.com/mdazfar2" width="17%" /></a>
+
+   <div align="center">
+        <a href="https://www.linkedin.com/in/md-azfar-alam/"><img height="20" width="70" src="https://img.shields.io/badge/Linkedin-0077b5?style=flat&logo=linkedin" /></a>
+        <a href="mailto:azfaralam.ops@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" /></a>
+       <a href="https://medium.com/@azfaralam"><img  height="19.5" width="88" src="https://user-images.githubusercontent.com/85965606/213698027-8bb2ee74-7440-49dd-a5b7-a234b7722a51.png" /></a>
+        <a href="https://twitter.com/mdazfar2"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white" /></a>
+        <a href="https://github.com/mdazfar2"><img  height="22" width="81" src="https://img.shields.io/badge/GitHub-black.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
+        <a href="https://www.instagram.com/azfarxx_?r=nametag"><img  height="20" width="88" src="https://img.shields.io/badge/-INSTAGRAM-cc0099?&style=for-the-badge&logo=instagram&logoColor=white" /></a>
+    
+    
+ </div>
+
+ 
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<h2>Code Of Conduct📑</h2>
+
+This project and everyone participating in it is governed by the [Code of Conduct](https://github.com/mdazfar2/HelpOps-Hub/blob/main/.github/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+
 <a name="building-with-gitpod"></a>
-
-
-# License
-This repository is licensed under the [MIT License](LICENSE), allowing you to freely use and modify the provided scripts.
-
-***Together, we can continue to improve and expand this resource hub for people worldwide! 💪***
 
 <div align="center">
 
 </div>
-<br>
 <br>
 <!-- a big thanks to all the contributors -->
 <div align="center">
@@ -137,3 +169,26 @@ This repository is licensed under the [MIT License](LICENSE), allowing you to fr
   <img width="90%" src="https://contrib.rocks/image?repo=mdazfar2/HelpOps-Hub" />
 </a>
 </div>
+
+
+## License 📝
+
+
+<table>
+  <tr>
+     <td>
+       <p align="center"> <img src="https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/880c1c91-8d87-4349-afc4-b69b2d8daea1" width="80%"></img>
+    </td>
+    <td> 
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/> <br> 
+HelpOps-Hub is licensed under the terms of the MIT License. check out <a href="./LICENSE">LICENSE</a> for details. <img width=2300/>
+    </td>
+  </tr>
+</table>
+
+<a name="support"></a>
+
+## Support ⭐
+
+- 💰 Become our [Sponsor](https://github.com/sponsors/mdazfar2)!
+- ⭐ Star our Repo 
