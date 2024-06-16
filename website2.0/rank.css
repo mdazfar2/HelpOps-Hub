@@ -104,6 +104,9 @@ color:#00000094;
     box-shadow: 0 0px 30px rgba(0, 0, 0, 0.8);
     transform: scale(1.1);
 }
+.circle img :hover{
+    transform: scale(1.7);
+}
 .circle .rank {
     font-size: 24px;
     color: white;
