@@ -290,11 +290,11 @@ nav {
   width: 100%;
   transform: scaleX(0);
   height: 3px;
-  bottom: 4px;
+  bottom: 5px;
   left: 0;
   background-color: #FF7D1F;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.15s ease-out;
 }
 
 .nav-links li a:hover::after{ 
@@ -309,7 +309,7 @@ nav {
   
 }
 a{
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .search-btn {
     background-color: transparent;
