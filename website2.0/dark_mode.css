@@ -47,7 +47,11 @@ body.dark-mode {
 }
 
 .dark-mode p {
-  color: #e0e0e0;
+  color: #e0e0e0 !important;
+}
+
+.dark-mode .rank{
+  background:rgb(0, 0, 0);
 }
 
 .dark-mode h1 {
