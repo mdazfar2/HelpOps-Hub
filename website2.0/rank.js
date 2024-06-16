@@ -124,7 +124,7 @@ function renderContributors1(contributors) {
 
     const loginLink = document.createElement("a");
     loginLink.href = contributor.html_url;
-    loginLink.target = "_blank";
+    loginLink.target = "_self";
     const contri = contributor.contributions;
     // contributorCard.innerHTML = `
     //     <div class="contributor">
