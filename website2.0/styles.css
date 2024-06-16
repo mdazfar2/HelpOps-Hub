@@ -816,9 +816,9 @@ canvas{
 }
 .moon1{
   display: none ;
-  font-size: 30px !important;
+  font-size: 45px !important;
   transform: rotateZ(-30deg );
-  
+  margin-left: 5px;
   cursor: pointer;
 }
 .loaded .loaderbox {
@@ -827,14 +827,15 @@ canvas{
     transition: all 0.3s ease-out;
   
 }
-#sun{
-  font-size: 30px !important;
+.sun {
+font-size: 45px  !important;
 display: none;
-
+margin-left: 20px; 
 cursor: pointer;
 color: white ;
 }
-.sun {
+
+#sun {
   content: '\2600';
   
   cursor: pointer; /* Sun icon */
