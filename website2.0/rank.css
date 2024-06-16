@@ -95,8 +95,12 @@ color:#00000094;
     position: relative;
 }
 .circle{
-    box-shadow: 1px 5px 6.8px 4px #00000040;
-
+    /* box-shadow: 1px 5px 6.8px 4px #00000040; */
+    transition: transform 0.3s ease-in-out;
+}
+.circle:hover{
+    box-shadow: 0 0px 30px rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
 }
 .circle .rank {
     font-size: 24px;
@@ -148,9 +152,44 @@ color:#00000094;
     bottom: 44px;
     left: 50px;
 }
-.drak-mode .rank{
+.dark-mode .rank{
     background:black;
 }
+
+.dark-mode .contributor #name1 {
+    color: #E7E7E7;
+}
+
+.dark-mode .contributor #name2 {
+    color: #E7E7E7;
+}
+
+.dark-mode .contributor #name3 {
+    color: #E7E7E7;
+}
+
+.dark-mode .contributor #co1 {
+    color: #929292;
+}
+
+.dark-mode .contributor #co2 {
+    color: #929292;
+}
+
+.dark-mode .contributor #co3 {
+    color: #929292;
+}
+
+.dark-mode .contributor .circle{
+    transition: transform 0.3s ease-in-out;
+}
+
+.dark-mode .contributor .circle:hover{
+    box-shadow: 0 0px 50px rgba(255, 125, 31, 1);
+    transform: scale(1.1);
+}
+
+
 h1{
     color: #2F7191;
     font-family: Poppins;
