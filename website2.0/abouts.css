@@ -662,7 +662,7 @@ video{
     transition: all 0.3s ease-out;
 } 
 .dark-mode .text-desc{
-    color: rgb(156 163 175) !important;
+    color: white !important;
     font-family: Arial, Helvetica, sans-serif;
   }
   .test-desc{
