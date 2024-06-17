@@ -2,10 +2,12 @@ const cont = document.getElementById("team-grid1");
 const loadMoreButton = document.getElementById("load-more");
 const owner = "mdazfar2";
 const repoName = "HelpOps-Hub";
-const itemsPerPage = 11; // Number of items per page
+const initialItems = 4;
+const itemsPerPage = 4; // Number of items per page
 let currentPage = 1; // Initialize the page number
 let allContributors = []; // To store all contributors data
 let pageNumber = 1; // Initialize the page number
+let otherContri=[];
 // const loading = document.getElementById("skeleton-wrapper");
 //   cont.appendChild(loading);
 async function fetchContributors(pageNumber) {
@@ -102,14 +104,40 @@ async function fetchContributors(pageNumber) {
   return contributorsData;
 }
 
+let topContri = [];
+
+function topContributors(contributors) {
+  let r = 1;
+
+  contributors.forEach((contributor) => {
+    let name = contributor.name || contributor.login;
+    const fname = name;
+    if (
+      r < 4 &&
+      fname != "azfar-2" &&
+      fname != "Ayushmaanagarwal1211" &&
+      fname != "RamakrushnaBiswal" &&
+      fname != "pandeyji711" &&
+      fname != owner
+    ) {
+      topContri.push(contributor.login);
+      r++;
+    }
+    else if(r>=4 &&
+      fname != "azfar-2" &&
+      fname != "Ayushmaanagarwal1211" &&
+      fname != "RamakrushnaBiswal" &&
+      fname != "pandeyji711" &&
+      fname != owner
+    ){
+      otherContri.push(contributor);
+    }
+  });
+}
+
 // Function to fetch all contributors
 function renderContributors(contributors) {
-  var cheak = 0;
   contributors.forEach((contributor) => {
-    if (contributor.login === owner) {
-      return;
-    }
-
     const contributorCard = document.createElement("div");
     contributorCard.classList.add("team-member7");
     const avatarImg = document.createElement("img");
@@ -121,6 +149,14 @@ function renderContributors(contributors) {
       name = name.slice(0, 10) + "...";
     }
 
+    if (
+      fname != "azfar-2" &&
+      fname != "Ayushmaanagarwal1211" &&
+      fname != "RamakrushnaBiswal" &&
+      fname != "pandeyji711" &&
+      fname != owner &&
+      !topContri.includes(fname)
+    ){
     const loginLink = document.createElement("a");
     loginLink.href = contributor.html_url;
     loginLink.target = "_blank";
@@ -148,15 +184,8 @@ function renderContributors(contributors) {
           <div class="github-label7">GitHub</div>
         </div>
       </div>`;
-
-    if (
-      cheak > 5 &&
-      fname != "azfar-2" &&
-      fname != "Ayushmaanagarwal1211" &&
-      fname != "RamakrushnaBiswal"
-    )
-      cont.appendChild(contributorCard);
-    cheak++;
+    cont.appendChild(contributorCard);
+   }
   });
 }
 // Fetch all contributors with pagination
@@ -166,9 +195,12 @@ function renderContributors(contributors) {
 async function fetchAllContributors() {
   try {
     const contributorsData = await fetchContributors();
+    topContributors(contributorsData);
+    // console.log(otherContri);
     allContributors = contributorsData;
-    renderContributors(allContributors.slice(0, 11));
-    if (allContributors.length > itemsPerPage) {
+    // console.log(otherContri.slice(0,initialItems));
+    renderContributors(otherContri.slice(0,initialItems)); // Display the initial contributors
+    if (otherContri.length > initialItems) {
       loadMoreButton.style.display = "block"; // Show the Load More button if more data exists
     }
   } catch (error) {
@@ -179,12 +211,15 @@ async function fetchAllContributors() {
 loadMoreButton.addEventListener("click", () => {
   const start = currentPage * itemsPerPage;
   const end = start + itemsPerPage;
-  renderContributors(allContributors.slice(start, end));
+  const remainingContributors = otherContri.slice(start);
+  console.log(otherContri.slice(start));
+  renderContributors(remainingContributors.slice(0, itemsPerPage));
   currentPage++;
-  if (end >= allContributors.length) {
+  if (end >= otherContri.length) {
     loadMoreButton.style.display = "none"; // Hide the Load More button if no more data
   }
 });
+
 
 // Initial fetch
 fetchAllContributors();
