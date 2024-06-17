@@ -77,6 +77,9 @@
         padding: 10px 15px;
         font-size: x-large;
     }
+    .dark-mode .nav-links1 li a {
+      color: #e0e0e0;
+  }
 }
 .isDisplay{
     display: none;
