@@ -816,7 +816,7 @@ canvas{
 }
 .moon1{
   display: none ;
-  font-size: 45px !important;
+  font-size: 35px !important;
   transform: rotateZ(-30deg );
   margin-left: 5px;
   cursor: pointer;
@@ -828,7 +828,7 @@ canvas{
   
 }
 .sun {
-font-size: 45px  !important;
+font-size: 35px  !important;
 display: none;
 margin-left: 20px; 
 cursor: pointer;
@@ -837,13 +837,14 @@ color: white ;
 
 #sun {
   content: '\2600';
-  
+  display: none;
   cursor: pointer; /* Sun icon */
 }
 
 #moon{
   display: none;
   cursor: pointer;
+  color: #333;
 }
 .sponsor-btn{
   height: 100% !important;
