@@ -79,7 +79,7 @@ This cheat sheet covers essential Linux commands for understanding, implementati
 
 ### 5. 'sudo'
 - **Meaning:**
-  Execute a command as the superuser or another user.   
+  Execute a command as the superuser or as admin.   
 
 - **How to Use:**
   ```bash
@@ -106,8 +106,7 @@ This cheat sheet covers essential Linux commands for understanding, implementati
   ```
 - **Example:**
   ```bash
-  chmod +x script.sh
-
+  chmod +x script.sh (This would make the file executable)
 
   ```
 - **When to Use:**
@@ -256,4 +255,24 @@ This cheat sheet covers essential Linux commands for understanding, implementati
 
 ## Conclusion
   In this document, we covered various essential Linux commands across multiple categories to aid in understanding and practical usage. Categories include file management, system administration, networking, user management, text processing, disk usage, system information, package management, network configuration, firewall management, and system maintenance. Additionally, we provided examples and explanations of Bash language keywords within terminal sessions for effective Bash scripting documentation. This comprehensive cheat sheet serves as a valuable resource for beginners and experienced users alike. 🐧🚀📄
+  # Further information 
+  For Further Extensive infromation you can go through the 
+  - [LinuxForProfessional Notes](https://goalkicker.com/LinuxBook/LinuxNotesForProfessionals.pdf)
+  - For proper roadmaps: [Click Here](https://roadmap.sh/linux)
+  - For Extensive View of how many linu distributions are there [Click Here](https://commons.wikimedia.org/w/index.php?curid=2556373)
+  - We suggest you start with Ubuntu, However if you dont like it you can move to other distros
+  - Distro means flavours of linux, or in other terms different versions of linux, like for windows we have 7,10,11 Similarly Here we have parent distro for example in case of ubuntu it would be Debian!
+ # Related resources
 
+To find New distros: [Distrowatch](https://distrowatch.com/)
+
+Archive of linux Distros: [ArchiveOS](https://archiveos.org/linux/)
+
+
+To find New distros(part-2):[LWN](https://lwn.net/Distributions/)
+
+Check out the grandfather of most linux distributions: [Debian](https://www.debian.org/derivatives/)
+
+This is what the cool kids on the block use: [Archlinux](https://wiki.archlinux.org/index.php/Arch-based_distributions)
+
+Did you know RaspberryPi also runs on linux: [Raspberry PI](https://fabiololix.gitlab.io/lists/RaspberryPi_OS/)
