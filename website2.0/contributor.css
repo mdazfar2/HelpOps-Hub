@@ -756,7 +756,30 @@ a{
           font-size: x-large;
          
       }
+      .dark-mode .nav-links1 li a {
+        color: #e0e0e0;
   }
+  .nav-links1 li{
+    position: relative;
+    
+  }
+  .nav-links1 li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.nav-links1 li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: -8px;
+    left: 0;
+    background-color: #FF7D1F;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+}
   .isDisplay{
     display: none;
 }
