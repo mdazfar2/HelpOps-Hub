@@ -329,7 +329,7 @@ a{
     align-items: center;
     justify-content: center;
     gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: all 0.3s ease; /* Smooth click effect */
     width: 150px;
     padding: 7px 7px ;
     font-family:cursive;
@@ -339,6 +339,12 @@ a{
 .sponsor-btn:active{
   transform:translateY(1px) ;
 }
+.sponsor-btn:hover{
+  transform: translateX(10px);
+  background: none;
+  border: 2px solid whitesmoke;
+}
+
 #heart{
     color: red;
 }
@@ -372,8 +378,7 @@ main{
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    
-
+    transition: all 0.5s ease;  
 }
 
 .star-button {
@@ -383,7 +388,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: transform 0.5s ease; /* Smooth click effect */
     width: 150px;
     padding: 9px 9px ;
     font-family:cursive;
@@ -391,6 +396,20 @@ main{
   
   .star-button:active {
     transform: translateY(1px); /* Slight move down on click */
+  }
+
+  .conte a{
+    transition: all 0.5s ease;
+  }
+
+  .conte a:hover {
+    transform: translateX(10px);
+    background: transparent;
+    border: 2px solid white;
+  }
+
+  .dark-mode .conte a:hover h3 {
+    color: white;
   }
   
   .star-icon {
@@ -410,13 +429,19 @@ main{
     align-items: center;
     justify-content: center;
     gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: all 0.5s ease; /* Smooth click effect */
     width: 180px;
     background-color: whitesmoke;
     font-family:cursive;
 }
 .get-started-btn:active {
     transform: translateY(1px); /* Slight move down on click */
+  }
+
+  .get-started-btn:hover {
+    transform: translateX(10px);
+    background: transparent;
+    border: 2px solid white;
   }
 
 h1 {

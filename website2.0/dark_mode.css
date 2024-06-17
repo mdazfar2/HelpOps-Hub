@@ -37,9 +37,12 @@ body.dark-mode {
 
 .dark-mode .sponsor-btn,
 .dark-mode .get-started-btn {
-  background-color: #333;
-  color: #e0e0e0;
   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .sponsor-btn:hover,
+.dark-mode .get-started-btn:hover {
+  color: #e0e0e0;
 }
 
 .dark-mode .hamburger div {
