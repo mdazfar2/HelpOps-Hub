@@ -212,7 +212,7 @@ a {
   font-size: 48px !important;
   color: black;
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 .video {
   display: flex;
@@ -238,6 +238,7 @@ video{
   flex-wrap: wrap;
   height: auto;
   overflow-x: hidden;
+  margin-top: 25px;
 }
 .end {
   width: 80%;
@@ -245,6 +246,7 @@ video{
   flex-direction: row;
   height: auto;
   overflow-x: hidden;
+  margin-top: 25px;
 }
 .start .img-container {
   width: 50%;
@@ -271,6 +273,7 @@ video{
 .text-desc {
   font-size: larger;
   text-align: justify;
+  color: rgb(2 6 23) !important;
 }
 .end .text-title {
   text-align: center;
@@ -379,6 +382,7 @@ video{
 .text-container h1{
   font-size: 40px !important;
   text-align: left;
+  font-weight: 600;
 }
 /* loader css */
 .loaderbox {
@@ -599,7 +603,7 @@ video{
     color: black !important;
   } */
    .text-container p{
-    color: black !important;
+    color: rgb(2 6 23) !important;
    }
  
   #loader-wrapper {
