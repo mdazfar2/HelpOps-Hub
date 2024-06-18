@@ -78,3 +78,12 @@ body.dark-mode {
     background-color: #2c2c2c;
     color: #e0e0e0;
 }
+.dark-mode #name{
+  color: #e0e0e0;
+}
+.dark-mode #email{
+  color: #e0e0e0;
+}
+.dark-mode #comment{
+  color: #e0e0e0;
+}
