@@ -753,6 +753,7 @@ a{
       align-items: center;
       text-decoration: none;
       width: 100%;
+      margin-bottom:40px;
   }
     @media only screen and (max-width:987px){
       .nav-links{
