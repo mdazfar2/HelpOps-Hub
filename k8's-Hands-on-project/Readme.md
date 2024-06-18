@@ -66,8 +66,8 @@ docker build -t my-flask-app .
 ```
 This will create a Docker image with the tag `my-flask-app`.
 
-After building a docker image, you need to start the minicube on your local machine. It is a basic single cluster configuration which is pretty easy to setup.
- - Set up the minicube on your local machine. hit this [site](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fdebian+package) and get according to your machine 
+After building a docker image, you need to start the minikube on your local machine. It is a basic single cluster configuration which is pretty easy to setup.
+ - Set up the minikube on your local machine. hit this [site](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fdebian+package) and get according to your machine 
  - Next Go Ahead and start the service
 ```
 minikube start
