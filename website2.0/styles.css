@@ -4,12 +4,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-gap: 20px;
+    gap: 20px;
 }
 .iconsclass >a{
-    color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 50%;
     font-size: 1.1rem;
 }
+.iconsclass > a:hover{
+  box-shadow: 0 0px 8px rgba(224, 224, 224, 1);
+  color: #e0e0e0;
+}
+
 .mm{
     margin: 0px !important;
 }
@@ -70,6 +77,29 @@ gap: 20px;
         padding: 10px 15px;
         font-size: x-large;
     }
+    .dark-mode .nav-links1 li a {
+      color: #e0e0e0;
+  }
+  .nav-links1 li{
+    position: relative;
+    
+  }
+  .nav-links1 li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.nav-links1 li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: -8px;
+    left: 0;
+    background-color: #FF7D1F;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
 }
 .isDisplay{
     display: none;
@@ -302,7 +332,7 @@ nav {
   
 }
 a{
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .search-btn {
     background-color: transparent;
@@ -322,7 +352,7 @@ a{
     align-items: center;
     justify-content: center;
     gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: all 0.3s ease; /* Smooth click effect */
     width: 150px;
     padding: 7px 7px ;
     font-family:cursive;
@@ -332,6 +362,12 @@ a{
 .sponsor-btn:active{
   transform:translateY(1px) ;
 }
+.sponsor-btn:hover{
+  transform: translateX(10px);
+  background: none;
+  border: 2px solid whitesmoke;
+}
+
 #heart{
     color: red;
 }
@@ -365,8 +401,7 @@ main{
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    
-
+    transition: all 0.5s ease;  
 }
 
 .star-button {
@@ -376,7 +411,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: transform 0.5s ease; /* Smooth click effect */
     width: 150px;
     padding: 9px 9px ;
     font-family:cursive;
@@ -384,6 +419,20 @@ main{
   
   .star-button:active {
     transform: translateY(1px); /* Slight move down on click */
+  }
+
+  .conte a{
+    transition: all 0.5s ease;
+  }
+
+  .conte a:hover {
+    transform: translateX(10px);
+    background: transparent;
+    border: 2px solid white;
+  }
+
+  .dark-mode .conte a:hover h3 {
+    color: white;
   }
   
   .star-icon {
@@ -403,13 +452,19 @@ main{
     align-items: center;
     justify-content: center;
     gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: all 0.5s ease; /* Smooth click effect */
     width: 180px;
     background-color: whitesmoke;
     font-family:cursive;
 }
 .get-started-btn:active {
     transform: translateY(1px); /* Slight move down on click */
+  }
+
+  .get-started-btn:hover {
+    transform: translateX(10px);
+    background: transparent;
+    border: 2px solid white;
   }
 
 h1 {
@@ -809,9 +864,9 @@ canvas{
 }
 .moon1{
   display: none ;
-  font-size: 30px !important;
+  font-size: 35px !important;
   transform: rotateZ(-30deg );
-  
+  margin-left: 5px;
   cursor: pointer;
 }
 .loaded .loaderbox {
@@ -820,22 +875,24 @@ canvas{
     transition: all 0.3s ease-out;
   
 }
-#sun{
-  font-size: 30px !important;
+.sun {
+font-size: 35px  !important;
 display: none;
-
+margin-left: 20px; 
 cursor: pointer;
 color: white ;
 }
-.sun {
+
+#sun {
   content: '\2600';
-  
+  display: none;
   cursor: pointer; /* Sun icon */
 }
 
 #moon{
   display: none;
   cursor: pointer;
+  color: #333;
 }
 .sponsor-btn{
   height: 100% !important;
@@ -843,4 +900,16 @@ color: white ;
 }
 .star-button{
   font-weight: 500 !important;
+}
+#img{
+  margin-top: 100px;
+  width: 1100px;
+height: 726px;
+top: 862px;
+left: 97px;
+gap: 0px;
+border-radius: 50px 0px 0px 0px;
+opacity: 0px;
+
+
 }

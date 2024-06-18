@@ -10,7 +10,9 @@ body {
     margin-bottom: 100px;
     gap: 200px;
 }
-
+.contact-img1{
+  display: none;
+}
 #error{
      color: red;
     font-size: 18px;
@@ -139,10 +141,20 @@ textarea::placeholder{
     color: black;
 
 }
+@media only screen and (max-width:520px){
+  .contact-img{
+    display: none !important;
+  }
+  .contact-img1{
+    display: block !important;
+  }
+}
+
 @media only screen and (max-width:409px){
   .nav-actions a{
     display: none !important;
   }
+ 
   .nav-actions{
     position: fixed;
     top: 10px;
