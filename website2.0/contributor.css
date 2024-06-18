@@ -753,6 +753,7 @@ a{
       align-items: center;
       text-decoration: none;
       width: 100%;
+      margin-bottom:40px;
   }
     @media only screen and (max-width:987px){
       .nav-links{
@@ -1018,3 +1019,26 @@ cursor: pointer;
 } .card1,.card2,.card3,.card4{
     width: 86% !important;
    }
+   .sponsor-btn:hover {
+    transform: translateX(10px);
+    background: none;
+    border: 2px solid whitesmoke;
+}
+.sponsor-btn {
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.3s ease;
+  width: 150px;
+  padding: 7px 7px;
+  font-family: cursive;
+  margin-right: 7px;
+}
