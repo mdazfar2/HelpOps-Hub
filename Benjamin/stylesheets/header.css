@@ -1,0 +1,254 @@
+/* Header and Navigation */
+header {
+  width: 100%;
+  z-index: 100;
+  position: relative;
+  top: 0;
+  background-color: transparent;
+  padding: 10px 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 89px;
+  height: 89px;
+  position: relative;
+  top: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin: 25px;
+  padding: 12px 20px;
+  background-color: #fdd86c;
+  border-radius: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 0 4px 6px #ff7d1f;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #101010;
+  padding: 10px 15px;
+  font-size: 22px;
+  position: relative;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 4px;
+  left: 0;
+  background-color: #ff7d1f;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-links li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-btn,
+.nav-sponsor-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.nav-sponsor-btn {
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: transform 0.1s ease;
+  width: 150px;
+  padding: 7px 7px;
+  font-family: cursive;
+  margin-right: 7px;
+}
+#heart {
+  color: red;
+}
+.nav-sponsor-btn:active {
+  transform: translateY(1px);
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px;
+  transition: 0.4s;
+}
+
+/* .nav-links1 */
+.nav-links1 {
+  height: 0px;
+  overflow: hidden;
+  position: relative;
+  top: 30px;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.active {
+  animation: animate forwards ease-in 0.2s;
+  list-style: none;
+  display: none;
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: #fdd76b;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+@keyframes animate {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 270px;
+  }
+}
+
+.toggle-switch {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 50px;
+  height: 24px;
+  margin: 0px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.switch:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 1024px) {
+  .nav-links {
+    display: none !important;
+  }
+  .active {
+    display: flex;
+  }
+  .hamburger {
+    display: block !important;
+  }
+  .nav-links1 li a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px 15px;
+    font-size: x-large;
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  nav {
+    gap: 0;
+  }
+}
+
+@media only screen and (max-width:409px) {
+  .nav-actions{
+    position: fixed;
+    top: 10px;
+    left: 3% !important;
+  }
+    nav{
+        gap: 5% !important;
+    }
+    .hamburger{
+        width: 100% !important;
+    }
+    .hamburger div{
+        position: relative;
+        left: 90%;
+    }
+    nav{
+        flex-direction: column-reverse;
+    }
+    .nav-actions a{
+        display: none !important;
+    }
+    .logo img{
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+@keyframes animate {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 270px;
+  }
+}
