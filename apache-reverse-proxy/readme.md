@@ -31,3 +31,59 @@ sudo a2enmod proxy_http
 sudo a2enmod headers
 sudo systemctl restart apache2
 ```
+### Step 4: Configure Apache as a Reverse Proxy
+Add the configeration in  default Apache configuration file:
+
+```sh
+sudo vim /etc/apache2/sites-available/000-default.conf
+```
+Add or modify the configuration to proxy requests to your Docker container:
+
+```sh
+<VirtualHost *:80>
+    ServerAdmin webmaster@yourdomain.com or webmaster@localhost
+    ServerName your_domain_or_ip
+
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:8000/
+    ProxyPassReverse / http://localhost:8000/
+
+    <Location />
+        Order allow,deny
+        Allow from all
+    </Location>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Replace your_domain_or_ip with your actual domain name or IP address. ServerAdmin specifies the email address to receive server-related notifications.
+
+### Step 5: Test and Restart Apache
+Test the Apache configuration for syntax errors:
+
+```sh
+sudo apache2ctl configtest
+```
+![image](https://github.com/mayaworld13/proxy-server/assets/127987256/cdd97088-6a4f-482a-8e54-c044ca415332)
+
+If the test is successful, restart Apache to apply the changes:
+
+```sh
+sudo systemctl restart apache2
+```
+
+Step 6: Access Your Application
+
+Open a web browser and navigate to http://your_domain_or_ip. You should see the content served by your Docker container running on port 8000, proxied through Apache.
+
+![image](https://github.com/mayaworld13/proxy-server/assets/127987256/5e847214-21a3-4a11-8a5c-d7bff0c867af)
+
+---
+
+## To automate this Run the script I have made
+
+```sh
+./proxy.sh YOURPUBLICIP
+```
