@@ -436,6 +436,7 @@ main{
 
   .dark-mode .conte a:hover h3 {
     color: white;
+    
   }
   
   .star-icon {
@@ -539,7 +540,7 @@ input:checked + .switch:before {
     body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+    background: linear-gradient(to bottom, #FDD86C 2%, #fa812b 15%);
 
     display: flex;
     flex-direction: column;
