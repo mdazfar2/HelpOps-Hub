@@ -165,10 +165,10 @@ document.addEventListener("DOMContentLoaded", async function () {
               : "N/A"
           }</p>
         `;
-        folderCard.addEventListener("click", () => {
-          window.open(item.html_url, "_blank");
-          // window.location.href = item.html_url;
-        });
+        folderCard.addEventListener('click', () => {
+          const folder = `${item.name}`;
+          window.location.href = `resource-details.html?folder=${folder}&htmlUrl=${item.html_url}`;
+      });
         foldersContainer.appendChild(folderCard);
       }
     });

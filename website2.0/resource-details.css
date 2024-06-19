@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background: linear-gradient(to bottom right, #FFD700, #FFA07A);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 125, 31,0.9);
+    margin-bottom: 20px;
+}
+
+#content {
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+p, li {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: 'Georgia', serif;
+}
+
+.dark-mode p, li {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: 'Georgia', serif;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #FF6347;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #FF6347;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode h2{
+    color: #333;
+}
+
+.repo-link {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .repo-link {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    background-color: #fff;
+    color: #333;
+}
+
+.repo-link:hover {
+    background-color: #555;
+}
+
+.dark-mode .repo-link:hover {
+    color: #e0e0e0;
+}
+
+pre {
+    position: relative;
+    overflow: auto;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+a {
+    color: #FF6347;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #FF4500;
+}
+
+.copy-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    background: #FF6347;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #FF4500;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FF6347;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 999;
+}
+
+.toggle-switch {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 50px;
+    height: 24px;
+    margin: 0px;
+}
+
+.dark-mode #content{
+    color: #333;
+}
+@media (max-width: 768px) {
+    body {
+        background: linear-gradient(to bottom right, #FFD700, #FFA07A) no-repeat fixed;
+        background-size: cover;
+    }
+
+    #container {
+        margin-top: 50px;
+        width: 90%;
+        padding: 10px;
+    }
+
+    #content {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    p, li {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .repo-link {
+        bottom: 20px;
+        right: 10px;
+        padding: 10px;
+    }
+
+    pre {
+        padding: 5px;
+    }
+
+    .copy-button {
+        top: 2px;
+        right: 5px;
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin: 5px 0;
+    }
+
+    .nav-actions {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sponsor-btn {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+      font-size: 24px;
+    }
+  
+    p, li {
+      font-size: 14px;
+    }
+  
+    .repo-link {
+      padding: 8px;
+    }
+  
+    .copy-button {
+      top: 2px;
+      right: 6px;
+      padding: 2px 6px;
+      font-size: 10px;
+    }
+  }
