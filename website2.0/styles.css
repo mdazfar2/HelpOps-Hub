@@ -479,7 +479,7 @@ h1 {
 
 p {
     font-size: 24px;
-    color: white;
+    /* color: white; */
     margin: 20px;
     font-family:cursive;
 }
@@ -916,3 +916,100 @@ opacity: 0px;
 
 
 }
+#img{
+  margin-top: 100px;
+  width: 1100px;
+height: 726px;
+top: 862px;
+left: 97px;
+gap: 0px;
+border-radius: 50px 0px 0px 0px;
+opacity: 0px;
+
+}
+.newsletter{
+  display: flex;
+  background-color:#FF6B00;
+  width: 95vw;
+  height: 221px;
+  /* top: 3538px;
+  left: 31px; */
+  gap: 0px;
+  opacity: 0px;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+  margin-bottom: 5rem;
+  margin-left: 2.5vw;
+
+}
+.help img {
+  Width:100px;
+  Height:89px;
+  Top:3571px;
+  Left:46px;
+}
+.help{
+  display: flex;
+  align-items: center;
+  margin-left: 5vw;
+  margin-right: 20rem;
+}
+.txt p{
+  font-size:65px;
+  font-family: "Nova Round";
+  font-weight: 400;
+  color: #000;
+  margin-left: -0.5px;
+}
+.mail{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+#username{
+  border-radius: 15px;
+  height: 2rem;
+  width:20rem;
+  background-color: #d9d9d9;
+  padding: 2px 15px;
+  border: 2px solid transparent;
+  margin-top: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+  outline: none;
+  
+}
+.mail button{
+  background-color: #407bff;
+  border-radius: 15px;
+  height: 2rem;
+  border: 2px solid transparent;
+  margin-left: 6px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+  box-sizing: content-box;
+  
+  
+}
+.sub{
+  font-size:20px ;
+  font-weight: 100;
+  padding-left: 1rem;
+  
+}
+.subscribe{
+  margin-right: 5rem;
+}
+.btn{
+  height: 2rem;
+  padding: 10px;
+}
+/* .fa-solid .fa-envelope{
+
+  position: absolute !important;
+  top: 50% !important;
+  left: 10px  !important; /* Adjust left position as needed */
+  /* transform: translateY(-50%) !important;
+  max-width: 20px !important; /* Adjust size of the image */
+  /* height: auto !important;
+  opacity:0.5 !important; */

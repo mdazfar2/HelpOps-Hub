@@ -87,3 +87,9 @@ body.dark-mode {
 .dark-mode #comment{
   color: #e0e0e0;
 }
+.dark-mode .container p{
+color: #e0e0e0;
+}
+.dark-mode .container h1{
+  color: #e0e0e0;
+  }
