@@ -87,3 +87,9 @@ body.dark-mode {
 .dark-mode #comment{
   color: #e0e0e0;
 }
+.dark-mode .text-section h1{
+color: #e0e0e0;
+}
+.dark-mode .text-section p{
+  color: #e0e0e0;
+  }
