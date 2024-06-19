@@ -1,4 +1,4 @@
-# Apache Reverse Proxy for Docker Container
+# Apache Reverse Proxy for Docker Container  
 
 This repository provides instructions for setting up an Apache reverse proxy on an Ubuntu server to proxy requests to a Docker container running on port 8000.
 
