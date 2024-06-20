@@ -18,7 +18,7 @@
 }
 input::placeholder{
   position: relative;
-  left: 50px;
+  
 }
 .mm{
     margin: 0px !important;
@@ -542,10 +542,10 @@ input:checked + .switch:before {
 @keyframes ani {
   from{
     position: absolute;
-    bottom: 50px;
+    bottom: 20px;
   }to{
     position: absolute;
-    bottom: 30px;
+    bottom: 8px;
   }
 }
 .marg{
