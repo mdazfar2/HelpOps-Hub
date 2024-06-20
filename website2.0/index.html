@@ -410,12 +410,12 @@
         </a>
         <div onclick="scrollToDiv()">
 
-            <i class="fa-solid fa-angles-down animation1" id="scrollIcon"  onclick="scrollToDiv()" ></i>
+            <i class="fa-solid fa-angles-down animation1" style="color: white;" id="scrollIcon"  onclick="scrollToDiv()" ></i>
         </div>
       </div>
-      <div id="img1"><img src="img1.png" /></div>
+      <div id="img1" ><img src="img1.png" /></div>
 
-      <div class="container" id="container2">
+      <div class="container" >
         <div class="text-section">
           <h1 style="font-size: 55px ;">Expert DevOps Insights</h1>
           <p style="margin-left: 0px ; font-size: 24px !important;font-weight: 300 !important;text-align: justify ;">
@@ -616,7 +616,7 @@
          function scrollToDiv() {
             setTimeout(() => {
               console.log('sfdsf')
-              var element = document.getElementById('container2');
+              var element = document.getElementById('img1');
               element.scrollIntoView({ behavior: 'smooth' , type:"ease-out"});
               document.getElementById("scrollIcon").style.display='none'
             }, 200);
