@@ -554,7 +554,7 @@ input:checked + .switch:before {
     body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #FDD86C 2%, #fa812b 15%,#f3914b 19%,#fa812b 100%);
+    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
 
     display: flex;
     flex-direction: column;
