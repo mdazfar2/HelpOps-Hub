@@ -937,3 +937,9 @@ opacity: 0px;
   background: transparent;
   border: 2px solid white;
 }
+.icn{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
