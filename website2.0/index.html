@@ -406,12 +406,16 @@
         <h1>HelpOps-Hub</h1>
         <p style="color: white;">Ensuring You Never Get Stuck In DevOps Again!</p>
         <a href="resources.html">
-          <button class="get-started-btn" style="background-color: rgba(217, 217, 217, 1);">Get started</button>
+          <button onclick="scrollToDiv()" class="get-started-btn" style="background-color: rgba(217, 217, 217, 1);">Get started</button>
         </a>
-      </div>
-      <div id="img1"><img src="img1.png" /></div>
+        <div onclick="scrollToDiv()">
 
-      <div class="container">
+            <i class="fa-solid fa-angles-down animation1" style="color: rgb(206, 191, 191);" id="scrollIcon"  onclick="scrollToDiv()" ></i>
+        </div>
+      </div>
+      <div id="img1" ><img src="img1.png" /></div>
+
+      <div class="container" >
         <div class="text-section">
           <h1 style="font-size: 55px ;">Expert DevOps Insights</h1>
           <p style="margin-left: 0px ; font-size: 24px !important;font-weight: 300 !important;text-align: justify ;">
@@ -421,15 +425,15 @@
             Whether you're troubleshooting a complex issue or seeking advice on
             best practices, find the solutions you need right here.
           </p>
-          <a href=""><button style="border-radius: 30px !important;color: black;">Start now</button></a>
+          <button style="border-radius: 30px !important;color: black;">Start now</button>
         </div>
         <div class="image-section">
           <img src="img2.jpeg"  alt="DevOps Image" />
         </div>
       </div>
       <!-- <img src="cover.png"> -->
-      <div class="container1">
-        <div class="header">
+      <div class="container1" > 
+        <div class="header" >
           <div id="h1" style="text-align:start;font-size:  64px !important;font-weight: 275px;margin-left: 0px !important;width: 100% ;">We Are</div>
           <h1 class="creative">Creative</h1>
         </div>
@@ -607,5 +611,31 @@
       });
     </script>
     <script src="darkmode.js"></script>
+    <script>
+        
+         function scrollToDiv() {
+            setTimeout(() => {
+              console.log('sfdsf')
+              var element = document.getElementById('img1');
+              element.scrollIntoView({ behavior: 'smooth' , type:"ease-out"});
+              document.getElementById("scrollIcon").style.display='none'
+            }, 200);
+           
+            
+        }
+
+    </script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            var icon = document.getElementById('scrollIcon');
+
+            if (scrollPosition === 0) {
+                icon.style.display = 'block'; // Show the icon
+            } else {
+                icon.style.display = 'none'; // Hide the icon
+            }
+        });
+    </script>
   </body>
 </html>

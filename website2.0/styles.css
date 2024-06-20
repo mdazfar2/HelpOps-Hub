@@ -18,7 +18,7 @@
 }
 input::placeholder{
   position: relative;
-  left: 50px;
+  
 }
 .mm{
     margin: 0px !important;
@@ -533,6 +533,20 @@ input:checked + .switch {
 
 input:checked + .switch:before {
     transform: translateX(26px);
+}
+.animation1{
+  animation: ani alternate ease-in 0.7s infinite;
+  font-size: 2rem;
+  cursor: pointer;
+}
+@keyframes ani {
+  from{
+    position: absolute;
+    bottom: 20px;
+  }to{
+    position: absolute;
+    bottom: 8px;
+  }
 }
 .marg{
   margin-bottom: 20px;

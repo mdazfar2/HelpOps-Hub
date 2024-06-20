@@ -10,6 +10,9 @@ body {
     margin-bottom: 100px;
     gap: 200px;
 }
+#name ::placeholder{
+  text-align: left;
+}
 .contact-img1{
   display: none;
 }
@@ -19,12 +22,11 @@ body {
     text-align: center;
 }
 input::placeholder{
-    margin: 0px;
     font-family: Poppins;
 font-size: 20px;
 font-weight: 400;
 line-height: 30px;
-text-align: left;
+margin-left: 0px !important;
 
 }
 ::placeholder{
