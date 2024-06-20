@@ -534,6 +534,20 @@ input:checked + .switch {
 input:checked + .switch:before {
     transform: translateX(26px);
 }
+.animation1{
+  animation: ani alternate ease-in 0.7s infinite;
+  font-size: 2rem;
+  cursor: pointer;
+}
+@keyframes ani {
+  from{
+    position: absolute;
+    bottom: 50px;
+  }to{
+    position: absolute;
+    bottom: 30px;
+  }
+}
 .marg{
   margin-bottom: 20px;
 }
