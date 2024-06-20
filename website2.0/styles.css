@@ -64,6 +64,25 @@ input::placeholder{
     text-decoration: none;
     width: 100%;
 }
+.newsletterdiv{
+  display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.newsletterdiv input::placeholder{
+  left: 10px;
+  color: #050505;
+  padding-right: 3px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.newsletterdiv button{
+  background-color: #ea670a;
+  cursor: pointer;
+}
+.newsletterdiv button:hover{
+  background-color: #ff7d1f;
+}
 @media only screen and (max-width:987px){
     .nav-links{
         display: none !important;
