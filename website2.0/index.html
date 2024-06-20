@@ -27,7 +27,7 @@
     body{
         width: 100vw;
         overflow-x: hidden;
-        background: linear-gradient(to bottom, #FDD86C 2%, #fa812b 15%,#f3914b 19%,#fa812b 100%);
+        background: linear-gradient(to bottom, #f5d471 2%,#ec904f 15%, #ef8f4b 25%,#f18a41 35%,#ed7f30 45%,#f07f2f 55%,#f07a25 65%,#f07b28 75%,#ee7a26 75%,#f16e10 85%);
 
     }
     p{
@@ -603,7 +603,21 @@
       });
     </script>
 
+    
+    
     <script>
+      window.addEventListener('scroll', function() {
+          var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+          var icon = document.getElementById('scrollIcon');
+
+          if (scrollPosition === 0) {
+              icon.style.display = 'block'; // Show the icon
+          } else {
+              icon.style.display = 'none'; // Hide the icon
+          }
+      });
+  </script>
+  <script>
       document.getElementById("hamburger").addEventListener("click", (e) => {
         let navLinks = document.querySelector(".nav-links1");
         navLinks.classList.toggle("active");
@@ -612,7 +626,7 @@
         }
       });
     </script>
-    <script src="darkmode.js"></script>
+  <script src="darkmode.js"></script>
     <script>
         
          function scrollToDiv() {
@@ -627,17 +641,7 @@
         }
 
     </script>
-    <script>
-        window.addEventListener('scroll', function() {
-            var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-            var icon = document.getElementById('scrollIcon');
 
-            if (scrollPosition === 0) {
-                icon.style.display = 'block'; // Show the icon
-            } else {
-                icon.style.display = 'none'; // Hide the icon
-            }
-        });
-    </script>
+    
   </body>
 </html>
