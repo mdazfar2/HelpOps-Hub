@@ -251,3 +251,25 @@ a:hover {
       font-size: 10px;
     }
   }
+  body.dark-mode #container{
+    background-color: #121212;
+    color: #e0e0e0;
+    background: linear-gradient(180deg, #333 8.1%, #121212 100%);
+}
+
+
+body.dark-mode #container li{ 
+    color: #e0e0e0;
+}
+body.dark-mode #container li p{ 
+    color: #e0e0e0;
+}
+body.dark-mode #container h2{ 
+    color:#e0e0e0;
+}
+body.dark-mode p {
+    color: #e0e0e0;
+}
+body.dark-mode #container h3{ 
+    color:#e0e0e0;
+}
