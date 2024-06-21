@@ -3,15 +3,15 @@ import React from 'react'
 function CardSkeleton() {
   return (
     <div>
-      <div class="skeleton-contributor-card">
+      <div className="skeleton-contributor-card">
             <div id="short">
-              <div class="skeleton-avatar"></div>
-              <div class="skeleton-text"></div>
-              <div class="skeleton-text short"></div>
-              <div class="skeleton-icons">
-                <div class="skeleton-icon"></div>
-                <div class="skeleton-icon"></div>
-                <div class="skeleton-icon"></div>
+              <div className="skeleton-avatar"></div>
+              <div className="skeleton-text"></div>
+              <div className="skeleton-text short"></div>
+              <div className="skeleton-icons">
+                <div className="skeleton-icon"></div>
+                <div className="skeleton-icon"></div>
+                <div className="skeleton-icon"></div>
               </div>
             </div>
           </div>
