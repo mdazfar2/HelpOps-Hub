@@ -932,3 +932,14 @@ opacity: 0px;
 
 
 }
+.get-started a:hover {
+  transform: translateX(10px);
+  background: transparent;
+  border: 2px solid white;
+}
+.icn{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
