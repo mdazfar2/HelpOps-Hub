@@ -70,7 +70,7 @@
     display: flex;
     padding: 0px 0px 0px 80px;
     align-items: center;
-    left: 60px !important;
+    left: 60px ;
   }
 
   .text-section {
@@ -112,7 +112,9 @@
     cursor: pointer;
     font-size: 1em;
   }
-
+body{
+  max-height: 800vh !important;
+}
   .image-section {
     flex: 1;
     text-align: left;
@@ -134,7 +136,85 @@
     width: 554px !important;
     border-radius: 29px !important;
   }
+  @media only screen and (max-width:1280px){
+    .container{
+      position: relative;
+      bottom: 170px;
+    }
+   
+    .container1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+  padding-left: 0px !important;
+}
+.header{
+  flex-direction: row;
+}
+#c1,#c2,#c3,#c4{
+  position: static !important;
+  top: 0px !important;
+  bottom: 0px !important;
+  right: 0px !important;
+  left: 0px !important;
+}
 
+.card div{
+  display: flex;
+  justify-content: center;
+}
+.container{
+  left: 0px !important;
+}
+.container1{
+  margin-left: 0px !important;
+  position: relative;
+  bottom: 600px !important;
+
+}
+.cards{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100vw;
+  margin-top: 100px !important;
+  padding: auto !important;
+  align-items: center;
+  gap: 100px !important;
+
+}
+.banner{
+  position: relative;
+  bottom: 400px !important;
+}
+    .image-section{
+      height: 100px;
+      text-align: center;
+      width: 100vw;
+      overflow: hidden !important;
+    }
+    .image-section img{width: 80vw !important;height: 360px !important;}
+    .container{
+      align-items: center;
+      width: 100%;
+      padding: 70px !important;
+      margin: 0px !important;
+      padding: 0px !important;
+      text-align: center;
+      gap: 100px;
+    }
+    .text-section h1,.text-section p{
+      text-align: center;
+      width: 100vw;
+      padding: 0px;
+      width: 100vw;
+    }
+    .text-section{
+      width: 100vw !important;
+    }
+  }
   .container {
     padding: 2rem;
     margin-top: 50px;
@@ -263,7 +343,6 @@
     /* position: relative; */
     /* top: 100px; */
     /* background-color: #f48942; */
-    text-align: center;
     padding: 20px 0px;
     width: 100%;
     padding: auto;
@@ -341,8 +420,8 @@
         <li><a href="contributor.html">Team</a></li>
         <li><a href="contactus.html">Contact</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="https://github.com/sponsors/mdazfar2">
+      <div class="nav-actions" >
+        <a href="https://github.com/sponsors/mdazfar2" >
           <button class="sponsor-btn">
             Sponsor <i id="heart" class="fas fa-heart"></i>
           </button>
@@ -359,11 +438,7 @@
           </svg>
         </div>
       </div>
-      <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      
     </nav>
   </header>
   <ul class="nav-links1" id="navlinks1">
@@ -374,12 +449,19 @@
   </ul>
   <main id="particles-js">
     <div class="main-content">
-      <div class="conte">
-        <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
+      <div class="content12">
+        <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank" class="displat" style="background-color: white;height: 40px !important;display: block;border-radius: 40px !important;padding-bottom: 10px;">
           <h3 class="star-button" style="font-family: Poppins;line-height: 1.56;">
             <i class="star-icon"><i class="fas fa-star"></i></i> Star Us
           </h3>
         </a>
+        <li class="isDisplay">
+          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+            <button class="sponsor-btn">
+             Star Us
+            </button>
+          </a>
+        </li>
         <li class="isDisplay">
           <a href="https://github.com/sponsors/mdazfar2" target="_blank">
             <button class="sponsor-btn">
@@ -389,7 +471,7 @@
         </li>
       </div>
       <h1>HelpOps-Hub</h1>
-      <p style="color: white;">Ensuring You Never Get Stuck In DevOps Again!</p>
+      <p style="color: white;text-align: center;text-wrap: wrap;width: 100vw;">Ensuring You Never Get Stuck In DevOps Again!</p>
       <div class="get-started">
         <a href="resources.html" class="rellax" data-rellax-speed="-1">
           <button onclick="scrollToDiv()" class="get-started-btn">Get started</button>
@@ -401,7 +483,7 @@
           onclick="scrollToDiv()"></i>
       </div>
     </div>
-    <div id="img1"><img src="img1.png" style="border-radius: 6%;" class="rellax" data-rellax-speed="5" /></div>
+    <div id="img1" style="display: flex;justify-content: center;height: auto;width: auto;"><img src="img1.png" style="border-radius: 6%;width: 80vw;" class="rellax" data-rellax-speed="5" /></div>
 
     <div class="container">
       <div class="text-section">
@@ -551,6 +633,12 @@
       </div>
     </div>
   </main>
+  <div class="menu-bar">
+    <div class="menu-item" onclick="window.location.href='/website2.0/index.html';"><i class="fa-solid fa-house"></i><p>Home</p></div>
+    <div class="menu-item" onclick="window.location.href='/website2.0/abouts.html';"><i class="fa-solid fa-circle-info"></i><p>About</p></div>
+    <div class="menu-item" onclick="window.location.href='/website2.0/contributor.html';"><i class="fa-solid fa-user-group"></i><p>Group</p></div>
+    <div class="menu-item" onclick="window.location.href='/website2.0/contactus.html';"><i class="fa-solid fa-phone"></i><p onclick="window.location.href('/contact')">Contact</p></div>
+  </div>
   <script src="scripts.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
