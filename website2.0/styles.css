@@ -125,7 +125,7 @@ input::placeholder{
         left: 80%;
     }
     nav{
-        flex-direction: column-reverse;
+        flex-direction: row;
     }
     .isDisplay{
         display: block;
@@ -184,8 +184,10 @@ input::placeholder{
 @media only screen and (max-width:409px) {
   .nav-actions{
     position: fixed;
-    top: 10px;
-    left: 3% !important;
+    top: 20px;
+    right: 3% !important;
+    display: flex;
+    justify-content: end !important;
   }
     nav{
         gap: 5% !important;
@@ -202,7 +204,7 @@ input::placeholder{
         left: 80%;
     }
     nav{
-        flex-direction: column-reverse;
+        flex-direction: row;
     }
     .isDisplay{
         display: block;
@@ -591,10 +593,7 @@ body {
   height: auto;
 }
 @media only screen and (max-width:347px){
-    .logo{
-        position: relative;
-        top: 40px;
-    }
+   
 h1{
     font-size: 30px !important;
 }
@@ -943,3 +942,36 @@ opacity: 0px;
   justify-content: center;
   align-items: center;
 }
+.menu-bar{
+  display: none;
+}
+@media only screen and (max-width:600px){
+  .menu-bar{
+    display: flex;
+    position: fixed;
+    bottom: 0px !important;
+    width: 100vw;
+    height: 70px;
+    background-color: #ee995c;
+    flex-direction: row;
+  }
+  .menu-item{
+    height: 100%;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    padding: 5px;
+    cursor: pointer;
+  }
+  .menu-item p{
+    font-size: 20px;
+    text-align: center;
+    margin: 5px !important;
+  }
+}
+
+
+
