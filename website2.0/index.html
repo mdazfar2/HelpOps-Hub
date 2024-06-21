@@ -134,7 +134,61 @@
     width: 554px !important;
     border-radius: 29px !important;
   }
+  @media only screen and (max-width:1280px){
+    .container1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+  padding-left: 0px !important;
+}
+.header{
+  flex-direction: row;
+}
+#c1,#c2,#c3,#c4{
+  position: static !important;
+  top: 0px !important;
+  bottom: 0px !important;
+  right: 0px !important;
+  left: 0px !important;
+}
+.card div{
+  display: flex;
+  justify-content: center;
+}
+.cards{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100vw;
+  margin-top: 100px !important;
+  padding: auto !important;
+  align-items: center;
 
+}
+    .image-section{
+      height: 100px;
+      text-align: center;
+      width: 100vw;
+      overflow: hidden !important;
+    }
+    .image-section img{width: 80vw !important;height: 360px !important;}
+    .container{
+      align-items: center;
+      width: 100%;
+      padding: 70px !important;
+      margin: 0px !important;
+      padding: 0px !important;
+      text-align: center;
+      gap: 100px;
+    }
+    .text-section h1,.text-section p{
+      text-align: center;
+      padding: 0px 40px;
+      width: 100vw;
+    }
+  }
   .container {
     padding: 2rem;
     margin-top: 50px;
@@ -371,11 +425,18 @@
   <main id="particles-js">
     <div class="main-content">
       <div class="content12">
-        <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
+        <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank" class="displat" style="background-color: white;height: 40px !important;display: block;border-radius: 40px !important;padding-bottom: 10px;">
           <h3 class="star-button" style="font-family: Poppins;line-height: 1.56;">
             <i class="star-icon"><i class="fas fa-star"></i></i> Star Us
           </h3>
         </a>
+        <li class="isDisplay">
+          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+            <button class="sponsor-btn">
+             Star Us
+            </button>
+          </a>
+        </li>
         <li class="isDisplay">
           <a href="https://github.com/sponsors/mdazfar2" target="_blank">
             <button class="sponsor-btn">
@@ -397,7 +458,7 @@
           onclick="scrollToDiv()"></i>
       </div>
     </div>
-    <div id="img1"><img src="img1.png" style="border-radius: 6%;" class="rellax" data-rellax-speed="5" /></div>
+    <div id="img1" style="display: flex;justify-content: center;height: auto;width: auto;"><img src="img1.png" style="border-radius: 6%;width: 80vw;" class="rellax" data-rellax-speed="5" /></div>
 
     <div class="container">
       <div class="text-section">

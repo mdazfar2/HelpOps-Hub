@@ -140,6 +140,9 @@ input::placeholder{
     display: flex;
     justify-content: end !important;
   }
+  .displat{
+    display: none !important;
+  }
   .content12{
     display: flex;
     min-height: 60px;
@@ -148,6 +151,12 @@ input::placeholder{
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+  }
+  .content12 a{
+    height: 30px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   .nav-actions a{
     display: none !important;
@@ -1002,3 +1011,12 @@ opacity: 0px;
 }
 
 
+@media only screen and (max-width:1290px){
+  .container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
