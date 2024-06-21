@@ -74,7 +74,9 @@ input::placeholder{
         gap: 0%;
     }
 }
-
+.conte{
+  display: none;
+}
 
 @media only screen and (max-width:329px){
     .hamburger{
@@ -91,16 +93,8 @@ input::placeholder{
     .isDisplay{
         display: block;
     }
-    .conte{
-        display: flex;
-        width: 100%;
-        justify-content: space-around;
-    }
-    
-    .nav-actions a{
-    
-        display: none !important;
-    }
+  
+  
     .sponsor-btn{
         font-size: 16px !important;
         width: 114px !important;
@@ -138,10 +132,6 @@ input::placeholder{
     background-color: white ;
     border-radius: 40px !important;
    }
-   .conte h3{
-    padding: 0px !important;
-    margin-top: 4px !important;
-   }
 @media only screen and (max-width:409px) {
   .nav-actions{
     position: fixed;
@@ -149,6 +139,18 @@ input::placeholder{
     right: 3% !important;
     display: flex;
     justify-content: end !important;
+  }
+  .content12{
+    display: flex;
+    min-height: 60px;
+    max-height: auto;
+    height: auto !important;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-actions a{
+    display: none !important;
   }
     nav{
         gap: 5% !important;
@@ -176,20 +178,16 @@ input::placeholder{
         justify-content: space-around;
     }
     
-    .nav-actions a{
     
-        display: none !important;
-    }
- 
     .sponsor-btn{
         font-size: 16px !important;
         width: 114px !important;
         height: 46px !important;
     }
-    .star-button{
+    /* .star-button{
         font-size: 16px !important;
         width: 114px !important ;
-    }
+    } */
 
     .logo img{
         width: 60px !important;
@@ -926,11 +924,15 @@ opacity: 0px;
     font-size: 1rem;
     padding: 5px;
     cursor: pointer;
+    font-weight: 400;
+    color: rgb(246, 209, 182);
   }
   .menu-item p{
     font-size: 20px;
     text-align: center;
     margin: 5px !important;
+    color: rgb(255, 236, 201);
+
   }
 }
 @media only screen and (max-width:987px){
