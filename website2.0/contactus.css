@@ -111,6 +111,11 @@ form textarea {
     line-height: 30px;
     text-align: left;
 }
+.dark-mode input[type="text"]::placeholder,
+.dark-mode input[type="email"]::placeholder,
+.dark-mode textarea#comment::placeholder {
+  color: rgba(255, 255, 255, 0.7); 
+}
 
 form textarea {
     resize: none;
