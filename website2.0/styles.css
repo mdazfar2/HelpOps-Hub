@@ -64,46 +64,7 @@ input::placeholder{
     text-decoration: none;
     width: 100%;
 }
-@media only screen and (max-width:987px){
-    .nav-links{
-        display: none !important;
-    }
-    .active{
-        display: flex;
-    }
-    .hamburger{
-      display: block !important;
-    }
-    .nav-links1 li a {
-        text-decoration: none;
-        color: #000;
-        padding: 10px 15px;
-        font-size: x-large;
-    }
-    .dark-mode .nav-links1 li a {
-      color: #e0e0e0;
-  }
-  .nav-links1 li{
-    position: relative;
-    
-  }
-  .nav-links1 li a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-.nav-links1 li a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 3px;
-    bottom: -8px;
-    left: 0;
-    background-color: #FF7D1F;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-}
+
 .isDisplay{
     display: none;
 }
@@ -972,6 +933,70 @@ opacity: 0px;
     margin: 5px !important;
   }
 }
-
+@media only screen and (max-width:987px){
+  .menu-bar{
+    display: flex;
+    position: fixed;
+    bottom: 0px !important;
+    width: 100vw;
+    height: 70px;
+    background-color: #ee995c;
+    flex-direction: row;
+  }
+  .menu-item{
+    height: 100%;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    padding: 5px;
+    cursor: pointer;
+  }
+  .menu-item p{
+    font-size: 20px;
+    text-align: center;
+    margin: 5px !important;
+  }
+    .nav-links{
+        display: none !important;
+    }
+    .active{
+        display: flex;
+    }
+    .hamburger{
+      display: block !important;
+    }
+    .nav-links1 li a {
+        text-decoration: none;
+        color: #000;
+        padding: 10px 15px;
+        font-size: x-large;
+    }
+    .dark-mode .nav-links1 li a {
+      color: #e0e0e0;
+  }
+  .nav-links1 li{
+    position: relative;
+    
+  }
+  .nav-links1 li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.nav-links1 li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: -8px;
+    left: 0;
+    background-color: #FF7D1F;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+}
 
 
