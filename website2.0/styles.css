@@ -7,7 +7,7 @@
     gap: 20px;
 }
 .iconsclass >a{
-    color: black;
+    color: white;
     padding: 8px;
     border-radius: 50%;
     font-size: 1.1rem;
@@ -16,7 +16,10 @@
   box-shadow: 0 0px 8px rgba(224, 224, 224, 1);
   color: #e0e0e0;
 }
-
+input::placeholder{
+  position: relative;
+  
+}
 .mm{
     margin: 0px !important;
 }
@@ -77,6 +80,29 @@
         padding: 10px 15px;
         font-size: x-large;
     }
+    .dark-mode .nav-links1 li a {
+      color: #e0e0e0;
+  }
+  .nav-links1 li{
+    position: relative;
+    
+  }
+  .nav-links1 li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.nav-links1 li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: -8px;
+    left: 0;
+    background-color: #FF7D1F;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
 }
 .isDisplay{
     display: none;
@@ -329,7 +355,7 @@ a{
     align-items: center;
     justify-content: center;
     gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: all 0.3s ease; /* Smooth click effect */
     width: 150px;
     padding: 7px 7px ;
     font-family:cursive;
@@ -339,6 +365,12 @@ a{
 .sponsor-btn:active{
   transform:translateY(1px) ;
 }
+.sponsor-btn:hover{
+  transform: translateX(10px);
+  background: none;
+  border: 2px solid whitesmoke;
+}
+
 #heart{
     color: red;
 }
@@ -372,8 +404,7 @@ main{
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    
-
+    transition: all 0.5s ease;  
 }
 
 .star-button {
@@ -383,7 +414,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: transform 0.5s ease; /* Smooth click effect */
     width: 150px;
     padding: 9px 9px ;
     font-family:cursive;
@@ -391,6 +422,21 @@ main{
   
   .star-button:active {
     transform: translateY(1px); /* Slight move down on click */
+  }
+
+  .conte a{
+    transition: all 0.5s ease;
+  }
+
+  .conte a:hover {
+    transform: translateX(10px);
+    background: transparent;
+    border: 2px solid white;
+  }
+
+  .dark-mode .conte a:hover h3 {
+    color: white;
+    
   }
   
   .star-icon {
@@ -410,13 +456,19 @@ main{
     align-items: center;
     justify-content: center;
     gap: 7px; /* Space between icon and text */
-    transition: transform 0.1s ease; /* Smooth click effect */
+    transition: all 0.5s ease; /* Smooth click effect */
     width: 180px;
     background-color: whitesmoke;
     font-family:cursive;
 }
 .get-started-btn:active {
     transform: translateY(1px); /* Slight move down on click */
+  }
+
+  .get-started-btn:hover {
+    transform: translateX(10px);
+    background: transparent;
+    border: 2px solid white;
   }
 
 h1 {
@@ -482,21 +534,24 @@ input:checked + .switch {
 input:checked + .switch:before {
     transform: translateX(26px);
 }
+.animation1{
+  animation: ani alternate ease-in 0.7s infinite;
+  font-size: 2rem;
+  cursor: pointer;
+}
+@keyframes ani {
+  from{
+    position: absolute;
+    bottom: 20px;
+  }to{
+    position: absolute;
+    bottom: 8px;
+  }
+}
 .marg{
   margin-bottom: 20px;
 }
-    body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow-y: scroll;
-    height: auto;
-}
+  
 .hamburger div {
             width: 25px;
             height: 3px;
@@ -523,6 +578,18 @@ h1{
     gap: 30px;
 }
 }
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  height: auto;
+}
 @media only screen and (max-width:347px){
     .logo{
         position: relative;
@@ -541,26 +608,7 @@ p{
 
 
 /* particle.js canvas */
-canvas{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
 
-/* loader css */
-.loaderbox {
-  display: block;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  z-index: 99999;
-}
 .loader {
     width: 8em;
     height: 8em;
@@ -633,7 +681,26 @@ canvas{
       stroke-dashoffset: -990;
     }
   }
-  
+  canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* loader css */
+.loaderbox {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  z-index: 99999;
+}
   @keyframes ringB {
     from, 12% {
       stroke-dasharray: 0 220;
@@ -722,49 +789,7 @@ canvas{
     }
   }
   
-  @keyframes ringD {
-    from, 8% {
-      stroke-dasharray: 0 440;
-      stroke-width: 20;
-      stroke-dashoffset: 0;
-    }
-  
-    16% {
-      stroke-dasharray: 40 400;
-      stroke-width: 30;
-      stroke-dashoffset: -5;
-    }
-  
-    36% {
-      stroke-dasharray: 40 400;
-      stroke-width: 30;
-      stroke-dashoffset: -175;
-    }
-  
-    44%, 50% {
-      stroke-dasharray: 0 440;
-      stroke-width: 20;
-      stroke-dashoffset: -220;
-    }
-  
-    58% {
-      stroke-dasharray: 40 400;
-      stroke-width: 30;
-      stroke-dashoffset: -225;
-    }
-  
-    78% {
-      stroke-dasharray: 40 400;
-      stroke-width: 30;
-      stroke-dashoffset: -395;
-    }
-  
-    86%, to {
-      stroke-dasharray: 0 440;
-      stroke-width: 20;
-      stroke-dashoffset: -440;
-    }
-  }
+ 
   #loader-wrapper {
     position: fixed;
     top: 0;
@@ -784,7 +809,49 @@ canvas{
     -webkit-transform: translateX(0);
     transform: translateX(0);
 }
+@keyframes ringD {
+  from, 8% {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: 0;
+  }
 
+  16% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -5;
+  }
+
+  36% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -175;
+  }
+
+  44%, 50% {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: -220;
+  }
+
+  58% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -225;
+  }
+
+  78% {
+    stroke-dasharray: 40 400;
+    stroke-width: 30;
+    stroke-dashoffset: -395;
+  }
+
+  86%, to {
+    stroke-dasharray: 0 440;
+    stroke-width: 20;
+    stroke-dashoffset: -440;
+  }
+}
 #loader-wrapper .loader-section.section-left {
     left: 0;
 }
@@ -816,7 +883,7 @@ canvas{
 }
 .moon1{
   display: none ;
-  font-size: 45px !important;
+  font-size: 35px !important;
   transform: rotateZ(-30deg );
   margin-left: 5px;
   cursor: pointer;
@@ -828,7 +895,7 @@ canvas{
   
 }
 .sun {
-font-size: 45px  !important;
+font-size: 35px  !important;
 display: none;
 margin-left: 20px; 
 cursor: pointer;
@@ -837,13 +904,14 @@ color: white ;
 
 #sun {
   content: '\2600';
-  
+  display: none;
   cursor: pointer; /* Sun icon */
 }
 
 #moon{
   display: none;
   cursor: pointer;
+  color: #333;
 }
 .sponsor-btn{
   height: 100% !important;
@@ -851,4 +919,27 @@ color: white ;
 }
 .star-button{
   font-weight: 500 !important;
+}
+#img{
+  margin-top: 100px;
+  width: 1100px;
+height: 726px;
+top: 862px;
+left: 97px;
+gap: 0px;
+border-radius: 50px 0px 0px 0px;
+opacity: 0px;
+
+
+}
+.get-started a:hover {
+  transform: translateX(10px);
+  background: transparent;
+  border: 2px solid white;
+}
+.icn{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

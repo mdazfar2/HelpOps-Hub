@@ -1,0 +1,131 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.about_title {
+  text-align: center;
+  font-size: 48px !important;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+.video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0rem;
+  filter: drop-shadow(0 4px 6px #ff7d1f);
+}
+
+.video video {
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  width: 80%;
+  height: 80%;
+}
+
+.start {
+  width: 80%;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  height: auto;
+  overflow-x: hidden;
+  margin-top: 25px;
+}
+.end {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  overflow-x: hidden;
+  margin-top: 25px;
+}
+.start .img-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.end .img-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.text-title {
+  font-weight: 400;
+}
+.text-desc {
+  color:black;
+  margin-left: 0 !important;
+  margin-right: 50px;
+  font-size: larger;
+  text-align: justify;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+.end .text-title {
+  text-align: center;
+}
+
+.about_logo {
+  width: 180px;
+  transition: transform 0.5s ease;
+  margin-right: 15px;
+}
+.mission {
+  width: 300px;
+  transition: transform 0.5s ease;
+}
+.benefit {
+  width: 400px;
+  transition: transform 0.5s ease;
+}
+.img-container img:hover {
+  transform: scale(0.9);
+}
+.text-container h1 {
+  font-size: 40px !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 769px) {
+  .end {
+    width: 100%;
+    flex-direction: column;
+  }
+  .start {
+    width: 100%;
+    flex-direction: column;
+  }
+  .img-container {
+    width: 100% !important;
+  }
+  .start .img-container {
+    justify-content: center;
+  }
+  .end .img-container {
+    justify-content: center;
+  }
+  .text-container {
+    padding: 2rem;
+    width: 100% !important;
+  }
+  .text-desc{
+    margin-right: 0px;
+  }
+}

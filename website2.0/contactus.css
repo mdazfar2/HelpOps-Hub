@@ -10,19 +10,23 @@ body {
     margin-bottom: 100px;
     gap: 200px;
 }
-
+#name ::placeholder{
+  text-align: left;
+}
+.contact-img1{
+  display: none;
+}
 #error{
      color: red;
     font-size: 18px;
     text-align: center;
 }
 input::placeholder{
-    margin: 0px;
     font-family: Poppins;
 font-size: 20px;
 font-weight: 400;
 line-height: 30px;
-text-align: left;
+margin-left: 0px !important;
 
 }
 ::placeholder{
@@ -144,10 +148,20 @@ textarea::placeholder{
     color: black;
 
 }
+@media only screen and (max-width:520px){
+  .contact-img{
+    display: none !important;
+  }
+  .contact-img1{
+    display: block !important;
+  }
+}
+
 @media only screen and (max-width:409px){
   .nav-actions a{
     display: none !important;
   }
+ 
   .nav-actions{
     position: fixed;
     top: 10px;
