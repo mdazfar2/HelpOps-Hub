@@ -25,6 +25,18 @@
     color: #000000;
     
 }
+.dark-mode .form-container{
+    background: #0a0a0a;
+}
+.dark-mode .form-container input::placeholder{
+    color: rgb(242, 249, 249);
+}
+.dark-mode .form-container textarea::placeholder{
+    color: rgb(242, 249, 249);
+}
+.dark-mode .star{
+    color: white;
+}
 .hamburger div {
             width: 25px;
             height: 3px;
@@ -52,10 +64,7 @@ h1{
 }
 }
 @media only screen and (max-width:347px){
-    .logo{
-        position: relative;
-        top: 40px;
-    }
+ 
 h1{
     font-size: 30px !important;
 }
@@ -110,11 +119,7 @@ p{
                   </svg>
                 </div>
             </div>
-         <div class="hamburger" id="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div> 
+         
         </nav>
     </header>
     <ul class="nav-links1" id="navlinks1">
@@ -163,9 +168,16 @@ p{
 
               </p>
             <p class="font h mm">© HelpOps-Hub | MIT License</p>
-            <p class="font h mm"  >Developed by <a href="https://github.com/mdazfar2" target="_blank" class="font">Azfar Alam</a> & <a class="font" target="_blank" href="https://helpops-hub.vercel.app/contributor-index.html">Open Source Community</a> </p>
+            <p class="font h mm"  >Developed by <a href="https://github.com/mdazfar2" target="_blank" class="font">Azfar Alam</a> & <a class="font" target="_blank" href="contributor.html">Open Source Community</a> </p>
           </div>
+
         </div>
+        <div class="menu-bar">
+            <div class="menu-item" onclick="window.location.href='/website2.0/index.html';"><i class="fa-solid fa-house"></i><p>Home</p></div>
+            <div class="menu-item" onclick="window.location.href='/website2.0/abouts.html';"><i class="fa-solid fa-circle-info"></i><p>About</p></div>
+            <div class="menu-item" onclick="window.location.href='/website2.0/contributor.html';"><i class="fa-solid fa-user-group"></i><p>Group</p></div>
+            <div class="menu-item" onclick="window.location.href='/website2.0/contactus.html';"><i class="fa-solid fa-phone"></i><p onclick="window.location.href('/contact')">Contact</p></div>
+          </div>
 <script src="contactus.js"></script>
 <script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
 <script type="text/javascript"> 

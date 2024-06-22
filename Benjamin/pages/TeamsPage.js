@@ -1,11 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons"; 
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "@/stylesheets/teams.css";
 import CardSkeleton from "@components/CardSkeleton";
 
@@ -54,30 +51,29 @@ function TeamsPage() {
   }
 
   function topContributors(contributors) {
-    let r = 1;
+    let r = 0;
     const topContributorsList = [];
     const otherContributorsList = [];
 
     contributors.forEach((contributor) => {
       let name = contributor.name || contributor.login;
-      const fname = name;
       if (
-        r < 4 &&
-        fname !== "azfar-2" &&
-        fname !== "Ayushmaanagarwal1211" &&
-        fname !== "RamakrushnaBiswal" &&
-        fname !== "pandeyji711" &&
-        fname !== owner
+        r < 3 &&
+        name !== "azfar-2" &&
+        name !== "Ayushmaanagarwal1211" &&
+        name !== "RamakrushnaBiswal" &&
+        name !== "pandeyji711" &&
+        name !== owner
       ) {
-        topContributorsList.push(contributor.login);
+        topContributorsList.push(contributor);
         r++;
       } else if (
-        r >= 4 &&
-        fname !== "azfar-2" &&
-        fname !== "Ayushmaanagarwal1211" &&
-        fname !== "RamakrushnaBiswal" &&
-        fname !== "pandeyji711" &&
-        fname !== owner
+        r >= 3 &&
+        name !== "azfar-2" &&
+        name !== "Ayushmaanagarwal1211" &&
+        name !== "RamakrushnaBiswal" &&
+        name !== "pandeyji711" &&
+        name !== owner
       ) {
         otherContributorsList.push(contributor);
       }
@@ -103,32 +99,32 @@ function TeamsPage() {
         fname !== "RamakrushnaBiswal" &&
         fname !== "pandeyji711" &&
         fname !== owner &&
-        !topContri.includes(fname)
+        !topContri.includes(contributor)
       ) {
         const loginLink = contributor.html_url;
         const contri = contributor.contributions;
         return (
-          <div className="team-member7" key={contributor.login}>
-            <div className="card7">
-              <div className="badge7">Developer</div>
-              <div className="image-div7">
+          <div className="team-member-card" key={contributor.login}>
+            <div className="member-card">
+              <div className="dev-badge">Developer</div>
+              <div className="member-image-div">
                 <img src={avatarImgSrc} alt={avatarImgAlt} />
               </div>
-              <div className="info-div7">
+              <div className="member-info-div">
                 <h2>{name}</h2>
                 <p>Open Source Contributor</p>
               </div>
             </div>
-            <div className="data7">
-              <div className="contributions7">
-                <div className="contributions-count7">{contri}</div>
-                <div className="contributions-label7">Contributions</div>
+            <div className="member-data">
+              <div className="member-contributions">
+                <div className="member-contributions-count">{contri}</div>
+                <div className="member-contributions-label">Contributions</div>
               </div>
-              <div className="social-links7">
+              <div className="member-social-links">
                 <a href={loginLink} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faGithub} />
                 </a>
-                <div className="github-label7">GitHub</div>
+                <div className="member-github-label">GitHub</div>
               </div>
             </div>
           </div>
@@ -136,6 +132,68 @@ function TeamsPage() {
       }
       return null;
     });
+  }
+
+  function renderTopContributors(contributors) {
+    if (contributors.length < 3) return null;
+    console.log(contributors.html_url);
+    return (
+      <div className="top-contributor">
+        <div className="contributor" key={contributors[1].login}>
+          <a href={contributors[1].html_url} target="__blank">
+            <img
+              className="circle"
+              src={contributors[1].avatar_url}
+              alt={`${contributors[1].login}'s Picture`}
+            />
+          </a>
+          <div className="rank">
+            <h1>2</h1>
+          </div>
+          <div className="crown" id="rank">
+            <img src="/crown.png" />
+          </div>
+          <p id="name2">{contributors[1].name || contributors[1].login}</p>
+          <p id="co2">contributions {contributors[1].contributions} </p>
+        </div>
+
+        <div className="contributor" key={contributors[0].login}>
+          <a href={contributors[0].html_url} target="__blank">
+            <img
+              className="circle"
+              src={contributors[0].avatar_url}
+              alt={`${contributors[0].login}'s Picture`}
+            />
+          </a>
+          <div className="rank">
+            <h1>1</h1>
+          </div>
+          <div className="crown" id="rank1">
+            <img src="/crown.png" />
+          </div>
+          <p id="name1">{contributors[0].name || contributors[0].login}</p>
+          <p id="co1">contributions {contributors[0].contributions}</p>
+        </div>
+
+        <div className="contributor" key={contributors[2].login}>
+          <a href={contributors[2].html_url} target="__blank">
+            <img
+              className="circle"
+              src={contributors[2].avatar_url}
+              alt={`${contributors[2].login}'s Picture`}
+            />
+          </a>
+          <div className="rank">
+            <h1>3</h1>
+          </div>
+          <div className="crown" id="rank">
+            <img src="/crown.png" />
+          </div>
+          <p id="name3">{contributors[2].name || contributors[2].login}</p>
+          <p id="co3">contributions {contributors[2].contributions} </p>
+        </div>
+      </div>
+    );
   }
 
   function loadMore() {
@@ -168,19 +226,19 @@ function TeamsPage() {
           </div>
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/mdazfar2">
+              <a href="https://github.com/sponsors/mdazfar2" target="__blank">
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/mdazfar2">
+              <a href="https://github.com/mdazfar2" target="__blank">
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/md-azfar-alam/">
+              <a href="https://www.linkedin.com/in/md-azfar-alam/" target="__blank">
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
@@ -202,19 +260,19 @@ function TeamsPage() {
           </div>
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/pandeyji711">
+              <a href="https://github.com/sponsors/pandeyji711" target="__blank">
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/pandeyji711">
+              <a href="https://github.com/pandeyji711" target="__blank">
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/anuragpandey0711/">
+              <a href="https://www.linkedin.com/in/anuragpandey0711/" target="__blank">
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
@@ -236,19 +294,19 @@ function TeamsPage() {
           </div>
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/RamakrushnaBiswal">
+              <a href="https://github.com/sponsors/RamakrushnaBiswal" target="__blank">
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/RamakrushnaBiswal">
+              <a href="https://github.com/RamakrushnaBiswal" target="__blank">
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/ramakrushna-biswal/">
+              <a href="https://www.linkedin.com/in/ramakrushna-biswal/" target="__blank">
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
@@ -270,19 +328,19 @@ function TeamsPage() {
           </div>
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/RamakrushnaBiswal">
+              <a href="https://github.com/sponsors/RamakrushnaBiswal" target="__blank">
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/RamakrushnaBiswal">
+              <a href="https://github.com/RamakrushnaBiswal" target="__blank">
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/ramakrushna-biswal/">
+              <a href="https://www.linkedin.com/in/ramakrushna-biswal/" target="__blank">
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
@@ -290,43 +348,9 @@ function TeamsPage() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="teams-container">
         <h1 className="contri">Top 3 Contributors</h1>
-        <div id="contributors">
-          <div className="contributor" id="card2">
-            <img className="circle" id="id2" />
-            <div className="rank">
-              <h1>2</h1>
-            </div>
-            <div className="crown left" id="rank">
-              <img src="/crown.png" />
-            </div>
-            <p id="name2"></p>
-            <p id="co2"></p>
-          </div>
-          <div className="contributor">
-            <img className="circle" id="id1" />
-            <div className="rank">
-              <h1>1</h1>
-            </div>
-            <div className="crown" id="rank1">
-              <img src="/crown.png" />
-            </div>
-            <p id="name1"></p>
-            <p id="co1"></p>
-          </div>
-          <div className="contributor" id="card3">
-            <img className="circle" id="id3" />
-            <div className="rank">
-              <h1>3</h1>
-            </div>
-            <div className="crown" id="rank">
-              <img src="/crown.png" />
-            </div>
-            <p id="name3"></p>
-            <p id="co3"></p>
-          </div>
-        </div>
+        <div id="contributors">{renderTopContributors(topContri)}</div>
       </div>
       <div id="team-grid1">
         {loading
@@ -346,7 +370,7 @@ function TeamsPage() {
             Be a contributor and improve HelpOps-Hub and help fellow developers.
           </p>
         </div>
-        <a href="https://discord.gg/UWTrRhqywt">
+        <a href="https://discord.gg/UWTrRhqywt" target="__blank">
           <button className="join-button"> Join us now &#8594;</button>
         </a>
       </div>
