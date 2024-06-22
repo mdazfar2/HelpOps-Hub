@@ -675,6 +675,9 @@ body{
   margin: -75px 0 0 -75px;
   z-index: 99999;
 }
+.menu-item p{
+  font-family: Arial, Helvetica, sans-serif !important;
+}
   @keyframes ringB {
     from, 12% {
       stroke-dasharray: 0 220;
