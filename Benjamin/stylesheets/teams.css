@@ -529,7 +529,7 @@
 .skeleton-icon {
   width: 20px;
   height: 20px;
-  background: #ccc;
+  
   border-radius: 4px;
 }
 
@@ -541,7 +541,7 @@
 }
 
 .skeleton-contributor-card {
-  background: #fdd86c;
+  background: #014214;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -565,6 +565,7 @@
   );
   animation: loading 1.5s infinite;
 }
+
 #short {
   background-color: #006060;
   border-radius: 10px;
