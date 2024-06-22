@@ -122,7 +122,7 @@ function TeamsPage() {
               </div>
               <div className="member-social-links">
                 <a href={loginLink} target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faGithub} />
+                  <FontAwesomeIcon icon={faGithub} className="Github"/>
                 </a>
                 <div className="member-github-label">GitHub</div>
               </div>
