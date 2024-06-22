@@ -320,6 +320,11 @@ body{
     
 .dark-mode #c2{
   background-color: #0a0a0a !important;
+  transition: transform 0.3s ease-in-out;
+}
+.dark-mode #c2:hover{
+  box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
+  transform:scale(1.1);
 }
 .dark-mode #c3{
   background-color: #0a0a0a !important;
@@ -343,11 +348,16 @@ body{
     }
     #c2 {
       position: relative;
+      transition: transform 0.3s ease-in-out;
       left: 320px;
       top: 116px !important;
       padding-bottom: 1.1rem;
       padding-top: 0.5rem;
       padding-right: 0.1rem;
+    }
+    #c2:hover {
+    box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
+    transform: scale(1.09);
     }
     #c3 {
       position: relative;
