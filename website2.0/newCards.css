@@ -4,7 +4,12 @@
   display: flex;
   gap: 20px;
 } */
-
+.dark-mode .team-member7{
+  background-color: #0a0a0a;
+}
+.dark-mode .card7{
+  background-color: #181818;
+}
 .team-member7 {
   background-color: #FDD86C;
   border-radius: 10%;
@@ -65,6 +70,12 @@ transform: scale(0.90);
   margin: 5px 0;
   font-size: 0.9em;
 }
+.dark-mode .github-label7{
+  color: white !important;
+}
+.dark-mode .contributions-label7{
+  color: white !important;
+}
 
 .data7 {
   display: flex;
@@ -109,5 +120,11 @@ transform: scale(0.90);
   margin-top: 5px;
 }
 .dark-mode .contributions-count7{
-  color: black;
+  color: rgb(255, 255, 255);
+}
+.dark-mode .fa-github{
+  color: white;
+}
+.dark-mode .badge7{
+  color: white;
 }

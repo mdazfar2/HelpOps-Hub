@@ -685,7 +685,9 @@ a{
         height: 100%;
         z-index: 1001;
     }
-    
+    .dark-mode #loader-wrapper .loader-section{
+      background: linear-gradient(180deg, #0a0a0a 8.1%, #2b2929 100%) !important;
+    }
     #loader-wrapper .loader-section {
         position: fixed;
         top: 0;
