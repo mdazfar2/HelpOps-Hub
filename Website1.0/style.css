@@ -517,7 +517,7 @@ width: 40px;
 }
 
 .feedback-form button {
-  padding: 0.75rem;
+  padding: 10px 20px; /* Adjust padding as needed */
   font-size: 16px;
   color: #fff;
   background-color: #00ccff;
@@ -528,8 +528,22 @@ width: 40px;
 }
 
 .feedback-form button:hover {
+  transform: scale(1.07);
+  background-color: white;
+}
+.feed-btn{
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px;
+  color: #000000;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.feed-btn:hover {
   background-color: #009ec3;
-} */
+}
 
 /*Scroll to top*/
 .scrollToTopBtn {
@@ -774,14 +788,22 @@ width: 40px;
 }
 
 .feedback-form button {
-  padding: 0.75rem;
-  font-size: 16px;
-  color: #fff;
-  background-color: #00ccff;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: black;
+  color: #00ccff;
+  box-shadow: 5px 5px 20px #00ccff;
   border: none;
-  border-radius: 5px;
+  padding: 18px 10px;
+  border-radius: 30px; /* Rounded corners */
+  font-size: 25px; /* Text size */
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  outline: none;
+  transition: 0.5s;
+  text-decoration: none;
 }
 
 .feedback-form button:hover {
@@ -789,7 +811,7 @@ width: 40px;
 }
 
 .feedback-form button.dark-mode {
-  background-color: #444444;
+  background-color: #3c72b9;
   color:white;
 }
 body.dark-mode {
