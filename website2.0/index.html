@@ -286,11 +286,13 @@ body{
   .card h2 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+   
   }
 
   #h1 {
     font-size: 3.5rem;
     /* margin-bottom: 0.5rem; */
+   
   }
 
   .card p {
@@ -301,10 +303,28 @@ body{
   .card strong {
     color: black;
   }
-
+  .dark-mode .card h2{
+    color: #ea670a !important;
+  }
+ .dark-mode .card strong{
+  color: #ea670a !important;
+ }
+.dark-mode #c1{
+  background-color: #0a0a0a !important;
+}
+.dark-mode #c2{
+  background-color: #0a0a0a !important;
+}
+.dark-mode #c3{
+  background-color: #0a0a0a !important;
+}
+.dark-mode #c4{
+  background-color: #0a0a0a !important;
+}
   #c1 {
       position: relative;
       /* bottom: 30px; */
+      
       right: 150px;
       top: 255px !important;
       padding-bottom: 1.1rem;
@@ -383,6 +403,16 @@ body{
   .splide__pagination__page {
     display: none;
   }
+  .dark-mode .newsletter{
+    background-color: #0a0a0a !important;
+  }
+  .dark-mode .news-logo{
+    color: white !important;
+  }
+.dark-mode .Subscribe{
+  background-color: #ea670a !important;
+  color: white !important;
+}
 </style>
 
 <body>
@@ -593,11 +623,11 @@ body{
       </div>
     <div style="width: 100vw;margin-bottom: 70px;margin-top: 50px;">
       <div class="newsletter"
-        style="border-radius: 20px;display: flex;height: 221px;width: 90%;;margin: auto;background-color: #ef8336;box-shadow:0px 0px 15px rgb(110, 46, 3) ;">
+        style="border-radius: 20px;display: flex;height: 221px;width: 90%;;margin: auto;background-color: #ef8336;box-shadow:0px 0px 15px rgb(110, 46, 3) ; ">
         <div style="width:40%;display: flex;justify-content: center;align-items: center;">
 
           <img style="height: 85px;" src="HelpOps-H Fevicon.png" alt="Logo" data-tilt />
-          <h3 style="font-size: 44px;font-weight: 400;">elpOps-Hub</h3>
+          <h3 class="news-logo" style="font-size: 44px;font-weight: 400;">elpOps-Hub</h3>
         </div>
         <div style="width: 60%;display: flex;justify-content: center;align-items: center;">
           <div style="width: 70%;display: flex;flex-direction: column;position: relative;bottom: 20px;">
@@ -606,7 +636,7 @@ body{
             <div>
               <input placeholder="example@gmail.com"
                 style="border-radius: 20px !important;height: 38px;width: 289px;border: none;">
-              <button
+              <button class="Subscribe"
                 style="background-color: rgba(64, 123, 255, 1);color: black;border-radius: 20px !important;font-weight: 500;font-size: 16px;height: 38px;width: 106px;border: none;">Subscribe</button>
             </div>
           </div>
