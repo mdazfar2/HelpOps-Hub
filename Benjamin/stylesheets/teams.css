@@ -451,9 +451,7 @@
   box-shadow: 0 0px 50px rgba(255, 125, 31, 1);
   transform: scale(1.1);
 }
-.dark-mode .skeleton-contributor-card {
-  background-color: #000000 !important;
-}
+
 
 /* Card Skeleton */
 
@@ -529,7 +527,7 @@
 .skeleton-icon {
   width: 20px;
   height: 20px;
-  
+  background: #ccc;
   border-radius: 4px;
 }
 
@@ -541,7 +539,7 @@
 }
 
 .skeleton-contributor-card {
-  background: #014214;
+  background: #fdd86c;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -565,9 +563,8 @@
   );
   animation: loading 1.5s infinite;
 }
-
 #short {
-  background-color: #006060;
+  background-color: #ff7d1f;
   border-radius: 10px;
   padding: 20px;
   display: flex;
