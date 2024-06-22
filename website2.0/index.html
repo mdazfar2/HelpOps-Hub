@@ -56,7 +56,35 @@
     align-items: center;
     left: 60px;
   }
-
+  @media only screen and (max-width:400px){
+    .nav-actions{
+      right: 22% !important;
+    }
+  }
+@media only screen and (max-width:500px){
+  .newsletter{
+    flex-direction: column !important;
+    height: auto !important;
+  align-items: center;
+  gap: 30px !important;
+  }
+  .newsletter div{
+    width: 100% !important;
+  }
+  .inputdiv{
+      align-items: center;
+  }
+  .newsletter div h3{
+    font-size: 30px !important;
+  }
+  .newsletter div img{
+    width: 40px;
+    height: 40px !important;
+  }
+  .newsletter p{
+    text-align: center;
+  }
+}
   .container1 {
     /* margin-top: 20px; */
     margin-left: 40px;
@@ -598,7 +626,7 @@ body{
           <img style="height: 85px;" src="HelpOps-H Fevicon.png" alt="Logo" data-tilt />
           <h3 style="font-size: 44px;font-weight: 400;">elpOps-Hub</h3>
         </div>
-        <div style="width: 60%;display: flex;justify-content: center;align-items: center;">
+        <div class="inputdiv" style="width: 60%;display: flex;justify-content: center;align-items: center;">
           <div style="width: 70%;display: flex;flex-direction: column;position: relative;bottom: 20px;">
             <p style="font-size: 18px;font-weight: 400;margin: 0px !important;margin-bottom: 10px !important;">
               Subscribe to our newsletter</p>
