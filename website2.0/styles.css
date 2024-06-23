@@ -1033,7 +1033,7 @@ opacity: 0px;
 
 ::-webkit-scrollbar {
   width: 15px; 
-  height: 5px; 
+  height: 15px; 
 }
 
 ::-webkit-scrollbar-track {
@@ -1041,11 +1041,6 @@ opacity: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#ff5d5d, rgb(153, 51, 51)); 
+  background: linear-gradient(#fd8b34, rgb(196, 81, 4));
   border-radius: 6px;
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#9752ff, #4a1b79);
 }
