@@ -1,14 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import "@stylesheets/loader.css";
 
-import { useState, useEffect } from "react";
 function Loader() {
   useEffect(() => {
     const handleDOMContentLoaded = () => {
-      setTimeout(() => {
-        document.querySelector("body").classList.add("loaded");
-      }, 500);
+      document.querySelector("body").classList.add("loaded");
     };
 
     if (document.readyState === "complete") {
@@ -17,10 +14,16 @@ function Loader() {
       document.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
     }
 
+    const timeoutId = setTimeout(() => {
+      document.querySelector("body").classList.add("loaded");
+    }, 1500);
+
     return () => {
       document.removeEventListener("DOMContentLoaded", handleDOMContentLoaded);
+      clearTimeout(timeoutId);
     };
   }, []);
+
   return (
     <div id="loader-wrapper">
       <div className="loaderbox">
