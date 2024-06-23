@@ -37,7 +37,6 @@ body {
   padding: 2rem;
   background: #0000000d;
   border-radius: 30px;
-  opacity: 0px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   cursor: pointer;
