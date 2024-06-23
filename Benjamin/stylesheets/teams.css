@@ -84,7 +84,21 @@
 .team-member:hover {
   transform: scale(1.03);
 }
-
+.dark-mode .team-member {
+  background-color: #0a0a0a;
+}
+.dark-mode .card1 {
+  background-color: #181818;
+}
+.dark-mode .card2 {
+  background-color: #181818;
+}
+.dark-mode .card3 {
+  background-color: #181818;
+}
+.dark-mode .card4 {
+  background-color: #181818;
+}
 .card1 {
   background: #4285f45c;
   padding-top: 2rem;
@@ -589,12 +603,23 @@
   transition: 0.5s;
   transform: scale(0.95);
 }
-
+.dark-mode .team-member-card  {
+  background-color: #0a0a0a;
+}
 .member-card {
   background-color: #ff7d1f;
   padding: 60px;
   border-radius: 10%;
   text-align: center;
+}
+.member-social-links a .Github{
+  color:black;
+}
+.dark-mode .member-social-links a .Github{
+  color:white;
+}
+.dark-mode .member-card  {
+  background-color: #181818;
 }
 .team-member-card:hover {
   transform: scale(0.9);

@@ -160,6 +160,7 @@ body{
   bottom: 0px !important;
   right: 0px !important;
   left: 0px !important;
+  cursor: default;
 }
 
 .card div{
@@ -286,11 +287,13 @@ body{
   .card h2 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+   
   }
 
   #h1 {
     font-size: 3.5rem;
     /* margin-bottom: 0.5rem; */
+   
   }
 
   .card p {
@@ -301,39 +304,103 @@ body{
   .card strong {
     color: black;
   }
-
+  .dark-mode .card h2{
+    color: #ea670a !important;
+  }
+ .dark-mode .card strong{
+  color: #ea670a !important;
+ }
+.dark-mode #c1{
+  background-color: #0a0a0a !important;
+  transition: transform 0.3s ease-in-out;
+}
+.dark-mode #c1:hover{
+  box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
+  transform:scale(1.1);
+  cursor: default;
+}
+    
+.dark-mode #c2{
+  background-color: #0a0a0a !important;
+  transition: transform 0.3s ease-in-out;
+}
+.dark-mode #c2:hover{
+  box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
+  transform:scale(1.1);
+  cursor: default;
+}
+.dark-mode #c3{
+  background-color: #0a0a0a !important;
+}
+.dark-mode #c3:hover{
+  box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
+  transform:scale(1.1);
+  cursor: default;
+}
+.dark-mode #c4{
+  background-color: #0a0a0a !important;
+}
+.dark-mode #c4:hover{
+  box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
+  transform:scale(1.1);
+  cursor: default;
+}
   #c1 {
       position: relative;
       /* bottom: 30px; */
+      transition: transform 0.3s ease-in-out;
       right: 150px;
       top: 255px !important;
       padding-bottom: 1.1rem;
       padding-top: 0.5rem;
       padding-right: 0.3rem;
     }
+    #c1:hover {
+    box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
+    transform: scale(1.09);
+    cursor: default;
+    }
     #c2 {
       position: relative;
+      transition: transform 0.3s ease-in-out;
       left: 320px;
       top: 116px !important;
       padding-bottom: 1.1rem;
       padding-top: 0.5rem;
       padding-right: 0.1rem;
     }
+    #c2:hover {
+    box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
+    transform: scale(1.09);
+    cursor: default;
+    }
     #c3 {
       position: relative;
+      transition: transform 0.3s ease-in-out;
       right: 280px;
       top: 146px ;
       padding-bottom: 0.3rem;
       padding-top: 0.5rem;
     }
+    #c3:hover {
+    box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
+    transform: scale(1.09);
+    cursor: default;
+    }
     #c4 {
       position: relative;
       /* left: 500px; */
+      transition: transform 0.3s ease-in-out;
       bottom: 100px;
       left: 167px !important;
       padding-bottom: 1.1rem;
       padding-top: 0.5rem;
       padding-right: 0.4rem;
+    }
+    #c4:hover {
+    box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
+    transform: scale(1.09);
+    cursor: default;
     }
 
   p {
@@ -383,6 +450,16 @@ body{
   .splide__pagination__page {
     display: none;
   }
+  .dark-mode .newsletter{
+    background-color: #0a0a0a !important;
+  }
+  .dark-mode .news-logo{
+    color: white !important;
+  }
+.dark-mode .Subscribe{
+  background-color: #ea670a !important;
+  color: white !important;
+}
 </style>
 
 <body>
@@ -593,11 +670,11 @@ body{
       </div>
     <div style="width: 100vw;margin-bottom: 70px;margin-top: 50px;">
       <div class="newsletter"
-        style="border-radius: 20px;display: flex;height: 221px;width: 90%;;margin: auto;background-color: #ef8336;box-shadow:0px 0px 15px rgb(110, 46, 3) ;">
+        style="border-radius: 20px;display: flex;height: 221px;width: 90%;;margin: auto;background-color: #ef8336;box-shadow:0px 0px 15px rgb(110, 46, 3) ; ">
         <div style="width:40%;display: flex;justify-content: center;align-items: center;">
 
           <img style="height: 85px;" src="HelpOps-H Fevicon.png" alt="Logo" data-tilt />
-          <h3 style="font-size: 44px;font-weight: 400;">elpOps-Hub</h3>
+          <h3 class="news-logo" style="font-size: 44px;font-weight: 400;">elpOps-Hub</h3>
         </div>
         <div style="width: 60%;display: flex;justify-content: center;align-items: center;">
           <div style="width: 70%;display: flex;flex-direction: column;position: relative;bottom: 20px;">
@@ -606,7 +683,7 @@ body{
             <div>
               <input placeholder="example@gmail.com"
                 style="border-radius: 20px !important;height: 38px;width: 289px;border: none;">
-              <button
+              <button class="Subscribe"
                 style="background-color: rgba(64, 123, 255, 1);color: black;border-radius: 20px !important;font-weight: 500;font-size: 16px;height: 38px;width: 106px;border: none;">Subscribe</button>
             </div>
           </div>
@@ -628,7 +705,7 @@ body{
           <a href="https://github.com/mdazfar2" target="_blank" class="font"
             style="text-decoration: underline !important;">Azfar Alam</a>
           &
-          <a class="font" target="_blank" href="https://helpops-hub.vercel.app/contributor-index.html"
+          <a class="font" target="_blank" href="contributor.html"
             style="text-decoration: underline !important; ">Open Source Community</a>
         </p>
       </div>
