@@ -65,7 +65,7 @@ const Header = () => {
       </nav>
       <ul className={`nav-links1 ${isActive ? 'active' : ''}`} id="nav-links1">
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/about">About</Link></li>
+        <li><Link href="/abouts">About</Link></li>
         <li><Link href="/team">Team</Link></li>
         <li><Link href="/contact">Contact</Link></li>
       </ul>
