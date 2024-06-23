@@ -252,7 +252,17 @@ nav {
     opacity: 0px;
 }
 
+.navbar {
+  display: flex;
+  justify-content: center; /* Center the nav-links horizontally */
+  position: fixed;
+  width: 100%; /* Ensure it spans the full width of the viewport */
+  top: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
 .nav-links {
+    top: 0;
     list-style: none;
     display: flex;
     gap: 50px;
@@ -263,9 +273,6 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     box-shadow: 0 4px 6px #FF7D1F;
-}
-.nav-links li a:hover{
-  text-decoration: underline;
 }
 
 .nav-links li a {
@@ -280,23 +287,25 @@ nav {
     align-items: center;
     gap: 10px;
 }
-.nav-links li a::after{
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 3px;
-  bottom: 4px;
-  left: 0;
-  background-color: #FF7D1F;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+
+.nav-links li a{
+    color: #000;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold; /* Optional: Add a bold font weight */
+    transition: all 0.3s ease-in-out; /* Add a smooth hover effect */
 }
 
-.nav-links li a:hover::after{ 
-  transform: scaleX(1);
-  transform-origin: bottom left;
+.nav-links li a:hover {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 25px;
+  color: #fff; /* Change the hover color as desired */
+  background-color: rgba(0, 0, 0, 0.068); /* Add a hover background color */
 }
+
 .search-btn, .sponsor-btn {
     background: none;
     border: none;

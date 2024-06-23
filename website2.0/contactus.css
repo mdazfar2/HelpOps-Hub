@@ -143,6 +143,34 @@ textarea::placeholder{
     color: black;
 
 }
+
+
+.nav-links li a {
+  text-decoration: none !important;
+  color: #101010;
+  padding: 10px 15px;
+  font-size: 22px;
+  position: relative;
+}
+
+.nav-links li a{
+  color: #000;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold; /* Optional: Add a bold font weight */
+  transition: all 0.3s ease-in-out; /* Add a smooth hover effect */
+}
+
+.nav-links li a:hover {
+padding-left: 12px;
+padding-right: 12px;
+padding-top: 8px;
+padding-bottom: 8px;
+border-radius: 25px;
+color: #fff; /* Change the hover color as desired */
+background-color: rgba(0, 0, 0, 0.068); /* Add a hover background color */
+}
+
 @media only screen and (max-width:520px){
   .contact-img{
     display: none !important;
