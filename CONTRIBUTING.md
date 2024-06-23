@@ -24,18 +24,35 @@ Please take a moment to read the following guidelines before contributing:
 To get started, look at the existing [**create a new issue**](https://github.com/mdazfar2/HelpOps-Hub/issues/new)!
 
 ### Setup guidelines 🪜
-Follow these steps to setup HelpOps-Hub on your local machine
+
+> [!NOTE]
+> This is [Next.js](https://nextjs.org/docs) project.
+> You must have installed Node.js on your local macahine. If you don't have it installed yet,                                                             
+  you can download it from [here](https://nodejs.org/en/download/package-manager).
+
+
+**Follow these steps to setup HelpOps-Hub on your local machine 👇**
+
 - [Fork](https://github.com/mdazfar2/HelpOps-Hub/fork) the repository
 - Clone the forked repository in your local system.
   
   ```bash
    git clone https://github.com/<your-github-username>/HelpOps-Hub.git
   ```
- - Navigate to the [website2.0](https://github.com/mdazfar2/HelpOps-Hub/tree/main/website2.0) folder if you want to contribute to our website.
+ - Navigate to the [website3.0](https://github.com/mdazfar2/HelpOps-Hub/tree/main/website3.0) folder if you want to contribute to our website.
    ```bash
-    cd website2.0
+    cd website3.0
    ```
- - Open Index.html in your browser
+ - Now install dependency
+   ```bash
+    npm install
+   ```
+  - Run the Deployment Server
+    ```bash
+     npm run dev
+    ```
+  - `Open http://localhost:3000 with your browser to see the result.`
+  
  - Create a new branch for your feature.
    ```bash
     git checkout -b <your_branch_name>
