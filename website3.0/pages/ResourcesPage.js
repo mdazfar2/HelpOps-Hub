@@ -51,8 +51,8 @@ function ResourcesPage() {
 
         const filteredData = data.filter((file) => {
           const filename = file.name.slice(0, -1);
-          const isUpdate = filename.toLowerCase() === "website1.0";
-          const isOfficialWebsite = file.name.toLowerCase() === "website2.0";
+          const isUpdate = filename.toLowerCase() === "website2.0";
+          const isOfficialWebsite = file.name.toLowerCase() === "website3.0";
           return !file.name.includes(".") && !isUpdate && !isOfficialWebsite;
         });
 
