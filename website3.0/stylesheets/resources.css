@@ -133,7 +133,7 @@ input:checked + .switch:before {
 
 /* Dark mode specific styles */
 body.dark-mode {
-  background: #353535; 
+  background: #353535 !important; 
   color: #322d2d; 
 }
 .dark-mode .toggle-switch{
@@ -252,4 +252,8 @@ input {
   font-size:25px;
   font-family: cursive;
   margin: 10px;
+}
+body{
+  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%) !important;
+
 }
