@@ -2,11 +2,13 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
  
+
   min-height: 100vh;
-  width:100%;
-  display:block;
+  width: 100%;
+  display: block;
 }
 .main {
+  margin-top: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +78,7 @@ body {
   font-weight: 400;
 }
 .text-desc {
-  color:black;
+  color: black;
   margin-left: 0 !important;
   margin-right: 50px;
   font-size: larger;
@@ -133,7 +135,7 @@ body {
     padding: 2rem;
     width: 100% !important;
   }
-  .text-desc{
+  .text-desc {
     margin-right: 0px;
   }
 }
