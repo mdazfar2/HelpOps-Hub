@@ -753,17 +753,26 @@ body {
   padding: 0;
 }
 
-.gotopbtn {
-  position: fixed;
-  width: 50px;
+.scrollToTop {
   height: 50px;
-  background: #000000;
-  bottom: 40px;
+  width: 50px;
+  background: deepskyblue;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  position: fixed;
+  bottom: 10px;
   right: 50px;
-  text-decoration: none;
-  text-align: center;
-  line-height: 50px;
-  color: white;
-  font-size: 22px;
-  border-radius: 10px;
+}
+.scrollToTop .inner {
+  height: 85%;
+  width: 85%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }
