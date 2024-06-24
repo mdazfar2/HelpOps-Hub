@@ -612,7 +612,8 @@ body {
 }
 .member-card {
   background-color: #ff7d1f;
-  padding: 60px;
+  padding: 60px 0px;
+  width:100%;
   border-radius: 10%;
   text-align: center;
 }
@@ -651,12 +652,14 @@ body {
 
 .member-image-div img {
   border-radius: 10%;
+  margin:0px 60px;
   width: 100px;
   height: 100px;
 }
 
 .member-info-div {
   text-align: center;
+  width: 100%;
 }
 
 .member-info-div h2 {
