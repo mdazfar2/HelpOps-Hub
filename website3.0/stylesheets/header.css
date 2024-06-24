@@ -1,11 +1,20 @@
 /* Header and Navigation */
 header {
   width: 100%;
-  z-index: 100;
-  position: relative;
+  z-index: 500;
+  position: fixed;
   top: 0;
   background-color: transparent;
   padding: 10px 0;
+  transition: top 0.3s;
+}
+
+.showNav {
+  top: 0;
+}
+
+.hideNav {
+  top: -100px;
 }
 
 nav {
@@ -72,9 +81,6 @@ nav {
   gap: 10px;
 }
 
-
-
-
 .nav-sponsor-btn {
   background-color: rgba(245, 245, 245, 0.788);
   border: none;
@@ -93,7 +99,6 @@ nav {
   padding: 7px 7px;
   font-family: cursive;
   margin-right: 7px;
-  
 }
 
 #heart {
@@ -104,16 +109,15 @@ nav {
 }
 
 /* Hovering effect for Sponsor btn */
-.nav-sponsor-btn:hover{
+.nav-sponsor-btn:hover {
   transform: translateX(10px);
   background: none;
   border: 2px solid whitesmoke;
 }
 
-.dark-mode .nav-sponsor-btn:hover{
+.dark-mode .nav-sponsor-btn:hover {
   color: #e0e0e0;
 }
-
 
 .hamburger {
   display: none;
@@ -224,32 +228,32 @@ nav {
   }
 }
 
-@media only screen and (max-width:409px) {
-  .nav-actions{
+@media only screen and (max-width: 409px) {
+  .nav-actions {
     position: fixed;
     top: 10px;
     left: 3% !important;
   }
-    nav{
-        gap: 5% !important;
-    }
-    .hamburger{
-        width: 100% !important;
-    }
-    .hamburger div{
-        position: relative;
-        left: 90%;
-    }
-    nav{
-        flex-direction: column-reverse;
-    }
-    .nav-actions a{
-        display: none !important;
-    }
-    .logo img{
-        width: 60px !important;
-        height: 60px !important;
-    }
+  nav {
+    gap: 5% !important;
+  }
+  .hamburger {
+    width: 100% !important;
+  }
+  .hamburger div {
+    position: relative;
+    left: 90%;
+  }
+  nav {
+    flex-direction: column-reverse;
+  }
+  .nav-actions a {
+    display: none !important;
+  }
+  .logo img {
+    width: 60px !important;
+    height: 60px !important;
+  }
 }
 
 @keyframes animate {
