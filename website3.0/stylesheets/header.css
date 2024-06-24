@@ -14,21 +14,20 @@ nav {
   flex-wrap: wrap;
   align-items: center;
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .logo img {
-  width: 89px;
-  height: 89px;
-  position: relative;
+  width: 79px;
+  height: 79px;
   top: 10px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 50px;
-  margin: 25px;
+  gap: 20px;
+  margin: 0px 0px 0px 100px;
   padding: 12px 20px;
   background-color: #fdd86c;
   border-radius: 25px;
@@ -73,28 +72,24 @@ nav {
   gap: 10px;
 }
 
-.search-btn,
-.nav-sponsor-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
+
+
 
 .nav-sponsor-btn {
-  background-color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.788);
   border: none;
   border-radius: 25px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   color: #000000;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 3px;
   transition: all 0.4s ease;
-  width: 150px;
+  width: 120px;
+
   padding: 7px 7px;
   font-family: cursive;
   margin-right: 7px;
@@ -102,7 +97,7 @@ nav {
 }
 
 #heart {
-  color: red;
+  color: rgba(255, 0, 0, 0.84);
 }
 .nav-sponsor-btn:active {
   transform: translateY(1px);
