@@ -1,27 +1,37 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import "@stylesheets/resourcesdetails.css";
 import showdown from "showdown";
+
+//Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function ResourcesDetailsPage() {
+  // State variables
   const [folderName, setFolderName] = useState("");
   const [content, setContent] = useState("Loading...");
-  const [repoLink, setRepoLink] = useState("");
+  const [repoLink, setRepoLink] = useState(""); 
 
+  // Effect hook to fetch README content when component mounts
   useEffect(() => {
+    // Extract folder name from URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const folder = urlParams.get("folder");
+    
+    // Set folder name and fetch README content if folder is specified
     if (folder) {
       setFolderName(folder);
-      fetchReadme(folder);
+      // Function to fetch README content
+      fetchReadme(folder); 
     } else {
       setContent("No folder specified.");
     }
   }, []);
 
+  // Function to fetch README content from GitHub repository
   const fetchReadme = (folder) => {
+    // Possible names for README files
     const possibleReadmeNames = [
       "README.md",
       "Readme.md",
@@ -29,8 +39,10 @@ function ResourcesDetailsPage() {
       "Project.md",
       "project.md",
     ];
-    let readmeFetched = false;
+    // Flag to track if README file is fetched
+    let readmeFetched = false; 
 
+    // Reduce function to sequentially try fetching README files
     possibleReadmeNames.reduce((promiseChain, readmeName) => {
       return promiseChain.then(() => {
         if (!readmeFetched) {
@@ -39,11 +51,13 @@ function ResourcesDetailsPage() {
             .then((response) => {
               if (response.ok) {
                 readmeFetched = true;
-                return response.text();
+                // Return README content as text
+                return response.text(); 
               }
               return Promise.reject(`File not found: ${readmeName}`);
             })
             .then((text) => {
+              // Convert Markdown to HTML using Showdown library
               const converter = new showdown.Converter({
                 simplifiedAutoLink: true,
                 tables: true,
@@ -64,13 +78,16 @@ function ResourcesDetailsPage() {
                 button.innerText = "Copy";
                 button.addEventListener("click", () => {
                   const code = pre.querySelector("code").innerText;
-                  copyToClipboard(code);
+                  // Function to copy code to clipboard
+                  copyToClipboard(code); 
                 });
                 pre.appendChild(button);
               });
 
-              // Update the state with the modified HTML
+              // Update the state with the modified HTML content
               setContent(tempContainer.innerHTML);
+              
+              // Set GitHub repository link
               setRepoLink(`https://github.com/mdazfar2/HelpOps-Hub/tree/main/${folder}`);
             })
             .catch((error) => {
@@ -85,36 +102,47 @@ function ResourcesDetailsPage() {
     });
   };
 
+  // Function to copy text to clipboard
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(
       () => {
-        showToast("Code copied!");
+        // Show toast message for successful copy
+        showToast("Code copied!"); 
       },
       (err) => {
         console.error("Could not copy text: ", err);
-        showToast("Failed to copy code.");
+        // Show toast message for failed copy
+        showToast("Failed to copy code."); 
       }
     );
   };
 
+  // Function to show toast message
   const showToast = (message) => {
     const toast = document.getElementById("toast");
     toast.textContent = message;
     toast.style.display = "block";
     setTimeout(() => {
-      toast.style.display = "none";
+      // Hide toast message after 2 seconds
+      toast.style.display = "none"; 
     }, 2000);
   };
-
   return (
     <div className="resourcesdetails">
+
+      {/* Section: Container */}
+
       <div id="container" onClick={(e) => {
+        // Handle click on copy button inside content container
         if (e.target.className === "copy-button") {
           const code = e.target.previousSibling.innerText;
-          copyToClipboard(code);
+          // Function to copy code to clipboard
+          copyToClipboard(code); 
         }
       }}>
+        {/* Render README content with dangerouslySetInnerHTML to allow HTML */}
         <div id="content" dangerouslySetInnerHTML={{ __html: content }}></div>
+        {/* GitHub repository link */}
         <a
           id="repo-link"
           className="repo-link fab fa-github"
@@ -125,6 +153,7 @@ function ResourcesDetailsPage() {
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </div>
+      {/* Toast message for showing copy success/failure */}
       <div className="toast" id="toast">
         Code copied!
       </div>

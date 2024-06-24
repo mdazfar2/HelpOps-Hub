@@ -1,29 +1,43 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import "@stylesheets/contact.css";
 
 function ContactPage() {
-  const [selectedRating, setSelectedRating] = useState(0);
-  const [showError, setShowError] = useState(false);
-  const [showThankYouMessage, setShowThankYouMessage] = useState(false);
+  // State variables to manage form state and UI messages
+  const [selectedRating, setSelectedRating] = useState(0); 
+  const [showError, setShowError] = useState(false); 
+  const [showThankYouMessage, setShowThankYouMessage] = useState(false); 
 
+  // Function to handle click on star rating
   const handleStarClick = (value) => {
-    setSelectedRating(value);
+    // Update selectedRating state with the clicked star value
+    setSelectedRating(value); 
   };
 
+  // Function to handle form submission
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // Prevent default form submission behavior
+    event.preventDefault(); 
+
+    // Validation: Check if a rating is selected
     if (selectedRating === 0) {
-      setShowError(true);
-      setTimeout(() => setShowError(false), 2000);
+      // Show error message if rating is not selected
+      setShowError(true); 
+      // Hide error message after 2 seconds
+      setTimeout(() => setShowError(false), 2000); 
+       // Exit function early if validation fails
       return;
     }
 
-    setShowThankYouMessage(true);
+    // Display thank you message and reset form after 3 seconds
+    setShowThankYouMessage(true); 
     setTimeout(() => {
-      setShowThankYouMessage(false);
+      // Hide thank you message after 3 seconds
+      setShowThankYouMessage(false); 
+      // Reset the form fields
       document.getElementById("contact-form").reset();
-      setSelectedRating(0);
+      // Reset selectedRating state
+      setSelectedRating(0); 
     }, 3000);
   };
 
@@ -34,6 +48,7 @@ function ContactPage() {
         <div className="form-container">
           <h1>Contact Us</h1>
           <form id="contact-form" onSubmit={handleSubmit}>
+            {/* Name input */}
             <input
               type="text"
               id="name"
@@ -42,6 +57,7 @@ function ContactPage() {
               placeholder="Name:"
             />
 
+            {/* Email input */}
             <input
               type="email"
               id="email"
@@ -50,6 +66,7 @@ function ContactPage() {
               placeholder="Email:"
             />
 
+            {/* Comment textarea */}
             <textarea
               id="comment"
               name="comment"
@@ -57,10 +74,12 @@ function ContactPage() {
               placeholder="Comment:"
             ></textarea>
 
+            {/* Rating section */}
             <label htmlFor="rating" id="rate">
               Rating:
             </label>
             <div id="rating">
+              {/* Generate star icons for rating selection */}
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
                   key={value}
@@ -73,10 +92,15 @@ function ContactPage() {
                 </span>
               ))}
             </div>
+            {/* Error message for rating selection */}
             {showError && <p id="error">Please Give Any Rating</p>}
+            
+            {/* Submit button */}
             <button type="submit" id="button">
               Submit
             </button>
+
+            {/* Thank you message after successful submission */}
             {showThankYouMessage && (
               <p id="thank-you-message">
                 Thank you !!
