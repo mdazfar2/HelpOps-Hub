@@ -1,60 +1,88 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import "@/stylesheets/teams.css";
+
+//Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import "@/stylesheets/teams.css";
+
+//Importing the CardSkeleton Component
 import CardSkeleton from "@components/CardSkeleton";
 
+// The GitHub username of the repository owner
 const owner = "mdazfar2";
+
+// The name of the repository from which we are fetching contributors
 const repoName = "HelpOps-Hub";
+
+// The initial number of items (contributors) to display on the page
 const initialItems = 4;
+
+// The number of items (contributors) to display per page when loading more
 const itemsPerPage = 4;
 
 function TeamsPage() {
+  // State variables for managing contributors and loading state
   const [currentPage, setCurrentPage] = useState(1);
   const [otherContri, setOtherContri] = useState([]);
   const [topContri, setTopContri] = useState([]);
   const [allContributors, setAllContributors] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Hook to handle side effects in functional components
   useEffect(() => {
+    // Function to fetch all contributors data
     async function fetchAllContributors() {
       try {
+        // Fetch contributors data
         const contributorsData = await fetchContributors();
+        // Filter and set top contributors
         topContributors(contributorsData);
+        // Set all contributors data
         setAllContributors(contributorsData);
+        // Simulate loading delay
         setTimeout(() => {
           setLoading(false);
         }, 2500);
       } catch (error) {
+        // Log any errors that occur during fetching
         console.error(error);
       }
     }
 
+    // Call the function to fetch all contributors
     fetchAllContributors();
   }, []);
 
+  // Function to fetch contributors from the GitHub API
   async function fetchContributors(pageNumber = 1) {
+    // Number of contributors to fetch per page
     const perPage = 100;
+    // Construct the API URL
     const url = `https://api.github.com/repos/${owner}/${repoName}/contributors?page=${pageNumber}&per_page=${perPage}`;
 
+    // Fetch data from the API
     const response = await fetch(url);
+    // Throw an error if the response is not ok
     if (!response.ok) {
       throw new Error(
         `Failed to fetch contributors data. Status code: ${response.status}`
       );
     }
 
+    // Parse the JSON response
     const contributorsData = await response.json();
     return contributorsData;
   }
 
+  // Function to filter and set top and other contributors
   function topContributors(contributors) {
     let r = 0;
     const topContributorsList = [];
     const otherContributorsList = [];
 
+    // Filter contributors based on specific conditions
     contributors.forEach((contributor) => {
       let name = contributor.name || contributor.login;
       if (
@@ -79,10 +107,12 @@ function TeamsPage() {
       }
     });
 
+    // Set the state for top and other contributors
     setTopContri(topContributorsList);
     setOtherContri(otherContributorsList);
   }
 
+  // Function to render the list of contributors
   function renderContributors(contributors) {
     return contributors.map((contributor) => {
       const avatarImgSrc = contributor.avatar_url;
@@ -93,6 +123,7 @@ function TeamsPage() {
         name = name.slice(0, 10) + "...";
       }
 
+      // Exclude specific contributors from rendering since they are Maintainers
       if (
         fname !== "azfar-2" &&
         fname !== "Ayushmaanagarwal1211" &&
@@ -122,7 +153,7 @@ function TeamsPage() {
               </div>
               <div className="member-social-links">
                 <a href={loginLink} target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faGithub} className="Github"/>
+                  <FontAwesomeIcon icon={faGithub} className="Github" />
                 </a>
                 <div className="member-github-label">GitHub</div>
               </div>
@@ -134,6 +165,7 @@ function TeamsPage() {
     });
   }
 
+  // Function to render the top 3 contributors
   function renderTopContributors(contributors) {
     if (contributors.length < 3) return null;
     console.log(contributors.html_url);
@@ -196,6 +228,7 @@ function TeamsPage() {
     );
   }
 
+  // Function to load more contributors when user clicks 'Load More' button
   function loadMore() {
     const start = currentPage * itemsPerPage;
     const end = start + itemsPerPage;
@@ -205,12 +238,19 @@ function TeamsPage() {
 
   return (
     <div>
+
+      {/* Section: Meet Our Team */}
+
       <div id="ourteam">Meet Our Team</div>
       <div className="team-description">
         Meet our team driving HelpOps-Hub's success with expertise and passion,
         turning every challenge into a milestone.
       </div>
+
+      {/* Section: Team Grid */}
+
       <div id="team-grid">
+        {/* Team Member 1 */}
         <div className="team-member">
           <div className="card1">
             <div className="margin">
@@ -224,27 +264,41 @@ function TeamsPage() {
               <span className="badge founder">Founder</span>
             </div>
           </div>
+          {/* Social Links for Team Member 1 */}
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/mdazfar2" target="__blank">
+              <a
+                href="https://github.com/sponsors/mdazfar2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/mdazfar2" target="__blank">
+              <a
+                href="https://github.com/mdazfar2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/md-azfar-alam/" target="__blank">
+              <a
+                href="https://www.linkedin.com/in/md-azfar-alam/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
             </div>
           </div>
         </div>
+        {/* Team Member 2 */}
         <div className="team-member">
           <div className="card2">
             <div className="margin">
@@ -258,27 +312,41 @@ function TeamsPage() {
               <span className="badge Lead">Lead Developer</span>
             </div>
           </div>
+          {/* Social Links for Team Member 2 */}
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/pandeyji711" target="__blank">
+              <a
+                href="https://github.com/sponsors/pandeyji711"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/pandeyji711" target="__blank">
+              <a
+                href="https://github.com/pandeyji711"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/anuragpandey0711/" target="__blank">
+              <a
+                href="https://www.linkedin.com/in/anuragpandey0711/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
             </div>
           </div>
         </div>
+        {/* Team Member 3 */}
         <div className="team-member">
           <div className="card3">
             <div className="margin">
@@ -292,27 +360,41 @@ function TeamsPage() {
               <span className="badge UI">Maintainer</span>
             </div>
           </div>
+          {/* Social Links for Team Member 3 */}
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/RamakrushnaBiswal" target="__blank">
+              <a
+                href="https://github.com/sponsors/RamakrushnaBiswal"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/RamakrushnaBiswal" target="__blank">
+              <a
+                href="https://github.com/RamakrushnaBiswal"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/ramakrushna-biswal/" target="__blank">
+              <a
+                href="https://www.linkedin.com/in/ramakrushna-biswal/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
             </div>
           </div>
         </div>
+        {/* Team Member 4 */}
         <div className="team-member">
           <div className="card4">
             <div className="margin">
@@ -326,21 +408,34 @@ function TeamsPage() {
               <span className="badge Maintainer">Maintainer</span>
             </div>
           </div>
+          {/* Social Links for Team Member 4 */}
           <div className="social-links">
             <div className="social-links-items">
-              <a href="https://github.com/sponsors/RamakrushnaBiswal" target="__blank">
+              <a
+                href="https://github.com/sponsors/RamakrushnaBiswal"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faHeart} className="social-icon" />
               </a>
               <p>Sponsor</p>
             </div>
             <div className="social-links-items">
-              <a href="https://github.com/RamakrushnaBiswal" target="__blank">
+              <a
+                href="https://github.com/RamakrushnaBiswal"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faGithub} className="social-icon" />
               </a>
               <p>Github</p>
             </div>
             <div className="social-links-items">
-              <a href="https://www.linkedin.com/in/ramakrushna-biswal/" target="__blank">
+              <a
+                href="https://www.linkedin.com/in/ramakrushna-biswal/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
               </a>
               <p>LinkedIn</p>
@@ -348,33 +443,50 @@ function TeamsPage() {
           </div>
         </div>
       </div>
+
+
+      {/* Section: Top 3 Contributors */}
+
       <div className="teams-container">
         <h1 className="contri">Top 3 Contributors</h1>
         <div id="contributors">{renderTopContributors(topContri)}</div>
       </div>
+
+
+      {/* Section: Dynamic Loading of Contributors */}
+
       <div id="team-grid1">
+        {/* Conditionally render loading skeleton or contributor cards */}
         {loading
-          ? Array.from({ length: 4 }).map((_, index) => (
+          ? Array.from({ length: itemsPerPage }).map((_, index) => (
               <CardSkeleton key={index} />
             ))
           : renderContributors(
               otherContri.slice(0, currentPage * itemsPerPage)
             )}
       </div>
+
+      {/* Section: Trophy Card and Call to Action */}
+
       <div className="trophy-card">
         <img src="trophy.png" alt="Trophy" className="trophy" />
-
         <div className="team-invite">
           <h2>Join our awesome team!</h2>
           <p>
             Be a contributor and improve HelpOps-Hub and help fellow developers.
           </p>
         </div>
-        <a href="https://discord.gg/UWTrRhqywt" target="__blank">
+        <a
+          href="https://discord.gg/UWTrRhqywt"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <button className="join-button"> Join us now &#8594;</button>
         </a>
       </div>
-      <div className="cards" id="team-grid1"></div>
+
+      {/* Section: Load More Button */}
+      
       <div className="load">
         <button id="load-more" onClick={loadMore}>
           Load More

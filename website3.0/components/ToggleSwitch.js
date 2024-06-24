@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import "@stylesheets/darkmode.css";
+
+//Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
+
 const ToggleSwitch = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
+    // Check stored preference
     const darkMode = localStorage.getItem("dark-mode") === "true";
+    // Set initial state based on stored preference
     setIsDarkMode(darkMode);
     if (darkMode) {
       document.body.classList.add("dark-mode");
@@ -14,11 +19,14 @@ const ToggleSwitch = () => {
       document.body.classList.remove("dark-mode");
     }
   }, []);
-
+  // Function to toggle dark mode
   const toggleMode = () => {
     const newMode = !isDarkMode;
+    // Update state with new mode
     setIsDarkMode(newMode);
+    // Toggle dark mode class on body
     document.body.classList.toggle("dark-mode");
+    // Store new mode preference in local storage
     localStorage.setItem("dark-mode", newMode);
   };
 

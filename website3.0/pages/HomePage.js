@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
-import Rellax from "rellax";
+
+//Importing FontAwesome for Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
+import { faStar, faHeart, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+
+//Importing the AOS Package for Scroll Animations
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "@stylesheets/homepage.css";
-import Splide from "@splidejs/splide";
+
+//Import Rellax Package
+import Rellax from "rellax";
+
+//Importing the SplideJS Package
+import Splide from "@splidejs/splide"; 
 import "@splidejs/splide/dist/css/splide.min.css";
+
 function HomePage() {
+
+  // Initialize the Splide carousel on component mount
   useEffect(() => {
     const splide = new Splide("#splide", {
       type: "loop",
@@ -26,41 +35,58 @@ function HomePage() {
     });
 
     splide.mount();
+
+    // Cleanup Splide instance on component unmount
     return () => {
       splide.destroy();
     };
   }, []);
 
   const router = useRouter();
+  
+  // Initialize AOS (Animate on Scroll) library for scroll animations
   useEffect(() => {
     setTimeout(() => {
       AOS.init({
         duration: 1200,
       });
     }, 100);
+
+    // Refresh AOS on component unmount
     return () => {
       AOS.refreshHard();
     };
   }, []);
 
+  // Initialize Rellax library for parallax scrolling effects
   useEffect(() => {
     var rellax = new Rellax(".rellax");
+
+    // Cleanup Rellax instance on component unmount
     return () => {
       rellax.destroy();
     };
   }, []);
+
+  // Navigate to the /resources page when "Get started" button is clicked
   const handleGetStartedClick = () => {
     router.push("/resources");
   };
+
+  // Smooth scroll to the element with id "img1"
   const scrollToImage = () => {
     const img1 = document.getElementById("img1");
     if (img1) {
       img1.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <div>
       <main>
+
+        {/* Section: Main */}
+
         <div className="main-content">
           <div className="content">
             <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
@@ -91,6 +117,9 @@ function HomePage() {
           </button>
         </div>
       </main>
+
+      {/* Down arrow icon for scrolling to the image section */}
+
       <div className="arrow_container">
         <FontAwesomeIcon
           icon={faAnglesDown}
@@ -100,9 +129,15 @@ function HomePage() {
           onClick={scrollToImage}
         />
       </div>
+
+      {/* Section: Devops-Image */}
+      
       <div className="img1" id="img1">
         <img src="/img1.png" />
       </div>
+
+      {/*Section: DevOps Insights */}
+
       <div className="devops_text_container">
         <div className="text-section">
           <h1 data-aos="fade-right">Expert DevOps Insights</h1>
@@ -146,6 +181,9 @@ function HomePage() {
           />
         </div>
       </div>
+
+      {/*Section: Cards*/}
+
       <div className="container1">
         <div className="header">
           <div id="h1" className="h1" data-aos="fade-right">
@@ -218,6 +256,9 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      {/*Section: Banner with carousel using SplideJS*/}
+
       <div className="banner">
         <h1 className="banner-title" data-aos="fade-up">
           DevOps Arsenal
@@ -251,6 +292,9 @@ function HomePage() {
             </div>
           </div>
         </div>
+
+        {/*Section: Newsletter subscription*/}
+
         <div className="newsletter-container">
           <div className="newsletter">
             <div className="logo-section">
