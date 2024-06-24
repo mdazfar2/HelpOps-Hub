@@ -148,8 +148,10 @@ function TeamsPage() {
             </div>
             <div className="member-data">
               <div className="member-contributions">
+              <a href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`} target="__blank">
                 <div className="member-contributions-count">{contri}</div>
                 <div className="member-contributions-label">Contributions</div>
+                </a>
               </div>
               <div className="member-social-links">
                 <a href={loginLink} target="_blank" rel="noopener noreferrer">
