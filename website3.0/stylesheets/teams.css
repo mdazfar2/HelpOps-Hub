@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: "Arial", sans-serif;
-  background: linear-gradient(180deg, #fdd86c 8.1%, #ff7d1f 100%);
+
+  font-family: 'Arial', sans-serif;
+  /* background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%); */
   min-height: 100vh;
   width: 100%;
   display: block;

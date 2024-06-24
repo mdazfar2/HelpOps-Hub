@@ -9,7 +9,9 @@
     flex-direction: column;
     margin-bottom: 1.6rem;
 }
-
+.footer .font a{
+    text-decoration: underline !important;
+}
 .iconsclass{
     width: 100%;
     display: flex;
@@ -36,7 +38,7 @@
     font-size: 0.8rem;
     font-family: sans-serif;
     color: black;
-    font-weight:550;
+    font-weight: 400;
 }
 .font a{
     text-decoration: underline;
