@@ -1,10 +1,11 @@
 body {
   margin: 0;
+
   font-family: 'Arial', sans-serif;
   /* background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%); */
   min-height: 100vh;
-  width:100%;
-  display:block;
+  width: 100%;
+  display: block;
 }
 #ourteam {
   display: flex;
@@ -12,7 +13,7 @@ body {
   align-items: center;
   font-family: cursive;
   font-size: 24px;
-  margin-top: 2rem;
+  margin-top: 160px;
 }
 
 .team-description {
@@ -272,7 +273,7 @@ body {
 
 .teams-container {
   text-align: center;
-  height:95vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -432,7 +433,6 @@ body {
   color: #00000094;
 }
 
-
 .dark-mode .rank {
   background: black;
 }
@@ -469,7 +469,6 @@ body {
   box-shadow: 0 0px 50px rgba(255, 125, 31, 1);
   transform: scale(1.1);
 }
-
 
 /* Card Skeleton */
 
@@ -591,7 +590,6 @@ body {
   align-items: center;
 }
 
-
 /* Members-Card */
 
 .team-member-card {
@@ -607,7 +605,7 @@ body {
   transition: 0.5s;
   transform: scale(0.95);
 }
-.dark-mode .team-member-card  {
+.dark-mode .team-member-card {
   background-color: #0a0a0a;
 }
 .member-card {
@@ -617,14 +615,15 @@ body {
   border-radius: 10%;
   text-align: center;
 }
+
 .member-social-links a .Github{
   transition: 0.5s ease-in-out;
   color:black;
 }
-.dark-mode .member-social-links a .Github{
-  color:white;
+.dark-mode .member-social-links a .Github {
+  color: white;
 }
-.dark-mode .member-card  {
+.dark-mode .member-card {
   background-color: #181818;
 }
 .team-member-card:hover {
@@ -672,7 +671,7 @@ body {
   font-size: 0.9em;
 }
 
-.member-data{
+.member-data {
   display: flex;
   flex-direction: row;
   align-items: center;

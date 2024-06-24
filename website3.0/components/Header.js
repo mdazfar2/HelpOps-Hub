@@ -1,23 +1,46 @@
 "use client";
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import "@stylesheets/header.css"
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import "@stylesheets/header.css";
 
 //Importing TogleSwitch Component
-import ToggleSwitch from './ToggleSwitch';
+import ToggleSwitch from "./ToggleSwitch";
 
 //Importing FontAwesome for Icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
 
+  // to set the status of show navbar or not
+  const [show, setShow] = useState(true);
+  let lastScrollTop = 0; // to keep the position of lastscroll
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For negative scrolling
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // Effect to load VanillaTilt library for logo animation
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js";
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js";
     script.onload = () => {
       // Initialize VanillaTilt on .logo elements
       VanillaTilt.init(document.querySelectorAll(".logo"), {
@@ -41,14 +64,14 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <header>
+    <header className={`${show ? "showNav" : "hideNav"}`}>
       <nav>
         {/* Logo with VanillaTilt animation */}
         <Link href="/">
@@ -57,16 +80,26 @@ const Header = () => {
           </div>
         </Link>
         {/* Main navigation links */}
-        <ul className={`nav-links ${isActive ? 'active' : ''}`}>
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/abouts">About</Link></li>
-          <li><Link href="/team">Team</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
+        <ul className={`nav-links ${isActive ? "active" : ""}`}>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/abouts">About</Link>
+          </li>
+          <li>
+            <Link href="/team">Team</Link>
+          </li>
+          <li>
+            <Link href="/contact">Contact</Link>
+          </li>
         </ul>
         {/* Navigation actions (sponsor button and toggle switch) */}
         <div className="nav-actions">
-          <a href="https://github.com/sponsors/mdazfar2" target='_blank'>
-            <button className="nav-sponsor-btn">Sponsor <FontAwesomeIcon icon={faHeart} id="heart" width={25}/></button>
+          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+            <button className="nav-sponsor-btn">
+              Sponsor <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+            </button>
           </a>
           <ToggleSwitch />
         </div>
@@ -78,11 +111,19 @@ const Header = () => {
         </div>
       </nav>
       {/* Mobile menu links */}
-      <ul className={`nav-links1 ${isActive ? 'active' : ''}`} id="nav-links1">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/abouts">About</Link></li>
-        <li><Link href="/team">Team</Link></li>
-        <li><Link href="/contact">Contact</Link></li>
+      <ul className={`nav-links1 ${isActive ? "active" : ""}`} id="nav-links1">
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/abouts">About</Link>
+        </li>
+        <li>
+          <Link href="/team">Team</Link>
+        </li>
+        <li>
+          <Link href="/contact">Contact</Link>
+        </li>
       </ul>
     </header>
   );
