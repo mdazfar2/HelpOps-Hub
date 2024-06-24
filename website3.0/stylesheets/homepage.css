@@ -1,19 +1,6 @@
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
-  background: linear-gradient(
-    to bottom,
-    #f5d471 2%,
-    #ec904f 15%,
-    #eb9a60 25%,
-    #e99960 35%,
-    #e89357 45%,
-    #e99559 55%,
-    #e78d4d 65%,
-    #eb904f 75%,
-    #e97a2a 85%,
-    #ea670a 95%
-  );
   min-height: 100vh;
   width: 100%;
   display: block;
@@ -196,7 +183,7 @@ a {
 .devops_text_container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 13rem;
+  margin-top: 8rem;
   justify-content: center;
   align-items: center;
   padding-left: 5rem;
