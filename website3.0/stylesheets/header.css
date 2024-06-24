@@ -93,18 +93,32 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  transition: transform 0.1s ease;
+  transition: all 0.4s ease;
   width: 150px;
   padding: 7px 7px;
   font-family: cursive;
   margin-right: 7px;
+  
 }
+
 #heart {
   color: red;
 }
 .nav-sponsor-btn:active {
   transform: translateY(1px);
 }
+
+/* Hovering effect for Sponsor btn */
+.nav-sponsor-btn:hover{
+  transform: translateX(10px);
+  background: none;
+  border: 2px solid whitesmoke;
+}
+
+.dark-mode .nav-sponsor-btn:hover{
+  color: #e0e0e0;
+}
+
 
 .hamburger {
   display: none;

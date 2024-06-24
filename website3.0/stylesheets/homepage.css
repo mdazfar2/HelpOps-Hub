@@ -90,14 +90,29 @@ a {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   color: #000000;
   gap: 7px;
-  transition: transform 0.1s ease;
+  transition: all 0.4s ease;
   width: 180px;
   font-family: cursive;
 }
 
-.get-started-btn:active {
-  transform: translateY(1px);
+.dark-mode .get-started-btn{
+  background-color: whitesmoke;
+  color: #000000;
 }
+
+/* Hovering effect for get-started btn */
+.get-started-btn:hover{
+  transform: translateX(10px);
+  background:none;
+  border: 2px solid whitesmoke;
+}
+
+.dark-mode .get-started-btn:hover{
+  background-color: none;
+  color: whitesmoke;
+}
+
+
 
 .star-button {
   color: #000000;
@@ -113,6 +128,21 @@ a {
 
 .star-button:active {
   transform: translateY(1px);
+}
+
+/* Hovering effect for Star btn */
+.content a{
+  transition: all 0.4s ease;
+}
+
+.content a:hover{
+  transform: translateX(10px);
+  background: none;
+  border: 2px solid whitesmoke;
+}
+
+.dark-mode .content a:hover h3{
+  color: whitesmoke;
 }
 
 .star-icon {
@@ -549,6 +579,7 @@ color: white !important;
   border-radius: 20px;
   height: 38px;
   width: 289px;
+  padding-left: 15px;
   border: none;
 }
 
