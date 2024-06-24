@@ -60,7 +60,7 @@ a {
 
 .main-content {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 225px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,24 +82,22 @@ a {
   font-family: cursive;
 }
 
-.dark-mode .get-started-btn{
+.dark-mode .get-started-btn {
   background-color: whitesmoke;
   color: #000000;
 }
 
 /* Hovering effect for get-started btn */
-.get-started-btn:hover{
+.get-started-btn:hover {
   transform: translateX(10px);
-  background:none;
+  background: none;
   border: 2px solid whitesmoke;
 }
 
-.dark-mode .get-started-btn:hover{
+.dark-mode .get-started-btn:hover {
   background-color: none;
   color: whitesmoke;
 }
-
-
 
 .star-button {
   color: #000000;
@@ -118,17 +116,17 @@ a {
 }
 
 /* Hovering effect for Star btn */
-.content a{
+.content a {
   transition: all 0.4s ease;
 }
 
-.content a:hover{
+.content a:hover {
   transform: translateX(10px);
   background: none;
   border: 2px solid whitesmoke;
 }
 
-.dark-mode .content a:hover h3{
+.dark-mode .content a:hover h3 {
   color: whitesmoke;
 }
 
@@ -160,15 +158,16 @@ a {
   font-size: 2rem;
 }
 
-.animation1{
+.animation1 {
   animation: ani alternate ease-in 0.7s infinite;
   cursor: pointer;
 }
 @keyframes ani {
-  from{
+  from {
     position: absolute;
     bottom: 20px;
-  }to{
+  }
+  to {
     position: absolute;
     bottom: 8px;
   }
@@ -180,7 +179,6 @@ a {
   height: auto;
   width: auto;
 }
-
 
 .devops_text_container {
   display: flex;
@@ -259,7 +257,7 @@ a {
   padding: 0px 0px 0px 80px;
   align-items: center;
   left: 60px;
-  height:500px;
+  height: 500px;
   margin-bottom: 10rem;
   margin-top: 10rem;
 }
@@ -286,9 +284,8 @@ a {
   font-size: 96px;
   color: #000;
   margin: 0;
-  font-family: 'Arial Black', sans-serif;
+  font-family: "Arial Black", sans-serif;
 }
-
 
 .cards {
   display: flex !important;
@@ -309,7 +306,7 @@ a {
   text-align: left;
   width: 379px !important;
   color: black;
-  height:210px;
+  height: 210px;
 }
 .card p {
   margin-left: 0px !important;
@@ -442,8 +439,6 @@ body.dark-mode {
   cursor: default;
 }
 
-
-
 .banner {
   text-align: center;
   font-family: sans-serif;
@@ -457,7 +452,6 @@ body.dark-mode {
   font-size: 52px !important;
 }
 
-
 .banner {
   padding: 20px 0px;
   width: 100%;
@@ -468,7 +462,6 @@ body.dark-mode {
   align-items: center;
   gap: 30px;
   margin-top: 0px !important;
-
 }
 
 .banner h1 {
@@ -497,21 +490,21 @@ body.dark-mode {
 .splide__pagination__page {
   display: none;
 }
-.dark-mode .newsletter{
+.dark-mode .newsletter {
   background-color: #0a0a0a !important;
 }
-.dark-mode .news-logo{
+.dark-mode .news-logo {
   color: white !important;
 }
-.dark-mode .Subscribe{
-background-color: #ea670a !important;
-color: white !important;
+.dark-mode .Subscribe {
+  background-color: #ea670a !important;
+  color: white !important;
 }
 .newsletter-container {
   width: 95vw;
   margin-bottom: 70px;
   margin-top: 50px;
-  z-index:50;
+  z-index: 50;
 }
 
 .newsletter {
@@ -580,20 +573,17 @@ color: white !important;
   border: none;
   margin-left: 10px;
 }
-.dark-mode .subscribe-btn{
+.dark-mode .subscribe-btn {
   background-color: #ef8336;
-  color:white;
+  color: white;
 }
-
-
-
-
-
-
 
 /* Media Queries */
 @media only screen and (max-width: 1280px) {
-  #c1,#c2,#c3,#c4{
+  #c1,
+  #c2,
+  #c3,
+  #c4 {
     position: static !important;
     top: 0px !important;
     bottom: 0px !important;
@@ -601,17 +591,17 @@ color: white !important;
     left: 0px !important;
     cursor: default;
   }
-  
-  .card div{
+
+  .card div {
     display: flex;
     justify-content: center;
   }
-  .container1{
+  .container1 {
     margin-left: 0px !important;
     position: relative;
     height: auto;
   }
-  .cards{
+  .cards {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -628,32 +618,32 @@ color: white !important;
     margin-right: none;
     padding-left: 2rem;
     margin-top: 5rem;
-    height:600px
+    height: 600px;
   }
-  .text-section{
+  .text-section {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 0rem;
   }
-  .text-section h1{
+  .text-section h1 {
     text-align: center;
   }
-  .header{
-    bottom:0px;
+  .header {
+    bottom: 0px;
   }
-  .header .h1{
+  .header .h1 {
     text-align: center;
   }
 }
 
 @media only screen and (max-width: 1140px) {
-  .container1{
+  .container1 {
     display: flex;
     flex-direction: column;
-    width:90%;
-    left:0px;
+    width: 90%;
+    left: 0px;
   }
 }
 @media only screen and (max-width: 720px) {
