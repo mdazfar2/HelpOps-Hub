@@ -17,6 +17,7 @@ import Rellax from "rellax";
 import Splide from "@splidejs/splide"; 
 import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
+import ParticlesComponent from "@components/ParticleBackground";
 function HomePage() {
 
   // Initialize the Splide carousel on component mount
@@ -83,6 +84,7 @@ function HomePage() {
 
   return (
     <div>
+    <ParticlesComponent id="particles" />
       <main>
 
         {/* Section: Main */}
