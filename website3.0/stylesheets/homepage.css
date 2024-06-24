@@ -193,11 +193,7 @@ a {
   height: auto;
   width: auto;
 }
-.img1 img {
-  border-radius: 6%;
-  width: 80vw;
-  z-index: 50;
-}
+
 
 .devops_text_container {
   display: flex;

@@ -19,11 +19,14 @@
     "@tsparticles/all": "^3.4.0",
     "@tsparticles/react": "^3.0.0",
     "aos": "^3.0.0-beta.6",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.11",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
     "rellax": "^1.12.1",
-    "showdown": "^2.1.0"
+    "showdown": "^2.1.0",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "postcss": "^8",

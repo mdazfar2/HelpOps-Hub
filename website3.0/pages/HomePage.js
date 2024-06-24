@@ -16,7 +16,7 @@ import Rellax from "rellax";
 //Importing the SplideJS Package
 import Splide from "@splidejs/splide"; 
 import "@splidejs/splide/dist/css/splide.min.css";
-
+import { ContainerScroll } from "@components/Scrolltab";
 function HomePage() {
 
   // Initialize the Splide carousel on component mount
@@ -133,7 +133,7 @@ function HomePage() {
       {/* Section: Devops-Image */}
       
       <div className="img1" id="img1">
-        <img src="/img1.png" />
+        <ContainerScroll children={<img src="img1.png" style={{borderRadius: "10%"}}/>}/>
       </div>
 
       {/*Section: DevOps Insights */}
