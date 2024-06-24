@@ -8,3 +8,8 @@ body {
     background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
     min-height: 100vh;
 }
+#particles{
+    position: absolute;
+    height: 100vh;
+    top: -100px;
+}
