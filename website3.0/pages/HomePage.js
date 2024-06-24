@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-import { faStar, faHeart, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faHeart, faAnglesDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 //Importing the AOS Package for Scroll Animations
 import AOS from "aos";
@@ -80,6 +80,11 @@ function HomePage() {
       img1.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+    // Smooth scroll to the top of the page
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
   return (
     <div>
@@ -314,6 +319,10 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      <a className="gotopbtn" href="#" onClick={scrollToTop}>
+        <FontAwesomeIcon icon={faArrowUp} />
+      </a>
     </div>
   );
 }
