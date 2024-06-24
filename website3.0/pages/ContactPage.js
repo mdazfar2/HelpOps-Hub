@@ -99,10 +99,25 @@ function ContactPage() {
             <button type="submit" id="button">
               Submit
             </button>
-
-            {/* Thank you message after successful submission */}
-            {showThankYouMessage && (
-              <p id="thank-you-message">
+             {/* Thank you message after successful submission */}
+             {showThankYouMessage && (
+              <p
+                id="thank-you-message"
+                className="mt-4 text-green-600 font-bold text-center py-2 px-4 rounded border-2 border-green-600 bg-green-100"
+                style={{
+                  fontFamily: "'Comic Sans MS', 'Comic Sans', cursive",
+                  fontSize: "1em",
+                  textAlign: "center",
+                  marginTop: "10px",
+                  padding: "20px",
+                  borderRadius: "10px",
+                  border: "2px solid green",
+                  backgroundColor: "#f0fff0",
+                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                  animation: "fadeIn 1s ease-in-out",
+                  transition: "all 0.3s ease-in-out",
+                }}
+              >
                 Thank you !!
                 <br />
                 We will connect soon.
