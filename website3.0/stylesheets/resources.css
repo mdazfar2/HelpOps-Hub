@@ -1,10 +1,14 @@
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
-  min-height: 100vh;
-  width:100%;
-  display:block;
+  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%) ;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
 }
 #maincontainer {
   display: flex;
@@ -27,7 +31,9 @@ body {
   text-align: center;
   font-weight: 800;
 }
-
+.dark-mode header  ul li{
+  color: white !important;
+}
 /* Individual folder card */
 .folder-card {
   flex: 0 0 calc(25% - 20px); 
@@ -127,7 +133,7 @@ input:checked + .switch:before {
 
 /* Dark mode specific styles */
 body.dark-mode {
-  background: #353535; 
+  background: #353535 !important; 
   color: #322d2d; 
 }
 .dark-mode .toggle-switch{
@@ -154,7 +160,7 @@ body.dark-mode {
   color: #333;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     background: #1a1a1a;
     color: #fff;
@@ -174,7 +180,7 @@ body.dark-mode {
     background-color: #fff;
     color: #333;
   }
-}
+} */
 
 .search-container {
   display: flex;
@@ -246,4 +252,8 @@ input {
   font-size:25px;
   font-family: cursive;
   margin: 10px;
+}
+body{
+  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%) !important;
+
 }
