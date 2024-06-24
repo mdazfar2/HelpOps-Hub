@@ -27,6 +27,10 @@ const ParticlesComponent = (props) => {
     () => ({
       // Limit frames per second for particle rendering
       fpsLimit: 120, 
+      fullScreen:{
+        enable:false,
+        zindex:0
+      },
       interactivity: {
         events: {
           onClick: {
