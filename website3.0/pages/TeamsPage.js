@@ -29,7 +29,16 @@ function TeamsPage() {
   const [topContri, setTopContri] = useState([]);
   const [allContributors, setAllContributors] = useState([]);
   const [loading, setLoading] = useState(true);
+  //to add body bg color 
+  useEffect(() => {
+    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
+    console.log("Background color set to orange");
 
+    // Clean-up function to reset background color when component unmounts
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
   // Hook to handle side effects in functional components
   useEffect(() => {
     // Function to fetch all contributors data
@@ -434,7 +443,7 @@ function TeamsPage() {
             </div>
             <div className="social-links-items">
               <a
-                href="https://www.linkedin.com/in/ramakrushna-biswal/"
+                href="https://www.linkedin.com/in/ayushmaan-agarwal-8064a4258/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

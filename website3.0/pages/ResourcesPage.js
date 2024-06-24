@@ -13,7 +13,15 @@ function ResourcesPage() {
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+ //to add body bg color 
+ useEffect(() => {
+  document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
 
+  // Clean-up function to reset background color when component unmounts
+  return () => {
+    document.body.style.backgroundColor = "";
+  };
+}, []);
   useEffect(() => {
     // Function to fetch repository data
     async function fetchRepository(url) {
