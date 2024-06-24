@@ -26,7 +26,7 @@ function Footer() {
         <p className="font h mm">© HelpOps-Hub | MIT License</p>
         {/* Developer and contributors */}
         <p className="font h mm">
-          Developed by <a href="https://github.com/mdazfar2" target="_blank" rel="noopener noreferrer" className="font">Azfar Alam</a> & <a className="font" target="_blank" rel="noopener noreferrer" href="/team">Open Source Community</a>
+          Developed by <a href="https://github.com/mdazfar2"  rel="noopener noreferrer" className="font">Azfar Alam</a> & <a className="font"  rel="noopener noreferrer" href="/team">Open Source Community</a>
         </p>
       </div>
     </div>
