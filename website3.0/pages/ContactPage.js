@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "@stylesheets/contact.css";
 
 function ContactPage() {
@@ -7,13 +7,21 @@ function ContactPage() {
   const [selectedRating, setSelectedRating] = useState(0); 
   const [showError, setShowError] = useState(false); 
   const [showThankYouMessage, setShowThankYouMessage] = useState(false); 
+  // to add body bg color 
+  useEffect(() => {
+    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#eb9a60 45%,#e99960 65%,#e89357 85%)  ";
+    console.log("Background color set to orange");
 
+    // Clean-up function to reset background color when component unmounts
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
   // Function to handle click on star rating
   const handleStarClick = (value) => {
     // Update selectedRating state with the clicked star value
     setSelectedRating(value); 
   };
-
   // Function to handle form submission
   const handleSubmit = (event) => {
     // Prevent default form submission behavior
@@ -42,8 +50,8 @@ function ContactPage() {
   };
 
   return (
-    <div>
-      <div className="container">
+    <div >
+      <div className="container" >
         <img src="/rateus.png" className="contact-img" alt="rateus" />
         <div className="form-container">
           <h1>Contact Us</h1>
