@@ -4,8 +4,12 @@ import { useRouter } from "next/navigation";
 import "@stylesheets/homepage.css";
 
 //Importing FontAwesome for Icons
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-import { faStar, faHeart, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStar,
+  faHeart,
+  faAnglesDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 //Importing the AOS Package for Scroll Animations
 import AOS from "aos";
@@ -15,14 +19,15 @@ import "aos/dist/aos.css";
 import Rellax from "rellax";
 
 //Importing the SplideJS Package
-import Splide from "@splidejs/splide"; 
+import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
 function HomePage() {
-  //to add body bg color 
+  //to add body bg color
   useEffect(() => {
-    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
+    document.body.style.background =
+      "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
     // Clean-up function to reset background color when component unmounts
     return () => {
       document.body.style.backgroundColor = "";
@@ -38,9 +43,35 @@ function HomePage() {
       pagination: false,
       arrows: false,
       autoplay: true,
-      interval: 0, 
+      interval: 0,
       speed: 60000,
       rewind: true,
+      breakpoints: {
+        640: {
+          perPage: 2,
+        },
+      },
+    });
+
+    splide.mount();
+
+    // Cleanup Splide instance on component unmount
+    return () => {
+      splide.destroy();
+    };
+  }, []);
+  useEffect(() => {
+    const splide = new Splide("#card-splide", {
+      type: "loop",
+      perPage: 1,
+      perMove: 1,
+      arrows: false,
+      pagination: true,
+      breakpoints: {
+        640: {
+          perPage: 1,
+        },
+      },
     });
 
     splide.mount();
@@ -52,7 +83,7 @@ function HomePage() {
   }, []);
 
   const router = useRouter();
-  
+
   // Initialize AOS (Animate on Scroll) library for scroll animations
   useEffect(() => {
     setTimeout(() => {
@@ -92,9 +123,8 @@ function HomePage() {
 
   return (
     <div>
-    <ParticlesComponent id="particles" />
+      <ParticlesComponent id="particles" />
       <main>
-
         {/* Section: Main */}
 
         <div className="main-content">
@@ -141,9 +171,12 @@ function HomePage() {
       </div>
 
       {/* Section: Devops-Image */}
-      
-      <div className="img1" id="img1">
-        <ContainerScroll children={<img src="img1.png" style={{borderRadius: "10%"}}/>}/>
+      <div className="devops_img_container">
+        <div className="img1" id="img1">
+          <ContainerScroll
+            children={<img src="img1.png" style={{ borderRadius: "10%" }} />}
+          />
+        </div>
       </div>
 
       {/*Section: DevOps Insights */}
@@ -153,7 +186,7 @@ function HomePage() {
           <h1 data-aos="fade-right">Expert DevOps Insights</h1>
           <p data-aos="fade-right">
             Discover the ultimate resource for resolving your DevOps challenges
-            quickly and efficiently. Our HelpOps-Hub connects you with expert
+            quickly and efficiently. Our <span>HelpOps-Hub</span> connects you with expert
             insights, collaborative problem-solving, and a supportive community.
             Whether you're troubleshooting a complex issue or seeking advice on
             best practices, find the solutions you need right here.
@@ -263,6 +296,84 @@ function HomePage() {
               <strong>Example:</strong> Regular community hackathons and
               collaborative projects that drive platform enhancements.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile-Cards */}
+
+      <div id="card-splide" className="splide">
+        <div className="splide__track">
+          <div className="splide__list">
+            <div className="splide__slide mobile-card-container" id="c1">
+              <div className="mobile-card">
+                <div className="mobile-card-header">
+                  <img src="i1.png" alt="Icon" />
+                  <h2>Innovative Solutions</h2>
+                </div>
+                <p>
+                  We provide cutting-edge solutions to common DevOps challenges,
+                  offering tools and strategies that streamline workflows and
+                  enhance productivity.
+                </p>
+                <p>
+                  <strong>Example:</strong> Custom automation scripts and
+                  integrations tailored to specific DevOps needs.
+                </p>
+              </div>
+            </div>
+            <div className="splide__slide mobile-card-container" id="c2">
+              <div className="mobile-card">
+                <div className="mobile-card-header">
+                  <img src="i2.png" alt="Icon" />
+                  <h2>Interactive Tutorials</h2>
+                </div>
+                <p>
+                  Our interactive tutorials are designed to engage and educate,
+                  allowing users to practice skills in real-time within a
+                  simulated DevOps environment.
+                </p>
+                <p>
+                  <strong>Example:</strong> Hands-on labs and sandbox
+                  environments where users can experiment with DevOps tools and
+                  scenarios.
+                </p>
+              </div>
+            </div>
+            <div className="splide__slide mobile-card-container" id="c3">
+              <div className="mobile-card">
+                <div className="mobile-card-header">
+                  <img src="i3.png" alt="Icon" />
+                  <h2>Personalized Learning Paths</h2>
+                </div>
+                <p>
+                  We offer customized learning paths based on individual goals
+                  and skill levels, ensuring that every user can progress at
+                  their own pace.
+                </p>
+                <p>
+                  <strong>Example:</strong> Tailored courses and skill
+                  assessments that guide users through their DevOps journey.
+                </p>
+              </div>
+            </div>
+            <div className="splide__slide mobile-card-container" id="c4">
+              <div className="mobile-card">
+                <div className="mobile-card-header">
+                  <img src="i4.png" alt="Icon" />
+                  <h2>Community-Driven Development</h2>
+                </div>
+                <p>
+                  HelpOps-Hub thrives on the contributions of its community. We
+                  leverage collective knowledge and experience to continuously
+                  improve and innovate.
+                </p>
+                <p>
+                  <strong>Example:</strong> Regular community hackathons and
+                  collaborative projects that drive platform enhancements.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
