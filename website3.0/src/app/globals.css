@@ -14,20 +14,26 @@ body {
     top: -100px;
 }
 
-/* global.css */
 
-.scroll-progress-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 9px;
-    z-index: 9999;
-    background-color: rgb(255, 209, 103);
+/*Styles for Vertical Scrollbar */
+
+::-webkit-scrollbar {
+    width: 9px;  /* width of scrollbar */
+  }
+
+  /* Vertical Scrollbar background color */
+  ::-webkit-scrollbar {
+    background-color: rgb(65, 56, 56);
   }
   
-  .scroll-progress-bar {
-    height: 100%;
-    background-color: #ff4000;
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ff4f23, rgb(241, 155, 98));
+    border-radius: 4px;
+  }
+
+  /* Vertical Scrollbar Hover */
+    
+  ::-webkit-scrollbar:hover {
+    width: 11px; 
   }
   
