@@ -14,26 +14,25 @@ body {
     top: -100px;
 }
 
-
 /*Styles for Vertical Scrollbar */
+/* !important  styles to ensure no other styles are overriding them */
 
 ::-webkit-scrollbar {
-    width: 9px;  /* width of scrollbar */
+    width: 9px !important;  /* width of scrollbar */
   }
-
+  
   /* Vertical Scrollbar background color */
   ::-webkit-scrollbar {
-    background-color: rgb(65, 56, 56);
+    background-color: rgb(65, 56, 56) !important;
   }
   
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(#ff4f23, rgb(241, 155, 98));
-    border-radius: 4px;
+    background: linear-gradient(#ff4f23, rgb(241, 155, 98)) !important;
+    border-radius: 4px !important;
   }
-
+  
   /* Vertical Scrollbar Hover */
-    
   ::-webkit-scrollbar:hover {
-    width: 11px; 
+    width: 11px !important; 
   }
   
