@@ -14,25 +14,39 @@ body {
     top: -100px;
 }
 
-/*Styles for Vertical Scrollbar */
-/* !important  styles to ensure no other styles are overriding them */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    /* background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%); */
+    min-height: 100vh;
+}
+
+#particles{
+    position: absolute;
+    height: 100vh;
+    top: -100px;
+}
+
+/* Custom scrollbar styles */
 
 ::-webkit-scrollbar {
-    width: 9px !important;  /* width of scrollbar */
-  }
-  
-  /* Vertical Scrollbar background color */
-  ::-webkit-scrollbar {
-    background-color: rgb(65, 56, 56) !important;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(#ff4f23, rgb(241, 155, 98)) !important;
-    border-radius: 4px !important;
-  }
-  
-  /* Vertical Scrollbar Hover */
-  ::-webkit-scrollbar:hover {
-    width: 11px !important; 
-  }
-  
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(65, 56, 56);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ff4f23, rgb(241, 155, 98));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar:hover {
+    width: 11px;
+}
