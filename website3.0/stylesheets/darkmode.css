@@ -19,7 +19,7 @@ body.dark-mode {
 }
 .dark-mode .iconsclass > a:hover {
   box-shadow: 0 0px 8px rgb(152, 152, 151);
-  color: #b7b7b7;
+  color: #ff7d1f;
 }
 
 .dark-mode .font {
