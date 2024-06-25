@@ -50,14 +50,15 @@ body {
 }
 
 .folder-card:hover {
-  box-shadow: 5px 5px 20px #ff9d00;
+  box-shadow: 0 0 20px rgba(48,48,48,.8);
   transform: scale(1.03);
   transition: 0.5s;
   border-radius: 1.5rem;
   font-size: 0.9rem;
 }
 .dark-mode .folder-card:hover {
-  box-shadow: 5px 5px 20px #a1a1a1;
+  box-shadow: 5px 5px 20px #ff9d00;
+  ;
 }
 
 /* Toggle Switch styling */
