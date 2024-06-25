@@ -13,3 +13,20 @@ body {
     height: 100vh;
     top: -100px;
 }
+
+/* global.css */
+
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 9px;
+    z-index: 9999;
+  }
+  
+  .scroll-progress-bar {
+    height: 100%;
+    background-color: #ff2f2f;
+  }
+  
