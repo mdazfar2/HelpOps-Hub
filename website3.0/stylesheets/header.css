@@ -234,6 +234,9 @@ nav {
     top: 10px;
     left: 3% !important;
   }
+  .toggle-switch{
+    margin-top: 18px;
+  }
   nav {
     gap: 5% !important;
   }
