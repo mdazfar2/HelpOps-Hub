@@ -7,9 +7,10 @@ function ContactPage() {
   const [selectedRating, setSelectedRating] = useState(0); 
   const [showError, setShowError] = useState(false); 
   const [showThankYouMessage, setShowThankYouMessage] = useState(false); 
-  // to add body bg color 
+
+  // Use useEffect to add body background color and clean-up function to reset it on unmount
   useEffect(() => {
-    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#eb9a60 45%,#e99960 65%,#e89357 85%)  ";
+    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#eb9a60 45%,#e99960 65%,#e89357 85%)";
     console.log("Background color set to orange");
 
     // Clean-up function to reset background color when component unmounts
@@ -17,11 +18,13 @@ function ContactPage() {
       document.body.style.backgroundColor = "";
     };
   }, []);
+
   // Function to handle click on star rating
   const handleStarClick = (value) => {
     // Update selectedRating state with the clicked star value
     setSelectedRating(value); 
   };
+
   // Function to handle form submission
   const handleSubmit = (event) => {
     // Prevent default form submission behavior
@@ -33,7 +36,7 @@ function ContactPage() {
       setShowError(true); 
       // Hide error message after 2 seconds
       setTimeout(() => setShowError(false), 2000); 
-       // Exit function early if validation fails
+      // Exit function early if validation fails
       return;
     }
 
@@ -50,17 +53,18 @@ function ContactPage() {
   };
 
   return (
-    <div >
-      <div className="container" >
-        <img src="/rateus.png" className="contact-img" alt="rateus" />
-        <div className="form-container">
-          <h1>Contact Us</h1>
-          <form id="contact-form" onSubmit={handleSubmit}>
+    <div className="contact-page">
+      <div className="contact-page__container">
+        <img src="/rateus.png" className="contact-page__img" alt="rateus" />
+        <div className="contact-page__form-container">
+          <h1 className="contact-page__title">Contact Us</h1>
+          <form id="contact-form" className="contact-page__form" onSubmit={handleSubmit}>
             {/* Name input */}
             <input
               type="text"
               id="name"
               name="name"
+              className="contact-page__input"
               required
               placeholder="Name:"
             />
@@ -70,6 +74,7 @@ function ContactPage() {
               type="email"
               id="email"
               name="email"
+              className="contact-page__input"
               required
               placeholder="Email:"
             />
@@ -78,39 +83,39 @@ function ContactPage() {
             <textarea
               id="comment"
               name="comment"
+              className="contact-page__textarea"
               required
               placeholder="Comment:"
             ></textarea>
 
             {/* Rating section */}
-            <label htmlFor="rating" id="rate">
+            <label htmlFor="rating" className="contact-page__rating-label">
               Rating:
             </label>
-            <div id="rating">
+            <div id="rating" className="contact-page__rating">
               {/* Generate star icons for rating selection */}
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
                   key={value}
-                  className="star"
+                  className={`contact-page__star ${selectedRating >= value ? 'contact-page__star--selected' : ''}`}
                   data-value={value}
                   onClick={() => handleStarClick(value)}
-                  style={{ color: selectedRating >= value ? "#FFD700" : "#000" }}
                 >
                   &#9733;
                 </span>
               ))}
             </div>
             {/* Error message for rating selection */}
-            {showError && <p id="error">Please Give Any Rating</p>}
+            {showError && <p className="contact-page__error">Please Give Any Rating</p>}
             
             {/* Submit button */}
-            <button type="submit" id="button">
+            <button type="submit" className="contact-page__button">
               Submit
             </button>
 
             {/* Thank you message after successful submission */}
             {showThankYouMessage && (
-              <p id="thank-you-message">
+              <p className="contact-page__thank-you-message">
                 Thank you !!
                 <br />
                 We will connect soon.
@@ -118,7 +123,7 @@ function ContactPage() {
             )}
           </form>
         </div>
-        <img src="rateus.png" className="contact-img1" alt="rateus" />
+        <img src="rateus.png" className="contact-page__img--secondary" alt="rateus" />
       </div>
     </div>
   );

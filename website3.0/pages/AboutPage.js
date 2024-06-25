@@ -5,7 +5,7 @@ import "@stylesheets/abouts.css";
 function AboutPage() {
   // to add body bg color 
   useEffect(() => {
-    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
+    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)";
     console.log("Background color set to orange");
 
     // Clean-up function to reset background color when component unmounts
@@ -13,34 +13,32 @@ function AboutPage() {
       document.body.style.backgroundColor = "";
     };
   }, []);
+
   return (
-    <div className="main">
-      {/*Section: Title */}
+    <div className="about">
+      {/* Section: Title */}
+      <div className="about__title">About us</div>
 
-      <div className="about_title">About us</div>
-
-      {/*Section: Video */}
-
-      <div className="video">
+      {/* Section: Video */}
+      <div className="about__video">
         <video src="/HelpOps-H.mp4" autoPlay loop muted></video>
       </div>
 
-      {/*Section: What is HelpOps-Hub*/}
-
-      <div className="start">
-        <div className="img-container">
+      {/* Section: What is HelpOps-Hub */}
+      <div className="about__section about__section--start">
+        <div className="about__img-container">
           <img
-            className="about_logo"
+            className="about__logo"
             src="/HelpOps-H Fevicon.png"
             alt="HelpOps Logo"
           />
         </div>
         <div
-          className="text-container"
+          className="about__text-container"
           style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
         >
-          <h1 className="text-title">What is HelpOps-Hub?</h1>
-          <p className="text-desc">
+          <h1 className="about__text-title">What is HelpOps-Hub?</h1>
+          <p className="about__text-desc">
             HelpOps-Hub is a comprehensive, community-driven platform designed
             to support and empower DevOps beginners and professionals. Founded
             by Azfar Alam, HelpOps-Hub offers a centralized resource for tools,
@@ -55,18 +53,17 @@ function AboutPage() {
         </div>
       </div>
 
-      {/*Section: Our Mission*/}
-
-      <div className="end">
-        <div className="img-container">
-          <img className="mission" src="/mission.png" alt="Mission" />
+      {/* Section: Our Mission */}
+      <div className="about__section about__section--end">
+        <div className="about__img-container">
+          <img className="about__mission" src="/mission.png" alt="Mission" />
         </div>
         <div
-          className="text-container"
+          className="about__text-container"
           style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
         >
-          <h1 className="text-title">Our Mission</h1>
-          <p className="text-desc">
+          <h1 className="about__text-title">Our Mission</h1>
+          <p className="about__text-desc">
             Our mission at HelpOps-Hub is to empower DevOps professionals by
             providing a comprehensive, community-driven platform that
             consolidates tools, best practices, tutorials, and real-world
@@ -81,15 +78,14 @@ function AboutPage() {
         </div>
       </div>
 
-      {/*Section: Benefits of HelpOps-Hub*/}
-
-      <div className="start mb">
-        <div className="img-container">
-          <img className="benefit" src="/benefit.png" alt="Benefits" />
+      {/* Section: Benefits of HelpOps-Hub */}
+      <div className="about__section about__section--start about__section--mb">
+        <div className="about__img-container">
+          <img className="about__benefit" src="/benefit.png" alt="Benefits" />
         </div>
-        <div className="text-container">
-          <h1 className="text-title">Benefits of HelpOps-Hub</h1>
-          <ol className="text-desc">
+        <div className="about__text-container">
+          <h1 className="about__text-title">Benefits of HelpOps-Hub</h1>
+          <ol className="about__text-desc">
             <b>
               HelpOps-Hub offers numerous benefits for DevOps professionals:
             </b>

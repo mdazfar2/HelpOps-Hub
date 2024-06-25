@@ -10,10 +10,10 @@ main {
   z-index: 100;
   margin-top: 6rem;
 }
-.isDisplay {
+.main-content__isDisplay {
   display: none;
 }
-.content a {
+.main-content__action a {
   height: 40px !important;
   display: flex !important;
   justify-content: center;
@@ -22,7 +22,7 @@ main {
   border-radius: 40px !important;
 }
 
-.content h3 {
+.main-content__action h3 {
   padding: 0px !important;
 }
 
@@ -67,7 +67,7 @@ a {
   flex-direction: column;
 }
 
-.get-started-btn {
+.main-content__get-started-btn {
   background-color: whitesmoke;
   border-radius: 25px;
   padding: 10px 20px;
@@ -82,24 +82,24 @@ a {
   font-family: cursive;
 }
 
-.dark-mode .get-started-btn {
+.dark-mode .main-content__get-started-btn {
   background-color: whitesmoke;
   color: #000000;
 }
 
 /* Hovering effect for get-started btn */
-.get-started-btn:hover {
+.main-content__get-started-btn:hover {
   transform: translateX(10px);
   background: none;
   border: 2px solid whitesmoke;
 }
 
-.dark-mode .get-started-btn:hover {
+.dark-mode .main-content__get-started-btn:hover {
   background-color: none;
   color: whitesmoke;
 }
 
-.star-button {
+.main-content__star-button {
   color: #000000;
   font-size: 24px;
   display: flex;
@@ -111,37 +111,37 @@ a {
   font-family: cursive;
 }
 
-.star-button:active {
+.main-content__star-button:active {
   transform: translateY(1px);
 }
 
 /* Hovering effect for Star btn */
-.content a {
+.main-content__action a {
   transition: all 0.4s ease;
 }
 
-.content a:hover {
+.main-content__action a:hover {
   transform: translateX(10px);
   background: none;
   border: 2px solid whitesmoke;
 }
 
-.dark-mode .content a:hover h3 {
+.dark-mode .main-content__action a:hover h3 {
   color: whitesmoke;
 }
 
-.star-icon {
+.main-content__star-icon {
   color: #ffd700;
   font-size: 20px;
 }
 
-.main-title {
+.main-content__title {
   font-size: 96px;
   color: #000;
   font-family: "Arial Black", sans-serif;
 }
 
-.main-para {
+.main-content__para {
   font-size: 24px;
   color: white;
   margin-bottom: 20px;
@@ -172,7 +172,7 @@ a {
     bottom: 8px;
   }
 }
-.img1 {
+.devops-image {
   margin-top: 5rem;
   display: flex;
   justify-content: center;
@@ -180,7 +180,7 @@ a {
   width: auto;
 }
 
-.devops_text_container {
+.devops-insights {
   display: flex;
   flex-wrap: wrap;
   margin-top: 8rem;
@@ -190,19 +190,19 @@ a {
   padding-right: 2rem;
 }
 
-.text-section {
+.devops-insights__text-section {
   flex: 1;
   margin-right: 3rem;
   z-index: 50;
 }
 
-.text-section h1 {
+.devops-insights__text-section h1 {
   font-size: 55px;
   font-family: Inter;
   font-weight: 600;
 }
 
-.text-section p {
+.devops-insights__text-section p {
   font-family: Inter;
   margin-left: 0px;
   font-size: 24px !important;
@@ -212,7 +212,7 @@ a {
   margin-bottom: 20px;
 }
 
-.text-section button {
+.devops-insights__text-section button {
   background-color: #007bff;
   border: none;
   padding: 10px 20px;
@@ -223,14 +223,14 @@ a {
   margin-bottom: 2rem;
 }
 
-.image-section {
+.devops-insights__image-section {
   flex: 1;
   text-align: left;
   height: 360px !important;
   width: 554px !important;
   border-radius: 29px !important;
 }
-.image-section img {
+.devops-insights__image-section img {
   max-width: 100%;
   border-radius: 10px;
   height: 360px !important;
@@ -239,17 +239,17 @@ a {
   margin: 5px;
 }
 
-.image-section {
+.devops-insights__image-section {
   height: 100px;
   text-align: center;
   width: 100vw;
   overflow: hidden !important;
 }
-.image-section img {
+.devops-insights__image-section img {
   height: 360px !important;
 }
 
-.container1 {
+.cards-section {
   width: 1000px;
   background-color: transparent;
   border-radius: 10px;
@@ -262,7 +262,7 @@ a {
   margin-top: 10rem;
 }
 
-.header {
+.cards-section__header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -271,7 +271,7 @@ a {
   bottom: 100px;
 }
 
-.header .h1 {
+.cards-section__header .cards-section__header-title {
   text-align: start;
   font-size: 64px !important;
   margin-left: 0px !important;
@@ -279,7 +279,7 @@ a {
   line-height: 60px;
 }
 
-.creative {
+.cards-section__header-subtitle {
   font-weight: bold;
   font-size: 96px;
   color: #000;
@@ -287,7 +287,7 @@ a {
   font-family: "Arial Black", sans-serif;
 }
 
-.cards {
+.cards-section__cards {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -308,41 +308,41 @@ a {
   color: black;
   height: 210px;
 }
-.card p {
+.card .card__description {
   margin-left: 0px !important;
 }
 
-.card-header {
+.card__header {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.card-header img {
-  width: 40px;
+.card__header .card__icon {
+  width: 40px !important;
   height: 40px;
   margin-right: 0.3rem;
   border-radius: 50%;
 }
 
-.card h2 {
+.card__header .card__title{
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
-.card p {
+.card .card__description {
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
   font-family: cursive;
 }
 
-.card strong {
+.card__description strong {
   color: black;
 }
-.dark-mode .card h2 {
+.dark-mode .card__header .card__title {
   color: #ea670a !important;
 }
-.dark-mode .card strong {
+.dark-mode .card__description strong {
   color: #ea670a !important;
 }
 .dark-mode #c1 {
@@ -443,16 +443,6 @@ body.dark-mode {
   text-align: center;
   font-family: sans-serif;
   font-weight: 600;
-}
-
-.banner-title {
-  text-align: center;
-  font-family: sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 52px !important;
-}
-
-.banner {
   padding: 20px 0px;
   width: 100%;
   padding: auto;
@@ -464,13 +454,11 @@ body.dark-mode {
   margin-top: 0px !important;
 }
 
-.banner h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  font-family: Poppins;
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 72px;
+.banner__title {
+  text-align: center;
+  font-family: sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 52px !important;
 }
 
 .icons {
@@ -490,24 +478,20 @@ body.dark-mode {
 .splide__pagination__page {
   display: none;
 }
-.dark-mode .newsletter {
+.dark-mode .newsletter-container {
   background-color: #0a0a0a !important;
 }
-.dark-mode .news-logo {
+.dark-mode .newsletter__name {
   color: white !important;
 }
-.dark-mode .Subscribe {
-  background-color: #ea670a !important;
-  color: white !important;
-}
-.newsletter-container {
+.newsletter {
   width: 95vw;
   margin-bottom: 70px;
   margin-top: 50px;
   z-index: 50;
 }
 
-.newsletter {
+.newsletter-container {
   border-radius: 20px;
   display: flex;
   height: 221px;
@@ -517,23 +501,23 @@ body.dark-mode {
   box-shadow: 0px 0px 15px rgb(110, 46, 3);
 }
 
-.logo-section {
+.newsletter__logo-section {
   width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logo-section img {
+.newsletter__logo-section img {
   height: 85px;
 }
 
-.news-logo {
+.newsletter__name {
   font-size: 44px;
   font-weight: 400;
 }
 
-.subscribe-section {
+.newsletter__subscribe-section {
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -541,7 +525,7 @@ body.dark-mode {
   align-items: center;
 }
 
-.subscribe-text {
+.newsletter__text {
   font-size: 18px;
   font-weight: 400;
   margin: 10px;
@@ -549,12 +533,12 @@ body.dark-mode {
   text-align: left;
 }
 
-.subscribe-input {
+.newsletter__input-container {
   width: 70%;
   display: flex;
 }
 
-.input-field {
+.newsletter__input {
   border-radius: 20px;
   height: 38px;
   width: 289px;
@@ -562,7 +546,7 @@ body.dark-mode {
   border: none;
 }
 
-.subscribe-btn {
+.newsletter__subscribe-btn {
   background-color: rgba(64, 123, 255, 1);
   color: black;
   border-radius: 20px;
@@ -573,7 +557,7 @@ body.dark-mode {
   border: none;
   margin-left: 10px;
 }
-.dark-mode .subscribe-btn {
+.dark-mode .newsletter__subscribe-btn {
   background-color: #ef8336;
   color: white;
 }
@@ -596,12 +580,12 @@ body.dark-mode {
     display: flex;
     justify-content: center;
   }
-  .container1 {
+  .cards-section {
     margin-left: 0px !important;
     position: relative;
     height: auto;
   }
-  .cards {
+  .cards-section__cards {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -613,33 +597,33 @@ body.dark-mode {
   }
 }
 @media only screen and (max-width: 1220px) {
-  .devops_text_container {
+  .devops-insights {
     flex-direction: column;
     margin-right: none;
     padding-left: 2rem;
     margin-top: 5rem;
     height: 600px;
   }
-  .text-section {
+  .devops-insights__text-section {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 0rem;
   }
-  .text-section h1 {
+  .devops-insights__text-section h1 {
     text-align: center;
   }
-  .header {
+  .cards-section__header {
     bottom: 0px;
   }
-  .header .h1 {
+  .cards-section__header .cards-section__header-title {
     text-align: center;
   }
 }
 
 @media only screen and (max-width: 1140px) {
-  .container1 {
+  .cards-section {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -647,18 +631,18 @@ body.dark-mode {
   }
 }
 @media only screen and (max-width: 720px) {
-  .devops_text_container {
+  .devops-insights {
     padding-left: 1rem;
   }
 }
 @media only screen and (max-width: 592px) {
-  .main-title {
+  .main-content__title {
     font-size: 60px !important;
   }
 }
 
 @media only screen and (max-width: 497px) {
-  .main-title {
+  .main-content__title {
     font-size: 40px !important;
   }
   .main-content {
@@ -667,16 +651,16 @@ body.dark-mode {
 }
 
 @media only screen and (max-width: 409px) {
-  .isDisplay {
+  .main-content__isDisplay {
     display: block;
   }
-  .content {
+  .main-content__action {
     display: flex;
     width: 100%;
     justify-content: space-around;
   }
   .home-sponsor-btn,
-  .star-button {
+  .main-content__star-button {
     font-size: 16px !important;
     width: 114px !important;
   }
@@ -687,10 +671,10 @@ body.dark-mode {
     position: relative;
     top: 40px;
   }
-  .main-title {
+  .main-content__title {
     font-size: 30px !important;
   }
-  .get-started-btn {
+  .main-content__get-started-btn {
     position: relative;
   }
   p {
@@ -699,19 +683,19 @@ body.dark-mode {
 }
 
 @media only screen and (max-width: 332px) {
-  .main-title {
+  .main-content__title {
     font-size: 40px !important;
   }
 }
 
 @media only screen and (max-width: 329px) {
-  .content {
+  .main-content__action {
     display: flex;
     width: 100%;
     justify-content: space-around;
   }
   .home-sponsor-btn,
-  .star-button {
+  .main-content__star-button {
     font-size: 16px !important;
     width: 114px !important;
   }

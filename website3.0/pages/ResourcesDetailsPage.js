@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "@stylesheets/resourcesdetails.css";
 import showdown from "showdown";
 
-//Importing FontAwesome for Icons
+// Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -11,19 +11,19 @@ function ResourcesDetailsPage() {
   // State variables
   const [folderName, setFolderName] = useState("");
   const [content, setContent] = useState("Loading...");
-  const [repoLink, setRepoLink] = useState(""); 
+  const [repoLink, setRepoLink] = useState("");
 
   // Effect hook to fetch README content when component mounts
   useEffect(() => {
     // Extract folder name from URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const folder = urlParams.get("folder");
-    
+
     // Set folder name and fetch README content if folder is specified
     if (folder) {
       setFolderName(folder);
       // Function to fetch README content
-      fetchReadme(folder); 
+      fetchReadme(folder);
     } else {
       setContent("No folder specified.");
     }
@@ -40,7 +40,7 @@ function ResourcesDetailsPage() {
       "project.md",
     ];
     // Flag to track if README file is fetched
-    let readmeFetched = false; 
+    let readmeFetched = false;
 
     // Reduce function to sequentially try fetching README files
     possibleReadmeNames.reduce((promiseChain, readmeName) => {
@@ -52,7 +52,7 @@ function ResourcesDetailsPage() {
               if (response.ok) {
                 readmeFetched = true;
                 // Return README content as text
-                return response.text(); 
+                return response.text();
               }
               return Promise.reject(`File not found: ${readmeName}`);
             })
@@ -74,21 +74,23 @@ function ResourcesDetailsPage() {
               // Add copy buttons to code blocks
               tempContainer.querySelectorAll("pre").forEach((pre) => {
                 const button = document.createElement("button");
-                button.className = "copy-button";
+                button.className = "resourcesdetails__copy-button";
                 button.innerText = "Copy";
                 button.addEventListener("click", () => {
                   const code = pre.querySelector("code").innerText;
                   // Function to copy code to clipboard
-                  copyToClipboard(code); 
+                  copyToClipboard(code);
                 });
                 pre.appendChild(button);
               });
 
               // Update the state with the modified HTML content
               setContent(tempContainer.innerHTML);
-              
+
               // Set GitHub repository link
-              setRepoLink(`https://github.com/mdazfar2/HelpOps-Hub/tree/main/${folder}`);
+              setRepoLink(
+                `https://github.com/mdazfar2/HelpOps-Hub/tree/main/${folder}`
+              );
             })
             .catch((error) => {
               console.warn(error);
@@ -107,12 +109,12 @@ function ResourcesDetailsPage() {
     navigator.clipboard.writeText(text).then(
       () => {
         // Show toast message for successful copy
-        showToast("Code copied!"); 
+        showToast("Code copied!");
       },
       (err) => {
         console.error("Could not copy text: ", err);
         // Show toast message for failed copy
-        showToast("Failed to copy code."); 
+        showToast("Failed to copy code.");
       }
     );
   };
@@ -124,28 +126,27 @@ function ResourcesDetailsPage() {
     toast.style.display = "block";
     setTimeout(() => {
       // Hide toast message after 2 seconds
-      toast.style.display = "none"; 
+      toast.style.display = "none";
     }, 2000);
   };
+
   return (
     <div className="resourcesdetails">
 
       {/* Section: Container */}
-
-      <div id="container" onClick={(e) => {
+      <div className="resourcesdetails__container" onClick={(e) => {
         // Handle click on copy button inside content container
-        if (e.target.className === "copy-button") {
+        if (e.target.classList.contains("resourcesdetails__copy-button")) {
           const code = e.target.previousSibling.innerText;
           // Function to copy code to clipboard
-          copyToClipboard(code); 
+          copyToClipboard(code);
         }
       }}>
         {/* Render README content with dangerouslySetInnerHTML to allow HTML */}
-        <div id="content" dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div className="resourcesdetails__content" dangerouslySetInnerHTML={{ __html: content }}></div>
         {/* GitHub repository link */}
         <a
-          id="repo-link"
-          className="repo-link fab fa-github"
+          className="resourcesdetails__repo-link"
           href={repoLink}
           target="_blank"
           rel="noopener noreferrer"
@@ -154,7 +155,7 @@ function ResourcesDetailsPage() {
         </a>
       </div>
       {/* Toast message for showing copy success/failure */}
-      <div className="toast" id="toast">
+      <div className="resourcesdetails__toast" id="toast">
         Code copied!
       </div>
     </div>

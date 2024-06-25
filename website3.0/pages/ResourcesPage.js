@@ -159,7 +159,7 @@ function ResourcesPage() {
         // Return JSX for each directory item
         return (
           <div
-            className="folder-card"
+            className="resources__folder-card"
             key={item.name}
             onClick={() => {
               // Redirect to detailed resources page on click
@@ -168,11 +168,11 @@ function ResourcesPage() {
             }}
           >
             {/* Display folder name */}
-            <h3 className="resourcesTitle">{item.name}</h3>
+            <h3 className="resources__folder-title">{item.name}</h3>
             {/* Display folder path */}
-            <p className="resourcesPara">{item.path}</p>
+            <p className="resources__folder-path">{item.path}</p>
             {/* Display creation date */}
-            <p className="resourcesDate">
+            <p className="resources__folder-date">
               Created on:{" "}
               {createdDate.toLocaleString() !== "Invalid Date"
                 ? createdDate.toLocaleString()
@@ -188,24 +188,25 @@ function ResourcesPage() {
   
 
   return (
-    <div>
+    <div className="resources">
 
       {/* Section: Heading */}
 
-      <div className="heading">
+      <div className="resources__heading">
         <h1>Resources</h1>
       </div>
       
       {/* Section: Search-Bar */}
 
-      <div className="search-container">
-        <div id="search-box">
-          <div className="icon">
+      <div className="resources__search-container">
+        <div id="search-box" className="resources__search-box">
+          <div className="resources__icon">
             <FontAwesomeIcon icon={faMagnifyingGlass} color="orange" />
           </div>
           <input
             type="text"
             id="search-bar"
+            className="resources__search-bar"
             placeholder="Search topics..."
             onInput={handleSearch}
           />
@@ -214,9 +215,9 @@ function ResourcesPage() {
 
       {/* Section: Main Container */}
 
-      <div id="maincontainer">
+      <div id="maincontainer" className="resources__main-container">
         {loading ? (
-          <div id="loading">
+          <div id="loading" className="resources__loading">
             <div className="📦"></div>
             <div className="📦"></div>
             <div className="📦"></div>

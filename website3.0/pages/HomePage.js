@@ -98,18 +98,18 @@ function HomePage() {
         {/* Section: Main */}
 
         <div className="main-content">
-          <div className="content">
+          <div className="main-content__action">
             <a href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank">
-              <h3 className="star-button">
+              <h3 className="main-content__star-button">
                 <FontAwesomeIcon
                   icon={faStar}
-                  className="star-icon"
+                  className="main-content__star-icon"
                   width={24}
                 />{" "}
                 Star Us
               </h3>
             </a>
-            <li className="isDisplay">
+            <li className="main-content__isDisplay">
               <a href="https://github.com/sponsors/mdazfar2" target="_blank">
                 <h3 className="home-sponsor-btn">
                   Sponsor{" "}
@@ -118,11 +118,11 @@ function HomePage() {
               </a>
             </li>
           </div>
-          <h1 className="main-title">HelpOps-Hub</h1>
-          <p className="main-para">
+          <h1 className="main-content__title">HelpOps-Hub</h1>
+          <p className="main-content__para">
             Ensuring You Never Get Stuck In DevOps Again!
           </p>
-          <button className="get-started-btn" onClick={handleGetStartedClick}>
+          <button className="main-content__get-started-btn" onClick={handleGetStartedClick}>
             Get started
           </button>
         </div>
@@ -142,14 +142,14 @@ function HomePage() {
 
       {/* Section: Devops-Image */}
       
-      <div className="img1" id="img1">
+      <div className="devops-image" id="img1">
         <ContainerScroll children={<img src="img1.png" style={{borderRadius: "10%"}}/>}/>
       </div>
 
       {/*Section: DevOps Insights */}
 
-      <div className="devops_text_container">
-        <div className="text-section">
+      <div className="devops-insights">
+        <div className="devops-insights__text-section">
           <h1 data-aos="fade-right">Expert DevOps Insights</h1>
           <p data-aos="fade-right">
             Discover the ultimate resource for resolving your DevOps challenges
@@ -160,32 +160,32 @@ function HomePage() {
           </p>
           <button data-aos="fade-up">Start now</button>
         </div>
-        <div className="image-section">
+        <div className="devops-insights__image-section">
           <img
             src="img2.jpeg"
             alt="DevOps Image"
-            className="rellax"
+            className="devops-insights__image rellax"
             data-rellax-speed="5"
             data-rellax-zindex="5"
           />
           <img
             src="dev1.jpg"
             alt="DevOps Image"
-            className="rellax"
+            className="devops-insights__image rellax"
             data-rellax-speed="5"
             data-rellax-zindex="5"
           />
           <img
             src="dev2.jpg"
             alt="DevOps Image"
-            className="rellax"
+            className="devops-insights__image rellax"
             data-rellax-speed="5"
             data-rellax-zindex="5"
           />
           <img
             src="dev3.jpg"
             alt="DevOps Image"
-            className="rellax"
+            className="devops-insights__image rellax"
             data-rellax-speed="5"
             data-rellax-zindex="5"
           />
@@ -194,72 +194,72 @@ function HomePage() {
 
       {/*Section: Cards*/}
 
-      <div className="container1">
-        <div className="header">
-          <div id="h1" className="h1" data-aos="fade-right">
+      <div className="cards-section">
+        <div className="cards-section__header">
+          <div id="h1" className="cards-section__header-title" data-aos="fade-right">
             We Are
           </div>
-          <h1 className="creative" data-aos="fade-right" data-aos-delay="200">
+          <h1 className="cards-section__header-subtitle" data-aos="fade-right" data-aos-delay="200">
             Creative
           </h1>
         </div>
-        <div className="cards">
+        <div className="cards-section__cards">
           <div className="card" id="c1" data-aos="fade-up">
-            <div className="card-header">
-              <img src="i1.png" alt="Icon" />
-              <h2>Innovative Solutions</h2>
+            <div className="card__header">
+              <img src="i1.png" alt="Icon" className="card__icon"/>
+              <h2 className="card__title">Innovative Solutions</h2>
             </div>
-            <p>
+            <p className="card__description">
               We provide cutting-edge solutions to common DevOps challenges,
               offering tools and strategies that streamline workflows and
               enhance productivity.
             </p>
-            <p>
+            <p className="card__description">
               <strong>Example:</strong> Custom automation scripts and
               integrations tailored to specific DevOps needs.
             </p>
           </div>
           <div className="card" id="c2" data-aos="fade-up" data-aos-delay="400">
-            <div className="card-header">
-              <img src="i2.png" alt="Icon" />
-              <h2>Interactive Tutorials</h2>
+            <div className="card__header">
+              <img src="i2.png" alt="Icon" className="card__icon"/>
+              <h2 className="card__title">Interactive Tutorials</h2>
             </div>
-            <p>
+            <p className="card__description">
               Our interactive tutorials are designed to engage and educate,
               allowing users to practice skills in real-time within a simulated
               DevOps environment.
             </p>
-            <p>
+            <p className="card__description">
               <strong>Example:</strong> Hands-on labs and sandbox environments
               where users can experiment with DevOps tools and scenarios.
             </p>
           </div>
           <div className="card" id="c3" data-aos="fade-up" data-aos-delay="600">
-            <div className="card-header">
-              <img src="i3.png" alt="Icon" />
-              <h2>Personalized Learning Paths</h2>
+            <div className="card__header">
+              <img src="i3.png" alt="Icon" className="card__icon"/>
+              <h2 className="card__title">Personalized Learning Paths</h2>
             </div>
-            <p>
+            <p className="card__description">
               We offer customized learning paths based on individual goals and
               skill levels, ensuring that every user can progress at their own
               pace.
             </p>
-            <p>
+            <p className="card__description">
               <strong>Example:</strong> Tailored courses and skill assessments
               that guide users through their DevOps journey.
             </p>
           </div>
           <div className="card" id="c4" data-aos="fade-up" data-aos-delay="800">
-            <div className="card-header">
-              <img src="i4.png" alt="Icon" />
-              <h2>Community-Driven Development</h2>
+            <div className="card__header">
+              <img src="i4.png" alt="Icon" className="card__icon"/>
+              <h2 className="card__title">Community-Driven Development</h2>
             </div>
-            <p>
+            <p className="card__description">
               HelpOps-Hub thrives on the contributions of its community. We
               leverage collective knowledge and experience to continuously
               improve and innovate.
             </p>
-            <p>
+            <p className="card__description">
               <strong>Example:</strong> Regular community hackathons and
               collaborative projects that drive platform enhancements.
             </p>
@@ -270,12 +270,12 @@ function HomePage() {
       {/*Section: Banner with carousel using SplideJS*/}
 
       <div className="banner">
-        <h1 className="banner-title" data-aos="fade-up">
+        <h1 className="banner__title" data-aos="fade-up">
           DevOps Arsenal
         </h1>
         <div
           id="splide"
-          className="splide icn"
+          className="splide banner__carousel"
           data-aos="fade-up"
           data-aos-delay="200"
         >
@@ -305,20 +305,20 @@ function HomePage() {
 
         {/*Section: Newsletter subscription*/}
 
-        <div className="newsletter-container">
-          <div className="newsletter">
-            <div className="logo-section">
+        <div className="newsletter">
+          <div className="newsletter-container">
+            <div className="newsletter__logo-section">
               <img src="HelpOps-H Fevicon.png" alt="Logo" data-tilt />
-              <h3 className="news-logo">elpOps-Hub</h3>
+              <h3 className="newsletter__name">elpOps-Hub</h3>
             </div>
-            <div className="subscribe-section">
-              <p className="subscribe-text">Subscribe to our newsletter</p>
-              <div className="subscribe-input">
+            <div className="newsletter__subscribe-section">
+              <p className="newsletter__text">Subscribe to our newsletter</p>
+              <div className="newsletter__input-container">
                 <input
                   placeholder="example@gmail.com"
-                  className="input-field"
+                  className="newsletter__input"
                 />
-                <button className="subscribe-btn">Subscribe</button>
+                <button className="newsletter__subscribe-btn">Subscribe</button>
               </div>
             </div>
           </div>
