@@ -26,7 +26,7 @@ body.dark-mode {
   color: #e0e0e0;
 }
 .dark-mode .nav-links li a::after {
-  background-color: #c0c0c0;
+  background-color: #ff7d1f;
 }
 .dark-mode .active {
   background-color: #333;
