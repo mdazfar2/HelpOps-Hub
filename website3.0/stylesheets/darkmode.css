@@ -19,14 +19,14 @@ body.dark-mode {
 }
 .dark-mode .iconsclass > a:hover {
   box-shadow: 0 0px 8px rgb(152, 152, 151);
-  color: #b7b7b7;
+  color: #ff7d1f;
 }
 
 .dark-mode .font {
   color: #e0e0e0;
 }
 .dark-mode .nav-links li a::after {
-  background-color: #c0c0c0;
+  background-color: #ff7d1f;
 }
 .dark-mode .active {
   background-color: #333;
@@ -86,5 +86,5 @@ body.dark-mode {
   color: #fff ;
 }
 .dark-mode ::placeholder {
-  color: #ffffff93 !important;
+  color: #989897 !important;
 }
