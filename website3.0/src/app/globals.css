@@ -23,10 +23,11 @@ body {
     width: 100%;
     height: 9px;
     z-index: 9999;
+    background-color: rgb(255, 209, 103);
   }
   
   .scroll-progress-bar {
     height: 100%;
-    background-color: #ff2f2f;
+    background-color: #ff4000;
   }
   
