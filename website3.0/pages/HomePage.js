@@ -142,8 +142,8 @@ function HomePage() {
             <li className="isDisplay">
               <a href="https://github.com/sponsors/mdazfar2" target="_blank">
                 <h3 className="home-sponsor-btn">
-                  Sponsor{" "}
                   <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                  Sponsor{" "}
                 </h3>
               </a>
             </li>
