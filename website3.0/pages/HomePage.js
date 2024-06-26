@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
 import "@stylesheets/homepage.css";
@@ -121,6 +121,45 @@ function HomePage() {
     }
   };
 
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const subscribe = async () => {
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setError("");
+    try {
+      const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${email}&api_key=939aedf77faf87bdef2cf493eb797f2e2fce2c37`);
+      const result = await response.json();
+      if (!result.data || result.data.status !== 'valid') {
+        setError("Email Address Not Found!");
+        return;
+      }
+
+      const subscribeResult = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+      const subscribeData = await subscribeResult.json();
+      if (subscribeData.success) {
+        alert("Subscribed Successfully");
+      } else {
+        alert("Subscription failed");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    }
+  };
   return (
     <div>
       <ParticlesComponent id="particles" />
@@ -426,11 +465,14 @@ function HomePage() {
               <p className="subscribe-text">Subscribe to our newsletter</p>
               <div className="subscribe-input">
                 <input
+                  value={email} onChange={(e)=>setEmail(e.target.value)}
                   placeholder="example@gmail.com"
                   className="input-field"
                 />
-                <button className="subscribe-btn">Subscribe</button>
+                {error && <p className="error-message-mobile">{error}</p>}
+                <button className="subscribe-btn" onClick={subscribe}>Subscribe</button>
               </div>
+              {error && <p className="error-message-desktop">{error}</p>}
             </div>
           </div>
         </div>
