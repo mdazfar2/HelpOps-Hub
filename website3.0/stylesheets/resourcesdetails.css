@@ -99,8 +99,8 @@ hr {
 }
 .repo-link {
   position: fixed;
-  bottom: 40px;
-  right: 20px;
+  top: 190px;
+  right: 90px;
   background-color: #333;
   color: #fff;
   padding: 15px;
@@ -111,10 +111,28 @@ hr {
   transition: background-color 0.3s ease;
 }
 
-.dark-mode .repo-link {
+#container h5{
   position: fixed;
-  bottom: 40px;
-  right: 20px;
+  top: 240px;
+  right: 75px;
+  font-size: 18px;
+}
+
+#container h5:hover{
+  color:#ff4500;
+  cursor: pointer;
+}
+
+.dark-mode #container h5{
+  color: #ff7d1f;
+}
+
+.dark-mode #container h5:hover{
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+.dark-mode .repo-link {
   background-color: #fff;
   color: #333;
 }
