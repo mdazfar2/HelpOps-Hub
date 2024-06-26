@@ -10,7 +10,6 @@
 .login-auth-container h1 {
     text-align: center;
     margin-top: 5px;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
     font-size: 22px;
   }
 
@@ -58,7 +57,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
     margin-left: 70px;
     gap: 18px;
   }
@@ -105,7 +103,6 @@
   .signup-auth-container h1 {
     text-align: center;
     margin-top: 5px;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
     font-size: 18px;
   }
 
@@ -161,7 +158,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
     margin-left: 70px;
     gap: 18px;
   }
@@ -195,12 +191,3 @@
     color: white;
   }
 
-  /* Removed close buttons */
-
-  .signup-auth-container .close-btn {
-     display: none;
-  }
-
-  .login-auth-container .close-btn {
-    display: none;
- }

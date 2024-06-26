@@ -39,9 +39,9 @@ const AuthButton = () => {
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             {isLogin ? (
-              <Login onSignupClick={switchToSignup} />
+              <Login onClose={closeAuth} onSignupClick={switchToSignup} />
             ) : (
-              <Signup onLoginClick={switchToLogin} />
+              <Signup onClose={closeAuth} onLoginClick={switchToLogin} />
             )}
           </div>
         </div>
