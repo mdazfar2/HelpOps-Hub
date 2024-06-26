@@ -1,7 +1,7 @@
 import React from 'react';
 import "@stylesheets/login-signup.css";
 
-export const Login = ({ onClose, onSignupClick }) => {
+export const Login = ({ onSignupClick }) => {
   return (
     <div className="login-auth-container">
       <h1>Login to HelpOps-Hub</h1>
@@ -18,12 +18,11 @@ export const Login = ({ onClose, onSignupClick }) => {
       <input type="password" placeholder="Password" /><br/>
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
       <button className="login-btn">Login</button>
-      <button className="close-btn" onClick={onClose}>X</button>
     </div>
   );
 };
 
-export const Signup = ({ onClose, onLoginClick }) => {
+export const Signup = ({ onLoginClick }) => {
   return (
     <div className="signup-auth-container">
       <h1>Create Your HelpOps-Hub Account</h1>
@@ -40,7 +39,6 @@ export const Signup = ({ onClose, onLoginClick }) => {
       <input type="email" placeholder="Enter your email" /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
       <button className="continue-btn">Continue</button>
-      <button className="close-btn" onClick={onClose}>X</button>
     </div>
     );
   };

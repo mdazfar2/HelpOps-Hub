@@ -194,3 +194,13 @@
     background-color: rgb(64, 109, 177);
     color: white;
   }
+
+  /* Removed close buttons */
+
+  .signup-auth-container .close-btn {
+     display: none;
+  }
+
+  .login-auth-container .close-btn {
+    display: none;
+ }
