@@ -98,7 +98,8 @@ const Header = () => {
         <div className="nav-actions">
           <a href="https://github.com/sponsors/mdazfar2" target="_blank">
             <button className="nav-sponsor-btn">
-              Sponsor <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+             <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+             Sponsor
             </button>
           </a>
           <ToggleSwitch />
