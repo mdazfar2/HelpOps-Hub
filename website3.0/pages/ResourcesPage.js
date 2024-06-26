@@ -8,20 +8,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 function ResourcesPage() {
-  // State variables to manage Data and Loadin State
+  // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
- //to add body bg color 
- useEffect(() => {
-  document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
+  // New state variables for sorting and filtering
+  const [sortOption, setSortOption] = useState('name');
+  const [filterOption, setFilterOption] = useState('all');
 
-  // Clean-up function to reset background color when component unmounts
-  return () => {
-    document.body.style.backgroundColor = "";
-  };
-}, []);
+   //to add body bg color 
+
+  useEffect(() => {
+    console.log('sdsd')
+    function updateBackground(){
+      if(document.body.classList.contains('dark-mode')){
+        document.body.style.background = "#353535";
+      } else {
+        document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)";
+      }
+    }
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.attributeName === 'class') {
+          updateBackground();
+        }
+      }
+    });
+
+    observer.observe(document.body, { attributes: true });
+
+    // Initial background update
+    updateBackground();
+    // Clean-up function to reset background color when component unmounts
+    return () => {
+      document.body.style.background = "";
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     // Function to fetch repository data
     async function fetchRepository(url) {
@@ -135,17 +160,70 @@ function ResourcesPage() {
   const handleSearch = (event) => {
     // Get the search term from the input field, convert to lowercase
     const searchTerm = event.target.value.toLowerCase();
+    let results = originalData;
     
-    // If search term is empty, show all original data
-    if (searchTerm === "") {
-      setFilteredData(originalData);
-    } else {
-      // Filter original data based on whether item name includes the search term
-      const filteredResults = originalData.filter((item) =>
+    if (searchTerm !== "") {
+      results = results.filter((item) =>
         item.name.toLowerCase().includes(searchTerm)
       );
-      // Update filtered data state with filtered results
-      setFilteredData(filteredResults);
+    }
+    
+    // Apply current filter
+    if (filterOption !== 'all') {
+      results = results.filter(item => {
+        const createdDate = new Date(item.created_at);
+        const now = new Date();
+        if (filterOption === 'lastWeek') {
+          return (now - createdDate) / (1000 * 60 * 60 * 24) <= 7;
+        } else if (filterOption === 'lastMonth') {
+          return (now - createdDate) / (1000 * 60 * 60 * 24) <= 30;
+        }
+        return true;
+      });
+    }
+    
+    // Apply current sort
+    results.sort((a, b) => {
+      if (sortOption === 'name') {
+        return a.name.localeCompare(b.name);
+      } else if (sortOption === 'date') {
+        return new Date(b.created_at) - new Date(a.created_at);
+      }
+      return 0;
+    });
+    
+    setFilteredData(results);
+  };
+
+  const handleSort = (option) => {
+    setSortOption(option);
+    const sorted = [...filteredData].sort((a, b) => {
+      if (option === 'name') {
+        return a.name.localeCompare(b.name);
+      } else if (option === 'date') {
+        return new Date(b.created_at) - new Date(a.created_at);
+      }
+      return 0;
+    });
+    setFilteredData(sorted);
+  };
+
+  const handleFilter = (option) => {
+    setFilterOption(option);
+    if (option === 'all') {
+      setFilteredData(originalData);
+    } else {
+      const filtered = originalData.filter(item => {
+        const createdDate = new Date(item.created_at);
+        const now = new Date();
+        if (option === 'lastWeek') {
+          return (now - createdDate) / (1000 * 60 * 60 * 24) <= 7;
+        } else if (option === 'lastMonth') {
+          return (now - createdDate) / (1000 * 60 * 60 * 24) <= 30;
+        }
+        return true;
+      });
+      setFilteredData(filtered);
     }
   };
 
@@ -209,6 +287,26 @@ function ResourcesPage() {
             placeholder="Search topics..."
             onInput={handleSearch}
           />
+        </div>
+      </div>
+
+      {/* Section: Sort & Filter */}
+
+      <div className="sort-filter-container">
+        <div className="sort-options">
+                <label>Sort by: </label>
+                <select value={sortOption} onChange={(e) => handleSort(e.target.value)}>
+                        <option value="name">Name</option>
+                        <option value="date">Date</option>
+                </select>
+        </div>
+        <div className="filter-options">
+                <label>Filter: </label>
+                <select value={filterOption} onChange={(e) => handleFilter(e.target.value)}>
+                        <option value="all">All</option>
+                        <option value="lastWeek">Last Week</option>
+                        <option value="lastMonth">Last Month</option>
+                </select>
         </div>
       </div>
 

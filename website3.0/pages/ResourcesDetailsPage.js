@@ -152,6 +152,7 @@ function ResourcesDetailsPage() {
         >
           <FontAwesomeIcon icon={faGithub} />
         </a>
+        <h5>More Info</h5>
       </div>
       {/* Toast message for showing copy success/failure */}
       <div className="toast" id="toast">
