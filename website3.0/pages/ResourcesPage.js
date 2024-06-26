@@ -14,12 +14,36 @@ function ResourcesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
  //to add body bg color 
- useEffect(() => {
-  document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
 
+
+ useEffect(() => {
+  console.log('sdsd')
+  function updateBackground(){
+
+    if(document.body.classList.contains('dark-mode')){
+      document.body.style.background = "#353535";
+      
+    }else{
+      
+      document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
+    }
+  }
+  const observer = new MutationObserver((mutationsList) => {
+    for (let mutation of mutationsList) {
+      if (mutation.attributeName === 'class') {
+        updateBackground();
+      }
+    }
+  });
+
+  observer.observe(document.body, { attributes: true });
+
+  // Initial background update
+  updateBackground();
   // Clean-up function to reset background color when component unmounts
   return () => {
-    document.body.style.backgroundColor = "";
+    document.body.style.background = "";
+    observer.disconnect();
   };
 }, []);
   useEffect(() => {
