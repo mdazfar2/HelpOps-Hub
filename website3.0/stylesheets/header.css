@@ -267,3 +267,31 @@ nav {
     height: 270px;
   }
 }
+.nav-links1 li a {
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 22px;
+  position: relative;
+}
+
+.nav-links1 li a:hover {
+  text-decoration: underline;
+}
+
+.nav-links1 li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 4px;
+  left: 0;
+  background-color: #ff7d1f;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-links1 li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
