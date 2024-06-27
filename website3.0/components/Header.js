@@ -9,13 +9,18 @@ import ToggleSwitch from "./ToggleSwitch";
 //Importing AuthButton component
 import AuthButton from "./AuthButton";
 
+import Profile from "@pages/Profile";
+
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faUserCircle, faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
+
+  // State to control the visibility of the Profile component
+  const [showProfile, setShowProfile] = useState(false);
 
   // to set the status of show navbar or not
   const [show, setShow] = useState(true);
@@ -73,6 +78,16 @@ const Header = () => {
     };
   }, []);
 
+  // Toggle the Profile component visibility
+  const toggleProfile = () => {
+    setShowProfile(!showProfile);
+  };
+
+  // Close the Profile component
+  const closeProfile = () => {
+    setShowProfile(false);
+  };
+
   return (
     <header className={`${show ? "showNav" : "hideNav"}`}>
       <nav>
@@ -100,6 +115,10 @@ const Header = () => {
         {/* Navigation actions (sponsor button and toggle switch) */}
         <div className="nav-actions">
           <AuthButton />
+          {/* Profile button */}
+          <button className="profile-btn" onClick={toggleProfile}>
+          <FontAwesomeIcon icon={faUserLarge} width={35} />
+          </button>
           <a href="https://github.com/sponsors/mdazfar2" target="_blank">
             <button className="nav-sponsor-btn">
                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
@@ -130,6 +149,14 @@ const Header = () => {
           <Link href="/contact">Contact</Link>
         </li>
       </ul>
+      {/* Profile overlay */}
+      {showProfile && (
+        <div className="auth-overlay" onClick={closeProfile}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            <Profile onClose={closeProfile} />
+          </div>
+        </div>
+      )}
     </header>
   );
 };

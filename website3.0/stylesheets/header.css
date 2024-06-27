@@ -337,3 +337,22 @@ nav {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
+
+/* Profile Button */
+.profile-btn {
+  background-color: rgba(245, 245, 245, 0.788);
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 10px;
+  transition: all 0.5s ease;
+}
+
+/* Hover effect for Profile button */
+.profile-btn:hover {
+  transform: translateX(10px);
+  background: none;
+  border: 1px solid rgb(245, 245, 245);
+}

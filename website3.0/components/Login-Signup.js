@@ -1,5 +1,8 @@
-import React from 'react';
+"use client";
+
+import React,{useState} from 'react';
 import "@stylesheets/login-signup.css";
+import OTP from '@pages/OTP';
 
 export const Login = ({ onClose, onSignupClick }) => {
   return (
@@ -24,6 +27,29 @@ export const Login = ({ onClose, onSignupClick }) => {
 };
 
 export const Signup = ({ onClose, onLoginClick }) => {
+  const [showOTP, setShowOTP] = useState(false);
+  const [email, setEmail] = useState('');
+
+  const handleContinue = () => {
+    if (email) {
+      setShowOTP(true);
+      // Here you would typically trigger sending an OTP to the provided email
+    } else {
+      alert('Please enter your email');
+    }
+  };
+
+  const handleOTPContinue = (otp) => {
+    // Handle OTP verification here
+    console.log('OTP entered:', otp);
+    // If OTP is valid, proceed with signup
+    // If not, show an error message
+  };
+
+  if (showOTP) {
+    return <OTP onClose={onClose} onContinue={handleOTPContinue} />;
+  }
+
   return (
     <div className="signup-auth-container">
       <h1>Create Your HelpOps-Hub Account</h1>
@@ -37,11 +63,16 @@ export const Signup = ({ onClose, onLoginClick }) => {
         Sign up with Github
       </button>
       <p>Or</p><br/>
-      <input type="email" placeholder="Enter your email" /><br/>
+      <input 
+        type="email" 
+        placeholder="Enter your email" 
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
-      <button className="continue-btn">Continue</button>
+      <button className="continue-btn" onClick={handleContinue}>Continue</button>
       <button className="close-btn" onClick={onClose}>X</button>
     </div>
-    );
-  };
+  );
+};
 
