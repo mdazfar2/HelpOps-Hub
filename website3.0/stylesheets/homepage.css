@@ -20,7 +20,7 @@ main {
   justify-content: center;
   align-items: center;
   background-color: white;
-  border-radius: 40px !important;
+  /* border-radius: 40px !important; */
 }
 
 .content h3 {
@@ -1032,5 +1032,10 @@ body.dark-mode {
 }
 .subscribe-btn{
   background-color: red;
-
+  font-family: serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+input{
+  border-radius: 5px !important;
 }
