@@ -23,12 +23,7 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
-import Lodaernewletter from "../components/Loadernewletter";
-import Popup from "@components/Popup";
 function HomePage() {
-
-  // to loading the loader
-  const [loading , setLoading ]=useState(false)
   //to add body bg color
   useEffect(() => {
     document.body.style.background =
@@ -138,19 +133,28 @@ function HomePage() {
   // Function to handle subscription process
   const subscribe = async () => {
     // Validate email format
-
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
-      setTimeout(() => {
-        setError('')
-}, 2000);
       return;
     }
     
     setError("");  // Clear any previous error messages
     
     try {
-      setLoading(true)
+      // Check if email already exists
+      const checkResponse = await fetch('/api/checkEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+      const checkResult = await checkResponse.json();
+      if (checkResult.exists) {
+        setError("You are already subscribed to our newsletter.");
+        return;
+      }
+      
       // Verify email using Hunter API
       const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${email}&api_key=939aedf77faf87bdef2cf493eb797f2e2fce2c37`);
       const result = await response.json();
@@ -158,10 +162,6 @@ function HomePage() {
       // Check if email is valid according to Hunter API response
       if (!result.data || result.data.status !== 'valid') {
         setError("Email Address Not Found!");
-        setTimeout(() => {
-          setError('')
-  }, 2000);
-  setLoading(false)
         return;
       }
   
@@ -179,18 +179,10 @@ function HomePage() {
       
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
-        setError("Subscribed Successfully");
-        setTimeout(() => {
-          setError('')
-        }, 2000);
+        alert("Subscribed Successfully");
       } else {
-        setError("Subscription failed");
-        setTimeout(() => {
-          setError('')
-        }, 2000);
+        alert("Subscription failed");
       }
-      setLoading(false)
-
     } catch (error) {
       // Handle any errors that occur during the process
       alert("An error occurred. Please try again.");
@@ -199,9 +191,7 @@ function HomePage() {
   
   return (
     <div>
-     {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
       <ParticlesComponent id="particles" />
-        {loading&&<Lodaernewletter />}
       <main>
         {/* Section: Main */}
 
@@ -212,7 +202,7 @@ function HomePage() {
                 <FontAwesomeIcon
                   icon={faStar}
                   className="star-icon"
-                  width={24}
+                  width={20}
                 />{" "}
                 Star Us
               </h3>
@@ -269,7 +259,7 @@ function HomePage() {
             Whether you're troubleshooting a complex issue or seeking advice on
             best practices, find the solutions you need right here.
           </p>
-          <button data-aos="fade-up">Start now</button>
+          <button data-aos="fade-up" style={{ display: "flex", alignItems: "center",gap: "5px"}}>Start now<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height={20} width={20}><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> </button>
         </div>
         <div className="image-section">
           <img
@@ -506,13 +496,12 @@ function HomePage() {
                 <input
                   value={email} onChange={(e)=>setEmail(e.target.value)}
                   placeholder="example@gmail.com"
-                  className="input-field changedesign"
+                  className="input-field"
                 />
-                <div className="white-line"></div>
-                {/* {error && <p className="error-message-mobile">{error}</p>} */}
+                {error && <p className="error-message-mobile">{error}</p>}
                 <button className="subscribe-btn" onClick={subscribe}>Subscribe</button>
               </div>
-              {/* {error && <p className="error-message-desktop">{error}</p>} */}
+              {error && <p className="error-message-desktop">{error}</p>}
             </div>
           </div>
         </div>
