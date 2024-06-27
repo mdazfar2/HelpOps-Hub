@@ -169,6 +169,7 @@ setLoading(false)
         setTimeout(() => {
           setError('')
         }, 2000);
+        setLoading(false)
         return;
       }
       
