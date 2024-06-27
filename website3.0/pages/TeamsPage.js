@@ -10,6 +10,9 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 //Importing the CardSkeleton Component
 import CardSkeleton from "@components/CardSkeleton";
 
+//Importing the SplideJS Package
+import Splide from "@splidejs/splide";
+import "@splidejs/splide/dist/css/splide.min.css";
 // The GitHub username of the repository owner
 const owner = "mdazfar2";
 
@@ -29,22 +32,53 @@ function TeamsPage() {
   const [topContri, setTopContri] = useState([]);
   const [allContributors, setAllContributors] = useState([]);
   const [loading, setLoading] = useState(true);
-  //to add body bg color 
-  useEffect(() => {
-    console.log('sdsd')
-    function updateBackground(){
+  const [isMobile, setIsMobile] = useState(false);
 
-      if(document.body.classList.contains('dark-mode')){
+  // Checks for window innerwidth
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 845);
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 845);
+      };
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+  // Initialized splidejs
+  useEffect(() => {
+    if (topContri.length >= 3 && isMobile) {
+      const splide = new Splide("#teams-card-splide", {
+        type: "loop",
+        perPage: 1,
+        perMove: 1,
+        arrows: false,
+        pagination: true,
+      });
+
+      splide.mount();
+
+      return () => {
+        splide.destroy();
+      };
+    }
+  }, [topContri, isMobile]);
+  //to add body bg color
+  useEffect(() => {
+    function updateBackground() {
+      if (document.body.classList.contains("dark-mode")) {
         document.body.style.background = "#353535";
-        
-      }else{
-        
-        document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
+      } else {
+        document.body.style.background =
+          "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
       }
     }
     const observer = new MutationObserver((mutationsList) => {
       for (let mutation of mutationsList) {
-        if (mutation.attributeName === 'class') {
+        if (mutation.attributeName === "class") {
           updateBackground();
         }
       }
@@ -178,9 +212,14 @@ function TeamsPage() {
             </div>
             <div className="member-data">
               <div className="member-contributions">
-              <a href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`} target="__blank">
-                <div className="member-contributions-count">{contri}</div>
-                <div className="member-contributions-label">Contributions</div>
+                <a
+                  href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`}
+                  target="__blank"
+                >
+                  <div className="member-contributions-count">{contri}</div>
+                  <div className="member-contributions-label">
+                    Contributions
+                  </div>
                 </a>
               </div>
               <div className="member-social-links">
@@ -201,63 +240,150 @@ function TeamsPage() {
   function renderTopContributors(contributors) {
     if (contributors.length < 3) return null;
     console.log(contributors.html_url);
-    return (
-      <div className="top-contributor">
-        <div className="contributor" key={contributors[1].login}>
-          <a href={contributors[1].html_url} target="__blank">
-            <img
-              className="circle"
-              src={contributors[1].avatar_url}
-              alt={`${contributors[1].login}'s Picture`}
-            />
-          </a>
-          <div className="rank">
-            <h1>2</h1>
-          </div>
-          <div className="crown" id="rank">
-            <img src="/crown.png" />
-          </div>
-          <p id="name2">{contributors[1].name || contributors[1].login}</p>
-          <p id="co2">contributions {contributors[1].contributions} </p>
-        </div>
 
-        <div className="contributor" key={contributors[0].login}>
-          <a href={contributors[0].html_url} target="__blank">
-            <img
-              className="circle"
-              src={contributors[0].avatar_url}
-              alt={`${contributors[0].login}'s Picture`}
-            />
-          </a>
-          <div className="rank">
-            <h1>1</h1>
+    if (isMobile) {
+      return (
+        <div id="teams-card-splide" className="splide">
+          <div className="splide__track">
+            <div className="splide__list">
+              <div className="splide__slide" id="c2">
+                <div>
+                  <div className="contributor" key={contributors[0].login}>
+                    <a href={contributors[0].html_url} target="__blank">
+                      <img
+                        className="circle"
+                        src={contributors[0].avatar_url}
+                        alt={`${contributors[0].login}'s Picture`}
+                      />
+                    </a>
+                    <div className="rank">
+                      <h1>1</h1>
+                    </div>
+                    <div className="crown" id="rank1">
+                      <img src="/crown.png" />
+                    </div>
+                    <p id="name1">
+                      {contributors[0].name || contributors[0].login}
+                    </p>
+                    <p id="co1">
+                      contributions {contributors[0].contributions}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="splide__slide top-contributor" id="c1">
+                <div>
+                  <div className="contributor" key={contributors[1].login}>
+                    <a href={contributors[1].html_url} target="__blank">
+                      <img
+                        className="circle"
+                        src={contributors[1].avatar_url}
+                        alt={`${contributors[1].login}'s Picture`}
+                      />
+                    </a>
+                    <div className="rank">
+                      <h1>2</h1>
+                    </div>
+                    <div className="crown" id="rank">
+                      <img src="/crown.png" />
+                    </div>
+                    <p id="name2">
+                      {contributors[1].name || contributors[1].login}
+                    </p>
+                    <p id="co2">
+                      contributions {contributors[1].contributions}{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="splide__slide" id="c3">
+                <div>
+                    <div className="contributor" key={contributors[2].login}>
+                      <a href={contributors[2].html_url} target="__blank">
+                        <img
+                          className="circle"
+                          src={contributors[2].avatar_url}
+                          alt={`${contributors[2].login}'s Picture`}
+                        />
+                      </a>
+                      <div className="rank">
+                        <h1>3</h1>
+                      </div>
+                      <div className="crown" id="rank">
+                        <img src="/crown.png" />
+                      </div>
+                      <p id="name3">
+                        {contributors[2].name || contributors[2].login}
+                      </p>
+                      <p id="co3">
+                        contributions {contributors[2].contributions}{" "}
+                      </p>
+                    </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="crown" id="rank1">
-            <img src="/crown.png" />
-          </div>
-          <p id="name1">{contributors[0].name || contributors[0].login}</p>
-          <p id="co1">contributions {contributors[0].contributions}</p>
         </div>
+      );
+    } else {
+      return (
+        <div className="top-contributor">
+          <div className="contributor" key={contributors[1].login}>
+            <a href={contributors[1].html_url} target="__blank">
+              <img
+                className="circle"
+                src={contributors[1].avatar_url}
+                alt={`${contributors[1].login}'s Picture`}
+              />
+            </a>
+            <div className="rank">
+              <h1>2</h1>
+            </div>
+            <div className="crown" id="rank">
+              <img src="/crown.png" />
+            </div>
+            <p id="name2">{contributors[1].name || contributors[1].login}</p>
+            <p id="co2">contributions {contributors[1].contributions} </p>
+          </div>
 
-        <div className="contributor" key={contributors[2].login}>
-          <a href={contributors[2].html_url} target="__blank">
-            <img
-              className="circle"
-              src={contributors[2].avatar_url}
-              alt={`${contributors[2].login}'s Picture`}
-            />
-          </a>
-          <div className="rank">
-            <h1>3</h1>
+          <div className="contributor" key={contributors[0].login}>
+            <a href={contributors[0].html_url} target="__blank">
+              <img
+                className="circle"
+                src={contributors[0].avatar_url}
+                alt={`${contributors[0].login}'s Picture`}
+              />
+            </a>
+            <div className="rank">
+              <h1>1</h1>
+            </div>
+            <div className="crown" id="rank1">
+              <img src="/crown.png" />
+            </div>
+            <p id="name1">{contributors[0].name || contributors[0].login}</p>
+            <p id="co1">contributions {contributors[0].contributions}</p>
           </div>
-          <div className="crown" id="rank">
-            <img src="/crown.png" />
+
+          <div className="contributor" key={contributors[2].login}>
+            <a href={contributors[2].html_url} target="__blank">
+              <img
+                className="circle"
+                src={contributors[2].avatar_url}
+                alt={`${contributors[2].login}'s Picture`}
+              />
+            </a>
+            <div className="rank">
+              <h1>3</h1>
+            </div>
+            <div className="crown" id="rank">
+              <img src="/crown.png" />
+            </div>
+            <p id="name3">{contributors[2].name || contributors[2].login}</p>
+            <p id="co3">contributions {contributors[2].contributions} </p>
           </div>
-          <p id="name3">{contributors[2].name || contributors[2].login}</p>
-          <p id="co3">contributions {contributors[2].contributions} </p>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   // Function to load more contributors when user clicks 'Load More' button
@@ -270,7 +396,6 @@ function TeamsPage() {
 
   return (
     <div>
-
       {/* Section: Meet Our Team */}
 
       <div id="ourteam">Meet Our Team</div>
@@ -476,14 +601,12 @@ function TeamsPage() {
         </div>
       </div>
 
-
       {/* Section: Top 3 Contributors */}
 
       <div className="teams-container">
         <h1 className="contri">Top 3 Contributors</h1>
         <div id="contributors">{renderTopContributors(topContri)}</div>
       </div>
-
 
       {/* Section: Dynamic Loading of Contributors */}
 
@@ -518,7 +641,7 @@ function TeamsPage() {
       </div>
 
       {/* Section: Load More Button */}
-      
+
       <div className="load">
         <button id="load-more" onClick={loadMore}>
           Load More
