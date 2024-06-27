@@ -528,7 +528,7 @@ setLoading(false)
                 <input
                   value={email} onChange={(e)=>setEmail(e.target.value)}
                   placeholder="example@gmail.com"
-                  className="input-field changedesign"
+                  className="input-field "
                 />
                 {/* {error && <p className="error-message-mobile">{error}</p>} */}
                 <button className="subscribe-btn" onClick={subscribe}>Subscribe</button>
