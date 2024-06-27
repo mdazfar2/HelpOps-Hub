@@ -34,17 +34,21 @@ function TeamsPage() {
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 845);
 
+  // Checks for window innerwidth
   useEffect(() => {
-    const handleResize = () => {
+    if (typeof window !== "undefined") {
       setIsMobile(window.innerWidth < 845);
-    };
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 845);
+      };
+      window.addEventListener("resize", handleResize);
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
+  // Initialized splidejs
   useEffect(() => {
     if (topContri.length >= 3 && isMobile) {
       const splide = new Splide("#teams-card-splide", {
