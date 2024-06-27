@@ -6,6 +6,9 @@ import "@stylesheets/header.css";
 //Importing TogleSwitch Component
 import ToggleSwitch from "./ToggleSwitch";
 
+//Importing AuthButton component
+import AuthButton from "./AuthButton";
+
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -96,9 +99,11 @@ const Header = () => {
         </ul>
         {/* Navigation actions (sponsor button and toggle switch) */}
         <div className="nav-actions">
+          <AuthButton />
           <a href="https://github.com/sponsors/mdazfar2" target="_blank">
             <button className="nav-sponsor-btn">
-              Sponsor <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+               <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+               Sponsor
             </button>
           </a>
           <ToggleSwitch />

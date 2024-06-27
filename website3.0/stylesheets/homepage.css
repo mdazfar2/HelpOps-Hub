@@ -55,7 +55,7 @@ a {
 }
 
 #heart {
-  color: red;
+  color: rgb(234, 139, 155);
 }
 
 .main-content {
@@ -599,7 +599,17 @@ body.dark-mode {
   width: 70%;
   display: flex;
 }
-
+.error-message-desktop{
+  margin: 10px;
+  width: 70%;
+  text-align: left;
+}
+.error-message-desktop{
+  display: block;
+}
+.error-message-mobile{
+  display: none;
+}
 .input-field {
   border-radius: 20px;
   height: 38px;
@@ -762,6 +772,12 @@ body.dark-mode {
     gap: 15px;
     justify-content:center ;
     align-items: center;
+  }
+  .error-message-desktop{
+    display: none;
+  }
+  .error-message-mobile{
+    display: block;
   }
 }
 @media only screen and (max-width: 720px) {

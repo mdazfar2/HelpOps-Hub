@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import "@stylesheets/darkmode.css";
-
-//Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 
@@ -19,22 +17,26 @@ const ToggleSwitch = () => {
       document.body.classList.remove("dark-mode");
     }
   }, []);
+
   // Function to toggle dark mode
   const toggleMode = () => {
     const newMode = !isDarkMode;
     // Update state with new mode
     setIsDarkMode(newMode);
     // Toggle dark mode class on body
-    document.body.classList.toggle("dark-mode");
+    if (newMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
     // Store new mode preference in local storage
-    localStorage.setItem("dark-mode", newMode);
+    localStorage.setItem("dark-mode", newMode.toString());
   };
 
   return (
-    <div className="toggle-switch">
+    <button className={`nav-sponsor-btn ${isDarkMode ? 'dark-mode' : ''}`} onClick={toggleMode} style={{ height: '45px', width: '45px', borderRadius: '15px' }}>
       {isDarkMode ? (
         <svg
-          onClick={toggleMode}
           id="sun"
           className="sun1 size-6"
           viewBox="0 0 24 24"
@@ -50,12 +52,11 @@ const ToggleSwitch = () => {
       ) : (
         <FontAwesomeIcon
           icon={faMoon}
-          onClick={toggleMode}
           width={25}
           className="moon"
         />
       )}
-    </div>
+    </button>
   );
 };
 
