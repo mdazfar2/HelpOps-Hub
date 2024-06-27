@@ -32,7 +32,7 @@ function TeamsPage() {
   const [topContri, setTopContri] = useState([]);
   const [allContributors, setAllContributors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 845);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Checks for window innerwidth
   useEffect(() => {
