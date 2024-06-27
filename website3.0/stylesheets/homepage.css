@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
@@ -55,7 +56,7 @@ a {
 }
 
 #heart {
-  color: red;
+  color: rgb(234, 139, 155);
 }
 
 .main-content {
@@ -68,18 +69,17 @@ a {
 }
 
 .get-started-btn {
-  background-color: whitesmoke;
+  background: #fff;
   border-radius: 25px;
-  padding: 10px 20px;
+  padding: 10px 20px;   
   cursor: pointer;
   font-size: 16px;
   border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(148, 148, 148, 0.286);
   color: #000000;
-  gap: 7px;
   transition: all 0.4s ease;
-  width: 180px;
-  font-family: cursive;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .dark-mode .get-started-btn {
@@ -89,9 +89,9 @@ a {
 
 /* Hovering effect for get-started btn */
 .get-started-btn:hover {
-  transform: translateX(10px);
-  background: none;
-  border: 2px solid whitesmoke;
+  transform: scale(1.1);
+  background: linear-gradient(to right, #ff7d1f, #ffd700);
+  color: #000
 }
 
 .dark-mode .get-started-btn:hover {
@@ -101,14 +101,13 @@ a {
 
 .star-button {
   color: #000000;
-  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.1s ease;
-  width: 150px;
-  padding: 9px 9px;
-  font-family: cursive;
+  transition: all 0.1s ease;
+  width: 120px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
 }
 
 .star-button:active {
@@ -121,9 +120,10 @@ a {
 }
 
 .content a:hover {
-  transform: translateX(10px);
-  background: none;
-  border: 2px solid whitesmoke;
+  transform: scale(1.1);
+  transition: all 0.4s ease;
+  background: linear-gradient(to right, #ff7d1f, #ffd700);
+  color: #000
 }
 
 .dark-mode .content a:hover h3 {
@@ -219,7 +219,7 @@ a {
 }
 
 .text-section button {
-  background-color: #007bff;
+  background-color: #ffffff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -227,8 +227,14 @@ a {
   border-radius: 30px !important;
   color: black;
   margin-bottom: 2rem;
+  transition: all 0.4s ease;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
-
+.text-section button:hover{
+  background: linear-gradient(to right, #ff7d1f, #ffd700);
+  color: #000;
+}
 .image-section {
   flex: 1;
   text-align: left;
@@ -599,7 +605,17 @@ body.dark-mode {
   width: 70%;
   display: flex;
 }
-
+.error-message-desktop{
+  margin: 10px;
+  width: 70%;
+  text-align: left;
+}
+.error-message-desktop{
+  display: block;
+}
+.error-message-mobile{
+  display: none;
+}
 .input-field {
   border-radius: 20px;
   height: 38px;
@@ -762,6 +778,12 @@ body.dark-mode {
     gap: 15px;
     justify-content:center ;
     align-items: center;
+  }
+  .error-message-desktop{
+    display: none;
+  }
+  .error-message-mobile{
+    display: block;
   }
 }
 @media only screen and (max-width: 720px) {

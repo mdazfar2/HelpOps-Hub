@@ -58,9 +58,3 @@
     }
 }
 
-/* Mobile-L (425px) */
-@media screen and (min-width: 376px) and (max-width: 425px) {
-    .footer{
-        margin-left: 35px;
-    }
-}
