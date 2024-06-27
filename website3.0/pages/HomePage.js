@@ -141,6 +141,20 @@ function HomePage() {
     setError("");  // Clear any previous error messages
     
     try {
+      // Check if email already exists
+      const checkResponse = await fetch('/api/checkEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+      const checkResult = await checkResponse.json();
+      if (checkResult.exists) {
+        setError("You are already subscribed to our newsletter.");
+        return;
+      }
+      
       // Verify email using Hunter API
       const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${email}&api_key=939aedf77faf87bdef2cf493eb797f2e2fce2c37`);
       const result = await response.json();
