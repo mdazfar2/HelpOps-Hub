@@ -1,0 +1,48 @@
+.red1{
+    background-color: red;
+}
+
+.green1 {
+    background-color: rgb(28, 201, 28) !important;
+}
+
+.popup{
+    width: 40%;
+    height: 60px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 30%;
+    right: 30%;
+    color: white;
+    animation: animate1 1s forwards;
+
+}
+.none1{
+    display: none;
+}
+.line{
+    width: 100px;
+    background-color: white;
+    height: 2px;
+    position: absolute;
+    bottom: 0px ;
+    animation: animate 2s forwards;
+}
+@keyframes animate {
+    from{
+        width: 0px;
+    }to{
+        width: 100%;
+    }
+}
+@keyframes animate1 {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}

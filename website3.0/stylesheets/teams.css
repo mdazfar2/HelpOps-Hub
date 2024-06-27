@@ -152,6 +152,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   transition: 0.5s;
+  padding-right: 0px !important;
 }
 .team-member:hover {
   transform: scale(1.03);
@@ -223,9 +224,10 @@ body {
   height: 100%;
 }
 .social-links {
-  width: 20%;
-  margin-left: 5px;
+  width: 16%;
   padding: 10px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 .social-links-items {
   display: flex;
