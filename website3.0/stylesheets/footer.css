@@ -44,17 +44,4 @@
     text-decoration: underline;
 }
 
-/* Mobile-S (325px) */
-@media screen and (max-width: 320px){
-    .footer{
-        margin-left: 70px;
-    }
-}
-
-/* Mobile-M (375px) */
-@media screen and (min-width: 321px) and (max-width: 375px) {
-    .footer{
-        margin-left: 65px;
-    }
-}
 
