@@ -9,9 +9,10 @@ import ToggleSwitch from "./ToggleSwitch";
 //Importing AuthButton component
 import AuthButton from "./AuthButton";
 
+
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faUserCircle, faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   // State to manage mobile menu toggle

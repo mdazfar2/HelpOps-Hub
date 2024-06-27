@@ -1,0 +1,49 @@
+/* Profile Component Styles */
+.profile-container {
+    background-color: #ffa500;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 650px;
+    height: 500px;
+  }
+  
+  .profile-container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .profile-container img{
+    margin-top: 25px;
+    margin-left: 43%;
+    margin-bottom: 25px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group input {
+    width: 60%;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: black;
+    margin-left: 70px;
+    border-bottom: 1px solid #1f1f1f;
+  }
+
+  .form-group input::placeholder{
+    color: #1f1f1f;
+  }
+  
+  .create-account-btn {
+    background-color: rgb(64, 109, 177);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
