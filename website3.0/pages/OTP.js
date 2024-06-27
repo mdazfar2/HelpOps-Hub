@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import "@stylesheets/otp.css";
 
-const OTP = ({ onClose, onContinue }) => {
+const OTP = ({ onClose, onOTPSubmit }) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
@@ -31,7 +31,7 @@ const OTP = ({ onClose, onContinue }) => {
 
   // Handle OTP submission
   const handleSubmit = () => {
-    onContinue(otp.join(''));
+    onOTPSubmit(otp.join(''));(otp.join(''));
   };
 
   return (

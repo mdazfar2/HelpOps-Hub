@@ -3,6 +3,7 @@
 import React,{useState} from 'react';
 import "@stylesheets/login-signup.css";
 import OTP from '@pages/OTP';
+import Profile from '@pages/Profile';
 
 export const Login = ({ onClose, onSignupClick }) => {
   return (
@@ -28,6 +29,7 @@ export const Login = ({ onClose, onSignupClick }) => {
 
 export const Signup = ({ onClose, onLoginClick }) => {
   const [showOTP, setShowOTP] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
 
   const handleContinue = () => {
@@ -39,15 +41,25 @@ export const Signup = ({ onClose, onLoginClick }) => {
     }
   };
 
-  const handleOTPContinue = (otp) => {
-    // Handle OTP verification here
+  const handleOTPSubmit = (otp) => {
+    // Here you would typically verify the OTP
     console.log('OTP entered:', otp);
-    // If OTP is valid, proceed with signup
-    // If not, show an error message
+    // For now, we'll just move to the Profile component
+    setShowProfile(true);
   };
 
+  const handleProfileSubmit = (profileData) => {
+    // Handle profile submission
+    console.log('Profile data:', profileData);
+    onClose(); // Close the signup process
+  };
+
+  if (showProfile) {
+    return <Profile onSubmit={handleProfileSubmit} onClose={onClose} />;
+  }
+
   if (showOTP) {
-    return <OTP onClose={onClose} onContinue={handleOTPContinue} />;
+    return <OTP onClose={onClose} onOTPSubmit={handleOTPSubmit} />;
   }
 
   return (
@@ -75,4 +87,3 @@ export const Signup = ({ onClose, onLoginClick }) => {
     </div>
   );
 };
-
