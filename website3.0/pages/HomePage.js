@@ -158,14 +158,15 @@ setBLur(false)
     
     try {
       // Check if email already exists
-      const checkResponse = await fetch('/api/checkEmail', {
+      /* const checkResponse = await fetch('/api/checkEmail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email })
       });
-      const checkResult = await checkResponse.json();
+      const checkResult = await checkResponse;
+      console.log("Res: " + checkResult);
       if (checkResult.exists) {
         setError("You are already subscribed to our newsletter.");
         setTimeout(() => {
@@ -175,10 +176,10 @@ setBLur(false)
         setBLur(false)
 
         return;
-      }
+      } */
       
       // Verify email using Hunter API
-      const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${email}&api_key=939aedf77faf87bdef2cf493eb797f2e2fce2c37`);
+      /* const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${email}&api_key=939aedf77faf87bdef2cf493eb797f2e2fce2c37`);
       const result = await response.json();
       
       // Check if email is valid according to Hunter API response
@@ -191,7 +192,7 @@ setBLur(false)
   setBLur(false)
 
         return;
-      }
+      } */
   
       // If email is valid, proceed to subscribe using local API
       const subscribeResult = await fetch("/api/subscribe", {
@@ -204,18 +205,19 @@ setBLur(false)
   
       // Process the response from the subscription endpoint
       const subscribeData = await subscribeResult.json();
+      console.log("data: " + subscribeData);
       
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
         setError("Subscribed Successfully");
-        setTimeout(() => {
+        /* setTimeout(() => {
           setError("Subscription failed");
           setTimeout(() => {
             setError('')
           }, 2000);
-        }, 2000);
+        }, 2000); */
       } else {
-        setError("Subscription failed");
+        setError("Subscription failed or already subscribed");
         setTimeout(() => {
           setError('')
         }, 2000);
