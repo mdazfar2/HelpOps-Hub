@@ -27,7 +27,7 @@ import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
 function HomePage() {
   const [loading , setLoading ]=useState(false)
-
+  const [blur,setBLur]=useState(false)
   //to add body bg color
 
   useEffect(() => {
@@ -140,6 +140,7 @@ function HomePage() {
      setTimeout(() => {
           setEmail('')
   }, 2000);
+  setBLur(true)
     // Validate email format
     setLoading(true)
     if (!validateEmail(email)) {
@@ -148,6 +149,7 @@ function HomePage() {
         setError('')
 }, 2000);
 setLoading(false)
+setBLur(false)
 
       return;
     }
@@ -171,6 +173,8 @@ setLoading(false)
           setError('')
         }, 2000);
         setLoading(false)
+        setBLur(false)
+
         return;
       } */
       
@@ -185,6 +189,7 @@ setLoading(false)
           setError('')
   }, 2000);
   setLoading(false)
+  setBLur(false)
 
         return;
       } */
@@ -225,12 +230,13 @@ setLoading(false)
       }, 2000);
     }
     setLoading(false)
+    setBLur(false)
 
   };
   
   return (
     <div>
-      {loading && <Lodaernewletter/>}
+      
       <ParticlesComponent id="particles" />
       {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
       <main>
@@ -536,11 +542,17 @@ setLoading(false)
               <div className="subscribe-input">
                 <input
                   value={email} onChange={(e)=>setEmail(e.target.value)}
-                  placeholder="example@gmail.com"
-                  className="input-field "
+                  placeholder="Email"
+                  className={`${blur?"blurclass":""} input-field `}
                 />
                 {/* {error && <p className="error-message-mobile">{error}</p>} */}
-                <button className="subscribe-btn" onClick={subscribe}>Subscribe</button>
+                <button className="subscribe-btn" onClick={subscribe}>Subscribe &nbsp; {loading && <div className="loader2">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>
               </div>
               {/* {error && <p className="error-message-desktop">{error}</p>} */}
             </div>
