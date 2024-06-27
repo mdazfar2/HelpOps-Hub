@@ -90,6 +90,22 @@
     color: white;
   }
 
+  .dark-mode .login-auth-container {
+    background-color: #333;
+  }
+
+  .dark-mode .login-auth-container button {
+    color: black;
+  }
+
+  .dark-mode .login-auth-container input {
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .dark-mode .login-btn{
+    background-color: #ff8c00;
+  }
+
   /* Styles for Signup auth container */
 
   .signup-auth-container {
@@ -191,3 +207,114 @@
     color: white;
   }
 
+  .dark-mode .signup-auth-container{
+    background-color: #333;
+  }
+
+  .dark-mode .signup-auth-container input{
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .dark-mode .signup-auth-container button {
+    color: black;
+  }
+
+  .dark-mode .continue-btn{
+    background-color: #ff8c00;
+  }
+
+
+  @media screen and (max-width: 600px) {
+    .login-auth-container,
+    .signup-auth-container {
+      width: 90%;
+      padding: 15px;
+      margin-left: 20px;
+    }
+  
+    .login-auth-container h1,
+    .signup-auth-container h1 {
+      font-size: 18px;
+    }
+  
+    .login-auth-container p,
+    .signup-auth-container p {
+      font-size: 14px;
+    }
+  
+    .login-auth-container input,
+    .signup-auth-container input {
+      width: 80%;
+      margin-left: 10%;
+    }
+  
+    .login-auth-container button,
+    .signup-auth-container button {
+      width: 80%;
+      margin-left: 10%;
+    }
+  
+    .login-auth-container .login-btn,
+    .signup-auth-container .continue-btn {
+      left: 0;
+      width: 80%;
+    }
+
+    .login-auth-container a,
+  .signup-auth-container a {
+    position: static !important;
+    display: block !important;
+    text-align: center !important;
+    margin: 10px auto !important;
+    right: auto !important;
+    font-size: 12px !important;
+    width: 80% !important;
+    max-width: 200px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+
+  .login-auth-container,
+  .signup-auth-container {
+    overflow: visible !important;
+  }
+  }
+  
+  @media screen and (max-width: 410px) {
+
+    .login-auth-container,
+    .signup-auth-container{
+        margin-top: 20px;
+    }
+
+    .login-auth-container h1,
+    .signup-auth-container h1 {
+      font-size: 16px;
+    }
+  
+    .login-auth-container p,
+    .signup-auth-container p {
+      font-size: 12px;
+    }
+  
+    .signup-auth-container h5 {
+      font-size: 14px;
+    }
+  
+    .login-auth-container button,
+    .signup-auth-container button {
+      font-size: 14px;
+    }
+
+    .login-auth-container .close-btn,
+    .signup-auth-container .close-btn {
+      position: absolute;
+      top: -10px;
+      right: -120px;
+    }
+    .login-auth-container a,
+    .signup-auth-container a {
+    font-size: 11px !important;
+   }
+  }
