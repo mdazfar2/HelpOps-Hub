@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
 import "@stylesheets/homepage.css";
+import Lodaernewletter from "../components/Loadernewletter";
+import Popup from "@components/Popup";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +26,10 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
 function HomePage() {
+  const [loading , setLoading ]=useState(false)
+
   //to add body bg color
+
   useEffect(() => {
     document.body.style.background =
       "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
@@ -133,8 +138,14 @@ function HomePage() {
   // Function to handle subscription process
   const subscribe = async () => {
     // Validate email format
+    setLoading(true)
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
+      setTimeout(() => {
+        setError('')
+}, 2000);
+setLoading(false)
+
       return;
     }
     
@@ -152,6 +163,11 @@ function HomePage() {
       const checkResult = await checkResponse.json();
       if (checkResult.exists) {
         setError("You are already subscribed to our newsletter.");
+        setTimeout(() => {
+          setError('')
+  }, 2000);
+  setLoading(false)
+
         return;
       }
       
@@ -162,6 +178,11 @@ function HomePage() {
       // Check if email is valid according to Hunter API response
       if (!result.data || result.data.status !== 'valid') {
         setError("Email Address Not Found!");
+        setTimeout(() => {
+          setError('')
+  }, 2000);
+  setLoading(false)
+
         return;
       }
   
@@ -179,19 +200,35 @@ function HomePage() {
       
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
-        alert("Subscribed Successfully");
+        setError("Subscribed Successfully");
+        setTimeout(() => {
+          setError("Subscription failed");
+          setTimeout(() => {
+            setError('')
+          }, 2000);
+        }, 2000);
       } else {
-        alert("Subscription failed");
+        setError("Subscription failed");
+        setTimeout(() => {
+          setError('')
+        }, 2000);
       }
     } catch (error) {
       // Handle any errors that occur during the process
-      alert("An error occurred. Please try again.");
+      setError("An error occurred. Please try again.");
+      setTimeout(() => {
+        setError('')
+      }, 2000);
     }
+    setLoading(false)
+
   };
   
   return (
     <div>
+      {loading && <Lodaernewletter/>}
       <ParticlesComponent id="particles" />
+      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
       <main>
         {/* Section: Main */}
 
@@ -496,12 +533,12 @@ function HomePage() {
                 <input
                   value={email} onChange={(e)=>setEmail(e.target.value)}
                   placeholder="example@gmail.com"
-                  className="input-field"
+                  className="input-field changedesign"
                 />
-                {error && <p className="error-message-mobile">{error}</p>}
+                {/* {error && <p className="error-message-mobile">{error}</p>} */}
                 <button className="subscribe-btn" onClick={subscribe}>Subscribe</button>
               </div>
-              {error && <p className="error-message-desktop">{error}</p>}
+              {/* {error && <p className="error-message-desktop">{error}</p>} */}
             </div>
           </div>
         </div>
