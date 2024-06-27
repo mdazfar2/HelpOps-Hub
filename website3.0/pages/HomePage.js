@@ -137,6 +137,9 @@ function HomePage() {
   
   // Function to handle subscription process
   const subscribe = async () => {
+     setTimeout(() => {
+          setEmail('')
+  }, 2000);
     // Validate email format
     setLoading(true)
     if (!validateEmail(email)) {
