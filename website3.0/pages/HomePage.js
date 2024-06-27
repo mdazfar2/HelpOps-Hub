@@ -166,6 +166,10 @@ setLoading(false)
       const checkResult = await checkResponse.json();
       if (checkResult.exists) {
         setError("You are already subscribed to our newsletter.");
+        setTimeout(() => {
+          setError('')
+        }, 2000);
+        setLoading(false)
         return;
       }
       
