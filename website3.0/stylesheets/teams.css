@@ -1166,11 +1166,11 @@ body {
   box-shadow: 0px 4px 4px 0px #00000040;
   border-radius: 23px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
 }
 
 .join-button:hover {
-  background-color: #6749e8;
+  background: linear-gradient(to right, #ff7d1f, #ffd700);
 }
 
 #load-more {
@@ -1184,11 +1184,11 @@ body {
   box-shadow: 0px 4px 4px 0px #00000040;
   border-radius: 23px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
 }
 
 #load-more:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #ff7d1f, #ffd700);
 }
 
 .dark-mode .trophy-card {
