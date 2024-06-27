@@ -901,3 +901,18 @@ body.dark-mode {
     height: 46px !important;
   }
 }
+
+.changedesign{
+  background:none;
+  border-bottom: solid 2px white;
+  border-radius: 0px !important; 
+}
+.changedesign::placeholder{
+  left: 0px !important;
+  margin-left: 0px !important;
+  color: black;
+  padding-left: 0px !important;
+}
+.changedesign:focus{
+  outline: none;
+}
