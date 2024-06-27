@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Login, Signup } from './Login-Signup';
+import { Login, Signup } from '../pages/Login-Signup';
 
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
