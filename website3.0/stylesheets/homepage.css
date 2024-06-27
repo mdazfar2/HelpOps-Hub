@@ -20,7 +20,7 @@ main {
   justify-content: center;
   align-items: center;
   background-color: white;
-  /* border-radius: 40px !important; */
+  border-radius: 40px ;
 }
 
 .content h3 {
