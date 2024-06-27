@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import "@stylesheets/otp.css";
 
-const OTP = ({ onClose, onOTPSubmit }) => {
+const OTP = ({ onClose, onOTPSubmit, onBack }) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
@@ -36,6 +36,10 @@ const OTP = ({ onClose, onOTPSubmit }) => {
 
   return (
     <div className="otp-container">
+      {/* Back arrow */}
+      <button className="back-arrow" onClick={onBack}>
+        &#8592; {/* Left arrow Unicode character */}
+      </button>
       <h5>To continue, enter the OTP sent to your registered email address.</h5>
       <p>This helps us keep your account secure.</p>
       {/* OTP input fields */}

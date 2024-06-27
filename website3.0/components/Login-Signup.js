@@ -54,12 +54,16 @@ export const Signup = ({ onClose, onLoginClick }) => {
     onClose(); // Close the signup process
   };
 
+  const handleBackToSignup = () => {
+    setShowOTP(false);
+  };
+
   if (showProfile) {
     return <Profile onSubmit={handleProfileSubmit} onClose={onClose} />;
   }
 
   if (showOTP) {
-    return <OTP onClose={onClose} onOTPSubmit={handleOTPSubmit} />;
+    return <OTP onClose={onClose} onOTPSubmit={handleOTPSubmit} onBack={handleBackToSignup} />;
   }
 
   return (
