@@ -1,4 +1,3 @@
-import { connectionStr } from "@utils/db";  // Importing database connection string from utils/db
 import NewsLetterSubscribe from "@utils/models/newslettersub";  // Importing Mongoose model for newsletter subscription
 import mongoose from "mongoose";  // Importing Mongoose for MongoDB interactions
 import { NextResponse} from "next/server";  // Importing Next.js server response utility
@@ -11,8 +10,10 @@ let users=new Map()
 export async function POST(req) {
 
     try {
-        
-        const { email , isSend} = await req.json();  // Extract email from request body
+      const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
+      const MONGO_URI_SIGNIN = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+  
+      const { email , isSend} = await req.json();  // Extract email from request body
 
         
        async function send(){
