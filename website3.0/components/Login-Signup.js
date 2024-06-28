@@ -32,8 +32,16 @@ export const Signup = ({ onClose, onLoginClick }) => {
   const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
 
-  const handleContinue = () => {
+  const handleContinue =async () => {
     if (email) {
+      await fetch("/api/signup",{
+        method:"POST",
+        body:JSON.stringify({
+          email:email,
+        isSend:true
+        })
+      })
+      localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
     } else {
@@ -41,11 +49,22 @@ export const Signup = ({ onClose, onLoginClick }) => {
     }
   };
 
-  const handleOTPSubmit = (otp) => {
+  const handleOTPSubmit =async (otp) => {
+    let ema=localStorage.getItem('email')
+    let data=await fetch('/api/signup', {
+      method:"POST",
+      body:JSON.stringify({email:ema,isSend:false})
+    })
+    data=await data.json()
     // Here you would typically verify the OTP
-    console.log('OTP entered:', otp);
+   if(data.otp==otp){
+
+     setShowProfile(true);
+   }
+   else{
+    console.log(false)
+   }
     // For now, we'll just move to the Profile component
-    setShowProfile(true);
   };
 
   const handleProfileSubmit = (profileData) => {
