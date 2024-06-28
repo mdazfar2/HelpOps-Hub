@@ -55,3 +55,99 @@
     cursor: pointer;
     margin-top: 20px;
   }
+
+  .otp-container .close-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .otp-container .close-btn {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .otp-container .close-btn:hover {
+    color: #666;
+  }
+
+  .dark-mode .otp-container{
+    background-color: #333;
+  }
+
+  .dark-mode .otp-container button{
+    color: black;
+  }
+
+  .dark-mode .otp-container .back-arrow{
+    color: #f5f5f5;
+  }
+
+  .dark-mode .otp-container .close-btn{
+    color: #f5f5f5;
+  }
+
+   /* Responsiveness for smaller screens */
+   @media screen and (max-width: 768px) {
+    .otp-container {
+      width: 90%;
+      height: auto;
+      min-height: 400px;
+      margin-left: 15px;
+    }
+
+    .otp-container h5 {
+      margin-top: 40px;
+      font-size: 16px;
+    }
+
+    .otp-container p {
+      font-size: 14px;
+    }
+
+    .otp-input {
+      margin-top: 30px;
+    }
+
+    .otp-field {
+      width: 35px;
+      height: 40px;
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .otp-container {
+      width: 90%;
+      min-height: 350px;
+      margin-left: 15px;
+    }
+
+    .otp-container h5 {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .otp-container p {
+      font-size: 13px;
+    }
+
+    .otp-input {
+      margin-top: 20px;
+    }
+
+    .otp-field {
+      width: 30px;
+      height: 35px;
+      font-size: 14px;
+      margin: 0 3px;
+    }
+
+    .continue-btn {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }

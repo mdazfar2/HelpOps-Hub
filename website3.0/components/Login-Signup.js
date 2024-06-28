@@ -22,7 +22,9 @@ export const Login = ({ onClose, onSignupClick }) => {
       <input type="password" placeholder="Password" /><br/>
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
       <button className="login-btn">Login</button>
-      <button className="close-btn" onClick={onClose}>X</button>
+      <button className="close-btn" onClick={onClose}>
+       &#10005; {/* Cross Unicode character */}
+      </button>
     </div>
   );
 };
@@ -106,7 +108,9 @@ export const Signup = ({ onClose, onLoginClick }) => {
       /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
       <button className="continue-btn" onClick={handleContinue}>Continue</button>
-      <button className="close-btn" onClick={onClose}>X</button>
+      <button className="close-btn" onClick={onClose}>
+       &#10005; {/* Cross Unicode character */}
+      </button>
     </div>
   );
 };
