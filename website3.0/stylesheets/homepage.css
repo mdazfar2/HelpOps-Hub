@@ -88,17 +88,54 @@ a {
 }
 
 /* Hovering effect for get-started btn */
-.get-started-btn:hover {
+.get-started-btn 
+{
+  border-radius: 25px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  transition: all .4s ease;
+  box-shadow: 0 2px 10px hsla(0, 0%, 58%, .286);
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+  font-family: Plus Jakarta Sans, sans-serif;
+}
+
+.get-started-btn:after 
+{
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 9px;
+  right: -10px;
+  transition: 0.5s;
+}
+
+.get-started-btn:hover 
+{
   transform: scale(1.1);
   background: linear-gradient(to right, #ff7d1f, #ffd700);
-  color: #000
+  color: #000;
+  padding-right: 1px;
+  padding-left: 1px;
 }
 
-.dark-mode .get-started-btn:hover {
-  background-color: none;
+.get-started-btn:hover:after 
+{
+  opacity: 1;
+  right: 10px;
+}
+.dark-mode .get-started-btn:hover 
+{
   color: whitesmoke;
 }
-
 .star-button {
   color: #000000;
   display: flex;
@@ -119,15 +156,24 @@ a {
   transition: all 0.4s ease;
 }
 
-.content a:hover {
+.content a:hover 
+{
   transform: scale(1.1);
   transition: all 0.4s ease;
   background: linear-gradient(to right, #ff7d1f, #ffd700);
   color: #000
 }
 
-.dark-mode .content a:hover h3 {
+
+.dark-mode .content h3:hover
+{
   color: whitesmoke;
+}
+
+.dark-mode.star-button:hover 
+{
+  transform: scale(1.1);
+  transition: all 0.4s ease;
 }
 
 .star-icon {
