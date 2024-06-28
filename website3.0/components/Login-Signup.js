@@ -4,6 +4,7 @@ import React,{useState} from 'react';
 import "@stylesheets/login-signup.css";
 import OTP from '@pages/OTP';
 import Profile from '@pages/Profile';
+import Popup from "@components/Popup";
 
 export const Login = ({ onClose, onSignupClick }) => {
   return (
@@ -31,9 +32,14 @@ export const Signup = ({ onClose, onLoginClick }) => {
   const [showOTP, setShowOTP] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
-
+  const [error, setError] = useState("");  // State to hold error messages
+  const [popup,setPopup]=useState(false)
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
   const handleContinue =async () => {
-    if (email) {
+    if(validateEmail(email)){
       await fetch("/api/signup",{
         method:"POST",
         body:JSON.stringify({
@@ -44,9 +50,16 @@ export const Signup = ({ onClose, onLoginClick }) => {
       localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
-    } else {
-      alert('Please enter your email');
+    }else{
+      setError('Please Enter a valid Email address')
+      setPopup(true)
+      setTimeout(() => {
+        setError('')
+        setPopup(false)
+        setEmail('')
+}, 2000);
     }
+    
   };
 
   const handleOTPSubmit =async (otp) => {
@@ -87,6 +100,8 @@ export const Signup = ({ onClose, onLoginClick }) => {
 
   return (
     <div className="signup-auth-container">
+      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+
       <h1>Create Your HelpOps-Hub Account</h1>
       <h5>Join the HelpOps-Hub community by registering for a new account and unlock the world of DevOps resources.</h5>
       <button className="google-btn">
