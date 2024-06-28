@@ -4,9 +4,11 @@ import "@stylesheets/login-signup.css";
 import OTP from '@pages/OTP';
 import Profile from '@pages/Profile';
 
+// Login component
 export const Login = ({ onClose, onSignupClick }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
+  // Function to toggle password visibility
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -48,11 +50,13 @@ export const Login = ({ onClose, onSignupClick }) => {
   );
 };
 
+// Signup component
 export const Signup = ({ onClose, onLoginClick }) => {
   const [showOTP, setShowOTP] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
 
+  // Function to handle the continue button click
   const handleContinue = () => {
     if (email) {
       setShowOTP(true);
@@ -62,6 +66,7 @@ export const Signup = ({ onClose, onLoginClick }) => {
     }
   };
 
+  // Function to handle OTP submission
   const handleOTPSubmit = (otp) => {
     // Here you would typically verify the OTP
     console.log('OTP entered:', otp);
@@ -69,12 +74,14 @@ export const Signup = ({ onClose, onLoginClick }) => {
     setShowProfile(true);
   };
 
+  // Function to handle profile submission
   const handleProfileSubmit = (profileData) => {
     // Handle profile submission
     console.log('Profile data:', profileData);
     onClose(); // Close the signup process
   };
 
+  // Function to go back to the signup form from the OTP screen
   const handleBackToSignup = () => {
     setShowOTP(false);
   };
@@ -109,6 +116,6 @@ export const Signup = ({ onClose, onLoginClick }) => {
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
       <button className="continue-btn" onClick={handleContinue}>Continue</button>
       <button className="close-btn" onClick={onClose}>X</button>
-    </div>
-  );
+    </div>
+  );
 };

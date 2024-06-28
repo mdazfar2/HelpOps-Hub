@@ -332,7 +332,7 @@
 }
 .toggle-password {
     position: absolute;
-    right: 20%;
+    right: 24%;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
@@ -341,5 +341,5 @@
 
 .toggle-password img {
     width: 25px; /* Adjust size of the icon as needed */
-    height: 25px;
+   height:25px;
 }
