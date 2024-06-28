@@ -10,9 +10,7 @@ let users=new Map()
 export async function POST(req) {
 
     try {
-      const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
-      const MONGO_URI_SIGNIN = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-  
+      const { MONGO_URI } = process.env; 
       const { email , isSend} = await req.json();  // Extract email from request body
 
         

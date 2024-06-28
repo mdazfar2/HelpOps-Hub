@@ -6,12 +6,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 export async function POST(req) {
-        const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
-        const MONGO_URI_CREATE_ACCOUNT = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-    
+        const { MONGO_URI } = process.env;
         let {email,name,password}=await req.json()
         // Connect to MongoDB using Mongoose
-        await mongoose.connect(MONGO_URI_CREATE_ACCOUNT);
+        await mongoose.connect(MONGO_URI);
         bcrypt.hash(password, saltRounds,async function(err, hash) {
                 console.log(hash,email,name,password)
                let data = await user.create({
