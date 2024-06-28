@@ -3,7 +3,7 @@ import NewsLetterSubscribe from "@utils/models/newslettersub";  // Importing Mon
 import mongoose from "mongoose";  // Importing Mongoose for MongoDB interactions
 import { NextResponse} from "next/server";  // Importing Next.js server response utility
 import { Resend } from 'resend';
-
+import nodemailer from 'nodemailer'
 // import {Emailtemplate} from '../../../../components/Emailtemplate'
 const resend = new Resend('re_TjBzktuh_5c33Vdr61QnMG416VnsNuDiS');
 let users=new Map()
@@ -25,20 +25,30 @@ export async function POST(req) {
               }
               generateOTP()
               // Extract email from request body
-              const { data, error } = await resend.emails.send({
-                  from: 'Acme <onboarding@resend.dev>',
-                  to: ['loviagarwal1209@gmail.com'],
-                  subject: 'Hello world',
-                  react:`Your otp is ${otp}`,
-                });
+              const transport=await nodemailer.createTransport({
+                service:'gmail',
+                port: 587,
+                secure:false,
+                auth: {
+                  user: "loviagarwal55@gmail.com",
+                  pass: "hsqiflquplixfewi",
+                },
+            })
+            let mail=await transport.sendMail({
+                from: '"Lovi" <loviagarwal55@gmail.com>', // sender address
+    to: email, // list of receivers
+    subject: "OTP", // Subject line
+    text: otp, // plain text body
+    html: `<b>${otp}</b>`, // html body
+            })
+            
                 users.set(email,otp)
         }
         if(isSend){
-            send()
+           await  send()
             return NextResponse.json({success:true})
         }else{
        let otp=await users.get(email)
-       console.log(otp)
           return NextResponse.json({ success: true,otp: otp},{status:"200"});
 
         }
