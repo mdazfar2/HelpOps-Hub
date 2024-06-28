@@ -68,19 +68,6 @@ a {
   flex-direction: column;
 }
 
-.get-started-btn 
-{
-  border-radius: 25px;
-  background-color: white;
-  color: black;
-  text-align: center;
-  font-size: 16px;
-  padding: 10px 20px;
-  width: 150px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
 .dark-mode .get-started-btn {
   background-color: whitesmoke;
   color: #000000;
@@ -91,22 +78,14 @@ a {
 {
   border-radius: 25px;
   background-color: white;
-  border: none;
   color: black;
   text-align: center;
   font-size: 16px;
   padding: 10px 20px;
   width: 150px;
-  transition: all 0.5s;
   cursor: pointer;
-  transition: all .4s ease;
-  box-shadow: 0 2px 10px hsla(0, 0%, 58%, .286);
-  display: inline-block;
-  position: relative;
   font-weight: 600;
-  font-family: Plus Jakarta Sans, sans-serif;
 }
-
 .get-started-btn:after 
 {
   content: '»';
