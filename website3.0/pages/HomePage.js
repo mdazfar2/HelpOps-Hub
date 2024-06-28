@@ -157,43 +157,7 @@ setBLur(false)
     setError("");  // Clear any previous error messages
     
     try {
-      // Check if email already exists
-      /* const checkResponse = await fetch('/api/checkEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
-      });
-      const checkResult = await checkResponse;
-      console.log("Res: " + checkResult);
-      if (checkResult.exists) {
-        setError("You are already subscribed to our newsletter.");
-        setTimeout(() => {
-          setError('')
-        }, 2000);
-        setLoading(false)
-        setBLur(false)
 
-        return;
-      } */
-      
-      // Verify email using Hunter API
-      /* const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${email}&api_key=939aedf77faf87bdef2cf493eb797f2e2fce2c37`);
-      const result = await response.json();
-      
-      // Check if email is valid according to Hunter API response
-      if (!result.data || result.data.status !== 'valid') {
-        setError("Email Address Not Found!");
-        setTimeout(() => {
-          setError('')
-  }, 2000);
-  setLoading(false)
-  setBLur(false)
-
-        return;
-      } */
-  
       // If email is valid, proceed to subscribe using local API
       const subscribeResult = await fetch("/api/subscribe", {
         method: "POST",
@@ -210,12 +174,6 @@ setBLur(false)
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
         setError("Subscribed Successfully");
-        /* setTimeout(() => {
-          setError("Subscription failed");
-          setTimeout(() => {
-            setError('')
-          }, 2000);
-        }, 2000); */
       } else {
         setError("Subscription failed or already subscribed");
         setTimeout(() => {

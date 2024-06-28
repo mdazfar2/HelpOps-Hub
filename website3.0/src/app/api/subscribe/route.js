@@ -4,65 +4,72 @@ import mongoose from "mongoose"; // Importing Mongoose for MongoDB interactions
 import nodemailer from "nodemailer"; // Importing nodemailer to send welcome email
 import { NextResponse } from "next/server"; // Importing Next.js server response utility
 
-// GET endpoint to fetch newsletter subscription data
-export async function GET() {
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const apiKey = searchParams.get("apiKey");
+
+  const validApiKey = process.env.DB_KEY;
+
+  if (apiKey === validApiKey) {
     let data = []; // Initialize variable to store fetched data
     console.log("GET");
     try {
-        // Connect to MongoDB using Mongoose
-        await mongoose.connect(connectionStr);
+      // Connect to MongoDB using Mongoose
+      await mongoose.connect(connectionStr);
 
-        // Fetch all newsletter subscription records
-        data = await NewsLetterSubscribe.find();
+      // Fetch all newsletter subscription records
+      data = await NewsLetterSubscribe.find();
     } catch (error) {
-        // If an error occurs during database connection or query, return error response
-        data = { success: false };
+      // If an error occurs during database connection or query, return error response
+      data = { success: false };
     }
 
     // Return fetched data as JSON response
     return NextResponse.json({ result: data });
+  } else {
+    const msg = "Unauthorized Access";
+    return NextResponse.json({ result: msg });
+  }
 }
-
 // POST endpoint to handle new newsletter subscriptions
 export async function POST(req) {
+  // Parse JSON payload(email) from request body
+  const { email } = await req.json();
 
-    // Parse JSON payload(email) from request body
-    const { email } = await req.json();
+  // Connect to MongoDB using Mongoose
+  try {
+    await mongoose.connect(connectionStr);
+    // Check if user already exists
+    let user = await NewsLetterSubscribe.findOne({ email });
 
-    // Connect to MongoDB using Mongoose
-    try {
-        await mongoose.connect(connectionStr);
-        // Check if user already exists
-        let user = await NewsLetterSubscribe.findOne({ email });
+    if (user) {
+      console.log("user exists");
+      return NextResponse.json({
+        success: false,
+        message: "User already subscribed",
+      });
+    } else {
+      // Create a new instance of NewsLetterSubscribe model with the received payload
+      let subscribe = new NewsLetterSubscribe({ email });
+      // Save the new subscription record to MongoDB
+      let result = await subscribe.save();
 
-        if (user) {
-            console.log("user exists");
-            return NextResponse.json({
-                success: false,
-                message: "User already subscribed",
-            });
-        } else {
-            // Create a new instance of NewsLetterSubscribe model with the received payload
-            let subscribe = new NewsLetterSubscribe({ email });
-            // Save the new subscription record to MongoDB
-            let result = await subscribe.save();
+      // Set up Nodemailer transporter
+      let transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        auth: {
+          user: process.env.EMAIL_ID,
+          pass: process.env.EMAIL_APP_PASS,
+        },
+      });
 
-            // Set up Nodemailer transporter
-            let transporter = nodemailer.createTransport({
-                service: "gmail",
-                host: "smtp.gmail.com",
-                auth: {
-                    user: process.env.EMAIL_ID,
-                    pass: process.env.EMAIL_APP_PASS,
-                },
-            });
-
-            // Set up email options
-            let mailOptions = {
-                from: "helpopshub@gmail.com", 
-                to: email,
-                subject: "Welcome to HelpOps-Hub Community!",
-                html: `
+      // Set up email options
+      let mailOptions = {
+        from: "helpopshub@gmail.com",
+        to: email,
+        subject: "Welcome to HelpOps-Hub Community!",
+        html: `
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
                         <meta charset="UTF-8">
                         <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -318,23 +325,23 @@ export async function POST(req) {
                             </table>
                         </div>
 
-                        </body></html>`, 
-            };
+                        </body></html>`,
+      };
 
-            // Send email
-            await transporter.sendMail(mailOptions);
-            console.log("Email sent!!");
+      // Send email
+      await transporter.sendMail(mailOptions);
+      console.log("Email sent!!");
 
-            // Return success response with saved subscription details
-            return NextResponse.json({ result, success: true });
-        }
-    } catch (error) {
-        console.error("Error occurred : " + error);
-        return NextResponse.json({
-            success: false,
-            message: "An error occurred",
-        });
-    } finally {
-        mongoose.connection.close();
+      // Return success response with saved subscription details
+      return NextResponse.json({ result, success: true });
     }
+  } catch (error) {
+    console.error("Error occurred : " + error);
+    return NextResponse.json({
+      success: false,
+      message: "An error occurred",
+    });
+  } finally {
+    mongoose.connection.close();
+  }
 }
