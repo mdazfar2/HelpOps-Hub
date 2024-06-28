@@ -174,8 +174,15 @@ setBLur(false)
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
         setError("Subscribed Successfully");
+        setTimeout(() => {
+          setError('')
+        }, 2000);
       } else {
-        setError("Subscription failed or already subscribed");
+        if(subscribeData.message === "User already subscribed"){
+          setError("User is already subscribed");
+        }else{
+          setError("Subscription failed");
+        }
         setTimeout(() => {
           setError('')
         }, 2000);
