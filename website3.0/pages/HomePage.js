@@ -178,10 +178,10 @@ setBLur(false)
           setError('')
         }, 2000);
       } else {
-        if(subscribe.message === "User already subscribed"){
+        if(subscribeData.message === "User already subscribed"){
           setError("User is already subscribed");
         }else{
-          setError("Subscription failed or already subscribed");
+          setError("Subscription failed");
         }
         setTimeout(() => {
           setError('')
