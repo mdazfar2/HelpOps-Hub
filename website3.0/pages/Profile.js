@@ -9,9 +9,17 @@ const Profile = ({ onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // TODO: Add account creation logic here
+    await fetch('/api/createaccount',{
+      method:'POST',
+      body:JSON.stringify({
+        email:localStorage.getItem('email'),
+        name:username,
+        password:password
+      })
+    })
     onClose();
   };
 
