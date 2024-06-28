@@ -320,3 +320,26 @@
     font-size: 11px !important;
    }
   }
+  /* //adiing styling property to eye button/ */
+  .password-input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px; /* Adjust spacing as needed */
+}
+
+.password-wrapper {
+    position: relative;
+}
+.toggle-password {
+    position: absolute;
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+}
+
+.toggle-password img {
+    width: 25px; /* Adjust size of the icon as needed */
+    height: 25px;
+}
