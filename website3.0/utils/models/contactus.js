@@ -17,7 +17,7 @@ const contactUsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-}, { timestamps: false });
+}, { timestamps: true });
 
 const ContactUs = mongoose.models.contactcollections || mongoose.model("contactcollections", contactUsSchema);
 
