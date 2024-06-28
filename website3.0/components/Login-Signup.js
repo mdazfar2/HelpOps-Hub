@@ -1,28 +1,49 @@
-"use client";
-
-import React,{useState} from 'react';
+"use client"
+import React, { useState } from 'react';
 import "@stylesheets/login-signup.css";
 import OTP from '@pages/OTP';
 import Profile from '@pages/Profile';
 
 export const Login = ({ onClose, onSignupClick }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <div className="login-auth-container">
       <h1>Login to HelpOps-Hub</h1>
       <button className="google-btn">
-      <img src="google.png" alt="Google" />
+        <img src="google.png" alt="Google" />
         Sign in with Google
       </button>
       <button className="github-btn">
-      <img src="github.png" alt="GitHub" />
+        <img src="github.png" alt="GitHub" />
         Sign in with Github
       </button>
       <p>Or</p><br/>
       <input type="text" placeholder="Email or username" />
-      <input type="password" placeholder="Password" /><br/>
-      <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
-      <button className="login-btn">Login</button>
-      <button className="close-btn" onClick={onClose}>X</button>
+      <div className="password-input-container">
+        <div className="password-wrapper">
+          <input
+            type={passwordVisible ? "text" : "password"}
+            placeholder="Password"
+          />
+          <span className="toggle-password" onClick={togglePasswordVisibility}>
+            <img
+              src={passwordVisible ? "eye-open.png" : "eye-close.png"}
+              alt="Toggle password visibility"
+            />
+          </span>
+        </div>
+      </div>
+      <div>
+        <a href="#" onClick={onSignupClick}>Forgot password</a><br/>
+        <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
+        <button className="login-btn">Login</button>
+        <button className="close-btn" onClick={onClose}>X</button>
+      </div>
     </div>
   );
 };
@@ -32,16 +53,8 @@ export const Signup = ({ onClose, onLoginClick }) => {
   const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
 
-  const handleContinue =async () => {
+  const handleContinue = () => {
     if (email) {
-      await fetch("/api/signup",{
-        method:"POST",
-        body:JSON.stringify({
-          email:email,
-        isSend:true
-        })
-      })
-      localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
     } else {
@@ -49,22 +62,11 @@ export const Signup = ({ onClose, onLoginClick }) => {
     }
   };
 
-  const handleOTPSubmit =async (otp) => {
-    let ema=localStorage.getItem('email')
-    let data=await fetch('/api/signup', {
-      method:"POST",
-      body:JSON.stringify({email:ema,isSend:false})
-    })
-    data=await data.json()
+  const handleOTPSubmit = (otp) => {
     // Here you would typically verify the OTP
-   if(data.otp==otp){
-
-     setShowProfile(true);
-   }
-   else{
-    console.log(false)
-   }
+    console.log('OTP entered:', otp);
     // For now, we'll just move to the Profile component
+    setShowProfile(true);
   };
 
   const handleProfileSubmit = (profileData) => {
@@ -84,7 +86,7 @@ export const Signup = ({ onClose, onLoginClick }) => {
   if (showOTP) {
     return <OTP onClose={onClose} onOTPSubmit={handleOTPSubmit} onBack={handleBackToSignup} />;
   }
-
+  
   return (
     <div className="signup-auth-container">
       <h1>Create Your HelpOps-Hub Account</h1>
@@ -107,6 +109,6 @@ export const Signup = ({ onClose, onLoginClick }) => {
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
       <button className="continue-btn" onClick={handleContinue}>Continue</button>
       <button className="close-btn" onClick={onClose}>X</button>
-    </div>
-  );
+    </div>
+  );
 };
