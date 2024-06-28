@@ -70,7 +70,7 @@ export async function POST(req) {
 
       // Set up email options
       let mailOptions = {
-        from: "helpopshub@gmail.com",
+        from: process.env.EMAIL_ID,
         to: email,
         subject: "Welcome to HelpOps-Hub Community!",
         html: `
