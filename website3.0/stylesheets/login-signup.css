@@ -18,6 +18,48 @@
   right: 24%;
 font-size: 1.5rem;  
 }
+
+.loader3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --color: hsl(0, 0%, 87%);
+z-index: 1000;
+  --animation: 2s ease-in-out infinite;
+}
+
+.loader3 .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: solid 2px var(--color);
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: transparent;
+  animation: circle-keys var(--animation);
+}
+
+.loader3 .circle .dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color);
+  animation: dot-keys var(--animation);
+}
+
+.loader3 .circle .outline {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: outline-keys var(--animation);
+}
   .login-auth-container p {
     text-align: center;
     margin-top: 15px;
@@ -205,10 +247,10 @@ font-size: 1.5rem;
   }
 
   .signup-auth-container .continue-btn{
-    width: 110px;
+    width: 210px;
     padding: 10px;
     position: relative;
-    left: 100px;
+  left: 50px;
     background-color: rgb(64, 109, 177);
     color: white;
   }

@@ -46,13 +46,15 @@ export const Signup = ({ onClose, onLoginClick }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState("");  // State to hold error messages
   const [errorOtp, setErrorOtp] = useState(false);  // State to hold error messages
-
+let [loading,setLoading]=useState(false)
   const [popup,setPopup]=useState(false)
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(String(email).toLowerCase());
   };
   const handleContinue =async () => {
+    setLoading(true)
+
     if(validateEmail(email)){
       await fetch("/api/signup",{
         method:"POST",
@@ -64,6 +66,7 @@ export const Signup = ({ onClose, onLoginClick }) => {
       localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
+      setLoading(false)
     }else{
       setError('Please Enter a valid Email address')
       setPopup(true)
@@ -87,7 +90,6 @@ export const Signup = ({ onClose, onLoginClick }) => {
       });
 
       let data = await response.json();
-
       // Here you would typically verify the OTP
       if (data.otp == otp) {
         setShowProfile(true);
@@ -150,7 +152,13 @@ export const Signup = ({ onClose, onLoginClick }) => {
         onChange={(e) => setEmail(e.target.value)}
       /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
-      <button className="continue-btn" onClick={handleContinue}>Continue</button>
+      <button className="continue-btn" onClick={handleContinue}>Continue &nbsp;{loading && <div className="loader3">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>
       <button className="close-btn" onClick={onClose}>X</button>
     </div>
   );
