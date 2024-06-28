@@ -1,11 +1,14 @@
 "use client";
 import React, { useState, useRef } from 'react';
 import "@stylesheets/otp.css";
+import Popup from "@components/Popup";
+import Popup1 from '@components/Popup1';
 
-const OTP = ({ onClose, onOTPSubmit, onBack }) => {
+const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
+  let [error,setError]=useState(false)
 
   // Handle input change for OTP fields
   const handleChange = (element, index) => {
@@ -31,11 +34,25 @@ const OTP = ({ onClose, onOTPSubmit, onBack }) => {
 
   // Handle OTP submission
   const handleSubmit = () => {
+    if(otp[otp.length-1]==''){
+      setError("Please Enter Valid Otp")
+      setTimeout(() => {
+        setError('')
+      }, 2000);
+    console.log('sdsdsd')
+      return
+    }
+
     onOTPSubmit(otp.join(''));(otp.join(''));
+    setError('')
+    return
   };
 
   return (
     <div className="otp-container">
+     {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+     {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+
       {/* Back arrow */}
       <button className="back-arrow" onClick={onBack}>
         &#8592; {/* Left arrow Unicode character */}

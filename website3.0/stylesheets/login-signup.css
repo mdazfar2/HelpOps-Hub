@@ -12,7 +12,12 @@
     margin-top: 5px;
     font-size: 22px;
   }
-
+  .eye1{
+    position: absolute;
+  bottom: 24%;
+  right: 24%;
+font-size: 1.5rem;  
+}
   .login-auth-container p {
     text-align: center;
     margin-top: 15px;

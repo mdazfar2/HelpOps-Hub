@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "@stylesheets/Popup.css";
 
-export default function Popup(props) {
+export default function Popup1(props) {
     const { error, msg } = props;
     let [none, setNone] = useState(false);
   
