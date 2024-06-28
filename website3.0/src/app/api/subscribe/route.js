@@ -1,4 +1,3 @@
-import { connectionStr } from "@utils/db"; // Importing database connection string from utils/db
 import NewsLetterSubscribe from "@utils/models/newslettersub"; // Importing Mongoose model for newsletter subscription
 import mongoose from "mongoose"; // Importing Mongoose for MongoDB interactions
 import nodemailer from "nodemailer"; // Importing nodemailer to send welcome email
@@ -7,7 +6,9 @@ import { NextResponse } from "next/server"; // Importing Next.js server response
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const apiKey = searchParams.get("apiKey");
-
+  
+  const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
+  const MONGO_URI_NEWSLETTER = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/Newsletter?retryWrites=true&w=majority&appName=Cluster0`;
   const validApiKey = process.env.DB_KEY;
 
   if (apiKey === validApiKey) {
@@ -15,7 +16,7 @@ export async function GET(request) {
     console.log("GET");
     try {
       // Connect to MongoDB using Mongoose
-      await mongoose.connect(connectionStr);
+      await mongoose.connect(MONGO_URI_NEWSLETTER);
 
       // Fetch all newsletter subscription records
       data = await NewsLetterSubscribe.find();
@@ -38,7 +39,10 @@ export async function POST(req) {
 
   // Connect to MongoDB using Mongoose
   try {
-    await mongoose.connect(connectionStr);
+    const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
+    const MONGO_URI_NEWSLETTER = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/Newsletter?retryWrites=true&w=majority&appName=Cluster0`;
+  
+    await mongoose.connect(MONGO_URI_NEWSLETTER);
     // Check if user already exists
     let user = await NewsLetterSubscribe.findOne({ email });
 
