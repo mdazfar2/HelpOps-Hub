@@ -272,9 +272,8 @@ nav {
 .nav-links1 li a {
   text-decoration: none;
   padding: 10px 15px;
-  font-size: 15px;/* decrease the size of font */
-  margin-right: 2.5rem;/*align it at center*/
-  margin-top: -8px;
+  font-size: 22px;
+  position: relative;
 }
 
 .nav-links1 li a:hover {
@@ -338,4 +337,13 @@ nav {
   z-index: 1000;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+}
+/*styling for signup/login text*/
+.nav-links1 li .sign {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 15px;/*decrease size of font*/
+    margin-right: 2.5rem;/*align it at center*/
+    margin-top: -8px;
+    position: absolute;
 }
