@@ -420,7 +420,7 @@ a {
 }
 .dark-mode #c1:hover {
   box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
-  transform: scale(1.1);
+  transform: scale(1.02);
   cursor: default;
 }
 body.dark-mode {
@@ -433,7 +433,7 @@ body.dark-mode {
 }
 .dark-mode #c2:hover {
   box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
-  transform: scale(1.1);
+  transform: scale(1.02);
   cursor: default;
 }
 .dark-mode #c3 {
@@ -441,7 +441,7 @@ body.dark-mode {
 }
 .dark-mode #c3:hover {
   box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
-  transform: scale(1.1);
+  transform: scale(1.02);
   cursor: default;
 }
 .dark-mode #c4 {
@@ -449,7 +449,7 @@ body.dark-mode {
 }
 .dark-mode #c4:hover {
   box-shadow: 0 0px 20px rgba(255, 125, 31, 1);
-  transform: scale(1.1);
+  transform: scale(1.02);
   cursor: default;
 }
 #c1 {
@@ -463,7 +463,7 @@ body.dark-mode {
 }
 #c1:hover {
   box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
-  transform: scale(1.09);
+  transform: scale(1.02);
   cursor: default;
 }
 #c2 {
@@ -477,7 +477,7 @@ body.dark-mode {
 }
 #c2:hover {
   box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
-  transform: scale(1.09);
+  transform: scale(1.02);
   cursor: default;
 }
 #c3 {
@@ -490,7 +490,7 @@ body.dark-mode {
 }
 #c3:hover {
   box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
-  transform: scale(1.09);
+  transform: scale(1.02);
   cursor: default;
 }
 #c4 {
@@ -504,10 +504,12 @@ body.dark-mode {
 }
 #c4:hover {
   box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
-  transform: scale(1.09);
+  transform: scale(1.02);
   cursor: default;
 }
-
+.eye , .eye1{
+  cursor: pointer;
+}
 .banner {
   text-align: center;
   font-family: sans-serif;

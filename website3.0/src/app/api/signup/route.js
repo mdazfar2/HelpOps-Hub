@@ -1,19 +1,24 @@
 import NewsLetterSubscribe from "@utils/models/newslettersub";  // Importing Mongoose model for newsletter subscription
 import mongoose from "mongoose";  // Importing Mongoose for MongoDB interactions
 import { NextResponse} from "next/server";  // Importing Next.js server response utility
-import { Resend } from 'resend';
 import nodemailer from 'nodemailer'
-// import {Emailtemplate} from '../../../../components/Emailtemplate'
-const resend = new Resend('re_TjBzktuh_5c33Vdr61QnMG416VnsNuDiS');
 let users=new Map()
+import user from "@utils/models/user"; // Importing Mongoose model for Getting details of already present user 
 
 export async function POST(req) {
 
     try {
       const { MONGO_URI } = process.env; 
       const { email , isSend} = await req.json();  // Extract email from request body
+      await mongoose.connect(MONGO_URI);
+        // checking if user present
+      let isPresent=await user.find({email:email})
+      //giving eerror if user already present 
+      if(isPresent.length>0){
+          return NextResponse.json({success:false})
 
-        
+      }
+     
        async function send(){
             let otp = '';
             function generateOTP() {

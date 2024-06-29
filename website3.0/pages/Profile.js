@@ -40,6 +40,7 @@ let [error,setError]=useState(false)
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     // TODO: Add account creation logic here
     if(validateDetails()){
     await fetch('/api/createaccount', {
@@ -50,6 +51,7 @@ let [error,setError]=useState(false)
         password: password
       })
     })
+    setLoading(false)
     onClose();
   }else{
     setLoading(true)
@@ -100,7 +102,7 @@ let [error,setError]=useState(false)
         <div className="form-group">
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Enter your name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -130,7 +132,12 @@ let [error,setError]=useState(false)
 
         </div>
         {/* Submit button */}
-        <button type="submit" onClick={handleSubmit} className="create-account-btn">Create Account</button>
+        <button type="submit" onClick={handleSubmit} className="create-account-btn">Create Account &nbsp;{loading && <div className="loader3">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+    </div></div>
+ }</button>
       </form>
     </div>
   );
