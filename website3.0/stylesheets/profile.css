@@ -44,7 +44,12 @@
   background-color: rgb(64, 109, 177);
   color: white;
   border: none;
-  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: row;
+  padding: 15px 50px;
   border-radius: 16px;
   cursor: pointer;
   margin-top: 20px;

@@ -11,17 +11,13 @@ export async function POST(req) {
       const { MONGO_URI } = process.env; 
       const { email , isSend} = await req.json();  // Extract email from request body
       await mongoose.connect(MONGO_URI);
-       let  arr = mongoose.modelNames()
-        for(let i=0;i<arr.length;i++){
-          if(arr[i]=="user"){
+        
+      let isPresent=await user.find({email:email})
+      if(isPresent.length>0){
+          return NextResponse.json({success:false})
 
-            let isPresent=await user.find({email:email})
-            if(isPresent.length>0){
-                return NextResponse.json({success:false})
-      
-            }
-          }
-        }
+      }
+      console.log(isPresent)
        async function send(){
             let otp = '';
             function generateOTP() {

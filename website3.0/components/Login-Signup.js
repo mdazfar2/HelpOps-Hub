@@ -66,7 +66,7 @@ async  function handleLogin(){
         Sign in with Github
       </button>
       <p>Or</p><br/>
-      <input type="text" onChange={(e)=>setEmail(e.target.value)} placeholder="Email or username" />
+      <input type="text" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email" />
       <input      onChange={(e)=>setPassword(e.target.value)}       type={`${showPassword?"text":"password"}`}
  placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
 <br/>
