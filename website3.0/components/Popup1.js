@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from 'react'
 import "@stylesheets/Popup.css";
 
-export default function Popup(props) {
+export default function Popup1(props) {
     const { error, msg } = props;
     let [none, setNone] = useState(false);
   
@@ -10,7 +9,7 @@ export default function Popup(props) {
     useEffect(() => {
         const timer = setTimeout(() => {
             setNone(true);
-        }, 2000);
+        }, 1000);
         return () => clearTimeout(timer);
     }, []);
     

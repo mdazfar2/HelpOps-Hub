@@ -19,7 +19,7 @@
     right: 30%;
     color: white;
     animation: animate1 1s forwards;
-
+z-index:1000 !important;
 }
 .none1{
     display: none;

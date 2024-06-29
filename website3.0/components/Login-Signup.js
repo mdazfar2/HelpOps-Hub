@@ -1,11 +1,22 @@
 "use client";
 
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import "@stylesheets/login-signup.css";
 import OTP from '@pages/OTP';
 import Profile from '@pages/Profile';
+import Popup from "@components/Popup";
+import Popup1 from './Popup1';
+import {FaEye,FaEyeSlash} from 'react-icons/fa'
 
 export const Login = ({ onClose, onSignupClick }) => {
+  const [showPassword,setShowPassword]=useState(false)
+  function toggle(){
+    if(showPassword){
+      setShowPassword(false)
+    }else{
+      setShowPassword(true)
+    }
+  }
   return (
     <div className="login-auth-container">
       <h1>Login to HelpOps-Hub</h1>
@@ -19,7 +30,9 @@ export const Login = ({ onClose, onSignupClick }) => {
       </button>
       <p>Or</p><br/>
       <input type="text" placeholder="Email or username" />
-      <input type="password" placeholder="Password" /><br/>
+      <input             type={`${showPassword?"text":"password"}`}
+ placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
+<br/>
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
       <button className="login-btn">Login</button>
       <button className="close-btn" onClick={onClose}>
@@ -33,9 +46,18 @@ export const Signup = ({ onClose, onLoginClick }) => {
   const [showOTP, setShowOTP] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
-
+  const [error, setError] = useState("");  // State to hold error messages
+  const [errorOtp, setErrorOtp] = useState(false);  // State to hold error messages
+let [loading,setLoading]=useState(false)
+  const [popup,setPopup]=useState(false)
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
   const handleContinue =async () => {
-    if (email) {
+    setLoading(true)
+
+    if(validateEmail(email)){
       await fetch("/api/signup",{
         method:"POST",
         body:JSON.stringify({
@@ -46,27 +68,50 @@ export const Signup = ({ onClose, onLoginClick }) => {
       localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
-    } else {
-      alert('Please enter your email');
+      setLoading(false)
+    }else{
+      setError('Please Enter a valid Email address')
+      setPopup(true)
+      setTimeout(() => {
+        setError('')
+        setPopup(false)
+        setLoading(false)
+
+        setEmail('')
+}, 2000);
     }
+    
   };
-
   const handleOTPSubmit =async (otp) => {
-    let ema=localStorage.getItem('email')
-    let data=await fetch('/api/signup', {
-      method:"POST",
-      body:JSON.stringify({email:ema,isSend:false})
-    })
-    data=await data.json()
-    // Here you would typically verify the OTP
-   if(data.otp==otp){
+    try {
+      let email = localStorage.getItem('email');
+      let response = await fetch('/api/signup', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, isSend: false })
+      });
 
-     setShowProfile(true);
-   }
-   else{
-    console.log(false)
-   }
-    // For now, we'll just move to the Profile component
+      let data = await response.json();
+      // Here you would typically verify the OTP
+      if (data.otp == otp) {
+        setShowProfile(true);
+      } else {
+        console.log("inside error")
+        setErrorOtp(true);
+        setPopup(true)
+        setTimeout(() => {
+          setErrorOtp(false);
+          setLoading(false)
+        }, 2000);
+      }
+    } catch (error) {
+      setErrorOtp('An error occurred');
+      setTimeout(() => {
+        setErrorOtp('');
+      }, 2000);
+    }
   };
 
   const handleProfileSubmit = (profileData) => {
@@ -84,11 +129,16 @@ export const Signup = ({ onClose, onLoginClick }) => {
   }
 
   if (showOTP) {
-    return <OTP onClose={onClose} onOTPSubmit={handleOTPSubmit} onBack={handleBackToSignup} />;
+    return <> <OTP onClose={onClose} isError={errorOtp} setError={setError} onOTPSubmit={handleOTPSubmit} onBack={handleBackToSignup} />;
+        
+          </> 
   }
 
   return (
     <div className="signup-auth-container">
+      {popup&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+      {errorOtp&& <Popup1 msg={errorOtp} error={`${errorOtp=='Subscribed Successfully'?"green1":"red1"}`} />}
+
       <h1>Create Your HelpOps-Hub Account</h1>
       <h5>Join the HelpOps-Hub community by registering for a new account and unlock the world of DevOps resources.</h5>
       <button className="google-btn">
@@ -107,10 +157,16 @@ export const Signup = ({ onClose, onLoginClick }) => {
         onChange={(e) => setEmail(e.target.value)}
       /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
-      <button className="continue-btn" onClick={handleContinue}>Continue</button>
-      <button className="close-btn" onClick={onClose}>
-       &#10005; {/* Cross Unicode character */}
-      </button>
+
+      <button className="continue-btn" onClick={handleContinue}>Continue &nbsp;{loading && <div className="loader3">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>
+     
+
     </div>
   );
 };

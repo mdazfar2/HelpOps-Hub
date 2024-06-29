@@ -33,7 +33,7 @@
     "nodemailer": "^6.9.14",
         "bcrypt": "^5.1.1",
     "resend": "^3.4.0",
-
+"react-icons": "^5.2.1",
     "showdown": "^2.1.0",
     "tailwind-merge": "^2.3.0"
   },
