@@ -1,8 +1,9 @@
+
 ---
 
 # 📊 Grafana Integration with Different Tools
 
-Welcome to the **Grafana Integration Guide**! This guide will help you integrate Grafana with various data sources, step-by-step, with hands-on instructions and screenshots. Let's get started! 🚀
+Welcome to the **Grafana Integration Guide**! This guide will walk you through integrating Grafana with various data sources. Each section includes step-by-step instructions, hands-on examples, and screenshots. Let's get started! 🚀
 
 ## Table of Contents
 
@@ -18,7 +19,7 @@ Welcome to the **Grafana Integration Guide**! This guide will help you integrate
 
 ## Introduction
 
-Grafana is a powerful tool for visualizing and analyzing data from various sources. This guide covers integration with Prometheus, Elasticsearch, InfluxDB, Loki, and MySQL. Each section includes setup, configuration, and dashboard creation instructions.
+Grafana is a powerful open-source tool for monitoring and observability. It allows you to visualize data from various sources through beautiful, customizable dashboards. In this guide, we'll integrate Grafana with Prometheus, Elasticsearch, InfluxDB, Loki, and MySQL.
 
 ## Setting Up Grafana
 
@@ -49,6 +50,8 @@ Grafana is a powerful tool for visualizing and analyzing data from various sourc
 1. **Access Grafana**: Open your browser and go to `http://localhost:3000`.
 2. **Login**: Use the default credentials (`admin`/`admin`). Change the password when prompted.
 
+![Grafana Login](./screenshots/grafana_login.png)
+
 ## Integration with Prometheus
 
 ### Setting Up Prometheus
@@ -68,11 +71,15 @@ Grafana is a powerful tool for visualizing and analyzing data from various sourc
    - Select Prometheus and enter the URL (e.g., `http://localhost:9090`).
    - Click "Save & Test".
 
+![Prometheus Data Source](./screenshots/prometheus_data_source.png)
+
 ### Creating Dashboards with Prometheus Data
 
 1. **Create a Dashboard**: Click on the `+` icon and select `Dashboard`.
 2. **Add Panels**: Click "Add new panel", and configure queries to fetch data from Prometheus.
 3. **Customize and Save**: Adjust the visualization options and save the dashboard.
+
+![Prometheus Dashboard](./screenshots/prometheus_dashboard.png)
 
 ## Integration with Elasticsearch
 
@@ -94,11 +101,15 @@ Grafana is a powerful tool for visualizing and analyzing data from various sourc
    - Configure the index pattern and timestamp field.
    - Click "Save & Test".
 
+![Elasticsearch Data Source](./screenshots/elasticsearch_data_source.png)
+
 ### Creating Dashboards with Elasticsearch Data
 
 1. **Create a Dashboard**: Click on the `+` icon and select `Dashboard`.
 2. **Add Panels**: Click "Add new panel", and configure queries to fetch data from Elasticsearch.
 3. **Customize and Save**: Adjust the visualization options and save the dashboard.
+
+![Elasticsearch Dashboard](./screenshots/elasticsearch_dashboard.png)
 
 ## Integration with InfluxDB
 
@@ -120,11 +131,15 @@ Grafana is a powerful tool for visualizing and analyzing data from various sourc
    - Configure the database and authentication details.
    - Click "Save & Test".
 
+![InfluxDB Data Source](./screenshots/influxdb_data_source.png)
+
 ### Creating Dashboards with InfluxDB Data
 
 1. **Create a Dashboard**: Click on the `+` icon and select `Dashboard`.
 2. **Add Panels**: Click "Add new panel", and configure queries to fetch data from InfluxDB.
 3. **Customize and Save**: Adjust the visualization options and save the dashboard.
+
+![InfluxDB Dashboard](./screenshots/influxdb_dashboard.png)
 
 ## Integration with Loki
 
@@ -145,11 +160,15 @@ Grafana is a powerful tool for visualizing and analyzing data from various sourc
    - Select Loki and enter the URL (e.g., `http://localhost:3100`).
    - Click "Save & Test".
 
+![Loki Data Source](./screenshots/loki_data_source.png)
+
 ### Creating Dashboards with Loki Data
 
 1. **Create a Dashboard**: Click on the `+` icon and select `Dashboard`.
 2. **Add Panels**: Click "Add new panel", and configure queries to fetch data from Loki.
 3. **Customize and Save**: Adjust the visualization options and save the dashboard.
+
+![Loki Dashboard](./screenshots/loki_dashboard.png)
 
 ## Integration with MySQL
 
@@ -169,11 +188,15 @@ Grafana is a powerful tool for visualizing and analyzing data from various sourc
    - Select MySQL and enter the connection details.
    - Click "Save & Test".
 
+![MySQL Data Source](./screenshots/mysql_data_source.png)
+
 ### Creating Dashboards with MySQL Data
 
 1. **Create a Dashboard**: Click on the `+` icon and select `Dashboard`.
 2. **Add Panels**: Click "Add new panel", and configure queries to fetch data from MySQL.
 3. **Customize and Save**: Adjust the visualization options and save the dashboard.
+
+![MySQL Dashboard](./screenshots/mysql_dashboard.png)
 
 ## Additional Integrations
 
@@ -184,3 +207,4 @@ Grafana supports many other data sources like Graphite, CloudWatch, and more. Fo
 Congratulations! 🎉 You've successfully integrated Grafana with multiple data sources. This guide provides a solid foundation for creating insightful dashboards using Grafana. Keep exploring and customizing your dashboards to suit your needs. Happy monitoring! 🚀
 
 ---
+
