@@ -74,6 +74,17 @@ let [error,setError]=useState(false)
       setShowPassword(true)
     }
   }
+
+  //For handling key event
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      if (username && password && confirmPassword) {
+        handleSubmit(event);
+      }
+    }
+  };
+
   return (
     <div className="profile-container">
             {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
@@ -84,7 +95,7 @@ let [error,setError]=useState(false)
       </button>
       <h1>Profile</h1>
       <img src="circle.png" alt="Profile-circle" />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         {/* Username input */}
         <div className="form-group">
           <input
