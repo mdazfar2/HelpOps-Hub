@@ -20,7 +20,7 @@ export const Login = ({ onClose, onSignupClick }) => {
       <p>Or</p><br/>
       <input type="text" placeholder="Email or username" />
       <input type="password" placeholder="Password" /><br/>
-      <a href="#" className='sign' onClick={onSignupClick}>New here? Sign up now</a><br/>
+      <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
       <button className="login-btn">Login</button>
       <button className="close-btn" onClick={onClose}>
        &#10005; {/* Cross Unicode character */}
@@ -106,7 +106,7 @@ export const Signup = ({ onClose, onLoginClick }) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       /><br/>
-      <a href="#" className='sign'  onClick={onLoginClick}>Already have an account? Login</a><br/>
+      <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
       <button className="continue-btn" onClick={handleContinue}>Continue</button>
       <button className="close-btn" onClick={onClose}>
        &#10005; {/* Cross Unicode character */}
