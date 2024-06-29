@@ -6,11 +6,9 @@ export async function POST(req) {
     // Parse JSON payload from request body
     const payload = await req.json();
 
-    const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
-    const MONGO_URI_CONTACT = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/Contact?retryWrites=true&w=majority&appName=Cluster0`;
-    
+    const { MONGO_URI } = process.env;  
     // Connect to MongoDB using Mongoose
-    await mongoose.connect(MONGO_URI_CONTACT);
+    await mongoose.connect(MONGO_URI);
 
     // Create a new instance of ContactUs model with the received payload
     let contact = new ContactUs(payload);
