@@ -57,6 +57,10 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
       <button className="back-arrow" onClick={onBack}>
         &#8592; {/* Left arrow Unicode character */}
       </button>
+      {/* Close button */}
+      <button className="close-btn" onClick={onClose}>
+        &#10005; {/* Cross Unicode character */}
+      </button>
       <h5>To continue, enter the OTP sent to your registered email address.</h5>
       <p>This helps us keep your account secure.</p>
       {/* OTP input fields */}

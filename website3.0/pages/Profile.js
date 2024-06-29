@@ -4,7 +4,6 @@ import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash} from 'react-icons/fa'
 const Profile = ({ onClose }) => {
-  // State for form fields
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
@@ -43,6 +42,16 @@ let [error,setError]=useState(false)
     e.preventDefault();
     // TODO: Add account creation logic here
     if(validateDetails()){
+    await fetch('/api/createaccount', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: localStorage.getItem('email'),
+        name: username,
+        password: password
+      })
+    })
+    onClose();
+  };
 
       await fetch('/api/createaccount',{
         method:'POST',
@@ -80,6 +89,10 @@ let [error,setError]=useState(false)
     <div className="profile-container">
             {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
+      {/* Close button */}
+      <button className="close-btn" onClick={onClose}>
+        &#10005; {/* Cross Unicode character */}
+      </button>
       <h1>Profile</h1>
       <img src="circle.png" alt="Profile-circle" />
       <form onSubmit={handleSubmit}>
