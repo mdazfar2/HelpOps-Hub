@@ -36,7 +36,24 @@ function ContactPage() {
       document.body.style.background = "";
       observer.disconnect();
     };
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
+
+  useEffect(() => {
+    // Function to handle keydown event
+    function handleKeyDown(event) {
+      if (event.key === 'Enter') {
+        document.getElementById('contact-form').requestSubmit(); // Trigger form submission
+      }
+    }
+
+    // Add keydown event listener to the document
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Clean-up function to remove event listener when component unmounts
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   const handleStarClick = (value) => {
     setSelectedRating(value);

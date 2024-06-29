@@ -8,7 +8,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
-  let [error,setError]=useState(false)
+  let [error,setError]=useState(false);
 
   // Handle input change for OTP fields
   const handleChange = (element, index) => {
@@ -29,6 +29,8 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
     // Move focus to the previous input field if backspace is pressed and the field is empty
     if (e.key === 'Backspace' && index > 0 && otp[index] === '' && inputRefs.current[index - 1]) {
       inputRefs.current[index - 1].focus();
+    } else if (e.key === 'Enter' && !otp.includes('')) {
+      handleSubmit();
     }
   };
 
