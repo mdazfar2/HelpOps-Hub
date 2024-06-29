@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
-import "@stylesheets/homepage.css";
 import Lodaernewletter from "../components/Loadernewletter";
 import Popup from "@components/Popup";
 
