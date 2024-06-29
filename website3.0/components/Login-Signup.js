@@ -106,6 +106,7 @@ let [loading,setLoading]=useState(false)
       })
       data=await data.json()
       console.log(data)
+      //for checking any types of error
       if(!data.success){
         setError('User Already Exist')
         setPopup(true)
@@ -116,11 +117,13 @@ let [loading,setLoading]=useState(false)
         }, 2000);
         return
       }
+      //for storing the user 
       localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
       setLoading(false)
     }else{
+      //for giving error
       setError('Please Enter a valid Email address')
       setPopup(true)
       setTimeout(() => {
