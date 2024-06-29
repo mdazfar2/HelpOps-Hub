@@ -198,6 +198,16 @@ setBLur(false)
     setBLur(false)
 
   };
+
+  // For handling key event
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      if (validateEmail(email)) {
+        subscribe();
+      }
+    }
+  };
   
   return (
     <div>
@@ -508,6 +518,7 @@ setBLur(false)
                 <input
                   value={email} onChange={(e)=>setEmail(e.target.value)}
                   placeholder="Email"
+                  onKeyDown={handleKeyDown}
                   className={`${blur?"blurclass":""} input-field `}
                 />
                 {/* {error && <p className="error-message-mobile">{error}</p>} */}
