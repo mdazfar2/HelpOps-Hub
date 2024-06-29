@@ -10,7 +10,8 @@ export async function POST(req) {
     try {
       const { MONGO_URI } = process.env; 
       const { email , isSend} = await req.json();  // Extract email from request body
-      console.log(email)
+      await mongoose.connect(MONGO_URI);
+
       let isPresent=await user.find({email:email})
       if(isPresent.length>0){
           return NextResponse.json({success:false})
