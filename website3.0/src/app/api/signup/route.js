@@ -11,13 +11,14 @@ export async function POST(req) {
       const { MONGO_URI } = process.env; 
       const { email , isSend} = await req.json();  // Extract email from request body
       await mongoose.connect(MONGO_URI);
-        
+        // checking if user present
       let isPresent=await user.find({email:email})
+      //giving eerror if user already present 
       if(isPresent.length>0){
           return NextResponse.json({success:false})
 
       }
-      console.log(isPresent)
+     
        async function send(){
             let otp = '';
             function generateOTP() {
