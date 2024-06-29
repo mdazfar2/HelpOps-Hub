@@ -51,18 +51,7 @@ let [error,setError]=useState(false)
       })
     })
     onClose();
-  };
-
-      await fetch('/api/createaccount',{
-        method:'POST',
-        body:JSON.stringify({
-          email:localStorage.getItem('email'),
-          name:username,
-          password:password
-        })
-      }) 
-      onClose();
-    }else{
+  }else{
     setLoading(true)
       setTimeout(() => {
         setError('')
