@@ -7,7 +7,7 @@ import Profile from '@pages/Profile';
 import Popup from "@components/Popup";
 import Popup1 from './Popup1';
 import {FaEye,FaEyeSlash} from 'react-icons/fa'
-
+import { signIn,useSession } from 'next-auth/react';
 export const Login = ({ onClose, onSignupClick }) => {
   const [showPassword,setShowPassword]=useState(false)
   function toggle(){
@@ -43,6 +43,7 @@ export const Login = ({ onClose, onSignupClick }) => {
 };
 
 export const Signup = ({ onClose, onLoginClick }) => {
+  const session=useSession()
   const [showOTP, setShowOTP] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [email, setEmail] = useState('');
@@ -133,7 +134,7 @@ let [loading,setLoading]=useState(false)
         
           </> 
   }
-
+console.log(session)
   return (
     <div className="signup-auth-container">
       {popup&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
@@ -141,7 +142,7 @@ let [loading,setLoading]=useState(false)
 
       <h1>Create Your HelpOps-Hub Account</h1>
       <h5>Join the HelpOps-Hub community by registering for a new account and unlock the world of DevOps resources.</h5>
-      <button className="google-btn">
+      <button className="google-btn" onClick={()=>signIn('google')}>
         <img src="/google.png" alt="Google" />
         Sign up with Google
       </button>
