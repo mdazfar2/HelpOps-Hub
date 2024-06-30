@@ -8,7 +8,6 @@ import Profile from '@pages/Profile';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-  const [isshow,setisshow]=useState(false)
 let session=useSession()
   useEffect(() => {
     if (showAuth) {
@@ -21,8 +20,15 @@ let session=useSession()
   useEffect(()=>{
 
     if(session.status=='authenticated'){
-      setisshow(true)
       localStorage.setItem('email',session.data.user.email)
+      localStorage.setItem('name',session.data.user.name)
+       fetch("/api/createaccount",{
+        method:"POST",
+        body:JSON.stringify({
+          email : session.data.user.email,
+          name:session.data.user.name
+        })
+      })
     }
   },[session.status])
   const toggleAuth = () => {
@@ -40,19 +46,11 @@ let session=useSession()
   const closeAuth = () => {
     setShowAuth(false);
     setIsLogin(true);
-    setisshow(false)
   };
 
   return (
     <>
       <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
-     {isshow &&
-      <div className="auth-overlay" onClick={closeAuth}>
-          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <Profile onClose={closeAuth}/>
-
-          </div>
-        </div>}
       {showAuth && (
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
