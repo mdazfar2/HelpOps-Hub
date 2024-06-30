@@ -10,12 +10,11 @@ import {FaEye,FaEyeSlash} from 'react-icons/fa'
 import { signIn,useSession } from 'next-auth/react';
 export const Login = ({ onClose, onSignupClick }) => {
   const [showPassword,setShowPassword]=useState(false)
-  let [email,setEmail]=useState('')
-  let [password,setPassword]=useState('')
-  let [error,setError]=useState(false)
-  let [valid,setValid]=useState(false)
+  let [email,setEmail]=useState('') //for storing the email 
+  let [password,setPassword]=useState('') //for storing the password 
+  let [error,setError]=useState(false) // for showing the popup on error
   const [loading,setLoading]=useState(false)
-
+// for toggling the password on clicking on eye button
   function toggle(){
     if(showPassword){
       setShowPassword(false)
@@ -23,8 +22,9 @@ export const Login = ({ onClose, onSignupClick }) => {
       setShowPassword(true)
     }
   }
+  //for login functionality
 async  function handleLogin(){
-    console.log(email,password)
+  // to show the loader
     setLoading(true)
     let res=await fetch("/api/login",{
       method:"POST",
@@ -34,17 +34,20 @@ async  function handleLogin(){
       })
     })
     let data=await res.json()
+    // to stop the loader after loading 
     setLoading(false)
+    // if password is incorrect or no user found with that email 
     if(!data.success){
-      console.log('ssdsdsdsd')
       setError(data.msg)
       setTimeout(() => {
+        // to hide the pop up and empty msg 
         setError('')
         setEmail('')
         setPassword('')
 }, 1000);
       return
     }
+    // to store the username and email after login in local storage 
    localStorage.setItem('userName',data.user[0].name)
    localStorage.setItem('userEmail',data.user[0].email)
    setError(`${data.user[0].name} Welcome !!`)
@@ -102,7 +105,7 @@ let [loading,setLoading]=useState(false)
   };
   const handleContinue =async () => {
     setLoading(true)
-
+// validating email 
     if(validateEmail(email)){
      let data= await fetch("/api/signup",{
         method:"POST",
@@ -113,7 +116,6 @@ let [loading,setLoading]=useState(false)
         
       })
       data=await data.json()
-      console.log(data)
       //for checking any types of error
       if(!data.success){
         setError('User Already Exist')
