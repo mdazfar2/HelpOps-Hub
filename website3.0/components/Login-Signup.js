@@ -10,6 +10,12 @@ import {FaEye,FaEyeSlash} from 'react-icons/fa'
 import { signIn,useSession } from 'next-auth/react';
 export const Login = ({ onClose, onSignupClick }) => {
   const [showPassword,setShowPassword]=useState(false)
+  let [email,setEmail]=useState('')
+  let [password,setPassword]=useState('')
+  let [error,setError]=useState(false)
+  let [valid,setValid]=useState(false)
+  const [loading,setLoading]=useState(false)
+
   function toggle(){
     if(showPassword){
       setShowPassword(false)
@@ -17,8 +23,41 @@ export const Login = ({ onClose, onSignupClick }) => {
       setShowPassword(true)
     }
   }
+async  function handleLogin(){
+    console.log(email,password)
+    setLoading(true)
+    let res=await fetch("/api/login",{
+      method:"POST",
+      body:JSON.stringify({
+        email:email,
+        password:password
+      })
+    })
+    let data=await res.json()
+    setLoading(false)
+    if(!data.success){
+      console.log('ssdsdsdsd')
+      setError(data.msg)
+      setTimeout(() => {
+        setError('')
+        setEmail('')
+        setPassword('')
+}, 1000);
+      return
+    }
+   localStorage.setItem('userName',data.user[0].name)
+   localStorage.setItem('userEmail',data.user[0].email)
+   setError(`${data.user[0].name} Welcome !!`)
+   
+   setTimeout(() => {
+     setError("")
+     onClose()
+}, 2000);
+  }
   return (
     <div className="login-auth-container">
+      {error && <Popup msg={error} error={`${error=="User Doesn't Valid"||error=="Incorrect Password"?"red1":"green1"}`}/>}
+
       <h1>Login to HelpOps-Hub</h1>
       <button className="google-btn">
       <img src="google.png" alt="Google" />
@@ -29,12 +68,18 @@ export const Login = ({ onClose, onSignupClick }) => {
         Sign in with Github
       </button>
       <p>Or</p><br/>
-      <input type="text" placeholder="Email or username" />
-      <input             type={`${showPassword?"text":"password"}`}
+      <input type="text" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter your email" />
+      <input      onChange={(e)=>setPassword(e.target.value)}    value={password}   type={`${showPassword?"text":"password"}`}
  placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
 <br/>
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
-      <button className="login-btn">Login</button>
+      <button className="login-btn" onClick={handleLogin}>Login &nbsp;{loading && <div className="loader3">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>
       <button className="close-btn" onClick={onClose}>
        &#10005; {/* Cross Unicode character */}
       </button>
@@ -59,18 +104,34 @@ let [loading,setLoading]=useState(false)
     setLoading(true)
 
     if(validateEmail(email)){
-      await fetch("/api/signup",{
+     let data= await fetch("/api/signup",{
         method:"POST",
         body:JSON.stringify({
           email:email,
         isSend:true
         })
+        
       })
+      data=await data.json()
+      console.log(data)
+      //for checking any types of error
+      if(!data.success){
+        setError('User Already Exist')
+        setPopup(true)
+        setTimeout(() => {
+          setError('')
+          setLoading(false)
+          setPopup(false)
+        }, 2000);
+        return
+      }
+      //for storing the user 
       localStorage.setItem('email',email)
       setShowOTP(true);
       // Here you would typically trigger sending an OTP to the provided email
       setLoading(false)
     }else{
+      //for giving error
       setError('Please Enter a valid Email address')
       setPopup(true)
       setTimeout(() => {
@@ -95,11 +156,11 @@ let [loading,setLoading]=useState(false)
       });
 
       let data = await response.json();
+    
       // Here you would typically verify the OTP
       if (data.otp == otp) {
         setShowProfile(true);
       } else {
-        console.log("inside error")
         setErrorOtp(true);
         setPopup(true)
         setTimeout(() => {
