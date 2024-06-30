@@ -234,7 +234,12 @@ animation: outline-keys var(--animation);
 .signup-auth-container .google-btn{
   margin-top: 50px;
 }
-
+.google-btn:hover , .github-btn:hover{
+  box-shadow: inset 0 0 0 150px #0000001a !important;
+}
+.continue-btn:hover,.login-btn:hover{
+  background-color: #024d82 !important;
+}
 .signup-auth-container .close-btn {
   position: absolute;
   top: -15px;

@@ -10,15 +10,15 @@ export async function POST(req) {
         let {email,name,password}=await req.json()
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
+        // generating the hash to store in mongo db 
         bcrypt.hash(password, saltRounds,async function(err, hash) {
                 console.log(hash,email,name,password)
                let data = await user.create({
                     email:email,name:name,password:hash
                 });
             });
-        
+        //sending response user 
             return NextResponse.json({success:true})
 }
 
-// POST endpoint to handle new newsletter subscriptions
 

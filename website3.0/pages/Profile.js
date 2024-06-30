@@ -13,7 +13,7 @@ const Profile = ({ onClose }) => {
 let [error,setError]=useState(false)
   const [confirmPassword, setConfirmPassword] = useState('');
   function validateDetails(){
-   
+   // for checking the password validation 
     if(password==confirmPassword){
       if(password.length < 8 || 
         !/[0-9]/.test(password) || 
@@ -24,6 +24,7 @@ let [error,setError]=useState(false)
         return false
       }else{
         if(username.length==0){
+          // if username not entered 
           setError("Please Enter Username")
           return false
         }else{
@@ -51,11 +52,13 @@ let [error,setError]=useState(false)
         password: password
       })
     })
+    // to top loading on button 
     setLoading(false)
     onClose();
   }else{
     setLoading(true)
       setTimeout(() => {
+        // stopping loading and error popup
         setError('')
         setLoading(false)
       }, 2000);
@@ -69,6 +72,7 @@ let [error,setError]=useState(false)
       setConfirmShowPassword(true)
     }
   }
+  // to toggling the password fields on clicking on eye icon 
   function toggle(){
     if(showPassword){
       setShowPassword(false)

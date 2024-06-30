@@ -18,7 +18,7 @@ export async function POST(req) {
           return NextResponse.json({success:false})
 
       }
-     
+     // otp generation
        async function send(){
             let otp = '';
             function generateOTP() {
@@ -54,10 +54,12 @@ export async function POST(req) {
             
                 users.set(email,otp)
         }
+        // for sending otp 
         if(isSend){
            await  send()
             return NextResponse.json({success:true})
         }else{
+          // for checking the otp 
        let otp=await users.get(email)
           return NextResponse.json({ success: true,otp: otp},{status:"200"});
 

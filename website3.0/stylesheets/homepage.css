@@ -510,6 +510,9 @@ body.dark-mode {
 .eye , .eye1{
   cursor: pointer;
 }
+.subscribe-btn:hover{
+  background-color: rgb(214, 6, 6) !important;
+}
 .banner {
   text-align: center;
   font-family: sans-serif;
