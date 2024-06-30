@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
-import "@stylesheets/homepage.css";
+import Lodaernewletter from "../components/Loadernewletter";
+import Popup from "@components/Popup";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +25,10 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
 function HomePage() {
+  const [loading , setLoading ]=useState(false)
+  const [blur,setBLur]=useState(false)
   //to add body bg color
+
   useEffect(() => {
     document.body.style.background =
       "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
@@ -121,9 +125,94 @@ function HomePage() {
     }
   };
 
+  const [email, setEmail] = useState("");  // State to hold email input
+  const [error, setError] = useState("");  // State to hold error messages
+  
+  // Function to validate email format
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
+  
+  // Function to handle subscription process
+  const subscribe = async () => {
+     setTimeout(() => {
+          setEmail('')
+  }, 2000);
+  setBLur(true)
+    // Validate email format
+    setLoading(true)
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      setTimeout(() => {
+        setError('')
+}, 2000);
+setLoading(false)
+setBLur(false)
+
+      return;
+    }
+    
+    setError("");  // Clear any previous error messages
+    
+    try {
+
+      // If email is valid, proceed to subscribe using local API
+      const subscribeResult = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+  
+      // Process the response from the subscription endpoint
+      const subscribeData = await subscribeResult.json();
+      console.log("data: " + subscribeData);
+      
+      // Display success or failure message based on subscription result
+      if (subscribeData.success) {
+        setError("Subscribed Successfully");
+        setTimeout(() => {
+          setError('')
+        }, 2000);
+      } else {
+        if(subscribeData.message === "User already subscribed"){
+          setError("User is already subscribed");
+        }else{
+          setError("Subscription failed");
+        }
+        setTimeout(() => {
+          setError('')
+        }, 2000);
+      }
+    } catch (error) {
+      // Handle any errors that occur during the process
+      setError("An error occurred. Please try again.");
+      setTimeout(() => {
+        setError('')
+      }, 2000);
+    }
+    setLoading(false)
+    setBLur(false)
+
+  };
+
+  // For handling key event
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      if (validateEmail(email)) {
+        subscribe();
+      }
+    }
+  };
+  
   return (
     <div>
+      
       <ParticlesComponent id="particles" />
+      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
       <main>
         {/* Section: Main */}
 
@@ -134,7 +223,7 @@ function HomePage() {
                 <FontAwesomeIcon
                   icon={faStar}
                   className="star-icon"
-                  width={24}
+                  width={20}
                 />{" "}
                 Star Us
               </h3>
@@ -142,8 +231,8 @@ function HomePage() {
             <li className="isDisplay">
               <a href="https://github.com/sponsors/mdazfar2" target="_blank">
                 <h3 className="home-sponsor-btn">
-                  Sponsor{" "}
                   <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                  Sponsor{" "}
                 </h3>
               </a>
             </li>
@@ -191,7 +280,7 @@ function HomePage() {
             Whether you're troubleshooting a complex issue or seeking advice on
             best practices, find the solutions you need right here.
           </p>
-          <button data-aos="fade-up">Start now</button>
+          <button data-aos="fade-up" style={{ display: "flex", alignItems: "center",gap: "5px"}}>Start now<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height={20} width={20}><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg> </button>
         </div>
         <div className="image-section">
           <img
@@ -426,11 +515,21 @@ function HomePage() {
               <p className="subscribe-text">Subscribe to our newsletter</p>
               <div className="subscribe-input">
                 <input
-                  placeholder="example@gmail.com"
-                  className="input-field"
+                  value={email} onChange={(e)=>setEmail(e.target.value)}
+                  placeholder="Email"
+                  onKeyDown={handleKeyDown}
+                  className={`${blur?"blurclass":""} input-field `}
                 />
-                <button className="subscribe-btn">Subscribe</button>
+                {/* {error && <p className="error-message-mobile">{error}</p>} */}
+                <button className="subscribe-btn" onClick={subscribe}>Subscribe &nbsp; {loading && <div className="loader2">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>
               </div>
+              {/* {error && <p className="error-message-desktop">{error}</p>} */}
             </div>
           </div>
         </div>

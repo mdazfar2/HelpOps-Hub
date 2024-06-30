@@ -4,6 +4,8 @@ import Loader from "@components/Loader";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 
+import Authprovider from "@components/auth/Authprovider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -18,10 +20,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Authprovider>
+
         <Loader />
         <Header />
         {children}
         <Footer />
+        </Authprovider>
       </body>
     </html>
   );

@@ -6,9 +6,16 @@ import "@stylesheets/header.css";
 //Importing TogleSwitch Component
 import ToggleSwitch from "./ToggleSwitch";
 
+//Importing AuthButton component
+import AuthButton from "./AuthButton";
+
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faUserCircle,
+  faUserLarge,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   // State to manage mobile menu toggle
@@ -79,29 +86,36 @@ const Header = () => {
             <img src="/HelpOps-H Fevicon.png" alt="Logo" />
           </div>
         </Link>
-        {/* Main navigation links */}
-        <ul className={`nav-links ${isActive ? "active" : ""}`}>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/abouts">About</Link>
-          </li>
-          <li>
-            <Link href="/team">Team</Link>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
-        </ul>
-        {/* Navigation actions (sponsor button and toggle switch) */}
-        <div className="nav-actions">
-          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
-            <button className="nav-sponsor-btn">
-              Sponsor <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
-            </button>
-          </a>
-          <ToggleSwitch />
+
+        <div className="nav-items">
+          {/* Main navigation links */}
+          <ul className={`nav-links ${isActive ? "active" : ""}`}>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/team">Team</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+          </ul>
+          {/* Navigation actions (sponsor button and toggle switch) */}
+          <div className="nav-actions">
+            <div className="auth-desktop">
+              <AuthButton />
+            </div>
+            <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+              <button className="nav-sponsor-btn">
+                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                Sponsor
+              </button>
+            </a>
+            <ToggleSwitch />
+          </div>
         </div>
         {/* Hamburger menu icon for mobile */}
         <div className="hamburger" id="hamburger" onClick={toggleMenu}>
@@ -113,16 +127,29 @@ const Header = () => {
       {/* Mobile menu links */}
       <ul className={`nav-links1 ${isActive ? "active" : ""}`} id="nav-links1">
         <li>
-          <Link href="/">Home</Link>
+          <Link href="/" onClick={() => setIsActive(false)}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link href="/abouts">About</Link>
+          <Link href="/about" onClick={() => setIsActive(false)}>
+            About
+          </Link>
         </li>
         <li>
-          <Link href="/team">Team</Link>
+          <Link href="/team" onClick={() => setIsActive(false)}>
+            Team
+          </Link>
         </li>
         <li>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact" onClick={() => setIsActive(false)}>
+            Contact
+          </Link>
+        </li>
+        <li>
+          <div className="auth-mobile">
+            <AuthButton />
+          </div>
         </li>
       </ul>
     </header>

@@ -46,7 +46,7 @@ body.dark-mode ::-webkit-scrollbar-thumb {
   background-color: #ff7d1f;
 }
 .dark-mode .active {
-  background-color: #333;
+  background-color: #464646;
 }
 
 .dark-mode .nav-links {

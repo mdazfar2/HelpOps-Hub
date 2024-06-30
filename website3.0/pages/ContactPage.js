@@ -1,93 +1,131 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "@stylesheets/contact.css";
+import Popup from "@components/Popup"; // Make sure to import the Popup component
 
 function ContactPage() {
-  // State variables to manage form state and UI messages
-  const [selectedRating, setSelectedRating] = useState(0); 
-  const [showError, setShowError] = useState(false); 
-  const [showThankYouMessage, setShowThankYouMessage] = useState(false); 
-  // to add body bg color 
+  const [selectedRating, setSelectedRating] = useState(0);
+  const [showError, setShowError] = useState(false);
+  const [showThankYouMessage, setShowThankYouMessage] = useState(false);
+  const [blur, setBlur] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); // State to manage popup message
+  const [disableSubmit, setDisableSubmit] = useState(false); // State to manage submit button disabling
+
   useEffect(() => {
-    document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#eb9a60 45%,#e99960 65%,#e89357 85%)  ";
-    console.log("Background color set to orange");
+    function updateBackground() {
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.style.background = "#353535";
+      } else {
+        document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#eb9a60 45%,#e99960 65%,#e89357 85%)";
+      }
+    }
 
-    // Clean-up function to reset background color when component unmounts
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.attributeName === 'class') {
+          updateBackground();
+        }
+      }
+    });
+
+    observer.observe(document.body, { attributes: true });
+    updateBackground();
+
     return () => {
-      document.body.style.backgroundColor = "";
+      document.body.style.background = "";
+      observer.disconnect();
     };
-  }, []);
-  // Function to handle click on star rating
-  const handleStarClick = (value) => {
-    // Update selectedRating state with the clicked star value
-    setSelectedRating(value); 
-  };
-  // Function to handle form submission
-  const handleSubmit = (event) => {
-    // Prevent default form submission behavior
-    event.preventDefault(); 
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
-    // Validation: Check if a rating is selected
+  useEffect(() => {
+    // Function to handle keydown event
+    function handleKeyDown(event) {
+      if (event.key === 'Enter') {
+        document.getElementById('contact-form').requestSubmit(); // Trigger form submission
+      }
+    }
+
+    // Add keydown event listener to the document
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Clean-up function to remove event listener when component unmounts
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
+
+  const handleStarClick = (value) => {
+    setSelectedRating(value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     if (selectedRating === 0) {
-      // Show error message if rating is not selected
-      setShowError(true); 
-      // Hide error message after 2 seconds
-      setTimeout(() => setShowError(false), 2000); 
-       // Exit function early if validation fails
+      setShowError(true);
+      setError("Please Give Any Rating");
+      setTimeout(() => setShowError(false), 2000);
       return;
     }
 
-    // Display thank you message and reset form after 3 seconds
-    setShowThankYouMessage(true); 
+    const formData = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      comment: event.target.comment.value,
+      rating: selectedRating,
+    };
+
+    setLoading(true);
+    setBlur(true);
+    setDisableSubmit(true); // Disable the submit button
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setShowThankYouMessage(true);
+        setError("Thank you! We will connect soon.");
+        setTimeout(() => {
+          setShowThankYouMessage(false);
+          document.getElementById("contact-form").reset();
+          setSelectedRating(0);
+          setError("");
+        }, 3000);
+      } else {
+        setError("Failed to submit the form. Please try again.");
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+    }
+
+    // Re-enable the submit button and stop loading after 5 seconds
     setTimeout(() => {
-      // Hide thank you message after 3 seconds
-      setShowThankYouMessage(false); 
-      // Reset the form fields
-      document.getElementById("contact-form").reset();
-      // Reset selectedRating state
-      setSelectedRating(0); 
-    }, 3000);
+      setDisableSubmit(false);
+      setLoading(false);
+      setBlur(false);
+    }, 5000);
   };
 
   return (
-    <div >
-      <div className="container" >
+    <div>
+      {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
+      <div className="container">
         <img src="/rateus.png" className="contact-img" alt="rateus" />
         <div className="form-container">
           <h1>Contact Us</h1>
-          <form id="contact-form" onSubmit={handleSubmit}>
-            {/* Name input */}
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder="Name:"
-            />
-
-            {/* Email input */}
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="Email:"
-            />
-
-            {/* Comment textarea */}
-            <textarea
-              id="comment"
-              name="comment"
-              required
-              placeholder="Comment:"
-            ></textarea>
-
-            {/* Rating section */}
-            <label htmlFor="rating" id="rate">
-              Rating:
-            </label>
+          <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
+            <input type="text" id="name" name="name" required placeholder="Name:" />
+            <input type="email" id="email" name="email" required placeholder="Email:" />
+            <textarea id="comment" name="comment" required placeholder="Comment:"></textarea>
+            <label htmlFor="rating" id="rate">Rating:</label>
             <div id="rating">
-              {/* Generate star icons for rating selection */}
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
                   key={value}
@@ -100,22 +138,11 @@ function ContactPage() {
                 </span>
               ))}
             </div>
-            {/* Error message for rating selection */}
             {showError && <p id="error">Please Give Any Rating</p>}
-            
-            {/* Submit button */}
-            <button type="submit" id="button">
-              Submit
+            <button type="submit" id="button" disabled={disableSubmit}>
+              Submit {loading && <div className="loader2"><div className="circle"><div className="dot"></div><div className="outline"></div></div></div>}
             </button>
-
-            {/* Thank you message after successful submission */}
-            {showThankYouMessage && (
-              <p id="thank-you-message">
-                Thank you !!
-                <br />
-                We will connect soon.
-              </p>
-            )}
+            {showThankYouMessage}
           </form>
         </div>
         <img src="rateus.png" className="contact-img1" alt="rateus" />
