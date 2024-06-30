@@ -34,16 +34,16 @@ export async function POST(req) {
                 port: 587,
                 secure:false,
                 auth: {
-                  user: "loviagarwal55@gmail.com",
-                  pass: "hsqiflquplixfewi",
+                  user: process.env.EMAIL_ID,
+                  pass: process.env.EMAIL_APP_PASS,
                 },
             })
             let mail=await transport.sendMail({
-                from: '"Lovi" <loviagarwal55@gmail.com>', // sender address
+                from: '"Help-ops Hub" <helpopshub@gmail.com>', // sender address
     to: email, // list of receivers
     subject: "OTP", // Subject line
     text: otp, // plain text body
-    html: `<b>${otp}</b>`, // html body
+    html: `<b>Welcome to Help-Ops Your otp for login is ${otp}</b>`, // html body
             })
             
                 users.set(email,otp)
