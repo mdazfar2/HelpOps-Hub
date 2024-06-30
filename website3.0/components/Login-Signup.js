@@ -14,6 +14,7 @@ export const Login = ({ onClose, onSignupClick }) => {
   let [password,setPassword]=useState('')
   let [error,setError]=useState(false)
   let [valid,setValid]=useState(false)
+  const [loading,setLoading]=useState(false)
 
   function toggle(){
     if(showPassword){
@@ -23,8 +24,8 @@ export const Login = ({ onClose, onSignupClick }) => {
     }
   }
 async  function handleLogin(){
-    console.log('sdsdsdsdd')
     console.log(email,password)
+    setLoading(true)
     let res=await fetch("/api/login",{
       method:"POST",
       body:JSON.stringify({
@@ -32,15 +33,16 @@ async  function handleLogin(){
         password:password
       })
     })
-
     let data=await res.json()
-    console.log(data)
+    setLoading(false)
     if(!data.success){
       console.log('ssdsdsdsd')
       setError(data.msg)
       setTimeout(() => {
         setError('')
-}, 2000);
+        setEmail('')
+        setPassword('')
+}, 1000);
       return
     }
    localStorage.setItem('userName',data.user[0].name)
@@ -66,12 +68,18 @@ async  function handleLogin(){
         Sign in with Github
       </button>
       <p>Or</p><br/>
-      <input type="text" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email" />
-      <input      onChange={(e)=>setPassword(e.target.value)}       type={`${showPassword?"text":"password"}`}
+      <input type="text" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter your email" />
+      <input      onChange={(e)=>setPassword(e.target.value)}    value={password}   type={`${showPassword?"text":"password"}`}
  placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
 <br/>
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
-      <button className="login-btn" onClick={handleLogin}>Login</button>
+      <button className="login-btn" onClick={handleLogin}>Login &nbsp;{loading && <div className="loader3">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>
       <button className="close-btn" onClick={onClose}>
        &#10005; {/* Cross Unicode character */}
       </button>
