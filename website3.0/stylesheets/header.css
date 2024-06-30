@@ -1,4 +1,5 @@
 /* Header and Navigation */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 header {
   width: 100%;
   z-index: 500;
@@ -100,8 +101,9 @@ nav {
   transition: all 0.4s ease;
   width: 120px;
   padding: 7px 7px;
-  font-family: cursive;
+  font-family: "Plus Jakarta Sans", sans-serif;
   margin-right: 7px;
+  font-weight: 500;
 }
 
 #heart {
@@ -308,9 +310,9 @@ nav {
   color: #000000;
   font-size: 20px;
   cursor: pointer;
-  padding: 7px 15px;
+  padding: 7px 10px;
   margin-right: 10px;
-  font-family: cursive;
+  font-family: "Plus Jakarta Sans", sans-serif;
   transition: all 0.5s ease;
 }
 

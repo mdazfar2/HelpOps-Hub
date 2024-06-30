@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:wght@100..400&display=swap');
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
@@ -161,7 +162,7 @@ a {
   font-size: 24px;
   color: white;
   margin-bottom: 20px;
-  font-family: cursive;
+  font-family: "Playwrite US Modern", cursive;
 }
 .arrow_container {
   display: flex;
@@ -208,7 +209,7 @@ a {
   margin-top: 8rem;
   justify-content: center;
   align-items: center;
-  padding-left: 5rem;
+  padding-left: 7rem;
   padding-right: 2rem;
 }
 
@@ -220,14 +221,14 @@ a {
 
 .text-section h1 {
   font-size: 55px;
-  font-family: Inter;
-  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
 }
 
 .text-section p {
-  font-family: Inter;
+  font-family: "Plus Jakarta Sans", sans-serif;
   margin-left: 0px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300 !important;
   text-align: justify;
   line-height: 29.05px;
@@ -254,8 +255,8 @@ a {
 .image-section {
   flex: 1;
   text-align: left;
-  height: 360px !important;
-  width: 554px !important;
+  height: 390px !important;
+  width: 600px !important;
   border-radius: 29px !important;
 }
 .image-section img {
@@ -361,7 +362,7 @@ a {
 .card p {
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
-  font-family: cursive;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .card strong {
