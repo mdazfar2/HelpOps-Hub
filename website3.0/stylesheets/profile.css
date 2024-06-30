@@ -39,7 +39,10 @@
 .form-group input::placeholder{
   color: #1f1f1f;
 }
+.create-account-btn:hover{
+  background-color: #024d82 !important;
 
+}
 .create-account-btn {
   background-color: rgb(64, 109, 177);
   color: white;
