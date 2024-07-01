@@ -22,8 +22,19 @@ let session=useSession()
   useEffect(()=>{
 
     if(session.status=='authenticated'){
+      // fetch("/api/login",{
+      //   method:"POST",
+      //   body:JSON.stringify({
+      //     email : session.data.user.email,
+      //     name:session.data.user.name
+      //   })
+      // })
       localStorage.setItem('email',session.data.user.email)
       localStorage.setItem('name',session.data.user.name)
+//       if(localStorage.getItem('count')!==2){
+// console.log(localStorage.getItem('count'))
+//         localStorage.setItem('count',1)
+//       }
        fetch("/api/createaccount",{
         method:"POST",
         body:JSON.stringify({
