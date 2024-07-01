@@ -33,11 +33,16 @@ function HomePage() {
   const [showPopup,setShowPopup]=useState(false)
 function func(){
   if(session.status=="authenticated"){
+    console.log(localStorage.getItem('count'))
+    if(localStorage.getItem('count')==null){
+
+      localStorage.setItem('count',true)
     setShowPopup(true)
 
     setTimeout(() => {
       setShowPopup(false)
     }, 2000);
+    }
   }
 }
   useEffect(() => {
