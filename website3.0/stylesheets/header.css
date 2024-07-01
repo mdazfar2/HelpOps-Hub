@@ -133,8 +133,15 @@ nav {
   margin: 4px;
   transition: 0.4s;
 }
-
-
+.hamburger.open div:nth-child(2){
+  display: none;
+}
+.hamburger.open div:nth-child(1){
+  rotate: 45deg;
+  position: absolute;
+}.hamburger.open div:nth-child(3){ 
+  rotate: -45deg;
+}
 /* .nav-links1 */
 .nav-links1 {
   height: 0px;
