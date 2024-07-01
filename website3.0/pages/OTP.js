@@ -9,7 +9,20 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
   let [error,setError]=useState(false);
+  const handlePaste = (e) => {
+    const pasteData = e.clipboardData.getData('text').slice(0, 6); // Get the pasted data and limit it to 6 characters
+    if (pasteData) {
+      const newOtp = otp.map((char, idx) => pasteData[idx] || '');
+      setOtp(newOtp);
 
+      // Move focus to the last filled input
+      const lastFilledIndex = pasteData.length - 1;
+      if (inputRefs.current[lastFilledIndex]) {
+        inputRefs.current[lastFilledIndex].focus();
+      }
+    }
+    e.preventDefault(); // Prevent default paste action
+  };
   // Handle input change for OTP fields
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -26,6 +39,8 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
   };
 
   const handleKeyDown = (e, index) => {
+
+    
     // Move focus to the previous input field if backspace is pressed and the field is empty
     if (e.key === 'Backspace' && index > 0 && otp[index] === '' && inputRefs.current[index - 1]) {
       inputRefs.current[index - 1].focus();
@@ -66,7 +81,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
       <h5>To continue, enter the OTP sent to your registered email address.</h5>
       <p>This helps us keep your account secure.</p>
       {/* OTP input fields */}
-      <div className="otp-input">
+      <div className="otp-input" onPaste={handlePaste}>
         {otp.map((data, index) => {
           return (
             <input

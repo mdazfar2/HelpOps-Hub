@@ -57,6 +57,15 @@ async  function handleLogin(){
      onClose()
 }, 2000);
   }
+
+  
+  const handleKeyDown = (event) => {
+    console.log('sdsdsd')
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+        handleLogin();
+    }
+  };
   return (
     <div className="login-auth-container">
       {error && <Popup msg={error} error={`${error=="User Doesn't Valid"||error=="Incorrect Password"?"red1":"green1"}`}/>}
@@ -71,8 +80,8 @@ async  function handleLogin(){
         Sign in with Github
       </button>
       <p>Or</p><br/>
-      <input type="text" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter your email" />
-      <input      onChange={(e)=>setPassword(e.target.value)}    value={password}   type={`${showPassword?"text":"password"}`}
+      <input type="text" onKeyDown={handleKeyDown} onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter your email" />
+      <input  onKeyDown={handleKeyDown}    onChange={(e)=>setPassword(e.target.value)}    value={password}   type={`${showPassword?"text":"password"}`}
  placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
 <br/>
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
@@ -146,6 +155,20 @@ let [loading,setLoading]=useState(false)
     }
     
   };
+
+
+
+  const handleKeyDown = (event) => {
+    console.log('sdsdsd')
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+        handleContinue();
+    }
+  };
+
+
+
+
   const handleOTPSubmit =async (otp) => {
     try {
       let email = localStorage.getItem('email');
@@ -218,6 +241,8 @@ console.log(session)
         type="email" 
         placeholder="Enter your email" 
         value={email}
+        onKeyDown={handleKeyDown}
+
         onChange={(e) => setEmail(e.target.value)}
       /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
