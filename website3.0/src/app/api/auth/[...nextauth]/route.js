@@ -1,12 +1,17 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import { Session } from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
 
 const handler= NextAuth({
 providers:[
     GoogleProvider({
         clientId:process.env.CLIENT_ID ,
         clientSecret:process.env.CLIENT_SECRET
+      }),
+    GitHubProvider({
+        clientId: process.env.GITHUB_CLIENTID,
+        clientSecret: process.env.GITHUB_SECRET
       })
 ], callbacks: {
   async jwt({ token, account }) {

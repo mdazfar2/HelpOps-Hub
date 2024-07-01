@@ -24,19 +24,36 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
+import { useSession } from "next-auth/react";
 function HomePage() {
   const [loading , setLoading ]=useState(false)
   const [blur,setBLur]=useState(false)
+  let session=useSession()
   //to add body bg color
+  const [showPopup,setShowPopup]=useState(false)
+function func(){
+  if(session.status=="authenticated"){
+    setShowPopup(true)
 
+    setTimeout(() => {
+      setShowPopup(false)
+    }, 2000);
+  }
+}
   useEffect(() => {
     document.body.style.background =
       "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
     // Clean-up function to reset background color when component unmounts
+   
+    document.addEventListener("DOMContentLoaded",func())
+
+
     return () => {
+      document.removeEventListener("DOMContentLoaded",func())
+
       document.body.style.backgroundColor = "";
     };
-  }, []);
+  }, [session.status]);
   // Initialize the Splide carousel on component mount
   useEffect(() => {
     const splide = new Splide("#splide", {
@@ -210,7 +227,8 @@ setBLur(false)
   
   return (
     <div>
-      
+          { showPopup && <Popup  msg={`${localStorage.getItem('name')} Welcome !!`} error="green1" />}
+
       <ParticlesComponent id="particles" />
       {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
       <main>

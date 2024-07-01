@@ -43,11 +43,12 @@ export async function POST(req) {
     to: email, // list of receivers
     subject: "Your HelpOps-Hub Verification Code", // Subject line
     text: otp, // plain text body
-    html: `<b>𝐓𝐨 𝐜𝐨𝐦𝐩𝐥𝐞𝐭𝐞 𝐲𝐨𝐮𝐫 𝐬𝐢𝐠𝐧𝐮𝐩 𝐩𝐫𝐨𝐜𝐞𝐬𝐬, 𝐩𝐥𝐞𝐚𝐬𝐞 𝐮𝐬𝐞 𝐭𝐡𝐞 𝐎𝐧𝐞-𝐓𝐢𝐦𝐞 𝐏𝐚𝐬𝐬𝐰𝐨𝐫𝐝 (𝐎𝐓𝐏) 𝐛𝐞𝐥𝐨𝐰 𝐭𝐨 𝐯𝐞𝐫𝐢𝐟𝐲 𝐲𝐨𝐮𝐫 𝐆𝐦𝐚𝐢𝐥 𝐚𝐜𝐜𝐨𝐮𝐧𝐭:
-<br><br>𝐘𝐨𝐮𝐫 𝐎𝐓𝐏: ${otp}</b> <br><br><br>Enter this code on the verification page to finish setting up your account. For security reasons, this OTP is valid for 10 minutes.
+    html: `To complete your signup process, please use the One-Time Password (OTP) below to verify your Gmail account:
+
+<br><br><b>𝐘𝐨𝐮𝐫 𝐎𝐓𝐏: ${otp}</b> <br><br><br>Enter this code on the verification page to finish setting up your account. For security reasons, this OTP is valid for 10 minutes.<br>
 <br>If you did not request this, please ignore this email.<br><br>
-<br>Thank you for joining HelpOps-Hub!
-<br>Best regards,
+<br>Thank you for joining HelpOps-Hub!<br>
+<br>Best regards,<br>
 <br>The HelpOps-Hub Team 🚀
 `, // html body
             })

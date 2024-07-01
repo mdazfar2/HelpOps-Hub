@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { Login, Signup } from './Login-Signup';
 import { useSession } from 'next-auth/react';
 import Profile from '@pages/Profile';
+import Popup from './Popup';
 
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+
 let session=useSession()
   useEffect(() => {
     if (showAuth) {
@@ -16,7 +18,7 @@ let session=useSession()
       document.body.style.overflow = 'unset';
     }
   }, [showAuth]);
-  console.log(session)
+ 
   useEffect(()=>{
 
     if(session.status=='authenticated'){
