@@ -62,11 +62,11 @@ async  function handleLogin(){
       {error && <Popup msg={error} error={`${error=="User Doesn't Valid"||error=="Incorrect Password"?"red1":"green1"}`}/>}
 
       <h1>Login to HelpOps-Hub</h1>
-      <button className="google-btn">
+      <button className="google-btn" onClick={()=>signIn('google')}>
       <img src="google.png" alt="Google" />
         Sign in with Google
       </button>
-      <button className="github-btn">
+      <button className="github-btn" onClick={()=>signIn('github')}>
       <img src="github.png" alt="GitHub" />
         Sign in with Github
       </button>
@@ -209,7 +209,7 @@ console.log(session)
         <img src="/google.png" alt="Google" />
         Sign up with Google
       </button>
-      <button className="github-btn">
+      <button className="github-btn" onClick={()=>signIn('github')}>
         <img src="/github.png" alt="GitHub" />
         Sign up with Github
       </button>
