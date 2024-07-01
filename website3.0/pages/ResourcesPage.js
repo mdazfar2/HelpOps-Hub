@@ -14,23 +14,24 @@ function ResourcesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // New state variables for sorting and filtering
-  const [sortOption, setSortOption] = useState('name');
-  const [filterOption, setFilterOption] = useState('all');
+  const [sortOption, setSortOption] = useState("name");
+  const [filterOption, setFilterOption] = useState("all");
 
-   //to add body bg color 
+  //to add body bg color
 
   useEffect(() => {
-    console.log('sdsd')
-    function updateBackground(){
-      if(document.body.classList.contains('dark-mode')){
+    console.log("sdsd");
+    function updateBackground() {
+      if (document.body.classList.contains("dark-mode")) {
         document.body.style.background = "#353535";
       } else {
-        document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)";
+        document.body.style.background =
+          "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)";
       }
     }
     const observer = new MutationObserver((mutationsList) => {
       for (let mutation of mutationsList) {
-        if (mutation.attributeName === 'class') {
+        if (mutation.attributeName === "class") {
           updateBackground();
         }
       }
@@ -52,7 +53,7 @@ function ResourcesPage() {
     async function fetchRepository(url) {
       // Function to delay execution for visual effect
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  
+
       // Function to fetch API key from external source
       async function getkey() {
         try {
@@ -60,13 +61,13 @@ function ResourcesPage() {
           const response = await fetch(
             "https://script.google.com/macros/s/AKfycbzipat1oQlBel7YwZaPl7mCpshjRpvyouFSRgunjqGlKC-0gv46hypYD0EnSMsOEBeC-Q/exec"
           );
-          
+
           // Check if response is ok; throw error if not
           if (!response.ok) throw new Error("Network response was not ok");
-  
+
           // Parse response to JSON format
           const data = await response.json();
-  
+
           // Return the API key from the fetched data
           return data.apik[0].apikey;
         } catch (error) {
@@ -74,10 +75,10 @@ function ResourcesPage() {
           console.error("Error fetching data:", error);
         }
       }
-  
+
       // Call getkey function to retrieve API key
       const token = await getkey();
-  
+
       try {
         // Fetch repository contents using provided URL and API token
         const response = await fetch(url, {
@@ -85,22 +86,22 @@ function ResourcesPage() {
             Authorization: `Bearer ${token}`, // Include authorization token in headers
           },
         });
-  
+
         // Handle HTTP error responses
         if (response.status === 403) {
           throw new Error(
             "Access to the requested resource is forbidden. You might have hit the API rate limit."
           );
         }
-  
+
         // Parse response to JSON format
         const data = await response.json();
-  
+
         // Ensure fetched data is an array; throw error if not
         if (!Array.isArray(data)) {
           throw new TypeError("Fetched data is not an array.");
         }
-  
+
         // Filter out specific files from fetched data
         const filteredData = data.filter((file) => {
           const filename = file.name.slice(0, -1); // Remove last character from filename
@@ -109,7 +110,7 @@ function ResourcesPage() {
           // Exclude files with extensions and specific filenames
           return !file.name.includes(".") && !isUpdate && !isOfficialWebsite;
         });
-  
+
         // Fetch creation dates for each filtered folder asynchronously
         const foldersWithDates = await Promise.all(
           filteredData.map(async (folder) => {
@@ -130,16 +131,16 @@ function ResourcesPage() {
             return { ...folder, created_at: createdAt };
           })
         );
-  
+
         // Sort folders by creation date (ascending order)
         foldersWithDates.sort(
           (a, b) => new Date(a.created_at) - new Date(b.created_at)
         );
-  
+
         // Set both original and filtered data states with fetched and processed data
         setOriginalData(foldersWithDates);
         setFilteredData(foldersWithDates);
-  
+
         await delay(1500); // Simulate delay for loading effect
         setLoading(false); // Set loading state to false after data is fetched
       } catch (error) {
@@ -150,57 +151,57 @@ function ResourcesPage() {
         setLoading(false); // Set loading state to false after error
       }
     }
-  
+
     // Call fetchRepository function with GitHub API URL when component mounts (empty dependency array)
     fetchRepository(
       "https://api.github.com/repos/mdazfar2/HelpOps-Hub/contents"
     );
   }, []);
-  
+
   const handleSearch = (event) => {
     // Get the search term from the input field, convert to lowercase
     const searchTerm = event.target.value.toLowerCase();
     let results = originalData;
-    
+
     if (searchTerm !== "") {
       results = results.filter((item) =>
         item.name.toLowerCase().includes(searchTerm)
       );
     }
-    
+
     // Apply current filter
-    if (filterOption !== 'all') {
-      results = results.filter(item => {
+    if (filterOption !== "all") {
+      results = results.filter((item) => {
         const createdDate = new Date(item.created_at);
         const now = new Date();
-        if (filterOption === 'lastWeek') {
+        if (filterOption === "lastWeek") {
           return (now - createdDate) / (1000 * 60 * 60 * 24) <= 7;
-        } else if (filterOption === 'lastMonth') {
+        } else if (filterOption === "lastMonth") {
           return (now - createdDate) / (1000 * 60 * 60 * 24) <= 30;
         }
         return true;
       });
     }
-    
+
     // Apply current sort
     results.sort((a, b) => {
-      if (sortOption === 'name') {
+      if (sortOption === "name") {
         return a.name.localeCompare(b.name);
-      } else if (sortOption === 'date') {
+      } else if (sortOption === "date") {
         return new Date(b.created_at) - new Date(a.created_at);
       }
       return 0;
     });
-    
+
     setFilteredData(results);
   };
 
   const handleSort = (option) => {
     setSortOption(option);
     const sorted = [...filteredData].sort((a, b) => {
-      if (option === 'name') {
+      if (option === "name") {
         return a.name.localeCompare(b.name);
-      } else if (option === 'date') {
+      } else if (option === "date") {
         return new Date(b.created_at) - new Date(a.created_at);
       }
       return 0;
@@ -210,15 +211,15 @@ function ResourcesPage() {
 
   const handleFilter = (option) => {
     setFilterOption(option);
-    if (option === 'all') {
+    if (option === "all") {
       setFilteredData(originalData);
     } else {
-      const filtered = originalData.filter(item => {
+      const filtered = originalData.filter((item) => {
         const createdDate = new Date(item.created_at);
         const now = new Date();
-        if (option === 'lastWeek') {
+        if (option === "lastWeek") {
           return (now - createdDate) / (1000 * 60 * 60 * 24) <= 7;
-        } else if (option === 'lastMonth') {
+        } else if (option === "lastMonth") {
           return (now - createdDate) / (1000 * 60 * 60 * 24) <= 30;
         }
         return true;
@@ -233,7 +234,7 @@ function ResourcesPage() {
       if (item.type === "dir") {
         // Parse creation date
         const createdDate = new Date(item.created_at);
-  
+
         // Return JSX for each directory item
         return (
           <div
@@ -263,17 +264,15 @@ function ResourcesPage() {
       return null;
     });
   };
-  
 
   return (
     <div>
-
       {/* Section: Heading */}
 
       <div className="heading">
         <h1>Resources</h1>
       </div>
-      
+
       {/* Section: Search-Bar */}
 
       <div className="search-container">
@@ -292,21 +291,29 @@ function ResourcesPage() {
 
       {/* Section: Sort & Filter */}
 
-      <div className="sort-filter-container">
-        <div className="sort-options">
-                <label>Sort by: </label>
-                <select value={sortOption} onChange={(e) => handleSort(e.target.value)}>
-                        <option value="name">Name</option>
-                        <option value="date">Date</option>
-                </select>
+      <div className="sort-filter-container flex flex-wrap items-center justify-between p-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-xl shadow-2xl transform transition-transform duration-500 hover:scale-105">
+        <div className="sort-options flex items-center space-x-4">
+          <label className="font-bold text-white text-lg">Sort by:</label>
+          <select
+            value={sortOption}
+            onChange={(e) => handleSort(e.target.value)}
+            className="border border-transparent rounded-full p-2 text-gray-700 bg-white focus:outline-none focus:ring-4 focus:ring-yellow-300 shadow-lg hover:bg-yellow-100 transition-colors duration-300"
+          >
+            <option value="name">Name</option>
+            <option value="date">Date</option>
+          </select>
         </div>
-        <div className="filter-options">
-                <label>Filter: </label>
-                <select value={filterOption} onChange={(e) => handleFilter(e.target.value)}>
-                        <option value="all">All</option>
-                        <option value="lastWeek">Last Week</option>
-                        <option value="lastMonth">Last Month</option>
-                </select>
+        <div className="filter-options flex items-center space-x-4 mt-4 md:mt-0">
+          <label className="font-bold text-white text-lg">Filter:</label>
+          <select
+            value={filterOption}
+            onChange={(e) => handleFilter(e.target.value)}
+            className="border border-transparent rounded-full p-2 text-gray-700 bg-white focus:outline-none focus:ring-4 focus:ring-yellow-300 shadow-lg hover:bg-yellow-100 transition-colors duration-300"
+          >
+            <option value="all">All</option>
+            <option value="lastWeek">Last Week</option>
+            <option value="lastMonth">Last Month</option>
+          </select>
         </div>
       </div>
 
