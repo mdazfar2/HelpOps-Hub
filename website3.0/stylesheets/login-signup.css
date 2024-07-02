@@ -291,11 +291,13 @@ left: 50px;
 @media screen and (max-width: 600px) {
   .login-auth-container,
   .signup-auth-container {
-    width: 90%;
-    padding: 15px;
-    margin-left: 20px;
+    width: 350px !important;
+   margin: 0px !important;
+   
   }
-
+.eye1{
+  right: 12% !important;
+}
   .login-auth-container h1,
   .signup-auth-container h1 {
     font-size: 18px;
@@ -322,6 +324,9 @@ left: 50px;
   .signup-auth-container .continue-btn {
     left: 0;
     width: 80%;
+  }
+  .login-auth-container .close-btn{
+    right: -120px !important;
   }
 
   .login-auth-container a,
@@ -371,11 +376,14 @@ left: 50px;
     font-size: 14px;
   }
 
+  .login-auth-container .close-btn{
+    right: -120px !important;
+  }
   .login-auth-container .close-btn,
   .signup-auth-container .close-btn {
     position: absolute;
     top: -10px;
-    right: -120px;
+    right: -120px !important;
   }
   .login-auth-container a,
   .signup-auth-container a {
