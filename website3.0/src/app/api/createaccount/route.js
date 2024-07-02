@@ -22,7 +22,7 @@ export async function POST(req) {
           const hash = await bcrypt.hash(password, saltRounds);
           
           // Creating a new user in the database
-          let users=new  user({
+          let users=  user({
               email: email,
               name: name,
               password: hash
@@ -32,13 +32,12 @@ export async function POST(req) {
           let users= user({
             email: email,
             name: name,
-            });
+          });
           await   users.save()
+          let data1=await user.find({email:email})
+          await user.findByIdAndDelete(data1[0]._id)
         }
 
-let data1=await user.find({email:email})
-await user.findByIdAndDelete(data1[0]._id)
-        console.log(data1)
               // await user.deleteOne({email:email})
         //sending response user 
             return NextResponse.json({success:true})
