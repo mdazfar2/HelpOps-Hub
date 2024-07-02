@@ -10,13 +10,36 @@ export async function POST(req) {
         let {email,name,password}=await req.json()
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
+
+        let data=await user.find({email:email})
+        // checking if user exist or not 
+        if(data.length>0){
+          return NextResponse.json({ success: false,msg:"User Doesn't Valid"},{status:"200"});
+        }
         // generating the hash to store in mongo db 
-        bcrypt.hash(password, saltRounds,async function(err, hash) {
-                console.log(hash,email,name,password)
-               let data = await user.create({
-                    email:email,name:name,password:hash
-                });
+        if(password){
+
+          const hash = await bcrypt.hash(password, saltRounds);
+          
+          // Creating a new user in the database
+          let users=new  user({
+              email: email,
+              name: name,
+              password: hash
+          });
+         await  users.save()
+        }else{
+          let users= user({
+            email: email,
+            name: name,
             });
+          await   users.save()
+        }
+
+let data1=await user.find({email:email})
+await user.findByIdAndDelete(data1[0]._id)
+        console.log(data1)
+              // await user.deleteOne({email:email})
         //sending response user 
             return NextResponse.json({success:true})
 }

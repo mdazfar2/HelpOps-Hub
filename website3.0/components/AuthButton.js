@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { Login, Signup } from './Login-Signup';
 import { useSession } from 'next-auth/react';
 import Profile from '@pages/Profile';
+import Popup from './Popup';
 
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+
 let session=useSession()
   useEffect(() => {
     if (showAuth) {
@@ -16,12 +18,23 @@ let session=useSession()
       document.body.style.overflow = 'unset';
     }
   }, [showAuth]);
-  console.log(session)
+ 
   useEffect(()=>{
 
     if(session.status=='authenticated'){
+      // fetch("/api/login",{
+      //   method:"POST",
+      //   body:JSON.stringify({
+      //     email : session.data.user.email,
+      //     name:session.data.user.name
+      //   })
+      // })
       localStorage.setItem('email',session.data.user.email)
       localStorage.setItem('name',session.data.user.name)
+//       if(localStorage.getItem('count')!==2){
+// console.log(localStorage.getItem('count'))
+//         localStorage.setItem('count',1)
+//       }
        fetch("/api/createaccount",{
         method:"POST",
         body:JSON.stringify({
