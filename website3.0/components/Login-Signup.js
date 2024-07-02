@@ -11,9 +11,12 @@ import { signIn,useSession } from 'next-auth/react';
 export const Login = ({ onClose, onSignupClick }) => {
   const [showPassword,setShowPassword]=useState(false)
   let [email,setEmail]=useState('') //for storing the email 
+  let [email1,setEmail1]=useState('') //for storing the email 
+  let [isSent,setIsSent]=useState(false)
   let [password,setPassword]=useState('') //for storing the password 
   let [error,setError]=useState(false) // for showing the popup on error
   const [loading,setLoading]=useState(false)
+  let [allShow,setAllShow]=useState(true)
 // for toggling the password on clicking on eye button
   function toggle(){
     if(showPassword){
@@ -57,7 +60,33 @@ async  function handleLogin(){
      onClose()
 }, 2000);
   }
+  async function handleForgotPass(){
+    setLoading(true)
+         let res=await fetch('/api/forgotpassword',{
+          method:"POST",
+          body:JSON.stringify({
+            email:email1
+          })
+         })
+         res=await res.json()
+         setLoading(false)
+         console.log(res.success)
+         if(!res.success){
+          setError(`User Doesn't Exist`)
+   
+          setTimeout(() => {
+            setError("")
+            onClose()
+       }, 2000);
+         }else{
+          setIsSent(true)
+          setTimeout(() => {
+              setIsSent(false)
+              onClose()
 
+          }, 2000);
+         }
+  }
   
   const handleKeyDown = (event) => {
     console.log('sdsdsd')
@@ -66,12 +95,23 @@ async  function handleLogin(){
         handleLogin();
     }
   };
+  const forgotPassword=()=>{
+    setAllShow(false)
+  }
   return (
+    <>
+    {!isSent &&
     <div className="login-auth-container">
       {error && <Popup msg={error} error={`${error=="User Doesn't Valid"||error=="Incorrect Password"?"red1":"green1"}`}/>}
 
-      <h1>Login to HelpOps-Hub</h1>
-      <button className="google-btn" onClick={()=>signIn('google')}>
+      <h1>{allShow?"Login to HelpOps-Hub":"Please Enter Your Email"}</h1>
+      {
+       !allShow &&       <input type="text" onKeyDown={handleKeyDown} onChange={(e)=>setEmail1(e.target.value)} value={email1} placeholder="Enter your email" />
+    
+      }
+     {allShow && 
+   <>
+   <button className="google-btn" onClick={()=>signIn('google')}>
       <img src="google.png" alt="Google" />
         Sign in with Google
       </button>
@@ -84,19 +124,40 @@ async  function handleLogin(){
       <input  onKeyDown={handleKeyDown}    onChange={(e)=>setPassword(e.target.value)}    value={password}   type={`${showPassword?"text":"password"}`}
  placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
 <br/>
+<div style={{width:"100%",display:"flex",height:"20px",flexDirection:"row"}}>
+
+<a href="#" style={{width:"70%"}} onClick={forgotPassword}>Forgot Password</a><br/>
+
       <a href="#" onClick={onSignupClick}>New here? Sign up now</a><br/>
+</div> 
+    
       <button className="login-btn" onClick={handleLogin}>Login &nbsp;{loading && <div className="loader3">
   <div className="circle">
     <div className="dot"></div>
     <div className="outline"></div>
   </div>
  
-</div>}</button>
+</div>}</button> </> }
+{
+  !allShow
+&& <button className="login-btn" onClick={handleForgotPass}>Submit &nbsp;{loading && <div className="loader3">
+  <div className="circle">
+    <div className="dot"></div>
+    <div className="outline"></div>
+  </div>
+ 
+</div>}</button>}
       <button className="close-btn" onClick={onClose}>
        &#10005; {/* Cross Unicode character */}
       </button>
     </div>
-  );
+}{
+  isSent &&     <div className="login-auth-container">
+    <h1>Verification Link Has Been Sent to Your Email</h1>
+</div>
+}
+    </>
+);
 };
 
 export const Signup = ({ onClose, onLoginClick }) => {
