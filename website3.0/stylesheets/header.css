@@ -124,6 +124,7 @@ nav {
 
 .hamburger {
   display: none;
+  position: relative;
 }
 
 .hamburger div {
