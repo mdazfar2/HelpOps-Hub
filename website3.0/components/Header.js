@@ -118,7 +118,7 @@ const Header = () => {
           </div>
         </div>
         {/* Hamburger menu icon for mobile */}
-        <div className="hamburger" id="hamburger" onClick={toggleMenu}>
+        <div className={`hamburger ${isActive?"open":""}`} id="hamburger" onClick={toggleMenu}>
           <div></div>
           <div></div>
           <div></div>
