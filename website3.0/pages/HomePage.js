@@ -25,12 +25,30 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { ContainerScroll } from "@components/Scrolltab";
 import ParticlesComponent from "@components/ParticleBackground";
 import { useSession } from "next-auth/react";
+import Reset from "@components/Reset";
 function HomePage() {
   const [loading , setLoading ]=useState(false)
   const [blur,setBLur]=useState(false)
   let session=useSession()
   //to add body bg color
   const [showPopup,setShowPopup]=useState(false)
+let [showModal,setShowModal]=useState(false)
+  useEffect(() => {
+    // Extract token from URL query parameters
+    const query = new URLSearchParams(window.location.search);
+    const token = query.get('token');
+
+    if (token) {
+      setShowModal(true)
+      // Perform any actions you need with the token
+      console.log('Token:', token);
+    } else {
+      // If no token, you can handle it accordingly
+      console.log('No token found');
+    }
+  }, []);
+
+
 function func(){
   if(session.status=="authenticated"){
     console.log(localStorage.getItem('count'))
@@ -233,7 +251,7 @@ setBLur(false)
   return (
     <div>
           { showPopup && <Popup  msg={`${localStorage.getItem('name')} Welcome !!`} error="green1" />}
-
+{showModal && <Reset/>}
       <ParticlesComponent id="particles" />
       {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
       <main>
