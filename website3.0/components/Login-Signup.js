@@ -17,13 +17,25 @@ export const Login = ({ onClose, onSignupClick }) => {
   let [error,setError]=useState(false) // for showing the popup on error
   const [loading,setLoading]=useState(false)
   let [allShow,setAllShow]=useState(true)
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        handleLogin();
+      }
+    };
+
+    document.addEventListener('keydown', handleGlobalKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleGlobalKeyDown);
+    };
+  }, [email, password]);
+
 // for toggling the password on clicking on eye button
   function toggle(){
-    if(showPassword){
-      setShowPassword(false)
-    }else{
-      setShowPassword(true)
-    }
+    setShowPassword(!showPassword)
   }
   //for login functionality
 async  function handleLogin(){
@@ -88,13 +100,6 @@ async  function handleLogin(){
          }
   }
   
-  const handleKeyDown = (event) => {
-    console.log('sdsdsd')
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-        handleLogin();
-    }
-  };
   const forgotPassword=()=>{
     setAllShow(false)
   }
@@ -106,7 +111,7 @@ async  function handleLogin(){
 
       <h1>{allShow?"Login to HelpOps-Hub":"Please Enter Your Email"}</h1>
       {
-       !allShow &&       <input type="text" onKeyDown={handleKeyDown} onChange={(e)=>setEmail1(e.target.value)} value={email1} placeholder="Enter your email" />
+       !allShow &&       <input type="text" onChange={(e)=>setEmail1(e.target.value)} value={email1} placeholder="Enter your email" />
     
       }
      {allShow && 
@@ -120,8 +125,8 @@ async  function handleLogin(){
         Sign in with Github
       </button>
       <p>Or</p><br/>
-      <input type="text" onKeyDown={handleKeyDown} onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter your email" />
-      <input  onKeyDown={handleKeyDown}    onChange={(e)=>setPassword(e.target.value)}    value={password}   type={`${showPassword?"text":"password"}`}
+      <input type="text" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter your email" />
+      <input onChange={(e)=>setPassword(e.target.value)} value={password} type={`${showPassword?"text":"password"}`}
  placeholder="Password" />         {showPassword ? <FaEye className='eye1' onClick={toggle}/>:<FaEyeSlash className='eye1' onClick={toggle}/>}
 <br/>
 <div style={{width:"100%",display:"flex",height:"20px",flexDirection:"row"}}>
@@ -169,6 +174,22 @@ export const Signup = ({ onClose, onLoginClick }) => {
   const [errorOtp, setErrorOtp] = useState(false);  // State to hold error messages
 let [loading,setLoading]=useState(false)
   const [popup,setPopup]=useState(false)
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        handleContinue();
+      }
+    };
+
+    document.addEventListener('keydown', handleGlobalKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleGlobalKeyDown);
+    };
+  }, [email]);
+
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(String(email).toLowerCase());
@@ -216,19 +237,6 @@ let [loading,setLoading]=useState(false)
     }
     
   };
-
-
-
-  const handleKeyDown = (event) => {
-    console.log('sdsdsd')
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-        handleContinue();
-    }
-  };
-
-
-
 
   const handleOTPSubmit =async (otp) => {
     try {
@@ -302,8 +310,6 @@ console.log(session)
         type="email" 
         placeholder="Enter your email" 
         value={email}
-        onKeyDown={handleKeyDown}
-
         onChange={(e) => setEmail(e.target.value)}
       /><br/>
       <a href="#" onClick={onLoginClick}>Already have an account? Login</a><br/>
