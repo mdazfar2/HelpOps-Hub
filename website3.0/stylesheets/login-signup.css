@@ -15,7 +15,7 @@
 .eye1{
   position: absolute;
 bottom: 24%;
-right: 24%;
+right: 22% !important;
 font-size: 1.5rem;  
 }
 
