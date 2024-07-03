@@ -623,11 +623,13 @@ body.dark-mode {
   margin: 10px;
   width: 70%;
   text-align: left;
+  /* margin-left: 55px; */
 }
 
 .subscribe-input {
   width: 70%;
   display: flex;
+  margin-left: -55px;
 }
 .error-message-desktop{
   margin: 10px;
@@ -644,7 +646,7 @@ body.dark-mode {
   border-radius: 20px;
   height: 38px;
   width: 289px;
-  padding-left: 15px;
+  padding-left: 35px;
   border: none;
 }
 
@@ -665,6 +667,16 @@ body.dark-mode {
 }
 .dark-mode .subscribe-btn:hover {
   background-color: #ff6a00 !important;
+}
+
+.email-icon{
+  position: relative;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Media Queries */
@@ -806,6 +818,11 @@ body.dark-mode {
     justify-content:center ;
     align-items: center;
   }
+  .email-icon{
+    position: relative;
+    left: -17%;
+    top: 50px;
+  }
   .error-message-desktop{
     display: none;
   }
@@ -829,6 +846,11 @@ body.dark-mode {
   }
   .header .creative{
     font-size: 72px;
+  }
+  .email-icon{
+    position: relative;
+    left: -23%;
+    top: 50px;
   }
 }
 @media only screen and (max-width: 592px) {
@@ -860,6 +882,11 @@ body.dark-mode {
     height:10vh;
     margin-bottom: 10rem;
   }
+  .email-icon{
+    position: relative;
+    left: -26%;
+    top: 50px;
+  }
 }
 
 @media only screen and (max-width: 497px) {
@@ -871,6 +898,11 @@ body.dark-mode {
   }
   .subscribe-btn{
     font-size: 12px;
+  }
+  .email-icon{
+    position: relative;
+    left: -33%;
+    top: 50px;
   }
 }
 
@@ -895,6 +927,14 @@ body.dark-mode {
   .mobile-card{
     height: 450px;
   }
+  .email-icon{
+    position: relative;
+    left: -32%;
+    top: 50px;
+  }
+  .input-field {
+    margin-left: 50px;
+  }
 }
 
 @media only screen and (max-width: 347px) {
@@ -910,6 +950,14 @@ body.dark-mode {
   }
   p {
     font-size: 17px !important;
+  }
+  .email-icon{
+    position: relative;
+    left: -30%;
+    top: 50px;
+  }
+  .input-field {
+    width: 90%;
   }
 }
 
@@ -932,6 +980,12 @@ body.dark-mode {
   }
   .home-sponsor-btn {
     height: 46px !important;
+  }
+
+  .email-icon{
+    position: relative;
+    left: -26%;
+    top: 50px;
   }
 }
 
