@@ -6,7 +6,9 @@ import Popup from "@components/Popup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 
+// Login component definition, receives onClose and onSignupClick as props from AuthButton
 const Login = ({ onClose, onSignupClick }) => {
+  // State variables
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [email1, setEmail1] = useState("");
@@ -16,25 +18,29 @@ const Login = ({ onClose, onSignupClick }) => {
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
 
+  // useEffect hook to handle Enter key press for login
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
-        handleLogin();
+        handleLogin(); // Call handleLogin when Enter is pressed
       }
     };
 
     document.addEventListener("keydown", handleGlobalKeyDown);
 
+    // Cleanup function to remove the event listener
     return () => {
       document.removeEventListener("keydown", handleGlobalKeyDown);
     };
   }, [email, password]);
 
+  // Toggle function to show or hide password
   function toggle() {
     setShowPassword(!showPassword);
   }
 
+  // Function to handle login process
   async function handleLogin() {
     setLoading(true);
     let res = await fetch("/api/login", {
@@ -47,6 +53,7 @@ const Login = ({ onClose, onSignupClick }) => {
     let data = await res.json();
     setLoading(false);
 
+    // Handle login errors
     if (!data.success) {
       setError(data.msg);
       setTimeout(() => {
@@ -57,12 +64,14 @@ const Login = ({ onClose, onSignupClick }) => {
       return;
     }
 
-    localStorage.setItem('userName', data.user[0].name);
-    localStorage.setItem('userEmail', data.user[0].email);
-    localStorage.setItem('image', data.user[0].image1);
+    // Save user details to localStorage
+    localStorage.setItem("userName", data.user[0].name);
+    localStorage.setItem("userEmail", data.user[0].email);
+    localStorage.setItem("image", data.user[0].image1);
 
     setError(`${data.user[0].name} Welcome !!`);
 
+    // Close the login popup and reload the page after 2 seconds
     setTimeout(() => {
       setError("");
       onClose();
@@ -70,6 +79,7 @@ const Login = ({ onClose, onSignupClick }) => {
     }, 2000);
   }
 
+  // Function to handle forgot password process
   async function handleForgotPass() {
     setLoading(true);
     let res = await fetch("/api/forgotpassword", {
@@ -81,6 +91,7 @@ const Login = ({ onClose, onSignupClick }) => {
     res = await res.json();
     setLoading(false);
 
+    // Handle forgot password errors
     if (!res.success) {
       setError(`User Doesn't Exist`);
       setTimeout(() => {
@@ -96,6 +107,7 @@ const Login = ({ onClose, onSignupClick }) => {
     }
   }
 
+  // Function to show forgot password input field
   const forgotPassword = () => {
     setAllShow(false);
   };
