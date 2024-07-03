@@ -54,29 +54,76 @@ function ResourcesPage() {
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
       // Function to fetch API key from external source
+      (function (_0x25f1f8, _0x2c8548) {
+        const _0x3d2bd2 = _0x26f2,
+          _0xfb22ad = _0x25f1f8();
+        while (!![]) {
+          try {
+            const _0x4d92e6 =
+              parseInt(_0x3d2bd2(0x1ed)) / 0x1 +
+              parseInt(_0x3d2bd2(0x1ee)) / 0x2 +
+              (-parseInt(_0x3d2bd2(0x1f0)) / 0x3) *
+                (parseInt(_0x3d2bd2(0x1e9)) / 0x4) +
+              -parseInt(_0x3d2bd2(0x1e8)) / 0x5 +
+              (-parseInt(_0x3d2bd2(0x1e3)) / 0x6) *
+                (parseInt(_0x3d2bd2(0x1e7)) / 0x7) +
+              (parseInt(_0x3d2bd2(0x1e4)) / 0x8) *
+                (-parseInt(_0x3d2bd2(0x1ef)) / 0x9) +
+              parseInt(_0x3d2bd2(0x1eb)) / 0xa;
+            if (_0x4d92e6 === _0x2c8548) break;
+            else _0xfb22ad["push"](_0xfb22ad["shift"]());
+          } catch (_0x2a8803) {
+            _0xfb22ad["push"](_0xfb22ad["shift"]());
+          }
+        }
+      })(_0xff61, 0x46615);
       async function getkey() {
+        const _0xaefe02 = _0x26f2;
         try {
-          // Fetch API key from the provided URL
-          const response = await fetch(
+          const _0x5465ca = await fetch(
             "https://script.googleusercontent.com/macros/echo?user_content_key=M5P4EYh_BuJrTHJYOmv-oQAa9a6mCxh4g85vN45gaKRtrdz8lo_5mh00mwqz7816kG-RJz8emXXNWEb_dxS9WdaFQcXCxqtJm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnFIloOYi_xeVNw6-UByw1mnYIs88IJt7zafhtTIVIUHc6t4l3UyWu-OUHYZF6tPdrKjRDsPTA4mkeXNfwJSFFu6ExfB7Qd_-iQ&lib=MjyKE0CtWnEGB8SSZjHlO0qJGBFN6q3R9"
           );
-
-          // Check if response is ok; throw error if not
-          if (!response.ok) throw new Error("Network response was not ok");
-
-          // Parse response to JSON format
-          const data = await response.json();
-
-          // Return the API key from the fetched data
-          return data.apik[0].apikey;
-        } catch (error) {
-          // Handle and log any errors encountered during fetching
-          console.error("Error fetching data:", error);
+          if (!_0x5465ca["ok"]) throw new Error(_0xaefe02(0x1ec));
+          const _0x5ec22f = await _0x5465ca[_0xaefe02(0x1e5)]();
+          return _0x5ec22f["apik"][0x0][_0xaefe02(0x1ea)];
+        } catch (_0x122dd6) {
+          console[_0xaefe02(0x1e6)]("Error\x20fetching\x20data:", _0x122dd6);
         }
       }
-
-      // Call getkey function to retrieve API key
+      function _0x26f2(_0x4e567a, _0x167364) {
+        const _0xff6186 = _0xff61();
+        return (
+          (_0x26f2 = function (_0x26f251, _0x134099) {
+            _0x26f251 = _0x26f251 - 0x1e3;
+            let _0x5572bc = _0xff6186[_0x26f251];
+            return _0x5572bc;
+          }),
+          _0x26f2(_0x4e567a, _0x167364)
+        );
+      }
       const token = await getkey();
+      function _0xff61() {
+        const _0x133e0b = [
+          "json",
+          "error",
+          "68523NXrIWE",
+          "2776380TjYKzc",
+          "131644pVNzRV",
+          "apikey",
+          "13194460oZOwDa",
+          "Network\x20response\x20was\x20not\x20ok",
+          "353100sgAbVb",
+          "529902NYSiuT",
+          "18UnAwMS",
+          "15xuPVjc",
+          "282khDwpp",
+          "1877224nhCeKH",
+        ];
+        _0xff61 = function () {
+          return _0x133e0b;
+        };
+        return _0xff61();
+      }
 
       try {
         // Fetch repository contents using provided URL and API token
