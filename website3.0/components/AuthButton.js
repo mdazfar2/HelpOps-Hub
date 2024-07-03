@@ -9,7 +9,12 @@ import Popup from './Popup';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-
+  const [profile,showProfile]=useState(false)
+  useEffect(()=>{
+    if(localStorage.getItem('userName')){
+      showProfile(true)
+    }
+   },[profile])
 let session=useSession()
   useEffect(() => {
     if (showAuth) {
@@ -29,8 +34,9 @@ let session=useSession()
       //     name:session.data.user.name
       //   })
       // })
-      localStorage.setItem('email',session.data.user.email)
-      localStorage.setItem('name',session.data.user.name)
+      localStorage.setItem('userEmail',session.data.user.email)
+      localStorage.setItem('userName',session.data.user.name)
+      localStorage.setItem('image',session.data.user.image)
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
@@ -63,7 +69,13 @@ let session=useSession()
 
   return (
     <>
-      <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
+   {!profile &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
+      }
+     {
+  profile&& <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
+<img style={{height:"70px",width:"70px",borderRadius:"50%"}} src={`${localStorage.getItem('image')}`}/><h1>{localStorage.getItem('userName')}</h1>
+  </div>
+}
       {showAuth && (
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>

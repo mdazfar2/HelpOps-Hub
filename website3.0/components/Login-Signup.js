@@ -63,13 +63,16 @@ export const Login = ({ onClose, onSignupClick }) => {
       return;
     }
     // to store the username and email after login in local storage
-    localStorage.setItem("userName", data.user[0].name);
-    localStorage.setItem("userEmail", data.user[0].email);
+    localStorage.setItem('userName',data.user[0].name)
+   localStorage.setItem('userEmail',data.user[0].email)
+   localStorage.setItem('image',data.user[0].image1)
+
     setError(`${data.user[0].name} Welcome !!`);
 
     setTimeout(() => {
       setError("");
       onClose();
+      window.location.reload();
     }, 2000);
   }
   async function handleForgotPass() {

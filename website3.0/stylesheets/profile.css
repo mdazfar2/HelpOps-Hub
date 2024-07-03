@@ -152,3 +152,8 @@ font-size: 1.5rem;
     font-size: 14px;
   }
 }
+.adjusturl{
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+}
