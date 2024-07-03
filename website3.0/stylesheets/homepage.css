@@ -511,7 +511,7 @@ body.dark-mode {
   cursor: pointer;
 }
 .subscribe-btn:hover{
-  background-color: rgb(214, 6, 6) !important;
+  background-color: rgba(1, 1, 11, 0.714) !important;
 }
 .banner {
   text-align: center;
@@ -648,7 +648,7 @@ body.dark-mode {
 }
 
 .subscribe-btn {
-  background-color: rgba(64, 123, 255, 1);
+  background-color: rgba(0, 0, 10, 0.818) !important;
   color: black;
   border-radius: 20px;
   font-weight: 500;
@@ -659,8 +659,11 @@ body.dark-mode {
   margin-left: 10px;
 }
 .dark-mode .subscribe-btn {
-  background-color: #ef8336;
+  background-color: #ef8336 !important;
   color: white;
+}
+.dark-mode .subscribe-btn:hover {
+  background-color: #ff6a00 !important;
 }
 
 /* Media Queries */
@@ -1050,12 +1053,14 @@ body.dark-mode {
   width: 130px;
   border-radius: 5px;
   color: white !important;
-}
-.subscribe-btn{
-  background-color: red;
+  background-color: rgb(71, 71, 71);
   font-family: serif;
   font-weight: 400;
   font-size: 20px;
+}
+
+.subscribe-btn{
+  background-color: #ef8336;
 }
 input{
   border-radius: 5px !important;
