@@ -10,6 +10,7 @@ import {
   faStar,
   faHeart,
   faAnglesDown,
+  faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 
 //Importing the AOS Package for Scroll Animations
@@ -555,6 +556,7 @@ setBLur(false)
             <div className="subscribe-section">
               <p className="subscribe-text">Subscribe to our newsletter</p>
               <div className="subscribe-input">
+                <FontAwesomeIcon icon={faEnvelope} className="email-icon" width={25} />
                 <input
                   value={email} onChange={(e)=>setEmail(e.target.value)}
                   placeholder="Email"
