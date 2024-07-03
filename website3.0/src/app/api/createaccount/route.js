@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 export async function POST(req) {
         const { MONGO_URI } = process.env; 
-        let {email,name,password}=await req.json()
+        let {email,name,password,image}=await req.json()
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
 
@@ -25,13 +25,16 @@ export async function POST(req) {
           let users=  user({
               email: email,
               name: name,
-              password: hash
+              password: hash,
+              image1:String(image)
           });
          await  users.save()
         }else{
           let users= user({
             email: email,
             name: name,
+            image1:image
+
           });
           await   users.save()
           let data1=await user.find({email:email})
