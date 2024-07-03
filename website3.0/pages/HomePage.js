@@ -49,20 +49,20 @@ let [showModal,setShowModal]=useState(false)
   }, []);
 
 
-function func(){
-  if(session.status=="authenticated"){
-    console.log(localStorage.getItem('count'))
-    if(localStorage.getItem('count')==null){
-
-      localStorage.setItem('count',true)
-    setShowPopup(true)
-
-    setTimeout(() => {
-      setShowPopup(false)
-    }, 2000);
+  function func(){
+    if(session.status=="authenticated"){
+      console.log(localStorage.getItem('count'))
+      if(localStorage.getItem('count')==null){
+  
+        localStorage.setItem('count',true)
+      setShowPopup(true)
+  
+      setTimeout(() => {
+        setShowPopup(false)
+      }, 2000);
+      }
     }
   }
-}
   useEffect(() => {
     document.body.style.background =
       "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
@@ -250,7 +250,7 @@ setBLur(false)
   
   return (
     <div>
-          { showPopup && <Popup  msg={`${localStorage.getItem('name')} Welcome !!`} error="green1" />}
+          { showPopup && <Popup  msg={`${localStorage.getItem('userName')} Welcome !!`} error="green1" />}
 {showModal && <Reset/>}
       <ParticlesComponent id="particles" />
       {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
