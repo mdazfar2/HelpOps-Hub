@@ -8,6 +8,7 @@ const Profile = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
   const [showPassword,setShowPassword]=useState(false)
+  let [url,setUrl]=useState('')
   const [showConfirmPassword,setConfirmShowPassword]=useState(false)
   let ref=useRef()
 
