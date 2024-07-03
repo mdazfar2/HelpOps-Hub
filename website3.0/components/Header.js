@@ -114,7 +114,9 @@ const Header = () => {
                 Sponsor
               </button>
             </a>
+            <div className="toggle-switches">
             <ToggleSwitch />
+            </div>
           </div>
         </div>
         {/* Hamburger menu icon for mobile */}

@@ -19,13 +19,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-<NextAuthProvider>
-
-        <Loader />
-        <Header />
-        {children}
-        <Footer />
-</NextAuthProvider>
+      <div id="Background1"></div>
+      <div id="Background2"></div>
+        <NextAuthProvider>
+          <Loader />
+          <Header />
+          {children}
+          <Footer />
+        </NextAuthProvider>
       </body>
     </html>
   );
