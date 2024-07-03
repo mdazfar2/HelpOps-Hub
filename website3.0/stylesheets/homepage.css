@@ -627,7 +627,8 @@ body.dark-mode {
 }
 
 .subscribe-btn {
-  background-color: rgba(64, 123, 255, 1);
+  /* background-color: rgba(64, 123, 255, 1); */
+  /* background-color: green; */
   color: black;
   border-radius: 20px;
   font-weight: 500;
@@ -1031,10 +1032,14 @@ body.dark-mode {
   color: white !important;
 }
 .subscribe-btn{
-  background-color: red;
+  background-color: rgb(71, 71, 71);
   font-family: serif;
   font-weight: 400;
   font-size: 20px;
+}
+
+.subscribe-btn:hover{
+  background-color: green;
 }
 input{
   border-radius: 5px !important;
