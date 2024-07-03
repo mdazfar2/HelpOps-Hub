@@ -118,6 +118,10 @@ hr {
   font-size: 18px;
 }
 
+#container h5 br.responsive{
+  display: none;
+}
+
 #container h5:hover{
   color:#ff4500;
   cursor: pointer;
@@ -216,16 +220,20 @@ a:hover {
 .dark-mode #content {
   color: #333;
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   body {
     background: linear-gradient(to bottom right, #ffd700, #ffa07a) no-repeat
       fixed;
     background-size: cover;
   }
 
+  .resourcesdetails{
+    margin-left: 10%;
+  }
+
   #container {
-    margin-top: 50px;
-    width: 90%;
+    margin-top: 150px;
+    width: 70%;
     padding: 10px;
   }
 
@@ -234,19 +242,32 @@ a:hover {
     padding: 10px;
   }
 
-  p,
-  li {
-    font-size: 16px;
+  #container h1{
+    font-size: 25px;
   }
 
-  h1 {
-    font-size: 28px;
+  #container p,
+  li {
+    font-size: 14px;
+  }
+
+  #container h2 {
+    font-size: 24px;
   }
 
   .repo-link {
-    bottom: 20px;
-    right: 10px;
-    padding: 10px;
+    top: 190px;
+    right: 20px;
+    padding: 12px;
+  }
+
+  #container h5 br.responsive{
+    display: inline;
+  }
+
+  #container h5{
+    right: 22px;
+    font-size: 13px;
   }
 
   pre {
@@ -261,18 +282,38 @@ a:hover {
   }
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 24px;
+@media screen and (max-width: 480px) {
+
+  .resourcesdetails{
+    margin-left: 20%;
   }
 
-  p,
+  #container {
+    width: 70%;
+    padding: 10px;
+  }
+
+  #container h1{
+    font-size: 21px;
+  }
+
+  #container h2 {
+    font-size: 20px;
+  }
+
+  #container p,
   li {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .repo-link {
-    padding: 8px;
+    padding: 9px;
+    margin-right: 10px;
+  }
+
+  #container h5{
+    font-size: 12px;
+    margin-right: 10px;
   }
 
   .copy-button {
@@ -282,6 +323,48 @@ a:hover {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 375px) {
+  
+  .resourcesdetails{
+    margin-left: 25%;
+  }
+
+  #container{
+    width:70%;
+  }
+
+  #container h1{
+    font-size: 19px;
+  }
+
+  #container h2 {
+    font-size: 18px;
+  }
+
+  #container p,
+  li {
+    font-size: 11px;
+  }
+
+  .repo-link {
+    padding: 8px;
+    right: 5%;
+  }
+
+  #container h5{
+    font-size: 10px;
+    right: 5%;
+  }
+
+  .copy-button {
+    top: 2px;
+    right: 6px;
+    padding: 1px 3px;
+    font-size: 8px;
+  }
+}
+
 body.dark-mode #container {
   background-color: #121212;
   color: #e0e0e0;
