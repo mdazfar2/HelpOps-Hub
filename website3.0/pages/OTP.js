@@ -1,12 +1,28 @@
 "use client";
 import React, { useState, useRef } from 'react';
 import "@stylesheets/otp.css";
+import Popup from "@components/Popup";
+import Popup1 from '@components/Popup1';
 
-const OTP = ({ onClose, onOTPSubmit, onBack }) => {
+const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
+  let [error,setError]=useState(false);
+  const handlePaste = (e) => {
+    const pasteData = e.clipboardData.getData('text').slice(0, 6); // Get the pasted data and limit it to 6 characters
+    if (pasteData) {
+      const newOtp = otp.map((char, idx) => pasteData[idx] || '');
+      setOtp(newOtp);
 
+      // Move focus to the last filled input
+      const lastFilledIndex = pasteData.length - 1;
+      if (inputRefs.current[lastFilledIndex]) {
+        inputRefs.current[lastFilledIndex].focus();
+      }
+    }
+    e.preventDefault(); // Prevent default paste action
+  };
   // Handle input change for OTP fields
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -23,27 +39,49 @@ const OTP = ({ onClose, onOTPSubmit, onBack }) => {
   };
 
   const handleKeyDown = (e, index) => {
+
+    
     // Move focus to the previous input field if backspace is pressed and the field is empty
     if (e.key === 'Backspace' && index > 0 && otp[index] === '' && inputRefs.current[index - 1]) {
       inputRefs.current[index - 1].focus();
+    } else if (e.key === 'Enter' && !otp.includes('')) {
+      handleSubmit();
     }
   };
 
   // Handle OTP submission
   const handleSubmit = () => {
+    if(otp[otp.length-1]==''){
+      setError("Please Enter Valid Otp")
+      setTimeout(() => {
+        setError('')
+      }, 2000);
+    console.log('sdsdsd')
+      return
+    }
+
     onOTPSubmit(otp.join(''));(otp.join(''));
+    setError('')
+    return
   };
 
   return (
     <div className="otp-container">
+     {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+     {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+
       {/* Back arrow */}
       <button className="back-arrow" onClick={onBack}>
         &#8592; {/* Left arrow Unicode character */}
       </button>
+      {/* Close button */}
+      <button className="close-btn" onClick={onClose}>
+        &#10005; {/* Cross Unicode character */}
+      </button>
       <h5>To continue, enter the OTP sent to your registered email address.</h5>
       <p>This helps us keep your account secure.</p>
       {/* OTP input fields */}
-      <div className="otp-input">
+      <div className="otp-input" onPaste={handlePaste}>
         {otp.map((data, index) => {
           return (
             <input

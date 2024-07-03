@@ -3,6 +3,8 @@ import "./globals.css";
 import Loader from "@components/Loader";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
+import Authprovider from "@components/auth/Authprovider";
+import { NextAuthProvider } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,10 +19,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+<NextAuthProvider>
+
         <Loader />
         <Header />
         {children}
         <Footer />
+</NextAuthProvider>
       </body>
     </html>
   );

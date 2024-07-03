@@ -6,21 +6,41 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 export async function POST(req) {
-        const { MONGO_USERNAME, MONGO_PASSWORD } = process.env;
-        const MONGO_URI_CREATE_ACCOUNT = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.iol43dc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-    
+        const { MONGO_URI } = process.env; 
         let {email,name,password}=await req.json()
         // Connect to MongoDB using Mongoose
-        await mongoose.connect(MONGO_URI_CREATE_ACCOUNT);
-        bcrypt.hash(password, saltRounds,async function(err, hash) {
-                console.log(hash,email,name,password)
-               let data = await user.create({
-                    email:email,name:name,password:hash
-                });
-            });
-        
+        await mongoose.connect(MONGO_URI);
+
+        let data=await user.find({email:email})
+        // checking if user exist or not 
+        if(data.length>0){
+          return NextResponse.json({ success: false,msg:"User Doesn't Valid"},{status:"200"});
+        }
+        // generating the hash to store in mongo db 
+        if(password){
+
+          const hash = await bcrypt.hash(password, saltRounds);
+          
+          // Creating a new user in the database
+          let users=  user({
+              email: email,
+              name: name,
+              password: hash
+          });
+         await  users.save()
+        }else{
+          let users= user({
+            email: email,
+            name: name,
+          });
+          await   users.save()
+          let data1=await user.find({email:email})
+          await user.findByIdAndDelete(data1[0]._id)
+        }
+
+              // await user.deleteOne({email:email})
+        //sending response user 
             return NextResponse.json({success:true})
 }
 
-// POST endpoint to handle new newsletter subscriptions
 
