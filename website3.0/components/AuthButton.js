@@ -7,11 +7,12 @@ import Profile from '@pages/Profile';
 import Popup from './Popup';
 import Login from './LoginSignup/Login';
 import Signup from './LoginSignup/Signup';
-
+import { useRouter } from 'next/navigation';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [profile,showProfile]=useState(false)
+  let router=useRouter()
   useEffect(()=>{
     if(localStorage.getItem('userName')){
       showProfile(true)
@@ -63,7 +64,25 @@ let session=useSession()
   const switchToLogin = () => {
     setIsLogin(true);
   };
-
+  async function handleLogout(){
+    if(session.status=="authenticated"){
+      localStorage.removeItem('userEmail')
+      localStorage.removeItem('email')
+      localStorage.removeItem('name')
+  
+      localStorage.removeItem('userName')
+      localStorage.removeItem('image')
+      router.push('http://localhost:3000/api/auth/signout?csrf=true')
+  
+    }
+      localStorage.removeItem('userEmail')
+        localStorage.removeItem('email')
+        localStorage.removeItem('name')
+  
+        localStorage.removeItem('userName')
+        localStorage.removeItem('image')
+        window.location.reload()
+    }
   const closeAuth = () => {
     setShowAuth(false);
     setIsLogin(true);
@@ -74,9 +93,9 @@ let session=useSession()
    {!profile &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
       }
      {
-  profile&& <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
-<img style={{height:"70px",width:"70px",borderRadius:"50%"}} src={`${localStorage.getItem('image')}`}/><h1>{localStorage.getItem('userName')}</h1>
-  </div>
+ profile&& <> <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
+  <img style={{height:"70px",width:"70px",borderRadius:"50%"}} src={`${localStorage.getItem('image')}`}/><h1>{localStorage.getItem('userName')}</h1>
+    </div><button onClick={handleLogout}>Logout</button></>
 }
       {showAuth && (
         <div className="auth-overlay" onClick={closeAuth}>
