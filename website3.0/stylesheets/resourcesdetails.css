@@ -1,11 +1,6 @@
 body{
   margin: 0;
   font-family: "Helvetica Neue", sans-serif;
-  background: linear-gradient(to bottom right, #ffd700, #ffa07a);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 #container {
@@ -118,10 +113,6 @@ hr {
   font-size: 18px;
 }
 
-#container h5 br.responsive{
-  display: none;
-}
-
 #container h5:hover{
   color:#ff4500;
   cursor: pointer;
@@ -221,20 +212,12 @@ a:hover {
   color: #333;
 }
 @media screen and (max-width: 768px) {
-  body {
-    background: linear-gradient(to bottom right, #ffd700, #ffa07a) no-repeat
-      fixed;
-    background-size: cover;
-  }
-
-  .resourcesdetails{
-    margin-left: 10%;
-  }
 
   #container {
     margin-top: 150px;
-    width: 70%;
+    width: 90%;
     padding: 10px;
+    margin-left: 5%;
   }
 
   #content {
@@ -249,25 +232,32 @@ a:hover {
   #container p,
   li {
     font-size: 14px;
+    overflow: auto;
   }
 
   #container h2 {
     font-size: 24px;
   }
 
+  .repo-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
   .repo-link {
-    top: 190px;
-    right: 20px;
-    padding: 12px;
+    position: static;
+    top: auto;
+    right: auto;
+    margin-bottom: 10px;
   }
 
-  #container h5 br.responsive{
-    display: inline;
-  }
-
-  #container h5{
-    right: 22px;
-    font-size: 13px;
+  #container h5 {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-top: 5px;
   }
 
   pre {
@@ -284,13 +274,10 @@ a:hover {
 
 @media screen and (max-width: 480px) {
 
-  .resourcesdetails{
-    margin-left: 20%;
-  }
-
   #container {
-    width: 70%;
+    width: 80%;
     padding: 10px;
+    margin-left: 10%;
   }
 
   #container h1{
@@ -307,13 +294,11 @@ a:hover {
   }
 
   .repo-link {
-    padding: 9px;
-    margin-right: 10px;
+    padding: 12px;
   }
 
-  #container h5{
-    font-size: 12px;
-    margin-right: 10px;
+  #container h5 {
+    font-size: 14px;
   }
 
   .copy-button {
@@ -325,13 +310,10 @@ a:hover {
 }
 
 @media screen and (max-width: 375px) {
-  
-  .resourcesdetails{
-    margin-left: 25%;
-  }
 
   #container{
-    width:70%;
+    width:75%;
+    margin-left: 15%;
   }
 
   #container h1{
@@ -348,13 +330,11 @@ a:hover {
   }
 
   .repo-link {
-    padding: 8px;
-    right: 5%;
+    padding: 10px;
   }
 
-  #container h5{
-    font-size: 10px;
-    right: 5%;
+  #container h5 {
+    font-size: 12px;
   }
 
   .copy-button {

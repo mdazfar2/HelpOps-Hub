@@ -143,16 +143,18 @@ function ResourcesDetailsPage() {
         {/* Render README content with dangerouslySetInnerHTML to allow HTML */}
         <div id="content" dangerouslySetInnerHTML={{ __html: content }}></div>
         {/* GitHub repository link */}
-        <a
-          id="repo-link"
-          className="repo-link fab fa-github"
-          href={repoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FontAwesomeIcon icon={faGithub} />
-        </a>
-        <h5>More <br className="responsive" /> Info</h5>
+        <div className="repo-info-container">
+         <a
+           id="repo-link"
+           className="repo-link fab fa-github"
+           href={repoLink}
+           target="_blank"
+           rel="noopener noreferrer"
+         >
+            <FontAwesomeIcon icon={faGithub} />
+         </a>
+         <h5>More Info</h5>
+       </div>
       </div>
       {/* Toast message for showing copy success/failure */}
       <div className="toast" id="toast">
