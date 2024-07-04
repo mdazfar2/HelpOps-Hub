@@ -569,7 +569,7 @@ function TeamsPage() {
           <div className="social-links">
             <div className="social-links-items">
               <a
-                href="https://github.com/sponsors/RamakrushnaBiswal"
+                href="https://github.com/Ayushmaanagarwal1211"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -579,7 +579,7 @@ function TeamsPage() {
             </div>
             <div className="social-links-items">
               <a
-                href="https://github.com/RamakrushnaBiswal"
+                href="https://github.com/Ayushmaanagarwal1211"
                 target="_blank"
                 rel="noopener noreferrer"
               >
