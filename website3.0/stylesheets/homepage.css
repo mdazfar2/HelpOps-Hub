@@ -84,10 +84,9 @@ a {
 .get-started-btn:after 
 {
   content: '»';
-  position: absolute;
+  position: relative;
   opacity: 0;
-  top: 9.5px;
-  right: -10px;
+  left: 5px;
   transition: 0.5s;
 }
 
@@ -164,6 +163,7 @@ a {
   font-family: cursive;
 }
 .arrow_container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: end;

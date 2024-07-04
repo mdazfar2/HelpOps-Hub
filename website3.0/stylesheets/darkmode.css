@@ -1,8 +1,3 @@
-body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
-  background: linear-gradient(180deg, #333 8.1%, #121212 100%);
-}
 
 .dark-mode .iconsclass > a {
   width: 35px !important;
@@ -11,7 +6,7 @@ body.dark-mode {
   border-radius: 50%;
   font-size: 1.1rem;
 }
-.toggle-switch svg{
+.toggle-switch{
   cursor: pointer;
 }
 .dark-mode .video{

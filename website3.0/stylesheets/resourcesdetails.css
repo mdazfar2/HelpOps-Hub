@@ -1,11 +1,6 @@
 body{
   margin: 0;
   font-family: "Helvetica Neue", sans-serif;
-  background: linear-gradient(to bottom right, #ffd700, #ffa07a);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 #container {
@@ -216,17 +211,13 @@ a:hover {
 .dark-mode #content {
   color: #333;
 }
-@media (max-width: 768px) {
-  body {
-    background: linear-gradient(to bottom right, #ffd700, #ffa07a) no-repeat
-      fixed;
-    background-size: cover;
-  }
+@media screen and (max-width: 768px) {
 
   #container {
-    margin-top: 50px;
+    margin-top: 150px;
     width: 90%;
     padding: 10px;
+    margin-left: 5%;
   }
 
   #content {
@@ -234,19 +225,39 @@ a:hover {
     padding: 10px;
   }
 
-  p,
-  li {
-    font-size: 16px;
+  #container h1{
+    font-size: 25px;
   }
 
-  h1 {
-    font-size: 28px;
+  #container p,
+  li {
+    font-size: 14px;
+    overflow: auto;
+  }
+
+  #container h2 {
+    font-size: 24px;
+  }
+
+  .repo-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
   }
 
   .repo-link {
-    bottom: 20px;
-    right: 10px;
-    padding: 10px;
+    position: static;
+    top: auto;
+    right: auto;
+    margin-bottom: 10px;
+  }
+
+  #container h5 {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-top: 5px;
   }
 
   pre {
@@ -261,18 +272,33 @@ a:hover {
   }
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 24px;
+@media screen and (max-width: 480px) {
+
+  #container {
+    width: 80%;
+    padding: 10px;
+    margin-left: 10%;
   }
 
-  p,
+  #container h1{
+    font-size: 21px;
+  }
+
+  #container h2 {
+    font-size: 20px;
+  }
+
+  #container p,
   li {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .repo-link {
-    padding: 8px;
+    padding: 12px;
+  }
+
+  #container h5 {
+    font-size: 14px;
   }
 
   .copy-button {
@@ -282,6 +308,43 @@ a:hover {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 375px) {
+
+  #container{
+    width:75%;
+    margin-left: 15%;
+  }
+
+  #container h1{
+    font-size: 19px;
+  }
+
+  #container h2 {
+    font-size: 18px;
+  }
+
+  #container p,
+  li {
+    font-size: 11px;
+  }
+
+  .repo-link {
+    padding: 10px;
+  }
+
+  #container h5 {
+    font-size: 12px;
+  }
+
+  .copy-button {
+    top: 2px;
+    right: 6px;
+    padding: 1px 3px;
+    font-size: 8px;
+  }
+}
+
 body.dark-mode #container {
   background-color: #121212;
   color: #e0e0e0;

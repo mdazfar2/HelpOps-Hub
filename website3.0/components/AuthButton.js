@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Login, Signup } from './Login-Signup';
+
 import { useSession } from 'next-auth/react';
 import Profile from '@pages/Profile';
 import Popup from './Popup';
+import Login from './LoginSignup/Login';
+import Signup from './LoginSignup/Signup';
 
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
