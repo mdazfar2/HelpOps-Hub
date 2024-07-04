@@ -10,21 +10,21 @@ body:
       description: "Describe in 30 words or more."
     validations:
       required: true
-      
+
   - type: textarea
     attributes:
       label: "How many and what types of DevOps tools are you adding?"
-      description: "write tools or technology name"
+      description: "Write tools or technology name"
     validations:
       required: true
 
- - type: textarea
+  - type: textarea
     attributes:
       label: "How many years of experience do you have in the DevOps field?"
       description: "Write the year or month with numerals (e.g., 3 years / 6 months+)"
     validations:
       required: true
-      
+
   - type: textarea
     attributes:
       label: "Could you share some screenshots or a video of your previous DevOps work?"
