@@ -5,9 +5,41 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
     min-height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
+
+#Background1,
+#Background2 {
+    position: absolute;
+    top:-20%;
+    left: 0;
+    height: 121%;
+    width: 100%;
+    transition: opacity 0.9s;
+    z-index: -1;
+}
+
+#Background1 {
+    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
+    opacity: 1;
+}
+
+#Background2 {
+    background: linear-gradient(180deg, #333 8.1%, #121212 100%);
+    opacity: 0;
+}
+
+body.dark-mode #Background1 {
+    opacity: 0;
+}
+
+body.dark-mode #Background2 {
+    opacity: 1;
+}
+
+  
 #particles{
     position: absolute;
     height: 100vh;
