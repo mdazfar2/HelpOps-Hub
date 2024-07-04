@@ -164,6 +164,7 @@ a {
   font-family: cursive;
 }
 .arrow_container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: end;
