@@ -658,7 +658,7 @@ body.dark-mode {
   height: 38px;
   width: 106px;
   border: none;
-  margin-left: 10px;
+  margin-left: 10px; 
 }
 .dark-mode .subscribe-btn {
   background-color: #ef8336 !important;
@@ -900,9 +900,17 @@ body.dark-mode {
   }
   .email-icon{
     position: relative;
-    left: -33%;
+    left: -28%;
     top: 50px;
   }
+  .subscribe-btn
+  {
+    margin-left:50px;
+  }
+  .input-field
+  {
+    margin-left: 50px;
+  } 
 }
 
 @media only screen and (max-width: 409px) {
