@@ -72,7 +72,7 @@ let session=useSession()
   
       localStorage.removeItem('userName')
       localStorage.removeItem('image')
-      router.push('http://localhost:3000/api/auth/signout?csrf=true')
+      router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
   
     }
       localStorage.removeItem('userEmail')
