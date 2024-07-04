@@ -1,7 +1,8 @@
 name: "DevOps-Topic"
 description: "Improve Documentation"
 title: "Topic:"
-labels: [DevOps Documentation]
+labels: 
+  - "DevOps Documentation"
 body:
   - type: textarea
     attributes:
