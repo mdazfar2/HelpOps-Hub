@@ -252,7 +252,7 @@ function HomePage() {
       </div>
 
       <div className="absolute z-10 top-48 flex justify-left ml-32 items-center">
-        <div className="0 p-16 bg-gray-100 dark:bg-gray-900 rounded-3xl shadow-xl">
+        <div className="0 p-16 bg-gray-100 rounded-3xl shadow-xl">
           <h1 className="text-8xl mb-5 font-bold text-[#63B5C3]">
             HelpOps-Hub
           </h1>
