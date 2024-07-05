@@ -214,13 +214,13 @@ function TeamsPage() {
                 <p className="mt-[5px] block text-[16px] text-[black] font-arial mx-[0] my-[5px] text-[0.9em]">Open Source Contributor</p>
               </div>
             </div>
-            <div className="member-data flex flex-row items-center justify-center mt-[20px] w-full">
+            <div className="member-data flex flex-row items-center justify-center mt-[5px] w-full">
               <div className="member-contributions group flex flex-col items-center mr-[10px] w-28 [transition:0.5s_ease-in-out] pl-4 pr-4 pt-2 pb-2 rounded-2xl hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black] hover:[box-shadow:2px_2px_10px_2px_#0000002f]">
                 <a
                   href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`}
                   target="__blank"
                 >
-                  <div className="member-contributions-count w-full text-center text-[24px] mb-[5px] font-bold">{contri}</div>
+                  <div className="member-contributions-count w-full text-center text-[24px] font-bold">{contri}</div>
                   <div className="member-contributions-label text-[14px] text-[#777] [transition:0.5s_ease-in-out] group-hover:text-black">
                     Contributions
                   </div>
@@ -341,7 +341,7 @@ function TeamsPage() {
           <div className="contributor relative text-center flex flex-col justify-center items-center gap-0" key={contributors[0].login}>
             <a href={contributors[0].html_url} target="__blank">
               <img
-                className="circle w-[260px] h-[260px] bg-secondary rounded-full flex justify-center items-center relative transition-all duration-300 ease-in-out hover:shadow-[0_0px_20px_rgba(48,48,48,0.8)] hover:scale-[1.09] z-10"
+                className="circle w-[260px] h-[260px] bg-secondary rounded-full flex justify-center items-center relative transition-all duration-300 ease-in-out [box-shadow:1px_5px_6.8px_4px_rgba(0,_0,_0,_0.25)] hover:shadow-[0_0px_20px_rgba(48,48,48,0.8)] hover:scale-[1.09] z-10"
                 src={contributors[0].avatar_url}
                 alt={`${contributors[0].login}'s Picture`}
               />
