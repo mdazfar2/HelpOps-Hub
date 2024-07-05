@@ -79,17 +79,22 @@ const Header = () => {
 
   return (
     <header className={`${show ? "showNav" : "hideNav"}`}>
-      <nav>
+      <nav >
         {/* Logo with VanillaTilt animation */}
         <Link href="/">
           <div className="logo" data-tilt data-tilt-scale="1.1">
             <img src="/HelpOps-H Fevicon.png" alt="Logo" />
           </div>
         </Link>
-
+        <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+              <button className="nav-sponsor-btn">
+                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                Sponsor
+              </button>
+            </a>
         <div className="nav-items">
           {/* Main navigation links */}
-          <ul className={`nav-links ${isActive ? "active" : ""}`}>
+          <ul className={`nav-links ${isActive ? "active" : ""}`} style={{height:"62px "}}>
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -108,12 +113,7 @@ const Header = () => {
             <div className="auth-desktop">
               <AuthButton />
             </div>
-            <a href="https://github.com/sponsors/mdazfar2" target="_blank">
-              <button className="nav-sponsor-btn">
-                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
-                Sponsor
-              </button>
-            </a>
+            
             <div className="toggle-switches">
             <ToggleSwitch />
             </div>

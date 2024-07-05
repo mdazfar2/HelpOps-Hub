@@ -28,7 +28,14 @@ body{
   border-radius: 5px;
   margin-top: 20px;
 }
-
+.liq{
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  top: 136px;
+  right: 2px;
+  right: 98px;
+}
 #container ol li {
   list-style-type: decimal;
   margin: 20px;

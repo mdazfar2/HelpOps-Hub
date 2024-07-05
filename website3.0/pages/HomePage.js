@@ -64,10 +64,12 @@ function HomePage() {
   }
 
   useEffect(() => {
+    document.addEventListener("DOMContentLoaded",func())
+  useEffect(() => {
     document.addEventListener("DOMContentLoaded", func);
 
     return () => {
-      document.removeEventListener("DOMContentLoaded", func);
+      document.removeEventListener("DOMContentLoaded",func())
     };
   }, [session.status]);
 

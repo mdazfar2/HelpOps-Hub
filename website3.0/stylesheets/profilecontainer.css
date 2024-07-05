@@ -1,0 +1,40 @@
+.profileContainer{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    background-color: #ff8c00;
+    padding: 20px;
+    border-radius: 10px;
+    width: auto;
+    position: relative;
+}
+.image1{
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 50%;
+}
+.profileContainer div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.profileContainer div p{
+    font-size: 25px;
+    font-weight: bold;
+}
+.profileContainer div span{
+    font-size: 20px;
+    font-weight: 500;
+}
+.profileContainer .logout{
+    width: 140px;
+    height: 60px;
+    background-color: rgb(220, 41, 41);
+    border-radius: 20px !important;
+    color: white;
+    font-size: 20px;
+
+}

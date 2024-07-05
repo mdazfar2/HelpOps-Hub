@@ -78,11 +78,7 @@ nav {
   transform-origin: bottom left;
 }
 
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+
 .auth-desktop{
   display: block;
 }
@@ -104,10 +100,12 @@ nav {
   font-family: "Ubuntu" !important;
   margin-right: 7px;
 }
-
-#heart {
-  color:  rgb(234, 139, 155); ;
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
 .nav-sponsor-btn:active {
   transform: translateY(1px);
 }
@@ -127,7 +125,9 @@ nav {
   display: none;
   position: relative;
 }
-
+#heart {
+  color:  rgb(234, 139, 155); ;
+}
 .hamburger div {
   width: 25px;
   height: 3px;
@@ -145,14 +145,6 @@ nav {
   rotate: -45deg;
 }
 /* .nav-links1 */
-.nav-links1 {
-  height: 0px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  flex-direction: column;
-  justify-content: space-around;
-}
 
 .active {
   animation: nav_animate forwards ease-in-out 0.2s;
@@ -184,6 +176,14 @@ nav {
   width: 70px;
   height: 35px;
   margin: 0px;
+}
+.nav-links1 {
+  height: 0px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 
@@ -300,9 +300,7 @@ nav {
   border: 1px solid rgb(245, 245, 245);
 }
 
-.dark-mode .auth-btn:hover {
-  color: #e0e0e0;
-}
+
 
 .auth-overlay {
   position: fixed;
@@ -317,4 +315,10 @@ nav {
   z-index: 1000;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+}
+.dark-mode .auth-btn:hover {
+  color: #e0e0e0;
+}
+.nav-items{
+  align-items: center;
 }

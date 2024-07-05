@@ -8,10 +8,12 @@ import Popup from './Popup';
 import Login from './LoginSignup/Login';
 import Signup from './LoginSignup/Signup';
 import { useRouter } from 'next/navigation';
+import UserProfile from './UserProfile';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [profile,showProfile]=useState(false)
+  let [showProfile1,setShowProfile1]=useState(false)
   let router=useRouter()
   useEffect(()=>{
     if(localStorage.getItem('userName')){
@@ -87,15 +89,31 @@ let session=useSession()
     setShowAuth(false);
     setIsLogin(true);
   };
-
+  function handleProfileShow(){
+    setShowProfile1(true)
+  }
+  function closeProfile(){
+    setShowProfile1(false)
+  }
   return (
     <>
    {!profile &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
       }
-     {
+     {/* {
  profile&& <> <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
-  <img style={{height:"70px",width:"70px",borderRadius:"50%"}} src={`${localStorage.getItem('image')}`}/><h1>{localStorage.getItem('userName')}</h1>
+  <img style={{height:"70px",width:"70px",borderRadius:"50%"}} src={`${localStorage.getItem('image')}`} onClick={handleProfileShow}/><h1>{localStorage.getItem('userName')}</h1>
     </div><button onClick={handleLogout}>Logout</button></>
+} */}
+{
+  profile && <div className="auth-btn"  onClick={handleProfileShow}>Profile</div>
+}
+{
+  showProfile1  && 
+  <div className="auth-overlay" >
+          <div className="auth-modal"  onClick={(e) => e.stopPropagation()}>
+  <UserProfile onClose={closeProfile} onLogout={handleLogout}/>
+          </div>
+        </div>
 }
       {showAuth && (
         <div className="auth-overlay" onClick={closeAuth}>
