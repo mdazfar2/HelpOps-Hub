@@ -29,8 +29,6 @@ function HomePage() {
   const [blur, setBLur] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [loadSpline, setLoadSpline] = useState(false);
-  const [visible, setVisible] = useState(false);
   const splineRef = useRef(null);
   let session = useSession();
 
@@ -114,32 +112,6 @@ function HomePage() {
     };
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setLoadSpline(true);
-          setTimeout(() => {
-            setVisible(true); // Apply visible class after a short delay
-          }, 100); // Short delay to ensure transition effect
-        } else {
-          setVisible(false); // Hide the component if out of view
-          setLoadSpline(false);
-        }
-      },
-      { threshold: 0.1 } // Adjust this threshold as needed
-    );
-
-    if (splineRef.current) {
-      observer.observe(splineRef.current);
-    }
-
-    return () => {
-      if (splineRef.current) {
-        observer.unobserve(splineRef.current);
-      }
-    };
-  }, []);
   // Navigate to the /resources page when "Get started" button is clicked
   const handleGetStartedClick = () => {
     router.push("/resources");
@@ -243,16 +215,12 @@ function HomePage() {
       )}
       <div className="relative h-screen">
         <div ref={splineRef}>
-          {loadSpline && (
-            <div className={`fade-in ${visible ? "visible" : ""}`}>
-              <Spline scene="/Section1_Scene.splinecode" />
-            </div>
-          )}
+              <Spline scene="/Section1_Scene.splinecode"/>
         </div>
       </div>
 
       <div className="absolute z-10 top-48 flex justify-left ml-32 items-center">
-        <div className="0 p-16 bg-gray-100 dark:bg-gray-900 rounded-3xl shadow-xl">
+        <div className="p-16 bg-gray-100 rounded-3xl shadow-xl">
           <h1 className="text-8xl mb-5 font-bold text-[#63B5C3]">
             HelpOps-Hub
           </h1>
@@ -265,7 +233,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div className=" relative">
+      <div className=" relative mt-32">
         <Spline scene="/Section2_Scene.splinecode" />
         <button className="w-32 h-12 absolute top-[570px] left-1/2 translate-x-[-60%]"></button>
       </div>
