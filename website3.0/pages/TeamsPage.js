@@ -630,7 +630,7 @@ function TeamsPage() {
           className="absolute right-[20px]"
         >
           <button className="join-button px-[20px] py-[10px] text-[16px] bg-[#d9d9d9] text-[#3a3a3a] border-[none] [box-shadow:0px_4px_4px_0px_#00000040] rounded-[23px] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"> 
-            Join us now &#8594;
+            Join us now
           </button>
         </a>
       </div>
