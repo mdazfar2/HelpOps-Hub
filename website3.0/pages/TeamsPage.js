@@ -199,7 +199,7 @@ function TeamsPage() {
         const loginLink = contributor.html_url;
         const contri = contributor.contributions;
         return (
-          <div className="team-member-card bg-[#2f9ed62b] rounded-[10%] p-[20px] flex gap-[10px] mt-0 flex-col items-center scale-[0.95] border-[2.5px] border-dashed border-[rgba(0,0,0,1)] hover:scale-[0.9]"
+          <div className="team-member-card bg-[#2f9ed62b] rounded-[10%] p-[20px] flex gap-[10px] mt-0 flex-col items-center [transition:0.5s] scale-[0.95] border-[2.5px] border-dashed border-[rgba(0,0,0,1)] hover:scale-[0.9]"
            key={contributor.login}
            >
             <div className="member-card bg-[#ffffff82] px-0 py-[50px] w-full rounded-[10%] text-center">
