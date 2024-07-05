@@ -172,11 +172,13 @@ const Login = ({ onClose, onSignupClick }) => {
                 </div>
               </div>
               <div>
-                <p style={{ cursor: "pointer" }} onClick={forgotPassword}>
+                <p className="forgot-password" onClick={forgotPassword}>
                   Forgot Password
                 </p>
-                <p style={{ cursor: "pointer" }} onClick={onSignupClick}>
-                  New here? Sign up now
+                <p>New here? &nbsp;
+                <span className="login-signup-link" onClick={onSignupClick}>
+                  Sign up now
+                </span>
                 </p>
               </div>
               <button className="login-btn" onClick={handleLogin}>

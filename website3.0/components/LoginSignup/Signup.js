@@ -186,8 +186,10 @@ const Signup = ({ onClose, onLoginClick }) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
-      <p style={{ cursor: "pointer" }} onClick={onLoginClick}>
-        Already have an account? Login
+      <p> Already have an account? &nbsp;
+        <span className="login-signup-link" onClick={onLoginClick}>
+          Login
+        </span>
       </p>
       <br />
 
