@@ -9,7 +9,7 @@ import OTP from "@pages/OTP";
 import Profile from "@pages/Profile";
 
 // Signup component definition, receives onClose and onLoginClick as props from AuthButton.js
-const Signup = ({ onClose, onLoginClick }) => {
+const Signup = ({ onClose, onLoginClick , onBack }) => {
   const session = useSession(); // Retrieves the current session
   const [showOTP, setShowOTP] = useState(false); // State to show/hide OTP input
   const [showProfile, setShowProfile] = useState(false); // State to show/hide Profile input
@@ -150,7 +150,7 @@ const Signup = ({ onClose, onLoginClick }) => {
   console.log(session);
 
   return (
-    <div className="signup-auth-container">
+    <div className="bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[400px] relative select pt-16">
       {popup && (
         <Popup
           msg={error}
@@ -163,9 +163,12 @@ const Signup = ({ onClose, onLoginClick }) => {
           error={`${errorOtp == "Subscribed Successfully" ? "green1" : "red1"}`}
         />
       )}
-
-      <h1>Create Your HelpOps-Hub Account</h1>
-      <h5>
+{/* Back arrow */}
+<button className="absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]" onClick={onBack}>
+        &#8592; {/* Left arrow Unicode character */}
+      </button>
+      <h1 className="text-center mt-[5px] font-semibold text-[22px] ">Create Your HelpOps-Hub Account</h1>
+      <h5 className="text-center mt-[60px] pl-[22px] pr-[22px] font-[cursive]">
         Join the HelpOps-Hub community by registering for a new account and
         unlock the world of DevOps resources.
       </h5>
@@ -179,19 +182,23 @@ const Signup = ({ onClose, onLoginClick }) => {
       </button> */}
       {/* <p>Or</p> */}
       <br />
+      <br />
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
+        className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place" 
+
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
-      <p style={{ cursor: "pointer" }} onClick={onLoginClick}>
+      
+      <p className="cursor-pointer text-end text-[12px] relative right-[80px]" onClick={onLoginClick}>
         Already have an account? Login
       </p>
       <br />
-
-      <button className="continue-btn" onClick={handleContinue}>
+<br />
+      <button className="w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleContinue}>
         Continue &nbsp;
         {loading && (
           <div className="loader3">
