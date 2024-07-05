@@ -197,7 +197,7 @@ const Login = ({ onClose, onSignupClick }) => {
             </>
           )}
           {!allShow && (
-            <button className="w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleForgotPass}>
+            <button className="w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleForgotPass}>
               Submit &nbsp;
               {loading && (
                 <div className="loader3">
@@ -215,8 +215,8 @@ const Login = ({ onClose, onSignupClick }) => {
         </div>
       )}
       {isSent && (
-        <div className="login-auth-container">
-          <h1>Verification Link Has Been Sent to Your Email</h1>
+        <div className="bg-slate-100 w-[400px] text-2xl rounded-lg p-[40px]">
+          <h1 className="text-center">Verification Link Has Been Sent to Your Email</h1>
         </div>
       )}
     </>
