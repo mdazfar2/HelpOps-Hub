@@ -214,13 +214,13 @@ function TeamsPage() {
                 <p className="mt-[5px] block text-[16px] text-[black] font-arial mx-[0] my-[5px] text-[0.9em]">Open Source Contributor</p>
               </div>
             </div>
-            <div className="member-data flex flex-row items-center justify-center mt-[20px] w-full">
+            <div className="member-data flex flex-row items-center justify-center mt-[5px] w-full">
               <div className="member-contributions group flex flex-col items-center mr-[10px] w-28 [transition:0.5s_ease-in-out] pl-4 pr-4 pt-2 pb-2 rounded-2xl hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black] hover:[box-shadow:2px_2px_10px_2px_#0000002f]">
                 <a
                   href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`}
                   target="__blank"
                 >
-                  <div className="member-contributions-count w-full text-center text-[24px] mb-[5px] font-bold">{contri}</div>
+                  <div className="member-contributions-count w-full text-center text-[24px] font-bold">{contri}</div>
                   <div className="member-contributions-label text-[14px] text-[#777] [transition:0.5s_ease-in-out] group-hover:text-black">
                     Contributions
                   </div>
