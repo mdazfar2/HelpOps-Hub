@@ -524,16 +524,15 @@ setBLur(false)
           className="splide icn"
           data-aos="fade-up"
           data-aos-delay="200"
-        
         >
-          <div className="splide__track ">
-              <div className="splide__list icons">
-                <div className="splide__slide">
-                  <img src="/b1.png" alt="Cloud Icon" />
-                </div>
-                <div className="splide__slide">
-                  <img src="/b2.png" alt="Monitor Icon" />
-                </div>
+          <div className="splide__track">
+            <div className="splide__list icons">
+              <div className="splide__slide">
+                <img src="/b1.png" alt="Cloud Icon" />
+              </div>
+              <div className="splide__slide">
+                <img src="/b2.png" alt="Monitor Icon" />
+              </div>
               <div className="splide__slide">
                 <img src="/b3.png" alt="Pipeline Icon" />
               </div>
