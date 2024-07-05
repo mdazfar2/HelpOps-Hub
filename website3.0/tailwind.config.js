@@ -13,6 +13,7 @@ module.exports = {
         arial: ['Arial', 'sans-serif'],
         cursive: ['cursive'],
         rancho: ['"Rancho"', 'cursive'],
+        poppins: ['"Poppins"','sans-serif'],
     },
     extend: {
       backgroundImage: {
