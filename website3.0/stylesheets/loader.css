@@ -239,7 +239,7 @@
   top: 0;
   width: 51%;
   height: 100%;
-  background: linear-gradient(180deg, #fdd86c 8.1%, #ff7d1f 100%);
+  background: linear-gradient(180deg, #ffffff 8.1%, #bbbbbb 100%);
   z-index: 1000;
   -webkit-transform: translateX(0);
   transform: translateX(0);

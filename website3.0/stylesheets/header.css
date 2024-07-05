@@ -42,19 +42,20 @@ nav {
   display: flex;
   gap: 20px;
   padding: 12px 20px;
-  background-color: #fdd86c;
+  background-color: #ffffff !important;
   border-radius: 25px;
   flex-wrap: wrap;
   justify-content: center;
-  box-shadow: 0 4px 6px #ff7d1f;
+  box-shadow: 0 4px 6px #bbbbbb !important;
   justify-self: flex-end;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: #101010;
+  color: #000 !important;
   padding: 10px 15px;
   font-size: 22px;
+  font-weight: 400;
   position: relative;
 }
 
@@ -100,7 +101,7 @@ nav {
   transition: all 0.4s ease;
   width: 120px;
   padding: 7px 7px;
-  font-family: cursive;
+  font-family: "Ubuntu" !important;
   margin-right: 7px;
 }
 
@@ -289,7 +290,7 @@ nav {
   cursor: pointer;
   padding: 7px 15px;
   margin-right: 10px;
-  font-family: cursive;
+  font-family: "Ubuntu" !important;
   transition: all 0.5s ease;
 }
 
