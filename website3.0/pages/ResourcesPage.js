@@ -6,7 +6,10 @@ import "@stylesheets/resourceloader.css";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
+import {FaThumbsUp,FaHeart} from 'react-icons/fa6'
+import Popup from "@components/Popup";
+import Login from "@components/LoginSignup/Login";
+import Signup from "@components/LoginSignup/Signup";
 function ResourcesPage() {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -16,9 +19,31 @@ function ResourcesPage() {
   // New state variables for sorting and filtering
   const [sortOption, setSortOption] = useState("name");
   const [filterOption, setFilterOption] = useState("all");
-
-  //to add body bg color
-
+  const [showPopup,setShowPopup]=useState(false)
+  const [likedFolders, setLikedFolders] = useState(new Set());  //to add body bg color
+  const [showAuth, setShowAuth] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const switchToSignup = () => {
+    setIsLogin(false);
+  };
+  const closeAuth = () => {
+    setShowAuth(false);
+    setIsLogin(true);
+  };
+  useEffect(()=>{
+    fetchdataa()
+  },[])
+  async function fetchdataa(){
+    let msg=await fetch('/api/likedfolder',{
+      method:"GET"
+    })
+    msg=await msg.json()
+    let folder=new Set()
+    msg.msg.map((data)=>{
+      folder.add(data.resourcePath)
+    })
+    setLikedFolders(folder)
+  }
   useEffect(() => {
     function updateBackground() {
       if (document.body.classList.contains("dark-mode")) {
@@ -272,9 +297,52 @@ function ResourcesPage() {
       setFilteredData(filtered);
     }
   };
+  
+  async function handleLike(e, folderName) {
+    e.stopPropagation();
+    if (!localStorage.getItem('userName') && !localStorage.getItem("userEmail")) {
+      setShowPopup(true);
+      setTimeout(() => {
+        
+        setShowAuth(true)
+      }, 800);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 2000);
+      return;
+    }
+    let folder=likedFolders
+    if(folder.has(folderName)){
+      await fetch('/api/like', {
+        method: "POST",
+        body: JSON.stringify({
+          path: `${folderName}`,
+          isDelete:true
+        })
+      });
+    }else{
+      await fetch('/api/like', {
+        method: "POST",
+        body: JSON.stringify({
+          path: `${folderName}`,
+          isDelete:false
+        })
+      });
+    }
+    setLikedFolders((prev) => {
+      const newLikedFolders = new Set(prev);
+      if (newLikedFolders.has(folderName)) {
+        newLikedFolders.delete(folderName);
+      } else {
+        newLikedFolders.add(folderName);
+      }
+      return newLikedFolders;
+    });
+   
 
+  }
   const displayFolders = (data) => {
-    return data.map((item) => {
+    return data.map((item,index) => {
       // Render only directories (type === "dir")
       if (item.type === "dir") {
         // Parse creation date
@@ -288,7 +356,7 @@ function ResourcesPage() {
             onClick={() => {
               // Redirect to detailed resources page on click
               const folder = `${item.name}`;
-              window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${item.html_url}`;
+              window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${item.html_url}&isLike=${likedFolders.has(item.name)?"true":'false'}`;
             }}
           >
             {/* Display folder name */}
@@ -302,6 +370,13 @@ function ResourcesPage() {
                 ? createdDate.toLocaleString()
                 : "N/A"}
             </p>
+            <div className="like-button" onClick={(e) => handleLike(e, item.name)}>
+              <FaHeart className={`${likedFolders.has(item.name)?"gradientdd":""}`} style={{ color: likedFolders.has(item.name) ? 'red' : 'inherit' }}  size={'2rem'}/>
+            </div>
+             
+          
+              
+         
           </div>
         );
       }
@@ -309,17 +384,29 @@ function ResourcesPage() {
       return null;
     });
   };
-
+  const switchToLogin = () => {
+    setIsLogin(true);
+  };
   return (
     <div>
       {/* Section: Heading */}
-
+{showPopup && <Popup msg="Please Login" error="red1"/>}
+{showAuth && (
+        <div className="auth-overlay" onClick={closeAuth}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            {isLogin ? (
+              <Login onClose={closeAuth} onSignupClick={switchToSignup} />
+            ) : (
+              <Signup onClose={closeAuth} onLoginClick={switchToLogin} />
+            )}
+          </div>
+        </div>
+      )}
       <div className="heading">
         <h1>Resources</h1>
       </div>
 
       {/* Section: Search-Bar */}
-
       <div className="search-container">
         <div id="search-box">
           <div className="icon">

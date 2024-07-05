@@ -6,19 +6,23 @@ import showdown from "showdown";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FaHeart } from "react-icons/fa";
 
 function ResourcesDetailsPage() {
   // State variables
   const [folderName, setFolderName] = useState("");
   const [content, setContent] = useState("Loading...");
   const [repoLink, setRepoLink] = useState(""); 
-
+const [isLike,setIslike]=useState(false)
   // Effect hook to fetch README content when component mounts
   useEffect(() => {
     // Extract folder name from URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const folder = urlParams.get("folder");
-    
+    const folder1 = urlParams.get("isLike");
+    if(folder1=='true'){
+      setIslike(true)
+    }
     // Set folder name and fetch README content if folder is specified
     if (folder) {
       setFolderName(folder);
@@ -154,6 +158,9 @@ function ResourcesDetailsPage() {
             <FontAwesomeIcon icon={faGithub} />
          </a>
          <h5>More Info</h5>
+         <div className="like-button liq">
+              <FaHeart style={{color:`${isLike?"orange":"black"}`}}   size={'2rem'}/>
+            </div>
        </div>
       </div>
       {/* Toast message for showing copy success/failure */}
