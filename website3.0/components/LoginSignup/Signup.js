@@ -169,15 +169,15 @@ const Signup = ({ onClose, onLoginClick }) => {
         Join the HelpOps-Hub community by registering for a new account and
         unlock the world of DevOps resources.
       </h5>
-      <button className="google-btn" onClick={() => signIn("google")}>
+      {/* <button className="google-btn" onClick={() => signIn("google")}>
         <img src="/google.png" alt="Google" />
         Sign up with Google
       </button>
       <button className="github-btn" onClick={() => signIn("github")}>
         <img src="/github.png" alt="GitHub" />
         Sign up with Github
-      </button>
-      <p>Or</p>
+      </button> */}
+      {/* <p>Or</p> */}
       <br />
       <input
         type="email"
