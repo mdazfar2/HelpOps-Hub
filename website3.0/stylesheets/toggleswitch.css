@@ -200,7 +200,7 @@
     opacity: 0;
   }
   .switches input:not(:checked) ~ label {
-    background-color: #f1c877;
+    background-color: #f3ecdf;
   }
   .switches input:not(:checked) ~ label .bulb {
     left: 120px;
@@ -208,11 +208,11 @@
     box-shadow: inset 0 0 5px 7px #a56758, inset 0 0 6px 8px #6b454f, 0 20px 30px -10px rgba(0, 0, 0, 0.4), 0 0 30px 50px rgba(253,184,67,0.1);
   }
   .switches input:not(:checked) ~ label .bulb > .bulb-center {
-    background-color: #feed6b;
+    background-color: #fffded;
     box-shadow: inset 0 0 0 4px #fdec6a, 0 0 12px 10px #bca83c, 0 0 20px 14px #a1664a;
   }
   .switches input:not(:checked) ~ label .bulb > .bulb-center:after {
-    background-color: #fef401;
+    background-color: #fffee8;
     box-shadow: 0 0 2px 4px #fdb843;
   }
   .switches input:not(:checked) ~ label .bulb >.filament-1:before,
