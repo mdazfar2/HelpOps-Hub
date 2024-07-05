@@ -6,7 +6,7 @@ import "@stylesheets/resourceloader.css";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import {FaThumbsUp} from 'react-icons/fa6'
+import {FaThumbsUp,FaHeart} from 'react-icons/fa6'
 import Popup from "@components/Popup";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
@@ -371,7 +371,7 @@ function ResourcesPage() {
                 : "N/A"}
             </p>
             <div className="like-button" onClick={(e) => handleLike(e, item.name)}>
-              <FaThumbsUp style={{ color: likedFolders.has(item.name) ? 'Blue' : 'inherit' }}  size={'2rem'}/>
+              <FaHeart style={{ color: likedFolders.has(item.name) ? 'red' : 'inherit' }}  size={'2rem'}/>
             </div>
              
           
