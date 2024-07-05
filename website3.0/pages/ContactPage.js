@@ -113,12 +113,12 @@ function ContactPage() {
   };
 
   return (
-    <div className="flex justify-center space-x-40 mt-32">
+    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32">
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10">
-        <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
+        <img src="/rateus.png" className="w-[30rem] max-w-md" alt="rateus" />
       </div>
-        <div className="flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl bg-[#098CCD] bg-opacity-10">
+        <div className="flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl bg-[#098CCD] bg-opacity-10 md:justify-center">
           <h1 className="text-3xl">Contact Us</h1>
           <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
             <input type="text" id="name" name="name" required placeholder="Name:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900"/>
