@@ -62,7 +62,10 @@ let session=useSession()
   const switchToSignup = () => {
     setIsLogin(false);
   };
+const onBack=()=>{
+  setIsLogin(true)
 
+}
   const switchToLogin = () => {
     setIsLogin(true);
   };
@@ -121,7 +124,7 @@ let session=useSession()
             {isLogin ? (
               <Login onClose={closeAuth} onSignupClick={switchToSignup} />
             ) : (
-              <Signup onClose={closeAuth} onLoginClick={switchToLogin} />
+              <Signup onClose={closeAuth} onBack={onBack} onLoginClick={switchToLogin} />
             )}
           </div>
         </div>
