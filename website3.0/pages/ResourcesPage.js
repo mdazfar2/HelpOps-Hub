@@ -356,7 +356,7 @@ function ResourcesPage() {
             onClick={() => {
               // Redirect to detailed resources page on click
               const folder = `${item.name}`;
-              window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${item.html_url}`;
+              window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${item.html_url}&isLike=${likedFolders.has(item.name)?"true":'false'}`;
             }}
           >
             {/* Display folder name */}
@@ -371,7 +371,7 @@ function ResourcesPage() {
                 : "N/A"}
             </p>
             <div className="like-button" onClick={(e) => handleLike(e, item.name)}>
-              <FaHeart style={{ color: likedFolders.has(item.name) ? 'red' : 'inherit' }}  size={'2rem'}/>
+              <FaHeart className={`${likedFolders.has(item.name)?"gradientdd":""}`} style={{ color: likedFolders.has(item.name) ? 'red' : 'inherit' }}  size={'2rem'}/>
             </div>
              
           
