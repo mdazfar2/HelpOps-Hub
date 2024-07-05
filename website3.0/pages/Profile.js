@@ -131,10 +131,10 @@ let [error,setError]=useState(false)
       <h1 className='mb-[20px] text-[24px]  font-bold'>
         Profile
         </h1>
-      <label htmlFor='fileupload'>
+      <label htmlFor='fileupload' className='relative'>
 
 <img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`} className='h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px]' alt="Profile-circle" />
-<FaPen className='right-[-49px] bottom-[-584px] absolute' />
+<FaPen className='right-[-64px] bottom-[-109px] absolute' />
 </label>    
   <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         {/* Username input */}
@@ -162,9 +162,9 @@ let [error,setError]=useState(false)
             required
           />
          {showPassword ? 
-         <FaEye className='absolute right-[5%] bottom-[9%] text-[1.5rem]' onClick={toggle}/>
+         <FaEye className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>
          :
-         <FaEyeSlash className='absolute right-[5%] bottom-[9%] text-[1.5rem]' onClick={toggle}/>}
+         <FaEyeSlash className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
         </div>
         {/* Confirm password input */}
         <div  className="mb-[25px] mt-[20px] relative">
@@ -179,7 +179,7 @@ let [error,setError]=useState(false)
             required
           />
                   
-                   {showConfirmPassword ? <FaEye className='absolute right-[5%] bottom-[9%] text-[1.5rem]' onClick={toggle1}/>:<FaEyeSlash className='absolute right-[5%] bottom-[9%] text-[1.5rem]' onClick={toggle1}/>}
+                   {showConfirmPassword ? <FaEye className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>:<FaEyeSlash className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>}
 
         </div>
         {/* Submit button */}
