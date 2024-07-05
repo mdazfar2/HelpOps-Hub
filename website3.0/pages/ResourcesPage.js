@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {FaThumbsUp} from 'react-icons/fa6'
 import Popup from "@components/Popup";
+import Login from "@components/LoginSignup/Login";
+import Signup from "@components/LoginSignup/Signup";
 function ResourcesPage() {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -19,7 +21,15 @@ function ResourcesPage() {
   const [filterOption, setFilterOption] = useState("all");
   const [showPopup,setShowPopup]=useState(false)
   const [likedFolders, setLikedFolders] = useState(new Set());  //to add body bg color
-
+  const [showAuth, setShowAuth] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const switchToSignup = () => {
+    setIsLogin(false);
+  };
+  const closeAuth = () => {
+    setShowAuth(false);
+    setIsLogin(true);
+  };
   useEffect(()=>{
     fetchdataa()
   },[])
@@ -293,6 +303,10 @@ function ResourcesPage() {
     if (!localStorage.getItem('userName') && !localStorage.getItem("userEmail")) {
       setShowPopup(true);
       setTimeout(() => {
+        
+        setShowAuth(true)
+      }, 800);
+      setTimeout(() => {
         setShowPopup(false);
       }, 2000);
       return;
@@ -370,10 +384,24 @@ function ResourcesPage() {
       return null;
     });
   };
+  const switchToLogin = () => {
+    setIsLogin(true);
+  };
   return (
     <div>
       {/* Section: Heading */}
 {showPopup && <Popup msg="Please Login" error="red1"/>}
+{showAuth && (
+        <div className="auth-overlay" onClick={closeAuth}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            {isLogin ? (
+              <Login onClose={closeAuth} onSignupClick={switchToSignup} />
+            ) : (
+              <Signup onClose={closeAuth} onLoginClick={switchToLogin} />
+            )}
+          </div>
+        </div>
+      )}
       <div className="heading">
         <h1>Resources</h1>
       </div>
