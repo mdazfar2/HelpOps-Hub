@@ -6,7 +6,8 @@ import "@stylesheets/resourceloader.css";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
+import {FaThumbsUp} from 'react-icons/fa6'
+import Popup from "@components/Popup";
 function ResourcesPage() {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -16,9 +17,23 @@ function ResourcesPage() {
   // New state variables for sorting and filtering
   const [sortOption, setSortOption] = useState("name");
   const [filterOption, setFilterOption] = useState("all");
+  const [showPopup,setShowPopup]=useState(false)
+  const [likedFolders, setLikedFolders] = useState(new Set());  //to add body bg color
 
-  //to add body bg color
-
+  useEffect(()=>{
+    fetchdataa()
+  },[])
+  async function fetchdataa(){
+    let msg=await fetch('/api/likedfolder',{
+      method:"GET"
+    })
+    msg=await msg.json()
+    let folder=new Set()
+    msg.msg.map((data)=>{
+      folder.add(data.resourcePath)
+    })
+    setLikedFolders(folder)
+  }
   useEffect(() => {
     function updateBackground() {
       if (document.body.classList.contains("dark-mode")) {
@@ -272,9 +287,48 @@ function ResourcesPage() {
       setFilteredData(filtered);
     }
   };
+  
+  async function handleLike(e, folderName) {
+    e.stopPropagation();
+    if (!localStorage.getItem('userName') && !localStorage.getItem("userEmail")) {
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 2000);
+      return;
+    }
+    let folder=likedFolders
+    if(folder.has(folderName)){
+      await fetch('/api/like', {
+        method: "POST",
+        body: JSON.stringify({
+          path: `${folderName}`,
+          isDelete:true
+        })
+      });
+    }else{
+      await fetch('/api/like', {
+        method: "POST",
+        body: JSON.stringify({
+          path: `${folderName}`,
+          isDelete:false
+        })
+      });
+    }
+    setLikedFolders((prev) => {
+      const newLikedFolders = new Set(prev);
+      if (newLikedFolders.has(folderName)) {
+        newLikedFolders.delete(folderName);
+      } else {
+        newLikedFolders.add(folderName);
+      }
+      return newLikedFolders;
+    });
+   
 
+  }
   const displayFolders = (data) => {
-    return data.map((item) => {
+    return data.map((item,index) => {
       // Render only directories (type === "dir")
       if (item.type === "dir") {
         // Parse creation date
@@ -302,6 +356,13 @@ function ResourcesPage() {
                 ? createdDate.toLocaleString()
                 : "N/A"}
             </p>
+            <div className="like-button" onClick={(e) => handleLike(e, item.name)}>
+              <FaThumbsUp style={{ color: likedFolders.has(item.name) ? 'Blue' : 'inherit' }}  size={'2rem'}/>
+            </div>
+             
+          
+              
+         
           </div>
         );
       }
@@ -309,17 +370,15 @@ function ResourcesPage() {
       return null;
     });
   };
-
   return (
     <div>
       {/* Section: Heading */}
-
+{showPopup && <Popup msg="Please Login" error="red1"/>}
       <div className="heading">
         <h1>Resources</h1>
       </div>
 
       {/* Section: Search-Bar */}
-
       <div className="search-container">
         <div id="search-box">
           <div className="icon">
