@@ -21,15 +21,7 @@ body {
     z-index: -1;
 }
 
-#Background1 {
-    background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%);
-    opacity: 1;
-}
 
-#Background2 {
-    background: linear-gradient(180deg, #333 8.1%, #121212 100%);
-    opacity: 0;
-}
 
 body.dark-mode #Background1 {
     opacity: 0;

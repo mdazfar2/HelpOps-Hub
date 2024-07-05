@@ -64,10 +64,15 @@ let [showModal,setShowModal]=useState(false)
       }
     }
   }
-  useEffect(() => {
+  useEffect(()=>{
     document.body.style.background =
       "linear-gradient(to bottom,#f5d471 2%,#ec904f 15%,#eb9a60 25%,#e99960 35%,#e89357 45%,#e99559 55%,#e78d4d 65%, #eb904f 75%,#e97a2a 85%,#ea670a 95%)  ";
-    // Clean-up function to reset background color when component unmounts
+      return ()=>{
+        document.body.style.backgroundColor = "";
+
+      }
+  },[])
+  useEffect(() => {
    
     document.addEventListener("DOMContentLoaded",func())
 
@@ -75,7 +80,6 @@ let [showModal,setShowModal]=useState(false)
     return () => {
       document.removeEventListener("DOMContentLoaded",func())
 
-      document.body.style.backgroundColor = "";
     };
   }, [session.status]);
   // Initialize the Splide carousel on component mount

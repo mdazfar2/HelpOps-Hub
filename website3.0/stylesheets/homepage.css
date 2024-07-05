@@ -6,11 +6,23 @@ body {
   width: 100%;
   display: block;
 }
+
+
+
+
+
+
+
+
+
+
 main {
   position: relative;
   z-index: 100;
   margin-top: 6rem;
 }
+
+
 .isDisplay {
   display: none;
 }
@@ -900,9 +912,17 @@ body.dark-mode {
   }
   .email-icon{
     position: relative;
-    left: -33%;
+    left: -28%;
     top: 50px;
   }
+  .subscribe-btn
+  {
+    margin-left:50px;
+  }
+  .input-field
+  {
+    margin-left: 50px;
+  } 
 }
 
 @media only screen and (max-width: 409px) {
