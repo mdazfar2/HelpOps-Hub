@@ -1,23 +1,30 @@
 /* Styles for Login auth-container */
-.login-auth-container {
-  background-color: #ff8c00;
-  padding: 20px;
-  border-radius: 10px;
-  width: 500px;
-  position: relative;
+.custome-dotted{
+  border-style: dotted;
+  border-width: 4px;
+}
+.border-rounded1{
+  border-radius: 26px;
+
+}
+.aa{
+  background-color: rgba(255, 255, 255, 1);
+}
+.text-shad{
+  color: rgb(65, 65, 65);
+  font-weight: 600;
+  text-shadow: rgba(0,0,0,0.25) !important;
+}
+.background-none{
+  background: none;
+  border-radius: 0px !important;
+}
+.input-place::placeholder{
+  font-weight: 600 !important;
+  font-style: Roboto;
+  
 }
 
-.login-auth-container h1 {
-  text-align: center;
-  margin-top: 5px;
-  font-size: 22px;
-}
-.eye1{
-  position: absolute;
-bottom: 24%;
-right: 22% !important;
-font-size: 1.5rem;  
-}
 
 .loader3 {
 display: flex;
@@ -60,87 +67,19 @@ height: 20px;
 border-radius: 50%;
 animation: outline-keys var(--animation);
 }
-.login-auth-container p {
-  text-align: center;
-  margin-top: 15px;
-  font-family: cursive;
-  font-size: 16px;
-}
 
-.login-auth-container img {
-  width: 30px;
-  height: 30px;
-  margin-left: 5px;
-}
 
-.login-auth-container .github-btn img{
-  width: 35px;
-  height: 30px;
-}
 
-.login-auth-container input {
-  width: 65%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  background: none;
-  color: black;
-  margin-left: 70px;
-  border-bottom: 1px solid #1f1f1f;
-}
 
-.login-auth-container input::placeholder {
-  color: #1f1f1f;
-}
 
-.login-auth-container button {
-  width: 65%;
-  padding: 10px;
-  margin-top: 15px;
-  border: none;
-  border-radius: 18px;
-  background-color: white;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 70px;
-  gap: 18px;
-}
 
-.login-auth-container .google-btn{
-  margin-top: 50px;
-}
 
-.login-auth-container .close-btn {
-  position: absolute;
-  top: -15px;
-  right: -135px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
 
-.login-auth-container a{
-  position: absolute;
-  right: 110px;
-  font-size: 13px;
-}
 
-.login-auth-container .login-btn{
-  width: 140px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  padding: 10px;
-  position: relative;
-  left: 100px;
-  background-color: rgb(64, 109, 177);
-  color: white;
-}
+
+
+
+
 
 .dark-mode .login-auth-container {
   background-color: #333;
