@@ -175,7 +175,7 @@ const Login = ({ onClose, onSignupClick }) => {
                   )}
                 </div>
               </div>
-              <div className="flex w-[69%] m-auto justify-between">
+              <div className="lower flex w-[69%] m-auto justify-between">
                 <p className="text-center text-[13px] mt-[15px] font-cursive "  style={{ cursor: "pointer" }} onClick={forgotPassword}>
                   Forgot Password
                 </p>
