@@ -121,11 +121,11 @@ let [error,setError]=useState(false)
     }
   }
   return (
-    <div className=" border-dashed border-black border-[2px] bg-slate-100 pl-[70px] pt-[40px] pr-[70px] rounded-lg text-center w-[500px] h-[550px] relative pb-[35px]">
+    <div className="profile-container border-dashed border-black border-[2px] bg-slate-100 pl-[70px] pt-[40px] pr-[70px] rounded-lg text-center w-[500px] h-[550px] relative pb-[35px]">
             {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
       {/* Close button */}
-      <button className="absolute bg-transparent border-none cursor-pointer text-[#333] right-[15px] hover:text-[#666] text-[24px] top-[5px]" onClick={onClose}>
+      <button className="close-btn absolute bg-transparent border-none cursor-pointer text-[#333] right-[15px] hover:text-[#666] text-[24px] top-[5px]" onClick={onClose}>
         &#10005; {/* Cross Unicode character */}
       </button>
       <h1 className='mb-[20px] text-[24px]  font-bold'>
@@ -139,7 +139,7 @@ let [error,setError]=useState(false)
   <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         {/* Username input */}
         <input type='file' id='fileupload' style={{display:"none"}} onChange={handlefilechange}></input>
-        <div className="mb-[15px] mt-[20px] relative">
+        <div className="form-group mb-[15px] mt-[20px] relative">
           <input
             type="text"
             placeholder="Enter your name"
@@ -150,7 +150,7 @@ let [error,setError]=useState(false)
           />
         </div>
         {/* Password input */}
-        <div  className="mb-[15px] mt-[20px] relative">
+        <div  className="form-group mb-[15px] mt-[20px] relative">
 
           <input
             type={`${showPassword?"text":"password"}`}
@@ -183,7 +183,7 @@ let [error,setError]=useState(false)
 
         </div>
         {/* Submit button */}
-        <button type="submit" onClick={handleSubmit} className="w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer margin-auto gap-[18px] m-auto text-[19px] font-semibold hover:bg-[#024d82]">Create Account &nbsp;{loading && <div className="loader3">
+        <button type="submit" onClick={handleSubmit} className="create-account-btn w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer margin-auto gap-[18px] m-auto text-[19px] font-semibold hover:bg-[#024d82]">Create Account &nbsp;{loading && <div className="loader3">
             <div className="circle">
             <div className="dot"></div>
               <div className="outline"></div>
