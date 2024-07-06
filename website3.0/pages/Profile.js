@@ -1,9 +1,8 @@
 "use client";
-import React, { useContext, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
-import { Context } from '@context/store';
 const Profile = ({ onClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +11,6 @@ const Profile = ({ onClose }) => {
   let [url,setUrl]=useState('')
   const [showConfirmPassword,setConfirmShowPassword]=useState(false)
   let ref=useRef()
-  let {userName,setUserName,userEmail,userImage}=useContext(Context)
 
 let [error,setError]=useState(false)
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -51,7 +49,7 @@ let [error,setError]=useState(false)
       await fetch('/api/createaccount', {
         method: 'POST',
         body: JSON.stringify({
-          email:userEmail,
+          email:localStorage.getItem('userEmail'),
           name: username,
           password: password,
           image:url.length>0?url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
@@ -60,7 +58,7 @@ let [error,setError]=useState(false)
     await fetch('/api/createaccount', {
       method: 'POST',
       body: JSON.stringify({
-        email:userEmail,
+        email:localStorage.getItem('userEmail'),
         name: username,
         password: password
       })

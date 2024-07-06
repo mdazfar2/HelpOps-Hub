@@ -1,32 +1,19 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import "@stylesheets/profilepage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { FaPlusCircle } from "react-icons/fa";
-import { Context } from "@context/store";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import Logout from "@components/Logout";
 
 const ProfilePage = () => {
-  let {userName,userImage,userEmail,setUserEmail,setUserImage,setUserName,setIsLogin}=useContext(Context)
   let session=useSession()
   let router=useRouter()
 
-  async function handleLogout(){
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('userImage');
-    setUserEmail('')
-    setUserImage('')
-    setUserName('')
-    if(session.status=="authenticated"){
-      router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
-    }else{
-    setIsLogin(false)
-    }
-    }
+
   return (
     <div className="main">
       <div className="profile-page">
@@ -38,15 +25,15 @@ const ProfilePage = () => {
         </div>
         <div className="image-container">
           <img
-            src={userImage.length>0?userImage:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
+            src={localStorage.getItem('userImage')?localStorage.getItem("userImage"):'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
             alt="Profile Picture"
             className="profile-img"
           />
        
         </div>
         <div className="profile-details">
-        <p className="mail">mail: {userEmail}</p>
-          <h1 className="username">{userName}</h1>
+        <p className="mail">mail: {localStorage.getItem('userEmail')}</p>
+          <h1 className="username">{localStorage.getItem("userName")}</h1>
           <p className="user-designation">Software Engineer</p>
           
           <p className="user-caption">
@@ -73,7 +60,10 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <button className='w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold '  onClick={handleLogout}>Logout</button>
+        <div>
+
+<Logout />
+        </div>
       </div>
     </div>
   );
