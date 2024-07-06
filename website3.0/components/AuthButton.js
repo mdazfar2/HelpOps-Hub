@@ -12,10 +12,10 @@ import UserProfile from './UserProfile';
 import { Context } from '@context/store';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage}=useContext(Context)
+  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,isLogin}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -31,7 +31,11 @@ let session=useSession()
       document.body.style.overflow = 'unset';
     }
   }, [showAuth]);
- 
+  if(session.status=='unauthenticated' && !isLogin){
+    setUserEmail('')
+    setUserImage('')
+    setUserName('')
+  }
   useEffect(()=>{
 
     if(session.status=='authenticated'){
@@ -48,7 +52,7 @@ let session=useSession()
     localStorage.setItem('userEmail',session.data.user.email)
     localStorage.setItem('userName',session.data.user.name)
     localStorage.setItem('userImage',session.data.user.image)
-    setIsLogin(true)
+    setIsLogin1(true)
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
@@ -67,14 +71,14 @@ let session=useSession()
   };
 
   const switchToSignup = () => {
-    setIsLogin(false);
+    setIsLogin1(false);
   };
 const onBack=()=>{
-  setIsLogin(true)
+  setIsLogin1(true)
 
 }
   const switchToLogin = () => {
-    setIsLogin(true);
+    setIsLogin1(true);
   };
   async function handleLogout(){
     if(session.status=="authenticated"){
@@ -91,7 +95,7 @@ const onBack=()=>{
     }
   const closeAuth = () => {
     setShowAuth(false);
-    setIsLogin(true);
+    setIsLogin1(true);
   };
   function handleProfileShow(){
     setShowProfile1(true)
@@ -125,7 +129,7 @@ console.log(userName)
       {showAuth && !userName && (
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-            {isLogin ? (
+            {isLogin1 ? (
               <Login onClose={closeAuth} onSignupClick={switchToSignup} />
             ) : (
               <Signup onClose={closeAuth} onBack={onBack} onLoginClick={switchToLogin} />

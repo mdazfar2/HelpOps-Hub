@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
 import Lodaernewletter from "../components/Loadernewletter";
@@ -25,7 +25,6 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import ParticlesComponent from "@components/ParticleBackground";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
-import { Context } from "@context/store";
 
 function HomePage() {
   const [loading, setLoading] = useState(false);
@@ -34,12 +33,7 @@ function HomePage() {
   const [showModal, setShowModal] = useState(false);
   const splineRef = useRef(null);
   let session = useSession();
-  let {userName,setUserName,setUserEmail,setUserImage,isLogin}=useContext(Context)
-  if(session.status=='unauthenticated' && !isLogin){
-    setUserEmail('')
-    setUserImage('')
-    setUserName('')
-  }
+ 
   useEffect(() => {
     // Extract token from URL query parameters
     const query = new URLSearchParams(window.location.search);
@@ -208,12 +202,12 @@ function HomePage() {
 
   return (
     <div className="">
-      {showPopup && (
+      {/* {showPopup && (
         <Popup
           msg={`${userName} Welcome !!`}
           error="green1"
         />
-      )}
+      )} */}
       {showModal && <Reset />}
       {error && (
         <Popup
