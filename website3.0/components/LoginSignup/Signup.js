@@ -7,7 +7,7 @@ import Popup1 from "../Popup1";
 import { signIn, useSession } from "next-auth/react";
 import OTP from "@pages/OTP";
 import Profile from "@pages/Profile";
-import { Context } from "@components/auth/Authprovider";
+import { Context } from "@context/store";
 
 // Signup component definition, receives onClose and onLoginClick as props from AuthButton.js
 const Signup = ({ onClose, onLoginClick , onBack }) => {
