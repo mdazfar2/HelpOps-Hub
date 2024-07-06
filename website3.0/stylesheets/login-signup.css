@@ -148,7 +148,12 @@ animation: outline-keys var(--animation);
 
   .login-auth-container p,
   .signup-auth-container p {
-    font-size: 14px;
+    font-size: 12px;
+    text-wrap: nowrap;
+  }
+
+  .login-auth-container p:nth-child(1){
+    margin-right: 40px;
   }
 
   .login-auth-container input,
