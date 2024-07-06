@@ -66,22 +66,22 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
   };
 
   return (
-    <div className="border-dashed border-black border-[2px] otp-container relative  text-center h-[500px] w-[650px]  bg-slate-100 pt-[60px] pl-[40px] pr-[40px]">
+    <div className="otp-container border-dashed border-black border-[2px] otp-container relative  text-center h-[500px] w-[650px]  bg-slate-100 pt-[60px] pl-[40px] pr-[40px] rounded-[26px]">
      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
      {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
       {/* Back arrow */}
-      <button className="absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]" onClick={onBack}>
+      <button className="back-arrow absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]" onClick={onBack}>
         &#8592; {/* Left arrow Unicode character */}
       </button>
       {/* Close button */}
-      <button className="absolute top-[10px] right-[10px] bg-transparent border-none text-2xl hover:text-[#666] cursor-pointer text-gray-700" onClick={onClose}>
+      <button className="close-btn absolute top-[10px] right-[10px] bg-transparent border-none text-2xl hover:text-[#666] cursor-pointer text-gray-700" onClick={onClose}>
         &#10005; {/* Cross Unicode character */}
       </button>
       <h5 className=''>To continue, enter the OTP sent to your registered email address.</h5>
       <p>This helps us keep your account secure.</p>
       {/* OTP input fields */}
-      <div className="mt-[20px] mb-[20px] ml-0 mr-0 flex justify-center gap-[6px]" onPaste={handlePaste}>
+      <div className="otp-input mt-[20px] mb-[20px] ml-0 mr-0 flex justify-center gap-[6px]" onPaste={handlePaste}>
         {otp.map((data, index) => {
           return (
             <input
@@ -100,7 +100,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
         })}
       </div>
       {/* Continue button */}
-      <button className="bg-[#098CCD] h-[50px] w-[118px] p-[10px] font-semibold text-white border-none px-5 py-2 rounded-[16px] cursor-pointer mt-5 b-18" onClick={handleSubmit}>Continue</button>
+      <button className="continue-btn bg-[#098CCD] h-[50px] w-[118px] p-[10px] font-semibold text-white border-none px-5 py-2 rounded-[16px] cursor-pointer mt-5 b-18" onClick={handleSubmit}>Continue</button>
     </div>
   );
 };

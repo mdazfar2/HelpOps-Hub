@@ -150,7 +150,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   console.log(session);
 
   return (
-    <div className="bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[400px] relative select pt-16">
+    <div className="signup-auth-container bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[400px] relative select pt-16">
       {popup && (
         <Popup
           msg={error}
@@ -163,8 +163,9 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
           error={`${errorOtp == "Subscribed Successfully" ? "green1" : "red1"}`}
         />
       )}
-{/* Back arrow */}
-<button className="absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]" onClick={onBack}>
+      
+      {/* Back arrow */}
+      <button className="absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]" onClick={onBack}>
         &#8592; {/* Left arrow Unicode character */}
       </button>
       <h1 className="text-center mt-[5px] font-semibold text-[22px] ">Create Your HelpOps-Hub Account</h1>
@@ -198,7 +199,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
       </p>
       <br />
 <br />
-      <button className="w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleContinue}>
+      <button className="continue-btn w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleContinue}>
         Continue &nbsp;
         {loading && (
           <div className="loader3">
@@ -208,6 +209,9 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
             </div>
           </div>
         )}
+      </button>
+      <button className=".close-btn absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
+            &#10005;
       </button>
     </div>
   );

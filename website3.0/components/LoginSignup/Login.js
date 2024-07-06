@@ -115,7 +115,7 @@ const Login = ({ onClose, onSignupClick }) => {
   return (
     <>
       {!isSent && (
-        <div className=" bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:w-[400px] relative select">
+        <div className="login-auth-container bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:w-[400px] relative select">
           {error && (
             <Popup
               msg={error}
@@ -169,9 +169,9 @@ const Login = ({ onClose, onSignupClick }) => {
                     placeholder="Password"
                   />
                   {showPassword ? (
-                    <FaEye className="absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
+                    <FaEye className="eye1 absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
                   ) : (
-                    <FaEyeSlash className="absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
+                    <FaEyeSlash className="eye1 absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
                   )}
                 </div>
               </div>
@@ -183,7 +183,7 @@ const Login = ({ onClose, onSignupClick }) => {
                   New here? Sign up now
                 </p>
               </div>
-              <button className="w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleLogin}>
+              <button className="login-btn w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleLogin}>
                 Login &nbsp;
                 {loading && (
                   <div className="loader3">
@@ -197,7 +197,7 @@ const Login = ({ onClose, onSignupClick }) => {
             </>
           )}
           {!allShow && (
-            <button className="w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleForgotPass}>
+            <button className="login-btn w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleForgotPass}>
               Submit &nbsp;
               {loading && (
                 <div className="loader3">
@@ -209,7 +209,7 @@ const Login = ({ onClose, onSignupClick }) => {
               )}
             </button>
           )}
-          <button className="absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
+          <button className="close-btn absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
             &#10005;
           </button>
         </div>

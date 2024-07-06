@@ -4,20 +4,6 @@
   border-radius: 18px !important;
 }
 
-
-
-
-.back-arrow:hover {
-  color: #666;
-}
-
-.otp-container {
-    border-radius: 26px;
-}
-
-  
-
-  
   .otp-field {
     border-radius: 8px;
     background: rgba(0,0,0,0.4);
