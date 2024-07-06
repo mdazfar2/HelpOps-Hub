@@ -1,10 +1,10 @@
+'use client'
 import React, { useContext } from 'react'
 import "@stylesheets/profilepage.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { FaPlusCircle } from "react-icons/fa";
 import { Context } from '@context/store';
 export default function ProfilepageDetails() {
     let {userName,userEmail,userImage}=useContext(Context)
