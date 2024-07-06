@@ -175,23 +175,12 @@ const Login = ({ onClose, onSignupClick }) => {
                   )}
                 </div>
               </div>
-<<<<<<< HEAD
-              <div>
-                <p className="forgot-password" onClick={forgotPassword}>
-                  Forgot Password
-                </p>
-                <p>New here? &nbsp;
-                <span className="login-signup-link" onClick={onSignupClick}>
-                  Sign up now
-                </span>
-=======
               <div className="flex w-[69%] m-auto justify-between">
-                <p className="text-center text-[13px] mt-[15px] font-cursive "  style={{ cursor: "pointer" }} onClick={forgotPassword}>
+                <p className="text-center text-[13px] mt-[15px] font-cursive forgot-password" onClick={forgotPassword}>
                   Forgot Password
                 </p>
-                <p className="text-center text-[13px] mt-[15px] font-cursive " style={{ cursor: "pointer" }} onClick={onSignupClick}>
-                  New here? Sign up now
->>>>>>> c695f4005f66fc8b9d14c1f63356d0dc53fee7cd
+                <p className="text-center text-[13px] mt-[15px] font-cursive ">New here? 
+                <span className="login-signup-link" onClick={onSignupClick}> Sign up now</span>
                 </p>
               </div>
               <button className="w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleLogin}>
