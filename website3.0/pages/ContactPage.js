@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Popup from "@components/Popup"; // Make sure to import the Popup component
-
+import AuthButton from "@components/AuthButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 function ContactPage() {
   const [selectedRating, setSelectedRating] = useState(0);
   const [showError, setShowError] = useState(false);
@@ -113,7 +115,7 @@ function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32">
+    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32 max-[400px]:mt-28">
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10">
         <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
@@ -145,6 +147,20 @@ function ContactPage() {
             {showThankYouMessage}
           </form>
         </div>
+        <div className="relative mb-10 items-center gap-2 hidden max-[400px]:flex justify-center w-full">
+        <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+          <button
+            className="bg-gray-100/80 border-none rounded-2xl shadow-md shadow-black/20 text-black text-xl cursor-pointer text-center transition-all duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 hover:bg-none hover:border-2 hover:border-whitesmoke mr-5"
+            style={{ fontFamily: "ubuntu" }}
+          >
+            <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+            Sponsor
+          </button>
+        </a>
+        <div className="block">
+          <AuthButton />
+        </div>
+      </div>
       </div>
   );
 }

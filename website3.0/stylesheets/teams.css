@@ -347,4 +347,9 @@
     padding-top: 10px;
   }
 }
+@media screen and (max-width: 400px) {
+  #ourteam {
+    margin-top: 40px;
+  }
+}
 

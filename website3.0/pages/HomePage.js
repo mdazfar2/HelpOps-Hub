@@ -16,7 +16,7 @@ import {
 //Importing the AOS Package for Scroll Animations
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import AuthButton from "@components/AuthButton";
 //Importing the SplideJS Package
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
@@ -264,9 +264,19 @@ function HomePage() {
             </div>
           )}
       </div>
-
-      <div className="absolute max-sm:static max-sm:mt-48 z-10 top-48 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:ml-0 flex justify-left ml-32 items-center">
-        <div className="p-16 max-[420px]:px-0 bg-white rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
+      <div className="items-center gap-2 hidden max-[400px]:flex relative justify-center top-40">
+          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+              <button className="bg-gray-100/80 border-none rounded-2xl shadow-md shadow-black/20 text-black text-xl cursor-pointer text-center transition-all duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 hover:bg-none hover:border-2 hover:border-whitesmoke mr-5" style={{fontFamily:"ubuntu"}}>
+                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                Sponsor
+              </button>
+            </a>
+            <div className="block">
+              <AuthButton />
+            </div>
+      </div>
+      <div className="absolute max-sm:static max-sm:mt-48 z-10 top-48 max-[400px]:top-0 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:ml-0 flex justify-left ml-32 items-center">
+        <div className="p-16 max-[460px]:w-full max-[420px]:px-0 bg-white rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
           <h1 className="text-8xl max-lg:text-7xl max-sm:text-6xl max-[420px]:text-5xl max-sm:text-center mb-5 font-bold text-[#63B5C3]">
             HelpOps-Hub
           </h1>
