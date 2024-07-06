@@ -115,7 +115,7 @@ const Login = ({ onClose, onSignupClick }) => {
   return (
     <>
       {!isSent && (
-        <div className="login-auth-container">
+        <div className=" bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:w-[400px] relative select">
           {error && (
             <Popup
               msg={error}
@@ -127,7 +127,7 @@ const Login = ({ onClose, onSignupClick }) => {
             />
           )}
 
-          <h1>
+          <h1 className="text-center mt-[5px] text-shad text-[22px]">
             {allShow ? "Login to HelpOps-Hub" : "Please Enter Your Email"}
           </h1>
           {!allShow && (
@@ -135,42 +135,47 @@ const Login = ({ onClose, onSignupClick }) => {
               type="text"
               onChange={(e) => setEmail1(e.target.value)}
               value={email1}
+              className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px]" 
+
               placeholder="Enter your email"
             />
           )}
           {allShow && (
             <>
-              <button className="google-btn" onClick={() => signIn("google")}>
-                <img src="google.png" alt="Google" />
+              <button className="google-btn mt-[50px] w-3/5 p-2  border-none rounded-[18px] bg-white cursor-pointer flex justify-center items-center ml-[70px] gap-[18px] text-[#4F4848] font-semibold" onClick={() => signIn("google")}>
+                <img className="w-[30px] h-[30px] ml-[5px]" src="google.png" alt="Google" />
                 Sign in with Google
               </button>
-              <button className="github-btn" onClick={() => signIn("github")}>
-                <img src="github.png" alt="GitHub" />
+              <button className="github-btn w-3/5 p-2 mt-4 border-none rounded-[18px] bg-white cursor-pointer flex justify-center items-center ml-[70px] gap-[18px] text-[#4F4848] font-semibold" onClick={() => signIn("github")}>
+                <img className="w-[35px] h-[30px] ml-[5px]" src="github.png" alt="GitHub" />
                 Sign in with Github
               </button>
-              <p>Or</p>
+              <p className="text-center text-[16px] mt-[15px] font-Itim ">Or</p>
               <br />
               <div>
                 <input
                   type="text"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
-                  placeholder="Enter your email"
+                  className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place" 
+                  placeholder="Email or Username"
                 />
                 <div style={{ position: "relative" }}>
                   <input
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
+                    className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place" 
                     type={`${showPassword ? "text" : "password"}`}
                     placeholder="Password"
                   />
                   {showPassword ? (
-                    <FaEye className="eye1" onClick={toggle} />
+                    <FaEye className="absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
                   ) : (
-                    <FaEyeSlash className="eye1" onClick={toggle} />
+                    <FaEyeSlash className="absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
                   )}
                 </div>
               </div>
+<<<<<<< HEAD
               <div>
                 <p className="forgot-password" onClick={forgotPassword}>
                   Forgot Password
@@ -179,9 +184,17 @@ const Login = ({ onClose, onSignupClick }) => {
                 <span className="login-signup-link" onClick={onSignupClick}>
                   Sign up now
                 </span>
+=======
+              <div className="flex w-[69%] m-auto justify-between">
+                <p className="text-center text-[13px] mt-[15px] font-cursive "  style={{ cursor: "pointer" }} onClick={forgotPassword}>
+                  Forgot Password
+                </p>
+                <p className="text-center text-[13px] mt-[15px] font-cursive " style={{ cursor: "pointer" }} onClick={onSignupClick}>
+                  New here? Sign up now
+>>>>>>> c695f4005f66fc8b9d14c1f63356d0dc53fee7cd
                 </p>
               </div>
-              <button className="login-btn" onClick={handleLogin}>
+              <button className="w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleLogin}>
                 Login &nbsp;
                 {loading && (
                   <div className="loader3">
@@ -195,7 +208,7 @@ const Login = ({ onClose, onSignupClick }) => {
             </>
           )}
           {!allShow && (
-            <button className="login-btn" onClick={handleForgotPass}>
+            <button className="w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleForgotPass}>
               Submit &nbsp;
               {loading && (
                 <div className="loader3">
@@ -207,14 +220,14 @@ const Login = ({ onClose, onSignupClick }) => {
               )}
             </button>
           )}
-          <button className="close-btn" onClick={onClose}>
+          <button className="absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
             &#10005;
           </button>
         </div>
       )}
       {isSent && (
-        <div className="login-auth-container">
-          <h1>Verification Link Has Been Sent to Your Email</h1>
+        <div className="bg-slate-100 w-[400px] text-2xl rounded-lg p-[40px]">
+          <h1 className="text-center">Verification Link Has Been Sent to Your Email</h1>
         </div>
       )}
     </>

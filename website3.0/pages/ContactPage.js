@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import "@stylesheets/contact.css";
 import Popup from "@components/Popup"; // Make sure to import the Popup component
 
 function ContactPage() {
@@ -17,7 +16,7 @@ function ContactPage() {
       if (document.body.classList.contains('dark-mode')) {
         document.body.style.background = "#353535";
       } else {
-        document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#eb9a60 45%,#e99960 65%,#e89357 85%)";
+        document.body.style.background = "#EEE";
       }
     }
 
@@ -114,22 +113,23 @@ function ContactPage() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32">
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
-      <div className="container">
-        <img src="/rateus.png" className="contact-img" alt="rateus" />
-        <div className="form-container">
-          <h1>Contact Us</h1>
+      <div className="mt-10">
+        <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
+      </div>
+        <div className="flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl bg-[#098CCD] bg-opacity-10 md:justify-center">
+          <h1 className="text-3xl">Contact Us</h1>
           <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
-            <input type="text" id="name" name="name" required placeholder="Name:" />
-            <input type="email" id="email" name="email" required placeholder="Email:" />
-            <textarea id="comment" name="comment" required placeholder="Comment:"></textarea>
+            <input type="text" id="name" name="name" required placeholder="Name:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900"/>
+            <input type="email" id="email" name="email" required placeholder="Email:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900" />
+            <textarea id="comment" name="comment" required placeholder="Comment:" className="w-full rounded-xl h-32 my-2 px-40 pl-4 pt-24  outline-none placeholder-gray-900"></textarea>
             <label htmlFor="rating" id="rate">Rating:</label>
             <div id="rating">
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
                   key={value}
-                  className="star"
+                  className="star cursor-pointer text-[3rem]"
                   data-value={value}
                   onClick={() => handleStarClick(value)}
                   style={{ color: selectedRating >= value ? "#FFD700" : "#000" }}
@@ -139,15 +139,13 @@ function ContactPage() {
               ))}
             </div>
             {showError && <p id="error">Please Give Any Rating</p>}
-            <button type="submit" id="button" disabled={disableSubmit}>
+            <button type="submit" id="button" disabled={disableSubmit} className="w-1/3 bg-[#fff] text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded">
               Submit {loading && <div className="loader2"><div className="circle"><div className="dot"></div><div className="outline"></div></div></div>}
             </button>
             {showThankYouMessage}
           </form>
         </div>
-        <img src="rateus.png" className="contact-img1" alt="rateus" />
       </div>
-    </div>
   );
 }
 

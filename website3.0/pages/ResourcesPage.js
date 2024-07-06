@@ -6,7 +6,10 @@ import "@stylesheets/resourceloader.css";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
+import {FaThumbsUp,FaHeart} from 'react-icons/fa6'
+import Popup from "@components/Popup";
+import Login from "@components/LoginSignup/Login";
+import Signup from "@components/LoginSignup/Signup";
 function ResourcesPage() {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -16,16 +19,38 @@ function ResourcesPage() {
   // New state variables for sorting and filtering
   const [sortOption, setSortOption] = useState("name");
   const [filterOption, setFilterOption] = useState("all");
-
-  //to add body bg color
-
+  const [showPopup,setShowPopup]=useState(false)
+  const [likedFolders, setLikedFolders] = useState(new Set());  //to add body bg color
+  const [showAuth, setShowAuth] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const switchToSignup = () => {
+    setIsLogin(false);
+  };
+  const closeAuth = () => {
+    setShowAuth(false);
+    setIsLogin(true);
+  };
+  useEffect(()=>{
+    fetchdataa()
+  },[])
+  async function fetchdataa(){
+    let msg=await fetch('/api/likedfolder',{
+      method:"GET"
+    })
+    msg=await msg.json()
+    let folder=new Set()
+    msg.msg.map((data)=>{
+      folder.add(data.resourcePath)
+    })
+    setLikedFolders(folder)
+  }
   useEffect(() => {
     function updateBackground() {
       if (document.body.classList.contains("dark-mode")) {
         document.body.style.background = "#353535";
       } else {
         document.body.style.background =
-          "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)";
+          "rgba(238, 238, 238, 1)";
       }
     }
     const observer = new MutationObserver((mutationsList) => {
@@ -272,9 +297,52 @@ function ResourcesPage() {
       setFilteredData(filtered);
     }
   };
+  
+  async function handleLike(e, folderName) {
+    e.stopPropagation();
+    if (!localStorage.getItem('userName') && !localStorage.getItem("userEmail")) {
+      setShowPopup(true);
+      setTimeout(() => {
+        
+        setShowAuth(true)
+      }, 800);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 2000);
+      return;
+    }
+    let folder=likedFolders
+    if(folder.has(folderName)){
+      await fetch('/api/like', {
+        method: "POST",
+        body: JSON.stringify({
+          path: `${folderName}`,
+          isDelete:true
+        })
+      });
+    }else{
+      await fetch('/api/like', {
+        method: "POST",
+        body: JSON.stringify({
+          path: `${folderName}`,
+          isDelete:false
+        })
+      });
+    }
+    setLikedFolders((prev) => {
+      const newLikedFolders = new Set(prev);
+      if (newLikedFolders.has(folderName)) {
+        newLikedFolders.delete(folderName);
+      } else {
+        newLikedFolders.add(folderName);
+      }
+      return newLikedFolders;
+    });
+   
 
+  }
   const displayFolders = (data) => {
-    return data.map((item) => {
+    return data.map((item,index) => {
       // Render only directories (type === "dir")
       if (item.type === "dir") {
         // Parse creation date
@@ -283,25 +351,32 @@ function ResourcesPage() {
         // Return JSX for each directory item
         return (
           <div
-            className="folder-card"
+            className="folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8 bg-[#0000000d] rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer [transition:background-color_0.3s_ease] hover:[box-shadow:0_0_20px_rgba(48,48,48,.8)] hover:scale-[1.03] hover:[transition:0.5s] hover:rounded-3xl hover:text-[0.9rem]"
             key={item.name}
             onClick={() => {
               // Redirect to detailed resources page on click
               const folder = `${item.name}`;
-              window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${item.html_url}`;
+              window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${item.html_url}&isLike=${likedFolders.has(item.name)?"true":'false'}`;
             }}
           >
             {/* Display folder name */}
-            <h3 className="resourcesTitle">{item.name}</h3>
+            <h3 className="resourcesTitle text-[25px] font-bold">{item.name}</h3>
             {/* Display folder path */}
-            <p className="resourcesPara">{item.path}</p>
+            <p className="resourcesPara text-[18px] font-[cursive] m-[10px]">{item.path}</p>
             {/* Display creation date */}
-            <p className="resourcesDate">
+            <p className="resourcesDate text-[16px] font-[cursive] m-[10px]">
               Created on:{" "}
               {createdDate.toLocaleString() !== "Invalid Date"
                 ? createdDate.toLocaleString()
                 : "N/A"}
             </p>
+            <div className="like-button" onClick={(e) => handleLike(e, item.name)}>
+              <FaHeart className={`${likedFolders.has(item.name)?"gradientdd":""}`} style={{ color: likedFolders.has(item.name) ? 'red' : 'inherit' }}  size={'2rem'}/>
+            </div>
+             
+          
+              
+         
           </div>
         );
       }
@@ -309,49 +384,64 @@ function ResourcesPage() {
       return null;
     });
   };
-
+  const switchToLogin = () => {
+    setIsLogin(true);
+  };
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center m-0 font-arial">
       {/* Section: Heading */}
-
+{showPopup && <Popup msg="Please Login" error="red1"/>}
+{showAuth && (
+        <div className="auth-overlay" onClick={closeAuth}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            {isLogin ? (
+              <Login onClose={closeAuth} onSignupClick={switchToSignup} />
+            ) : (
+              <Signup onClose={closeAuth} onLoginClick={switchToLogin} />
+            )}
+          </div>
+        </div>
+      )}
       <div className="heading">
-        <h1>Resources</h1>
+        <h1 class="text-4xl text-center font-extrabold mt-[160px] mb-5 font-rancho">Resources</h1>
       </div>
 
       {/* Section: Search-Bar */}
-
-      <div className="search-container">
-        <div id="search-box">
+      <div className="search-container flex justify-center items-center relative mb-[13px]">
+        <div id="search-box" className="flex justify-center items-center w-[400px] h-16 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] hover:[box-shadow:0_0px_8px_rgba(48,48,48,.8)]">
           <div className="icon">
-            <FontAwesomeIcon icon={faMagnifyingGlass} color="orange" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} color="black" />
           </div>
           <input
             type="text"
             id="search-bar"
             placeholder="Search topics..."
             onInput={handleSearch}
+            className="w-[90%] outline-[none] border-[none] text-[20px] rounded-[24px] bg-[white] relative placeholder:text-[#9e9e9e]"
           />
         </div>
       </div>
 
       {/* Section: Sort & Filter */}
 
-      <div className="sort-filter-container">
-        <div className="sort-options">
+      <div className="sort-filter-container flex justify-center gap-[20px] mb-[20px]">
+        <div className="sort-options flex items-center gap-[10px]">
           <label>Sort by: </label>
           <select
             value={sortOption}
             onChange={(e) => handleSort(e.target.value)}
+            className="p-[5px] rounded-[5px] border-[1px] border-[solid] border-[#ddd] bg-[white] cursor-pointer"
           >
             <option value="name">Name</option>
             <option value="date">Date</option>
           </select>
         </div>
-        <div className="filter-options">
-          <label>Filter: </label>
+        <div className="filter-options flex items-center gap-[10px]">
+          <label className="text-black">Filter: </label>
           <select
             value={filterOption}
             onChange={(e) => handleFilter(e.target.value)}
+            className="p-[5px] rounded-[5px] border-[1px] border-[solid] border-[#ddd] bg-[white] cursor-pointer"
           >
             <option value="all">All</option>
             <option value="lastWeek">Last Week</option>
@@ -362,7 +452,7 @@ function ResourcesPage() {
 
       {/* Section: Main Container */}
 
-      <div id="maincontainer">
+      <div id="maincontainer" className="flex items-center justify-center">
         {loading ? (
           <div id="loading">
             <div className="📦"></div>
@@ -376,7 +466,7 @@ function ResourcesPage() {
             <p>{error}</p>
           </div>
         ) : (
-          <div id="folders-container">{displayFolders(filteredData)}</div>
+          <div id="folders-container" className="flex w-full flex-wrap justify-center m-auto">{displayFolders(filteredData)}</div>
         )}
       </div>
     </div>
