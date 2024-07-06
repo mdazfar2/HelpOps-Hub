@@ -17,7 +17,7 @@ export default function Logout() {
         setUserImage('')
         setUserName('')
         if(session.status=="authenticated"){
-          router.push('http://localhost:3000/api/auth/signout?csrf=true')
+          router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
         }else{
         setIsLogin(false)
         window.location.reload()
