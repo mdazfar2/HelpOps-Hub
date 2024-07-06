@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../stylesheets/login-signup.css";
 import Popup from "../Popup";
 import Popup1 from "../Popup1";
 import { signIn, useSession } from "next-auth/react";
 import OTP from "@pages/OTP";
 import Profile from "@pages/Profile";
+import { Context } from "@components/auth/Authprovider";
 
 // Signup component definition, receives onClose and onLoginClick as props from AuthButton.js
 const Signup = ({ onClose, onLoginClick , onBack }) => {
@@ -18,6 +19,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   const [errorOtp, setErrorOtp] = useState(false); // State to hold OTP error messages
   let [loading, setLoading] = useState(false); // State to indicate loading status
   const [popup, setPopup] = useState(false); // State to show/hide popup
+  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage}=useContext(Context)
 
   // useEffect hook to handle Enter key press for continue
   useEffect(() => {
@@ -67,7 +69,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
         return;
       }
       // Store the user email
-      localStorage.setItem("email", email);
+      setUserEmail(email);
       setShowOTP(true); // Show OTP input
       setLoading(false);
     } else {
@@ -86,7 +88,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   // Function to handle OTP submission
   const handleOTPSubmit = async (otp) => {
     try {
-      let email = localStorage.getItem("email");
+      let email = userEmail;
       let response = await fetch("/api/signup", {
         method: "POST",
         headers: {

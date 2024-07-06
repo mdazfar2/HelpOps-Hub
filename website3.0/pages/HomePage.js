@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+"use client"
+import React, { useEffect, useState, useRef, useContext } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
 import Lodaernewletter from "../components/Loadernewletter";
 import Popup from "@components/Popup";
 import Spline from "@splinetool/react-spline";
+
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,6 +25,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import ParticlesComponent from "@components/ParticleBackground";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
+import { Context } from "@context/store";
 
 function HomePage() {
   const [loading, setLoading] = useState(false);
@@ -31,7 +34,12 @@ function HomePage() {
   const [showModal, setShowModal] = useState(false);
   const splineRef = useRef(null);
   let session = useSession();
-
+  let {userName,setUserName,setUserEmail,setUserImage,isLogin}=useContext(Context)
+  if(session.status=='unauthenticated' && !isLogin){
+    setUserEmail('')
+    setUserImage('')
+    setUserName('')
+  }
   useEffect(() => {
     // Extract token from URL query parameters
     const query = new URLSearchParams(window.location.search);
@@ -60,7 +68,7 @@ function HomePage() {
       }
     }
   }
-
+ 
   useEffect(() => {
     document.addEventListener("DOMContentLoaded",func())
     return () => {
@@ -202,7 +210,7 @@ function HomePage() {
     <div className="">
       {showPopup && (
         <Popup
-          msg={`${localStorage.getItem("userName")} Welcome !!`}
+          msg={`${userName} Welcome !!`}
           error="green1"
         />
       )}
@@ -215,7 +223,7 @@ function HomePage() {
       )}
       <div className="relative h-screen">
         <div ref={splineRef}>
-              <Spline scene="/Section1_Scene.splinecode"/>
+              {/* <Spline scene="/Section1_Scene.splinecode"/> */}
         </div>
       </div>
 
@@ -234,7 +242,7 @@ function HomePage() {
       </div>
 
       <div className=" relative mt-32">
-        <Spline scene="/Section2_Scene.splinecode" />
+        {/* <Spline scene="/Section2_Scene.splinecode" /> */}
         <button className="w-32 h-12 absolute top-[570px] left-1/2 translate-x-[-60%]"></button>
       </div>
 
@@ -282,7 +290,7 @@ function HomePage() {
 
       <div className="flex items-center relative h-[600px] mt-16 mb-16 px-16">
         <div className="h-full w-1/2">
-          <Spline scene="/Section3_Scene.splinecode" />
+          {/* <Spline scene="/Section3_Scene.splinecode" /> */}
         </div>
         <div className="w-1/2">
           <div className="text-7xl text-gray-700 font-medium ">

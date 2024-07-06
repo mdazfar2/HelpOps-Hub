@@ -1,23 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "@stylesheets/login-signup.css";
 import Popup from "@components/Popup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { signIn } from "next-auth/react";
+import { Context } from "@context/store";
 
 // Login component definition, receives onClose and onSignupClick as props from AuthButton
 const Login = ({ onClose, onSignupClick }) => {
   // State variables
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email2, setEmail2] = useState("");
   const [email1, setEmail1] = useState("");
   const [isSent, setIsSent] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-
+  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin}=useContext(Context)
   // useEffect hook to handle Enter key press for login
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
@@ -33,7 +34,7 @@ const Login = ({ onClose, onSignupClick }) => {
     return () => {
       document.removeEventListener("keydown", handleGlobalKeyDown);
     };
-  }, [email, password]);
+  }, [email2, password]);
 
   // Toggle function to show or hide password
   function toggle() {
@@ -46,7 +47,7 @@ const Login = ({ onClose, onSignupClick }) => {
     let res = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({
-        email: email,
+        email: email2,
         password: password,
       }),
     });
@@ -58,24 +59,28 @@ const Login = ({ onClose, onSignupClick }) => {
       setError(data.msg);
       setTimeout(() => {
         setError("");
-        setEmail("");
+        setEmail2("");
+
         setPassword("");
       }, 1000);
       return;
     }
 
     // Save user details to localStorage
-    localStorage.setItem("userName", data.user[0].name);
-    localStorage.setItem("userEmail", data.user[0].email);
-    localStorage.setItem("image", data.user[0].image1);
-
+    setUserName( data.user[0].name);
+    setUserEmail( data.user[0].email);
+    setUserImage(data.user[0].image1);
+    localStorage.setItem('userName', data.user[0].name);
+    localStorage.setItem('userEmail', data.user[0].email);
+    localStorage.setItem('userImage',data.user[0].image1);
+    setIsLogin(true)
+console.log('setting data')
     setError(`${data.user[0].name} Welcome !!`);
 
     // Close the login popup and reload the page after 2 seconds
     setTimeout(() => {
       setError("");
       onClose();
-      window.location.reload();
     }, 2000);
   }
 
@@ -155,8 +160,8 @@ const Login = ({ onClose, onSignupClick }) => {
               <div>
                 <input
                   type="text"
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
+                  onChange={(e) => setEmail2(e.target.value)}
+                  value={email2}
                   className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place" 
                   placeholder="Email or Username"
                 />

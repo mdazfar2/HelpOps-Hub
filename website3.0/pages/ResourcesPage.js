@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
 
@@ -10,6 +10,7 @@ import {FaThumbsUp,FaHeart} from 'react-icons/fa6'
 import Popup from "@components/Popup";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
+import { Context } from "@context/store";
 function ResourcesPage() {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -23,6 +24,8 @@ function ResourcesPage() {
   const [likedFolders, setLikedFolders] = useState(new Set());  //to add body bg color
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  let {userName,setUserName,userEmail,userImage}=useContext(Context)
+
   const switchToSignup = () => {
     setIsLogin(false);
   };
@@ -300,7 +303,7 @@ function ResourcesPage() {
   
   async function handleLike(e, folderName) {
     e.stopPropagation();
-    if (!localStorage.getItem('userName') && !localStorage.getItem("userEmail")) {
+    if (!userName && !userEmail) {
       setShowPopup(true);
       setTimeout(() => {
         

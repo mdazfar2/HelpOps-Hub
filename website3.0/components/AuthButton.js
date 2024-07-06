@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { useSession } from 'next-auth/react';
 import Profile from '@pages/Profile';
@@ -9,14 +9,17 @@ import Login from './LoginSignup/Login';
 import Signup from './LoginSignup/Signup';
 import { useRouter } from 'next/navigation';
 import UserProfile from './UserProfile';
+import { Context } from '@context/store';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
+  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage}=useContext(Context)
+
   let router=useRouter()
   useEffect(()=>{
-    if(localStorage.getItem('userName')){
+    if(userName){
       showProfile(true)
     }
    },[profile])
@@ -39,9 +42,13 @@ let session=useSession()
       //     name:session.data.user.name
       //   })
       // })
-      localStorage.setItem('userEmail',session.data.user.email)
-      localStorage.setItem('userName',session.data.user.name)
-      localStorage.setItem('image',session.data.user.image)
+    setUserEmail(session.data.user.email)
+    setUserName(session.data.user.name)
+    setUserImage(session.data.user.image)
+    localStorage.setItem('userEmail',session.data.user.email)
+    localStorage.setItem('userName',session.data.user.name)
+    localStorage.setItem('userImage',session.data.user.image)
+    setIsLogin(true)
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
@@ -71,21 +78,15 @@ const onBack=()=>{
   };
   async function handleLogout(){
     if(session.status=="authenticated"){
-      localStorage.removeItem('userEmail')
-      localStorage.removeItem('email')
-      localStorage.removeItem('name')
-  
-      localStorage.removeItem('userName')
-      localStorage.removeItem('image')
+      setUserEmail('')
+      setUserImage('')
+      setUserName('')
       router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
   
     }
-      localStorage.removeItem('userEmail')
-        localStorage.removeItem('email')
-        localStorage.removeItem('name')
-  
-        localStorage.removeItem('userName')
-        localStorage.removeItem('image')
+    setUserEmail('')
+    setUserImage('')
+    setUserName('')
         window.location.reload()
     }
   const closeAuth = () => {
@@ -98,9 +99,12 @@ const onBack=()=>{
   function closeProfile(){
     setShowProfile1(false)
   }
+  useEffect(()=>{
+console.log(userName)
+  },[userName])
   return (
     <>
-   {!profile &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
+   {!profile && userName.length==0 &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
       }
      {/* {
  profile&& <> <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
@@ -108,7 +112,7 @@ const onBack=()=>{
     </div><button onClick={handleLogout}>Logout</button></>
 } */}
 {
-  profile && <div className="auth-btn"  onClick={handleProfileShow}>Profile</div>
+  userName.length>0 && <div className="auth-btn"  onClick={()=>router.push('/profile')}>Profile</div>
 }
 {
   showProfile1  && 
@@ -118,7 +122,7 @@ const onBack=()=>{
           </div>
         </div>
 }
-      {showAuth && (
+      {showAuth && !userName && (
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             {isLogin ? (
