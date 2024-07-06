@@ -1,10 +1,18 @@
-import ProfilePage from '@pages/ProfilePage'
+'use client'
 import React from 'react'
+import Logout from '@components/Logout'
+import ProfilepageDetails from '@components/ProfilepageDetails'
 
 const profile = () => {
   return (
-    <div>
-      <ProfilePage/>
+    <div className="main">
+      <div className="profile-page">
+        <ProfilepageDetails/>
+      <div>
+
+        <Logout />
+        </div>
+      </div>
     </div>
   )
 }
