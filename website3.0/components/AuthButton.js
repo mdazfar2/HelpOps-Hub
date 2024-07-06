@@ -85,7 +85,7 @@ const onBack=()=>{
       setUserEmail('')
       setUserImage('')
       setUserName('')
-      router.push('http://localhost:3000/api/auth/signout?csrf=true')
+      router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
   
     }
     setUserEmail('')
