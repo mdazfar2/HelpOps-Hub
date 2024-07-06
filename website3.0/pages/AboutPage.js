@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect } from "react";
-import "@stylesheets/abouts.css";
+// import "@stylesheets/abouts.css";
 
 function AboutPage() {
 
@@ -16,7 +16,7 @@ function AboutPage() {
         
       }else{
         
-        document.body.style.background = "linear-gradient(to bottom,#f5d471 2%,#ec904f 35%,#eb9a60 55%,#e99960 65%,#e89357 75%,#e99559 85%)  ";
+        document.body.style.background = "#EEE";
       }
     }
     const observer = new MutationObserver((mutationsList) => {
@@ -38,33 +38,20 @@ function AboutPage() {
     };
   }, []);
   return (
-    <div className="main">
-      {/*Section: Title */}
+    <div className="w-full mt-36 p-4 md:px-8 lg:px-16">
+      {/* Section: Title */}
+      <div className="text-4xl text-center font-semibold">About us</div>
 
-      <div className="about_title">About us</div>
-
-      {/*Section: Video */}
-
-      <div className="video">
-        <video src="/HelpOps-H.mp4" autoPlay loop muted></video>
+      {/* Section: Video */}
+      <div className="w-full flex justify-center">
+        <video src="/HelpOps-H.mp4" autoPlay loop muted className="w-full md:w-4/5 mt-10 rounded-2xl shadow-2xl"></video>
       </div>
 
-      {/*Section: What is HelpOps-Hub*/}
-
-      <div className="start">
-        <div className="img-container">
-          <img
-            className="about_logo"
-            src="/HelpOps-H Fevicon.png"
-            alt="HelpOps Logo"
-          />
-        </div>
-        <div
-          className="text-container"
-          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-        >
-          <h1 className="text-title">What is HelpOps-Hub?</h1>
-          <p className="text-desc">
+      {/* Section: What is HelpOps-Hub */}
+      <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 w-full mb-10">
+        <div className="flex flex-col justify-center items-center w-full p-10 md:w-1/2 ml-2 md:mr-36" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+          <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4">What is HelpOps-Hub?</h1>
+          <p className="text-desc text-center w-full ">
             HelpOps-Hub is a comprehensive, community-driven platform designed
             to support and empower DevOps beginners and professionals. Founded
             by Azfar Alam, HelpOps-Hub offers a centralized resource for tools,
@@ -77,20 +64,19 @@ function AboutPage() {
             solutions, and drive the future of DevOps together.
           </p>
         </div>
+        <div className="w-full md:w-1/5 flex justify-center">
+          <img src="/HelpOps-H Fevicon.png" alt="HelpOps Logo" className="w-2/4 md:w-full" />
+        </div>
       </div>
 
-      {/*Section: Our Mission*/}
-
-      <div className="end">
-        <div className="img-container">
-          <img className="mission" src="/mission.png" alt="Mission" />
+      {/* Section: Our Mission */}
+      <div className="flex flex-col md:flex-row justify-center items-center md:space-x-20 mb-10">
+        <div className="w-full md:w-1/4 mx-auto md:mb-0">
+          <img src="/mission.png" alt="Mission" className="w-3/4 md:w-full mx-auto" />
         </div>
-        <div
-          className="text-container"
-          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-        >
-          <h1 className="text-title">Our Mission</h1>
-          <p className="text-desc">
+        <div className="flex flex-col justify-center items-center w-full p-10 md:w-1/2 ml-2 mx-auto" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+          <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4">Our Mission</h1>
+          <p className="text-desc text-center">
             Our mission at HelpOps-Hub is to empower DevOps professionals by
             providing a comprehensive, community-driven platform that
             consolidates tools, best practices, tutorials, and real-world
@@ -105,59 +91,22 @@ function AboutPage() {
         </div>
       </div>
 
-      {/*Section: Benefits of HelpOps-Hub*/}
-
-      <div className="start mb">
-        <div className="img-container">
-          <img className="benefit" src="/benefit.png" alt="Benefits" />
-        </div>
-        <div className="text-container">
-          <h1 className="text-title">Benefits of HelpOps-Hub</h1>
-          <ol className="text-desc">
-            <b>
-              HelpOps-Hub offers numerous benefits for DevOps professionals:
-            </b>
-            <br />
-            <br />
-            <li>
-              <b>Comprehensive Resources</b>: Access a wide range of tools, best
-              practices, tutorials, and real-world examples, all in one place.
-            </li>{" "}
-            <li>
-              <b>Community Collaboration</b>: Join a vibrant community of DevOps
-              enthusiasts to share experiences, provide solutions, and
-              collaborate on projects.
-            </li>{" "}
-            <li>
-              <b>Time Savings</b>: Quickly resolve issues and avoid common
-              pitfalls with guidance from experts and community contributions.
-            </li>{" "}
-            <li>
-              <b>Continuous Learning</b>: Stay up-to-date with the latest
-              trends, technologies, and methodologies in the rapidly evolving
-              field of DevOps.
-            </li>{" "}
-            <li>
-              <b>Skill Enhancement</b>: Improve your DevOps skills through
-              in-depth guides, step-by-step tutorials, and hands-on examples.
-            </li>{" "}
-            <li>
-              <b>Support and Feedback</b>: Receive support from a community of
-              peers and experts, and contribute your own insights to help
-              others.
-            </li>{" "}
-            <li>
-              <b>Innovation and Improvement</b>: Participate in the continuous
-              improvement of the platform by raising issues, suggesting
-              enhancements, and sharing innovative ideas.
-            </li>
-            <br />
-            <b>
-              By leveraging HelpOps-Hub, DevOps professionals can streamline
-              their workflows, enhance productivity, and drive the future of
-              DevOps.
-            </b>{" "}
+      {/* Section: Benefits of HelpOps-Hub */}
+      <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 mb-10">
+        <div className="flex flex-col justify-center items-center w-full p-10 md:w-1/2 md:ml-2 mx-auto">
+          <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4">Benefits of HelpOps-Hub</h1>
+          <ol className="text-desc text-left md:text-center list-decimal list-inside">
+            <li><b>Comprehensive Resources</b>: Access a wide range of tools, best practices, tutorials, and real-world examples, all in one place.</li>
+            <li><b>Community Collaboration</b>: Join a vibrant community of DevOps enthusiasts to share experiences, provide solutions, and collaborate on projects.</li>
+            <li><b>Time Savings</b>: Quickly resolve issues and avoid common pitfalls with guidance from experts and community contributions.</li>
+            <li><b>Continuous Learning</b>: Stay up-to-date with the latest trends, technologies, and methodologies in the rapidly evolving field of DevOps.</li>
+            <li><b>Skill Enhancement</b>: Improve your DevOps skills through in-depth guides, step-by-step tutorials, and hands-on examples.</li>
+            <li><b>Support and Feedback</b>: Receive support from a community of peers and experts, and contribute your own insights to help others.</li>
+            <li><b>Innovation and Improvement</b>: Participate in the continuous improvement of the platform by raising issues, suggesting enhancements, and sharing innovative ideas.</li>
           </ol>
+        </div>
+        <div className="w-full md:w-2/5 mx-auto flex justify-center">
+          <img src="/benefit.png" alt="Benefits" className="w-3/4 md:w-full" />
         </div>
       </div>
     </div>
