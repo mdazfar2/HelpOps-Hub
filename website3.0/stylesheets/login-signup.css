@@ -101,8 +101,6 @@ animation: outline-keys var(--animation);
 
 .forgot-password{
   cursor: pointer;
-  width: max-content;
-  margin: auto;
 }
 
 .forgot-password:hover{
