@@ -435,7 +435,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
             </div>
@@ -445,7 +445,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
             </div>
@@ -455,7 +455,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
             </div>
@@ -483,7 +483,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
             </div>
@@ -493,7 +493,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
             </div>
@@ -503,7 +503,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
             </div>
@@ -531,7 +531,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
             </div>
@@ -541,7 +541,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
             </div>
@@ -551,7 +551,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
             </div>
@@ -579,7 +579,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
             </div>
@@ -589,7 +589,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
             </div>
@@ -599,7 +599,7 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
               </a>
               <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
             </div>
