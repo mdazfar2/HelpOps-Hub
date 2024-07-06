@@ -402,9 +402,10 @@ function TeamsPage() {
           <AuthButton />
         </div>
       </div>
+    <div className="m-0 font-arial min-h-screen w-full block">
       {/* Section: Meet Our Team */}
 
-      <div id="ourteam" className="flex justify-center items-center font-rancho text-[40px] text-center">Our Team</div>
+      <div id="ourteam" className="flex justify-center items-center font-rancho text-[40px] mt-[160px] text-center">Our Team</div>
       <div className="team-description text-center w-[60vw] m-auto mt-[20px] mb-[20px] leading-normal">
         Meet our team driving HelpOps-Hub's success with expertise and passion,
         turning every challenge into a milestone.
@@ -658,6 +659,7 @@ function TeamsPage() {
           Load More
         </button>
       </div>
+    </div>
     </div>
   );
 }
