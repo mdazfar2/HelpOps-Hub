@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
@@ -49,7 +49,7 @@ let [error,setError]=useState(false)
       await fetch('/api/createaccount', {
         method: 'POST',
         body: JSON.stringify({
-          email: localStorage.getItem('email'),
+          email:localStorage.getItem('userEmail'),
           name: username,
           password: password,
           image:url.length>0?url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
@@ -58,7 +58,7 @@ let [error,setError]=useState(false)
     await fetch('/api/createaccount', {
       method: 'POST',
       body: JSON.stringify({
-        email: localStorage.getItem('email'),
+        email:localStorage.getItem('userEmail'),
         name: username,
         password: password
       })
