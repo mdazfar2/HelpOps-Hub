@@ -8,7 +8,7 @@ const profile = () => {
     <div className="main">
       <div className="profile-page">
         <ProfilepageDetails/>
-      <div>
+      <div className='mt-6 '>
 
         <Logout />
         </div>
