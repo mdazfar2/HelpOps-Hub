@@ -94,11 +94,6 @@ animation: outline-keys var(--animation);
   text-decoration: underline;
 }
 
-.dark-mode .login-signup-link:hover {
-  color: #2da9d6;
-  text-decoration: underline;
-}
-
 .forgot-password{
   cursor: pointer;
 }
