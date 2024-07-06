@@ -170,7 +170,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
         &#8592; {/* Left arrow Unicode character */}
       </button>
       <h1 className="text-center mt-[5px] font-semibold text-[22px] ">Create Your HelpOps-Hub Account</h1>
-      <h5 className="text-center mt-[60px] pl-[22px] pr-[22px] font-[cursive]">
+      <h5 className="text-center mt-[60px] pl-[22px] pr-[22px]">
         Join the HelpOps-Hub community by registering for a new account and
         unlock the world of DevOps resources.
       </h5>
@@ -195,8 +195,9 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
       />
       <br />
       
-      <p className="cursor-pointer text-end text-[12px] relative right-[80px]" onClick={onLoginClick}>
-        Already have an account? Login
+      <p className="text-end text-[12px] relative right-[80px]">
+        Already have an account? &nbsp;
+        <span className="login-signup-link" onClick={onLoginClick}>Login</span>
       </p>
       <br />
 <br />
@@ -211,6 +212,9 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
           </div>
         )}
       </button>
+      <button className="absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
+            &#10005;
+          </button>
     </div>
   );
 };
