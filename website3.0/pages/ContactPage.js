@@ -113,7 +113,7 @@ function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32">
+    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32 max-sm:scale-75">
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10">
         <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
