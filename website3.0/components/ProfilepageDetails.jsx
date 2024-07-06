@@ -8,20 +8,26 @@ import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Context } from '@context/store';
 import EditProfileModal from './EditProfileModal';
 export default function ProfilepageDetails() {
+   // Extract user data from context
   const { userName, userEmail, userImage, designation, caption, github, linkedin } = useContext(Context);
 
+  // State to control the visibility of the edit profile modal
     const [isModalOpen, setIsModalOpen] = useState(false);
+    // Function to open the modal
     const handleOpenModal = () => {
       setIsModalOpen(true);
     };
-  
+  // Function to close the modal
     const handleCloseModal = () => {
       setIsModalOpen(false);
     };
+    // Function to handle saving changes from the modal
     const handleSaveChanges = (updatedData) => {
       // Update the user data logic here
       console.log(updatedData);
     };
+
+    // Prepare user data for the modal
     const userData = {
       userName,
       userEmail,
@@ -32,13 +38,15 @@ export default function ProfilepageDetails() {
       linkedin
     };
   return (
-   <>
+   <div>
+    {/* Edit Profile button */}
    <div className="edit-profile" onClick={handleOpenModal}>
           <span className="pen-icon">
             <FontAwesomeIcon icon={faPen} />
           </span>
           <p >Edit Profile</p>
         </div>
+        {/* Profile picture section */}
         <div className="image-container">
           <img
             src={userImage.length>0?userImage:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
@@ -47,6 +55,7 @@ export default function ProfilepageDetails() {
           />
        
         </div>
+         {/* Profile details section */}
         <div className="profile-details">
         <p className="mail">mail: nishantkaushal0708@gmail.com</p>
           <h1 className="username">Nishant kaushal</h1>
@@ -55,6 +64,7 @@ export default function ProfilepageDetails() {
           <p className="user-caption">
             Creating visually appealing and highly functional software that bridges technology and user needs.
           </p>
+           {/* Social media icons */}
           <div className="social-icons">
             <div className="social-icon-box" title="nishantkaushal0708@gmail.com">
               <p>
@@ -75,6 +85,7 @@ export default function ProfilepageDetails() {
               
             </div>
           </div>
+           {/* Edit Profile Modal component */}
           <EditProfileModal
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
@@ -82,6 +93,6 @@ export default function ProfilepageDetails() {
         onSave={handleSaveChanges}
       />
         </div>
-   </>
+   </div>
   )
 }
