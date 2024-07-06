@@ -23,6 +23,7 @@ function ResourcesPage() {
   const [likedFolders, setLikedFolders] = useState(new Set());  //to add body bg color
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+
   const switchToSignup = () => {
     setIsLogin(false);
   };
@@ -300,7 +301,7 @@ function ResourcesPage() {
   
   async function handleLike(e, folderName) {
     e.stopPropagation();
-    if (!localStorage.getItem('userName') && !localStorage.getItem("userEmail")) {
+    if (!localStorage.getItem('userName') && !localStorage.getItem('userEmail')) {
       setShowPopup(true);
       setTimeout(() => {
         
