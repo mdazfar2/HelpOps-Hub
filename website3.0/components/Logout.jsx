@@ -24,7 +24,7 @@ export default function Logout() {
         }
         }
   return (
-    <button className='w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold '  onClick={handleLogout}>Logout</button>
+    <button className='w-[200px] bg-black  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold '  onClick={handleLogout}>Logout</button>
 
   )
 }
