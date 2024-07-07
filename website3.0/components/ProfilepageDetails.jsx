@@ -76,31 +76,30 @@ export default function ProfilepageDetails() {
           </div>
           <div className={`flex flex-col justify-center items-center  ${theme?"":"bg-[#1c1a1a] text-white"}`}>
             <p className="mt-[20px] text-[10px] md:text-[12px]">
-              mail:nishantkaushal0708@gmail.com
+              mail:{userEmail}
             </p>
             <h1 className="mt-[5px] text-[24px] md:text-[32px] font-bold ">
-              Nishant Kaushal
+              {userName}
             </h1>
             <p className="mt-[5px] text-[18px] font-bold ">
-              Software Engineer
+              {designation}
             </p>
             <p className="mt-[10px] text-[14px] font-medium  text-center">
-              Creating visually appealing and highly functional software that
-              bridges technology and user needs.
+              {caption}
             </p>
             <div className="flex justify-around items-center w-full mt-[20px]">
               <div className="w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px]">
-                <p title="nishantkaushal0708@gmail.com">
+                <p title={`${userEmail}`}>
                   <FontAwesomeIcon icon={faEnvelope} />
                 </p>
               </div>
               <div className="w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px]">
-                <p title="nishantkaushal0708@gmail.com">
+                <p title="">
                   <FontAwesomeIcon icon={faGithub} />
                 </p>
               </div>
               <div className="w-full flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px]">
-                <p title="nishantkaushal0708@gmail.com">
+                <p title="">
                   <FontAwesomeIcon icon={faLinkedinIn} />
                 </p>
               </div>
