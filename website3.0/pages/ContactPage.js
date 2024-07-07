@@ -120,17 +120,11 @@ function ContactPage({theme}) {
         <div className={`flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl  ${theme?"bg-[#098CCD] bg-opacity-10":"bg-[#181616]  border-white"}  md:justify-center`}>
           <h1 className={`${theme?"":"text-white"} text-3xl`}>Contact Us</h1>
           <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
-<<<<<<< HEAD
-            <input type="text" id="name" name="name" required placeholder="Name:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-700"/>
-            <input type="email" id="email" name="email" required placeholder="Email:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-700" />
-            <textarea id="comment" name="comment" required placeholder="Comment:" className="w-full rounded-xl h-24 my-2 px-40 pl-4 pt-2  outline-none placeholder-gray-700"></textarea>
-            <label htmlFor="rating" id="rate">Rating:</label>
-=======
             <input type="text" id="name" name="name" required placeholder="Name:" className={`w-full rounded-xl h-12 my-2 px-40 pl-4 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `}/>
             <input type="email" id="email" name="email" required placeholder="Email:" className={`w-full rounded-xl h-12 my-2 px-40 pl-4 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `} />
-            <textarea id="comment" name="comment" required placeholder="Comment:" className={`w-full rounded-xl h-32 my-2 px-40 pl-4 pt-24 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `}></textarea>
+            <textarea id="comment" name="comment" required placeholder="Comment:" className={`w-full rounded-xl h-32 my-2 px-40 pl-4 pt-2 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `}></textarea>
             <label htmlFor="rating" className={`${theme?"":"text-white"}`} id="rate">Rating:</label>
->>>>>>> 66426dc49b234fbc5161a2fb47c26b56b4c076a5
+
             <div id="rating">
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
