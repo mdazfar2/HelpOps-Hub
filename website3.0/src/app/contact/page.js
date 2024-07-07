@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <div>
 
-      <ContactPage />
+      <ContactPage theme={theme}/>
     </div>
   );
 }
