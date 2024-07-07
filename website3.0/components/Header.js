@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "@stylesheets/header.css";
 
 //Importing TogleSwitch Component
@@ -16,8 +16,9 @@ import {
   faUserCircle,
   faUserLarge,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { Context } from "@context/store";
 const Header = () => {
+  let { theme } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
 
@@ -97,17 +98,36 @@ const Header = () => {
 
         <div className="flex min-w-[70%] gap-[50px] justify-between max-xl:min-w-0 max-xl:justify-center items-center">
           {/* Main navigation links */}
-          <ul className="list-none flex gap-5 py-2 px-5 nav_links bg-white rounded-3xl flex-wrap justify-center shadow-md shadow-gray-300 justify-self-end max-xl:hidden">
-            <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
+          <ul
+            className={`${
+              theme
+                ? "bg-white shadow-gray-300"
+                : "bg-[#393838] shadow-[#000000a6]"
+            } list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
+          >
+            <li
+              className={`${
+                theme ? "text-black" : "text-white"
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+            >
               <Link href="/">Home</Link>
             </li>
-            <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
+            <li className={`${
+                theme ? "text-black" : "text-white"
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+            >
               <Link href="/about">About</Link>
             </li>
-            <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
+            <li className={`${
+                theme ? "text-black" : "text-white"
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+            >
               <Link href="/team">Team</Link>
             </li>
-            <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
+            <li className={`${
+                theme ? "text-black" : "text-white"
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+            >
               <Link href="/contact">Contact</Link>
             </li>
           </ul>
@@ -173,7 +193,7 @@ const Header = () => {
         </li>
         <li>
           <div className="auth-mobile flex gap-1">
-          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+            <a href="https://github.com/sponsors/mdazfar2" target="_blank">
               <button
                 className="bg-gray-100/80 border-none rounded-2xl shadow-md shadow-black/20 text-black text-xl cursor-pointer text-center transition-all duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 hover:bg-none hover:border-2 hover:border-whitesmoke mr-5 min-[400px]:hidden"
                 style={{ fontFamily: "ubuntu" }}
