@@ -289,7 +289,7 @@ function HomePage() {
       <div className="flex flex-col justify-center items-center">
         <div className=" relative mt-32 max-sm:mt-4 h-[650px] w-[1024px] max-lg:w-full max-lg:h-[520px]">
           <Spline scene="/Section2_Scene.splinecode" />
-          <button className="w-32 h-12 absolute top-[570px] left-1/2 translate-x-[-60%]"></button>
+          <button className="w-32 h-12 absolute top-[520px] left-[52%] translate-x-[-60%] cursor-pointer"></button>
         </div>
       </div>
 
@@ -470,7 +470,7 @@ function HomePage() {
               </h3>
             </div>
             <div className="w-3/5 flex flex-col justify-center items-center">
-              <p className="text-lg font-normal m-2.5 w-[70%] text-left max-[900px]:text-center max-[900px]:w-full">
+              <p className="pl-7 text-lg font-normal m-2.5 w-[70%] text-left max-[900px]:text-center max-[900px]:w-full">
                 Subscribe to our newsletter
               </p>
               <div className="w-[70%] flex relative max-[900px]:justify-center">
@@ -484,7 +484,7 @@ function HomePage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   onKeyDown={handleKeyDown}
-                  className={`${blur ? "blurclass" : ""} input-field `}
+                  className={`${blur ? "blurclass" : ""} input-field`}
                 />
                 <button
                   className="text-white rounded-lg ml-2 p-1 bg-black bg-opacity-80 text-lg font-normal w-28 h-10"
