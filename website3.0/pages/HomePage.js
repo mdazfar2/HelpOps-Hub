@@ -22,7 +22,7 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
-function HomePage(theme) {
+function HomePage({theme}) {
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
