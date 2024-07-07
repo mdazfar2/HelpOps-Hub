@@ -257,20 +257,22 @@ function HomePage() {
           error={`${error === "Subscribed Successfully" ? "green1" : "red1"}`}
         />
       )}
-      <div className="relative h-screen max-sm:h-0">
-          {loadSpline && (
+      <div className="relative h-screen max-sm:h-0 overflow-hidden">
+        {/* {loadSpline && (
             <div className={`block min-h-[720px] h-screen max-xl:hidden fade-in ${visible ? "visible" : ""}`} ref={splineRef}>
               <Spline scene="/Section1_Scene.splinecode" key={splineKey} />
             </div>
-          )}
+          )} */}
+          <div className="bg-[#DCDDDC] shadow-inner w-full h-[300px] absolute bottom-0"></div>
+        <img src="/temp_bg.png" className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] hover:scale-105 transition-all duration-500 ease-in-out" />
       </div>
 
-      <div className="absolute max-sm:static max-sm:mt-48 z-10 top-48 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:ml-0 flex justify-left ml-32 items-center">
-        <div className="p-16 max-[420px]:px-0 bg-white rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
-          <h1 className="text-8xl max-lg:text-7xl max-sm:text-6xl max-[420px]:text-5xl max-sm:text-center mb-5 font-bold text-[#63B5C3]">
+      <div className="absolute max-sm:static max-sm:mt-48 z-10 top-48 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:ml-0 flex justify-left ml-24 max-2xl:ml-10 items-center transition-all duration-500">
+        <div className="p-16 max-[450px]:w-[95%] max-[450px]:py-14 max-[420px]:px-0 bg-white rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center">
+          <h1 className="text-[85px] max-lg:text-7xl max-sm:text-6xl max-[420px]:text-5xl max-sm:text-center mb-5 font-bold text-[#63B5C3]">
             HelpOps-Hub
           </h1>
-          <p className="ubuntu text-black font-extralight max-sm:text-center text-4xl max-sm:text-3xl max-[420px]:text-2xl w-96 mb-5">
+          <p className="ubuntu text-black max-[420px]:p-4 font-extralight max-sm:text-center text-4xl max-sm:text-3xl max-[420px]:text-2xl w-96 mb-5">
             Ensuring You Never Get Stuck In DevOps Again!
           </p>
           <button
@@ -289,7 +291,7 @@ function HomePage() {
       <div className="flex flex-col justify-center items-center">
         <div className=" relative mt-32 max-sm:mt-4 h-[650px] w-[1024px] max-lg:w-full max-lg:h-[520px]">
           <Spline scene="/Section2_Scene.splinecode" />
-          <button className="w-32 h-12 absolute top-[570px] left-1/2 translate-x-[-60%]"></button>
+          <button className="w-32 h-12 absolute top-[520px] left-[52%] translate-x-[-60%] cursor-pointer"></button>
         </div>
       </div>
 
@@ -470,7 +472,7 @@ function HomePage() {
               </h3>
             </div>
             <div className="w-3/5 flex flex-col justify-center items-center">
-              <p className="text-lg font-normal m-2.5 w-[70%] text-left max-[900px]:text-center max-[900px]:w-full">
+              <p className="pl-7 text-lg font-normal m-2.5 w-[70%] text-left max-[900px]:text-center max-[900px]:w-full">
                 Subscribe to our newsletter
               </p>
               <div className="w-[70%] flex relative max-[900px]:justify-center">
@@ -484,7 +486,7 @@ function HomePage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   onKeyDown={handleKeyDown}
-                  className={`${blur ? "blurclass" : ""} input-field `}
+                  className={`${blur ? "blurclass" : ""} input-field`}
                 />
                 <button
                   className="text-white rounded-lg ml-2 p-1 bg-black bg-opacity-80 text-lg font-normal w-28 h-10"

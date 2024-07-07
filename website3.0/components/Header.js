@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "@stylesheets/header.css";
 
 //Importing TogleSwitch Component
@@ -16,11 +16,12 @@ import {
   faUserCircle,
   faUserLarge,
 } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "@context/store";
 
 const Header = () => {
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
-
+let {theme}=useContext(Context)
   // to set the status of show navbar or not
   const [show, setShow] = useState(true);
   let lastScrollTop = 0; // to keep the position of lastscroll
@@ -78,78 +79,110 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`${show ? "showNav" : "hideNav"}`}>
-      <nav >
+    <header
+      className={`w-screen ${theme?"bg-transparent":"bg-black transition-all" } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
+        show ? "top-0" : "top-[-550px]"
+      }`}
+    >
+      <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
         {/* Logo with VanillaTilt animation */}
         <Link href="/">
-          <div className="logo" data-tilt data-tilt-scale="1.1">
-            <img src="/HelpOps-H Fevicon.png" alt="Logo" />
+          <div data-tilt data-tilt-scale="1.1">
+            <img
+              src="/HelpOps-H Fevicon.png"
+              alt="Logo"
+              className="w-20 h-20 top-2 max-[400px]:relative max-[400px]:left-36"
+            />
           </div>
         </Link>
-        <a href="https://github.com/sponsors/mdazfar2" target="_blank">
-              <button className="nav-sponsor-btn">
-                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
-                Sponsor
-              </button>
-            </a>
-        <div className="nav-items">
+
+        <div className="flex min-w-[70%] gap-[50px] justify-between max-xl:min-w-0 max-xl:justify-center items-center">
           {/* Main navigation links */}
-          <ul className={`nav-links ${isActive ? "active" : ""}`} style={{height:"62px "}}>
-            <li>
+          <ul className={`list-none flex gap-5 py-2 px-5 nav_links ${theme?"bg-white":"bg-black text-white"} rounded-3xl flex-wrap justify-center shadow-md shadow-gray-300 justify-self-end max-xl:hidden`}>
+            <li className={`text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left ${theme?"":"text-white"}`}>
               <Link href="/">Home</Link>
             </li>
-            <li>
+            <li className={`text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left  ${theme?"":"text-white"}`}>
               <Link href="/about">About</Link>
             </li>
-            <li>
+            <li className={`text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left  ${theme?"":"text-white"}`}>
               <Link href="/team">Team</Link>
             </li>
-            <li>
+            <li className={`text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left ${theme?"":"text-white"}`}>
               <Link href="/contact">Contact</Link>
             </li>
           </ul>
           {/* Navigation actions (sponsor button and toggle switch) */}
-          <div className="nav-actions">
-            <div className="auth-desktop">
+          <div className="flex items-center gap-2">
+            <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+              <button
+                className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}   rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-all duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 hover:bg-none hover:border-2 hover:border-whitesmoke mr-5 max-[400px]:hidden`}
+                style={{ fontFamily: "ubuntu" }}
+              >
+                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                Sponsor
+              </button>
+            </a>
+            <div className="block max-xl:hidden">
               <AuthButton />
             </div>
-            
-            <div className="toggle-switches">
-            <ToggleSwitch />
+
+            <div className="relative flex justify-center items-center flex-row w-[70px] h-[35px] m-0 max-[400px]:fixed max-[400px]:top-12 max-[400px]:left-5">
+              <ToggleSwitch />
             </div>
           </div>
         </div>
         {/* Hamburger menu icon for mobile */}
-        <div className={`hamburger ${isActive?"open":""}`} id="hamburger" onClick={toggleMenu}>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div
+          className={`hamburger ${isActive ? "open" : ""}`}
+          id="hamburger"
+          onClick={toggleMenu}
+        >
+          <div className="w-[25px] h-[3px] bg-[#333] my-[4px] transition duration-400"></div>
+          <div className="w-[25px] h-[3px] bg-[#333] my-[4px] transition duration-400"></div>
+          <div className="w-[25px] h-[3px] bg-[#333] my-[4px] transition duration-400"></div>
         </div>
       </nav>
       {/* Mobile menu links */}
-      <ul className={`nav-links1 ${isActive ? "active" : ""}`} id="nav-links1">
-        <li>
+      <ul
+        className={` ${
+          isActive
+            ? "nav_links_mobile list-none flex p-10 bg-gray-200 flex-col items-center gap-5 navAnimate ease-in-out duration-200 justify-center overflow-hidden"
+            : "hidden"
+        }`}
+        id="nav-links1"
+      >
+        <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
           <Link href="/" onClick={() => setIsActive(false)}>
             Home
           </Link>
         </li>
-        <li>
+        <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
           <Link href="/about" onClick={() => setIsActive(false)}>
             About
           </Link>
         </li>
-        <li>
+        <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
           <Link href="/team" onClick={() => setIsActive(false)}>
             Team
           </Link>
         </li>
-        <li>
+        <li className="text-black text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left">
           <Link href="/contact" onClick={() => setIsActive(false)}>
             Contact
           </Link>
         </li>
         <li>
-          <div className="auth-mobile">
+          <div className="auth-mobile flex gap-1">
+          <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+              <button
+                className="bg-gray-100/80 border-none rounded-2xl shadow-md shadow-black/20 text-black text-xl cursor-pointer text-center transition-all duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 hover:bg-none hover:border-2 hover:border-whitesmoke mr-5 min-[400px]:hidden"
+                style={{ fontFamily: "ubuntu" }}
+              >
+                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                Sponsor
+              </button>
+            </a>
             <AuthButton />
           </div>
         </li>

@@ -2,43 +2,12 @@
 import React, { useEffect } from "react";
 // import "@stylesheets/abouts.css";
 
-function AboutPage() {
+function AboutPage({theme}) {
 
 
 
-  // to add body bg color 
-  useEffect(() => {
-    console.log('sdsd')
-    function updateBackground(){
-
-      if(document.body.classList.contains('dark-mode')){
-        document.body.style.background = "#353535";
-        
-      }else{
-        
-        document.body.style.background = "#EEE";
-      }
-    }
-    const observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        if (mutation.attributeName === 'class') {
-          updateBackground();
-        }
-      }
-    });
-
-    observer.observe(document.body, { attributes: true });
-
-    // Initial background update
-    updateBackground();
-    // Clean-up function to reset background color when component unmounts
-    return () => {
-      document.body.style.background = "";
-      observer.disconnect();
-    };
-  }, []);
   return (
-    <div className="w-full mt-36 p-4 md:px-8 lg:px-16">
+    <div className={` w-full mt-32 p-4  md:px-8 lg:px-16 pt-0 ${theme?"":"bg-black"}`}>
       {/* Section: Title */}
       <div className="text-4xl text-center font-semibold">About us</div>
 
@@ -49,9 +18,9 @@ function AboutPage() {
 
       {/* Section: What is HelpOps-Hub */}
       <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 w-full mb-10">
-        <div className="flex flex-col justify-start items-start w-full p-10 pl-1 md:w-1/2 ml-2 md:mr-36" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-          <h1 className="text-3xl text-left md:text-5xl font-semibold  mb-4">What is HelpOps-Hub?</h1>
-          <p className="text-desc   text-justify max-w-[500px]  w-auto">
+        <div className="flex flex-col justify-start items-start w-full p-10 pl-1 max-md:pl-10 md:w-1/2 ml-2 md:mr-36" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+          <h1 className={`text-3xl text-left md:text-5xl font-semibold  ${theme?"":"text-white"} mb-4`}>What is HelpOps-Hub?</h1>
+          <p className={`text-desc   ${theme?"":"text-white"}  text-justify max-w-[500px]  w-auto`}>
             HelpOps-Hub is a comprehensive, community-driven platform designed
             to support and empower DevOps beginners and professionals. Founded
             by Azfar Alam, HelpOps-Hub offers a centralized resource for tools,
@@ -64,7 +33,7 @@ function AboutPage() {
             solutions, and drive the future of DevOps together.
           </p>
         </div>
-        <div className="w-[150px] flex justify-center">
+        <div className="w-[150px] flex justify-center max-md:hidden">
           <img src="/HelpOps-H Fevicon.png" alt="HelpOps Logo" className="w-2/4 md:w-full hover:scale-90 transition-all" />
         </div>
       </div>
@@ -75,8 +44,8 @@ function AboutPage() {
           <img src="/mission.png" alt="Mission" className="w-3/4 md:w-full mx-auto hover:scale-90 transition-all" />
         </div>
         <div className="flex flex-col justify-center items-center w-full p-10  md:w-1/2 ml-2 mx-auto" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-          <h1 className="text-3xl md:text-5xl font-semibold text-center mb-4">Our Mission</h1>
-          <p className="text-desc text-justify max-w-[400px] w-auto">
+          <h1 className={`  ${theme?"":"text-white"} text-3xl md:text-5xl font-semibold text-center mb-4`}>Our Mission</h1>
+          <p className={` text-desc text-justify max-w-[400px] w-auto  ${theme?"":"text-white"}`}>
             Our mission at HelpOps-Hub is to empower DevOps professionals by
             providing a comprehensive, community-driven platform that
             consolidates tools, best practices, tutorials, and real-world
@@ -94,8 +63,8 @@ function AboutPage() {
       {/* Section: Benefits of HelpOps-Hub */}
       <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 mb-10">
         <div className="flex flex-col justify-center items-start w-full p-10 md:w-1/2 md:ml-2 mx-auto">
-          <h4 className="text-[2rem] md:text-[2rem] font-semibold text-left mb-4">Benefits of HelpOps-Hub</h4>
-          <ol style={{listStyle:"none"}} className="text-desc text-justify md:text-justify list-decimal list-inside">
+          <h4 className={` ${theme?"":"text-white"} text-[2rem] md:text-[2rem] font-semibold text-left mb-4`}>Benefits of HelpOps-Hub</h4>
+          <ol style={{listStyle:"none"}} className={` ${theme?"":"text-white"} text-desc text-justify md:text-justify list-decimal list-inside`}>
             <li><b>Comprehensive Resources</b>: Access a wide range of tools, best practices, tutorials, and real-world examples, all in one place.</li>
             <li><b>Community Collaboration</b>: Join a vibrant community of DevOps enthusiasts to share experiences, provide solutions, and collaborate on projects.</li>
             <li><b>Time Savings</b>: Quickly resolve issues and avoid common pitfalls with guidance from experts and community contributions.</li>
