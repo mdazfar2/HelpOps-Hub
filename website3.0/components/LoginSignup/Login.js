@@ -132,7 +132,7 @@ console.log('setting data')
             />
           )}
 
-          <h1 className="text-center mt-[5px] text-shad text-[22px]">
+          <h1 className="text-center mt-[5px] black text-[22px] font-bold">
             {allShow ? "Login to HelpOps-Hub" : "Please Enter Your Email"}
           </h1>
           {!allShow && (
@@ -174,18 +174,18 @@ console.log('setting data')
                     placeholder="Password"
                   />
                   {showPassword ? (
-                    <FaEye className="absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
+                    <FaEye className="absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer" onClick={toggle} />
                   ) : (
-                    <FaEyeSlash className="absolute bottom-[24%] right-[22%] text-[1.5rem]" onClick={toggle} />
+                    <FaEyeSlash className="absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer" onClick={toggle} />
                   )}
                 </div>
               </div>
               <div className="flex w-[69%] m-auto justify-between">
-                <p className="text-center text-[13px] mt-[15px] font-cursive "  style={{ cursor: "pointer" }} onClick={forgotPassword}>
+                <p className="text-center text-[13px] mt-[15px] regular forgot-password" onClick={forgotPassword}>
                   Forgot Password
                 </p>
-                <p className="text-center text-[13px] mt-[15px] font-cursive " style={{ cursor: "pointer" }} onClick={onSignupClick}>
-                  New here? Sign up now
+                <p className="text-center text-[13px] mt-[15px] regular ">New here? &nbsp;
+                <span className="login-signup-link" onClick={onSignupClick}>Sign up now</span>
                 </p>
               </div>
               <button className="w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleLogin}>

@@ -67,20 +67,6 @@ height: 20px;
 border-radius: 50%;
 animation: outline-keys var(--animation);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .dark-mode .login-auth-container {
   background-color: #333;
 }
@@ -95,6 +81,25 @@ animation: outline-keys var(--animation);
 }
 .dark-mode .login-auth-container button {
   color: black;
+}
+
+
+.login-signup-link{
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.login-signup-link:hover{
+  color: #1c1c1b;
+  text-decoration: underline;
+}
+
+.forgot-password{
+  cursor: pointer;
+}
+
+.forgot-password:hover{
+  text-decoration: underline;
 }
 
 
@@ -162,6 +167,13 @@ animation: outline-keys var(--animation);
   margin-left: 70px;
   gap: 18px;
 }
+
+.signup-auth-container .google-btn{
+  margin-top: 50px;
+}
+.google-btn:hover , .github-btn:hover{
+  box-shadow: inset 0 0 0 150px #0000001a !important;
+}
 .continue-btn:hover,.login-btn:hover{
   background-color: #024d82 !important;
 }
@@ -185,8 +197,9 @@ animation: outline-keys var(--animation);
   width: 210px;
   padding: 10px;
   position: relative;
-left: 50px;
-  background-color: rgb(64, 109, 177);
+  left: 50px;
+  background-color: rgb(21, 21, 22);
+  transition: background-color 0.3s ease;
   color: white;
 }
 
