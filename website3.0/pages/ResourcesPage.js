@@ -404,7 +404,7 @@ function ResourcesPage() {
         </div>
       )}
       <div className="heading">
-        <h1 class="text-4xl text-center font-extrabold mt-[160px] mb-5 font-rancho">Resources</h1>
+        <h1 class="text-4xl text-center font-bold mt-[160px] mb-5">Resources</h1>
       </div>
 
       {/* Section: Search-Bar */}
@@ -418,7 +418,7 @@ function ResourcesPage() {
             id="search-bar"
             placeholder="Search topics..."
             onInput={handleSearch}
-            className="w-[90%] outline-[none] border-[none] text-[20px] rounded-[24px] bg-[white] relative placeholder:text-[#9e9e9e]"
+            className="w-[90%] outline-none border-none text-[20px] bg-[white] relative placeholder:text-[#9e9e9e]"
           />
         </div>
       </div>
