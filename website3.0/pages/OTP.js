@@ -4,7 +4,7 @@ import "@stylesheets/otp.css";
 import Popup from "@components/Popup";
 import Popup1 from '@components/Popup1';
 
-const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
+const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email}) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
@@ -60,7 +60,8 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError}) => {
       return
     }
 
-    onOTPSubmit(otp.join(''));(otp.join(''));
+    onOTPSubmit(otp.join(''),email);
+    (otp.join(''));
     setError('')
     return
   };
