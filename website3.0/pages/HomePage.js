@@ -309,8 +309,8 @@ function HomePage({theme}) {
           </button>
         </div>
       </div>
-      <div className="w-[95vw] mt-4 flex justify-center items-center focus:outline-0 sm:hidden">
-        <video src="/Mobile-Devops2.mp4" loop autoPlay muted playsInline>
+      <div className="w-full h-[400px] mt-4 flex justify-center items-center focus:outline-0 sm:hidden">
+        <video src={`${theme ? "/Mobile-Devops.mp4":"/Devops-Dark.mp4"}`} className={`${theme ? "":"brightness-95 contrast-[1.01]"}`} loop autoPlay muted playsInline>
           Your browser does not support the video tag.
         </video>
       </div>
@@ -318,7 +318,7 @@ function HomePage({theme}) {
         className="flex flex-col justify-center items-center transition-colors duration-300"
       >
         <div className=" relative mt-32 flex justify-center max-sm:mt-4 h-[650px] w-[1024px] max-lg:w-full max-lg:h-[520px]">
-          <Spline scene="/Section2_Scene2.splinecode" />
+          <Spline scene="/Section2_Scene.splinecode" />
           <div className="absolute top-16 max-xl:scale-90 max-lg:scale-75 max-[620px]:scale-[0.6] max-[580px]:w-[160%] max-lg:top-0 flex flex-col justify-center items-center">
             <div
               className={`${
