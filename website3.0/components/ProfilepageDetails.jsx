@@ -1,58 +1,57 @@
 'use client'
 import React, { useContext } from 'react'
-import "@stylesheets/profilepage.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Context } from '@context/store';
+
 export default function ProfilepageDetails() {
-    let {userName,userEmail,userImage}=useContext(Context)
-  return (
-   <>
-   <div className="edit-profile">
-          <span className="pen-icon">
-            <FontAwesomeIcon icon={faPen} />
-          </span>
-          <p >Edit Profile</p>
-        </div>
-        <div className="image-container">
-          <img
-            src={userImage.length>0?userImage:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
-            alt="Profile Picture"
-            className="profile-img"
-          />
-       
-        </div>
-        <div className="profile-details">
-        <p className="mail">mail: {userEmail}</p>
-          <h1 className="username">{userName}</h1>
-          <p className="user-designation">Software Engineer</p>
-          
-          <p className="user-caption">
-            Creating visually appealing and highly functional software that bridges technology and user needs.
-          </p>
-          <div className="social-icons">
-            <div className="social-icon-box" title="nishantkaushal0708@gmail.com">
-              <p>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </p>
-         
+    let {userName, userEmail, userImage} = useContext(Context)
+    
+    return (
+        <>
+            <div className="relative flex justify-center">
+                <div className="relative flex flex-col items-center w-1/2 min-w-[350px] pt-20 py-10 px-4 md:p-20 mt-[250px] bg-[rgb(255,250,244)] rounded-[10px] shadow-[5px_5px_15px_rgba(0,0,0,0.195)]">
+                    <div className="absolute top-[20px] right-[20px] flex items-center gap-[5px] font-bold text-[13px] md:text-[20px] text-[rgb(29,29,201)] transition-all duration-300 ease-in-out cursor-pointer hover:text-[rgb(36,36,160)] hover:underline">
+                        <span className="text-[10px] md:text-[14px] ">
+                            <FontAwesomeIcon icon={faPen} />
+                        </span>
+                        <p>Edit Profile</p>
+                    </div>
+                    <div className="flex justify-center items-center mt-[-140px] md:mt-[-180px]">
+                        <img
+                            src={userImage.length > 0 ? userImage : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
+                            alt="Profile Picture"
+                            className="border-[15px] border-[rgb(162,160,160)] w-[140px] h-[140px] md:w-[200px] md:h-[200px] rounded-full object-cover overflow-hidden"
+                        />
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                        <p className="mt-[20px] text-[10px] md:text-[12px]">mail:nishantkaushal0708@gmail.com</p>
+                        <h1 className="mt-[5px] text-[24px] md:text-[32px] font-bold text-black">Nishant Kaushal</h1>
+                        <p className="mt-[5px] text-[18px] font-bold text-[#5a5151]">Software Engineer</p>
+                        <p className="mt-[10px] text-[14px] font-medium text-[#5a5151] text-center">
+                            Creating visually appealing and highly functional software that bridges technology and user needs.
+                        </p>
+                        <div className="flex justify-around items-center w-full mt-[20px]">
+                            <div className="w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px]">
+                                <p title="nishantkaushal0708@gmail.com">
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                </p>
+                            </div>
+                            <div className="w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px]">
+                                <p title="nishantkaushal0708@gmail.com">
+                                    <FontAwesomeIcon icon={faGithub} />
+                                </p>
+                            </div>
+                            <div className="w-full flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px]">
+                                <p title="nishantkaushal0708@gmail.com">
+                                    <FontAwesomeIcon icon={faLinkedinIn} />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="social-icon-box" title="nishantkaushal0708@gmail.com">
-              <p>
-                <FontAwesomeIcon icon={faGithub} />
-              </p>
-           
-            </div>
-            <div className="social-icon-box" title="nishantkaushal0708@gmail.com">
-              <p>
-                <FontAwesomeIcon icon={faLinkedinIn} />
-              </p>
-              
-            </div>
-          </div>
-        </div>
-   </>
-  )
+        </>
+    )
 }
