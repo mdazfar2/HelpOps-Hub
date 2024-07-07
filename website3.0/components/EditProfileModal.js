@@ -15,11 +15,10 @@ export default function EditProfileModal({
   onRequestClose,
   userData,
   onSave,
- 
 }) {
   // Initialize the form state with userData and add a password field with an empty string
   const [formData, setFormData] = useState({ ...userData, password: "" });
-let {theme}=useContext(Context)
+  let { theme } = useContext(Context);
   // Handle changes in form inputs and update the formData state accordingly
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,15 +59,21 @@ let {theme}=useContext(Context)
   return (
     // Modal overlay to cover the entire screen
     <div className="fixed inset-0 z-500 flex items-center justify-center bg-black bg-opacity-75 modal-overlay">
-      <div className={`relative w-11/12 max-w-md p-5  ${theme?"bg-white border-2 border-dashed border-black" :"bg-[#121111] border-2 border-dashed border-white"} rounded-lg shadow-lg max-h-[500px] overflow-auto`}>
+      <div
+        className={`relative w-11/12 max-w-md p-5  ${
+          theme
+            ? "bg-white border-2 border-dashed border-black"
+            : "bg-[#121111] border-2 border-dashed border-white"
+        } rounded-lg shadow-lg max-h-[500px] overflow-auto`}
+      >
         {/* Close button */}
         <span
-          className="absolute text-2xl text-black cursor-pointer top-2 right-5"
+          className="absolute text-2xl cursor-pointer top-2 right-5"
           onClick={onRequestClose}
         >
           <FontAwesomeIcon icon={faTimes} />
         </span>
-        <h2 className="text-lg  text-black font-bold">Edit Profile</h2>
+        <h2 className="text-lg font-bold">Edit Profile</h2>
 
         {/* Profile picture section */}
         <div className="relative text-center modal-image-container">
@@ -77,7 +82,16 @@ let {theme}=useContext(Context)
             alt="Profile Picture"
             className="w-36 h-36 mx-auto mt-4 border border-white rounded-full object-cover modal-profile-img"
           />
-            <button className={`p-1 pl-2 pr-2  flex gap-2 items-center absolute right-[81px] bottom-[-9px] ${theme?"bg-white text-black border border-black rounded-md":"bg-black text-white border rounded-md border-white"}`}><FaPen color={`${theme?"black":"white"}`}/>Edit</button>
+          <button
+            className={`p-1 pl-2 pr-2  flex gap-2 items-center absolute right-[81px] bottom-[-9px] ${
+              theme
+                ? "bg-white text-black border border-black rounded-md"
+                : "bg-black text-white border rounded-md border-white"
+            }`}
+          >
+            <FaPen color={`${theme ? "black" : "white"}`} />
+            Edit
+          </button>
         </div>
 
         {/* Form for editing profile details */}
@@ -90,10 +104,12 @@ let {theme}=useContext(Context)
               placeholder="Software Engineer"
               value={formData.designation}
               onChange={handleChange}
-              className={`p-2 mt-1 border border-gray-300 rounded ${theme?"":"text-black"}`}
+              className={`p-2 mt-1 border border-gray-300 rounded ${
+                theme ? "" : "text-white bg-[#1d1b1b]"
+              }`}
             />
           </label>
-          <label className="flex flex-col  text-black">
+          <label className="flex flex-col">
             Caption:
             <textarea
               type="text"
@@ -101,10 +117,12 @@ let {theme}=useContext(Context)
               placeholder="Creating visually appealing and highly functional software that bridges technology and user needs."
               value={formData.caption}
               onChange={handleChange}
-              className={`p-2 mt-1 border border-gray-300 rounded resize-none h-24 ${theme?"":"text-black"} `}
+              className={`p-2 mt-1 border border-gray-300 rounded resize-none h-24 ${
+                theme ? "" : "text-white bg-[#1d1b1b]"
+              } `}
             />
           </label>
-          <label className="flex flex-col  text-black">
+          <label className="flex flex-col">
             GitHub:
             <input
               type="text"
@@ -112,10 +130,12 @@ let {theme}=useContext(Context)
               placeholder="Enter Your Github Link"
               value={formData.github}
               onChange={handleChange}
-              className={`${theme?"":"text-black"} p-2 mt-1 border border-gray-300 rounded`}
+              className={`${
+                theme ? "" : "text-white bg-[#1d1b1b]"
+              } p-2 mt-1 border border-gray-300 rounded`}
             />
           </label>
-          <label className="flex flex-col  text-black">
+          <label className="flex flex-col">
             LinkedIn:
             <input
               type="text"
@@ -123,7 +143,9 @@ let {theme}=useContext(Context)
               placeholder="Enter Your LinkedIn Link"
               value={formData.linkedin}
               onChange={handleChange}
-              className={`${theme?"":"text-black"} p-2 mt-1 border border-gray-300 rounded`}
+              className={`${
+                theme ? "" : "text-white bg-[#1d1b1b]"
+              } p-2 mt-1 border border-gray-300 rounded`}
             />
           </label>
 
@@ -132,14 +154,18 @@ let {theme}=useContext(Context)
             <button
               type="button"
               onClick={handleSaveChanges}
-              className={`${theme?"":"border border-white shadow-sm shadow-white"} px-4 py-2 text-white bg-black rounded`}
+              className={`${
+                theme ? "" : "border border-white shadow-sm shadow-white"
+              } px-4 py-2 text-white bg-black rounded`}
             >
               Save Changes
             </button>
             <button
               type="button"
               onClick={onRequestClose}
-              className={` ${theme?"":"border border-white shadow-sm shadow-white"} px-4 py-2 text-white bg-black rounded`}
+              className={` ${
+                theme ? "" : "border border-white shadow-sm shadow-white"
+              } px-4 py-2 text-white bg-black rounded`}
             >
               Cancel
             </button>
