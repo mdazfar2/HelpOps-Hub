@@ -3,7 +3,7 @@ import React, {  useRef, useState } from 'react';
 import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
-const Profile = ({ onClose }) => {
+const Profile = ({ onClose,theme }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
@@ -121,72 +121,72 @@ let [error,setError]=useState(false)
     }
   }
   return (
-    <div className=" border-dashed border-black border-[2px] bg-slate-100 pl-[70px] pt-[40px] pr-[70px] rounded-lg text-center w-[500px] h-[550px] relative pb-[35px]">
+    <div className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  pl-[70px] pt-[40px] pr-[70px] rounded-lg text-center w-[500px] h-[550px] relative pb-[35px]`}>
             {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
       {/* Close button */}
-      <button className="absolute bg-transparent border-none cursor-pointer text-[#333] right-[15px] hover:text-[#666] text-[24px] top-[5px]" onClick={onClose}>
+      <button className={`absolute bg-transparent   ${theme?"text-black":"text-white"}  border-none cursor-pointer text-[#333] right-[15px] hover:text-[#666] text-[24px] top-[5px]`} onClick={onClose}>
         &#10005; {/* Cross Unicode character */}
       </button>
-      <h1 className='mb-[20px] text-[24px]  font-bold'>
+      <h1 className={`${theme?"text-black":"text-white"} mb-[20px] text-[24px]  font-bold`}>
         Profile
         </h1>
       <label htmlFor='fileupload' className='relative'>
 
-<img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`} className='h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px]' alt="Profile-circle" />
-<FaPen className='right-[-64px] bottom-[-109px] absolute' />
+<img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`} className={`h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px] ${theme?"":"border border-white"}`} alt="Profile-circle" />
+<FaPen color={`${theme?"black":"white"}`} className={`$ right-[-64px] bottom-[-109px] absolute`} />
 </label>    
   <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         {/* Username input */}
         <input type='file' id='fileupload' style={{display:"none"}} onChange={handlefilechange}></input>
-        <div className="mb-[15px] mt-[20px] relative">
+        <div className={`mb-[15px] mt-[20px] relative`}>
           <input
             type="text"
             placeholder="Enter your name"
             value={username}
-            className=' p-[10px]   text-black outline-none borderinput ml-0 w-[100%]'
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 w-[100%]`}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         {/* Password input */}
-        <div  className="mb-[15px] mt-[20px] relative">
+        <div  className={`mb-[15px] mt-[20px] relative`}>
 
           <input
             type={`${showPassword?"text":"password"}`}
             placeholder="Password"
             value={password}
-            className=' p-[10px]  text-black outline-none borderinput ml-0 w-[100%]'
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 w-[100%]`}
 
             onChange={(e) => setPassword(e.target.value)}
             required
           />
          {showPassword ? 
-         <FaEye className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>
+         <FaEye color={`${theme?"black":"white"}`}  className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>
          :
-         <FaEyeSlash className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
+         <FaEyeSlash color={`${theme?"black":"white"}`}  className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
         </div>
         {/* Confirm password input */}
-        <div  className="mb-[25px] mt-[20px] relative">
+        <div  className={`mb-[25px] mt-[20px] relative`}>
           <input
             type={`${showConfirmPassword?"text":"password"}`}
             placeholder="Confirm Password"
             value={confirmPassword}
-            className=' p-[10px]  text-black outline-none borderinput ml-0 w-[100%]'
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 w-[100%]`}
 
             onChange={(e) =>
                setConfirmPassword(e.target.value)}
             required
           />
                   
-                   {showConfirmPassword ? <FaEye className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>:<FaEyeSlash className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>}
+                   {showConfirmPassword ? <FaEye color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>:<FaEyeSlash color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>}
 
         </div>
         {/* Submit button */}
-        <button type="submit" onClick={handleSubmit} className="w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer margin-auto gap-[18px] m-auto text-[19px] font-semibold hover:bg-[#024d82]">Create Account &nbsp;{loading && <div className="loader3">
-            <div className="circle">
-            <div className="dot"></div>
-              <div className="outline"></div>
+        <button type="submit" onClick={handleSubmit} className={` ${theme?"bg-[#098CCD] border-none ":"bg-[#272525] border-white border whiteshadow" }  w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer margin-auto gap-[18px] m-auto text-[19px] font-semibold hover:bg-[#024d82] `}>Create Account &nbsp;{loading && <div className={`loader3`}>
+            <div className={`circle`}>
+            <div className={`dot`}></div>
+              <div className={`outline`}></div>
         </div></div>
  }</button>
       </form>
