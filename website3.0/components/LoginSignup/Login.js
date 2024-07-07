@@ -67,10 +67,10 @@ const Login = ({ onClose, onSignupClick }) => {
     // Handle login errors
     if (!data.success) {
       setError(data.msg);
+      // Only clear the password field
+      setPassword("");
       setTimeout(() => {
         setError("");
-        setEmail2("");
-        setPassword("");
       }, 1000);
       return;
     }
