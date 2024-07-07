@@ -79,7 +79,9 @@ const Header = () => {
 
   return (
     <header
-      className={`w-screen ${theme?"bg-transparent":"transition-all" } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
+      className={`w-screen ${
+        theme ? "bg-transparent" : "transition-all"
+      } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
         show ? "top-0" : "top-[-550px]"
       }`}
     >
@@ -191,26 +193,46 @@ const Header = () => {
         }`}
         id="nav-links1"
       >
-        <li className={`${
-              theme ?"text-black after:bg-[#6eb6b95f]":"text-white after:bg-[#ffffff5f]"} text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}>
+        <li
+          className={`${
+            theme
+              ? "text-black after:bg-[#6eb6b95f]"
+              : "text-white after:bg-[#ffffff5f]"
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+        >
           <Link href="/" onClick={() => setIsActive(false)}>
             Home
           </Link>
         </li>
-        <li className={`${
-              theme ?"text-black after:bg-[#6eb6b95f]":"text-white after:bg-[#ffffff5f]"} text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}>
+        <li
+          className={`${
+            theme
+              ? "text-black after:bg-[#6eb6b95f]"
+              : "text-white after:bg-[#ffffff5f]"
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+        >
           <Link href="/about" onClick={() => setIsActive(false)}>
             About
           </Link>
         </li>
-        <li className={`${
-              theme ?"text-black after:bg-[#6eb6b95f]":"text-white after:bg-[#ffffff5f]"} text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}>
+        <li
+          className={`${
+            theme
+              ? "text-black after:bg-[#6eb6b95f]"
+              : "text-white after:bg-[#ffffff5f]"
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+        >
           <Link href="/team" onClick={() => setIsActive(false)}>
             Team
           </Link>
         </li>
-        <li className={`${
-              theme ?"text-black after:bg-[#6eb6b95f]":"text-white after:bg-[#ffffff5f]"} text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}>
+        <li
+          className={`${
+            theme
+              ? "text-black after:bg-[#6eb6b95f]"
+              : "text-white after:bg-[#ffffff5f]"
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+        >
           <Link href="/contact" onClick={() => setIsActive(false)}>
             Contact
           </Link>
@@ -219,7 +241,11 @@ const Header = () => {
           <div className="auth-mobile flex gap-1">
             <a href="https://github.com/sponsors/mdazfar2" target="_blank">
               <button
-                className="bg-gray-100/80 border-none rounded-2xl shadow-md shadow-black/20 text-black text-xl cursor-pointer text-center transition-all duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 hover:bg-none hover:border-2 hover:border-whitesmoke mr-5 min-[400px]:hidden"
+                className={`${
+                  theme
+                    ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
+                    : "bg-[#000] text-white hover:bg-transparent hover:border-[1px] hover:border-white"
+                } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
                 style={{ fontFamily: "ubuntu" }}
               >
                 <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
