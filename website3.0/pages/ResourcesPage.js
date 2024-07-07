@@ -362,7 +362,7 @@ function ResourcesPage({theme}) {
         return (
           <div
             
-          className={`folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8  ${theme?"bg-[#0000000d]":"bg-[#121111] shadow-sm shadow-white"} rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer [transition:background-color_0.3s_ease] hover:[box-shadow:0_0_20px_rgba(48,48,48,.8)] hover:scale-[1.03] hover:[transition:0.5s] hover:rounded-3xl hover:text-[0.9rem]`}
+          className={`folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8  ${theme?"bg-[#0000000d]":"bg-[#121111] shadow-sm shadow-white"} rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer [transition:background-color_0.3s_ease]  hover:scale-[1.03] hover:[transition:0.5s] hover:rounded-3xl hover:text-[0.9rem]`}
             key={item.name}
             onClick={() => {
               // Redirect to detailed resources page on click
@@ -465,7 +465,7 @@ function ResourcesPage({theme}) {
         <div 
         className="filter-options flex items-center gap-[10px]">
           <label 
-          className="text-black">Filter: </label>
+          className={`${theme?"text-black":"text-white"} `}>Filter: </label>
           <select
             value={filterOption}
             onChange={(e) => handleFilter(e.target.value)}

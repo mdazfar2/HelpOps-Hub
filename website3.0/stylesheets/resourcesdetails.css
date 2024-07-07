@@ -18,7 +18,7 @@ body{
   border-radius: 10px;
   padding: 20px;
 }
-.textwhite strong, .textwhite p{
+.textwhite strong, .textwhite p,.textwhite li{
   color: white !important;
 }
 #content img {
