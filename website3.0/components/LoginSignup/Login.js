@@ -147,11 +147,11 @@ console.log('setting data')
           )}
           {allShow && (
             <>
-              <button className={`google-btn mt-[50px] w-3/5 p-2   rounded-[18px]  ${theme?"bg-white  border-none":"bg-[black] border-solid border-white border text-white whiteshadow"}  cursor-pointer flex justify-center items-center m-auto gap-[18px]  font-semibold`} onClick={() => signIn("google")}>
+              <button className={`google-btn mt-[50px] w-3/5 p-2   rounded-[18px]  ${theme?"bg-white  google-btn1 border-none":"bg-[black] google-btn2 border-solid border-white border text-white "}  cursor-pointer flex justify-center items-center m-auto gap-[18px]  font-semibold`} onClick={() => signIn("google")}>
                 <img className="w-[30px] h-[30px] ml-[5px]" src="google.png" alt="Google" />
                 Sign in with Google
               </button>
-              <button className={`github-btn w-3/5 p-2 mt-4  rounded-[18px] ${theme?"bg-white  border-none":"bg-[black] border-solid border-white border text-white whiteshadow"} cursor-pointer flex justify-center items-center m-auto gap-[18px]  font-semibold`} onClick={() => signIn("github")}>
+              <button className={`github-btn w-3/5 p-2 mt-4  rounded-[18px] ${theme?"bg-white  google-btn1 border-none":"bg-[black] google-btn2 border-solid border-white border text-white "} cursor-pointer flex justify-center items-center m-auto gap-[18px]  font-semibold`} onClick={() => signIn("github")}>
              
              {theme?   <img className="w-[35px] h-[30px] ml-[5px] " src="github.png" alt="GitHub" />:<FaGithub size={'2rem'}/>}
                 Sign in with Github
@@ -164,7 +164,7 @@ console.log('setting data')
                   onChange={(e) => setEmail2(e.target.value)}
                   value={email2}
                   className={`w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none ${theme?"border-gray-500":"border-white text-white"} border-[#837b7b] input-place`} 
-                  placeholder="Email your email"
+                  placeholder="Enter your email"
                 />
                 <div style={{ position: "relative" }}>
                   <input

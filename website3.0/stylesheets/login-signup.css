@@ -153,8 +153,11 @@ animation: outline-keys var(--animation);
 .signup-auth-container .google-btn{
   margin-top: 50px;
 }
-.google-btn:hover , .github-btn:hover{
+.google-btn1:hover , .github-btn1:hover{
   box-shadow: inset 0 0 0 150px #0000001a !important;
+}
+.google-btn2:hover , .github-btn2:hover{
+  box-shadow: inset 0 0 0 150px #ffffff1a !important;
 }
 .signup-auth-container button {
   width: 65%;
@@ -174,7 +177,7 @@ animation: outline-keys var(--animation);
 .signup-auth-container .google-btn{
   margin-top: 50px;
 }
-.google-btn:hover , .github-btn:hover{
+.google-btn1:hover , .github-btn1:hover{
   box-shadow: inset 0 0 0 150px #0000001a !important;
 }
 .continue-btn:hover,.login-btn:hover{
