@@ -245,7 +245,7 @@ const Header = () => {
                   theme
                     ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
                     : "bg-[#000] text-white hover:bg-transparent hover:border-[1px] hover:border-white"
-                } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
+                } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 min-[400px]:hidden`}
                 style={{ fontFamily: "ubuntu" }}
               >
                 <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
