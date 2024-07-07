@@ -49,7 +49,7 @@ function AboutPage() {
 
       {/* Section: What is HelpOps-Hub */}
       <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 w-full mb-10">
-        <div className="flex flex-col justify-start items-start w-full p-10 pr-0 pl-1 md:w-1/2 ml-2 md:mr-0 relative md:right-[130px]" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+        <div className="flex flex-col justify-start items-start w-full p-10 pl-1 max-md:pl-10 md:w-1/2 ml-2 md:mr-36" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
           <h1 className="text-3xl text-left md:text-5xl font-semibold  mb-4">What is HelpOps-Hub?</h1>
           <p className="text-desc   text-justify max-w-[500px]  w-auto">
             HelpOps-Hub is a comprehensive, community-driven platform designed
@@ -64,8 +64,8 @@ function AboutPage() {
             solutions, and drive the future of DevOps together.
           </p>
         </div>
-        <div className="w-[150px] flex justify-center">
-          <img src="/HelpOps-H Fevicon.png" alt="HelpOps Logo" className="w-2/4 md:w-full hover:scale-90 transition-all relative md:right-[40px]" />
+        <div className="w-[150px] flex justify-center max-md:hidden">
+          <img src="/HelpOps-H Fevicon.png" alt="HelpOps Logo" className="w-2/4 md:w-full hover:scale-90 transition-all" />
         </div>
       </div>
 
