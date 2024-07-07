@@ -7,6 +7,9 @@
   border-radius: 26px;
 
 }
+.whiteshadow{
+  box-shadow: 0px 0px 5px white ;
+}
 .aa{
   background-color: rgba(255, 255, 255, 1);
 }
@@ -67,20 +70,6 @@ height: 20px;
 border-radius: 50%;
 animation: outline-keys var(--animation);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .dark-mode .login-auth-container {
   background-color: #333;
 }
@@ -98,14 +87,126 @@ animation: outline-keys var(--animation);
 }
 
 
+.login-signup-link{
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.login-signup-link:hover{
+  color: #1c1c1b;
+  text-decoration: underline;
+}
+
+.forgot-password{
+  cursor: pointer;
+}
+
+.forgot-password:hover{
+  text-decoration: underline;
+}
+
+
 /* Styles for Signup auth container */
+
+
+
+
+.signup-auth-container h5 {
+  font-family: cursive;
+
+}
+
+
+.signup-auth-container p {
+  text-align: center;
+  margin-top: 15px;
+  font-family: cursive;
+  font-size: 16px;
+}
+.signup-auth-container img {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+}
+
+.signup-auth-container .github-btn img{
+  width: 35px;
+  height: 30px;
+}
+
 
 .signup-auth-container input::placeholder {
   color: #1f1f1f;
 }
+.signup-auth-container input {
+  width: 65%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+  color: black;
+  margin-left: 70px;
+  border-bottom: 1px solid #1f1f1f;
+}
 
+
+.signup-auth-container .google-btn{
+  margin-top: 50px;
+}
+.google-btn1:hover , .github-btn1:hover{
+  box-shadow: inset 0 0 0 150px #0000001a !important;
+}
+.google-btn2:hover , .github-btn2:hover{
+  box-shadow: inset 0 0 0 150px #ffffff1a !important;
+}
+.signup-auth-container button {
+  width: 65%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 18px;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 70px;
+  gap: 18px;
+}
+
+.signup-auth-container .google-btn{
+  margin-top: 50px;
+}
+.google-btn1:hover , .github-btn1:hover{
+  box-shadow: inset 0 0 0 150px #0000001a !important;
+}
 .continue-btn:hover,.login-btn:hover{
   background-color: #024d82 !important;
+}
+.signup-auth-container .close-btn {
+  position: absolute;
+  top: -15px;
+  right: -135px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.signup-auth-container a{
+  position: absolute;
+  right: 110px;
+  font-size: 13px;
+}
+
+.signup-auth-container .continue-btn{
+  width: 210px;
+  padding: 10px;
+  position: relative;
+  left: 50px;
+  background-color: rgb(21, 21, 22);
+  transition: background-color 0.3s ease;
+  color: white;
 }
 
 

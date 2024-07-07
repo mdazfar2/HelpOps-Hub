@@ -14,7 +14,6 @@
     width: 50%;
     min-width: 350px;
     justify-content: center;
-    background-color: rgb(255, 250, 244);
     border-radius: 10px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.195);
 }
@@ -36,7 +35,6 @@
     cursor: pointer;
     top:20px;
     transition: all 0.3s ease-in-out;
-    color: rgb(29, 29, 201);
 }
 .pen-icon{
     font-size: 14px;
@@ -63,21 +61,13 @@
     margin-top: 20px;
     font-size: 12px;
 }
-.username{
-    font-size: 32px;
-    color: black;
-    font-weight: 600;
-   margin-top: 5px;
-}
 .user-designation{
     font-size: 18px;
-    color: #5a5151;
     font-weight: 600;
     margin-top: 5px;
 }
 .user-caption{
     font-size: 14px;
-    color: #5a5151;
     text-align: center;
     font-weight: 400;
     margin-top: 10px;
@@ -108,7 +98,7 @@
 
 .social-icon-box:hover p{
    transform: translateY(-5px);
-  color: #1a1a1a;
+ 
     
 }
 @media (max-width:900px) {
@@ -160,3 +150,4 @@
         font-size: 24px;
     }
 }
+

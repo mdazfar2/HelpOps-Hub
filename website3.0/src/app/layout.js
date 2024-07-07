@@ -5,7 +5,9 @@ import Header from "@components/Header";
 import Footer from "@components/Footer";
 import Authprovider from "@components/auth/Authprovider";
 import { NextAuthProvider } from "./provider";
+import { GlobalContext } from "@context/store";
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata = {
   title: "Helpops-Hub",
@@ -21,12 +23,15 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
       <div id="Background1"></div>
       <div id="Background2"></div>
+      <GlobalContext>
+
         <NextAuthProvider>
           <Loader />
           <Header />
           {children}
           <Footer />
         </NextAuthProvider>
+      </GlobalContext>
       </body>
     </html>
   );

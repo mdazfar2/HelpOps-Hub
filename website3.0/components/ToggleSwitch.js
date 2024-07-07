@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "@stylesheets/darkmode.css";
 import "@stylesheets/toggleswitch.css";
+import { Context } from "@context/store";
 
 const ToggleSwitch = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  let {theme,setTheme}=useContext(Context)
   useEffect(() => {
     // Check stored preference
     const darkMode = localStorage.getItem("dark-mode") === "true";
     // Set initial state based on stored preference
     setIsDarkMode(darkMode);
     if (darkMode) {
-      document.body.classList.add("dark-mode");
+     setTheme(false)
     } else {
-      document.body.classList.remove("dark-mode");
+      setTheme(true)
     }
   }, []);
 
@@ -24,10 +25,9 @@ const ToggleSwitch = () => {
     setIsDarkMode(newMode);
     // Toggle dark mode class on body
     if (newMode) {
-      document.body.classList.add("dark-mode");
+      setTheme(false)
     } else {
-      document.body.classList.remove("dark-mode");
-    }
+setTheme(true)    }
     // Store new mode preference in local storage
     localStorage.setItem("dark-mode", newMode.toString());
   };

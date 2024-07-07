@@ -1,139 +1,5 @@
-/* Header and Navigation */
-header {
-  width: 100%;
-  z-index: 500;
-  position: fixed;
-  top: 0;
-  background-color: transparent;
-  padding: 10px 0;
-  transition: top 0.3s;
-}
-
-.showNav {
-  top: 0;
-}
-
-.hideNav {
-  top: -550px;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 90%;
-  margin: 20px auto;
-}
-
-.logo img {
-  width: 79px;
-  height: 79px;
-  top: 10px;
-}
-.nav-items{
-  display: flex;
-  min-width:70%;
-  gap:50px;
-  justify-content: space-between;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 12px 20px;
-  background-color: #ffffff !important;
-  border-radius: 25px;
-  flex-wrap: wrap;
-  justify-content: center;
-  box-shadow: 0 4px 6px #bbbbbb !important;
-  justify-self: flex-end;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #000 !important;
-  padding: 10px 15px;
-  font-size: 22px;
-  font-weight: 400;
-  position: relative;
-}
-
-
-.nav-links li a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 3px;
-  bottom: 4px;
-  left: 0;
-  background-color: #ff7d1f;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.nav-links li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-
-.auth-desktop{
-  display: block;
-}
-.nav-sponsor-btn {
-  background-color: rgba(245, 245, 245, 0.788);
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  color: #000000;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  transition: all 0.4s ease;
-  width: 120px;
-  padding: 7px 7px;
-  font-family: "Ubuntu" !important;
-  margin-right: 7px;
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.nav-sponsor-btn:active {
-  transform: translateY(1px);
-}
-
-/* Hovering effect for Sponsor btn */
-.nav-sponsor-btn:hover {
-  transform: translateX(10px);
-  background: none;
-  border: 2px solid whitesmoke;
-}
-
-.dark-mode .nav-sponsor-btn:hover {
-  color: #e0e0e0;
-}
-
 .hamburger {
   display: none;
-  position: relative;
-}
-#heart {
-  color:  rgb(234, 139, 155); ;
-}
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 4px;
-  transition: 0.4s;
 }
 .hamburger.open div:nth-child(2){
   display: none;
@@ -144,20 +10,23 @@ nav {
 }.hamburger.open div:nth-child(3){ 
   rotate: -45deg;
 }
-/* .nav-links1 */
-
-.active {
+.navAnimate {
   animation: nav_animate forwards ease-in-out 0.2s;
-  list-style: none;
-  display: none;
-  gap: 20px;
-  padding: 40px 0px;
-  background-color: #fdd76b;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
 }
-
+.dark-mode .nav_links{
+  background: #585858;
+  box-shadow: 1px 1px 5px 2px #00000056;
+}
+.dark-mode .nav_links_mobile{
+  background: #5c5c5c;
+  box-shadow: 1px 1px 5px 2px #00000056;
+}
+.dark-mode .nav_links_mobile a{
+  color: #fff;
+}
+.dark-mode .nav_links a{
+  color: #fff;
+}
 @keyframes nav_animate {
   from {
     height: 0px;
@@ -166,123 +35,18 @@ nav {
     height:350px;
   }
 }
-
-.toggle-switches {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 70px;
-  height: 35px;
-  margin: 0px;
+#heart{
+  color:  rgb(234, 139, 155);
 }
-.nav-links1 {
-  height: 0px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-
-/* Responsive Styles */
-@media only screen and (max-width: 1200px) {
-  .nav-links {
-    display: none !important;
-  }
-  .active {
-    display: flex;
-  }
-  .hamburger {
-    display: block !important;
-  }
-  .nav-items{
-    justify-content: center;
-    min-width: 0px;
-  }
-  .nav-links1 li a {
-    text-decoration: none;
-    padding: 10px 15px;
-    font-size: x-large;
-  }
-  .auth-desktop{
-    display: none;
+@media only screen and (max-width: 1280px) {
+  .hamburger{
+    display: block;
   }
 }
-
-@media only screen and (max-width: 790px) {
-  nav {
-    gap: 0;
-  }
-}
-
-@media only screen and (max-width: 409px) {
-  .nav-actions {
-    position: fixed;
-    top: 10px;
-    left: 3% !important;
-  }
-  .toggle-switch{
-    margin-top: 18px;
-  }
-  nav {
-    gap: 5% !important;
-  }
-  .hamburger {
-    width: 100% !important;
-  }
-  .hamburger div {
-    position: relative;
-    left: 90%;
-  }
-  nav {
-    flex-direction: column-reverse;
-  }
-  .nav-actions a {
-    display: none !important;
-  }
-  .logo img {
-    width: 60px !important;
-    height: 60px !important;
-  }
-}
-
-.nav-links1 li a {
-  text-decoration: none;
-  padding: 10px 15px;
-  font-size: 22px;
-  position: relative;
-}
-
-.nav-links1 li a:hover {
-  text-decoration: underline;
-}
-
-.nav-links1 li a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 3px;
-  bottom: 4px;
-  left: 0;
-  background-color: #ff7d1f;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.nav-links1 li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
 /* Styles for AuthButton and Overlay */
 
 .auth-btn {
   background-color: rgba(245, 245, 245, 0.788);
-  border: none;
   border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   color: #000000;
@@ -300,8 +64,6 @@ nav {
   border: 1px solid rgb(245, 245, 245);
 }
 
-
-
 .auth-overlay {
   position: fixed;
   top: 0;
@@ -318,7 +80,4 @@ nav {
 }
 .dark-mode .auth-btn:hover {
   color: #e0e0e0;
-}
-.nav-items{
-  align-items: center;
 }
