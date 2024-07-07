@@ -6,12 +6,9 @@ body{
 #container {
   max-width: 1000px;
   margin: 0 auto;
-  margin-top: 150px;
   padding: 20px;
-  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(255, 125, 31, 0.9);
-  margin-bottom: 20px;
 }
 .dark-mode #container{
   box-shadow: 0 0 20px rgba(181, 181, 181, 0.9);
@@ -21,7 +18,9 @@ body{
   border-radius: 10px;
   padding: 20px;
 }
-
+.textwhite strong, .textwhite p{
+  color: white !important;
+}
 #content img {
   max-width: 100%;
   height: auto;
@@ -159,7 +158,7 @@ pre {
   margin-bottom: 20px;
 }
 
-a {
+.resourcesdetails a {
   color: #ff6347;
   text-decoration: none;
   cursor: pointer;
@@ -167,7 +166,7 @@ a {
   transition: color 0.3s ease;
 }
 
-a:hover {
+.resourcesdetails a:hover {
   color: #ff4500;
 }
 
