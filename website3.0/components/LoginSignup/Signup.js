@@ -56,6 +56,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
           isSend: true,
         }),
       });
+      localStorage.setItem('useremail1',email)
       data = await data.json();
       // Check for any types of error
       if (!data.success) {
@@ -86,15 +87,14 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   };
 
   // Function to handle OTP submission
-  const handleOTPSubmit = async (otp) => {
+  const handleOTPSubmit = async (otp,email1) => {
     try {
-      let email = userEmail;
       let response = await fetch("/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email, isSend: false }),
+        body: JSON.stringify({ email: localStorage.getItem('useremail1'), isSend: false }),
       });
 
       let data = await response.json();
@@ -144,6 +144,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
           setError={setError}
           onOTPSubmit={handleOTPSubmit}
           onBack={handleBackToSignup}
+          email={email}
         />
       </>
     );
