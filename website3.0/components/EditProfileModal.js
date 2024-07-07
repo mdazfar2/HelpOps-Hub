@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faTimes } from "@fortawesome/free-solid-svg-icons";
-
+import { Context } from "@context/store";
+import { FaPen } from "react-icons/fa";
 // The EditProfileModal component handles the editing of the user's profile information.
 // It accepts the following props:
 // - isOpen: Boolean to control the modal visibility
@@ -14,11 +15,11 @@ export default function EditProfileModal({
   onRequestClose,
   userData,
   onSave,
-  theme,
+ 
 }) {
   // Initialize the form state with userData and add a password field with an empty string
   const [formData, setFormData] = useState({ ...userData, password: "" });
-
+let {theme}=useContext(Context)
   // Handle changes in form inputs and update the formData state accordingly
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,8 +59,8 @@ export default function EditProfileModal({
 
   return (
     // Modal overlay to cover the entire screen
-    <div className={`fixed inset-0 z-500 flex items-center justify-center  bg-black bg-opacity-75 modal-overlay`}>
-      <div className={`relative w-11/12 max-w-md p-5 bg-white rounded-lg   shadow-lg max-h-[500px] overflow-auto`}>
+    <div className="fixed inset-0 z-500 flex items-center justify-center bg-black bg-opacity-75 modal-overlay">
+      <div className={`relative w-11/12 max-w-md p-5  ${theme?"bg-white border-2 border-dashed border-black" :"bg-[#121111] border-2 border-dashed border-white"} rounded-lg shadow-lg max-h-[500px] overflow-auto`}>
         {/* Close button */}
         <span
           className="absolute text-2xl text-black cursor-pointer top-2 right-5"
@@ -74,49 +75,14 @@ export default function EditProfileModal({
           <img
             src={formData.userImage}
             alt="Profile Picture"
-            className="w-36 h-36 mx-auto mt-4 rounded-full object-cover modal-profile-img"
+            className="w-36 h-36 mx-auto mt-4 border border-white rounded-full object-cover modal-profile-img"
           />
-          <span className="absolute flex items-center  text-black justify-center w-9 h-9 p-1 bg-white rounded-full cursor-pointer top-2/3 left-2/3 camera-icon">
-            <FontAwesomeIcon icon={faCamera} />
-          </span>
+            <button className={`p-1 pl-2 pr-2  flex gap-2 items-center absolute right-[81px] bottom-[-9px] ${theme?"bg-white text-black border border-black rounded-md":"bg-black text-white border rounded-md border-white"}`}><FaPen color={`${theme?"black":"white"}`}/>Edit</button>
         </div>
 
         {/* Form for editing profile details */}
         <form className="flex flex-col gap-4 mt-5 edit-form">
-          <label className="flex flex-col  text-black">
-            Username:
-            <input
-              type="text"
-              name="userName"
-              placeholder="Nishant Kaushal"
-              value={formData.userName}
-              onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded"
-            />
-          </label>
-          <label className="flex flex-col  text-black">
-            Email:
-            <input
-              type="email"
-              name="userEmail"
-              placeholder="Nishantkaushal0708@gmail.com"
-              value={formData.userEmail}
-              onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded"
-            />
-          </label>
-          <label className="flex flex-col  text-black">
-            Password:
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter Your Password"
-              value={formData.password}
-              onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded"
-            />
-          </label>
-          <label className="flex flex-col  text-black">
+          <label className="flex flex-col">
             Designation:
             <input
               type="text"
@@ -124,7 +90,7 @@ export default function EditProfileModal({
               placeholder="Software Engineer"
               value={formData.designation}
               onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded"
+              className={`p-2 mt-1 border border-gray-300 rounded ${theme?"":"text-black"}`}
             />
           </label>
           <label className="flex flex-col  text-black">
@@ -135,7 +101,7 @@ export default function EditProfileModal({
               placeholder="Creating visually appealing and highly functional software that bridges technology and user needs."
               value={formData.caption}
               onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded resize-none h-24"
+              className={`p-2 mt-1 border border-gray-300 rounded resize-none h-24 ${theme?"":"text-black"} `}
             />
           </label>
           <label className="flex flex-col  text-black">
@@ -146,7 +112,7 @@ export default function EditProfileModal({
               placeholder="Enter Your Github Link"
               value={formData.github}
               onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded"
+              className={`${theme?"":"text-black"} p-2 mt-1 border border-gray-300 rounded`}
             />
           </label>
           <label className="flex flex-col  text-black">
@@ -157,7 +123,7 @@ export default function EditProfileModal({
               placeholder="Enter Your LinkedIn Link"
               value={formData.linkedin}
               onChange={handleChange}
-              className="p-2 mt-1 border border-gray-300 rounded"
+              className={`${theme?"":"text-black"} p-2 mt-1 border border-gray-300 rounded`}
             />
           </label>
 
@@ -166,14 +132,14 @@ export default function EditProfileModal({
             <button
               type="button"
               onClick={handleSaveChanges}
-              className="px-4 py-2 text-white bg-black rounded"
+              className={`${theme?"":"border border-white shadow-sm shadow-white"} px-4 py-2 text-white bg-black rounded`}
             >
               Save Changes
             </button>
             <button
               type="button"
               onClick={onRequestClose}
-              className="px-4 py-2 text-white bg-black rounded"
+              className={` ${theme?"":"border border-white shadow-sm shadow-white"} px-4 py-2 text-white bg-black rounded`}
             >
               Cancel
             </button>

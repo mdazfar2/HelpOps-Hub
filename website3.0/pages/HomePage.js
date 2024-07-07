@@ -286,7 +286,7 @@ function HomePage({ theme }) {
       <div className="absolute max-sm:static max-sm:mt-48 z-10 top-48 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:ml-0 flex justify-left ml-24 max-2xl:ml-10 items-center transition-all duration-500">
         <div
           className={`${
-            theme ? "bg-white" : "bg-[#292727] shadow-[#ffffff38] shadow-md"
+            theme ? "bg-white" : "bg-[#292727]  shadow-md"
           } p-16 max-[450px]:w-[95%] max-[450px]:py-14 max-[420px]:px-0 rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center transition-colors duration-500`}
         >
           <h1
