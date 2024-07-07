@@ -215,7 +215,7 @@ console.log('setting data')
               )}
             </button>
           )}
-          <button className="absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
+          <button className={`absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer ${theme?"":"text-white"}`} onClick={onClose}>
             &#10005;
           </button>
         </div>
