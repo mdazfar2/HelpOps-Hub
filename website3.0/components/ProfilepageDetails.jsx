@@ -38,7 +38,7 @@ export default function ProfilepageDetails() {
       linkedin
     };
   return (
-   <div className={`${theme?"":"bg-[#1c1a1a] text-white" }`}>
+   <div className={`${theme?"":"bg-[#1e1d1d]  text-white " }`}>
     {/* Edit Profile button */}
    <div className="edit-profile" onClick={handleOpenModal}>
           <span className="pen-icon">
@@ -56,7 +56,7 @@ export default function ProfilepageDetails() {
        
         </div>
          {/* Profile details section */}
-        <div className={` profile-details ${theme?"":"bg-[#1c1a1a] text-white"}`}>
+        <div className={` profile-details ${theme?"":"bg-[#1e1d1d] text-white"}`}>
         <p className="mail">mail: {userEmail}</p>
           <h1 className={`text-2xl ${theme?"text-black":"text-white"} font-semibold mt-1`}>{userName}</h1>
           <p className={` user-designation ${theme?"text-[#5a5151]":"text-white"}`}>Software Engineer</p>
