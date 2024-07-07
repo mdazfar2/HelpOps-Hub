@@ -11,6 +11,9 @@ body {
   margin-bottom: 100px;
   gap: 200px;
 }
+.whiteshadow{
+  box-shadow: 0px 0px 5px white !important;
+}
 .contact-img1 {
   display: none;
 }

@@ -15,7 +15,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,isLogin}=useContext(Context)
+  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -108,7 +108,7 @@ console.log(userName)
   },[userName])
   return (
     <>
-   {!profile && userName.length==0 &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
+   {!profile && userName.length==0 &&   <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}    auth-btn`} onClick={toggleAuth}>Login/Signup</button>
       }
      {/* {
  profile&& <> <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
@@ -116,7 +116,7 @@ console.log(userName)
     </div><button onClick={handleLogout}>Logout</button></>
 } */}
 {
-  userName.length>0 && <div className="auth-btn"  onClick={()=>router.push('/profile')}>Profile</div>
+  userName.length>0 && <div className={`auth-btn ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}`}  onClick={()=>router.push('/profile')}>Profile</div>
 }
 {
   showProfile1  && 
