@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
 import Lodaernewletter from "../components/Loadernewletter";
@@ -20,11 +20,9 @@ import "aos/dist/aos.css";
 //Importing the SplideJS Package
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import ParticlesComponent from "@components/ParticleBackground";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
-import { Context } from "@context/store";
-function HomePage() {
+function HomePage(theme) {
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -34,7 +32,6 @@ function HomePage() {
   const [splineKey, setSplineKey] = useState(0);
   const splineRef = useRef(null);
   let session = useSession();
-  let { theme } = useContext(Context);
 
   useEffect(() => {
     // Extract token from URL query parameters
