@@ -88,7 +88,6 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   // Function to handle OTP submission
   const handleOTPSubmit = async (otp) => {
     try {
-      let email = userEmail;
       let response = await fetch("/api/signup", {
         method: "POST",
         headers: {
