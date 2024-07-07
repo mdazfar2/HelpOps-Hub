@@ -134,7 +134,7 @@ let [error,setError]=useState(false)
       <label htmlFor='fileupload' className='relative'>
 
 <img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`} className={`h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px] ${theme?"":"border border-white"}`} alt="Profile-circle" />
-<FaPen className='right-[-64px] bottom-[-109px] absolute' />
+<FaPen color={`${theme?"black":"white"}`} className={`$ right-[-64px] bottom-[-109px] absolute`} />
 </label>    
   <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         {/* Username input */}
