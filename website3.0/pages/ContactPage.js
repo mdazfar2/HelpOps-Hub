@@ -112,12 +112,12 @@ function ContactPage({theme}) {
   };
 
   return (
-    <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#0a0909] "} flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32 max-sm:scale-75`}>
+    <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#1e1d1d] "} flex-col-reverse items-center justify-center space-x-0 p-10 md:flex-row md:space-x-40 max-sm:scale-75 h-[100vh] pt-40 `}>
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10">
         <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
       </div>
-        <div className={`flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl  ${theme?"bg-[#098CCD] bg-opacity-10":"bg-[#1c1a1a] border-white"}  md:justify-center`}>
+        <div className={`flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl  ${theme?"bg-[#098CCD] bg-opacity-10":"bg-[#181616]  border-white"}  md:justify-center`}>
           <h1 className={`${theme?"":"text-white"} text-3xl`}>Contact Us</h1>
           <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
             <input type="text" id="name" name="name" required placeholder="Name:" className={`w-full rounded-xl h-12 my-2 px-40 pl-4 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `}/>
@@ -138,7 +138,7 @@ function ContactPage({theme}) {
               ))}
             </div>
             {showError && <p id="error" className={`${theme?"":"text-white"}`}>Please Give Any Rating</p>}
-            <button type="submit" id="button" disabled={disableSubmit} className={`w-1/3  ${theme?"bg-[#fff]":"bg-black shadow-white shadow-md border-white border text-white"} text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded`}>
+            <button type="submit" id="button" disabled={disableSubmit} className={`w-1/3  ${theme?"bg-[#fff]":"bg-black shadow-white shadow-sm border-white border text-white"} text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded`}>
               Submit {loading && <div className="loader2"><div className="circle"><div className="dot"></div><div className="outline"></div></div></div>}
             </button>
             {showThankYouMessage}
