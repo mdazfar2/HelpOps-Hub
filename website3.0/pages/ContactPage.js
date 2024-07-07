@@ -121,9 +121,9 @@ function ContactPage() {
         <div className="flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl bg-[#098CCD] bg-opacity-10 md:justify-center">
           <h1 className="text-3xl">Contact Us</h1>
           <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
-            <input type="text" id="name" name="name" required placeholder="Name:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900"/>
-            <input type="email" id="email" name="email" required placeholder="Email:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900" />
-            <textarea id="comment" name="comment" required placeholder="Comment:" className="w-full rounded-xl h-32 my-2 px-40 pl-4 pt-24  outline-none placeholder-gray-900"></textarea>
+            <input type="text" id="name" name="name" required placeholder="Name:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-700"/>
+            <input type="email" id="email" name="email" required placeholder="Email:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-700" />
+            <textarea id="comment" name="comment" required placeholder="Comment:" className="w-full rounded-xl h-24 my-2 px-40 pl-4 pt-2  outline-none placeholder-gray-700"></textarea>
             <label htmlFor="rating" id="rate">Rating:</label>
             <div id="rating">
               {[1, 2, 3, 4, 5].map((value) => (
