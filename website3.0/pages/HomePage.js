@@ -22,7 +22,7 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
-function HomePage({theme}) {
+function HomePage({ theme }) {
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -244,7 +244,11 @@ function HomePage({theme}) {
     };
   }, []);
   return (
-    <div className={`${theme ? "bg-gray-100" : " bg-[#1e1d1d]"} transition-colors duration-500`}>
+    <div
+      className={`${
+        theme ? "bg-gray-100" : " bg-[#1e1d1d]"
+      } transition-colors duration-500`}
+    >
       {showPopup && (
         <Popup
           msg={`${localStorage.getItem("userName")} Welcome !!`}
@@ -310,13 +314,18 @@ function HomePage({theme}) {
         </div>
       </div>
       <div className="w-full h-[400px] mt-4 flex justify-center items-center focus:outline-0 sm:hidden">
-        <video src={`${theme ? "/Mobile-Devops.mp4":"/Devops-Dark.mp4"}`} className={`${theme ? "":"brightness-95 contrast-[1.01]"}`} loop autoPlay muted playsInline>
+        <video
+          src={`${theme ? "/Mobile-Devops.mp4" : "/Devops-Dark.mp4"}`}
+          className={`${theme ? "" : "brightness-95 contrast-[1.01]"}`}
+          loop
+          autoPlay
+          muted
+          playsInline
+        >
           Your browser does not support the video tag.
         </video>
       </div>
-      <div
-        className="flex flex-col justify-center items-center transition-colors duration-300"
-      >
+      <div className="flex flex-col justify-center items-center transition-colors duration-300">
         <div className=" relative mt-32 flex justify-center max-sm:mt-4 h-[650px] w-[1024px] max-lg:w-full max-lg:h-[520px]">
           <Spline scene="/Section2_Scene.splinecode" />
           <div className="absolute top-16 max-xl:scale-90 max-lg:scale-75 max-[620px]:scale-[0.6] max-[580px]:w-[160%] max-lg:top-0 flex flex-col justify-center items-center">
@@ -330,9 +339,11 @@ function HomePage({theme}) {
               Learn, and
               <br /> Grow
             </div>
-            <div className={`${
+            <div
+              className={`${
                 theme ? "text-black" : "text-white"
-              } w-[60%] text-center text-xl text-black`}>
+              } w-[60%] text-center text-xl text-black`}
+            >
               Discover the Latest Trends and Innovations in Devops Practices and
               Technologies
             </div>
@@ -423,7 +434,13 @@ function HomePage({theme}) {
           <div className="splide__track">
             <ul className="splide__list">
               <li className="splide__slide p-2">
-                <div className="text-black w-full h-full border-2 border-black rounded-xl cursor-pointer p-4">
+                <div
+                  className={`${
+                    theme
+                      ? "text-black border-black"
+                      : "text-white bg-[#26272b] border-white border-dashed"
+                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+                >
                   <div className="flex p-4 gap-5 items-center justify-center">
                     <img src="/i1.png" className="w-16 rounded-full" />
                     <div className="font-medium text-3xl">Ask Questions</div>
@@ -434,7 +451,13 @@ function HomePage({theme}) {
                 </div>
               </li>
               <li className="splide__slide p-2">
-                <div className="text-black w-full h-full border-2 border-black rounded-xl cursor-pointer p-4">
+              <div
+                  className={`${
+                    theme
+                      ? "text-black border-black"
+                      : "text-white bg-[#26272b] border-white border-dashed"
+                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+                >
                   <div className="flex p-4 gap-5 items-center justify-center">
                     <img src="/i2.png" className="w-16 rounded-full" />
                     <div className="font-medium text-3xl">
@@ -448,7 +471,13 @@ function HomePage({theme}) {
                 </div>
               </li>
               <li className="splide__slide p-2">
-                <div className="text-black w-full h-full border-2 border-black rounded-xl cursor-pointer p-4">
+              <div
+                  className={`${
+                    theme
+                      ? "text-black border-black"
+                      : "text-white bg-[#26272b] border-white border-dashed"
+                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+                >
                   <div className="flex p-4 gap-5 items-center justify-center">
                     <img src="/i4.png" className="w-16 rounded-full" />
                     <div className="font-medium text-3xl">
@@ -462,7 +491,13 @@ function HomePage({theme}) {
                 </div>
               </li>
               <li className="splide__slide p-2">
-                <div className="text-black w-full h-full border-2 border-black rounded-xl cursor-pointer p-4">
+              <div
+                  className={`${
+                    theme
+                      ? "text-black border-black"
+                      : "text-white bg-[#26272b] border-white border-dashed"
+                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+                >
                   <div className="flex p-4 gap-5 items-center justify-center">
                     <img src="/i3.png" className="w-16 rounded-full" />
                     <div className="font-medium text-3xl">Access Resources</div>
@@ -556,9 +591,11 @@ function HomePage({theme}) {
         {/*Section: Newsletter subscription*/}
 
         <div className="w-[95vw] mt-14 z-[50] max-sm:w-full">
-          <div className={`${
-            theme ? "bg-gray-200" : "bg-[#26272b] text-white"
-          } rounded-3xl flex p-16 px-4 w-[90%] mx-auto shadow-lg max-[900px]:flex-col items-center align-center`}>
+          <div
+            className={`${
+              theme ? "bg-gray-200" : "bg-[#26272b] text-white"
+            } rounded-3xl flex p-16 px-4 w-[90%] mx-auto shadow-lg max-[900px]:flex-col items-center align-center`}
+          >
             <div className="w-2/5 flex justify-center items-center max-[900px]:w-full">
               <img
                 src="HelpOps-H Fevicon.png"
