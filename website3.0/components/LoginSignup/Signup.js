@@ -154,7 +154,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   console.log(session);
 
   return (
-    <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[400px] relative select pt-16`}>
+    <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c]  border-white"}  p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[400px] relative select pt-16`}>
       {popup && (
         <Popup
           msg={error}

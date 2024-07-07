@@ -7,9 +7,9 @@ function AboutPage({theme}) {
 
 
   return (
-    <div className={` w-full mt-32 p-4  md:px-8 lg:px-16 pt-0 ${theme?"":"bg-black"}`}>
+    <div className={` w-full items-center pt-32 p-4  md:px-8 lg:px-16  ${theme?"":"bg-[#1e1d1d]"}`}>
       {/* Section: Title */}
-      <div className="text-4xl text-center font-semibold">About us</div>
+      <div className={` ${theme?"":"text-white"} text-4xl text-center font-semibold`}>About us</div>
 
       {/* Section: Video */}
       <div className="w-full flex justify-center">

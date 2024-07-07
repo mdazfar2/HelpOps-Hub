@@ -80,7 +80,7 @@ const Header = () => {
   return (
     <header
       className={`w-screen ${
-        theme ? "bg-transparent" : "transition-all"
+        theme ? "bg-transparent" : "transition-all bg-transparent"
       } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
         show ? "top-0" : "top-[-550px]"
       }`}
