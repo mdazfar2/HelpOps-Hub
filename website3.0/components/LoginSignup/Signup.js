@@ -199,7 +199,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
       
       <p className={`text-end text-[12px] relative right-[80px] ${theme?"text-black":"text-white"}`}>
         Already have an account? &nbsp;
-        <span className={`login-signup-link`} onClick={onLoginClick}>Login</span>
+        <span className={`login-signup-link  ${theme?"":"hover:text-gray-500"} `} onClick={onLoginClick}>Login</span>
       </p>
       <br />
 <br />

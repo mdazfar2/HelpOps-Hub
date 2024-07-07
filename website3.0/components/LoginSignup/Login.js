@@ -182,7 +182,7 @@ console.log('setting data')
                 </div>
               </div>
               <div className="flex w-[69%] m-auto justify-between">
-                <p className={`text-center text-[13px] mt-[15px] regular forgot-password ${theme?"text-black":"text-white"}`} onClick={forgotPassword}>
+                <p className={`text-center ${theme?"":"hover:text-gray-500"} text-[13px] mt-[15px] regular forgot-password ${theme?"text-black":"text-white"}`} onClick={forgotPassword}>
                   Forgot Password
                 </p>
                 <p className={`text-center text-[13px] mt-[15px] regular  ${theme?"text-black":"text-white"}`}>New here? &nbsp;

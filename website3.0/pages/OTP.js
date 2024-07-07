@@ -67,7 +67,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
   };
 
   return (
-    <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center h-[500px] w-[650px]  bg-slate-100 pt-[60px] pl-[40px] pr-[40px]`}>
+    <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center h-[500px] w-[650px]   pt-[60px] pl-[40px] pr-[40px]`}>
      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
      {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
@@ -80,7 +80,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
         &#10005; {/* Cross Unicode character */}
       </button>
       <h5 className={` ${!theme?"text-black":"text-white"} `}>To continue, enter the OTP sent to your registered email address.</h5>
-      <p>This helps us keep your account secure.</p>
+      <p  className={` ${!theme?"text-black":"text-white"} `}>This helps us keep your account secure.</p>
       {/* OTP input fields */}
       <div className={`mt-[20px] mb-[20px] ml-0 mr-0 flex justify-center gap-[6px]`} onPaste={handlePaste}>
         {otp.map((data, index) => {
