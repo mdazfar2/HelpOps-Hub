@@ -1,10 +1,14 @@
+"use client";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-
+import { usePathname } from 'next/navigation';
 function Footer() {
+  const pathname = usePathname(); // Get current path
+  const isAdmin = pathname && pathname.startsWith('/admin'); // Check if path starts with '/admin'
+  console.log({ pathname });
   return (
-    <div className="mt-12 mb-6 flex flex-col items-center justify-center text-center w-full">
+    <div className={`mt-12 mb-6 flex flex-col items-center justify-center text-center w-full ${isAdmin ? "hidden" : "block"}`}>
       {/* Social media icons */}
       <div className="flex items-center justify-center gap-5 w-full mb-0">
         <a href="https://www.linkedin.com/company/HelpOps-Hub/" target="_blank" rel="noopener noreferrer">
