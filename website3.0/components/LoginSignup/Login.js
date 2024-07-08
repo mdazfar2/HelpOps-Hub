@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "@stylesheets/login-signup.css";
 import Popup from "@components/Popup";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { Context } from "@context/store";
 
@@ -18,13 +18,23 @@ const Login = ({ onClose, onSignupClick }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin}=useContext(Context)
-  // useEffect hook to handle Enter key press for login
+  let {setIsLogin,theme,setFinalUser}=useContext(Context)
+
+  // Modified useEffect hook to handle Enter key press for form navigation and login
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
-        handleLogin(); // Call handleLogin when Enter is pressed
+        if (email2 === "") {
+          // If email is empty, focus on the email input
+          document.getElementById("email-input").focus();
+        } else if (password === "") {
+          // If email is filled but password is empty, focus on the password input
+          document.getElementById("password-input").focus();
+        } else {
+          // If both email and password are filled, proceed with login
+          handleLogin();
+        }
       }
     };
 
@@ -40,7 +50,22 @@ const Login = ({ onClose, onSignupClick }) => {
   function toggle() {
     setShowPassword(!showPassword);
   }
+  async function fetchData(email){
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email :email
+         })
+       })
 
+      let  e=await a.json()
+      let data1=await JSON.stringify(e.msg)
+      localStorage.setItem('finalUser',data1)
+      setFinalUser(e.msg)
+      setIsLogin(true)
+      localStorage.setItem("loggedin",true)
+      onClose()
+     }
   // Function to handle login process
   async function handleLogin() {
     setLoading(true);
@@ -52,36 +77,45 @@ const Login = ({ onClose, onSignupClick }) => {
       }),
     });
     let data = await res.json();
-    setLoading(false);
 
     // Handle login errors
     if (!data.success) {
       setError(data.msg);
+      
+      if (data.msg === "User Doesn't Valid" || data.msg === "Invalid Email") {
+        // If username/email is invalid, clear both fields
+        setEmail2("");
+        setPassword("");
+      } else if (data.msg === "Incorrect Password") {
+        // If only password is incorrect, clear just the password field
+        setPassword("");
+      }
+      
       setTimeout(() => {
         setError("");
-        setEmail2("");
-
-        setPassword("");
       }, 1000);
       return;
     }
 
-    // Save user details to localStorage
-    setUserName( data.user[0].name);
-    setUserEmail( data.user[0].email);
-    setUserImage(data.user[0].image1);
-    localStorage.setItem('userName', data.user[0].name);
-    localStorage.setItem('userEmail', data.user[0].email);
-    localStorage.setItem('userImage',data.user[0].image1);
-    setIsLogin(true)
-console.log('setting data')
-    setError(`${data.user[0].name} Welcome !!`);
+   await fetchData(data.user[0].email)
+    setLoading(false);
 
-    // Close the login popup and reload the page after 2 seconds
-    setTimeout(() => {
-      setError("");
-      onClose();
-    }, 2000);
+    // Save user details to localStorage
+    // setUserName(data.user[0].name);
+    // setUserEmail(data.user[0].email);
+    // setUserImage(data.user[0].image1);
+    // localStorage.setItem('userName', data.user[0].name);
+    // localStorage.setItem('userEmail', data.user[0].email);
+    // localStorage.setItem('userImage',data.user[0].image1);
+    // setIsLogin(true)
+    // console.log('setting data')
+    // setError(`${data.user[0].name} Welcome !!`);
+
+    // // Close the login popup and reload the page after 2 seconds
+    // setTimeout(() => {
+    //   setError("");
+    //   onClose();
+    // }, 2000);
   }
 
   // Function to handle forgot password process
@@ -117,10 +151,15 @@ console.log('setting data')
     setAllShow(false);
   };
 
+   // Function to go back to login from forgot password page
+   const handleBackToLogin = () => {
+    setAllShow(true);
+  };
+
   return (
     <>
       {!isSent && (
-        <div className=" bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  bg-slate-100 p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:w-[400px] relative select">
+        <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-[2px] ${theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c] whiteshadow border-white"} p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:w-[400px] relative select`}>
           {error && (
             <Popup
               msg={error}
@@ -132,63 +171,71 @@ console.log('setting data')
             />
           )}
 
-          <h1 className="text-center mt-[5px] black text-[22px] font-bold">
+          <h1 className={`text-center mt-[5px] ${theme ? "text-black" : "text-white"} text-[22px] font-bold`}>
             {allShow ? "Login to HelpOps-Hub" : "Please Enter Your Email"}
           </h1>
           {!allShow && (
-            <input
-              type="text"
-              onChange={(e) => setEmail1(e.target.value)}
-              value={email1}
-              className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px]" 
-
-              placeholder="Enter your email"
-            />
+            <>
+            <button className={`absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none ${theme?"text-black":"text-white"} text-2xl cursor-pointer h-auto hover:text-[#666]`} onClick={handleBackToLogin}>
+            &#8592; {/* Left arrow Unicode character */}
+            </button>
+              <input
+                type="text"
+                onChange={(e) => setEmail1(e.target.value)}
+                value={email1}
+                className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] ${theme ? "border-gray-500" : "border-white text-white"}`}
+                placeholder="Enter your emaill"
+              />
+            </>
           )}
           {allShow && (
             <>
-              <button className="google-btn mt-[50px] w-3/5 p-2  border-none rounded-[18px] bg-white cursor-pointer flex justify-center items-center ml-[70px] gap-[18px] text-[#4F4848] font-semibold" onClick={() => signIn("google")}>
-                <img className="w-[30px] h-[30px] ml-[5px]" src="google.png" alt="Google" />
+              <button className={`google-btn mt-[50px] w-3/5 p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
+                <img className="w-[30px] h-[30px] ml-[5px]" src="new/google.webp" alt="Google" />
                 Sign in with Google
               </button>
-              <button className="github-btn w-3/5 p-2 mt-4 border-none rounded-[18px] bg-white cursor-pointer flex justify-center items-center ml-[70px] gap-[18px] text-[#4F4848] font-semibold" onClick={() => signIn("github")}>
-                <img className="w-[35px] h-[30px] ml-[5px]" src="github.png" alt="GitHub" />
+              <button className={`github-btn w-3/5 p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
+                {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="new/github.webp" alt="GitHub" /> : <FaGithub size={'2rem'} />}
                 Sign in with Github
               </button>
-              <p className="text-center text-[16px] mt-[15px] font-Itim ">Or</p>
+              <p className="text-center text-[16px] mt-[15px] font-Itim">Or</p>
               <br />
               <div>
+                {/* Added id attribute to email input for focus functionality */}
                 <input
+                  id="email-input"
                   type="text"
                   onChange={(e) => setEmail2(e.target.value)}
                   value={email2}
-                  className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place" 
-                  placeholder="Email or Username"
+                  className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none ${theme ? "border-gray-500" : "border-white text-white"} border-[#837b7b] input-place`} 
+                  placeholder="Enter your email"
                 />
                 <div style={{ position: "relative" }}>
+                  {/* Added id attribute to password input for focus functionality */}
                   <input
+                    id="password-input"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
-                    className="w-[65%] p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place" 
+                    className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none ${theme ? "border-gray-500" : "border-white text-white"} border-[#837b7b] input-place`}
                     type={`${showPassword ? "text" : "password"}`}
                     placeholder="Password"
                   />
                   {showPassword ? (
-                    <FaEye className="absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer" onClick={toggle} />
+                    <FaEye color={`${theme ? "black" : "white"}`} className={`absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer`} onClick={toggle} />
                   ) : (
-                    <FaEyeSlash className="absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer" onClick={toggle} />
+                    <FaEyeSlash color={`${theme ? "black" : "white"}`} className="absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer" onClick={toggle} />
                   )}
                 </div>
               </div>
               <div className="flex w-[69%] m-auto justify-between">
-                <p className="text-center text-[13px] mt-[15px] regular forgot-password" onClick={forgotPassword}>
+                <p className={`text-center ${theme ? "" : "hover:text-gray-500"} text-[13px] mt-[15px] regular forgot-password ${theme ? "text-black" : "text-white"}`} onClick={forgotPassword}>
                   Forgot Password
                 </p>
-                <p className="text-center text-[13px] mt-[15px] regular ">New here? &nbsp;
-                <span className="login-signup-link" onClick={onSignupClick}>Sign up now</span>
+                <p className={`text-center text-[13px] mt-[15px] regular ${theme ? "text-black" : "text-white"}`}>New here? &nbsp;
+                  <span className={`login-signup-link ${theme ? "" : "hover:text-gray-500"}`} onClick={onSignupClick}>Sign up now</span>
                 </p>
               </div>
-              <button className="w-[120px]  h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  ml-[40%] gap-[18px] text-[19px] font-semibold" onClick={handleLogin}>
+              <button className={`w-[120px] h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 rounded-[18px] cursor-pointer ml-[40%] gap-[18px] text-[19px] ${theme ? "bg-[#098CCD] border-none" : "bg-[#272525] border-white border whiteshadow"} font-semibold`} onClick={handleLogin}>
                 Login &nbsp;
                 {loading && (
                   <div className="loader3">
@@ -202,7 +249,7 @@ console.log('setting data')
             </>
           )}
           {!allShow && (
-            <button className="w-[200px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold" onClick={handleForgotPass}>
+            <button className={`w-[200px] h-[52px] flex justify-center content-center items-center p-2 relative bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer m-auto gap-[18px] text-[19px] font-semibold ${theme ? "bg-[#098CCD] border-none" : "bg-[#272525] border-white border whiteshadow"}`} onClick={handleForgotPass}>
               Submit &nbsp;
               {loading && (
                 <div className="loader3">
@@ -214,14 +261,16 @@ console.log('setting data')
               )}
             </button>
           )}
-          <button className="absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer " onClick={onClose}>
+
+          <button className={`absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer ${theme?"":"text-white"}`} onClick={onClose}>
+
             &#10005;
           </button>
         </div>
       )}
       {isSent && (
-        <div className="bg-slate-100 w-[400px] text-2xl rounded-lg p-[40px]">
-          <h1 className="text-center">Verification Link Has Been Sent to Your Email</h1>
+        <div className={`${theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c] whiteshadow border-white"} w-[400px] text-2xl rounded-lg p-[40px]`}>
+          <h1 className={`${theme ? "text-black" : "text-white"} text-center`}>Verification Link Has Been Sent to Your Email</h1>
         </div>
       )}
     </>

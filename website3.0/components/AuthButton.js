@@ -15,7 +15,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,isLogin}=useContext(Context)
+  let {userName,setFinalUser,setIsLogin,setUserLinkedin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -24,18 +24,58 @@ const AuthButton = () => {
     }
    },[profile])
 let session=useSession()
-  useEffect(() => {
-    if (showAuth) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [showAuth]);
+  // useEffect(() => {
+  //   if (showAuth) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'unset';
+  //   }
+  // }, [showAuth]);
   if(session.status=='unauthenticated' && !isLogin){
     setUserEmail('')
     setUserImage('')
     setUserName('')
   }
+  async function fetchData1(){
+    setIsLogin(true)
+    console.log('inside fetdshdjsd')
+    let session=await JSON.parse(localStorage.getItem('finalUser'))
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email : session.email
+         })
+       })
+      
+      let  e=await a.json()
+      setFinalUser(e.msg)
+       let dt=await JSON.stringify(e.msg)
+       localStorage.setItem('finalUser',dt)
+       setIsLogin(true)
+       
+     }
+  useEffect(()=>{
+    if(localStorage.getItem('loggedin')){
+      fetchData1()
+    }
+  },[])
+  async function fetchData(){
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email : session.data.user.email,
+           name:session.data.user.name,
+           image:session.data.user.image
+         })
+       })
+      
+      let  e=await a.json()
+      setFinalUser(e.msg)
+       let dt=await JSON.stringify(e.msg)
+       localStorage.setItem('finalUser',dt)
+       setIsLogin(true)
+       
+     }
   useEffect(()=>{
 
     if(session.status=='authenticated'){
@@ -46,24 +86,15 @@ let session=useSession()
       //     name:session.data.user.name
       //   })
       // })
-    setUserEmail(session.data.user.email)
-    setUserName(session.data.user.name)
-    setUserImage(session.data.user.image)
-    localStorage.setItem('userEmail',session.data.user.email)
-    localStorage.setItem('userName',session.data.user.name)
-    localStorage.setItem('userImage',session.data.user.image)
+
+        fetchData()
+     
     setIsLogin1(true)
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
 //       }
-       fetch("/api/createaccount",{
-        method:"POST",
-        body:JSON.stringify({
-          email : session.data.user.email,
-          name:session.data.user.name
-        })
-      })
+  
     }
   },[session.status])
   const toggleAuth = () => {
@@ -108,7 +139,7 @@ console.log(userName)
   },[userName])
   return (
     <>
-   {!profile && userName.length==0 &&   <button className="auth-btn" onClick={toggleAuth}>Login/Signup</button>
+   {!isLogin&& userName.length==0 &&   <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}    auth-btn`} onClick={toggleAuth}>Login/Signup</button>
       }
      {/* {
  profile&& <> <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
@@ -116,10 +147,10 @@ console.log(userName)
     </div><button onClick={handleLogout}>Logout</button></>
 } */}
 {
-  userName.length>0 && <div className="auth-btn"  onClick={()=>router.push('/profile')}>Profile</div>
+  isLogin && <div className={`auth-btn ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}`}  onClick={()=>router.push('/profile')}>Profile</div>
 }
 {
-  showProfile1  && 
+  showProfile1 && isLogin  && 
   <div className="auth-overlay" >
           <div className="auth-modal"  onClick={(e) => e.stopPropagation()}>
   <UserProfile onClose={closeProfile} onLogout={handleLogout}/>

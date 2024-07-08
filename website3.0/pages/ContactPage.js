@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Popup from "@components/Popup"; // Make sure to import the Popup component
-
-function ContactPage() {
+function ContactPage({theme}) {
   const [selectedRating, setSelectedRating] = useState(0);
   const [showError, setShowError] = useState(false);
   const [showThankYouMessage, setShowThankYouMessage] = useState(false);
@@ -113,33 +112,34 @@ function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col-reverse items-center justify-center space-x-0 mt-36 p-10 md:flex-row md:space-x-40 md:mt-32 max-sm:scale-75">
+    <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#1e1d1d] "} flex-col-reverse items-center justify-center space-x-0 p-10 md:flex-row md:space-x-40 max-sm:scale-75 h-[100vh] pt-40 `}>
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10">
-        <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
+        <img src="new/rateus.webp" className="w-[30rem]" alt="rateus" />
       </div>
-        <div className="flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl bg-[#098CCD] bg-opacity-10 md:justify-center">
-          <h1 className="text-3xl">Contact Us</h1>
+        <div className={`flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl  ${theme?"bg-[#098CCD] bg-opacity-10":"bg-[#181616]  border-white"}  md:justify-center`}>
+          <h1 className={`${theme?"":"text-white"} text-3xl`}>Contact Us</h1>
           <form id="contact-form"  className={`${blur?"blurclass":""}`} onSubmit={handleSubmit}>
-            <input type="text" id="name" name="name" required placeholder="Name:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900"/>
-            <input type="email" id="email" name="email" required placeholder="Email:" className="w-full rounded-xl h-12 my-2 px-40 pl-4  outline-none placeholder-gray-900" />
-            <textarea id="comment" name="comment" required placeholder="Comment:" className="w-full rounded-xl h-32 my-2 px-40 pl-4 pt-24  outline-none placeholder-gray-900"></textarea>
-            <label htmlFor="rating" id="rate">Rating:</label>
+            <input type="text" id="name" name="name" required placeholder="Name:" className={`w-full rounded-xl h-12 my-2 px-40 pl-4 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `}/>
+            <input type="email" id="email" name="email" required placeholder="Email:" className={`w-full rounded-xl h-12 my-2 px-40 pl-4 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `} />
+            <textarea id="comment" name="comment" required placeholder="Comment:" className={`w-full rounded-xl h-32 my-2 px-40 pl-4 pt-2 ${theme?"placeholder-gray-900":"bg-transparent placeholder-white border-white border-b-2 rounded-none text-white"}  outline-none `}></textarea>
+            <label htmlFor="rating" className={`${theme?"":"text-white"}`} id="rate">Rating:</label>
+
             <div id="rating">
               {[1, 2, 3, 4, 5].map((value) => (
                 <span
                   key={value}
-                  className="star cursor-pointer text-[3rem]"
+                  className={` star cursor-pointer text-[3rem]`}
                   data-value={value}
                   onClick={() => handleStarClick(value)}
-                  style={{ color: selectedRating >= value ? "#FFD700" : "#000" }}
+                  style={{ color: selectedRating >= value ? "#FFD700" : `${theme? "#000":"white"}` }}
                 >
                   &#9733;
                 </span>
               ))}
             </div>
-            {showError && <p id="error">Please Give Any Rating</p>}
-            <button type="submit" id="button" disabled={disableSubmit} className="w-1/3 bg-[#fff] text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded">
+            {showError && <p id="error" className={`${theme?"":"text-white"}`}>Please Give Any Rating</p>}
+            <button type="submit" id="button" disabled={disableSubmit} className={`w-1/3  ${theme?"bg-[#fff]":"bg-black shadow-white shadow-sm border-white border text-white"} text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded`}>
               Submit {loading && <div className="loader2"><div className="circle"><div className="dot"></div><div className="outline"></div></div></div>}
             </button>
             {showThankYouMessage}

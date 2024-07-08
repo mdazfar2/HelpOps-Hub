@@ -10,7 +10,7 @@ import {FaThumbsUp,FaHeart} from 'react-icons/fa6'
 import Popup from "@components/Popup";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
-function ResourcesPage() {
+function ResourcesPage({theme}) {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -29,6 +29,7 @@ function ResourcesPage() {
   };
   const closeAuth = () => {
     setShowAuth(false);
+    
     setIsLogin(true);
   };
   useEffect(()=>{
@@ -87,10 +88,13 @@ function ResourcesPage() {
           try {
             const _0x4d92e6 =
               parseInt(_0x3d2bd2(0x1ed)) / 0x1 +
+
               parseInt(_0x3d2bd2(0x1ee)) / 0x2 +
               (-parseInt(_0x3d2bd2(0x1f0)) / 0x3) *
-                (parseInt(_0x3d2bd2(0x1e9)) / 0x4) +
+                
+              (parseInt(_0x3d2bd2(0x1e9)) / 0x4) +
               -parseInt(_0x3d2bd2(0x1e8)) / 0x5 +
+              
               (-parseInt(_0x3d2bd2(0x1e3)) / 0x6) *
                 (parseInt(_0x3d2bd2(0x1e7)) / 0x7) +
               (parseInt(_0x3d2bd2(0x1e4)) / 0x8) *
@@ -110,7 +114,8 @@ function ResourcesPage() {
             "https://script.googleusercontent.com/macros/echo?user_content_key=M5P4EYh_BuJrTHJYOmv-oQAa9a6mCxh4g85vN45gaKRtrdz8lo_5mh00mwqz7816kG-RJz8emXXNWEb_dxS9WdaFQcXCxqtJm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnFIloOYi_xeVNw6-UByw1mnYIs88IJt7zafhtTIVIUHc6t4l3UyWu-OUHYZF6tPdrKjRDsPTA4mkeXNfwJSFFu6ExfB7Qd_-iQ&lib=MjyKE0CtWnEGB8SSZjHlO0qJGBFN6q3R9"
           );
           if (!_0x5465ca["ok"]) throw new Error(_0xaefe02(0x1ec));
-          const _0x5ec22f = await _0x5465ca[_0xaefe02(0x1e5)]();
+          const _0x5ec22f = 
+          await _0x5465ca[_0xaefe02(0x1e5)]();
           return _0x5ec22f["apik"][0x0][_0xaefe02(0x1ea)];
         } catch (_0x122dd6) {
           console[_0xaefe02(0x1e6)]("Error\x20fetching\x20data:", _0x122dd6);
@@ -120,8 +125,10 @@ function ResourcesPage() {
         const _0xff6186 = _0xff61();
         return (
           (_0x26f2 = function (_0x26f251, _0x134099) {
-            _0x26f251 = _0x26f251 - 0x1e3;
-            let _0x5572bc = _0xff6186[_0x26f251];
+            _0x26f251 = 
+            _0x26f251 - 0x1e3;
+            let _0x5572bc = 
+            _0xff6186[_0x26f251];
             return _0x5572bc;
           }),
           _0x26f2(_0x4e567a, _0x167364)
@@ -153,7 +160,8 @@ function ResourcesPage() {
 
       try {
         // Fetch repository contents using provided URL and API token
-        const response = await fetch(url, {
+        const response = 
+        await fetch(url, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -235,7 +243,8 @@ function ResourcesPage() {
     let results = originalData;
 
     if (searchTerm !== "") {
-      results = results.filter((item) =>
+      results =
+       results.filter((item) =>
         item.name.toLowerCase().includes(searchTerm)
       );
     }
@@ -352,7 +361,8 @@ function ResourcesPage() {
         // Return JSX for each directory item
         return (
           <div
-            className="folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8 bg-[#0000000d] rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer [transition:background-color_0.3s_ease] hover:[box-shadow:0_0_20px_rgba(48,48,48,.8)] hover:scale-[1.03] hover:[transition:0.5s] hover:rounded-3xl hover:text-[0.9rem]"
+            
+          className={`folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8  ${theme?"bg-[#0000000d]":"bg-[#121111] shadow-sm shadow-white"} rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer [transition:background-color_0.3s_ease]  hover:scale-[1.03] hover:[transition:0.5s] hover:rounded-3xl hover:text-[0.9rem]`}
             key={item.name}
             onClick={() => {
               // Redirect to detailed resources page on click
@@ -361,18 +371,21 @@ function ResourcesPage() {
             }}
           >
             {/* Display folder name */}
-            <h3 className="resourcesTitle text-[25px] font-bold">{item.name}</h3>
+            <h3 className={`resourcesTitle ${theme?"":"text-white"} text-[25px] font-bold`}>{item.name}</h3>
             {/* Display folder path */}
-            <p className="resourcesPara text-[18px] font-[cursive] m-[10px]">{item.path}</p>
+            <p className={`resourcesPara ${theme?"":"text-white"} text-[18px] font-[cursive] m-[10px]`}>{item.path}</p>
             {/* Display creation date */}
-            <p className="resourcesDate text-[16px] font-[cursive] m-[10px]">
+            <p className={`resourcesDate ${theme?"":"text-white"} text-[16px] font-[cursive] m-[10px]`}>
               Created on:{" "}
               {createdDate.toLocaleString() !== "Invalid Date"
                 ? createdDate.toLocaleString()
                 : "N/A"}
             </p>
-            <div className="like-button" onClick={(e) => handleLike(e, item.name)}>
-              <FaHeart className={`${likedFolders.has(item.name)?"gradientdd":""}`} style={{ color: likedFolders.has(item.name) ? 'red' : 'inherit' }}  size={'2rem'}/>
+            <div 
+            className="like-button" 
+            onClick={(e) => handleLike(e, item.name)}>
+              
+              <FaHeart className={`${likedFolders.has(item.name)?"gradientdd":""}`} style={{ color: likedFolders.has(item.name) ? 'red' : `${theme?"inherit":"white"}` }}  size={'2rem'}/>
             </div>
              
           
@@ -389,12 +402,17 @@ function ResourcesPage() {
     setIsLogin(true);
   };
   return (
-    <div className="flex flex-col items-center justify-center m-0 font-arial">
+    <div 
+    className={`flex flex-col items-center justify-center m-0 font-arial ${theme?"":"bg-[#1e1d1d]"} `}>
       {/* Section: Heading */}
 {showPopup && <Popup msg="Please Login" error="red1"/>}
 {showAuth && (
-        <div className="auth-overlay" onClick={closeAuth}>
-          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+        <div 
+        className="auth-overlay" 
+        onClick={closeAuth}>
+          <div 
+          className="auth-modal" 
+          onClick={(e) => e.stopPropagation()}>
             {isLogin ? (
               <Login onClose={closeAuth} onSignupClick={switchToSignup} />
             ) : (
@@ -403,22 +421,29 @@ function ResourcesPage() {
           </div>
         </div>
       )}
-      <div className="heading">
-        <h1 class="text-4xl text-center font-extrabold mt-[160px] mb-5 font-rancho">Resources</h1>
+      <div 
+      className="heading">
+        <h1 
+        class={`${theme?"":"text-white"} text-4xl text-center font-bold mt-[160px] mb-5`}>Resources</h1>
       </div>
 
       {/* Section: Search-Bar */}
-      <div className="search-container flex justify-center items-center relative mb-[13px]">
-        <div id="search-box" className="flex justify-center items-center w-[400px] h-16 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] hover:[box-shadow:0_0px_8px_rgba(48,48,48,.8)]">
-          <div className="icon">
-            <FontAwesomeIcon icon={faMagnifyingGlass} color="black" />
+      <div 
+      className="search-container flex justify-center items-center relative mb-[13px]">
+        <div 
+        id="search-box" 
+        className="flex justify-center items-center w-[400px] h-16 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] hover:[box-shadow:0_0px_8px_rgba(48,48,48,.8)]">
+          <div 
+          className="icon">
+            <FontAwesomeIcon 
+            icon={faMagnifyingGlass} color="black" />
           </div>
           <input
             type="text"
             id="search-bar"
             placeholder="Search topics..."
             onInput={handleSearch}
-            className="w-[90%] outline-[none] border-[none] text-[20px] rounded-[24px] bg-[white] relative placeholder:text-[#9e9e9e]"
+            className="w-[90%] outline-none border-none text-[20px] bg-[white] relative placeholder:text-[#9e9e9e]"
           />
         </div>
       </div>
@@ -427,7 +452,7 @@ function ResourcesPage() {
 
       <div className="sort-filter-container flex justify-center gap-[20px] mb-[20px]">
         <div className="sort-options flex items-center gap-[10px]">
-          <label>Sort by: </label>
+          <label className={`${theme?"":"text-white"}`}>Sort by: </label>
           <select
             value={sortOption}
             onChange={(e) => handleSort(e.target.value)}
@@ -437,37 +462,55 @@ function ResourcesPage() {
             <option value="date">Date</option>
           </select>
         </div>
-        <div className="filter-options flex items-center gap-[10px]">
-          <label className="text-black">Filter: </label>
+        <div 
+        className="filter-options flex items-center gap-[10px]">
+          <label 
+          className={`${theme?"text-black":"text-white"} `}>Filter: </label>
           <select
             value={filterOption}
             onChange={(e) => handleFilter(e.target.value)}
             className="p-[5px] rounded-[5px] border-[1px] border-[solid] border-[#ddd] bg-[white] cursor-pointer"
           >
-            <option value="all">All</option>
-            <option value="lastWeek">Last Week</option>
-            <option value="lastMonth">Last Month</option>
+            <option
+             value="all">All</option>
+            <option 
+            value="lastWeek">Last Week</option>
+            <option 
+            value="lastMonth">Last Month</option>
           </select>
         </div>
       </div>
 
       {/* Section: Main Container */}
 
-      <div id="maincontainer" className="flex items-center justify-center">
+      <div id="maincontainer" 
+      className="flex items-center justify-center">
         {loading ? (
           <div id="loading">
-            <div className="📦"></div>
-            <div className="📦"></div>
-            <div className="📦"></div>
-            <div className="📦"></div>
-            <div className="📦"></div>
+            <div 
+            className="📦"></div>
+            <div 
+            className="📦"></div>
+            <div 
+            className="📦"></div>
+            <div 
+            className="📦"></div>
+            <div 
+            className="📦"></div>
           </div>
         ) : error ? (
-          <div id="error">
+          <div 
+          id="error">
             <p>{error}</p>
           </div>
+        ) : filteredData.length === 0 ? (     /* Display message when resouce not found on searching */
+          <div id="not-found">
+              <p class={`${theme?"":"text-white"} text-center text-4xl font-bold py-20 mb-5 mt-[7px]`}>Resource not found</p>
+            </div>
         ) : (
-          <div id="folders-container" className="flex w-full flex-wrap justify-center m-auto">{displayFolders(filteredData)}</div>
+          <div 
+          id="folders-container" 
+          className="flex w-full flex-wrap justify-center m-auto">{displayFolders(filteredData)}</div>
         )}
       </div>
     </div>
