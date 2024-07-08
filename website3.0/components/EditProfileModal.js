@@ -14,7 +14,7 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
 }) {
   // Initialize the form state with userData and add a password field with an empty string
   const [formData, setFormData] = useState({ ...userData, password: "" });
-let {theme}=useContext(Context)
+  let { theme } = useContext(Context);
   // Handle changes in form inputs and update the formData state accordingly
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -145,14 +145,18 @@ let {theme}=useContext(Context)
             <button
               type="button"
               onClick={handleSaveChanges}
-              className={`${theme?"":"border border-white shadow-sm shadow-white"} px-4 py-2 text-white bg-black rounded`}
+              className={`${
+                theme ? "" : "border border-white shadow-sm shadow-white"
+              } px-4 py-2 text-white bg-black rounded`}
             >
               Save Changes
             </button>
             <button
               type="button"
               onClick={onRequestClose}
-              className={` ${theme?"":"border border-white shadow-sm shadow-white"} px-4 py-2 text-white bg-black rounded`}
+              className={` ${
+                theme ? "" : "border border-white shadow-sm shadow-white"
+              } px-4 py-2 text-white bg-black rounded`}
             >
               Cancel
             </button>

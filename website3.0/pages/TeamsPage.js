@@ -264,7 +264,7 @@ function TeamsPage({theme}) {
                     <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">1</h1>
                   </div>
                   <div className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0" id="rank1">
-                    <img src="/crown.png" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" />
+                    <img src="/crown.png" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" alt="crown" />
                   </div>
                   <p id="name1" className={`${theme? " text-black" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-bold`}>{contributors[0].name || contributors[0].login}</p>
                   <p id="co1" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-medium`}>contributions {contributors[0].contributions}</p>
@@ -350,7 +350,7 @@ function TeamsPage({theme}) {
               <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">1</h1>
             </div>
             <div className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0" id="rank1">
-              <img src="/crown.png" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" />
+              <img src="/crown.png"  alt="crown" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" />
             </div>
             <p id="name1" className={`${theme? " text-black" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-bold `}>{contributors[0].name || contributors[0].login}</p>
             <p id="co1" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-medium `}>contributions {contributors[0].contributions}</p>
