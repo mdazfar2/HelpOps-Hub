@@ -9,7 +9,7 @@ import { GlobalContext } from "@context/store";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Helpops-Hubbb",
+  title: "Helpops-Hub",
   description: "Ensuring You Never Get Stuck In DevOps Again!",
   icons: {
     icon: "new/HelpOps-H Fevicon.webp",
