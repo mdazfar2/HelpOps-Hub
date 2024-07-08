@@ -10,7 +10,7 @@ import { Context } from '@context/store';
 import EditProfileModal from './EditProfileModal';
 export default function ProfilepageDetails() {
    // Extract user data from context
-  const { userName, userEmail, userImage, userDesignation, userCaption, github, linkedin ,theme} = useContext(Context);
+  const { userName, userEmail,userLinkedin,userGithub, userImage, userDesignation, userCaption, github, linkedin ,theme} = useContext(Context);
 
   // State to control the visibility of the edit profile modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,15 +75,15 @@ console.log(userImage,'dsddddddddhkishjdkhsdkhskdjhsdkhsjdks')
          
             </div>
             <div className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`} title="nishantkaushal0708@gmail.com">
-              <p>
+              <a href={`${userGithub}`}>
                 <FontAwesomeIcon icon={faGithub} />
-              </p>
+              </a>
            
             </div>
             <div className={`w-full flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`}  title="nishantkaushal0708@gmail.com">
-              <p>
+              <a href={`${userLinkedin}`}>
                 <FontAwesomeIcon icon={faLinkedinIn} />
-              </p>
+              </a>
               
             </div>
           </div>

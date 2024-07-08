@@ -12,10 +12,10 @@ import { FaPen } from "react-icons/fa";
 // - onSave: Function to save the updated profile data
 export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
 }) {
-  let [url,setUrl]=useState('')
   // Initialize the form state with userData and add a password field with an empty string
   const [formData, setFormData] = useState({ ...userData, password: "" });
-  let {userName,setUserName,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let {userName,setUserName,setUserGithub,setUserLinkedin,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let [url,setUrl]=useState(userImage)
 
   // Handle changes in form inputs and update the formData state accordingly
   const handleChange = (e) => {
@@ -43,7 +43,16 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
       setUserCaption(formData.caption)
       localStorage.setItem('userCaption',formData.caption)
     }
+    if(formData.github?.length>0){
 
+      setUserGithub(formData.github)
+      localStorage.setItem('userGithub',formData.github)
+    }
+    if(formData.linkedin?.length>0){
+
+      setUserLinkedin(formData.linkedin)
+      localStorage.setItem('userLinkedin',formData.linkedin)
+    }
     onRequestClose();
   };
     

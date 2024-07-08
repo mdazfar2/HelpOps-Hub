@@ -9,6 +9,9 @@ export const GlobalContext=({children})=>{
         let [userImage,setUserImage]=useState('')
         let [userDesignation,setUserDesignation]=useState('')
         let [userCaption,setUserCaption]=useState('')
+        let [userLinkedin,setUserLinkedin]=useState('')
+        let [userGithub,setUserGithub]=useState('')
+
         let [isLogin,setIsLogin]=useState(false)
         let [user,setUser]=useState({})
         let [theme,setTheme]=useState(true)
@@ -18,14 +21,16 @@ export const GlobalContext=({children})=>{
             setUserName(localStorage.getItem('userName')||'')
             setUserImage(localStorage.getItem('userImage')||'')
             setUser(localStorage.getItem('user'))
-            setUserDesignation(localStorage.getItem('userDesignation'))
-            setUserCaption(localStorage.getItem('userCaption'))
+            setUserDesignation(localStorage.getItem('userDesignation')||"")
+            setUserCaption(localStorage.getItem('userCaption')||"")
+            setUserDesignation(localStorage.getItem('userLinkedin')||"")
+            setUserDesignation(localStorage.getItem('userGithub')||"")
 
         },[])
         useEffect(()=>{
 console.log(theme)
         },[theme])
-  return <Context.Provider value={{setUserDesignation,userDesignation,userCaption,setUserCaption,userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin,isLogin,theme,setTheme}}>
+  return <Context.Provider value={{userLinkedin,setUserLinkedin,userGithub,setUserGithub,setUserDesignation,userDesignation,userCaption,setUserCaption,userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin,isLogin,theme,setTheme}}>
         {children}
     </Context.Provider>
 }

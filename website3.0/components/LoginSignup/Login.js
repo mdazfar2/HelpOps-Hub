@@ -18,7 +18,7 @@ const Login = ({ onClose, onSignupClick }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-  let {setUserName,setUserEmail,setUserImage,setIsLogin,theme,setTheme}=useContext(Context)
+  let {setUserName,setUserDesignation,setUserCaption,setUserEmail,setUserLinkedin,setUserGithub,setUserImage,setIsLogin,theme,setTheme}=useContext(Context)
 
   // Modified useEffect hook to handle Enter key press for form navigation and login
   useEffect(() => {
@@ -50,7 +50,35 @@ const Login = ({ onClose, onSignupClick }) => {
   function toggle() {
     setShowPassword(!showPassword);
   }
+  async function fetchData(email){
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email :email
+         })
+       })
 
+      let  e=await a.json()
+       setUserEmail(e.msg.email)
+       setUserName(e.msg.name)
+       setUserImage(e.msg.image1)
+       setUserDesignation(e.msg.designation)
+       setUserCaption(e.msg.caption)
+       setUserGithub(e.msg.github)
+       setUserLinkedin(e.msg.linkedin)
+
+       localStorage.setItem('userEmail',e.msg.email)
+       localStorage.setItem('userName',e.msg.name)
+       localStorage.setItem('userImage',e.msg.image1)
+       localStorage.setItem('userDesignation',e.msg.designation)
+       localStorage.setItem('userCaption',e.msg.caption)
+       localStorage.setItem('userGithub',e.msg.github)
+       localStorage.setItem('userLinkedin',e.msg.linkedin)
+
+       let dt=await JSON.stringify(e.msg)
+       localStorage.setItem('user',dt)
+   setIsLogin(true)
+     }
   // Function to handle login process
   async function handleLogin() {
     setLoading(true);
@@ -62,7 +90,6 @@ const Login = ({ onClose, onSignupClick }) => {
       }),
     });
     let data = await res.json();
-    setLoading(false);
 
     // Handle login errors
     if (!data.success) {
@@ -83,22 +110,27 @@ const Login = ({ onClose, onSignupClick }) => {
       return;
     }
 
-    // Save user details to localStorage
-    setUserName(data.user[0].name);
-    setUserEmail(data.user[0].email);
-    setUserImage(data.user[0].image1);
-    localStorage.setItem('userName', data.user[0].name);
-    localStorage.setItem('userEmail', data.user[0].email);
-    localStorage.setItem('userImage',data.user[0].image1);
-    setIsLogin(true)
-    console.log('setting data')
-    setError(`${data.user[0].name} Welcome !!`);
+console.log('sdsdsdsd')
 
-    // Close the login popup and reload the page after 2 seconds
-    setTimeout(() => {
-      setError("");
-      onClose();
-    }, 2000);
+   await fetchData(data.user[0].email)
+    setLoading(false);
+
+    // Save user details to localStorage
+    // setUserName(data.user[0].name);
+    // setUserEmail(data.user[0].email);
+    // setUserImage(data.user[0].image1);
+    // localStorage.setItem('userName', data.user[0].name);
+    // localStorage.setItem('userEmail', data.user[0].email);
+    // localStorage.setItem('userImage',data.user[0].image1);
+    // setIsLogin(true)
+    // console.log('setting data')
+    // setError(`${data.user[0].name} Welcome !!`);
+
+    // // Close the login popup and reload the page after 2 seconds
+    // setTimeout(() => {
+    //   setError("");
+    //   onClose();
+    // }, 2000);
   }
 
   // Function to handle forgot password process
