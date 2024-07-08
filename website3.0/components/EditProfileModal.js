@@ -10,12 +10,12 @@ import { FaPen } from "react-icons/fa";
 // - onRequestClose: Function to close the modal
 // - userData: Object containing the user's current profile data
 // - onSave: Function to save the updated profile data
-export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
+export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,img
 }) {
   // Initialize the form state with userData and add a password field with an empty string
   const [formData, setFormData] = useState({ ...userData, password: "" });
-  let {userName,setUserName,setUserGithub,setUserLinkedin,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
-  let [url,setUrl]=useState(userImage)
+  let {userName,finalUser,setFinalUser,setUserName,setUserGithub,setUserLinkedin,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let [url,setUrl]=useState(img)
 
   // Handle changes in form inputs and update the formData state accordingly
   const handleChange = (e) => {
@@ -27,32 +27,20 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
   const handleSaveChanges = async () => {
     await fetch('/api/editaccount',{
       method:"POST",
-      body:JSON.stringify({formData:formData,image:url,email:localStorage.getItem('userEmail')})
+      body:JSON.stringify({formData:formData,image:url,email:finalUser.email})
     })
-    if(url.length>0){
-      setUserImage(url)
-      localStorage.setItem('userImage',url)
-    }
-    if(formData.designation?.length>0){
-
-      setUserDesignation(formData.designation)
-      localStorage.setItem('userDesignation',formData.designation)
-    }
-    if(formData.caption?.length>0){
-
-      setUserCaption(formData.caption)
-      localStorage.setItem('userCaption',formData.caption)
-    }
-    if(formData.github?.length>0){
-
-      setUserGithub(formData.github)
-      localStorage.setItem('userGithub',formData.github)
-    }
-    if(formData.linkedin?.length>0){
-
-      setUserLinkedin(formData.linkedin)
-      localStorage.setItem('userLinkedin',formData.linkedin)
-    }
+    let a=await    fetch("/api/createaccount",{
+      method:"POST",
+      body:JSON.stringify({
+        email : finalUser.email
+      })
+    })
+   
+   let  e=await a.json()
+   setFinalUser(e.msg)
+    let dt=await JSON.stringify(e.msg)
+    localStorage.setItem('finalUser',dt)
+    setUrl(e.msg.image1)
     onRequestClose();
   };
     
@@ -130,7 +118,7 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
         {/* Profile picture section */}
         <label htmlFor="image" className="relative text-center modal-image-container">
          <img
-            src={url.length>0?url:formData.userImage}
+            src={url?.length>0?url:formData.userImage}
             alt="Profile Picture"
             className="w-36 h-36 mx-auto mt-4 border border-white rounded-full object-cover modal-profile-img"
           />
