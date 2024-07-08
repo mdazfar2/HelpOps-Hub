@@ -164,11 +164,11 @@ const Login = ({ onClose, onSignupClick }) => {
           {allShow && (
             <>
               <button className={`google-btn mt-[50px] w-3/5 p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
-                <img className="w-[30px] h-[30px] ml-[5px]" src="google.png" alt="Google" />
+                <img className="w-[30px] h-[30px] ml-[5px]" src="new/google.webp" alt="Google" />
                 Sign in with Google
               </button>
               <button className={`github-btn w-3/5 p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
-                {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="github.png" alt="GitHub" /> : <FaGithub size={'2rem'} />}
+                {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="new/github.webp" alt="GitHub" /> : <FaGithub size={'2rem'} />}
                 Sign in with Github
               </button>
               <p className="text-center text-[16px] mt-[15px] font-Itim">Or</p>
