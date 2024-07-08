@@ -209,7 +209,7 @@ function BlogPage() {
             <div className="editor_picks_options">
               <div className="options_title">Editor's Picks</div>
               <div className="options_view">
-                View All <img src="new/arrow.webp" alt="Arrow" />
+                View All <img src="new/Arrow.webp" alt="Arrow" />
               </div>
             </div>
             <div className="editor_picks_content">
@@ -231,7 +231,7 @@ function BlogPage() {
             <div className="recent_posts_options">
               <div className="options_title">Recent Posts</div>
               <div className="options_view">
-                View All <img src="new/arrow.webp" alt="Arrow" />
+                View All <img src="new/Arrow.webp" alt="Arrow" />
               </div>
             </div>
             <div className="recent_posts_content">
