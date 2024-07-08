@@ -30,6 +30,7 @@ function HomePage({ theme }) {
   const [loadSpline, setLoadSpline] = useState(false);
   const [visible, setVisible] = useState(false);
   const [splineKey, setSplineKey] = useState(0);
+  const [Maintance,setMaintanance]=useState(false)
   const splineRef = useRef(null);
   let session = useSession();
 
@@ -135,6 +136,15 @@ function HomePage({ theme }) {
       AOS.refreshHard();
     };
   }, [theme]);
+
+  // Maintance
+
+  const maintanance=()=>{
+    setMaintanance(true)
+    setTimeout(()=>{
+      setMaintanance(false)
+    },2000)
+  }
 
   // Navigate to the /resources page when "Get started" button is clicked
   const handleGetStartedClick = () => {
@@ -249,6 +259,14 @@ function HomePage({ theme }) {
         theme ? "bg-gray-100" : " bg-[#1e1d1d]"
       } transition-colors duration-500`}
     >
+      {
+        Maintance?
+        <Popup
+          msg="Under Maintance"
+          error="puple1"
+          img="https://cdn-icons-png.flaticon.com/128/11482/11482452.png"
+        />:<></>
+      }
       {showPopup && (
         <Popup
           msg={`${localStorage.getItem("userName")} Welcome !!`}
@@ -539,7 +557,7 @@ function HomePage({ theme }) {
             } ml-5 mt-8 cursor-pointer hover:scale-105 transition-all hover:translate-x-4`}
           >
             <div className="relative w-1/4 max-[450px]:w-2/4 max-lg:m-auto h-full">
-              <div className="text-black h-12 w-32 bg-white absolute z-10 text-2xl flex justify-center items-center">
+              <div className="text-black h-12 w-32 bg-white absolute z-10 text-2xl flex justify-center items-center" onClick={maintanance}>
                 Let's Go
               </div>
               <div className="h-12 w-32 absolute bg-gray-400 top-2 -left-2 z-0"></div>
