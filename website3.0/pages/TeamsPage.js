@@ -25,7 +25,7 @@ const initialItems = 4;
 // The number of items (contributors) to display per page when loading more
 const itemsPerPage = 4;
 
-function TeamsPage() {
+function TeamsPage({theme}) {
   // State variables for managing contributors and loading state
   const [currentPage, setCurrentPage] = useState(1);
   const [otherContri, setOtherContri] = useState([]);
@@ -199,10 +199,10 @@ function TeamsPage() {
         const loginLink = contributor.html_url;
         const contri = contributor.contributions;
         return (
-          <div className="team-member-card bg-[#2f9ed62b] rounded-[10%] p-[20px] flex gap-[10px] mt-0 flex-col items-center [transition:0.5s] scale-[0.95] border-[2.5px] border-dashed border-[rgba(0,0,0,1)] hover:scale-[0.9]"
+          <div className={`${theme? " bg-[#2f9ed62b] border-black" : "bg-black border-white" } team-member-card rounded-[10%] p-[20px] flex gap-[10px] mt-0 flex-col items-center [transition:0.5s] scale-[0.95] border-[2.5px] border-dashed hover:scale-[0.9]`}
            key={contributor.login}
            >
-            <div className="member-card bg-[#ffffff82] px-0 py-[50px] w-full rounded-[10%] text-center">
+            <div className={`${theme? " bg-[#ffffff82]" : "bg-white" } member-card  px-0 py-[50px] w-full rounded-[10%] text-center`}>
               <div className="dev-badge right-[40px] top-[30px] absolute bg-[rgba(217,_217,_217,_1)] text-[#6e6e6e] rounded-[10px] px-[8px] py-[4px] text-[12px] font-bold w-[80px]">
                 Developer
               </div>
@@ -215,7 +215,7 @@ function TeamsPage() {
               </div>
             </div>
             <div className="member-data flex flex-row items-center justify-center mt-[5px] w-full">
-              <div className="member-contributions group flex flex-col items-center mr-[10px] w-28 [transition:0.5s_ease-in-out] pl-4 pr-4 pt-2 pb-2 rounded-2xl hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black] hover:[box-shadow:2px_2px_10px_2px_#0000002f]">
+              <div className={`${theme? " text-black  hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black]" : "text-white  hover:bg-[rgb(255,255,255)] hover:text-[black]" }  member-contributions group flex flex-col items-center mr-[10px] w-28 [transition:0.5s_ease-in-out] pl-4 pr-4 pt-2 pb-2 rounded-2xl hover:[box-shadow:2px_2px_10px_2px_#0000002f]`}>
                 <a
                   href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`}
                   target="__blank"
@@ -226,9 +226,9 @@ function TeamsPage() {
                   </div>
                 </a>
               </div>
-              <div className="member-social-links group flex flex-col items-center [transition:0.5s_ease-in-out] w-28 pl-4 pr-4 pt-2 pb-2 rounded-2xl cursor-pointer hover:bg-[rgba(255,_255,_255,_0.624)] hover:[box-shadow:2px_2px_10px_2px_#0000002f]">
+              <div className={`${theme? " text-black  hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black]" : "text-white  hover:bg-[rgb(255,255,255)] hover:text-[black]" } member-social-links group flex flex-col items-center [transition:0.5s_ease-in-out] w-28 pl-4 pr-4 pt-2 pb-2 rounded-2xl cursor-pointer hover:[box-shadow:2px_2px_10px_2px_#0000002f]`}>
                 <a href={loginLink} target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faGithub} className="Github [transition:0.5s_ease-in-out] text-[black] text-[24px]" />
+                  <FontAwesomeIcon icon={faGithub} className="Github text-[24px]" />
                 </a>
                 <div className="member-github-label text-[14px] text-[#777] mt-[5px] [transition:0.5s_ease-in-out] group-hover:text-black">GitHub</div>
               </div>
@@ -266,8 +266,8 @@ function TeamsPage() {
                   <div className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0" id="rank1">
                     <img src="/crown.png" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" alt="crown" />
                   </div>
-                  <p id="name1" className="relative bottom-[25px] font-poppins text-[30px] font-bold text-black">{contributors[0].name || contributors[0].login}</p>
-                  <p id="co1" className="relative bottom-[25px] font-poppins text-[30px] font-medium text-[#00000094]">contributions {contributors[0].contributions}</p>
+                  <p id="name1" className={`${theme? " text-black" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-bold`}>{contributors[0].name || contributors[0].login}</p>
+                  <p id="co1" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-medium`}>contributions {contributors[0].contributions}</p>
                  </div>
                 </div>
               </div>
@@ -287,8 +287,8 @@ function TeamsPage() {
                   <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
                     <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
                   </div>
-                  <p id="name2" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[1].name || contributors[1].login}</p>
-                  <p id="co2" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[1].contributions}</p>
+                  <p id="name2" className={`${theme? " text-black" : "text-white" } relative bottom-[35px] font-poppins text-[20px] font-bold`}>{contributors[1].name || contributors[1].login}</p>
+                  <p id="co2" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[20px] font-medium`}>contributions {contributors[1].contributions}</p>
                  </div>
                 </div>
               </div>
@@ -308,8 +308,8 @@ function TeamsPage() {
                   <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
                     <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
                   </div>
-                  <p id="name3" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[2].name || contributors[2].login}</p>
-                  <p id="co3" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[2].contributions}</p>
+                  <p id="name3" className={`${theme? " text-black" : "text-white" } relative bottom-[35px] font-poppins text-[20px] font-bold text-black`}>{contributors[2].name || contributors[2].login}</p>
+                  <p id="co3" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[20px] font-medium`}>contributions {contributors[2].contributions}</p>
                 </div>
               </div>
             </div>
@@ -334,8 +334,8 @@ function TeamsPage() {
             <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
               <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
             </div>
-            <p id="name2" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[1].name || contributors[1].login}</p>
-            <p id="co2" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[1].contributions}</p>
+            <p id="name2" className={`${theme? " text-black" : "text-white" } relative bottom-[35px] font-poppins text-[20px] font-bold`}>{contributors[1].name || contributors[1].login}</p>
+            <p id="co2" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[20px] font-medium `}>contributions {contributors[1].contributions}</p>
           </div>
 
           <div className="contributor relative text-center flex flex-col justify-center items-center gap-0" key={contributors[0].login}>
@@ -352,8 +352,8 @@ function TeamsPage() {
             <div className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0" id="rank1">
               <img src="/crown.png"  alt="crown" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" />
             </div>
-            <p id="name1" className="relative bottom-[25px] font-poppins text-[30px] font-bold text-black">{contributors[0].name || contributors[0].login}</p>
-            <p id="co1" className="relative bottom-[25px] font-poppins text-[30px] font-medium text-[#00000094]">contributions {contributors[0].contributions}</p>
+            <p id="name1" className={`${theme? " text-black" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-bold `}>{contributors[0].name || contributors[0].login}</p>
+            <p id="co1" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[30px] font-medium `}>contributions {contributors[0].contributions}</p>
           </div>
 
           <div className="contributor relative text-center flex justify-center items-center flex-col gap-0" key={contributors[2].login}>
@@ -370,8 +370,8 @@ function TeamsPage() {
             <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
               <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
             </div>
-            <p id="name3" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[2].name || contributors[2].login}</p>
-            <p id="co3" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[2].contributions}</p>
+            <p id="name3" className={`${theme? " text-black" : "text-white" } relative bottom-[35px] font-poppins text-[20px] font-bold`}>{contributors[2].name || contributors[2].login}</p>
+            <p id="co3" className={`${theme? " text-[#00000094]" : "text-white" } relative bottom-[25px] font-poppins text-[20px] font-medium`}>contributions {contributors[2].contributions}</p>
           </div>
         </div>
       );
@@ -387,11 +387,11 @@ function TeamsPage() {
   }
 
   return (
-    <div className="m-0 font-arial min-h-screen w-full block">
+    <div className={`${theme? "bg-gray-100" : "bg-[#1e1d1d]" } m-0 font-arial min-h-screen w-full block  transition-colors duration-500`}>
       {/* Section: Meet Our Team */}
 
-      <div id="ourteam" className="flex justify-center items-center font-semibold text-4xl mt-[160px] text-center">Our Team</div>
-      <div className="team-description text-center w-[60vw] m-auto mt-[20px] mb-[20px] leading-normal">
+      <div id="ourteam" className={`${theme? "text-black" : "text-white" } flex justify-center items-center font-semibold text-4xl pt-[160px] text-center`}>Our Team</div>
+      <div className={`${theme? "text-black" : "text-white" } team-description text-center w-[60vw] m-auto mt-[20px] mb-[20px] leading-normal`}>
         Meet our team driving HelpOps-Hub's success with expertise and passion,
         turning every challenge into a milestone.
       </div>
@@ -400,8 +400,8 @@ function TeamsPage() {
 
       <div id="team-grid" className="ml-4 mr-4 grid grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))] gap-8 mt-0 scale-[0.95]">
         {/* Team Member 1 */}
-        <div className="team-member flex items-center bg-[#f1faff] border-[2.5px] border-dashed border-[#ff7d1f] rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]">
-          <div className="card1 bg-[#4285f430] pt-8 rounded-[2rem] border-[#3498db] flex flex-col items-center relative w-[85%] h-full">
+        <div className={`${theme? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white" } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}>
+          <div className={`${theme? "bg-[#4285f430] border-[#3498db]" : "bg-gray-200 border-white" } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}>
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
                 <img className="rounded-[50%] w-[28%]" src="/founder.png" alt="Azfar Alam" />
@@ -421,9 +421,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#4285f45c]">
               <a
@@ -431,9 +431,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#4285f45c]">
               <a
@@ -441,15 +441,15 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
             </div>
           </div>
         </div>
         {/* Team Member 2 */}
-        <div className="team-member flex items-center bg-[#f1faff] border-[2.5px] border-dashed border-[#ff7d1f] rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]">
-          <div className="card2 bg-[#fbbc0530] pt-8 rounded-[2rem] border-[#3498db] flex flex-col items-center relative w-[85%] h-full">
+        <div className={`${theme? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white" } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}>
+          <div className={`${theme? "bg-[#fbbc0530] border-[#3498db]" : "bg-gray-200 border-white" } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}>
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
                 <img className="rounded-[50%] w-[28%]" src="/maintainer.png" alt="Anurag Pandey" />
@@ -469,9 +469,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#fbbc0591]">
               <a
@@ -479,9 +479,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#fbbc0591]">
               <a
@@ -489,15 +489,15 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
             </div>
           </div>
         </div>
         {/* Team Member 3 */}
-        <div className="team-member flex items-center bg-[#f1faff] border-[2.5px] border-dashed border-[#ff7d1f] rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]">
-          <div className="card3 bg-[#34a85330] pt-8 rounded-[2rem] border-[#3498db] flex flex-col items-center relative w-[85%] h-full">
+        <div className={`${theme? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white" } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}>
+          <div className={`${theme? "bg-[#34a85330] border-[#3498db]" : "bg-gray-200 border-white" } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}>
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
                 <img className="rounded-[50%] w-[28%]" src="/maintainer2.jpeg" alt="RamakrushnaBiswal" />
@@ -517,9 +517,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#34a8535e]">
               <a
@@ -527,9 +527,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#34a8535e]">
               <a
@@ -537,15 +537,15 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
             </div>
           </div>
         </div>
         {/* Team Member 4 */}
-        <div className="team-member flex items-center bg-[#f1faff] border-[2.5px] border-dashed border-[#ff7d1f] rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]">
-          <div className="card4 bg-[#ea433530] pt-8 rounded-[2rem] border-[#3498db] flex flex-col items-center relative w-[85%] h-full">
+        <div className={`${theme? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white" } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}>
+          <div className={`${theme? "bg-[#ea433530] border-[#3498db]" : "bg-gray-200 border-white" } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}>
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
                 <img className="rounded-[50%] w-[28%]" src="/maintainer3.jpeg" alt="Ayushmaan" />
@@ -565,9 +565,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faHeart} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ea43354d]">
               <a
@@ -575,9 +575,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ea43354d]">
               <a
@@ -585,9 +585,9 @@ function TeamsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faLinkedin} className="social-icon scale-[2.5] max-[525px]:scale-125 text-[#6e6e6e]" />
+                <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className="text-[14px] mt-[10px] text-[#000000] font-arial">LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
             </div>
           </div>
         </div>
@@ -596,7 +596,7 @@ function TeamsPage() {
       {/* Section: Top 3 Contributors */}
 
       <div className="teams-container text-center h-[95vh] flex flex-col justify-center items-center">
-        <h1 className="contri text-[48px] font-poppins font-extrabold text-[#1f1f1f] [transition:0.5s_ease-in-out]">Top 3 Contributors</h1>
+        <h1 className={`${theme? "text-[#1f1f1f]" : "text-white" } contri text-[48px] font-poppins font-extrabold [transition:0.5s_ease-in-out]`}>Top 3 Contributors</h1>
         <div id="contributors" className="mt-[110px] flex justify-center items-end gap-[40px]">{renderTopContributors(topContri)}</div>
       </div>
 
@@ -606,7 +606,7 @@ function TeamsPage() {
         {/* Conditionally render loading skeleton or contributor cards */}
         {loading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
-              <CardSkeleton key={index} />
+              <CardSkeleton key={index} theme={theme}/>
             ))
           : renderContributors(
               otherContri.slice(0, currentPage * itemsPerPage)
@@ -615,7 +615,7 @@ function TeamsPage() {
 
       {/* Section: Trophy Card and Call to Action */}
 
-      <div className="trophy-card flex pl-[20px] ml-[74px] mr-[51px] bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
+      <div className={`${theme? "bg-[rgba(47,_158,_214,_0.35)] text-black" : "bg-[#4c4c4c] text-white" } trophy-card flex pl-[20px] ml-[74px] mr-[51px] rounded-[18px] p-4 relative`}>
         <img src="trophy.png" alt="Trophy" className="trophy h-[66px] relative" />
         <div className="team-invite pl-8">
           <h2 className="text-[1.5em] font-bold mb-2 font-arial">Join our awesome team!</h2>
@@ -637,8 +637,8 @@ function TeamsPage() {
 
       {/* Section: Load More Button */}
 
-      <div className="load">
-        <button id="load-more" className="block mx-[auto] my-[20px] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
+      <div className="load p-5">
+        <button id="load-more" className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
          onClick={loadMore}
          >
           Load More
