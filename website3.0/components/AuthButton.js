@@ -15,7 +15,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let {userName,setUserLinkedin,setUserGithub,setUserName,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -36,6 +36,44 @@ let session=useSession()
     setUserImage('')
     setUserName('')
   }
+  
+  async function fetchData(){
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email : session.data.user.email,
+           name:session.data.user.name,
+           image:session.data.user.image
+         })
+       })
+      
+   
+          
+       
+       
+      let  e=await a.json()
+       setUserEmail(e.msg.email)
+       setUserName(e.msg.name)
+       setUserImage(e.msg.image1)
+       setUserDesignation(e.msg.designation)
+       setUserCaption(e.msg.caption)
+       setUserGithub(e.msg.github)
+       setUserLinkedin(e.msg.linkedin)
+
+       localStorage.setItem('userEmail',e.msg.email)
+       localStorage.setItem('userName',e.msg.name)
+       localStorage.setItem('userImage',e.msg.image1)
+       localStorage.setItem('userDesignation',e.msg.designation)
+       localStorage.setItem('userCaption',e.msg.caption)
+       localStorage.setItem('userGithub',e.msg.github)
+       localStorage.setItem('userLinkedin',e.msg.linkedin)
+
+       let dt=await JSON.stringify(e.msg)
+       console.log(e)
+       localStorage.setItem('user',dt)
+       setIsLogin1(true)
+   
+     }
   useEffect(()=>{
 
     if(session.status=='authenticated'){
@@ -46,24 +84,15 @@ let session=useSession()
       //     name:session.data.user.name
       //   })
       // })
-    setUserEmail(session.data.user.email)
-    setUserName(session.data.user.name)
-    setUserImage(session.data.user.image)
-    localStorage.setItem('userEmail',session.data.user.email)
-    localStorage.setItem('userName',session.data.user.name)
-    localStorage.setItem('userImage',session.data.user.image)
+
+        fetchData()
+     
     setIsLogin1(true)
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
 //       }
-       fetch("/api/createaccount",{
-        method:"POST",
-        body:JSON.stringify({
-          email : session.data.user.email,
-          name:session.data.user.name
-        })
-      })
+  
     }
   },[session.status])
   const toggleAuth = () => {

@@ -10,7 +10,7 @@ import { Context } from '@context/store';
 import EditProfileModal from './EditProfileModal';
 export default function ProfilepageDetails() {
    // Extract user data from context
-  const { userName, userEmail, userImage, designation, caption, github, linkedin ,theme} = useContext(Context);
+  const { userName, userEmail,userLinkedin,userGithub, userImage, userDesignation, userCaption, github, linkedin ,theme} = useContext(Context);
 
   // State to control the visibility of the edit profile modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,14 +27,15 @@ export default function ProfilepageDetails() {
       // Update the user data logic here
       console.log(updatedData);
     };
-
+console.log(userImage,'dsddddddddhkishjdkhsdkhskdjhsdkhsjdks')
+    let userIma= userImage.length > 0 ? userImage : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
     // Prepare user data for the modal
     const userData = {
       userName,
       userEmail,
-      userImage: userImage.length > 0 ? userImage : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s',
-      designation,
-      caption,
+      userImage: userIma,
+      userDesignation,
+      userCaption,
       github,
       linkedin
     };
@@ -60,10 +61,10 @@ export default function ProfilepageDetails() {
         <div className={`flex flex-col justify-center items-center   ${theme?"":"bg-[#1e1d1d] text-white"}`}>
         <p  className="mt-[20px] text-[10px] md:text-[12px]">mail: {userEmail}</p>
           <h1  className={`mt-[5px] text-[24px] md:text-[32px] font-bold `}>{userName}</h1>
-          <p className={`mt-[5px] text-[18px] font-bold ${theme?"text-[#5a5151]":"text-white"}`}>Software Engineer</p>
+          <p className={`mt-[5px] text-[18px] font-bold ${theme?"text-[#5a5151]":"text-white"}`}>{userDesignation}</p>
           
           <p className={`mt-[10px] text-[14px] font-medium  text-center ${theme?"text-[#5a5151]":"text-white"}`}>
-            Creating visually appealing and highly functional software that bridges technology and user needs.
+            {userCaption}
           </p>
            {/* Social media icons */}
           <div className="flex justify-around items-center w-full mt-[20px]">
@@ -74,15 +75,15 @@ export default function ProfilepageDetails() {
          
             </div>
             <div className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`} title="nishantkaushal0708@gmail.com">
-              <p>
+              <a href={`${userGithub}`}>
                 <FontAwesomeIcon icon={faGithub} />
-              </p>
+              </a>
            
             </div>
             <div className={`w-full flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`}  title="nishantkaushal0708@gmail.com">
-              <p>
+              <a href={`${userLinkedin}`}>
                 <FontAwesomeIcon icon={faLinkedinIn} />
-              </p>
+              </a>
               
             </div>
           </div>
