@@ -296,9 +296,10 @@ function HomePage({ theme }) {
           } shadow-inner w-full h-[300px] absolute bottom-0 transition-colors duration-500`}
         ></div>
         <img
-          src="/temp_bg.png"
+          src="new/temp_bg.webp"
           alt="HelpOps-Hub"
           className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] hover:scale-105 transition-all duration-500 ease-in-out"
+          draggable="false"
         />
       </div>
 
@@ -391,7 +392,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i1.png" className="w-14 rounded-full" alt="ask-questions" />
+            <img src="new/i1.webp" className="w-14 rounded-full" alt="ask-questions" />
             <div className="font-medium text-2xl">Ask Questions</div>
           </div>
           <div className="text-center">
@@ -406,7 +407,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i2.png" className="w-14 rounded-full"  alt="receive ecpert help" />
+            <img src="new/i2.webp" className="w-14 rounded-full"  alt="receive ecpert help" />
             <div className="font-medium text-2xl">Receive Expert Help</div>
           </div>
           <div className="text-center">
@@ -422,7 +423,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i4.png" className="w-14 rounded-full"  alt="collaborate and learn" />
+            <img src="new/i4.webp" className="w-14 rounded-full"  alt="collaborate and learn" />
             <div className="font-medium text-2xl">Collaborate and Learn</div>
           </div>
           <div className="text-center px-4">
@@ -438,7 +439,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i3.png" className="w-14 rounded-full"  alt="save time" />
+            <img src="new/i3.webp" className="w-14 rounded-full"  alt="save time" />
             <div className="font-medium text-2xl">Save Time</div>
           </div>
           <div className="text-center">
@@ -461,7 +462,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i1.png" className="w-16 rounded-full"  alt="Ask questions" />
+                    <img src="new/i1.webp" className="w-16 rounded-full"  alt="Ask questions" />
                     <div className="font-medium text-3xl">Ask Questions</div>
                   </div>
                   <div className="text-center text-2xl">
@@ -478,7 +479,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i2.png" className="w-16 rounded-full" />
+                    <img src="new/i2.webp" className="w-16 rounded-full" />
                     <div className="font-medium text-3xl">
                       Receive Expert Help
                     </div>
@@ -498,7 +499,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i4.png" className="w-16 rounded-full"  alt="collaborate and learn" />
+                    <img src="new/i4.webp" className="w-16 rounded-full"  alt="collaborate and learn" />
                     <div className="font-medium text-3xl">
                       Collaborate and Learn
                     </div>
@@ -518,7 +519,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i3.png" className="w-16 rounded-full"  alt="access resources" />
+                    <img src="new/i3.webp" className="w-16 rounded-full"  alt="access resources" />
                     <div className="font-medium text-3xl">Access Resources</div>
                   </div>
                   <div className="text-center text-2xl">
@@ -586,22 +587,22 @@ function HomePage({ theme }) {
           <div className="splide__track">
             <div className="splide__list icons">
               <div className="splide__slide">
-                <img src="/b1.png" alt="Cloud Icon" />
+                <img src="new/b1.webp" alt="Cloud Icon" />
               </div>
               <div className="splide__slide">
-                <img src="/b2.png" alt="Monitor Icon" />
+                <img src="new/b2.webp" alt="Monitor Icon" />
               </div>
               <div className="splide__slide">
-                <img src="/b3.png" alt="Pipeline Icon" />
+                <img src="new/b3.webp" alt="Pipeline Icon" />
               </div>
               <div className="splide__slide">
-                <img src="/b4.png" alt="DevOps Icon" />
+                <img src="new/b4.webp" alt="DevOps Icon" />
               </div>
               <div className="splide__slide">
-                <img src="/b5.png" alt="Container Icon" />
+                <img src="new/b5.webp" alt="Container Icon" />
               </div>
               <div className="splide__slide">
-                <img src="/b6.png" alt="Tools Icon" />
+                <img src="new/b6.webp" alt="Tools Icon" />
               </div>
             </div>
           </div>
@@ -617,10 +618,11 @@ function HomePage({ theme }) {
           >
             <div className="w-2/5 flex justify-center items-center max-[900px]:w-full">
               <img
-                src="HelpOps-H Fevicon.png"
+                src="new/HelpOps-H Fevicon.webp"
                 alt="Logo"
                 data-tilt
                 className="h-20"
+                draggable="false"
               />
               <h3 className="text-5xl font-normal max-[1100px]:text-4xl">
                 elpOps-Hub

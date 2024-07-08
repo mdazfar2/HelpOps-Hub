@@ -90,9 +90,10 @@ const Header = () => {
         <Link href="/">
           <div data-tilt data-tilt-scale="1.1">
             <img
-              src="/HelpOps-H Fevicon.png"
+              src="new/HelpOps-H Fevicon.webp"
               alt="Logo"
               className="w-20 h-20 top-2 max-[400px]:relative max-[400px]:left-36"
+              draggable="false"
             />
           </div>
         </Link>
