@@ -34,14 +34,14 @@ function AboutPage({theme}) {
           </p>
         </div>
         <div className="w-[150px] flex justify-center max-md:hidden">
-          <img src="/HelpOps-H Fevicon.png" alt="HelpOps Logo" className="w-2/4 md:w-full hover:scale-90 transition-all" />
+          <img src="new/HelpOps-H Fevicon.webp" alt="HelpOps Logo" className="w-2/4 md:w-full hover:scale-90 transition-all" />
         </div>
       </div>
 
       {/* Section: Our Mission */}
       <div className="flex flex-col md:flex-row justify-center items-center md:space-x-20 mb-10">
         <div className=" md:w-1/4 mx-auto md:mb-0">
-          <img src="/mission.png" alt="Mission" className="w-3/4 md:w-full mx-auto hover:scale-90 transition-all" />
+          <img src="new/mission.webp" alt="Mission" className="w-3/4 md:w-full mx-auto hover:scale-90 transition-all" />
         </div>
         <div className="flex flex-col justify-center items-center w-full p-10  md:w-1/2 ml-2 mx-auto" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
           <h1 className={`  ${theme?"":"text-white"} text-3xl md:text-5xl font-semibold text-center mb-4`}>Our Mission</h1>
@@ -75,7 +75,7 @@ function AboutPage({theme}) {
           </ol>
         </div>
         <div className="w-full md:w-2/5 mx-auto flex justify-center">
-          <img src="/benefit.png" alt="Benefits" className="w-3/4 md:w-full hover:scale-90 transition-all" />
+          <img src="new/benefit.webp" alt="Benefits" className="w-3/4 md:w-full hover:scale-90 transition-all" />
         </div>
       </div>
     </div>

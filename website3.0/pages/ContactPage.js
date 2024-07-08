@@ -115,7 +115,7 @@ function ContactPage({theme}) {
     <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#1e1d1d] "} flex-col-reverse items-center justify-center space-x-0 p-10 md:flex-row md:space-x-40 max-sm:scale-75 h-[100vh] pt-40 `}>
       {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10">
-        <img src="/rateus.png" className="w-[30rem]" alt="rateus" />
+        <img src="new/rateus.webp" className="w-[30rem]" alt="rateus" />
       </div>
         <div className={`flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl  ${theme?"bg-[#098CCD] bg-opacity-10":"bg-[#181616]  border-white"}  md:justify-center`}>
           <h1 className={`${theme?"":"text-white"} text-3xl`}>Contact Us</h1>

@@ -13,7 +13,7 @@ export const metadata = {
   title: "Helpops-Hub",
   description: "Ensuring You Never Get Stuck In DevOps Again!",
   icons: {
-    icon: "/HelpOps-H Fevicon.png",
+    icon: "new/HelpOps-H Fevicon.webp",
   },
 };
 
