@@ -505,7 +505,7 @@ function ResourcesPage({theme}) {
           </div>
         ) : filteredData.length === 0 ? (     /* Display message when resouce not found on searching */
           <div id="not-found">
-              <p className="text-center text-4xl font-bold py-20">Resource not found</p>
+              <p class={`${theme?"":"text-white"} text-center text-4xl font-bold py-20 mb-5 mt-[7px]`}>Resource not found</p>
             </div>
         ) : (
           <div 

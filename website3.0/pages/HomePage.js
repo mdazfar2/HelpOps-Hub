@@ -279,6 +279,7 @@ function HomePage({ theme }) {
         ></div>
         <img
           src="/temp_bg.png"
+          alt="HelpOps-Hub"
           className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] hover:scale-105 transition-all duration-500 ease-in-out"
         />
       </div>
@@ -372,7 +373,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i1.png" className="w-14 rounded-full" />
+            <img src="/i1.png" className="w-14 rounded-full" alt="ask-questions" />
             <div className="font-medium text-2xl">Ask Questions</div>
           </div>
           <div className="text-center">
@@ -387,7 +388,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i2.png" className="w-14 rounded-full" />
+            <img src="/i2.png" className="w-14 rounded-full"  alt="receive ecpert help" />
             <div className="font-medium text-2xl">Receive Expert Help</div>
           </div>
           <div className="text-center">
@@ -403,7 +404,7 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i4.png" className="w-14 rounded-full" />
+            <img src="/i4.png" className="w-14 rounded-full"  alt="collaborate and learn" />
             <div className="font-medium text-2xl">Collaborate and Learn</div>
           </div>
           <div className="text-center px-4">
@@ -419,11 +420,11 @@ function HomePage({ theme }) {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="/i3.png" className="w-14 rounded-full" />
+            <img src="/i3.png" className="w-14 rounded-full"  alt="save time" />
             <div className="font-medium text-2xl">Save Time</div>
           </div>
           <div className="text-center">
-            Quickly resolve issues and focus on what matters most – driving your
+            Quickly resolve issues and focus on what matters most - driving your
             projects forward.
           </div>
         </div>
@@ -442,7 +443,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i1.png" className="w-16 rounded-full" />
+                    <img src="/i1.png" className="w-16 rounded-full"  alt="Ask questions" />
                     <div className="font-medium text-3xl">Ask Questions</div>
                   </div>
                   <div className="text-center text-2xl">
@@ -479,7 +480,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i4.png" className="w-16 rounded-full" />
+                    <img src="/i4.png" className="w-16 rounded-full"  alt="collaborate and learn" />
                     <div className="font-medium text-3xl">
                       Collaborate and Learn
                     </div>
@@ -499,7 +500,7 @@ function HomePage({ theme }) {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="/i3.png" className="w-16 rounded-full" />
+                    <img src="/i3.png" className="w-16 rounded-full"  alt="access resources" />
                     <div className="font-medium text-3xl">Access Resources</div>
                   </div>
                   <div className="text-center text-2xl">
@@ -622,7 +623,7 @@ function HomePage({ theme }) {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   onKeyDown={handleKeyDown}
-                  className={`${blur ? "blurclass" : ""} input-field`}
+                  className={`${blur ? "blurclass" : ""} input-field text-black`}
                 />
                 <button
                   className="text-white rounded-lg ml-2 p-1 bg-black bg-opacity-80 text-lg font-normal w-28 h-10"
