@@ -15,7 +15,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {userName,setUserLinkedin,setUserGithub,setUserName,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let {userName,setFinalUser,setIsLogin,setUserLinkedin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -36,7 +36,29 @@ let session=useSession()
     setUserImage('')
     setUserName('')
   }
-  
+  async function fetchData1(){
+    setIsLogin(true)
+    console.log('inside fetdshdjsd')
+    let session=await JSON.parse(localStorage.getItem('finalUser'))
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email : session.email
+         })
+       })
+      
+      let  e=await a.json()
+      setFinalUser(e.msg)
+       let dt=await JSON.stringify(e.msg)
+       localStorage.setItem('finalUser',dt)
+       setIsLogin(true)
+       
+     }
+  useEffect(()=>{
+    if(localStorage.getItem('loggedin')){
+      fetchData1()
+    }
+  },[])
   async function fetchData(){
     let a=await    fetch("/api/createaccount",{
          method:"POST",
@@ -47,32 +69,12 @@ let session=useSession()
          })
        })
       
-   
-          
-       
-       
       let  e=await a.json()
-       setUserEmail(e.msg.email)
-       setUserName(e.msg.name)
-       setUserImage(e.msg.image1)
-       setUserDesignation(e.msg.designation)
-       setUserCaption(e.msg.caption)
-       setUserGithub(e.msg.github)
-       setUserLinkedin(e.msg.linkedin)
-
-       localStorage.setItem('userEmail',e.msg.email)
-       localStorage.setItem('userName',e.msg.name)
-       localStorage.setItem('userImage',e.msg.image1)
-       localStorage.setItem('userDesignation',e.msg.designation)
-       localStorage.setItem('userCaption',e.msg.caption)
-       localStorage.setItem('userGithub',e.msg.github)
-       localStorage.setItem('userLinkedin',e.msg.linkedin)
-
+      setFinalUser(e.msg)
        let dt=await JSON.stringify(e.msg)
-       console.log(e)
-       localStorage.setItem('user',dt)
-       setIsLogin1(true)
-   
+       localStorage.setItem('finalUser',dt)
+       setIsLogin(true)
+       
      }
   useEffect(()=>{
 
@@ -137,7 +139,7 @@ console.log(userName)
   },[userName])
   return (
     <>
-   {!profile && userName.length==0 &&   <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}    auth-btn`} onClick={toggleAuth}>Login/Signup</button>
+   {!isLogin&& userName.length==0 &&   <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}    auth-btn`} onClick={toggleAuth}>Login/Signup</button>
       }
      {/* {
  profile&& <> <div style={{width:"200px",display:"flex",alignItems:"center",gap:"20px"}}>
@@ -145,10 +147,10 @@ console.log(userName)
     </div><button onClick={handleLogout}>Logout</button></>
 } */}
 {
-  userName.length>0 && <div className={`auth-btn ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}`}  onClick={()=>router.push('/profile')}>Profile</div>
+  isLogin && <div className={`auth-btn ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}`}  onClick={()=>router.push('/profile')}>Profile</div>
 }
 {
-  showProfile1  && 
+  showProfile1 && isLogin  && 
   <div className="auth-overlay" >
           <div className="auth-modal"  onClick={(e) => e.stopPropagation()}>
   <UserProfile onClose={closeProfile} onLogout={handleLogout}/>
