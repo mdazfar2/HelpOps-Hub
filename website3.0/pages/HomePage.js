@@ -262,7 +262,7 @@ function HomePage({ theme }) {
       {
         Maintance?
         <Popup
-          msg="Under Maintance"
+          msg="This page is under development. We apologize for the inconvenience. Please check back soon."
           error="puple1"
           img="https://cdn-icons-png.flaticon.com/128/11482/11482452.png"
         />:<></>
