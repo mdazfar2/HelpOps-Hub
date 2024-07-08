@@ -6,20 +6,17 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 
 export default function Logout() {
-    let {setUserEmail,setUserImage,setUserName,setIsLogin,theme}=useContext(Context)
+    let {setFinalUser,setIsLogin,theme}=useContext(Context)
     let router=useRouter()
     let session=useSession()
     async function handleLogout(){
-        localStorage.removeItem('userName');
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('userImage');
-        setUserEmail('')
-        setUserImage('')
-        setUserName('')
+      localStorage.removeItem('loggedin')
+      localStorage.removeItem('finalUser')
+      setFinalUser({})
+      setIsLogin(false)
         if(session.status=="authenticated"){
           router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
         }else{
-        setIsLogin(false)
         router.push('https://www.helpopshub.com')
         }
         }

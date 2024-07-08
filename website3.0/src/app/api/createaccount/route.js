@@ -27,7 +27,11 @@ console.log(email)
               email: email,
               name: name,
               password: hash,
-              image1:String(image)
+              image1:String(image),
+              designation:"",
+              linkedin:'',
+              github:'',
+              caption:''
           });
          await  users.save()
         }else{
@@ -41,8 +45,11 @@ console.log(email)
           let users= user({
             email: email,
             name: name,
-            image1:image
-
+            image1:image,
+            designation:"",
+            linkedin:'',
+            github:'',
+            caption:''
           });
           await   users.save()
           let data1=await user.find({email:email})

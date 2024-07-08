@@ -10,7 +10,7 @@ import { Context } from '@context/store';
 import EditProfileModal from './EditProfileModal';
 export default function ProfilepageDetails() {
    // Extract user data from context
-  const { userName, userEmail,userLinkedin,userGithub, userImage, userDesignation, userCaption, github, linkedin ,theme} = useContext(Context);
+  const { userName,finalUser, userEmail,userLinkedin,userGithub, userImage, userDesignation, userCaption, github, linkedin ,theme} = useContext(Context);
 
   // State to control the visibility of the edit profile modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,8 +27,7 @@ export default function ProfilepageDetails() {
       // Update the user data logic here
       console.log(updatedData);
     };
-console.log(userImage,'dsddddddddhkishjdkhsdkhskdjhsdkhsjdks')
-    let userIma= userImage.length > 0 ? userImage : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
+    let userIma= finalUser.image1?.length>0?finalUser.image1: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
     // Prepare user data for the modal
     const userData = {
       userName,
@@ -51,7 +50,7 @@ console.log(userImage,'dsddddddddhkishjdkhsdkhskdjhsdkhsjdks')
         {/* Profile picture section */}
         <div className="flex justify-center items-center mt-[-140px] md:mt-[-180px]">
           <img
-            src={userImage.length>0?userImage:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
+            src={finalUser.image1?.length>0?finalUser.image1:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'}
             alt="Profile Picture"
             className="border-[15px] border-[rgb(162,160,160)] w-[140px] h-[140px] md:w-[200px] md:h-[200px] rounded-full object-cover overflow-hidden"
           />
@@ -59,41 +58,45 @@ console.log(userImage,'dsddddddddhkishjdkhsdkhskdjhsdkhsjdks')
         </div>
          {/* Profile details section */}
         <div className={`flex flex-col justify-center items-center   ${theme?"":"bg-[#1e1d1d] text-white"}`}>
-        <p  className="mt-[20px] text-[10px] md:text-[12px]">mail: {userEmail}</p>
-          <h1  className={`mt-[5px] text-[24px] md:text-[32px] font-bold `}>{userName}</h1>
-          <p className={`mt-[5px] text-[18px] font-bold ${theme?"text-[#5a5151]":"text-white"}`}>{userDesignation}</p>
+        <p  className="mt-[20px] text-[10px] md:text-[12px]">mail: {finalUser.email}</p>
+          <h1  className={`mt-[5px] text-[24px] md:text-[32px] font-bold `}>{finalUser.name}</h1>
+          <p className={`mt-[5px] text-[18px] font-bold ${theme?"text-[#5a5151]":"text-white"}`}>{finalUser.designation}</p>
           
           <p className={`mt-[10px] text-[14px] font-medium  text-center ${theme?"text-[#5a5151]":"text-white"}`}>
-            {userCaption}
+            {finalUser.caption}
           </p>
            {/* Social media icons */}
           <div className="flex justify-around items-center w-full mt-[20px]">
             <div className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`} title="nishantkaushal0708@gmail.com">
-              <p>
+              <a href={finalUser.email}>
                 <FontAwesomeIcon icon={faEnvelope} />
-              </p>
+              </a>
          
             </div>
             <div className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`} title="nishantkaushal0708@gmail.com">
-              <a href={`${userGithub}`}>
+              <a href={`${finalUser.github}`}>
                 <FontAwesomeIcon icon={faGithub} />
               </a>
            
             </div>
             <div className={`w-full flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${theme?"hover:text-[#1a1a1a]":"hover:text-[#635e5e]"}`}  title="nishantkaushal0708@gmail.com">
-              <a href={`${userLinkedin}`}>
+              <a href={`${finalUser.linkedin}`}>
                 <FontAwesomeIcon icon={faLinkedinIn} />
               </a>
               
             </div>
           </div>
            {/* Edit Profile Modal component */}
-          <EditProfileModal
-        isOpen={isModalOpen}
+    
+    {
+      isModalOpen
+    &&      <EditProfileModal
+    isOpen={true}
         onRequestClose={handleCloseModal}
         userData={userData}
         onSave={handleSaveChanges}
-      />
+        img={finalUser.image1}
+      />}
         </div>
    </div>
   )
