@@ -14,7 +14,9 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
 }) {
   // Initialize the form state with userData and add a password field with an empty string
   const [formData, setFormData] = useState({ ...userData, password: "" });
-  let { theme } = useContext(Context);
+  let {userName,setUserName,setUserGithub,setUserLinkedin,userEmail,setUserCaption,setUserDesignation,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let [url,setUrl]=useState(userImage)
+
   // Handle changes in form inputs and update the formData state accordingly
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,11 +24,59 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
   };
 
   // Handle the save changes button click, call onSave with formData and close the modal
-  const handleSaveChanges = () => {
-    onSave(formData);
+  const handleSaveChanges = async () => {
+    await fetch('/api/editaccount',{
+      method:"POST",
+      body:JSON.stringify({formData:formData,image:url,email:localStorage.getItem('userEmail')})
+    })
+    if(url.length>0){
+      setUserImage(url)
+      localStorage.setItem('userImage',url)
+    }
+    if(formData.designation?.length>0){
+
+      setUserDesignation(formData.designation)
+      localStorage.setItem('userDesignation',formData.designation)
+    }
+    if(formData.caption?.length>0){
+
+      setUserCaption(formData.caption)
+      localStorage.setItem('userCaption',formData.caption)
+    }
+    if(formData.github?.length>0){
+
+      setUserGithub(formData.github)
+      localStorage.setItem('userGithub',formData.github)
+    }
+    if(formData.linkedin?.length>0){
+
+      setUserLinkedin(formData.linkedin)
+      localStorage.setItem('userLinkedin',formData.linkedin)
+    }
     onRequestClose();
   };
+    
 
+  async function handlefilechange(event){
+  
+    let imageFile=event.target.files[0]
+    if (imageFile) {
+      const formData1 = new FormData();
+      formData1.append('file', imageFile);
+      formData1.append('upload_preset', 'e_image'); // replace with your upload preset
+      const response = await fetch(`https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`, {
+        method: 'POST',
+        body: formData1,
+      });
+  
+      const data = await response.json();
+      console.log(data.secure_url)
+      setFormData({ ...formData, ['userImage']: data.secure_url });
+      setFormData({ ...formData, ['image']: data.secure_url });
+
+      setUrl( data.secure_url);
+    }
+  }
   // Handle clicks outside the modal to close it
   const handleClickOutside = (e) => {
     if (e.target.className.includes("modal-overlay")) {
@@ -78,15 +128,16 @@ export default function EditProfileModal({isOpen,onRequestClose,userData,onSave,
          className="text-lg font-bold">Edit Profile</h2>
 
         {/* Profile picture section */}
-        <div className="relative text-center modal-image-container">
-          <img
-            src={formData.userImage}
+        <label htmlFor="image" className="relative text-center modal-image-container">
+         <img
+            src={url.length>0?url:formData.userImage}
             alt="Profile Picture"
             className="w-36 h-36 mx-auto mt-4 border border-white rounded-full object-cover modal-profile-img"
           />
+        </label>
             <button 
-            className={`p-1 pl-2 pr-2  flex gap-2 items-center absolute right-[81px] bottom-[-9px] ${theme?"bg-white text-black border border-black rounded-md":"bg-black text-white border rounded-md border-white"}`}><FaPen color={`${theme?"black":"white"}`}/>Edit</button>
-        </div>
+            className={`p-1 pl-2 pr-2  flex gap-2 items-center absolute right-[81px] bottom-[300px] ${theme?"bg-white text-black border border-black rounded-md":"bg-black text-white border rounded-md border-white"}`}><FaPen color={`${theme?"black":"white"}`}/>Edit</button>
+        <input onChange={handlefilechange} id="image" style={{visibility:"hidden"}} type="file"></input>
 
         {/* Form for editing profile details */}
         <form 

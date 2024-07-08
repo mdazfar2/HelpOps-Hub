@@ -18,7 +18,7 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-  let {setUserName,setUserEmail,setUserImage,setIsLogin,theme,setTheme}=useContext(Context)
+  let {setUserName,setUserDesignation,setUserCaption,setUserEmail,setUserLinkedin,setUserGithub,setUserImage,setIsLogin,theme,setTheme}=useContext(Context)
 
   // Modified useEffect hook to handle Enter key press for form navigation and login
   useEffect(() => {
@@ -50,7 +50,35 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
   function toggle() {
     setShowPassword(!showPassword);
   }
+  async function fetchData(email){
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email :email
+         })
+       })
 
+      let  e=await a.json()
+       setUserEmail(e.msg.email)
+       setUserName(e.msg.name)
+       setUserImage(e.msg.image1)
+       setUserDesignation(e.msg.designation)
+       setUserCaption(e.msg.caption)
+       setUserGithub(e.msg.github)
+       setUserLinkedin(e.msg.linkedin)
+
+       localStorage.setItem('userEmail',e.msg.email)
+       localStorage.setItem('userName',e.msg.name)
+       localStorage.setItem('userImage',e.msg.image1)
+       localStorage.setItem('userDesignation',e.msg.designation)
+       localStorage.setItem('userCaption',e.msg.caption)
+       localStorage.setItem('userGithub',e.msg.github)
+       localStorage.setItem('userLinkedin',e.msg.linkedin)
+
+       let dt=await JSON.stringify(e.msg)
+       localStorage.setItem('user',dt)
+   setIsLogin(true)
+     }
   // Function to handle login process
   async function handleLogin() {
     setLoading(true);
@@ -62,7 +90,6 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
       }),
     });
     let data = await res.json();
-    setLoading(false);
 
     // Handle login errors
     if (!data.success) {
@@ -95,11 +122,25 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
     console.log('setting data')
     setError(`${data.user[0].name} Welcome !!`);
 
-    // Close the login popup and reload the page after 2 seconds
-    setTimeout(() => {
-      setError("");
-      onClose();
-    }, 2000);
+   await fetchData(data.user[0].email)
+    setLoading(false);
+
+    // Save user details to localStorage
+    // setUserName(data.user[0].name);
+    // setUserEmail(data.user[0].email);
+    // setUserImage(data.user[0].image1);
+    // localStorage.setItem('userName', data.user[0].name);
+    // localStorage.setItem('userEmail', data.user[0].email);
+    // localStorage.setItem('userImage',data.user[0].image1);
+    // setIsLogin(true)
+    // console.log('setting data')
+    // setError(`${data.user[0].name} Welcome !!`);
+
+    // // Close the login popup and reload the page after 2 seconds
+    // setTimeout(() => {
+    //   setError("");
+    //   onClose();
+    // }, 2000);
   }
 
   // Function to handle forgot password process
@@ -136,6 +177,11 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
     setAllShow(false);
   };
 
+   // Function to go back to login from forgot password page
+   const handleBackToLogin = () => {
+    setAllShow(true);
+  };
+
   return (
     <>
       {!isSent && (
@@ -155,22 +201,27 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
             {allShow ? "Login to HelpOps-Hub" : "Please Enter Your Email"}
           </h1>
           {!allShow && (
-            <input
-              type="text"
-              onChange={(e) => setEmail1(e.target.value)}
-              value={email1}
-              className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] ${theme ? "border-gray-500" : "border-white text-white"}`}
-              placeholder="Enter your email"
-            />
+            <>
+            <button className={`absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none ${theme?"text-black":"text-white"} text-2xl cursor-pointer h-auto hover:text-[#666]`} onClick={handleBackToLogin}>
+            &#8592; {/* Left arrow Unicode character */}
+            </button>
+              <input
+                type="text"
+                onChange={(e) => setEmail1(e.target.value)}
+                value={email1}
+                className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] ${theme ? "border-gray-500" : "border-white text-white"}`}
+                placeholder="Enter your emaill"
+              />
+            </>
           )}
           {allShow && (
             <>
               <button className={`google-btn mt-[50px] w-3/5 p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
-                <img className="w-[30px] h-[30px] ml-[5px]" src="google.png" alt="Google" />
+                <img className="w-[30px] h-[30px] ml-[5px]" src="new/google.webp" alt="Google" />
                 Sign in with Google
               </button>
               <button className={`github-btn w-3/5 p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
-                {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="github.png" alt="GitHub" /> : <FaGithub size={'2rem'} />}
+                {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="new/github.webp" alt="GitHub" /> : <FaGithub size={'2rem'} />}
                 Sign in with Github
               </button>
               <p className="text-center text-[16px] mt-[15px] font-Itim">Or</p>

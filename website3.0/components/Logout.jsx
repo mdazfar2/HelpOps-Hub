@@ -20,7 +20,7 @@ export default function Logout() {
           router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
         }else{
         setIsLogin(false)
-        window.location.reload()
+        router.push('https://www.helpopshub.com')
         }
         }
   return (

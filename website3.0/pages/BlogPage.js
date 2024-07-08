@@ -177,7 +177,7 @@ function BlogPage() {
             <div className="editor_picks_options">
               <div className="options_title">Editor's Picks</div>
               <div className="options_view">
-                View All <img src="/arrow.png" alt="Arrow" />
+                View All <img src="new/arrow.webp" alt="Arrow" />
               </div>
             </div>
             <div className="editor_picks_content">
@@ -195,7 +195,7 @@ function BlogPage() {
             <div className="recent_posts_options">
               <div className="options_title">Recent Posts</div>
               <div className="options_view">
-                View All <img src="/arrow.png" alt="Arrow" />
+                View All <img src="new/arrow.webp" alt="Arrow" />
               </div>
             </div>
             <div className="recent_posts_content">
@@ -261,7 +261,7 @@ function BlogPage() {
           <div className="newsletter_form_container">
             <div className="newsletter_form">
               <div className="mail_icon">
-                <img src="/mail_icon.png" alt="Mail Icon" />
+                <img src="new/mail_icon.webp" alt="Mail Icon" />
               </div>
               <div className="newsletter_form_title">
                 Subscribe to Our Newsletter
@@ -302,7 +302,7 @@ function BlogPage() {
       {/* Section: Join Us and Call to Action */}
       <div className="join_us">
         <div className="trophy-card">
-          <img src="trophy.png" alt="Trophy" className="trophy" />
+          <img src="new/trophy.webp" alt="Trophy" className="trophy" />
           <div className="team-invite">
             <h2>Join our awesome team!</h2>
             <p>

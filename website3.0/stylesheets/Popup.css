@@ -1,11 +1,13 @@
 .red1{
     background-color: red;
 }
-
+.puple1{
+    background-color: #ac26d1;
+}
 .green1 {
     background-color: rgb(28, 201, 28) !important;
 }
-
+.filtered{filter: invert(1);}
 .popup{
     width: 40%;
     height: 60px;
