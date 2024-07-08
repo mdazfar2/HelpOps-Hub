@@ -134,6 +134,11 @@ const Login = ({ onClose, onSignupClick }) => {
     setAllShow(false);
   };
 
+   // Function to go back to login from forgot password page
+   const handleBackToLogin = () => {
+    setAllShow(true);
+  };
+
   return (
     <>
       {!isSent && (
@@ -153,13 +158,18 @@ const Login = ({ onClose, onSignupClick }) => {
             {allShow ? "Login to HelpOps-Hub" : "Please Enter Your Email"}
           </h1>
           {!allShow && (
-            <input
-              type="text"
-              onChange={(e) => setEmail1(e.target.value)}
-              value={email1}
-              className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] ${theme ? "border-gray-500" : "border-white text-white"}`}
-              placeholder="Enter your email"
-            />
+            <>
+            <button className={`absolute top-[0.5rem] left-[1.5rem] bg-transparent border-none ${theme?"text-black":"text-white"} text-2xl cursor-pointer h-auto hover:text-[#666]`} onClick={handleBackToLogin}>
+            &#8592; {/* Left arrow Unicode character */}
+            </button>
+              <input
+                type="text"
+                onChange={(e) => setEmail1(e.target.value)}
+                value={email1}
+                className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] ${theme ? "border-gray-500" : "border-white text-white"}`}
+                placeholder="Enter your emaill"
+              />
+            </>
           )}
           {allShow && (
             <>

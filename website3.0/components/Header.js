@@ -110,28 +110,28 @@ const Header = () => {
             <li
               className={`${
                 theme ? "text-black" : "text-white"
-              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
               className={`${
                 theme ? "text-black" : "text-white"
-              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
             >
               <Link href="/about">About</Link>
             </li>
             <li
               className={`${
                 theme ? "text-black" : "text-white"
-              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
             >
               <Link href="/team">Team</Link>
             </li>
             <li
               className={`${
                 theme ? "text-black" : "text-white"
-              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
+              } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left transition-colors duration-500`}
             >
               <Link href="/contact">Contact</Link>
             </li>
@@ -199,7 +199,7 @@ const Header = () => {
             theme
               ? "text-black after:bg-[#6eb6b95f]"
               : "text-white after:bg-[#ffffff5f]"
-          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
         >
           <Link href="/" onClick={() => setIsActive(false)}>
             Home
@@ -210,7 +210,7 @@ const Header = () => {
             theme
               ? "text-black after:bg-[#6eb6b95f]"
               : "text-white after:bg-[#ffffff5f]"
-          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
         >
           <Link href="/about" onClick={() => setIsActive(false)}>
             About
@@ -221,7 +221,7 @@ const Header = () => {
             theme
               ? "text-black after:bg-[#6eb6b95f]"
               : "text-white after:bg-[#ffffff5f]"
-          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
         >
           <Link href="/team" onClick={() => setIsActive(false)}>
             Team
@@ -232,7 +232,7 @@ const Header = () => {
             theme
               ? "text-black after:bg-[#6eb6b95f]"
               : "text-white after:bg-[#ffffff5f]"
-          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#6eb6b95f] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
+          } text-xl font-normal px-4 py-2 relative after:content-[''] after:absolute after:w-full after:transform after:scale-x-0 after:h-[3px] after:bottom-1 after:left-0 after:bg-[#63b5c3] after:origin-bottom-right after:transition-transform after:duration-200 hover:after:scale-x-100 hover:after:origin-bottom-left`}
         >
           <Link href="/contact" onClick={() => setIsActive(false)}>
             Contact
