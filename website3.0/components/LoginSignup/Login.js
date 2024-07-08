@@ -18,7 +18,7 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-  let {setUserName,setUserDesignation,setUserCaption,setUserEmail,setUserLinkedin,setUserGithub,setUserImage,setIsLogin,theme,setTheme}=useContext(Context)
+  let {setIsLogin,theme,setFinalUser}=useContext(Context)
 
   // Modified useEffect hook to handle Enter key press for form navigation and login
   useEffect(() => {
@@ -59,25 +59,12 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
        })
 
       let  e=await a.json()
-       setUserEmail(e.msg.email)
-       setUserName(e.msg.name)
-       setUserImage(e.msg.image1)
-       setUserDesignation(e.msg.designation)
-       setUserCaption(e.msg.caption)
-       setUserGithub(e.msg.github)
-       setUserLinkedin(e.msg.linkedin)
-
-       localStorage.setItem('userEmail',e.msg.email)
-       localStorage.setItem('userName',e.msg.name)
-       localStorage.setItem('userImage',e.msg.image1)
-       localStorage.setItem('userDesignation',e.msg.designation)
-       localStorage.setItem('userCaption',e.msg.caption)
-       localStorage.setItem('userGithub',e.msg.github)
-       localStorage.setItem('userLinkedin',e.msg.linkedin)
-
-       let dt=await JSON.stringify(e.msg)
-       localStorage.setItem('user',dt)
-   setIsLogin(true)
+      let data1=await JSON.stringify(e.msg)
+      localStorage.setItem('finalUser',data1)
+      setFinalUser(e.msg)
+      setIsLogin(true)
+      localStorage.setItem("loggedin",true)
+      onClose()
      }
   // Function to handle login process
   async function handleLogin() {
@@ -109,6 +96,7 @@ const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
       }, 1000);
       return;
     }
+
 
     setIsOTPorProfile(true);
     // Save user details to localStorage
