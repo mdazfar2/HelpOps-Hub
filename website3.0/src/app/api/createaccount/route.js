@@ -10,11 +10,12 @@ export async function POST(req) {
         let {email,name,password,image}=await req.json()
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
-
+console.log(email)
         let data=await user.find({email:email})
         // checking if user exist or not 
         if(data.length>0){
-          return NextResponse.json({ success: false,msg:"User Doesn't Valid"},{status:"200"});
+          console.log(data)
+          return NextResponse.json({ success: true,msg:data[0]},{status:"200"});
         }
         // generating the hash to store in mongo db 
         if(password){
@@ -30,6 +31,13 @@ export async function POST(req) {
           });
          await  users.save()
         }else{
+          let us=await user.find({email:email})
+          console.log(us)
+          if(us.length>0){
+            return NextResponse.json({success:true,user:us})
+          } 
+
+
           let users= user({
             email: email,
             name: name,
@@ -40,10 +48,11 @@ export async function POST(req) {
           let data1=await user.find({email:email})
           await user.findByIdAndDelete(data1[0]._id)
         }
-
+        let data1=await user.find({email:email})
+console.log('after data ',data1)
               // await user.deleteOne({email:email})
         //sending response user 
-            return NextResponse.json({success:true})
+            return NextResponse.json({success:true,user:data1[0]})
 }
 
 

@@ -6,8 +6,11 @@ const newsletterModel = new mongoose.Schema({
   name:String,
   image1:{
     type:String,
-    required:true
-  }
+  },
+  designation:String,
+  caption:String,
+  github:String,
+  linkedin:String,
 });
 
 const user = mongoose.models.user || mongoose.model("user", newsletterModel);
