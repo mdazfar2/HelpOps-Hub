@@ -24,13 +24,13 @@ const AuthButton = () => {
     }
    },[profile])
 let session=useSession()
-  useEffect(() => {
-    if (showAuth) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [showAuth]);
+  // useEffect(() => {
+  //   if (showAuth) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'unset';
+  //   }
+  // }, [showAuth]);
   if(session.status=='unauthenticated' && !isLogin){
     setUserEmail('')
     setUserImage('')
