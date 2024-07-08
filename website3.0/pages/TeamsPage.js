@@ -264,7 +264,7 @@ function TeamsPage() {
                     <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">1</h1>
                   </div>
                   <div className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0" id="rank1">
-                    <img src="/crown.png" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" alt="crown" />
+                    <img src="new/crown.webp" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" alt="crown" />
                   </div>
                   <p id="name1" className="relative bottom-[25px] font-poppins text-[30px] font-bold text-black">{contributors[0].name || contributors[0].login}</p>
                   <p id="co1" className="relative bottom-[25px] font-poppins text-[30px] font-medium text-[#00000094]">contributions {contributors[0].contributions}</p>
@@ -285,7 +285,7 @@ function TeamsPage() {
                   <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">2</h1>
                   </div>
                   <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
-                    <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
+                    <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="new/crown.webp" />
                   </div>
                   <p id="name2" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[1].name || contributors[1].login}</p>
                   <p id="co2" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[1].contributions}</p>
@@ -306,7 +306,7 @@ function TeamsPage() {
                   <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">3</h1>
                   </div>
                   <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
-                    <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
+                    <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="new/crown.webp" />
                   </div>
                   <p id="name3" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[2].name || contributors[2].login}</p>
                   <p id="co3" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[2].contributions}</p>
@@ -332,7 +332,7 @@ function TeamsPage() {
             <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">2</h1>
             </div>
             <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
-              <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
+              <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="new/crown.webp" />
             </div>
             <p id="name2" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[1].name || contributors[1].login}</p>
             <p id="co2" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[1].contributions}</p>
@@ -350,7 +350,7 @@ function TeamsPage() {
               <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">1</h1>
             </div>
             <div className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0" id="rank1">
-              <img src="/crown.png"  alt="crown" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" />
+              <img src="new/crown.webp"  alt="crown" className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none" />
             </div>
             <p id="name1" className="relative bottom-[25px] font-poppins text-[30px] font-bold text-black">{contributors[0].name || contributors[0].login}</p>
             <p id="co1" className="relative bottom-[25px] font-poppins text-[30px] font-medium text-[#00000094]">contributions {contributors[0].contributions}</p>
@@ -368,7 +368,7 @@ function TeamsPage() {
             <h1 className="text-[#2f7191] font-[Poppins] text-[48px] font-extrabold leading-[72px]">3</h1>
             </div>
             <div className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0" id="rank">
-              <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="/crown.png" />
+              <img className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]" src="new/crown.webp" />
             </div>
             <p id="name3" className="relative bottom-[35px] font-poppins text-[20px] font-bold text-black">{contributors[2].name || contributors[2].login}</p>
             <p id="co3" className="relative bottom-[25px] font-poppins text-[20px] font-medium text-[#00000094]">contributions {contributors[2].contributions}</p>
@@ -404,7 +404,7 @@ function TeamsPage() {
           <div className="card1 bg-[#4285f430] pt-8 rounded-[2rem] border-[#3498db] flex flex-col items-center relative w-[85%] h-full">
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
-                <img className="rounded-[50%] w-[28%]" src="/founder.png" alt="Azfar Alam" />
+                <img className="rounded-[50%] w-[28%]" src="new/founder.webp" alt="Azfar Alam" />
               </div>
               <div className="info-div text-center mt-[5px]">
                 <h2 className="mt-[10px] text-[1.5em] font-bold mb-2 font-arial">Azfar Alam</h2>
@@ -452,7 +452,7 @@ function TeamsPage() {
           <div className="card2 bg-[#fbbc0530] pt-8 rounded-[2rem] border-[#3498db] flex flex-col items-center relative w-[85%] h-full">
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
-                <img className="rounded-[50%] w-[28%]" src="/maintainer.png" alt="Anurag Pandey" />
+                <img className="rounded-[50%] w-[28%]" src="new/maintainer.webp" alt="Anurag Pandey" />
               </div>
               <div className="info-div text-center mt-[5px]">
                 <h2 className="mt-[10px] text-[1.5em] font-bold mb-2 font-arial">Anurag Pandey</h2>
@@ -616,7 +616,7 @@ function TeamsPage() {
       {/* Section: Trophy Card and Call to Action */}
 
       <div className="trophy-card flex pl-[20px] ml-[74px] mr-[51px] bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
-        <img src="trophy.png" alt="Trophy" className="trophy h-[66px] relative" />
+        <img src="new/trophy.webp" alt="Trophy" className="trophy h-[66px] relative" />
         <div className="team-invite pl-8">
           <h2 className="text-[1.5em] font-bold mb-2 font-arial">Join our awesome team!</h2>
           <p>
