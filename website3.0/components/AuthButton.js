@@ -13,8 +13,9 @@ import { useSession } from 'next-auth/react';
 const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin1, setIsLogin1] = useState(true);
-  const [profile,showProfile]=useState(false)
-  let [showProfile1,setShowProfile1]=useState(false)
+  const [profile,showProfile]=useState(false);
+  const [isOTPorProfile, setIsOTPorProfile] = useState(false);
+  let [showProfile1,setShowProfile1]=useState(false);
   let {userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
@@ -93,10 +94,12 @@ const onBack=()=>{
     setUserName('')
         window.location.reload()
     }
-  const closeAuth = () => {
-    setShowAuth(false);
-    setIsLogin1(true);
-  };
+    const closeAuth = (e) => {
+      if (!isOTPorProfile) {
+        setShowAuth(false);
+        setIsLogin1(true);
+      }
+    };
   function handleProfileShow(){
     setShowProfile1(true)
   }
@@ -130,9 +133,9 @@ console.log(userName)
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             {isLogin1 ? (
-              <Login onClose={closeAuth} onSignupClick={switchToSignup} />
+              <Login onClose={closeAuth} onSignupClick={switchToSignup} setIsOTPorProfile={setIsOTPorProfile} />
             ) : (
-              <Signup onClose={closeAuth} onBack={onBack} onLoginClick={switchToLogin} />
+              <Signup onClose={closeAuth} onBack={onBack} onLoginClick={switchToLogin} setIsOTPorProfile={setIsOTPorProfile} />
             )}
           </div>
         </div>

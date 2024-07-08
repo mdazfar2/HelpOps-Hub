@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 import { Context } from "@context/store";
 
 // Login component definition, receives onClose and onSignupClick as props from AuthButton
-const Login = ({ onClose, onSignupClick }) => {
+const Login = ({ onClose, onSignupClick, setIsOTPorProfile }) => {
   // State variables
   const [showPassword, setShowPassword] = useState(false);
   const [email2, setEmail2] = useState("");
@@ -83,6 +83,7 @@ const Login = ({ onClose, onSignupClick }) => {
       return;
     }
 
+    setIsOTPorProfile(true);
     // Save user details to localStorage
     setUserName(data.user[0].name);
     setUserEmail(data.user[0].email);
@@ -121,6 +122,7 @@ const Login = ({ onClose, onSignupClick }) => {
         onClose();
       }, 2000);
     } else {
+      setIsOTPorProfile(true);
       setIsSent(true);
       setTimeout(() => {
         setIsSent(false);

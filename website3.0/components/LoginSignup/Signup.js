@@ -10,7 +10,7 @@ import Profile from "@pages/Profile";
 import { Context } from "@context/store";
 
 // Signup component definition, receives onClose and onLoginClick as props from AuthButton.js
-const Signup = ({ onClose, onLoginClick , onBack }) => {
+const Signup = ({ onClose, onLoginClick , onBack, setIsOTPorProfile }) => {
   const session = useSession(); // Retrieves the current session
   const [showOTP, setShowOTP] = useState(false); // State to show/hide OTP input
   const [showProfile, setShowProfile] = useState(false); // State to show/hide Profile input
@@ -71,6 +71,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
       }
       // Store the user email
       setUserEmail(email);
+      setIsOTPorProfile(true);
       setShowOTP(true); // Show OTP input
       setLoading(false);
     } else {
@@ -101,6 +102,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
 
       // Verify the OTP
       if (data.otp == otp) {
+        setIsOTPorProfile(true);
         setShowProfile(true); // Show Profile input
       } else {
         setErrorOtp(true);
@@ -125,8 +127,8 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
     onClose(); // Close the signup process
   };
 
-  // Function to go back to signup from OTP input
-  const handleBackToSignup = () => {
+  const handleBackFromOTPOrProfile = () => {
+    setIsOTPorProfile(false);
     setShowOTP(false);
   };
 
@@ -143,7 +145,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
           isError={errorOtp}
           setError={setError}
           onOTPSubmit={handleOTPSubmit}
-          onBack={handleBackToSignup}
+          onBack={handleBackFromOTPOrProfile}
           email={email}
           theme={!theme}
         />
