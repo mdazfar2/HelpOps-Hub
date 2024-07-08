@@ -67,8 +67,16 @@ const Login = ({ onClose, onSignupClick }) => {
     // Handle login errors
     if (!data.success) {
       setError(data.msg);
-      // Only clear the password field
-      setPassword("");
+      
+      if (data.msg === "User Doesn't Valid" || data.msg === "Invalid Email") {
+        // If username/email is invalid, clear both fields
+        setEmail2("");
+        setPassword("");
+      } else if (data.msg === "Incorrect Password") {
+        // If only password is incorrect, clear just the password field
+        setPassword("");
+      }
+      
       setTimeout(() => {
         setError("");
       }, 1000);
