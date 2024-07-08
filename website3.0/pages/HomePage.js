@@ -150,6 +150,9 @@ function HomePage({ theme }) {
   const handleGetStartedClick = () => {
     router.push("/resources");
   };
+  const handleStartNowClick = () => {
+    router.push("/blogs");
+  };
 
   const [email, setEmail] = useState(""); // State to hold email input
   const [error, setError] = useState(""); // State to hold error messages
@@ -373,7 +376,7 @@ function HomePage({ theme }) {
               } relative mt-8 cursor-pointer transition-all w-full flex`}
             >
               <div className=" relative left-[45%] max-[620px]:left-[38%]">
-                <div className="text-black h-12 w-32 bg-white absolute z-10 text-lg flex justify-center items-center">
+                <div className="text-black h-12 w-32 bg-white absolute z-10 text-lg flex justify-center items-center" onClick={handleStartNowClick}>
                   Start Now
                 </div>
                 <div className="h-12 w-32 absolute bg-gray-400 top-2 -left-2 z-0"></div>
