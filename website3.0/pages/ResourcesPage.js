@@ -503,6 +503,10 @@ function ResourcesPage({theme}) {
           id="error">
             <p>{error}</p>
           </div>
+        ) : filteredData.length === 0 ? (     /* Display message when resouce not found on searching */
+          <div id="not-found">
+              <p className="text-center text-4xl font-bold py-20">Resource not found</p>
+            </div>
         ) : (
           <div 
           id="folders-container" 
