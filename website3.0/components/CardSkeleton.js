@@ -1,10 +1,10 @@
 import React from 'react'
 
-function CardSkeleton() {
+function CardSkeleton({theme}) {
   return (
     <div>
-      <div className="skeleton-contributor-card">
-            <div id="short">
+      <div className={`${theme?"bg-sky-300":"bg-gray-300"} skeleton-contributor-card`}>
+            <div className={`${theme?"bg-sky-100":"bg-white"} short`}>
               <div className="skeleton-avatar"></div>
               <div className="skeleton-text"></div>
               <div className="skeleton-text short"></div>

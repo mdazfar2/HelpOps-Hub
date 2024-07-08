@@ -176,7 +176,7 @@
 }
 
 .skeleton-contributor-card {
-  background: #fdd86c;
+
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -200,8 +200,7 @@
   );
   animation: loading 1.5s infinite;
 }
-#short {
-  background-color: #ff7d1f;
+.short {
   border-radius: 10px;
   padding: 20px;
   display: flex;
@@ -255,7 +254,7 @@
 @media screen and (max-width: 1024px) {
   #ourteam {
     font-size: 22px;
-    margin-top: 180px;
+    padding-top: 180px;
   }
 
   .team-description {
@@ -320,7 +319,7 @@
   }
   #ourteam {
     font-size: 20px;
-    margin-top: 180px;
+    padding-top: 180px;
   }
 
   .team-description {
