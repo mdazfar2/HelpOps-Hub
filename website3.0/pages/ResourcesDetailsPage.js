@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FaHeart } from "react-icons/fa";
 
-function ResourcesDetailsPage() {
+function ResourcesDetailsPage({theme}) {
   // State variables
   const [folderName, setFolderName] = useState("");
   const [content, setContent] = useState("Loading...");
@@ -132,11 +132,15 @@ const [isLike,setIslike]=useState(false)
     }, 2000);
   };
   return (
-    <div className="resourcesdetails">
+    <div 
+    className={`resourcesdetails ${theme?"mt-[150px] mb-[20px]":"bg-[#1e1d1d] textwhite pt-[154px]"} `}>
 
       {/* Section: Container */}
 
-      <div id="container" onClick={(e) => {
+      <div 
+      id="container" 
+      className={`${theme?"bg-[#fff]":"bg-[#1d1a1a]"}`}
+       onClick={(e) => {
         // Handle click on copy button inside content container
         if (e.target.className === "copy-button") {
           const code = e.target.previousSibling.innerText;
@@ -145,9 +149,13 @@ const [isLike,setIslike]=useState(false)
         }
       }}>
         {/* Render README content with dangerouslySetInnerHTML to allow HTML */}
-        <div id="content" dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div 
+        id="content" 
+        className={`${theme?"":"text-white"}`} 
+        dangerouslySetInnerHTML={{ __html: content }}></div>
         {/* GitHub repository link */}
-        <div className="repo-info-container">
+        <div 
+        className="repo-info-container">
          <a
            id="repo-link"
            className="repo-link fab fa-github"
@@ -155,16 +163,23 @@ const [isLike,setIslike]=useState(false)
            target="_blank"
            rel="noopener noreferrer"
          >
-            <FontAwesomeIcon icon={faGithub} />
+            <FontAwesomeIcon 
+            icon={faGithub} />
          </a>
-         <h5>More Info</h5>
-         <div className="like-button liq">
-              <FaHeart style={{color:`${isLike?"orange":"black"}`}}   size={'2rem'}/>
+         <h5 
+         className={`${theme?"":"text-white"}`}>More Info</h5>
+         <div 
+         className="like-button liq">
+              <FaHeart 
+              style={{color:`${isLike?"orange":"black"}`}}  
+               size={'2rem'}/>
             </div>
        </div>
       </div>
       {/* Toast message for showing copy success/failure */}
-      <div className="toast" id="toast">
+      <div 
+      className="toast" 
+      id="toast">
         Code copied!
       </div>
     </div>

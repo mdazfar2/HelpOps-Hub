@@ -234,7 +234,9 @@ const Login = ({ onClose, onSignupClick }) => {
               )}
             </button>
           )}
-          <button className="close-btn absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer" onClick={onClose}>
+
+          <button className={`absolute top-[5px] right-[22px] bg-none border-none text-[20px] cursor-pointer ${theme?"":"text-white"}`} onClick={onClose}>
+
             &#10005;
           </button>
         </div>
