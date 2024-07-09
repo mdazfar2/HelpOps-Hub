@@ -66,7 +66,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
   };
 
   return (
-    <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center md:h-[500px] md:w-[650px] sm:w-[96vw] sm:h-auto sm:m-[20px] sm:p-[10px] md:pt-[60px] sm:pl-0   pt-[60px] md:pl-[40px] md:pr-[40px]`}>
+    <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center md:h-[500px] md:w-[650px] max-sm:w-[96vw] max-sm:h-auto max-sm:m-[20px] max-sm:p-[10px] md:pt-[60px] max-sm:pl-0   pt-[60px] md:pl-[40px] md:pr-[40px]`}>
      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
      {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
@@ -78,10 +78,10 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
       <button className={`absolute top-[10px] right-[10px]  ${!theme?"text-black":"text-white"}  bg-transparent border-none text-2xl hover:text-[#666] cursor-pointer text-gray-700`} onClick={onClose}>
         &#10005; {/* Cross Unicode character */}
       </button>
-      <h5 className={` ${!theme?"text-black":"text-white"} sm:mt-[40px]  `}>To continue, enter the OTP sent to your registered email address.</h5>
+      <h5 className={` ${!theme?"text-black":"text-white"} max-sm:mt-[40px]  `}>To continue, enter the OTP sent to your registered email address.</h5>
       <p  className={` ${!theme?"text-black":"text-white"} `}>This helps us keep your account secure.</p>
       {/* OTP input fields */}
-      <div className={`mt-[20px] sm:w-[104%]   sm:m-auto md:w-[100%] sm:h-[auto] flex-wrap mb-[20px] ml-0 mr-0 flex justify-center md:gap-[6px] sm:gap-[1px]`} onPaste={handlePaste}>
+      <div className={`mt-[20px] max-sm:w-[104%]   max-sm:m-auto md:w-[100%] max-sm:h-[auto] flex-wrap mb-[20px] ml-0 mr-0 flex justify-center md:gap-[6px] max-sm:gap-[1px]`} onPaste={handlePaste}>
         {otp.map((data, index) => {
           return (
             <input
