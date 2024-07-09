@@ -157,7 +157,7 @@ let [error,setError]=useState(false)
     }
   }
   return (
-    <div  className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] sm:w-[96vw] sm:h-auto relative pb-[35px]`}>
+    <div  className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] max-sm:w-[96vw] max-sm:h-auto relative pb-[35px]`}>
             {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
       {/* Close button */}
@@ -170,7 +170,7 @@ let [error,setError]=useState(false)
       <label htmlFor='fileupload' className='relative'>
 
       <img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`}  className={`h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px] ${theme?"":"border border-white"}`}  alt="Profile-circle" />
-      <FaPen color={`${theme?"black":"white"}`} className={`$ md:right-[-64px] sm:right-6 bottom-[-109px] absolute`} />
+      <FaPen color={`${theme?"black":"white"}`} className={`$ md:right-[-64px] max-sm:right-6 bottom-[-109px] absolute`} />
       </label>    
      <form onSubmit={handleSubmit}>
         {/* Username input */}
@@ -181,7 +181,7 @@ let [error,setError]=useState(false)
             placeholder="Enter your name"
             value={username}
             ref={usernameRef} // Added ref
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] sm:w-[70%]`}
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
@@ -193,14 +193,14 @@ let [error,setError]=useState(false)
             placeholder="Password"
             value={password}
             ref={passwordRef} // Added ref
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] sm:w-[70%]`}
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
          {showPassword ? 
-         <FaEye color={`${theme?"black":"white"}`} className='absolute md:right-[5%] sm:right-[10%] bottom-[9%] text-[1.5rem] cursor-pointer'onClick={toggle}/>
+         <FaEye color={`${theme?"black":"white"}`} className='absolute md:right-[5%] max-sm:right-[10%] bottom-[9%] text-[1.5rem] cursor-pointer'onClick={toggle}/>
          :
-         <FaEyeSlash color={`${theme?"black":"white"}`} className='absolute md:right-[5%] sm:right-[16%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
+         <FaEyeSlash color={`${theme?"black":"white"}`} className='absolute md:right-[5%] max-sm:right-[16%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
         </div>
         {/* Confirm password input */}
         <div className={`mb-[25px] mt-[20px] relative`}>
@@ -209,11 +209,11 @@ let [error,setError]=useState(false)
             placeholder="Confirm Password"
             value={confirmPassword}
             ref={confirmPasswordRef} // Added ref
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] sm:w-[70%]`}
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          {showConfirmPassword ? <FaEye color={`${theme?"black":"white"}`} className='absolute md:right-[5%] sm:right-[16%] bottom-[9%] text-[1.5rem] cursor-pointer'  onClick={toggle1}/>:<FaEyeSlash color={`${theme?"black":"white"}`} className='absolute md:right-[5%] sm:right-[16%] bottom-[9%] text-[1.5rem] cursor-pointer'  onClick={toggle1}/>}
+          {showConfirmPassword ? <FaEye color={`${theme?"black":"white"}`} className='absolute md:right-[5%] max-sm:right-[16%] bottom-[9%] text-[1.5rem] cursor-pointer'  onClick={toggle1}/>:<FaEyeSlash color={`${theme?"black":"white"}`} className='absolute md:right-[5%] max-sm:right-[16%] bottom-[9%] text-[1.5rem] cursor-pointer'  onClick={toggle1}/>}
         </div>
         {/* Submit button */}
         <button type="submit" onClick={handleSubmit} className={` ${theme?"bg-[#098CCD] border-none ":"bg-[#272525] border-white border whiteshadow" }  w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer margin-auto gap-[18px] m-auto text-[19px] font-semibold hover:bg-[#024d82] `}>Create Account &nbsp;{loading && <div className={`loader3`}>
