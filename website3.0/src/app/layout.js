@@ -39,7 +39,6 @@ export default function RootLayout({ children }) {
       <div id="Background1"></div>
       <div id="Background2"></div>
       <GlobalContext>
-
         <NextAuthProvider>
           <Loader />
           <Header />
