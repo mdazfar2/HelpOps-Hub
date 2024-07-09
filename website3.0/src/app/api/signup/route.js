@@ -16,7 +16,6 @@ export async function POST(req) {
       //giving eerror if user already present 
       if(isPresent.length>0){
           return NextResponse.json({success:false})
-
       }
       if(users.has(email)){
         return NextResponse.json({ success: true,otp: users.get(email)},{status:"200"});
@@ -32,32 +31,35 @@ export async function POST(req) {
               
               }
               generateOTP()
-              // Extract email from request body
-              const transport=await nodemailer.createTransport({
-                service:'gmail',
-                port: 587,
-                secure:false,
-                auth: {
-                  user: process.env.EMAIL_ID,
-                  pass: process.env.EMAIL_APP_PASS,
-                },
-            })
-            let mail=await transport.sendMail({
-                from: '"Help-ops Hub" <helpopshub@gmail.com>', // sender address
-    to: email, // list of receivers
-    subject: "Your HelpOps-Hub Verification Code", // Subject line
-    text: otp, // plain text body
-    html: `To complete your signup process, please use the One-Time Password (OTP) below to verify your Gmail account:
+              if(!users.has(email)){
 
-<br><br><b>𝐘𝐨𝐮𝐫 𝐎𝐓𝐏: ${otp}</b> <br><br><br>Enter this code on the verification page to finish setting up your account. For security reasons, this OTP is valid for 10 minutes.<br>
-<br>If you did not request this, please ignore this email.<br><br>
-<br>Thank you for joining HelpOps-Hub!<br>
-<br>Best regards,<br>
-<br>The HelpOps-Hub Team 🚀
-`, // html body
-            })
+                const transport=await nodemailer.createTransport({
+                  service:'gmail',
+                  port: 587,
+                  secure:false,
+                  auth: {
+                    user: process.env.EMAIL_ID,
+                    pass: process.env.EMAIL_APP_PASS,
+                  },
+              })
+              let mail=await transport.sendMail({
+                  from: '"Help-ops Hub" <helpopshub@gmail.com>', // sender address
+      to: email, // list of receivers
+      subject: "Your HelpOps-Hub Verification Code", // Subject line
+      text: otp, // plain text body
+      html: `To complete your signup process, please use the One-Time Password (OTP) below to verify your Gmail account:
+  
+  <br><br><b>𝐘𝐨𝐮𝐫 𝐎𝐓𝐏: ${otp}</b> <br><br><br>Enter this code on the verification page to finish setting up your account. For security reasons, this OTP is valid for 10 minutes.<br>
+  <br>If you did not request this, please ignore this email.<br><br>
+  <br>Thank you for joining HelpOps-Hub!<br>
+  <br>Best regards,<br>
+  <br>The HelpOps-Hub Team 🚀
+  `, // html body
+              })
+              users.set(email,otp)
+              }
+              // Extract email from request body
             
-                users.set(email,otp)
         }
         // for sending otp 
         if(isSend){
