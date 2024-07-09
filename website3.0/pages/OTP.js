@@ -66,7 +66,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
   };
 
   return (
-    <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center md:h-[500px] md:w-[650px] sm:w-[90%] sm:h-auto sm:m-[20px] sm:p-[20px] md:pt-[60px]   pt-[60px] md:pl-[40px] md:pr-[40px]`}>
+    <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center md:h-[500px] md:w-[650px] sm:w-[90vw] sm:h-auto sm:m-[20px] sm:p-[20px] md:pt-[60px]   pt-[60px] md:pl-[40px] md:pr-[40px]`}>
      {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
      {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 

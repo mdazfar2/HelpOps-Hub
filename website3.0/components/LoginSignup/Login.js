@@ -159,7 +159,7 @@ const Login = ({ onClose, onSignupClick }) => {
   return (
     <>
       {!isSent && (
-        <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-[2px] ${theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c] whiteshadow border-white"} p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:h-auto sm:m-[20px] relative select`}>
+        <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-[2px] ${theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c] whiteshadow border-white"} p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:h-auto sm:m-[20px] w-[90vw] relative select`}>
           {error && (
             <Popup
               msg={error}
@@ -190,11 +190,11 @@ const Login = ({ onClose, onSignupClick }) => {
           )}
           {allShow && (
             <>
-              <button className={`google-btn mt-[50px] md:w-3/5 sm:w-[100%] p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
+              <button className={`google-btn mt-[50px] md:w-3/5 sm:w-[80%] p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
                 <img className="w-[30px] h-[30px] ml-[5px]" src="new/google.webp" alt="Google" />
                 Sign in with Google
               </button>
-              <button className={`github-btn md:w-3/5 sm:w-[100%] p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
+              <button className={`github-btn md:w-3/5 sm:w-[80%] p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
                 {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="new/github.webp" alt="GitHub" /> : <FaGithub size={'2rem'} />}
                 Sign in with Github
               </button>
