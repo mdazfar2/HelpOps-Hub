@@ -68,7 +68,14 @@ let session=useSession()
            image:session.data.user.image
          })
        })
-      
+        a=await    fetch("/api/createaccount",{
+        method:"POST",
+        body:JSON.stringify({
+          email : session.data.user.email,
+          name:session.data.user.name,
+          image:session.data.user.image
+        })
+      })
       let  e=await a.json()
       setFinalUser(e.msg)
        let dt=await JSON.stringify(e.msg)
