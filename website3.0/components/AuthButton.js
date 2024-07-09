@@ -77,6 +77,7 @@ let session=useSession()
         })
       })
       let  e=await a.json()
+
       if(e.msg.email==process.env.NEXT_PUBLIC_ADMIN_URL){
         setIsAdminShow(true)
       }
