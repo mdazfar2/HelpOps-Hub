@@ -1,5 +1,5 @@
 "use client";
-import React, {  useRef, useState } from 'react';
+import React, {  useRef, useState, useEffect } from 'react';
 import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
@@ -109,15 +109,34 @@ let [error,setError]=useState(false)
     }
   }
 
-  //For handling key event
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      if (username && password && confirmPassword) {
-        handleSubmit(event);
+  // New refs for input fields
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
+
+  // New useEffect for global Enter key handling
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        if (!username) {
+          usernameRef.current.focus();
+        } else if (!password) {
+          passwordRef.current.focus();
+        } else if (!confirmPassword) {
+          confirmPasswordRef.current.focus();
+        } else {
+          handleSubmit(event);
+        }
       }
-    }
-  };
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [username, password, confirmPassword]);
 
   async function handlefilechange(event){
   
@@ -150,10 +169,10 @@ let [error,setError]=useState(false)
         </h1>
       <label htmlFor='fileupload' className='relative'>
 
-<img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`} className={`h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px] ${theme?"":"border border-white"}`} alt="Profile-circle" />
-<FaPen color={`${theme?"black":"white"}`} className={`$ right-[-64px] bottom-[-109px] absolute`} />
-</label>    
-  <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+      <img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`} className={`h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px] ${theme?"":"border border-white"}`} alt="Profile-circle" />
+      <FaPen color={`${theme?"black":"white"}`} className={`$ right-[10%] bottom-[-70px] absolute`} />
+      </label>    
+     <form onSubmit={handleSubmit}>
         {/* Username input */}
         <input type='file' id='fileupload' style={{display:"none"}} onChange={handlefilechange}></input>
         <div className={`mb-[15px] mt-[20px] relative`}>
@@ -161,43 +180,40 @@ let [error,setError]=useState(false)
             type="text"
             placeholder="Enter your name"
             value={username}
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 w-[100%]`}
+            ref={usernameRef} // Added ref
+            className={`p-[10px] ${theme?"border-gray-500":"border-white text-white"} text-black outline-none borderinput ml-0 w-[100%]`}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         {/* Password input */}
-        <div  className={`mb-[15px] mt-[20px] relative`}>
-
+        <div className={`mb-[15px] mt-[20px] relative`}>
           <input
             type={`${showPassword?"text":"password"}`}
             placeholder="Password"
             value={password}
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 w-[100%]`}
-
+            ref={passwordRef} // Added ref
+            className={`p-[10px] ${theme?"border-gray-500":"border-white text-white"} text-black outline-none borderinput ml-0 w-[100%]`}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
          {showPassword ? 
-         <FaEye color={`${theme?"black":"white"}`}  className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>
+         <FaEye color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>
          :
-         <FaEyeSlash color={`${theme?"black":"white"}`}  className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
+         <FaEyeSlash color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle}/>}
         </div>
         {/* Confirm password input */}
-        <div  className={`mb-[25px] mt-[20px] relative`}>
+        <div className={`mb-[25px] mt-[20px] relative`}>
           <input
             type={`${showConfirmPassword?"text":"password"}`}
             placeholder="Confirm Password"
             value={confirmPassword}
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 w-[100%]`}
-
-            onChange={(e) =>
-               setConfirmPassword(e.target.value)}
+            ref={confirmPasswordRef} // Added ref
+            className={`p-[10px] ${theme?"border-gray-500":"border-white text-white"} text-black outline-none borderinput ml-0 w-[100%]`}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-                  
-                   {showConfirmPassword ? <FaEye color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>:<FaEyeSlash color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>}
-
+          {showConfirmPassword ? <FaEye color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>:<FaEyeSlash color={`${theme?"black":"white"}`} className='absolute right-[5%] bottom-[9%] text-[1.5rem] cursor-pointer' onClick={toggle1}/>}
         </div>
         {/* Submit button */}
         <button type="submit" onClick={handleSubmit} className={` ${theme?"bg-[#098CCD] border-none ":"bg-[#272525] border-white border whiteshadow" }  w-[190px]  h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer margin-auto gap-[18px] m-auto text-[19px] font-semibold hover:bg-[#024d82] `}>Create Account &nbsp;{loading && <div className={`loader3`}>
@@ -205,7 +221,7 @@ let [error,setError]=useState(false)
             <div className={`dot`}></div>
               <div className={`outline`}></div>
         </div></div>
- }</button>
+    }</button>
       </form>
     </div>
   );
