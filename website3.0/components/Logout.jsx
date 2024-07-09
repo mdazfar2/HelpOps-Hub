@@ -6,10 +6,11 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 
 export default function Logout() {
-    let {setFinalUser,setIsLogin,theme}=useContext(Context)
+    let {setFinalUser,setIsAdminShow,setIsLogin,theme}=useContext(Context)
     let router=useRouter()
     let session=useSession()
     async function handleLogout(){
+      setIsAdminShow(false)
       localStorage.removeItem('loggedin')
       localStorage.removeItem('finalUser')
       setFinalUser({})

@@ -18,7 +18,7 @@ const Login = ({ onClose, onSignupClick }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-  let {setIsLogin,theme,setFinalUser}=useContext(Context)
+  let {setIsLogin,setIsAdminShow,theme,setFinalUser}=useContext(Context)
 
   // Modified useEffect hook to handle Enter key press for form navigation and login
   useEffect(() => {
@@ -59,6 +59,9 @@ const Login = ({ onClose, onSignupClick }) => {
        })
 
       let  e=await a.json()
+      if(e.msg.email==process.env.NEXT_PUBLIC_ADMIN_URL){
+        setIsAdminShow(true)
+      }
       let data1=await JSON.stringify(e.msg)
       localStorage.setItem('finalUser',data1)
       setFinalUser(e.msg)
