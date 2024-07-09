@@ -247,7 +247,7 @@ function BlogPage() {
                     </div>
                   ))
                 : blogs.slice(0, displayCount).map((blog, index) => (
-                    <div className="recent_posts_blog" key={index} onClick={() => navigateToBlogDetails(blogs[0]._id)}>
+                    <div className="recent_posts_blog" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                       <img
                         src={blog.image}
                         alt={`Blog Image ${index}`}
@@ -288,7 +288,7 @@ function BlogPage() {
           <div className="top_blogs">
             <div className="top_blog_title">Top Posts</div>
             {topBlogs.map((blog, index) => (
-              <div className={`top_blog_${index + 1}`} key={index}>
+              <div className={`top_blog_${index + 1} cursor-pointer`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                 <div className="blog_details">
                   <div className="blog_type">{blog.type}</div>
                   {" - "}
@@ -390,7 +390,7 @@ function BlogPage() {
         <div className="must_read_content">
           {finalMustRead.length > 0 ? (
             finalMustRead.map((blog, index) => (
-              <div className="must_read_blog" key={index}>
+              <div className="must_read_blog" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                 <img
                   src={blog.image}
                   alt={`Blog Image ${index}`}
