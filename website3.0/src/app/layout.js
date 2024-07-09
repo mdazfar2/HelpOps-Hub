@@ -6,6 +6,7 @@ import Footer from "@components/Footer";
 import Authprovider from "@components/auth/Authprovider";
 import { NextAuthProvider } from "./provider";
 import { GlobalContext } from "@context/store";
+import React from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -38,6 +39,8 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
       <div id="Background1"></div>
       <div id="Background2"></div>
+      <React.StrictMode>
+
       <GlobalContext>
         <NextAuthProvider>
           <Loader />
@@ -46,6 +49,7 @@ export default function RootLayout({ children }) {
           <Footer />
         </NextAuthProvider>
       </GlobalContext>
+      </React.StrictMode>
       </body>
     </html>
   );

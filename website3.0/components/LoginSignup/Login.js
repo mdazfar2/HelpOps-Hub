@@ -27,7 +27,7 @@ const Login = ({ onClose, onSignupClick }) => {
         event.preventDefault();
         if (email2 === "") {
           // If email is empty, focus on the email input
-          document.getElementById("email-input").focus();
+         
         } else if (password === "") {
           // If email is filled but password is empty, focus on the password input
           document.getElementById("password-input").focus();
@@ -81,7 +81,7 @@ const Login = ({ onClose, onSignupClick }) => {
     // Handle login errors
     if (!data.success) {
       setError(data.msg);
-      
+      console.log(data)
       if (data.msg === "User Doesn't Valid" || data.msg === "Invalid Email") {
         // If username/email is invalid, clear both fields
         setEmail2("");
@@ -159,7 +159,7 @@ const Login = ({ onClose, onSignupClick }) => {
   return (
     <>
       {!isSent && (
-        <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-[2px] ${theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c] whiteshadow border-white"} p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:w-[400px] relative select`}>
+        <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-[2px] ${theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c] whiteshadow border-white"} p-5 border-rounded1 lg:w-[500px] md:w-[500px] sm:h-auto  w-[96vw] relative select`}>
           {error && (
             <Popup
               msg={error}
@@ -171,7 +171,7 @@ const Login = ({ onClose, onSignupClick }) => {
             />
           )}
 
-          <h1 className={`text-center mt-[5px] ${theme ? "text-black" : "text-white"} text-[22px] font-bold`}>
+          <h1 className={`text-center mt-[5px] ${theme ? "text-black" : "text-white"} text-[22px] font-bold sm:mt-[20px]`}>
             {allShow ? "Login to HelpOps-Hub" : "Please Enter Your Email"}
           </h1>
           {!allShow && (
@@ -183,18 +183,18 @@ const Login = ({ onClose, onSignupClick }) => {
                 type="text"
                 onChange={(e) => setEmail1(e.target.value)}
                 value={email1}
-                className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] ${theme ? "border-gray-500" : "border-white text-white"}`}
+                className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place mt-[20px] sm:w-[90%] sm:left-0 sm:ml-0 ${theme ? "border-gray-500" : "border-white text-white"}`}
                 placeholder="Enter your emaill"
               />
             </>
           )}
           {allShow && (
             <>
-              <button className={`google-btn mt-[50px] w-3/5 p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
+              <button className={`google-btn mt-[50px] md:w-3/5 sm:text-[13px] sm:max-w-[240px] lg:max-w-[270px] sm:w-[75%] p-2 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("google")}>
                 <img className="w-[30px] h-[30px] ml-[5px]" src="new/google.webp" alt="Google" />
                 Sign in with Google
               </button>
-              <button className={`github-btn w-3/5 p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
+              <button className={`github-btn md:w-3/5 sm:w-[75%] sm:text-[13px] sm:max-w-[240px] lg:max-w-[270px] p-2 mt-4 rounded-[18px] ${theme ? "bg-white google-btn1 border-none" : "bg-[black] google-btn2 border-solid border-white border text-white"} cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`} onClick={() => signIn("github")}>
                 {theme ? <img className="w-[35px] h-[30px] ml-[5px]" src="new/github.webp" alt="GitHub" /> : <FaGithub size={'2rem'} />}
                 Sign in with Github
               </button>
@@ -207,7 +207,7 @@ const Login = ({ onClose, onSignupClick }) => {
                   type="text"
                   onChange={(e) => setEmail2(e.target.value)}
                   value={email2}
-                  className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none ${theme ? "border-gray-500" : "border-white text-white"} border-[#837b7b] input-place`} 
+                  className={`md:w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black md:ml-[70px] sm:w-[100%] rounded-none ${theme ? "border-gray-500" : "border-white text-white"} border-[#837b7b] m-auto input-place`} 
                   placeholder="Enter your email"
                 />
                 <div style={{ position: "relative" }}>
@@ -216,18 +216,18 @@ const Login = ({ onClose, onSignupClick }) => {
                     id="password-input"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
-                    className={`w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black ml-[70px] rounded-none ${theme ? "border-gray-500" : "border-white text-white"} border-[#837b7b] input-place`}
+                    className={`md:w-[65%] p-[10px] mb-[10px] border-b-2 bg-none background-none text-black md:ml-[70px] sm:w-[100%]  rounded-none ${theme ? "border-gray-500" : "border-white text-white"} border-[#837b7b] input-place`}
                     type={`${showPassword ? "text" : "password"}`}
                     placeholder="Password"
                   />
                   {showPassword ? (
-                    <FaEye color={`${theme ? "black" : "white"}`} className={`absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer`} onClick={toggle} />
+                    <FaEye color={`${theme ? "black" : "white"}`} className={`absolute bottom-[24%] md:right-[22%] text-[1.5rem] sm:right-[20px] cursor-pointer`} onClick={toggle} />
                   ) : (
-                    <FaEyeSlash color={`${theme ? "black" : "white"}`} className="absolute bottom-[24%] right-[22%] text-[1.5rem] cursor-pointer" onClick={toggle} />
+                    <FaEyeSlash color={`${theme ? "black" : "white"}`} className="absolute bottom-[24%] md:right-[22%] text-[1.5rem] sm:right-[20px] cursor-pointer" onClick={toggle} />
                   )}
                 </div>
               </div>
-              <div className="flex w-[69%] m-auto justify-between">
+              <div className="flex w-[69%] md:flex-row m-auto justify-between sm:flex-col">
                 <p className={`text-center ${theme ? "" : "hover:text-gray-500"} text-[13px] mt-[15px] regular forgot-password ${theme ? "text-black" : "text-white"}`} onClick={forgotPassword}>
                   Forgot Password
                 </p>
@@ -235,7 +235,7 @@ const Login = ({ onClose, onSignupClick }) => {
                   <span className={`login-signup-link ${theme ? "" : "hover:text-gray-500"}`} onClick={onSignupClick}>Sign up now</span>
                 </p>
               </div>
-              <button className={`w-[120px] h-[52px] flex justify-center content-center items-center p-2 relative left-[100px] bg-[#098CCD] text-white mt-4 rounded-[18px] cursor-pointer ml-[40%] gap-[18px] text-[19px] ${theme ? "bg-[#098CCD] border-none" : "bg-[#272525] border-white border whiteshadow"} font-semibold`} onClick={handleLogin}>
+              <button className={`w-[120px] h-[52px] flex justify-center content-center items-center p-2 relative md:left-[100px] bg-[#098CCD] text-white mt-4 rounded-[18px] cursor-pointer md:ml-[40%] gap-[18px] text-[19px] ${theme ? "bg-[#098CCD] border-none" : "bg-[#272525] border-white border whiteshadow"} sm:m-[auto] sm:mt-[20px]  font-semibold`} onClick={handleLogin}>
                 Login &nbsp;
                 {loading && (
                   <div className="loader3">

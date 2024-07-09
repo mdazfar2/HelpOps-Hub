@@ -158,7 +158,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   console.log(session);
 
   return (
-    <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c]  border-white"}  p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[400px] relative select pt-16`}>
+    <div className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c]  border-white"}  p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] sm:w-[96vw]  md:m-auto sm:h-auto  relative select pt-16`}>
       {popup && (
         <Popup
           msg={error}
@@ -195,13 +195,13 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
         type="email"
         placeholder="Enter your email"
         value={email}
-        className={`w-[65%] ${theme?"border-gray-500 text-black":"border-white text-white"} p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black ml-[70px] rounded-none border-[#837b7b] input-place`} 
+        className={`md:w-[65%] ${theme?"border-gray-500 text-black":"border-white text-white"} p-[10px] mb-[10px]  border-b-2  bg-none background-none text-black md:ml-[70px] sm:w-[100%] rounded-none border-[#837b7b] input-place`} 
 
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
       
-      <p className={`text-end text-[12px] relative right-[80px] ${theme?"text-black":"text-white"}`}>
+      <p className={`text-end text-[12px] relative sm:text-center md:right-[80px] ${theme?"text-black":"text-white"}`}>
         Already have an account? &nbsp;
         <span className={`login-signup-link  ${theme?"":"hover:text-gray-500"} `} onClick={onLoginClick}>Login</span>
       </p>
