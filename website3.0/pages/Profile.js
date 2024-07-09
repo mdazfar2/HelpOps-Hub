@@ -138,7 +138,7 @@ let [error,setError]=useState(false)
     }
   }
   return (
-    <div className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] sm:w-[90vw] sm:h-auto relative pb-[35px]`}>
+    <div className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] sm:w-[96vw] sm:h-auto relative pb-[35px]`}>
             {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
       {/* Close button */}
