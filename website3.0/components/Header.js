@@ -141,14 +141,16 @@ const Header = () => {
           </ul>
           {/* Navigation actions (sponsor button and toggle switch) */}
           <div className="flex items-center gap-2">
-            <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+           
           {
-            isAdminShow ?<button  className={`${
+            isAdminShow ?     <a href="https://www.helpopshub.com/admin" target="_blank">
+              <button  className={`${
               theme
                 ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
                 : "bg-gray-100/80 text-black hover:bg-transparent hover:border-[1px] hover:border-white"
             } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
-            style={{ fontFamily: "ubuntu" }}>Admin</button>:
+            style={{ fontFamily: "ubuntu" }}>Admin</button></a>:
+             <a href="https://github.com/sponsors/mdazfar2" >
               <button
                 className={`${
                   theme
@@ -160,8 +162,8 @@ const Header = () => {
             
                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
                 Sponsor
-              </button>}
-            </a>
+              </button>
+            </a>}
             <div className="block max-xl:hidden">
               <AuthButton />
             </div>
