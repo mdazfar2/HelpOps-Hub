@@ -15,7 +15,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {userName,setFinalUser,setIsLogin,setUserLinkedin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let {setIsAdminShow,userName,setFinalUser,setIsLogin,setUserLinkedin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -77,6 +77,9 @@ let session=useSession()
         })
       })
       let  e=await a.json()
+      if(e.msg.email==process.env.NEXT_PUBLIC_ADMIN_URL){
+        setIsAdminShow(true)
+      }
       setFinalUser(e.msg)
        let dt=await JSON.stringify(e.msg)
        localStorage.setItem('finalUser',dt)

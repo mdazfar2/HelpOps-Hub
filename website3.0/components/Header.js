@@ -21,7 +21,7 @@ const Header = () => {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith('/admin'); // Check if path starts with '/admin'
   console.log({ pathname });
-  let { theme } = useContext(Context);
+  let { theme,isAdminShow } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
   // to set the status of show navbar or not
@@ -142,6 +142,13 @@ const Header = () => {
           {/* Navigation actions (sponsor button and toggle switch) */}
           <div className="flex items-center gap-2">
             <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+          {
+            isAdminShow ?<button  className={`${
+              theme
+                ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
+                : "bg-gray-100/80 text-black hover:bg-transparent hover:border-[1px] hover:border-white"
+            } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
+            style={{ fontFamily: "ubuntu" }}>Admin</button>:
               <button
                 className={`${
                   theme
@@ -150,9 +157,10 @@ const Header = () => {
                 } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
                 style={{ fontFamily: "ubuntu" }}
               >
-                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+            
+               <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
                 Sponsor
-              </button>
+              </button>}
             </a>
             <div className="block max-xl:hidden">
               <AuthButton />

@@ -11,7 +11,7 @@ export const GlobalContext=({children})=>{
         let [userCaption,setUserCaption]=useState('')
         let [userLinkedin,setUserLinkedin]=useState('')
         let [userGithub,setUserGithub]=useState('')
-
+        let [isAdminShow,setIsAdminShow]=useState(false)
         let [isLogin,setIsLogin]=useState(false)
         let [finalUser,setFinalUser]=useState({})
         let [theme,setTheme]=useState(true)
@@ -19,7 +19,7 @@ export const GlobalContext=({children})=>{
         useEffect(()=>{
 console.log(theme)
         },[theme])
-  return <Context.Provider value={{setFinalUser,finalUser,userLinkedin,setUserLinkedin,userGithub,setUserGithub,setUserDesignation,userDesignation,userCaption,setUserCaption,userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin,isLogin,theme,setTheme}}>
+  return <Context.Provider value={{setIsAdminShow,isAdminShow,setFinalUser,finalUser,userLinkedin,setUserLinkedin,userGithub,setUserGithub,setUserDesignation,userDesignation,userCaption,setUserCaption,userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin,isLogin,theme,setTheme}}>
         {children}
     </Context.Provider>
 }
