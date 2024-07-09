@@ -78,6 +78,7 @@
   border:3px solid black;
   border-style: dashed;
   box-shadow: 2px 2px 5px 2px #00000040;
+  cursor:pointer
 }
 .blog_content{
   padding: 0.1rem 1rem; 
@@ -172,6 +173,7 @@
 .editor_picks_blog{
   position: relative;
   width: 35%;
+  cursor: pointer;
 }
 .editor_picks_blog img{
   filter: blur(0.05rem);
@@ -217,9 +219,15 @@ hr{
 
 .recent_posts_content .recent_posts_blog{
   width: 48%;
-  height: 350px;
+  height:auto;
+  min-height: 390px;
   border:3px solid black;
   border-style: dashed;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-self: center;
+  cursor:pointer;
 }
 
 .recent_posts_blog{
@@ -423,6 +431,7 @@ hr{
   border-radius: 1rem;
   border:3px solid black;
   border-style: dashed;
+  cursor: pointer;
 }
 .must_read_blog img{
   height: 400px;
