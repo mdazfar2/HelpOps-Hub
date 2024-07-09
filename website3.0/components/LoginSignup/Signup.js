@@ -19,7 +19,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
   const [errorOtp, setErrorOtp] = useState(false); // State to hold OTP error messages
   let [loading, setLoading] = useState(false); // State to indicate loading status
   const [popup, setPopup] = useState(false); // State to show/hide popup
-  let {userName,setUserName,userEmail,setUserEmail,theme,userImage,setUserImage}=useContext(Context)
+  let {userName,setUserName,userEmail,setUserEmail,theme,setIsLogin,setFinalUser,userImage,setUserImage}=useContext(Context)
 
   // useEffect hook to handle Enter key press for continue
   useEffect(() => {
@@ -103,6 +103,9 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
       // Verify the OTP
       if (data.otp == otp) {
         setShowProfile(true); // Show Profile input
+        
+
+
       } else {
         setErrorOtp(true);
         setPopup(true);
@@ -133,7 +136,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
 
   // Conditional rendering based on state
   if (showProfile) {
-    return <Profile onSubmit={handleProfileSubmit} onClose={onClose}  theme={theme}/>;
+    return <Profile onSubmit={handleProfileSubmit} setFinalUser={setFinalUser} setIsLogin={setIsLogin}  onClose={onClose}  theme={theme}/>;
   }
 
   if (showOTP) {
