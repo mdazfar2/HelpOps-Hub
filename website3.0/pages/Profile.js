@@ -3,7 +3,7 @@ import React, {  useRef, useState } from 'react';
 import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
-const Profile = ({ onClose,theme }) => {
+const Profile = ({ onClose,theme, setFinalUser,setIsLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
@@ -40,6 +40,22 @@ let [error,setError]=useState(false)
       return false
     }
   }
+  async function fetchData(email){
+    let a=await    fetch("/api/createaccount",{
+         method:"POST",
+         body:JSON.stringify({
+           email :email
+         })
+       })
+
+      let  e=await a.json()
+      let data1=await JSON.stringify(e.msg)
+      localStorage.setItem('finalUser',data1)
+      setFinalUser(e.msg)
+      setIsLogin(true)
+      localStorage.setItem("loggedin",true)
+      onClose()
+     }
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +81,7 @@ let [error,setError]=useState(false)
     })
     // to top loading on button 
     setLoading(false)
+    fetchData(localStorage.getItem('useremail1'))
     onClose();
   }else{
     setLoading(true)
