@@ -79,12 +79,12 @@ setToken(token)
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
 {pop&&
     <Popup msg={pop} error="red1" />
-}<div className="login-auth-container">
+}<div className="login-auth-container md:w-500px sm:w-80vw sm:m-auto ">
      
 
       <h1>{"Change Password"}</h1>
       
-      <input type="text" onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="Enter Password" />
+      <input type="text"  onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="Enter Password" />
       <input     onChange={(e)=>setPassword1(e.target.value)}    value={password1}   type={`${showPassword?"text":"password"}`}
  placeholder="Enter Confirm Password" />         
 <br/>

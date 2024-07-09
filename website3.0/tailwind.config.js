@@ -16,6 +16,13 @@ module.exports = {
         poppins: ['"Poppins"','sans-serif'],
     },
     extend: {
+      screens: {
+        sm: '320px',  // Adjust the 'sm' breakpoint to 320px
+        md: '768px',  // Default value for 'md'
+        lg: '1024px', // Default value for 'lg'
+        xl: '1280px', // Default value for 'xl'
+        '2xl': '1536px', // Default value for '2xl'
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
