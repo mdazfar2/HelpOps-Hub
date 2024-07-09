@@ -150,7 +150,7 @@ const Header = () => {
                 : "bg-gray-100/80 text-black hover:bg-transparent hover:border-[1px] hover:border-white"
             } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
             style={{ fontFamily: "ubuntu" }}>Admin</button></a>:
-             <a href="https://github.com/sponsors/mdazfar2" target="_blank">
+             <a href="https://github.com/sponsors/mdazfar2" >
               <button
                 className={`${
                   theme
