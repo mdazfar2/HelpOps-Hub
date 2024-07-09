@@ -151,18 +151,18 @@ function BlogPage() {
     router.push(`/blogs/${blogId}`);
   };
   return (
-    <div className="blogpage-container">
-      <div className="blogpage-title">
+    <div className="min-h-screen mt-40 px-24">
+      <div className="text-center text-[30px] !text-black font-normal">
         Ensuring You Never Get Stuck In DevOps Again!
       </div>
-      <div className="blogpage-content">
-        <div className="left_section">
+      <div className="flex gap-20 mt-8 justify-center">
+        <div className="w-[70%] flex flex-col">
           {loading || blogs.length === 0 ? (
-            <div className="recent_blog">
-              <div className="skeleton skeleton-image"></div>
-              <div className="content">
+            <div className="bg-[#deeff8] w-full p-8 rounded-xl border-2 border-black border-dashed shadow-[2px_2px_5px_2px_#00000040]">
+              <div className="skeleton h-[500px]"></div>
+              <div className="mt-4 bg-white p-4 border-2 border-black rounded-xl">
                 <div className="recent_blog_details_container">
-                  <div className="skeleton skeleton-title"></div>
+                  <div className="skeleton w-[80%] h-4 mb-[10px]"></div>
                   <div className="skeleton skeleton-text"></div>
                   <div className="skeleton skeleton-text"></div>
                 </div>
@@ -171,16 +171,17 @@ function BlogPage() {
           ) : (
             <React.Fragment>
               {blogs.length > 0 && blogs[0] && (
-                <div className="recent_blog"  onClick={() => navigateToBlogDetails(blogs[0]._id)}>
+                <div className="bg-[#deeff8] w-full p-8 rounded-xl border-2 border-black border-dashed shadow-[2px_2px_5px_2px_#00000040] cursor-pointer"  onClick={() => navigateToBlogDetails(blogs[0]._id)}>
                   <img
                     src={blogs[0].image}
                     alt="Blog Image"
                     onError={handleImageError}
+                    className="bg-white h-[500px] w-full rounded-xl"
                   />
-                  <div className="content">
+                  <div className="mt-4 bg-white p-4 border-2 border-black rounded-xl">
                     <div className="recent_blog_details_container">
-                      <div className="blog_details">
-                        <div className="blog_type">{blogs[0].type}</div>
+                      <div className="flex gap-[5px] my-2 text-[12px] font-bold">
+                        <div className="underline">{blogs[0].type}</div>
                         {" - "}
                         <div className="blog_date">
                           {formatDate(blogs[0].date)}
@@ -189,14 +190,14 @@ function BlogPage() {
                         <div className="blog_length">{blogs[0].length}</div>
                       </div>
                     </div>
-                    <div className="recent_blog_title">{blogs[0].title}</div>
-                    <div className="blog_author">
+                    <div className="text-xl font-semibold">{blogs[0].title}</div>
+                    <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                       {"By"}
-                      <div className="author_name">{blogs[0].authorName}</div>
+                      <div className="underline text-[#5271ff]">{blogs[0].authorName}</div>
                       {" , "}
                       <div className="author_title">{blogs[0].authorTitle}</div>
                     </div>
-                    <div className="recent_blog_description">
+                    <div className="flex gap-[5px] my-2 text-xs font-normal">
                       {renderBlogDescription(blogs[0].description)}
                     </div>
                   </div>
@@ -205,57 +206,59 @@ function BlogPage() {
             </React.Fragment>
           )}
 
-          <div className="editor_picks">
-            <div className="editor_picks_options">
-              <div className="options_title">Editor's Picks</div>
-              <div className="options_view">
-                View All <img src="new/Arrow.webp" alt="Arrow" />
+          <div className="my-8">
+            <div className="flex justify-between items-center">
+              <div className="text-xl font-semibold my-2">Editor's Picks</div>
+              <div className="h-[30px] flex justify-center items-center gap-2 text-[20.7px] font-semibold my-2">
+                View All <img src="new/Arrow.webp" alt="Arrow" className="h-full"/>
               </div>
             </div>
-            <div className="editor_picks_content">
+            <div className="my-8 flex gap-4">
               {finalEditorsPick.map((blog, index) => (
-                <div className="editor_picks_blog" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
+                <div className="relative w-[35%] cursor-pointer" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                   <img
                     src={blog.image}
                     alt={`Blog Image ${index}`}
                     onError={handleImageError}
+                    className="rounded-xl h-[200px] w-full bg-white object-cover object-center filter blur-[0.05rem]"
                   />
-                  <div className="editor_picks_blog_title">{blog.title}</div>
+                  <div className="absolute top-1/2 -translate-y-1/2 w-full text-center text-white text-[17px] font-extrabold py-4 px-6 bg-[#00000080]">{blog.title}</div>
                 </div>
               ))}
             </div>
-            <hr />
+            <hr className="w-full border-[1px] border-black"/>
           </div>
 
           <div className="recent_posts">
-            <div className="recent_posts_options">
-              <div className="options_title">Recent Posts</div>
-              <div className="options_view">
-                View All <img src="new/Arrow.webp" alt="Arrow" />
+            <div className="flex justify-between items-center">
+              <div className="text-xl font-semibold my-2">Recent Posts</div>
+              <div className="h-[30px] flex justify-center items-center gap-2 text-[20.7px] font-semibold my-2">
+                View All <img src="new/Arrow.webp" alt="Arrow" className="h-full"/>
               </div>
             </div>
-            <div className="recent_posts_content">
+            <div className="flex flex-wrap gap-5 mt-8">
               {loading || blogs.length === 0
                 ? Array.from({ length: displayCount }).map((_, index) => (
-                    <div className="recent_posts_blog" key={index}>
-                      <div className="skeleton skeleton-image"></div>
-                      <div className="blog_details">
-                        <div className="skeleton skeleton-title"></div>
+                    <div className="w-[48%] min-h-[390px] h-auto flex flex-col justify-center  cursor-pointer border-2 border-black border-dashed bg-[#D7E4EB] p-4 rounded-xl" key={index}>
+                      <div className="skeleton w-full h-[200px] mb-[10px]"></div>
+                      <div className="flex gap-[5px] my-2 text-[12px] font-bold">
+                        <div className="skeleton w-[80%] h-4 mb-[10px]"></div>
                         <div className="skeleton skeleton-text"></div>
                         <div className="skeleton skeleton-text"></div>
                       </div>
                     </div>
                   ))
                 : blogs.slice(0, displayCount).map((blog, index) => (
-                    <div className="recent_posts_blog" key={index} onClick={() => navigateToBlogDetails(blogs[0]._id)}>
+                    <div className="w-[48%] border-2 border-black border-dashed bg-[#D7E4EB] p-4 min-h-[390px] h-auto flex flex-col justify-center cursor-pointer rounded-xl" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                       <img
                         src={blog.image}
                         alt={`Blog Image ${index}`}
                         onError={handleImageError}
+                        className="w-full rounded-xl h-[200px] object-cover object-center bg-white"
                       />
-                      <div className="blog_content">
-                        <div className="blog_details">
-                          <div className="blog_type">{blog.type}</div>
+                      <div className="px-4 py-[0.1rem] bg-white mt-4 rounded-xl border-2 border-black">
+                        <div className="flex gap-[5px] my-2 text-[12px] font-bold">
+                          <div className="underline">{blog.type}</div>
                           {" - "}
                           <div className="blog_date">
                             {formatDate(blog.date)}
@@ -263,10 +266,10 @@ function BlogPage() {
                           {" - "}
                           <div className="blog_length">{blog.length}</div>
                         </div>
-                        <div className="blog_title">{blog.title}</div>
-                        <div className="blog_author">
+                        <div className="font-semibold">{blog.title}</div>
+                        <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                           {"By"}
-                          <div className="author_name">{blog.authorName}</div>
+                          <div className="underline text-[#5271ff]">{blog.authorName}</div>
                           {" , "}
                           <div className="author_title">{blog.authorTitle}</div>
                         </div>
@@ -284,22 +287,22 @@ function BlogPage() {
           )}
         </div>
 
-        <div className="right_section">
-          <div className="top_blogs">
-            <div className="top_blog_title">Top Posts</div>
+        <div className="w-[30%] flex flex-col items-center">
+          <div className="bg-[#D7E4EB] border-2 border-black border-dashed py-20 px-8 w-full h-[710px] rounded-2xl">
+            <div className="text-center text-[30px] !text-black font-semibold">Top Posts</div>
             {topBlogs.map((blog, index) => (
-              <div className={`top_blog_${index + 1}`} key={index}>
-                <div className="blog_details">
-                  <div className="blog_type">{blog.type}</div>
+              <div className={`top_blog_${index + 1} cursor-pointer my-8`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
+                <div className="flex gap-[5px] my-2 text-[12px] font-bold">
+                  <div className="underline">{blog.type}</div>
                   {" - "}
                   <div className="blog_date">{formatDate(blog.date)}</div>
                   {" - "}
                   <div className="blog_length">{blog.length}</div>
                 </div>
-                <div className="blog_title">{blog.title}</div>
-                <div className="blog_author">
+                <div className="font-semibold">{blog.title}</div>
+                <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                   {"By"}
-                  <div className="author_name">{blog.authorName}</div>
+                  <div className="underline text-[#5271ff]">{blog.authorName}</div>
                   {" , "}
                   <div className="author_title">{blog.authorTitle}</div>
                 </div>
@@ -307,25 +310,26 @@ function BlogPage() {
             ))}
           </div>
 
-          <div className="newsletter_form_container">
-            <div className="newsletter_form">
-              <div className="mail_icon">
-                <img src="new/mail_icon.webp" alt="Mail Icon" />
+          <div className="w-full h-[400px] bg-[#D7E4EB] mt-8 p-12 py-8 relative flex justify-center items-center">
+            <div>
+              <div className="bg-[#4d87ba] w-[16%] p-1.5 absolute left-[35px] top-0">
+                <img src="new/mail_icon.webp" alt="Mail Icon" className="w-full"/>
               </div>
-              <div className="newsletter_form_title">
+              <div className="text-[26px] leading-8 font-semibold my-4">
                 Subscribe to Our Newsletter
               </div>
-              <div className="newsletter_form_description">
+              <div className="my-4">
                 Receive the latest notifications on DevOps updates and insights
               </div>
               <form onSubmit={handleNewsletterSubmit}>
-                <div className="newsletter_form_input">
+                <div className="w-full my-4">
                   <input
                     type="email"
                     placeholder="Email Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="w-full py-[0.8rem] px-2"
                   />
                 </div>
                 {newsletterStatus === "success" && (
@@ -341,10 +345,11 @@ function BlogPage() {
                     Subscription failed. Please try again.
                   </div>
                 )}
-                <div className="newsletter_form_button">
+                <div className="w-full flex justify-center">
                   <button
                     type="submit"
                     disabled={newsletterStatus === "submitting"}
+                    className="py-[0.7rem] px-4 bg-[#4d87ba] text-white rounded-3xl"
                   >
                     {newsletterStatus === "submitting"
                       ? "Submitting..."
@@ -354,9 +359,9 @@ function BlogPage() {
               </form>
             </div>
           </div>
-          <div className="helpops_ad">
-            <div className="ad_title">Helpops Hub</div>
-            <div className="ad_description">
+          <div className="bg-[#D7E4EB] w-full h-[700px] mt-8 flex flex-col justify-center items-center p-12 text-center playfair border-[2rem] border-[#4d87ba]">
+            <div className="text-[50px] font-medium">Helpops Hub</div>
+            <div className="my-4">
               Ensuring You Never Get Stuck In DevOps Again!
             </div>
           </div>
@@ -364,50 +369,52 @@ function BlogPage() {
       </div>
 
       {/* Section: Join Us and Call to Action */}
-      <div className="join_us">
-        <div className="trophy-card">
-          <img src="new/trophy.webp" alt="Trophy" className="trophy" />
-          <div className="team-invite">
-            <h2>Join our awesome team!</h2>
-            <p>
-              Be a contributor and improve HelpOps-Hub and help fellow
-              developers.
-            </p>
-          </div>
-          <a
-            href="https://discord.gg/UWTrRhqywt"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="join-button"> Join us now</button>
-          </a>
+      <div className="trophy-card flex pl-[20px] mt-20 bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
+        <img src="new/trophy.webp" alt="Trophy" className="trophy h-[66px] relative" />
+        <div className="team-invite pl-8">
+          <h2 className="text-[1.5em] font-bold mb-2 font-arial">Join our awesome team!</h2>
+          <p>
+            Be a contributor and improve HelpOps-Hub and help fellow developers.
+          </p>
         </div>
+        <a
+          href="https://discord.gg/UWTrRhqywt"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute right-[20px]"
+        >
+          <button className="join-button px-[20px] py-[10px] text-[16px] bg-[#d9d9d9] text-[#3a3a3a] border-[none] [box-shadow:0px_4px_4px_0px_#00000040] rounded-[23px] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"> 
+            Join us now
+          </button>
+        </a>
       </div>
 
+
       {/* Must Read Section */}
-      <div className="must_read">
-        <div className="must_read_title">Must Read</div>
-        <div className="must_read_content">
+      <div>
+        <div className="text-[20.7px] font-semibold my-8">Must Read</div>
+        <div className="w-full flex gap-8">
           {finalMustRead.length > 0 ? (
             finalMustRead.map((blog, index) => (
-              <div className="must_read_blog" key={index}>
+              <div className="bg-[#D7E4EB] w-full h-full p-4 rounded-xl border-2 border-black border-dashed" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                 <img
                   src={blog.image}
                   alt={`Blog Image ${index}`}
                   onError={handleImageError}
+                  className="h-[400px] w-full object-cover object-center bg-white"
                 />
-                <div className="blog_content">
-                  <div className="blog_details">
+                <div className="px-4 py-[0.1rem] bg-white mt-4 rounded-xl border-2 border-black">
+                  <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                     <div className="blog_type">{blog.type}</div>
                     {" - "}
                     <div className="blog_date">{formatDate(blog.date)}</div>
                     {" - "}
                     <div className="blog_length">{blog.length}</div>
                   </div>
-                  <div className="blog_title">{blog.title}</div>
-                  <div className="blog_author">
+                  <div className="font-semibold">{blog.title}</div>
+                  <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                     {"By"}
-                    <div className="author_name">{blog.authorName}</div>
+                    <div className="underline text-[#5271ff]">{blog.authorName}</div>
                     {" , "}
                     <div className="author_title">{blog.authorTitle}</div>
                   </div>
@@ -424,7 +431,7 @@ function BlogPage() {
 
       {blogs.length > displayCount && (
         <div className="load">
-          <button id="load-more" onClick={handleLoadMore}>
+          <button id="load-more" className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]" onClick={handleLoadMore}>
             Load More
           </button>
         </div>
