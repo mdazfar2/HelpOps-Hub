@@ -26,6 +26,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
     const handleGlobalKeyDown = (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
+        console.log('sdfffffffffffffffffff')
         handleContinue(); // Call handleContinue when Enter is pressed
       }
     };
@@ -94,7 +95,7 @@ const Signup = ({ onClose, onLoginClick , onBack }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: localStorage.getItem('useremail1'), isSend: false }),
+        body: JSON.stringify({ email: email1, isSend: false }),
       });
 
       let data = await response.json();
