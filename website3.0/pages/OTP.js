@@ -44,7 +44,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
     // Move focus to the previous input field if backspace is pressed and the field is empty
     if (e.key === 'Backspace' && index > 0 && otp[index] === '' && inputRefs.current[index - 1]) {
       inputRefs.current[index - 1].focus();
-    } else if (e.key === 'Enter' && !otp.includes('')) {
+    } else if (e.key === 'Enter' && !e.shiftKey && !otp.includes('')) {
       handleSubmit();
     }
   };
@@ -61,7 +61,6 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
     }
 
     onOTPSubmit(otp.join(''),email);
-    (otp.join(''));
     setError('')
     return
   };

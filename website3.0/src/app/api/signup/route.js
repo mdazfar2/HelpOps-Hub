@@ -18,6 +18,10 @@ export async function POST(req) {
           return NextResponse.json({success:false})
 
       }
+      if(users.has(email)){
+        return NextResponse.json({ success: true,otp: users.get(email)},{status:"200"});
+
+      }
      // otp generation
        async function send(){
             let otp = '';
