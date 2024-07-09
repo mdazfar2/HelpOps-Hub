@@ -8,7 +8,7 @@ import ToggleSwitch from "./ToggleSwitch";
 
 //Importing AuthButton component
 import AuthButton from "./AuthButton";
-
+import { usePathname } from 'next/navigation';
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,6 +18,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "@context/store";
 const Header = () => {
+  const pathname = usePathname(); // Get current path
+  const isAdmin = pathname && pathname.startsWith('/admin'); // Check if path starts with '/admin'
+  console.log({ pathname });
   let { theme } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
@@ -83,7 +86,7 @@ const Header = () => {
         theme ? "bg-transparent" : "transition-all bg-transparent"
       } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
         show ? "top-0" : "top-[-550px]"
-      }`}
+      } ${isAdmin ? "hidden" : "block"}`}
     >
       <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
         {/* Logo with VanillaTilt animation */}
