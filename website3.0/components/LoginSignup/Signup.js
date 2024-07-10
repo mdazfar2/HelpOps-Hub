@@ -19,6 +19,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
   const [errorOtp, setErrorOtp] = useState(false); // State to hold OTP error messages
   let [loading, setLoading] = useState(false); // State to indicate loading status
   const [popup, setPopup] = useState(false); // State to show/hide popup
+  let [otp,setOtp]=useState('')
   let {
     userName,
     setUserName,
@@ -32,22 +33,21 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
   } = useContext(Context);
 
   // useEffect hook to handle Enter key press for continue
-  useEffect(() => {
-    const handleGlobalKeyDown = (event) => {
-      if (event.key === "Enter" && !event.shiftKey) {
-        event.preventDefault();
-        console.log("sdfffffffffffffffffff");
-        handleContinue(); // Call handleContinue when Enter is pressed
-      }
-    };
+  // useEffect(() => {
+  //   const handleGlobalKeyDown = (event) => {
+  //     if (event.key === "Enter" && !event.shiftKey) {
+  //       event.preventDefault();
+  //       handleContinue(); // Call handleContinue when Enter is pressed
+  //     }
+  //   };
 
-    document.addEventListener("keydown", handleGlobalKeyDown);
+  //   document.addEventListener("keydown", handleGlobalKeyDown);
 
-    // Cleanup function to remove the event listener
-    return () => {
-      document.removeEventListener("keydown", handleGlobalKeyDown);
-    };
-  }, [email]);
+  //   // Cleanup function to remove the event listener
+  //   return () => {
+  //     document.removeEventListener("keydown", handleGlobalKeyDown);
+  //   };
+  // }, [email]);
 
   // Function to validate email format
   const validateEmail = (email) => {
@@ -81,6 +81,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
         return;
       }
       // Store the user email
+      setOtp(data.otp)
       setUserEmail(email);
       setShowOTP(true); // Show OTP input
       setLoading(false);
@@ -98,20 +99,20 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
   };
 
   // Function to handle OTP submission
-  const handleOTPSubmit = async (otp, email1) => {
+  const handleOTPSubmit = async (otp1) => {
     try {
-      let response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: email1, isSend: false }),
-      });
+      // let response = await fetch("/api/signup", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ email: localStorage.getItem('useremail1'), isSend: false }),
+      // });
 
-      let data = await response.json();
+      // let data = await response.json();
 
       // Verify the OTP
-      if (data.otp == otp) {
+      if (otp == otp1) {
         setShowProfile(true); // Show Profile input
       } else {
         setErrorOtp(true);
@@ -163,7 +164,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
           setError={setError}
           onOTPSubmit={handleOTPSubmit}
           onBack={handleBackToSignup}
-          email={email}
+          email={localStorage.getItem('useremail1')}
           theme={!theme}
         />
       </>

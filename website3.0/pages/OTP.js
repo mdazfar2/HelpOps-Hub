@@ -56,11 +56,9 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
       setTimeout(() => {
         setError('')
       }, 2000);
-    console.log('sdsdsd')
       return
     }
-
-    onOTPSubmit(otp.join(''),email);
+    onOTPSubmit(otp.join(''));
     setError('')
     return
   };

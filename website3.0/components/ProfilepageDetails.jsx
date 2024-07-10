@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "@stylesheets/profilepage.css";
 import {FaUsers, FaUserCheck ,  FaTrashCan} from 'react-icons/fa6'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +9,7 @@ import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Followers from "./Followers";
 export default function ProfilepageDetails({isViewProfile,id}) {
   // Extract user data from context
   const {
@@ -25,6 +26,9 @@ export default function ProfilepageDetails({isViewProfile,id}) {
     setFinalUser,setIsLogin,
     theme,isLogin
   } = useContext(Context);
+  const [isPassword,setIsPassword]=useState(false)
+  let password=useRef()
+  const [isModalFollow,setIsModalFollow]=useState(false)
   let router=useRouter()
   const [viewUserDetails,setViewUserDetails]=useState({})
   let [isFollowed,setIsFollowed]=useState(false)
@@ -123,33 +127,68 @@ setIsFollowed(false)
   };
   let session=useSession()
 
+  async function handle(){
+    setIsPassword(true)
+  }
   async function handleDeleteAccount(){
-    await fetch("/api/deleteaccount",{
+    let ans=true
+    if(finalUser.password.length>0){
+
+     let a= await fetch('/api/login',{
         method:"POST",
         body:JSON.stringify({
-          email:finalUser.email
+          email:finalUser.email,
+          password:password.current.value
         })
-    })
-     setIsAdminShow(false)
-    localStorage.removeItem('loggedin')
-    localStorage.removeItem('finalUser')
-    setFinalUser({})
-    setIsLogin(false)
-      if(session.status=="authenticated"){
-        router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
-      }else{
-      router.push('https://www.helpopshub.com/')
+      })
+      a=await a.json()
+      if(!a.success){
+        ans=false
       }
 
+    }
+    if(ans){
+
+      await fetch("/api/deleteaccount",{
+          method:"POST",
+          body:JSON.stringify({
+            email:finalUser.email
+          })
+      })
+       setIsAdminShow(false)
+      localStorage.removeItem('loggedin')
+      localStorage.removeItem('finalUser')
+      setFinalUser({})
+      setIsLogin(false)
+        if(session.status=="authenticated"){
+          router.push('http://localhost:3000/api/auth/signout?csrf=true')
+        }else{
+        router.push('http://localhost:3000')
+        }
+    }
+    
+
+  }
+  function handleClose(){
+    setIsModalFollow(false)
+  }
+  function handleFollowersModalOpen(){
+    setIsModalFollow(true)
+  }
+  function passwordClose(){
+    setIsPassword(false)
   }
   return (
     <>
+    {
+      isModalFollow && <Followers onClose={handleClose}/>
+    }
       {
         isViewProfile && 
-     ( isFollowed?<button onClick={handleUnfollow} className="absolute pl-2 pr-2 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10">UNFOLLOW</button> : <button onClick={handleFollow} className="absolute pl-6 pr-6 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10">Follow</button>)
+     ( isFollowed?<button onClick={handleUnfollow} className= {` z-0 absolute pl-2 pr-2 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10 ${isModalFollow?"hidden":""}`}>UNFOLLOW</button> : <button onClick={handleFollow} className={`z-0 absolute pl-6 pr-6 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10 ${isModalFollow?"hidden":""}`}>Follow</button>)
       }
       {
-        !isViewProfile && <div className="absolute left-[10px] top-[10px]"><FaTrashCan color="#c40000" className="cursor-pointer" onClick={handleDeleteAccount} size={'2rem'}/></div>
+        !isViewProfile && <div className="absolute left-[10px] top-[10px]"><FaTrashCan color="#c40000" className="cursor-pointer" onClick={handle} size={'2rem'}/></div>
       }
     <div className={`${theme ? "" : "bg-[#1e1d1d]  text-white "}`}>
       {/* Edit Profile button */}
@@ -217,7 +256,7 @@ setIsFollowed(false)
           }`}
         >
 
-<FaUsers size={'2rem'}/><span className="font-cursive text-xl">Followers :</span> <span className="text-2xl">  {isViewProfile 
+<FaUsers size={'2rem'} onClick={handleFollowersModalOpen}/><span className="font-cursive text-xl">Followers :</span> <span className="text-2xl">  {isViewProfile 
     ? (viewUserDetails.followers ? Object.keys(viewUserDetails.followers).length : 0) 
     : (finalUser.followers ? Object.keys(finalUser.followers).length : 0)}</span>
         </p>
@@ -275,6 +314,11 @@ setIsFollowed(false)
             img={finalUser.image1}
           />
         )}
+        {
+          isPassword && <div className="auth-overlay">
+<div className="auth-modal z-500" onClick={(e) => e.stopPropagation()}><div className="z-500 w-[500px] gap-6 border-dashed border-black rounded-lg p-6 border-2 bg-slate-100 flex flex-col items-center "><h1>Please Enter Password</h1><input className="w-[90%] bg-transparent border-b-black border-b-[1px]" ref={password}></input><button onClick={handleDeleteAccount}>Submit</button></div></div>   
+<div onClick={passwordClose} className="fixed  z-0 top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black"></div>
+</div>        }
       </div>
     </div>
     </>
