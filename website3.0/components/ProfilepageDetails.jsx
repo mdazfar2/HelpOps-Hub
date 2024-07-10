@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "@stylesheets/profilepage.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +7,7 @@ import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
-export default function ProfilepageDetails() {
+export default function ProfilepageDetails({isViewProfile,id}) {
   // Extract user data from context
   const {
     userName,
@@ -22,7 +22,28 @@ export default function ProfilepageDetails() {
     linkedin,
     theme,
   } = useContext(Context);
+  const [viewUserDetails,setViewUserDetails]=useState({})
+  useEffect(()=>{
+    console.log(isViewProfile)
+    if(isViewProfile){
+      fetchUserData()
+    }
+  },[isViewProfile])
+  async function fetchUserData(){
+    console.log('fetchuing rhe dppadisdsd',id)
+   let data= await fetch('/api/getuser',{
+      method:"POST",
+      body:JSON.stringify({
+        id:id
+      })
+    })
+    data=await data.json()
+    console.log(data)
+    if(data.success){
 
+        setViewUserDetails(data.msg)
+    }
+  }
   // State to control the visibility of the edit profile modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Function to open the modal
@@ -55,7 +76,7 @@ export default function ProfilepageDetails() {
   return (
     <div className={`${theme ? "" : "bg-[#1e1d1d]  text-white "}`}>
       {/* Edit Profile button */}
-      <div
+     {!isViewProfile && <div
         className="absolute top-[20px] right-[20px] flex items-center gap-[5px] font-bold text-[13px] md:text-[20px] text-[rgb(29,29,201)] transition-all duration-300 ease-in-out cursor-pointer hover:text-[rgb(36,36,160)] hover:underline"
         onClick={handleOpenModal}
       >
@@ -69,7 +90,9 @@ export default function ProfilepageDetails() {
         <p className={`${theme ? "text-[#1d1dc9]" : "text-white"}`}>
           Edit Profile
         </p>
-      </div>
+      </div>}
+
+
       {/* Profile picture section */}
       <div className="flex justify-center items-center mt-[-140px] md:mt-[-180px]">
         <img
@@ -89,17 +112,17 @@ export default function ProfilepageDetails() {
         }`}
       >
         <p className="mt-[20px] text-[10px] md:text-[12px]">
-          mail: {finalUser.email}
+          mail:{isViewProfile?viewUserDetails.email: `${finalUser.email}`}
         </p>
         <h1 className={`mt-[5px] text-[24px] md:text-[32px] font-bold `}>
-          {finalUser.name}
+          {isViewProfile?viewUserDetails.name:finalUser.name}
         </h1>
         <p
           className={`mt-[5px] text-[18px] font-bold ${
             theme ? "text-[#5a5151]" : "text-white"
           }`}
         >
-          {finalUser.designation}
+          {isViewProfile?viewUserDetails.designation:finalUser.designation}
         </p>
 
         <p
@@ -107,7 +130,7 @@ export default function ProfilepageDetails() {
             theme ? "text-[#5a5151]" : "text-white"
           }`}
         >
-          {finalUser.caption}
+          {isViewProfile?viewUserDetails.caption:finalUser.caption}
         </p>
         {/* Social media icons */}
         <div className="flex justify-around items-center w-full mt-[20px]">

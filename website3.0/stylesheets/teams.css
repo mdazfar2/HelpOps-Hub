@@ -10,12 +10,12 @@
   cursor: pointer;
 }
 
-#team-grid .team-member:nth-child(2) .social-links-items:hover::before {
+
+#team-grid .team-member:nth-child(3) .social-links-items:hover::before {
   opacity: 1;
   cursor: pointer;
 }
-
-#team-grid .team-member:nth-child(3) .social-links-items:hover::before {
+#team-grid .team-member:nth-child(2) .social-links-items:hover::before {
   opacity: 1;
   cursor: pointer;
 }

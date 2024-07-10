@@ -82,12 +82,12 @@
       font-size: 14px;
     }
 
+    
+        .otp-input {
+          margin-top: 20px;
+        }
     .otp-container p {
       font-size: 13px;
-    }
-
-    .otp-input {
-      margin-top: 20px;
     }
 
     .otp-field {
