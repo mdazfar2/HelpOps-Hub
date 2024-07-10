@@ -64,10 +64,13 @@ export async function POST(req) {
         // for sending otp 
         if(isSend){
            await  send()
-            return NextResponse.json({success:true})
+           let otp=users.get(email)
+           users.delete(email)
+            return NextResponse.json({success:true,otp:otp})
         }else{
           // for checking the otp 
        let otp=await users.get(email)
+       users.delete(email)
           return NextResponse.json({ success: true,otp: otp},{status:"200"});
 
         }
