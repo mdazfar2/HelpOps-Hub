@@ -7,16 +7,22 @@ const saltRounds = 10;
 
 export async function POST(req) {
   const { MONGO_URI } = process.env;
-  let { id } = await req.json();
+  let { email } = await req.json();
   // Connect to MongoDB using Mongoose
   await mongoose.connect(MONGO_URI);
   try {
-    let data = await user.findById({ _id: id });
+    let data = await user.find({ email: email });
     console.log("the data is ", data);
     // checking if user exist or not
-    if (data) {
-      return NextResponse.json({ success: true, msg: data }, { status: "200" });
+    if (data.length > 0) {
+      console.log(data);
+
+      return NextResponse.json(
+        { success: true, msg: data[0] },
+        { status: "200" }
+      );
     } else {
+      console.log(data);
       return NextResponse.json({ success: false }, { status: "200" });
     }
   } catch {
