@@ -1,18 +1,20 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import "@stylesheets/profilepage.css";
-import {FaUsers, FaUserCheck} from 'react-icons/fa6'
+import {FaUsers, FaUserCheck ,  FaTrashCan} from 'react-icons/fa6'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 export default function ProfilepageDetails({isViewProfile,id}) {
   // Extract user data from context
   const {
     userName,
     finalUser,
-    userEmail,
+    userEmail,setIsAdminShow,
     userLinkedin,
     userGithub,
     userImage,
@@ -20,8 +22,10 @@ export default function ProfilepageDetails({isViewProfile,id}) {
     userCaption,
     github,
     linkedin,
+    setFinalUser,setIsLogin,
     theme,isLogin
   } = useContext(Context);
+  let router=useRouter()
   const [viewUserDetails,setViewUserDetails]=useState({})
   let [isFollowed,setIsFollowed]=useState(false)
   useEffect(()=>{
@@ -117,11 +121,35 @@ setIsFollowed(false)
     github,
     linkedin,
   };
+  let session=useSession()
+
+  async function handleDeleteAccount(){
+    await fetch("/api/deleteaccount",{
+        method:"POST",
+        body:JSON.stringify({
+          email:finalUser.email
+        })
+    })
+     setIsAdminShow(false)
+    localStorage.removeItem('loggedin')
+    localStorage.removeItem('finalUser')
+    setFinalUser({})
+    setIsLogin(false)
+      if(session.status=="authenticated"){
+        router.push('https://www.helpopshub.com/api/auth/signout?csrf=true')
+      }else{
+      router.push('https://www.helpopshub.com/')
+      }
+
+  }
   return (
     <>
       {
         isViewProfile && 
      ( isFollowed?<button onClick={handleUnfollow} className="absolute pl-2 pr-2 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10">UNFOLLOW</button> : <button onClick={handleFollow} className="absolute pl-6 pr-6 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10">Follow</button>)
+      }
+      {
+        !isViewProfile && <div className="absolute left-[10px] top-[10px]"><FaTrashCan color="#c40000" className="cursor-pointer" onClick={handleDeleteAccount} size={'2rem'}/></div>
       }
     <div className={`${theme ? "" : "bg-[#1e1d1d]  text-white "}`}>
       {/* Edit Profile button */}
