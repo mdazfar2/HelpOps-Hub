@@ -1,5 +1,21 @@
 import mongoose from "mongoose";
 
+const commentSchema = new mongoose.Schema({
+  user: {
+    name: String,
+    image: String,
+  },
+  comment: String,
+});
+
+const reactionSchema = new mongoose.Schema({
+  type: String,
+  count: {
+    type: Number,
+    default: 0,
+  },
+});
+
 const blogSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -45,6 +61,14 @@ const blogSchema = new mongoose.Schema({
   likes: {
     type: Number,
     default: 0,
+  },
+  reactionList: {
+    type: [reactionSchema],
+    default: [],
+  },
+  comments: {
+    type: [commentSchema],
+    default: [],
   },
 });
 
