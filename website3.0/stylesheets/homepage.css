@@ -181,3 +181,20 @@ input{
     width:200px;
   }
 }
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate360 15s linear infinite;
+}
+
+.rotatebutton {
+  animation: rotate360 18s linear infinite;
+}
