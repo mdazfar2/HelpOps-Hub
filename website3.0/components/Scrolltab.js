@@ -2,10 +2,7 @@
 import React, { useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 
-export const ContainerScroll = ({
-  titleComponent,
-  children,
-}) => {
+export const ContainerScroll = ({ titleComponent, children }) => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -64,11 +61,7 @@ export const Header = ({ translate, titleComponent }) => {
   );
 };
 
-export const Card = ({
-  rotate,
-  scale,
-  children,
-}) => {
+export const Card = ({ rotate, scale, children }) => {
   return (
     <motion.div
       style={{
