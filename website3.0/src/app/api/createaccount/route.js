@@ -31,14 +31,16 @@ console.log(email)
               designation:"",
               linkedin:'',
               github:'',
-              caption:''
+              caption:'',
+              followers:new Map(),
+              following:new Map()
           });
          await  users.save()
         }else{
           let us=await user.find({email:email})
           console.log(us)
           if(us.length>0){
-            return NextResponse.json({success:true,user:us})
+            return NextResponse.json({success:true,user:us},{status:200})
           } 
 
 
@@ -49,7 +51,10 @@ console.log(email)
             designation:"",
             linkedin:'',
             github:'',
-            caption:''
+            caption:'',           
+               followers:new Map(),
+               following:new Map()
+
           });
           await   users.save()
           let data1=await user.find({email:email})

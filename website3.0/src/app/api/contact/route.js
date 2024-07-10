@@ -1,40 +1,40 @@
-import ContactUs from "@utils/models/contactus";  // Importing Mongoose model for newsletter subscription
-import mongoose from "mongoose";  // Importing Mongoose for MongoDB interactions
-import { NextResponse } from "next/server";  // Importing Next.js server response utility
-import nodemailer from 'nodemailer';
+import ContactUs from "@utils/models/contactus"; // Importing Mongoose model for newsletter subscription
+import mongoose from "mongoose"; // Importing Mongoose for MongoDB interactions
+import { NextResponse } from "next/server"; // Importing Next.js server response utility
+import nodemailer from "nodemailer";
 
 export async function POST(req) {
-    try {
-        // Parse JSON payload from request body
-        const payload = await req.json();
+  try {
+    // Parse JSON payload from request body
+    const payload = await req.json();
 
-        const { MONGO_URI, EMAIL_ID, EMAIL_APP_PASS } = process.env;  
-        
-        // Connect to MongoDB using Mongoose
-        await mongoose.connect(MONGO_URI);
+    const { MONGO_URI, EMAIL_ID, EMAIL_APP_PASS } = process.env;
 
-        // Create a new instance of ContactUs model with the received payload
-        let contact = new ContactUs(payload);
+    // Connect to MongoDB using Mongoose
+    await mongoose.connect(MONGO_URI);
 
-        // Save the new contact record to MongoDB
-        const result = await contact.save();
+    // Create a new instance of ContactUs model with the received payload
+    let contact = new ContactUs(payload);
 
-        // Set up Nodemailer transporter
-        let transporter = nodemailer.createTransport({
-            service: "gmail",
-            host: "smtp.gmail.com",
-            auth: {
-                user: EMAIL_ID,
-                pass: EMAIL_APP_PASS,
-            },
-        });
+    // Save the new contact record to MongoDB
+    const result = await contact.save();
 
-        // Set up acknowledgment email options
-        let mailOptions = {
-            from: EMAIL_ID,
-            to: payload.email,
-            subject: "Thank You for Contacting HelpOps",
-            html: `
+    // Set up Nodemailer transporter
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      auth: {
+        user: EMAIL_ID,
+        pass: EMAIL_APP_PASS,
+      },
+    });
+
+    // Set up acknowledgment email options
+    let mailOptions = {
+      from: EMAIL_ID,
+      to: payload.email,
+      subject: "Thank You for Contacting HelpOps",
+      html: `
                     <div style="font-family: Arial, sans-serif; color: #000; background-color: #FEAA45; padding: 20px;">
                     <div style="background-color: #FDD86C; padding: 20px; text-align: center;margin-bottom:20px;border-radius:10px ">
                         <img src="https://i.ibb.co/kQzH6t8/Help-Ops-H-Fevicon.png" alt="HelpOps Logo" style="max-width: 100px; margin-bottom: 20px;">
@@ -52,15 +52,15 @@ export async function POST(req) {
                     </div>
                 </div>
             `,
-        };
+    };
 
-        // Send acknowledgment email
-        await transporter.sendMail(mailOptions);
+    // Send acknowledgment email
+    await transporter.sendMail(mailOptions);
 
-        // Return success response with saved contact details
-        return NextResponse.json({ result, success: true });
-    } catch (error) {
-        console.error("Error in POST /api/contact:", error);
-        return NextResponse.json({ success: false, error: error.message });
-    }
+    // Return success response with saved contact details
+    return NextResponse.json({ result, success: true });
+  } catch (error) {
+    console.error("Error in POST /api/contact:", error);
+    return NextResponse.json({ success: false, error: error.message });
+  }
 }

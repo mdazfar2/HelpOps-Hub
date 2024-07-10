@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import "@stylesheets/profilepage.css";
-
+import {FaUsers, FaUserCheck} from 'react-icons/fa6'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
@@ -20,16 +20,18 @@ export default function ProfilepageDetails({isViewProfile,id}) {
     userCaption,
     github,
     linkedin,
-    theme,
+    theme,isLogin
   } = useContext(Context);
   const [viewUserDetails,setViewUserDetails]=useState({})
+  let [isFollowed,setIsFollowed]=useState(false)
   useEffect(()=>{
-    console.log(isViewProfile)
+    console.log('sdddddddddddddddddddddddd',viewUserDetails,isViewProfile)
+    console.log(finalUser)
     if(isViewProfile){
-      fetchUserData()
+      fetchUserData(isLogin)
     }
-  },[isViewProfile])
-  async function fetchUserData(){
+  },[isViewProfile,isLogin])
+  async function fetchUserData(isLogin1){
     console.log('fetchuing rhe dppadisdsd',id)
    let data= await fetch('/api/getuser',{
       method:"POST",
@@ -42,6 +44,11 @@ export default function ProfilepageDetails({isViewProfile,id}) {
     if(data.success){
 
         setViewUserDetails(data.msg)
+        if(isLogin1){
+            if(data.msg.followers.hasOwnProperty(finalUser._id)){
+              setIsFollowed(true)
+            }
+        }
     }
   }
   // State to control the visibility of the edit profile modal
@@ -54,6 +61,43 @@ export default function ProfilepageDetails({isViewProfile,id}) {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+
+async function handleUnfollow(){
+  if(!isLogin){
+    return 
+  }
+  let updatedData=await fetch('/api/unfollow',{
+    method:"POST",
+    body:JSON.stringify({
+      user_id:id,
+      other_user_id:finalUser.email
+    })
+  })
+  updatedData=await updatedData.json()
+  setViewUserDetails(updatedData.user)
+setIsFollowed(false)
+}
+
+  async function handleFollow(){
+    if(!isLogin){
+      return 
+    }
+    let updatedData=await fetch('/api/setfollow',{
+      method:"POST",
+      body:JSON.stringify({
+        user_id:id,
+        other_user_id:finalUser.email
+      })
+    })
+    updatedData=await updatedData.json()
+    console.log('sdddddddddddddd',updatedData)
+    setViewUserDetails(updatedData.user)
+    if(updatedData.user.followers.hasOwnProperty(finalUser._id)){
+      setIsFollowed(true)
+    }
+
+  }
   // Function to handle saving changes from the modal
   const handleSaveChanges = (updatedData) => {
     // Update the user data logic here
@@ -74,6 +118,11 @@ export default function ProfilepageDetails({isViewProfile,id}) {
     linkedin,
   };
   return (
+    <>
+      {
+        isViewProfile && 
+     ( isFollowed?<button onClick={handleUnfollow} className="absolute pl-2 pr-2 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10">UNFOLLOW</button> : <button onClick={handleFollow} className="absolute pl-6 pr-6 pt-2 pb-2 border rounded-md text-white flex justify-center items-center font-[20px] bg-[#3d44be] top-[10px] right-10">Follow</button>)
+      }
     <div className={`${theme ? "" : "bg-[#1e1d1d]  text-white "}`}>
       {/* Edit Profile button */}
      {!isViewProfile && <div
@@ -97,7 +146,7 @@ export default function ProfilepageDetails({isViewProfile,id}) {
       <div className="flex justify-center items-center mt-[-140px] md:mt-[-180px]">
         <img
           src={
-            finalUser.image1?.length > 0
+      isViewProfile?viewUserDetails.image1:     finalUser.image1?.length > 0
               ? finalUser.image1
               : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
           }
@@ -126,12 +175,34 @@ export default function ProfilepageDetails({isViewProfile,id}) {
         </p>
 
         <p
-          className={`mt-[10px] text-[14px] font-medium  text-center ${
+          className={`mt-[10px] w-[200px] text-[14px] font-medium  text-center ${
             theme ? "text-[#5a5151]" : "text-white"
           }`}
         >
           {isViewProfile?viewUserDetails.caption:finalUser.caption}
         </p>
+<div  className="w-[120%] flex flex-row gap-6 justify-center items-center">
+
+        <p
+          className={`w-[200px] mt-[10px] text-[14px] font-medium  text-center flex gap-6 items-center ${
+            theme ? "text-[#5a5151]" : "text-white"
+          }`}
+        >
+
+<FaUsers size={'2rem'}/><span className="font-cursive text-xl">Followers :</span> <span className="text-2xl">  {isViewProfile 
+    ? (viewUserDetails.followers ? Object.keys(viewUserDetails.followers).length : 0) 
+    : (finalUser.followers ? Object.keys(finalUser.followers).length : 0)}</span>
+        </p>
+        <span
+          className={`mt-[10px] text-[14px] font-medium  text-center items-center flex gap-6 ${
+            theme ? "text-[#5a5151]" : "text-white"
+          }`}
+        >
+ <FaUserCheck size={'2rem'}/><p className="font-cursive text-xl">Following :</p><span className="text-2xl"> {isViewProfile 
+    ? (viewUserDetails.following ? Object.keys(viewUserDetails.following).length : 0) 
+    : (finalUser.following ? Object.keys(finalUser.following).length : 0)}</span>
+        </span>
+</div>
         {/* Social media icons */}
         <div className="flex justify-around items-center w-full mt-[20px]">
           <div
@@ -178,5 +249,6 @@ export default function ProfilepageDetails({isViewProfile,id}) {
         )}
       </div>
     </div>
+    </>
   );
 }

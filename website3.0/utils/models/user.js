@@ -11,6 +11,15 @@ const newsletterModel = new mongoose.Schema({
   caption:String,
   github:String,
   linkedin:String,
+  followers: {
+    type: Map,
+    default:new Map()
+
+  },
+  following: {
+    type: Map,
+    default:new Map()
+  }
 });
 
 const user = mongoose.models.user || mongoose.model("user", newsletterModel);
