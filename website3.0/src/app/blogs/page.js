@@ -1,6 +1,6 @@
 import BlogPage from "@pages/BlogPage";
 
-export default function Contact() {
+export default function blogPage() {
   return (
     <div>
       <BlogPage />
