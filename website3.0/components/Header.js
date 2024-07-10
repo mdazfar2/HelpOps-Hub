@@ -8,7 +8,7 @@ import ToggleSwitch from "./ToggleSwitch";
 
 //Importing AuthButton component
 import AuthButton from "./AuthButton";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,9 +19,9 @@ import {
 import { Context } from "@context/store";
 const Header = () => {
   const pathname = usePathname(); // Get current path
-  const isAdmin = pathname && pathname.startsWith('/admin'); // Check if path starts with '/admin'
+  const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
   console.log({ pathname });
-  let { theme } = useContext(Context);
+  let { theme, isAdminShow } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
   // to set the status of show navbar or not
@@ -141,19 +141,34 @@ const Header = () => {
           </ul>
           {/* Navigation actions (sponsor button and toggle switch) */}
           <div className="flex items-center gap-2">
-            <a href="https://github.com/sponsors/mdazfar2" target="_blank">
-              <button
-                className={`${
-                  theme
-                    ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
-                    : "bg-[#000] text-white hover:bg-transparent hover:border-[1px] hover:border-white"
-                } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
-                style={{ fontFamily: "ubuntu" }}
-              >
-                <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
-                Sponsor
-              </button>
-            </a>
+            {isAdminShow ? (
+              <a href="https://www.helpopshub.com/admin" target="_blank">
+                <button
+                  className={`${
+                    theme
+                      ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
+                      : "bg-gray-100/80 text-black hover:bg-transparent hover:border-[1px] hover:border-white"
+                  } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
+                  style={{ fontFamily: "ubuntu" }}
+                >
+                  Admin
+                </button>
+              </a>
+            ) : (
+              <a href="https://github.com/sponsors/mdazfar2">
+                <button
+                  className={`${
+                    theme
+                      ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
+                      : "bg-[#000] text-white hover:bg-transparent hover:border-[1px] hover:border-white"
+                  } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
+                  style={{ fontFamily: "ubuntu" }}
+                >
+                  <FontAwesomeIcon icon={faHeart} id="heart" width={25} />
+                  Sponsor
+                </button>
+              </a>
+            )}
             <div className="block max-xl:hidden">
               <AuthButton />
             </div>
