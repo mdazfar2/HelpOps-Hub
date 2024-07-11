@@ -142,7 +142,7 @@ function ContactPage({theme}) {
             <button type="submit" id="button" disabled={disableSubmit} className={`w-1/3 max-md:w-1/3 max-sm:w-1/2 ${theme?"bg-[#fff]":"bg-black shadow-white shadow-sm border-white border text-white"} text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded`}>
               Submit {loading && <div className="loader2"><div className="circle"><div className="dot"></div><div className="outline"></div></div></div>}
             </button>
-            {showThankYouMessage}
+            {showThankYouMessage && <p className={`${theme ? "text-black" : "text-white"}`}>Thank you! We will connect soon.</p>}
           </form>
         </div>
       </div>
