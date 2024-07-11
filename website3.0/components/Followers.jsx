@@ -1,153 +1,127 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from '../stylesheets/followers.css'
 import { Context } from "@context/store";
-export default function Followers({onClose,id}) {
-    const {
-        userName,
-        finalUser,
-        userEmail,setIsAdminShow,
-        
-        userGithub,
-        userImage,
-        userDesignation,
-        userCaption,
-        github,
-        linkedin,
-        setFinalUser,setIsLogin,
-        theme,isLogin
-      } = useContext(Context);
+
+export default function Followers({ onClose, id }) {
+  const {
+    finalUser,
+    setFinalUser,
+    theme,
+  } = useContext(Context);
+
+  useEffect(()=>{
+    console.log(finalUser)
+  },[])
   let [firstShow, setFirstShow] = useState(true);
-  let [firstAnimate,setFirstAnimate]=useState(true)
-  let [userDetails,setUserDetails]=useState({})
-  function forOne(){
-    setFirstShow(true)
-    setFirstAnimate(true)
+  let [firstAnimate, setFirstAnimate] = useState(true);
+  let [userDetails, setUserDetails] = useState({});
+
+  function forOne() {
+    setFirstShow(true);
+    setFirstAnimate(true);
   }
-  function forTwo(){
-    setFirstShow(false)
-    setFirstAnimate(false)
+
+  function forTwo() {
+    setFirstShow(false);
+    setFirstAnimate(false);
   }
-//   async function handleUserFollow(){
-//     await fetch('/api/setfollow',{
-//         method:"POST",
-//         body:JSON.stringify({
-//             user_id:
-//         })
-//     })
-//   }
-async function fetchData1(){
-  let d=await fetch('/api/getuser',{
-    method:"POST",
-    body:JSON.stringify({
-      id:id||finalUser._id
-    })
-  })
-  d=await d.json()
-  console.log(d)
-  setUserDetails(d.msg)
-}
-useEffect(()=>{
-  console.log("SDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",id)
-  fetchData1()
-},[id])
-useEffect(()=>{
-  console.log(Object.entries(finalUser.followers))
-},[finalUser])
+
+  async function fetchData1() {
+    let response = await fetch('/api/getuser', {
+      method: "POST",
+      body: JSON.stringify({
+        id: id || finalUser._id
+      })
+    });
+    let data = await response.json();
+    setUserDetails(data.msg);
+  }
+
+  useEffect(() => {
+    fetchData1();
+  }, [id]);
+
+  async function handleFollow(userId) {
+    let updatedData = await fetch("/api/setfollow", {
+      method: "POST",
+      body: JSON.stringify({
+        user_id: userId,
+        other_user_id: finalUser.email,
+      }),
+    });
+    updatedData = await updatedData.json();
+
+    setFinalUser(updatedData.user1);
+    localStorage.setItem('finalUser', JSON.stringify(updatedData.user1));
+  }
+
+  async function handleUnFollow(userId) {
+    let updatedData = await fetch("/api/unfollow", {
+      method: "POST",
+      body: JSON.stringify({
+        user_id: userId,
+        other_user_id: finalUser.email,
+      }),
+    });
+    updatedData = await updatedData.json();
+    setFinalUser(updatedData.user1);
+    localStorage.setItem('finalUser', JSON.stringify(updatedData.user1));
+  }
+
   return (
     <>
-    <div className="auth-overlay">
+      <div className="auth-overlay">
         <div className="auth-modal flex justify-center">
+          <div className={`w-[500px] overflow-hidden max-sm:w-[95vw] z-[1000000] ${theme ? "bg-slate-100 border-black " : "bg-[#121111] border-white"} border-dashed opacityanimator h-[50vh] fixed m-auto top-[20%] border rounded-xl`}>
+            <div className="flex min-h-[7vh] h-auto w-[100%] justify-center items-center">
+              <div
+                onClick={forOne}
+                className={`${theme ? "text-black" : "text-white"} h-[7vh] w-[50%] relative cursor-pointer flex justify-center border-r-[1px] items-center border-b-2 border-gray-400 `}
+              >
+                {firstAnimate && <span className={`absolute bottom-[-1px] left-0 animate-first h-[2px] bg-black ${theme ? "text-black" : "text-white"}`}></span>}
+                Followers
+              </div>
+              <div
+                onClick={forTwo}
+                className={`${theme ? "text-black" : "text-white"} w-[50%] relative cursor-pointer flex justify-center h-[7vh] items-center border-b-2 border-gray-500`}
+              >
+                {!firstAnimate && <span className="absolute bottom-[-1px] left-0 animate-first h-[2px] bg-black"></span>}
+                Following
+              </div>
+            </div>
+            <div className="w-[100%] h-[42vh] overflow-hidden overflow-x-hidden">
+              <div className={`${firstShow ? "coming " : "coming2"} overflow-y-scroll h-[42vh] w-[100%]`}>
+                {userDetails.followers && Object.entries(userDetails.followers).map(([userId, [userImg, userName]]) =>{ 
+                  if(userId!==finalUser._id){
 
-       
-      <div className={`w-[500px] overflow-hidden  max-sm:w-[95vw] z-[1000000]  ${theme? "bg-slate-100 border-black ":"bg-[#121111] border-white"} border-dashed  opacityanimator  h-[50vh] fixed m-auto top-[20%]  border rounded-xl`}>
-        <div className="flex  min-h-[7vh] h-auto  w-[100%] justify-center items-center">
-          <div
-            onClick={forOne}
-            className={`${theme?"text-black":"text-white"} h-[7vh] w-[50%] relative cursor-pointer flex justify-center border-r-[1px]  items-center border-b-2  border-gray-400 `}
-          >
-        {
-            firstAnimate &&
-            <span className={`absolute bottom-[-1px] left-0 animate-first  h-[2px] bg-black ${theme?"text-black":"text-white"}`}></span>}
-            Followers
-          </div>
-          <div
-            onClick={forTwo}
-            className={`${theme?"text-black":"text-white"}  w-[50%] relative  cursor-pointer flex justify-center h-[7vh]  items-center border-b-2 border-gray-500`}
-          >  {
-            !firstAnimate &&
-            <span className="absolute bottom-[-1px] left-0 animate-first  h-[2px] bg-black"></span>}
-            Following
+               return   <div id={userId} className="w-[100%] mt-[20px] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px] overflow-hidden">
+                    <img height='60px' width='60px' className="rounded-full" src={userImg}></img>
+                    <h1 className={`text-wrap text-center ${theme ? "text-black" : "text-white"}`}>{userName}</h1>
+                    {(userId in finalUser.following) ? 
+                      <button className="boton-elegante" onClick={() => handleUnFollow(userId)}>UnFollow</button> : 
+                      <button className="boton-elegante" onClick={() => handleFollow(userId)}>Follow</button>}
+                  </div>
+                  }
+})}
+              </div>
+
+              <div className={`${firstShow ? "coming3" : "coming1"} h-[42vh] overflow-y-scroll w-[100%] div-animate`}>
+                {userDetails.following && Object.entries(userDetails.following).map(([userId, [userImg, userName]]) => (
+                  userId !== finalUser._id &&
+                  <div key={userId} className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px] overflow-hidden">
+                    <img height='60px' width='60px' className="rounded-full" src={userImg}></img>
+                    <h1 className={`text-wrap text-center ${theme ? "text-black" : "text-white"}`}>{userName}</h1>
+                    {(userId in finalUser.following) ? 
+                      <button className="boton-elegante" onClick={() => handleUnFollow(userId)}>UnFollow</button> : 
+                      <button className="boton-elegante" onClick={() => handleFollow(userId)}>Follow</button>}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="w-[100%]  h-[42vh] overflow-hidden overflow-x-hidden">
-            <div className={`${firstShow?"coming ":"coming2"}  overflow-y-scroll h-[42vh]  w-[100%]  `}>
-             
-             {
-                userDetails.followers &&    Object.entries(userDetails.followers).map((data)=>{
-                    return <div id={data[0]} className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src={data[1][0]}></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>{data[1][1]}</h1>
-                <button class="boton-elegante">Follow</button>
-              </div>
-                })
-             }
-             
-               {/* <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div>
-               <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> */}
-              </div>
-        
-              <div className={`${firstShow?"coming3":"coming1"} h-[42vh]  overflow-y-scroll w-[100%] div-animate `}>
-             
-              {
-       userDetails.following&&          Object.entries(userDetails.following).map((data)=>{
-                    return <div id={data[0]} className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src={data[1][0]}></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>{data[1][1]}</h1>
-                <button class="boton-elegante">Follow</button>
-              </div>
-                })
-             }
-             
- 
-              {/* <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}> Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div>
-               <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}> Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}> Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] font-cursive h-[60px] items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}> Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div>
-               <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> <div className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px]  overflow-hidden"><img height={'60px'} width={'60px'} className="rounded-full"  src="data:image/png;base64,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"></img>
-                <h1 className={`text-wrap text-center ${theme?"text-black":"text-white"} `}>Ayushmaan Agarwal</h1><button class="boton-elegante">Follow</button>
-              </div> */}
-              </div>
-        </div>
+        <div className="fixed top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black" onClick={onClose}></div>
       </div>
-      </div>
-    <div className="fixed  top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black" onClick={onClose} ></div>
-    </div>
     </>
   );
 }
