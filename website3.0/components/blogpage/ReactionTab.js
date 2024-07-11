@@ -48,7 +48,7 @@ const ReactionTab = () => {
   const panelRef = useRef(null);
   const timerRef = useRef(null);
   const {isLogin}=useContext(Context)
-
+  let {theme} = useContext(Context)
   const handleMouseEnterIcon = () => {
     clearTimeout(timerRef.current);
     setHovered(true);
@@ -88,9 +88,9 @@ const ReactionTab = () => {
           >
             <FontAwesomeIcon
               icon={reaction.regularIcon}
-              className="text-gray-900 text-[20px]"
+              className={`${theme? "text-gray-900 ":" text-white "} text-[20px]`}
             />
-            <span className="my-2 text-sm">{reaction.count}</span>
+            <span className={`${theme? "text-gray-900 ":" text-white "} my-2 text-sm`}>{reaction.count}</span>
           </div>
         ))}
       </div>
