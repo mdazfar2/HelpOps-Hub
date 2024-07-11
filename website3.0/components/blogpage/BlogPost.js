@@ -16,7 +16,7 @@ function BlogPost() {
   const countRec2 = 23;
   const countRec3 = 12;
   const { finalUser ,isLogin } = useContext(Context);
-
+  let {theme} = useContext(Context)
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -81,14 +81,14 @@ function BlogPost() {
   }
 
   return (
-    <div className="mt-48 flex">
+    <div className={`${theme? "bg-[#F3F4F6]":" bg-[#1e1d1d]"} transition-colors duration-500 pt-48 flex`}>
       <div className="w-[10%]">
         <div className="fixed left-24 top-60">
           <ReactionTab />
         </div>
       </div>
 
-      <div className="w-[55%] bg-white shadow-lg rounded-lg">
+      <div className={`${theme? "bg-white text-black ":" bg-[#0f0e0e] text-white "} transition-colors duration-500 w-[55%] shadow-lg rounded-lg`}>
         <img
           src={blog.image}
           alt={blog.title}
@@ -191,7 +191,7 @@ function BlogPost() {
               comments.map((comment, index) => (
                 <div
                   key={comment._id || index}
-                  className="bg-white flex gap-4 p-4 mb-4 rounded-lg shadow"
+                  className="bg-white text-black flex gap-4 p-4 mb-4 rounded-lg shadow"
                 >
                   <img
                     src={comment.user.image}
@@ -213,7 +213,7 @@ function BlogPost() {
       </div>
 
       <div className="w-[25%] ml-5">
-        <div className="h-[400px] bg-white rounded-xl overflow-hidden">
+        <div className={`${theme? "bg-white":" bg-[#e2e2e2]"} h-[400px] rounded-xl overflow-hidden`}>
           {/* <img src="/banner.png" alt="" /> */}
           <div className="w-full bg-[#000000] h-10"></div>
           <div className="flex px-5">
@@ -231,16 +231,16 @@ function BlogPost() {
               Follow
             </button>
           </div>
-          <div className="m-5 h-52 bg-gray-100"></div>
+          <div className={`${theme? "bg-gray-100":" bg-[#9d9d9d]"} m-5 h-52 `}></div>
         </div>
-        <div className="my-5 bg-white rounded-xl p-5">
+        <div className={`${theme? "bg-white text-black ":" bg-[#0f0e0e] text-white "} my-5 rounded-xl p-5`}>
           <div className="text-xl font-bold flex">
             More From{" "}
             <span className="text-blue-500 ml-1">{blog.authorName}</span>
           </div>
-          <div className="my-5 h-16 bg-gray-100 rounded-xl p-5"></div>
-          <div className="my-5 h-16 bg-gray-100 rounded-xl p-5"></div>
-          <div className="my-5 h-16 bg-gray-100 rounded-xl p-5"></div>
+          <div className={`${theme? "bg-gray-100  text-black ":" bg-[#9d9d9d] text-white "} my-5 h-16 rounded-xl p-5`}></div>
+          <div className={`${theme? "bg-gray-100 text-black ":" bg-[#9d9d9d] text-white "} my-5 h-16 rounded-xl p-5`}></div>
+          <div className={`${theme? "bg-gray-100  text-black ":" bg-[#9d9d9d] text-white "} my-5 h-16 rounded-xl p-5`}></div>
         </div>
       </div>
     </div>
