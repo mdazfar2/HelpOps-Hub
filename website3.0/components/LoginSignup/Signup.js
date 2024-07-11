@@ -15,10 +15,8 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
   const [showOTP, setShowOTP] = useState(false); // State to show/hide OTP input
   const [showProfile, setShowProfile] = useState(false); // State to show/hide Profile input
   const [email, setEmail] = useState(""); // State to store user email input
-  const [error, setError] = useState(""); // State to hold error messages
   const [errorOtp, setErrorOtp] = useState(false); // State to hold OTP error messages
   let [loading, setLoading] = useState(false); // State to indicate loading status
-  const [popup, setPopup] = useState(false); // State to show/hide popup
   let [otp,setOtp]=useState('')
   let {
     userName,
@@ -28,7 +26,8 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
     theme,
     setIsLogin,
     setFinalUser,
-    userImage,
+    userImage, setIsPopup,setMsg,setColor
+,
     setUserImage,
   } = useContext(Context);
 
@@ -71,12 +70,10 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
       data = await data.json();
       // Check for any types of error
       if (!data.success) {
-        setError("User Already Exist");
-        setPopup(true);
+        setMsg("User Already Exist")
+        setIsPopup(true)
         setTimeout(() => {
-          setError("");
           setLoading(false);
-          setPopup(false);
         }, 2000);
         return;
       }
@@ -87,11 +84,9 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
       setLoading(false);
     } else {
       // Show error for invalid email
-      setError("Please Enter a valid Email address");
-      setPopup(true);
+      setMsg("Please Enter a valid Email address")
+        setIsPopup(true)
       setTimeout(() => {
-        setError("");
-        setPopup(false);
         setLoading(false);
         setEmail("");
       }, 2000);
@@ -116,7 +111,6 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
         setShowProfile(true); // Show Profile input
       } else {
         setErrorOtp(true);
-        setPopup(true);
         setTimeout(() => {
           setErrorOtp(false);
           setLoading(false);
@@ -150,7 +144,9 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
         setFinalUser={setFinalUser}
         setIsLogin={setIsLogin}
         onClose={onClose}
-        theme={theme}
+        theme={theme} 
+        setMsg={setMsg}
+        setIsPopup={setIsPopup}
       />
     );
   }
@@ -161,11 +157,12 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
         <OTP
           onClose={onClose}
           isError={errorOtp}
-          setError={setError}
           onOTPSubmit={handleOTPSubmit}
           onBack={handleBackToSignup}
           email={localStorage.getItem('useremail1')}
           theme={!theme}
+          setMsg={setMsg}
+          setIsPopup={setIsPopup}
         />
       </>
     );
@@ -179,12 +176,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
         theme ? "bg-slate-100 border-black" : "bg-[#0f0c0c]  border-white"
       }  p-5 border-rounded1 lg:w-[500px] md:w-[500px] h-[530px] max-sm:w-[96vw]  md:m-auto max-sm:h-auto  relative select pt-16`}
     >
-      {popup && (
-        <Popup
-          msg={error}
-          error={`${error == "Subscribed Successfully" ? "green1" : "red1"}`}
-        />
-      )}
+     
       {errorOtp && (
         <Popup1
           msg={errorOtp}

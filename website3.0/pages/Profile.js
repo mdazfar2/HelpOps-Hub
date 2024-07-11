@@ -1,9 +1,9 @@
 "use client";
-import React, {  useRef, useState, useEffect } from 'react';
+import React, {  useRef, useState, useEffect, useContext } from 'react';
 import "@stylesheets/profile.css"
 import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
-const Profile = ({ onClose,theme, setFinalUser,setIsLogin }) => {
+const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
@@ -11,8 +11,6 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin }) => {
   let [url,setUrl]=useState('')
   const [showConfirmPassword,setConfirmShowPassword]=useState(false)
   let ref=useRef()
-
-let [error,setError]=useState(false)
   const [confirmPassword, setConfirmPassword] = useState('');
   function validateDetails(){
    // for checking the password validation 
@@ -22,12 +20,14 @@ let [error,setError]=useState(false)
         !/[a-z]/.test(password) || 
         !/[A-Z]/.test(password) || 
         !/[@#$%^&*()\-_=+{}[\]\|\\;:'",.<>\/?~`!]/.test(password)){
-        setError('password must be 8 charachters long must contains 1 lowercase 1 uppercase and 1 special charachter') 
+        setMsg('password must be 8 charachters long must contains 1 lowercase 1 uppercase and 1 special charachter')
+        setIsPopup(true)
         return false
       }else{
         if(username.length==0){
           // if username not entered 
-          setError("Please Enter Username")
+          setMsg("Please Enter Username")
+        setIsPopup(true)
           return false
         }else{
           
@@ -36,15 +36,16 @@ let [error,setError]=useState(false)
 
       }
     }else{
-      setError("Please enter same password and confirm password")
+      setMsg("Please enter same password and confirm password")
+        setIsPopup(true)
       return false
     }
   }
-  async function fetchData(email){
-    let a=await    fetch("/api/createaccount",{
+  async function fetchData(id){
+    let a=await    fetch("/api/getuser",{
          method:"POST",
          body:JSON.stringify({
-           email :email
+           id :id
          })
        })
 
@@ -62,7 +63,7 @@ let [error,setError]=useState(false)
     setLoading(true)
     // TODO: Add account creation logic here
     if(validateDetails()){
-      await fetch('/api/createaccount', {
+     let d= await fetch('/api/createaccount', {
         method: 'POST',
         body: JSON.stringify({
           email:localStorage.getItem('useremail1'),
@@ -71,23 +72,15 @@ let [error,setError]=useState(false)
           image:url.length>0?url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
         })
       })
-    await fetch('/api/createaccount', {
-      method: 'POST',
-      body: JSON.stringify({
-        email:localStorage.getItem('useremail1'),
-        name: username,
-        password: password
-      })
-    })
     // to top loading on button 
     setLoading(false)
-    fetchData(localStorage.getItem('useremail1'))
+    d=await d.json()
+    console.log(d.user._id)
+    fetchData(d.user._id)
     onClose();
   }else{
     setLoading(true)
       setTimeout(() => {
-        // stopping loading and error popup
-        setError('')
         setLoading(false)
       }, 2000);
     }
@@ -158,7 +151,6 @@ let [error,setError]=useState(false)
   }
   return (
     <div  className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] max-sm:w-[96vw] max-sm:h-auto relative pb-[35px]`}>
-            {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
 
       {/* Close button */}
       <button className={`absolute bg-transparent   ${theme?"text-black":"text-white"}  border-none cursor-pointer text-[#333] right-[15px] hover:text-[#666] text-[24px] top-[5px]`} >
