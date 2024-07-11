@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {FaEye,FaEyeSlash} from 'react-icons/fa'
 import "@stylesheets/reset.css";
 import Popup from './Popup';
+import { Context } from '@context/store';
 
 export default function Reset() {
     const [showPassword,setShowPassword]=useState(false)
@@ -15,8 +16,7 @@ export default function Reset() {
   let [allShow,setAllShow]=useState(true)
   let [display,setDisplay]=useState(false)
     let [token1,setToken]=useState('')
-    let [pop,setPop]=useState(false)
-
+let {setIsPopup,setMsg,setColor}=useContext(Context)
 
     function validateDetails(){
         // for checking the password validation 
@@ -49,10 +49,9 @@ setToken(token)
 
  async function handleSubmit(){
     if(!validateDetails().isSuccess){
-        setPop(validateDetails().msg)
-        setTimeout(()=>{
-            setPop(false)
-        },2000)
+        setMsg(validateDetails().msg)
+        setIsPopup(true)
+      
         return
     }
     
@@ -63,7 +62,8 @@ setToken(token)
             token:token1
         })
     })
-    setPop("Password Changed")
+    setMsg("Password Changed")
+    setIsPopup(true)
     setDisplay(true)
 
   }
@@ -77,9 +77,7 @@ setToken(token)
   return (
     <div className={`auth-overlay ${display?"dnone":""}`} >
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-{pop&&
-    <Popup msg={pop} error="red1" />
-}<div className="login-auth-container md:w-500px sm:w-80vw sm:m-auto ">
+<div className="login-auth-container md:w-500px sm:w-80vw sm:m-auto ">
      
 
       <h1>{"Change Password"}</h1>
