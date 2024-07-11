@@ -84,6 +84,11 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
       }),
     });
     updatedData = await updatedData.json();
+    let d=await JSON.stringify(updatedData.user1)
+    localStorage.setItem('finalUser',d)
+    setFinalUser(updatedData.user1)
+
+
     setViewUserDetails(updatedData.user);
     setIsFollowed(false);
   }
@@ -102,6 +107,9 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
     updatedData = await updatedData.json();
     console.log("sdddddddddddddd", updatedData);
     setViewUserDetails(updatedData.user);
+    let d=await JSON.stringify(updatedData.user1)
+    localStorage.setItem('finalUser',d)
+    setFinalUser(updatedData.user1)
     if (updatedData.user.followers.hasOwnProperty(finalUser._id)) {
       setIsFollowed(true);
     }
