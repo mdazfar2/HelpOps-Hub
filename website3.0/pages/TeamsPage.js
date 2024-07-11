@@ -155,6 +155,7 @@ function TeamsPage({theme}) {
         name !== "Ayushmaanagarwal1211" &&
         name !== "RamakrushnaBiswal" &&
         name !== "pandeyji711" &&
+        name !== "shreyash3087" &&
         name !== owner
       ) {
         topContributorsList.push(contributor);
@@ -165,6 +166,7 @@ function TeamsPage({theme}) {
         name !== "Ayushmaanagarwal1211" &&
         name !== "RamakrushnaBiswal" &&
         name !== "pandeyji711" &&
+        name !== "shreyash3087" &&
         name !== owner
       ) {
         otherContributorsList.push(contributor);
@@ -423,7 +425,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#4285f45c]">
               <a
@@ -433,7 +435,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#4285f45c]">
               <a
@@ -443,7 +445,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>LinkedIn</p>
             </div>
           </div>
         </div>
@@ -471,7 +473,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#fbbc0591]">
               <a
@@ -481,7 +483,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#fbbc0591]">
               <a
@@ -491,7 +493,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>LinkedIn</p>
             </div>
           </div>
         </div>
@@ -519,7 +521,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#34a8535e]">
               <a
@@ -529,7 +531,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#34a8535e]">
               <a
@@ -539,7 +541,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>LinkedIn</p>
             </div>
           </div>
         </div>
@@ -567,7 +569,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Sponsor</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Sponsor</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ea43354d]">
               <a
@@ -577,7 +579,7 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>Github</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Github</p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ea43354d]">
               <a
@@ -587,11 +589,59 @@ function TeamsPage({theme}) {
               >
                 <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
               </a>
-              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial`}>LinkedIn</p>
+              <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>LinkedIn</p>
             </div>
           </div>
         </div>
+        {/* Team Member 5 */}
+        <div className={`${theme? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white" } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}>
+         <div className={`${theme? "bg-[#ffd70030] border-[#3498db]" : "bg-gray-200 border-white" } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}>
+          <div className="margin h-[90%] flex flex-col justify-center items-center">
+           <div className="image-div flex-none flex justify-center items-center">
+            <img className="rounded-[50%] w-[28%]" src={`https://github.com/shreyash3087.png`} alt="Shreyash" />
+            </div>
+            <div className="info-div text-center mt-[5px]">
+              <h2 className="mt-[10px] text-[1.5em] font-bold mb-2 font-arial">Shreyash</h2>
+              <p className="mt-[5px] block text-[16px] text-[#000000] font-arial">Backend Developer</p>
+            </div>
+            <span className="badge absolute top-[10px] right-[10px] inline-block px-[10px] py-[2px] rounded-[20px] text-[1em] Contributor bg-[#ffd700] text-[#fff]">Maintainer</span>
+          </div>
+        </div>
+        {/* Social Links for Team Member 5 */}
+        <div className="social-links w-[16%] p-[10px] pl-[12px] pr-[12px]">
+          <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ffd7004d]">
+            <a
+              href="https://github.com/sponsors/shreyash3087"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faHeart} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
+            </a>
+            <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Sponsor</p>
+          </div>
+          <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ffd7004d]">
+            <a
+              href="https://github.com/shreyash3087"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faGithub} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
+            </a>
+            <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>Github</p>
+          </div>
+          <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#ffd7004d]">
+            <a
+          href="https://www.linkedin.com/in/shreyash-srivastava-1a1161280"
+          target="_blank"
+          rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faLinkedin} className={`${theme? "text-[#6e6e6e]" : "text-white" } social-icon scale-[2.5] max-[525px]:scale-125 `} />
+            </a>
+            <p className={`${theme? "text-[#000000]" : "text-white" } text-[14px] mt-[10px] font-arial cursor-pointer`}>LinkedIn</p>
+          </div>
+        </div>
       </div>
+    </div>
 
       {/* Section: Top 3 Contributors */}
 
