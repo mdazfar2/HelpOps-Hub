@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,17 +7,17 @@ import {
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import { Context } from "@context/store";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 function Footer() {
   const pathname = usePathname(); // Get current path
-  const isAdmin = pathname && pathname.startsWith('/admin'); // Check if path starts with '/admin'
+  const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
   console.log({ pathname });
   let { theme } = useContext(Context);
   return (
     <div
-      className={`${
-        theme ? "bg-gray-100" : "bg-[#1e1d1d]"
-      } ${isAdmin ? "hidden" : "block"} pt-12 pb-6 flex flex-col items-center justify-center text-center w-full transition-colors duration-500`}
+      className={`${theme ? "bg-gray-100" : "bg-[#1e1d1d]"} ${
+        isAdmin ? "hidden" : "block"
+      } pt-12 pb-6 flex flex-col items-center justify-center text-center w-full transition-colors duration-500`}
     >
       {/* Social media icons */}
       <div className="flex items-center justify-center gap-5 w-full mb-0">
@@ -67,18 +67,15 @@ function Footer() {
       {/* Copyright notice */}
       <p
         className={`${
-          theme
-            ? "text-black"
-            : "text-gray-100"
+          theme ? "text-black" : "text-gray-100"
         } font-sans text-xs py-2 font-normal mb-0 transition-colors duration-500`}
       >
         © HelpOps-Hub | MIT License
       </p>
       {/* Developer and contributors */}
-      <p className={`${
-          theme
-            ? "text-black"
-            : "text-gray-100"
+      <p
+        className={`${
+          theme ? "text-black" : "text-gray-100"
         } font-sans text-xs font-normal mb-0 transition-colors duration-500`}
       >
         Developed by{" "}
