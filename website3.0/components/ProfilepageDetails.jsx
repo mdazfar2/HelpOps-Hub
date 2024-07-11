@@ -1,14 +1,14 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "@stylesheets/profilepage.css";
-import { FaUsers, FaUserCheck, FaTrashCan } from "react-icons/fa6";
+import { FaUsers,FaShare, FaUserCheck, FaTrashCan , FaShareFromSquare } from "react-icons/fa6";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useSession} from "next-auth/react";
 import Followers from "./Followers";
 export default function ProfilepageDetails({ isViewProfile, id }) {
   // Extract user data from context
@@ -29,6 +29,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
     isLogin,
   } = useContext(Context);
   const [isPassword, setIsPassword] = useState(false);
+  let [isShare,setIsShare]=useState(false)
   let password = useRef();
   const [isModalFollow, setIsModalFollow] = useState(false);
   let router = useRouter();
@@ -172,6 +173,12 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
   function passwordClose() {
     setIsPassword(false);
   }
+  function handleIsSHare(){
+    setIsShare(true)
+  }
+  function handleIsSHareclose(){
+    setIsShare(false)
+  }
   return (
     <>
       {isModalFollow && <Followers onClose={handleClose} id={id} />}
@@ -205,6 +212,15 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
           />
         </div>
       )}
+      <div className={`absolute  ${isViewProfile?"left-[20px]":"left-[70px]"} top-[10px]`}>
+          <FaShareFromSquare
+            color="blue"
+          
+            className="cursor-pointer"
+            onClick={handleIsSHare}
+            size={"2rem"}
+          />
+        </div>
       <div className={`${theme ? "" : "bg-[#1e1d1d]  text-white "}`}>
         {/* Edit Profile button */}
         {!isViewProfile && (
@@ -268,7 +284,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
           >
             {isViewProfile ? viewUserDetails.caption : finalUser.caption}
           </p>
-          <div className="w-[120%] flex flex-row gap-6 justify-center items-center">
+          <div className="w-[120%] flex flex-row max-sm:flex-col gap-6 justify-center items-center">
             <p
               className={`w-[200px] mt-[10px] text-[14px] font-medium  text-center flex gap-6 items-center ${
                 theme ? "text-[#5a5151]" : "text-white"
@@ -349,6 +365,28 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
               onSave={handleSaveChanges}
               img={finalUser.image1}
             />
+          )}
+          {isShare && (
+            <div className="auth-overlay">
+              <div
+                className="auth-modal z-500"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="z-500 w-[500px] gap-6 border-dashed border-black rounded-lg p-6 border-2 bg-slate-100 flex flex-col items-center ">
+                  <h1>User Profile Link</h1>
+                  <input
+                    className="w-[90%] bg-transparent border-b-black border-b-[1px]"
+                    ref={password}
+                    value={`https://www.helpopshub.com/profile?id=${isViewProfile?id:finalUser._id}`}
+                  ></input>
+                
+                </div>
+              </div>
+              <div
+                onClick={handleIsSHareclose}
+                className="fixed  z-0 top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black"
+              ></div>
+            </div>
           )}
           {isPassword && (
             <div className="auth-overlay">
