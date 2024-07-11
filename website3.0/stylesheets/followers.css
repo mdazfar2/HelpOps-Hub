@@ -11,11 +11,15 @@
 }
 .coming{
     animation: coming-animate 0.4s ease-out forwards;
+    
+
 }
 @keyframes coming-animate {
         from{
             right: 100%;
             position: relative;
+           display: block !important;
+
         }to{
             right: 0%;
             position: relative;
@@ -23,6 +27,7 @@
 }
 .coming2{
     animation: coming2-animate 0.4s ease-in forwards;
+    display: none !important;
 }
 @keyframes coming2-animate {
         from{
@@ -43,6 +48,8 @@
         }to{
             left: 100%;
             position: relative;
+            display: none;
+
         }
 }
 .coming1{
@@ -52,6 +59,7 @@
         from{
             left: 100%;
             position: relative;
+         display: block;
         }to{
             left: 0%;
             position: relative;
