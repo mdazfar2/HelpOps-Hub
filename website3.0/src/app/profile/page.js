@@ -14,6 +14,7 @@ const profile = () => {
     // Function to get query parameters from URL
     const getUrlParameter = (name) => {
       const params = new URLSearchParams(window.location.search);
+
       return params.get(name);
     };
 
@@ -21,9 +22,8 @@ const profile = () => {
     const idFromQuery = getUrlParameter('id');
 
     if (idFromQuery) {
-        if(finalUser._id!==idFromQuery){
+        if(JSON.parse(localStorage.getItem('finalUser'))._id!==idFromQuery){
           setId(idFromQuery);
-      
     }
     }
   }, []);
