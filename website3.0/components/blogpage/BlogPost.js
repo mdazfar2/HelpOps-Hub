@@ -15,7 +15,7 @@ function BlogPost() {
   const countRec1 = 13;
   const countRec2 = 23;
   const countRec3 = 12;
-  const { finalUser } = useContext(Context);
+  const { finalUser ,isLogin } = useContext(Context);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -37,6 +37,9 @@ function BlogPost() {
   }, [id]);
 
   const handleAddComment = async () => {
+    if(!isLogin){
+      return 
+    }
     if (newComment.trim() !== "") {
       const newCommentObject = {
         user: {

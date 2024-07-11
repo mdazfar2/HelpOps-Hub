@@ -1,10 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart as regularHeart,
   faComment as regularComment,
   faBookmark as regularBookmark,
 } from "@fortawesome/free-regular-svg-icons";
+import { Context } from "@context/store";
 
 // Define regular icons
 const regularIcons = {
@@ -46,6 +47,7 @@ const ReactionTab = () => {
   const iconRef = useRef(null);
   const panelRef = useRef(null);
   const timerRef = useRef(null);
+  const {isLogin}=useContext(Context)
 
   const handleMouseEnterIcon = () => {
     clearTimeout(timerRef.current);

@@ -15,7 +15,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {setIsAdminShow,userName,setFinalUser,setIsLogin,setUserLinkedin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let {setIsAdminShow,userName,setFinalUser,setIsLogin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{

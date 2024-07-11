@@ -6,7 +6,7 @@ export default function Followers({onClose,id}) {
         userName,
         finalUser,
         userEmail,setIsAdminShow,
-        userLinkedin,
+        
         userGithub,
         userImage,
         userDesignation,

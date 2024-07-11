@@ -17,7 +17,6 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
     finalUser,
     userEmail,
     setIsAdminShow,
-    userLinkedin,
     userGithub,
     userImage,
     userDesignation,
