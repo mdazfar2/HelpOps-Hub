@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "@stylesheets/blogspage.css";
 import { useRouter } from "next/navigation";
-function BlogPage() {
+function BlogPage({ theme }) {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -151,34 +151,34 @@ function BlogPage() {
     router.push(`/blogs/${blogId}`);
   };
   return (
-    <div className="min-h-screen mt-40 px-24">
-      <div className="text-center text-[30px] !text-black font-normal">
+    <div className={`${theme?"bg-[#F4F4F4]":"bg-[#1e1d1d] "} transition-colors duration-500 min-h-screen pt-40 px-24`}>
+      <div className={`${theme?"text-black":"text-white "} text-center text-[30px] font-normal`}>
         Ensuring You Never Get Stuck In DevOps Again!
       </div>
       <div className="flex gap-20 mt-8 justify-center">
         <div className="w-[70%] flex flex-col">
           {loading || blogs.length === 0 ? (
-            <div className="bg-[#deeff8] w-full p-8 rounded-xl border-2 border-black border-dashed shadow-[2px_2px_5px_2px_#00000040]">
+            <div className={`${theme?"bg-[#deeff8]":"bg-[#111111] "} w-full p-8 rounded-xl border-2 border-black border-dashed shadow-[2px_2px_5px_2px_#00000040]`}>
               <div className="skeleton h-[500px]"></div>
               <div className="mt-4 bg-white p-4 border-2 border-black rounded-xl">
                 <div className="recent_blog_details_container">
+                  <div className="skeleton w-[60%] h-4 mb-[10px]"></div>
                   <div className="skeleton w-[80%] h-4 mb-[10px]"></div>
-                  <div className="skeleton skeleton-text"></div>
-                  <div className="skeleton skeleton-text"></div>
+                  <div className="skeleton w-[80%] h-4 mb-[10px]"></div>
                 </div>
               </div>
             </div>
           ) : (
             <React.Fragment>
               {blogs.length > 0 && blogs[0] && (
-                <div className="bg-[#deeff8] w-full p-8 rounded-xl border-2 border-black border-dashed shadow-[2px_2px_5px_2px_#00000040] cursor-pointer"  onClick={() => navigateToBlogDetails(blogs[0]._id)}>
+                <div className={`${theme?"bg-[#deeff8]":"bg-[#111111] "} w-full p-8 rounded-xl border-2 border-black border-dashed shadow-[2px_2px_5px_2px_#00000040] cursor-pointer`}  onClick={() => navigateToBlogDetails(blogs[0]._id)}>
                   <img
                     src={blogs[0].image}
                     alt="Blog Image"
                     onError={handleImageError}
                     className="bg-white h-[500px] w-full rounded-xl"
                   />
-                  <div className="mt-4 bg-white p-4 border-2 border-black rounded-xl">
+                  <div className={`${theme?"bg-white text-black":"bg-[#1d1c1c] text-white"} mt-4 p-4 border-2 border-black rounded-xl`}>
                     <div className="recent_blog_details_container">
                       <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                         <div className="underline">{blogs[0].type}</div>
@@ -207,10 +207,10 @@ function BlogPage() {
           )}
 
           <div className="my-8">
-            <div className="flex justify-between items-center">
+            <div className={`${theme?" text-black":" text-white"} flex justify-between items-center`}>
               <div className="text-xl font-semibold my-2">Editor's Picks</div>
               <div className="h-[30px] flex justify-center items-center gap-2 text-[20.7px] font-semibold my-2">
-                View All <img src="new/Arrow.webp" alt="Arrow" className="h-full"/>
+                View All <img src="new/Arrow.webp" alt="Arrow" className={`${theme? "":"invert"} h-full`}/>
               </div>
             </div>
             <div className="my-8 flex gap-4">
@@ -220,43 +220,43 @@ function BlogPage() {
                     src={blog.image}
                     alt={`Blog Image ${index}`}
                     onError={handleImageError}
-                    className="rounded-xl h-[200px] w-full bg-white object-cover object-center filter blur-[0.05rem]"
+                    className="rounded-xl h-[200px] w-full bg-white object-cover object-center blur-[0.05rem]"
                   />
                   <div className="absolute top-1/2 -translate-y-1/2 w-full text-center text-white text-[17px] font-extrabold py-4 px-6 bg-[#00000080]">{blog.title}</div>
                 </div>
               ))}
             </div>
-            <hr className="w-full border-[1px] border-black"/>
+            <hr className={`${theme?"border-black":" border-[#ffffff41]"} w-full border-[1px]`}/>
           </div>
 
           <div className="recent_posts">
-            <div className="flex justify-between items-center">
+            <div className={`${theme?" text-black":" text-white"} flex justify-between items-center`}>
               <div className="text-xl font-semibold my-2">Recent Posts</div>
               <div className="h-[30px] flex justify-center items-center gap-2 text-[20.7px] font-semibold my-2">
-                View All <img src="new/Arrow.webp" alt="Arrow" className="h-full"/>
+                View All <img src="new/Arrow.webp" alt="Arrow" className={`${theme? "":"invert"} h-full`}/>
               </div>
             </div>
             <div className="flex flex-wrap gap-5 mt-8">
               {loading || blogs.length === 0
                 ? Array.from({ length: displayCount }).map((_, index) => (
-                    <div className="w-[48%] min-h-[390px] h-auto flex flex-col justify-center  cursor-pointer border-2 border-black border-dashed bg-[#D7E4EB] p-4 rounded-xl" key={index}>
+                    <div className={`${theme?"bg-[#deeff8]":"bg-[#111111] "} w-[48%] min-h-[390px] h-auto flex flex-col justify-center  cursor-pointer border-2 border-black border-dashed bg-[#D7E4EB] p-4 rounded-xl`} key={index}>
                       <div className="skeleton w-full h-[200px] mb-[10px]"></div>
                       <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                         <div className="skeleton w-[80%] h-4 mb-[10px]"></div>
-                        <div className="skeleton skeleton-text"></div>
-                        <div className="skeleton skeleton-text"></div>
+                        <div className="skeleton skeleton w-[80%] h-4 mb-[10px]"></div>
+                        <div className="skeleton skeleton w-[80%] h-4 mb-[10px]"></div>
                       </div>
                     </div>
                   ))
                 : blogs.slice(0, displayCount).map((blog, index) => (
-                    <div className="w-[48%] border-2 border-black border-dashed bg-[#D7E4EB] p-4 min-h-[390px] h-auto flex flex-col justify-center cursor-pointer rounded-xl" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
+                    <div className={`${theme?"bg-[#D7E4EB] border-black":"bg-[#111111] border-[#525252]"} w-[48%] border-2 border-dashed p-4 min-h-[390px] h-auto flex flex-col justify-center cursor-pointer rounded-xl`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                       <img
                         src={blog.image}
                         alt={`Blog Image ${index}`}
                         onError={handleImageError}
                         className="w-full rounded-xl h-[200px] object-cover object-center bg-white"
                       />
-                      <div className="px-4 py-[0.1rem] bg-white mt-4 rounded-xl border-2 border-black">
+                      <div className={`${theme?"bg-white text-black":"bg-[#222121] text-white "} px-4 py-[0.1rem] mt-4 rounded-xl border-2 border-black`}>
                         <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                           <div className="underline">{blog.type}</div>
                           {" - "}
@@ -288,8 +288,8 @@ function BlogPage() {
         </div>
 
         <div className="w-[30%] flex flex-col items-center">
-          <div className="bg-[#D7E4EB] border-2 border-black border-dashed py-20 px-8 w-full h-[710px] rounded-2xl">
-            <div className="text-center text-[30px] !text-black font-semibold">Top Posts</div>
+          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
+            <div className="text-center text-[30px] font-semibold">Top Posts</div>
             {topBlogs.map((blog, index) => (
               <div className={`top_blog_${index + 1} cursor-pointer my-8`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                 <div className="flex gap-[5px] my-2 text-[12px] font-bold">
@@ -310,7 +310,7 @@ function BlogPage() {
             ))}
           </div>
 
-          <div className="w-full h-[400px] bg-[#D7E4EB] mt-8 p-12 py-8 relative flex justify-center items-center">
+          <div className={`${theme?"bg-[#D7E4EB] text-black":"bg-[#111111] text-white"} w-full h-[400px] mt-8 p-12 py-8 relative flex justify-center items-center`}>
             <div>
               <div className="bg-[#4d87ba] w-[16%] p-1.5 absolute left-[35px] top-0">
                 <img src="new/mail_icon.webp" alt="Mail Icon" className="w-full"/>
@@ -359,7 +359,7 @@ function BlogPage() {
               </form>
             </div>
           </div>
-          <div className="bg-[#D7E4EB] w-full h-[700px] mt-8 flex flex-col justify-center items-center p-12 text-center playfair border-[2rem] border-[#4d87ba]">
+          <div className={`${theme?"bg-[#D7E4EB] text-black border-[#4d87ba]":"bg-[#111111] text-white border-[#161616]"} w-full h-[700px] mt-8 flex flex-col justify-center items-center p-12 text-center playfair border-[2rem] `}>
             <div className="text-[50px] font-medium">Helpops Hub</div>
             <div className="my-4">
               Ensuring You Never Get Stuck In DevOps Again!
@@ -369,7 +369,7 @@ function BlogPage() {
       </div>
 
       {/* Section: Join Us and Call to Action */}
-      <div className="trophy-card flex pl-[20px] mt-20 bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
+      <div className={`${theme?" bg-[rgba(47,_158,_214,_0.35)] text-black ":" bg-[rgba(47,_158,_214,_0.35)] text-white "}  trophy-card flex pl-[20px] mt-20 rounded-[18px] p-4 relative`}>
         <img src="new/trophy.webp" alt="Trophy" className="trophy h-[66px] relative" />
         <div className="team-invite pl-8">
           <h2 className="text-[1.5em] font-bold mb-2 font-arial">Join our awesome team!</h2>
@@ -392,18 +392,18 @@ function BlogPage() {
 
       {/* Must Read Section */}
       <div>
-        <div className="text-[20.7px] font-semibold my-8">Must Read</div>
+        <div className={`${theme?" text-black":" text-white"} text-[20.7px] font-semibold my-8`}>Must Read</div>
         <div className="w-full flex gap-8">
           {finalMustRead.length > 0 ? (
             finalMustRead.map((blog, index) => (
-              <div className="bg-[#D7E4EB] w-full h-full p-4 rounded-xl border-2 border-black border-dashed" key={index} onClick={() => navigateToBlogDetails(blog._id)}>
+              <div className={`${theme?" bg-[#D7E4EB]":" bg-[#111111]"} w-full h-full p-4 rounded-xl border-2 border-black border-dashed`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
                 <img
                   src={blog.image}
                   alt={`Blog Image ${index}`}
                   onError={handleImageError}
                   className="h-[400px] w-full object-cover object-center bg-white"
                 />
-                <div className="px-4 py-[0.1rem] bg-white mt-4 rounded-xl border-2 border-black">
+                <div className={`${theme?"bg-white text-black":"bg-[#222121] text-white "}  px-4 py-[0.1rem] mt-4 rounded-xl border-2 border-black`}>
                   <div className="flex gap-[5px] my-2 text-[12px] font-bold">
                     <div className="blog_type">{blog.type}</div>
                     {" - "}
