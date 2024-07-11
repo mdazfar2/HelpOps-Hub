@@ -1,12 +1,4 @@
-.red1{
-    background-color: red;
-}
-.puple1{
-    background-color: #ac26d1;
-}
-.green1 {
-    background-color: rgb(28, 201, 28) !important;
-}
+
 .filtered{filter: invert(1);}
 .popup{
     width: 40%;
@@ -27,18 +19,17 @@ z-index:1000 !important;
     display: none;
 }
 .line{
-    width: 100px;
-    background-color: white;
+    background-color: rgb(71, 36, 36);
     height: 2px;
     position: absolute;
     bottom: 0px ;
-    animation: animate 2s forwards;
+    animation: animate6 2s forwards;
 }
-@keyframes animate {
+@keyframes animate6 {
     from{
         width: 0px;
     }to{
-        width: 100%;
+        width: 400px !important;
     }
 }
 @keyframes animate1 {

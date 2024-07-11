@@ -15,10 +15,10 @@ const Login = ({ onClose, onSignupClick }) => {
   const [email1, setEmail1] = useState("");
   const [isSent, setIsSent] = useState(false);
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [allShow, setAllShow] = useState(true);
-  let { setIsLogin, setIsAdminShow, theme, setFinalUser } = useContext(Context);
+  let { setIsLogin, setIsPopup,setMsg,setColor
+,    setIsAdminShow, theme, setFinalUser } = useContext(Context);
 
   // Modified useEffect hook to handle Enter key press for form navigation and login
   useEffect(() => {
@@ -71,6 +71,7 @@ const Login = ({ onClose, onSignupClick }) => {
   // Function to handle login process
   async function handleLogin() {
     setLoading(true);
+    console.log(email2,password)
     let res = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({
@@ -82,8 +83,8 @@ const Login = ({ onClose, onSignupClick }) => {
 
     // Handle login errors
     if (!data.success) {
-      setError(data.msg);
-      console.log(data);
+      setMsg(data.msg)
+      setIsPopup(true)
       if (data.msg === "User Doesn't Valid" || data.msg === "Invalid Email") {
         // If username/email is invalid, clear both fields
         setEmail2("");
@@ -93,9 +94,7 @@ const Login = ({ onClose, onSignupClick }) => {
         setPassword("");
       }
 
-      setTimeout(() => {
-        setError("");
-      }, 1000);
+   
       return;
     }
 
@@ -134,9 +133,9 @@ const Login = ({ onClose, onSignupClick }) => {
 
     // Handle forgot password errors
     if (!res.success) {
-      setError(`User Doesn't Exist`);
+      setMsg(`User Doesn't Exist`)
+        setIsPopup(true)
       setTimeout(() => {
-        setError("");
         onClose();
       }, 2000);
     } else {
@@ -168,16 +167,7 @@ const Login = ({ onClose, onSignupClick }) => {
               : "bg-[#0f0c0c] whiteshadow border-white"
           } p-5 border-rounded1 lg:w-[500px] md:w-[500px] max-sm:h-auto  w-[96vw] relative select`}
         >
-          {error && (
-            <Popup
-              msg={error}
-              error={`${
-                error == "User Doesn't Valid" || error == "Incorrect Password"
-                  ? "red1"
-                  : "green1"
-              }`}
-            />
-          )}
+         
 
           <h1
             className={`text-center mt-[5px] ${

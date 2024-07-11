@@ -1,14 +1,13 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "@stylesheets/otp.css";
 import Popup from "@components/Popup";
 import Popup1 from '@components/Popup1';
 
-const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
+const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme,setMsg, setIsPopup}) => {
   // State to store the 6-digit OTP
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
-  let [error,setError]=useState(false);
   const handlePaste = (e) => {
     const pasteData = e.clipboardData.getData('text').slice(0, 6); // Get the pasted data and limit it to 6 characters
     if (pasteData) {
@@ -52,21 +51,23 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme}) => {
   // Handle OTP submission
   const handleSubmit = () => {
     if(otp[otp.length-1]==''){
-      setError("Please Enter Valid Otp")
-      setTimeout(() => {
-        setError('')
-      }, 2000);
+      setMsg("Please Enter Valid Otp")
+        setIsPopup(true)
+     
       return
     }
     onOTPSubmit(otp.join(''));
-    setError('')
     return
   };
-
+  useEffect(()=>{
+    if(isError){
+      setMsg('Wrong Otp')
+      setIsPopup(true)
+    }
+  },[isError])
   return (
     <div className={`border-dashed border-black border-[2px] ${!theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"} otp-container relative  text-center md:h-[500px] md:w-[650px] max-sm:w-[96vw] max-sm:h-auto max-sm:m-[20px] max-sm:p-[10px] md:pt-[60px] max-sm:pl-0   pt-[60px] md:pl-[40px] md:pr-[40px]`}>
-     {error&& <Popup msg={error} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
-     {isError&& <Popup1 msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />}
+     {/* {isError&& <Popup msg={'Wrong Otp'} error={`${error=='Subscribed Successfully'?"green1":"red1"}`} />} */}
 
       {/* Back arrow */}
       <button className={`absolute top-[0.5rem]  ${!theme?"text-black":"text-white"}  left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]`} onClick={onBack}>

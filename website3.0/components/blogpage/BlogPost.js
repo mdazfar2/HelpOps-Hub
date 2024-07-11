@@ -15,7 +15,7 @@ function BlogPost() {
   const countRec1 = 13;
   const countRec2 = 23;
   const countRec3 = 12;
-  const { finalUser ,isLogin } = useContext(Context);
+  const { finalUser ,isLogin, setIsPopup,setMsg,setColor,  } = useContext(Context);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -38,6 +38,8 @@ function BlogPost() {
 
   const handleAddComment = async () => {
     if(!isLogin){
+      setIsPopup(true)
+      setMsg("Please Login to Comment")
       return 
     }
     if (newComment.trim() !== "") {

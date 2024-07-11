@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import {  } from 'next/router';
 
 const profile = () => {
-  let {theme,isLogin,finalUser}=useContext(Context)
+  let {theme, setIsPopup,setMsg,setColor,isLogin,finalUser}=useContext(Context)
   const pathname = usePathname(); // Get current path
   let [id,setId]=useState('')
   useEffect(() => {
