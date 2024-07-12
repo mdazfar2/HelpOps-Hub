@@ -187,6 +187,12 @@ function BlogPost() {
                 if (e.key === "Enter") handleAddComment();
               }}
             />
+             <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-lg"
+                onClick={handleAddComment}
+             >
+                    Comment
+             </button>
           </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
