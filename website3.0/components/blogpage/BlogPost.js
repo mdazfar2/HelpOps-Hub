@@ -115,7 +115,7 @@ function BlogPost() {
   const handleAddComment = async () => {
     if (!isLogin) {
       setIsPopup(true);
-      setMsg("Please Login to Comment");
+      setMsg("Please Login ");
       return;
     }
     if (newComment.trim() !== "") {
@@ -157,6 +157,11 @@ function BlogPost() {
     console.log(finalUser)
   },[finalUser])
     async function handleClick(key){
+      if (!isLogin) {
+        setIsPopup(true);
+        setMsg("Please Login ");
+        return;
+      }
       if(key=='2'){
      let data= await fetch('/api/setreaction',{
         method:"POST",
@@ -286,7 +291,8 @@ function BlogPost() {
         <div className="fixed left-24 top-60">
           <div className="relative flex flex-col items-center space-y-4">
             <div className="space-y-4">
-              {isLogin && panelIcons.slice(0, 3).map((panelIcon, index) => (
+              {
+               panelIcons.slice(0, 3).map((panelIcon, index) => (
                 <div
                   key={index}
                   onClick={()=>handleClick(index)} 
@@ -305,7 +311,7 @@ function BlogPost() {
                 >
                   <FontAwesomeIcon
                     icon={panelIcon.regularIcon}
-                    className={`${theme? `${index == 2 && id in JSON.parse( localStorage.getItem('finalUser')).reactions ? "text-blue-500  h-[30px]" : ""} `:" text-white "} \
+                    className={`${theme? `${isLogin&& index == 2 && id in JSON.parse( localStorage.getItem('finalUser')).reactions ? "text-blue-500  h-[30px]" : ""} `:" text-white "} \
         text-[20px]
       `}
                   />
