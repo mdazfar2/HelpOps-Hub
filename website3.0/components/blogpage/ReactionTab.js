@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart as regularHeart,
@@ -6,6 +6,8 @@ import {
   faBookmark as regularBookmark,
 } from "@fortawesome/free-regular-svg-icons";
 import { Context } from "@context/store";
+import { usePathname } from "next/navigation";
+
 
 // Define regular icons
 const regularIcons = {
@@ -48,7 +50,36 @@ const ReactionTab = () => {
   const panelRef = useRef(null);
   const timerRef = useRef(null);
   const {isLogin}=useContext(Context)
-  let {theme} = useContext(Context)
+  const pathname = usePathname();
+
+  let {theme,finalUser,setFinalUser} = useContext(Context)
+  const id = pathname.split("/blogs/")[1];
+console.log(finalUser)
+useEffect(()=>{
+  console.log(finalUser)
+},[finalUser])
+  async function handleClick(key){
+console.log(key)
+    if(key=='0'){
+
+    }
+    else if(key=='1'){
+
+    }else{
+   let data= await fetch('/api/setreaction',{
+      method:"POST",
+      body:JSON.stringify({
+        user_id:finalUser._id,
+        blog_id:id,
+        reaction:'2'
+      })
+    })
+    data=await data.json()
+    let d=await JSON.stringify(data.user)
+    localStorage.setItem('finalUser',d)
+    setFinalUser(data.user)
+  }
+  }
   const handleMouseEnterIcon = () => {
     clearTimeout(timerRef.current);
     setHovered(true);
@@ -77,6 +108,8 @@ const ReactionTab = () => {
         {reactions.slice(0, 3).map((reaction, index) => (
           <div
             key={index}
+            id={index}
+            onClick={()=>handleClick(index)} 
             className="flex flex-col justify-center items-center"
             onMouseEnter={
               reaction.label === "Heart" ? handleMouseEnterIcon : undefined
@@ -88,7 +121,9 @@ const ReactionTab = () => {
           >
             <FontAwesomeIcon
               icon={reaction.regularIcon}
-              className={`${theme? "text-gray-900 ":" text-white "} text-[20px]`}
+              className={`${theme? `${index == 2 && id in JSON.parse( localStorage.getItem('finalUser')).reactions ? "text-blue-500  h-[30px]" : ""} `:" text-white "} \
+        text-[20px]
+      `}
             />
             <span className={`${theme? "text-gray-900 ":" text-white "} my-2 text-sm`}>{reaction.count}</span>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "@stylesheets/blogspage.css";
+import { FaPlus } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 function BlogPage({ theme }) {
   const [blogs, setBlogs] = useState([]);
@@ -176,7 +177,7 @@ function BlogPage({ theme }) {
                     src={blogs[0].image}
                     alt="Blog Image"
                     onError={handleImageError}
-                    className="bg-white h-[500px] w-full rounded-xl"
+                    className="bg-white h-[500px]  hover:scale-[0.99] hover:transition-all w-full rounded-xl"
                   />
                   <div className={`${theme?"bg-white text-black":"bg-[#1d1c1c] text-white"} mt-4 p-4 border-2 border-black rounded-xl`}>
                     <div className="recent_blog_details_container">
@@ -210,7 +211,7 @@ function BlogPage({ theme }) {
             <div className={`${theme?" text-black":" text-white"} flex justify-between items-center`}>
               <div className="text-xl font-semibold my-2">Editor's Picks</div>
               <div className="h-[30px] flex justify-center items-center gap-2 text-[20.7px] font-semibold my-2">
-                View All <img src="new/Arrow.webp" alt="Arrow" className={`${theme? "":"invert"} h-full`}/>
+                View All <img src="new/Arrow.webp"  alt="Arrow" className={`${theme? "":"invert"} h-full`}/>
               </div>
             </div>
             <div className="my-8 flex gap-4">
@@ -220,7 +221,7 @@ function BlogPage({ theme }) {
                     src={blog.image}
                     alt={`Blog Image ${index}`}
                     onError={handleImageError}
-                    className="rounded-xl h-[200px] w-full bg-white object-cover object-center blur-[0.05rem]"
+                    className="rounded-xl h-[200px]  hover:scale-[0.99] hover:transition-all w-full bg-white object-cover object-center blur-[0.05rem]"
                   />
                   <div className="absolute top-1/2 -translate-y-1/2 w-full text-center text-white text-[17px] font-extrabold py-4 px-6 bg-[#00000080]">{blog.title}</div>
                 </div>
@@ -254,7 +255,7 @@ function BlogPage({ theme }) {
                         src={blog.image}
                         alt={`Blog Image ${index}`}
                         onError={handleImageError}
-                        className="w-full rounded-xl h-[200px] object-cover object-center bg-white"
+                        className="w-full rounded-xl h-[200px] object-cover  hover:scale-[0.99] hover:transition-all object-center bg-white"
                       />
                       <div className={`${theme?"bg-white text-black":"bg-[#222121] text-white "} px-4 py-[0.1rem] mt-4 rounded-xl border-2 border-black`}>
                         <div className="flex gap-[5px] my-2 text-[12px] font-bold">
@@ -287,8 +288,8 @@ function BlogPage({ theme }) {
           )}
         </div>
 
-        <div className="w-[30%] flex flex-col items-center">
-          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
+        <div className="w-[30%] flex flex-col relative items-center">
+        <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}  absolute top-[-60px] right-[100px] w-[200px] flex justify-center items-center gap-2  auth-btn`} ><FaPlus color="#9590d8"/> Create Post</button>          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
             <div className="text-center text-[30px] font-semibold">Top Posts</div>
             {topBlogs.map((blog, index) => (
               <div className={`top_blog_${index + 1} cursor-pointer my-8`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
@@ -401,7 +402,7 @@ function BlogPage({ theme }) {
                   src={blog.image}
                   alt={`Blog Image ${index}`}
                   onError={handleImageError}
-                  className="h-[400px] w-full object-cover object-center bg-white"
+                className="h-[400px] w-full object-cover object-center bg-white hover:scale-[0.99] hover:transition-all " 
                 />
                 <div className={`${theme?"bg-white text-black":"bg-[#222121] text-white "}  px-4 py-[0.1rem] mt-4 rounded-xl border-2 border-black`}>
                   <div className="flex gap-[5px] my-2 text-[12px] font-bold">

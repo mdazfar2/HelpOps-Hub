@@ -19,6 +19,9 @@ const newsletterModel = new mongoose.Schema({
   following: {
     type: Map,
     default:new Map()
+  },
+  reactions:{
+    type: Map
   }
 });
 
