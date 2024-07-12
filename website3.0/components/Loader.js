@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "@stylesheets/loader.css";
 
 function Loader() {
+  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("dark-mode")));
+
   useEffect(() => {
     // Function to add 'loaded' class to body when DOM content is loaded
     const handleDOMContentLoaded = () => {
@@ -27,6 +29,22 @@ function Loader() {
       document.removeEventListener("DOMContentLoaded", handleDOMContentLoaded);
       clearTimeout(timeoutId);
     };
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setTheme(JSON.parse(localStorage.getItem("dark-mode")));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    setTheme(JSON.parse(localStorage.getItem("dark-mode")));
   }, []);
 
   return (
@@ -87,8 +105,8 @@ function Loader() {
         </svg>
       </div>
       {/* Overlay sections for transition effect */}
-      <div className="loader-section section-left"></div>
-      <div className="loader-section section-right"></div>
+      <div className={`loader-section section-left ${theme ? "darkmode" : ""}`}></div>
+      <div className={`loader-section section-right ${theme ? "darkmode" : ""}`}></div>
     </div>
   );
 }

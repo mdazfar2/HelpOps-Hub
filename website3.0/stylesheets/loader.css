@@ -232,7 +232,10 @@
   z-index: 1001;
 }
 .dark-mode #loader-wrapper .loader-section {
-  background: linear-gradient(180deg, #333 8.1%, #121212 100%);
+  /* background: linear-gradient(180deg, #333 8.1%, #121212 100%); */
+}
+.darkmode{
+ background: linear-gradient(180deg, #333 8.1%, #121212 100%) !important;
 }
 #loader-wrapper .loader-section {
   position: fixed;
@@ -245,7 +248,7 @@
   transform: translateX(0);
 }
 .dark-mode #loader-wrapper .loader-section {
-  background: linear-gradient(180deg, #333 8.1%, #121212 100%);
+  /* background: linear-gradient(180deg, #333 8.1%, #121212 100%); */
 }
 
 #loader-wrapper .loader-section.section-left {
