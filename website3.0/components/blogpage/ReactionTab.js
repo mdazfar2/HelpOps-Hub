@@ -49,10 +49,9 @@ const ReactionTab = () => {
   const iconRef = useRef(null);
   const panelRef = useRef(null);
   const timerRef = useRef(null);
-  const {isLogin}=useContext(Context)
   const pathname = usePathname();
 
-  let {theme,finalUser,setFinalUser} = useContext(Context)
+  let {theme,finalUser,setFinalUser,isLogin} = useContext(Context)
   const id = pathname.split("/blogs/")[1];
 console.log(finalUser)
 useEffect(()=>{
@@ -105,7 +104,9 @@ console.log(key)
   return (
     <div className="relative flex flex-col items-center space-y-4">
       <div className="space-y-4">
-        {reactions.slice(0, 3).map((reaction, index) => (
+   
+   
+        { isLogin && reactions.slice(0, 3).map((reaction, index) => (
           <div
             key={index}
             id={index}
