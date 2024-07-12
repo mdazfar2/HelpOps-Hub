@@ -289,7 +289,7 @@ function BlogPage({ theme }) {
         </div>
 
         <div className="w-[30%] flex flex-col relative items-center">
-        <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}  absolute top-[-60px] right-[100px] w-[200px] flex justify-center items-center gap-2  auth-btn`} ><FaPlus color="#9590d8"/> Create Post</button>          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
+        <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}  absolute top-[-60px] right-[10px] w-[300px] flex justify-center items-center gap-2  auth-btn`} ><FaPlus color="#9590d8"/> Create DevPost Now</button>          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
             <div className="text-center text-[30px] font-semibold">Top Posts</div>
             {topBlogs.map((blog, index) => (
               <div className={`top_blog_${index + 1} cursor-pointer my-8`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
