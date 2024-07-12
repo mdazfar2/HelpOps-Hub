@@ -33,7 +33,8 @@ console.log(email)
               github:'',
               caption:'',
               followers:new Map(),
-              following:new Map()
+              following:new Map(),
+              reactions:new Map()
           });
          await  users.save()
         }else{
@@ -53,7 +54,9 @@ console.log(email)
             github:'',
             caption:'',           
                followers:new Map(),
-               following:new Map()
+               following:new Map(),
+               reactions:[new Set(),new Set(),new Set()]
+
 
           });
           await   users.save()
