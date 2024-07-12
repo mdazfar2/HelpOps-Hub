@@ -55,7 +55,8 @@ console.log(email)
             caption:'',           
                followers:new Map(),
                following:new Map(),
-               reactions:[new Set(),new Set(),new Set()]
+               reactions:new Map()
+
 
 
           });
