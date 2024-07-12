@@ -103,12 +103,12 @@ const Header = () => {
 
         <div className="flex min-w-[70%] gap-[50px] justify-between max-xl:min-w-0 max-xl:justify-center items-center">
           {/* Main navigation links */}
-          <ul
-            className={`${
+       {  <ul
+            className={`${ 
               theme
                 ? "bg-white shadow-gray-300"
                 : "bg-[#393838] shadow-[#000000a6]"
-            } list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
+            }  ${pathname.startsWith('/blog')?"opacity-0":""}    list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
           >
             <li
               className={`${
@@ -138,7 +138,7 @@ const Header = () => {
             >
               <Link href="/contact">Contact</Link>
             </li>
-          </ul>
+          </ul>}
           {/* Navigation actions (sponsor button and toggle switch) */}
           <div className="flex items-center gap-2">
             {isAdminShow ? (
