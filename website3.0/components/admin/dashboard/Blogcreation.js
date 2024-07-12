@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import "@stylesheets/admin.css";
+import { Context } from "@context/store";
 const Popup = ({ msg, onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -30,14 +31,17 @@ const BlogCreation = () => {
     editorsPick: false,
     authorName: '',
     authorTitle: '',
-    likes: 0,
+    authorImage: '',
+    authorCaption:'',
+    github: '',
+    linkedin: '',
   });
   const [showPopup, setShowPopup] = useState(false);
   const [blur, setBlur] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [disableSubmit, setDisableSubmit] = useState(false);
-
+  const { finalUser } = useContext(Context);
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     setFormData((prevData) => ({
@@ -71,8 +75,14 @@ const BlogCreation = () => {
 
       const blogData = {
         ...formData,
-        image: base64Image, // Set the base64 image
-        date: formData.date.toISOString(),
+        image: base64Image,
+        authorName: finalUser.name,
+        authorTitle: finalUser.designation,
+        authorImage: finalUser.image1,
+        github: finalUser.github,
+        linkedin: finalUser.linkedin,
+        authorCaption: finalUser.caption,
+        date: formData.date.toISOString()
       };
 
       const response = await fetch('/api/blog', {
@@ -99,7 +109,10 @@ const BlogCreation = () => {
             editorsPick: false,
             authorName: '',
             authorTitle: '',
-            likes: 0,
+            authorImage: '',
+            authorCaption:'',
+            github: '',
+            linkedin: '',
           });
           setError("");
           setShowPopup(false); // Hide the popup after some time
@@ -199,26 +212,6 @@ const BlogCreation = () => {
             className="mr-2"
           />
           <label>Editor's Pick</label>
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2">Author Name</label>
-          <input
-            type="text"
-            name="authorName"
-            value={formData.authorName}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2">Author Title</label>
-          <input
-            type="text"
-            name="authorTitle"
-            value={formData.authorTitle}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
         </div>
         <button type="submit" disabled={disableSubmit} className="w-full p-2 bg-blue-500 text-white rounded">
           Create Blog
