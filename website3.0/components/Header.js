@@ -90,7 +90,7 @@ const Header = () => {
     >
       <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
         {/* Logo with VanillaTilt animation */}
-        <Link href="/">
+        <Link href="/" className="flex gap-1 items-center">
           <div data-tilt data-tilt-scale="1.1">
             <img
               src="new/HelpOps-H Fevicon.webp"
@@ -99,6 +99,7 @@ const Header = () => {
               draggable="false"
             />
           </div>
+          <h1 className={`${theme?"text-black":"text-white"} text-3xl  font-medium`}>elpOps Hub</h1>
         </Link>
 
         <div className="flex min-w-[70%] gap-[50px] justify-between max-xl:min-w-0 max-xl:justify-center items-center">

@@ -154,8 +154,8 @@ function BlogPage({ theme }) {
   };
   return (
     <div className={`${theme?"bg-[#F4F4F4]":"bg-[#1e1d1d] "} transition-colors duration-500 min-h-screen pt-40 px-24`}>
-      <div className={`${theme?"text-black":"text-white "} text-center text-[30px] font-normal`}>
-        Ensuring You Never Get Stuck In DevOps Again!
+      <div className={`${theme?"text-black":"text-white "} font-medium text-center text-[30px] `}>
+        DevOps Blog Life
       </div>
       <div className="flex gap-20 mt-8 justify-center">
         <div className="w-[70%] flex flex-col">
