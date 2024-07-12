@@ -298,7 +298,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                 theme ? "text-[#5a5151]" : "text-white"
               }`}
             >
-              <FaUsers size={"2rem"} onClick={handleFollowersModalOpen} />
+              <FaUsers size={"2rem"} onClick={handleFollowersModalOpen} className="cursor-pointer" />
               <span className="font-cursive text-xl">Followers :</span>{" "}
               <span className="text-2xl">
                 {" "}
@@ -316,7 +316,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                 theme ? "text-[#5a5151]" : "text-white"
               }`}
             >
-              <FaUserCheck size={"2rem"} onClick={handleFollowersModalOpen} />
+              <FaUserCheck size={"2rem"} onClick={handleFollowersModalOpen} className="cursor-pointer" />
               <p className="font-cursive text-xl">Following :</p>
               <span className="text-2xl">
                 {" "}
@@ -332,16 +332,16 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
           </div>
           {/* Social media icons */}
           <div className="flex justify-around items-center w-full mt-[20px]">
-            <div
-              className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${
-                theme ? "hover:text-[#1a1a1a]" : "hover:text-[#635e5e]"
-              }`}
-              title="nishantkaushal0708@gmail.com"
-            >
-              <a href={finalUser.email}>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </a>
-            </div>
+          <div
+           className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${
+               theme ? "hover:text-[#1a1a1a]" : "hover:text-[#635e5e]"
+             }`}
+             title={isViewProfile ? viewUserDetails.email : finalUser.email}
+          >
+             <a href={`mailto:${isViewProfile ? viewUserDetails.email : finalUser.email}`}>
+               <FontAwesomeIcon icon={faEnvelope} />
+             </a>
+          </div>
             <div
               className={`w-full border-r-[1px] border-[rgb(94,94,94)] flex flex-col items-center justify-center text-[30px] cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${
                 theme ? "hover:text-[#1a1a1a]" : "hover:text-[#635e5e]"
@@ -380,20 +380,36 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                 className="auth-modal z-500"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="z-500 w-[500px] gap-6 border-dashed border-black rounded-lg p-6 border-2 bg-slate-100 flex flex-col items-center ">
-                  <h1>User Profile Link</h1>
+                <div className={`z-500 w-[500px] gap-6 border-dashed rounded-lg p-6 border-2 flex flex-col items-center ${
+                  theme ? 'border-black bg-slate-100 text-black' : 'border-white bg-[#1e1d1d] text-white'
+                }`}>
+                  <h1 className="text-xl font-bold">User Profile Link</h1>
                   <input
-                    className="w-[90%] bg-transparent border-b-black border-b-[1px]"
+                    className={`w-[90%] bg-transparent border-b-[1px] outline-none ${
+                      theme ? 'border-b-black text-black' : 'border-b-white text-white'
+                    }`}
                     ref={password}
-                    value={`https://www.helpopshub.com/profile?id=${isViewProfile?id:finalUser._id}`}
-                  ></input>
-                
+                    value={`https://www.helpopshub.com/profile?id=${isViewProfile ? id : finalUser._id}`}
+                    readOnly
+                  />
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(password.current.value);
+                    }}
+                    className={`mt-2 px-4 py-2 rounded ${
+                      theme
+                        ? 'bg-blue-500 text-white hover:bg-blue-600'
+                        : 'bg-blue-700 text-white hover:bg-blue-800'
+                    } transition duration-300 ease-in-out`}
+                  >
+                    Copy Link
+                  </button>
                 </div>
               </div>
               <div
                 onClick={handleIsSHareclose}
-                className="fixed  z-0 top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black"
-              ></div>
+                className="fixed z-0 top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black"
+              />
             </div>
           )}
           {isPassword && (
