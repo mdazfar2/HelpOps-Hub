@@ -7,7 +7,7 @@ function AboutPage({ theme }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); 
+    }, 5000); 
 
     return () => clearTimeout(timer); 
   }, []);
@@ -29,7 +29,7 @@ function AboutPage({ theme }) {
       {/* Section: Video */}
       <div className="w-full flex justify-center">
         {loading ? (
-                   <div className="w-full md:w-4/5 mt-10 rounded-2xl shadow-2xl bg-gray-600 animate-pulse" ></div>
+                   <div className="w-full md:w-4/5 mt-10 rounded-2xl shadow-2xl bg-gray-600 animate-pulse" style={{height:'500px'}}></div>
         ) : (
           <video
             src="/HelpOps-H.mp4"
