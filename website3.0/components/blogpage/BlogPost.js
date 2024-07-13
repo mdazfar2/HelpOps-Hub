@@ -30,10 +30,13 @@ function BlogPost() {
   const [hovered, setHovered] = useState(false);
   const iconRef = useRef(null);
   const panelRef = useRef(null);
+  const [isFollowed,setIsFollowed]=useState(false)
   const timerRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  let [commentCount,setCommentCount]=useState(0)
   const router = useRouter();
   console.log(finalUser);
+  
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -51,7 +54,53 @@ function BlogPost() {
       count: 0,
     },
   ]);
+  async function handleFollow() {
+    if (!isLogin) {
+      return;
+    }
+    if(blog.authorEmail){
 
+      let updatedData = await fetch("/api/setfollow", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser._id,
+          other_user_id: blog.authorEmail,
+        }),
+      });
+      updatedData = await updatedData.json();
+      let d=await JSON.stringify(updatedData.user1)
+      localStorage.setItem('finalUser',d)
+      setFinalUser(updatedData.user1)
+     
+        setIsFollowed(true)
+      
+      // if (updatedData.user.followers.hasOwnProperty(finalUser._id)) {
+      //   setIsFollowed(true);
+      // }
+    }
+  }
+  async function handleUnfollow() {
+    if (!isLogin) {
+      return;
+    }
+    if(blog.authorEmail){
+
+      let updatedData = await fetch("/api/unfollow", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser.email,
+          other_user_id: blog.authorEmail
+        }),
+      });
+      updatedData = await updatedData.json();
+      let d=await JSON.stringify(updatedData.user1)
+      localStorage.setItem('finalUser',d)
+      setFinalUser(updatedData.user1)
+        setIsFollowed(false)
+  
+      
+    }
+  }
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -61,6 +110,13 @@ function BlogPost() {
           setBlog(data);
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
+         let count=0
+          data.reactionList.map((data1)=>{
+            if(data1.type=="save"){
+              count+=1
+            }
+          })
+          setCommentCount(count)
         } else {
           setError("Failed to fetch blog.");
         }
@@ -279,8 +335,14 @@ function BlogPost() {
     return <p>{error}</p>;
   }
   const navigateToBlogDetails = (blogId) => {
-    router.push(`/blogs/${blogId}`);
+    router.push(`/blogs/id=${blogId}`);
   };
+  function handleOpenProfile(){
+    if(blog._id){
+
+      router.push(`/profile?id=${blog.id}`)
+    }
+  }
   return (
     <div
       className={`${
@@ -320,7 +382,7 @@ function BlogPost() {
                       theme ? "text-gray-900 " : " text-white "
                     } my-2 text-sm`}
                   >
-                    {panelIcon.count}
+                    {  index==2?commentCount: panelIcon.count}
                   </span>
                 </div>
               ))}
@@ -370,7 +432,7 @@ function BlogPost() {
           className="w-full h-96 object-cover mb-5 rounded-lg"
         />
         <div className="px-10">
-          <div className="flex items-center mb-5">
+          <div className="flex items-center mb-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
               src={blog.authorImage}
               alt={blog.authorName}
@@ -506,8 +568,8 @@ function BlogPost() {
           } h-[400px] rounded-xl overflow-hidden`}
         >
           {/* <img src="/banner.png" alt="" /> */}
-          <div className="w-full bg-[#000000] h-10"></div>
-          <div className="flex px-5">
+          <div className="w-full bg-[#000000] h-10" ></div>
+          <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
               src={blog.authorImage}
               alt={blog.authorName}
@@ -518,9 +580,15 @@ function BlogPost() {
             </div>
           </div>
           <div className="w-full px-4">
-            <button className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
-              Follow
+        
+         {
+
+    isFollowed?<button onClick={handleUnfollow} className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
+    UnFollow
+</button>:        <button onClick={handleFollow} className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
+                Follow
             </button>
+         }
           </div>
           <div
             className={`${

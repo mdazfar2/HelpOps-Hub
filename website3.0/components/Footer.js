@@ -11,7 +11,6 @@ import { usePathname } from "next/navigation";
 function Footer() {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
-  console.log({ pathname });
   let { theme } = useContext(Context);
   return (
     <div
