@@ -1,9 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
+import { Context } from "@context/store"; // Import your context
 import "@stylesheets/loader.css";
 
 function Loader() {
-  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("dark-mode")));
+  const { theme } = useContext(Context); // Access the theme from context
+  
 
   useEffect(() => {
     // Function to add 'loaded' class to body when DOM content is loaded
@@ -22,29 +24,13 @@ function Loader() {
     // Set a timeout to add 'loaded' class after 1500ms as a fallback
     const timeoutId = setTimeout(() => {
       document.querySelector("body").classList.add("loaded");
-    }, 1500);
+    }, 5000);
 
     // Clean up: remove event listener and clear timeout
     return () => {
       document.removeEventListener("DOMContentLoaded", handleDOMContentLoaded);
       clearTimeout(timeoutId);
     };
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setTheme(JSON.parse(localStorage.getItem("dark-mode")));
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    setTheme(JSON.parse(localStorage.getItem("dark-mode")));
   }, []);
 
   return (
@@ -105,8 +91,16 @@ function Loader() {
         </svg>
       </div>
       {/* Overlay sections for transition effect */}
-      <div className={`loader-section section-left ${theme ? "darkmode" : ""}`}></div>
-      <div className={`loader-section section-right ${theme ? "darkmode" : ""}`}></div>
+      <div
+        className={`loader-section section-left ${
+          theme === true ? "bg-lightloader-gradient" : theme === false ? "bg-darkloader-gradient" : ""
+        }`}
+      ></div>
+      <div
+        className={`loader-section section-right ${
+          theme === true ? "bg-lightloader-gradient" : theme === false ? "bg-darkloader-gradient" : ""
+        }`}
+      ></div>
     </div>
   );
 }

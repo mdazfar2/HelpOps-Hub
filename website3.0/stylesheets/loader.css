@@ -235,14 +235,14 @@
   /* background: linear-gradient(180deg, #333 8.1%, #121212 100%); */
 }
 .darkmode{
- background: linear-gradient(180deg, #333 8.1%, #121212 100%) !important;
+ /* background: linear-gradient(180deg, #333 8.1%, #121212 100%) !important; */
 }
 #loader-wrapper .loader-section {
   position: fixed;
   top: 0;
   width: 51%;
   height: 100%;
-  background: linear-gradient(180deg, #ffffff 8.1%, #bbbbbb 100%);
+  /* background: linear-gradient(180deg, #ffffff 8.1%, #bbbbbb 100%); */
   z-index: 1000;
   -webkit-transform: translateX(0);
   transform: translateX(0);
