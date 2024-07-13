@@ -1,12 +1,8 @@
 "use client";
-import React, { useEffect, useContext } from "react";
-import { Context } from "@context/store"; // Import your context
+import React, { useEffect } from "react";
 import "@stylesheets/loader.css";
 
 function Loader() {
-  const { theme } = useContext(Context); // Access the theme from context
-  
-
   useEffect(() => {
     // Function to add 'loaded' class to body when DOM content is loaded
     const handleDOMContentLoaded = () => {
@@ -24,7 +20,7 @@ function Loader() {
     // Set a timeout to add 'loaded' class after 1500ms as a fallback
     const timeoutId = setTimeout(() => {
       document.querySelector("body").classList.add("loaded");
-    }, 5000);
+    }, 1500);
 
     // Clean up: remove event listener and clear timeout
     return () => {
@@ -91,16 +87,8 @@ function Loader() {
         </svg>
       </div>
       {/* Overlay sections for transition effect */}
-      <div
-        className={`loader-section section-left ${
-          theme === true ? "bg-lightloader-gradient" : theme === false ? "bg-darkloader-gradient" : ""
-        }`}
-      ></div>
-      <div
-        className={`loader-section section-right ${
-          theme === true ? "bg-lightloader-gradient" : theme === false ? "bg-darkloader-gradient" : ""
-        }`}
-      ></div>
+      <div className="loader-section section-left"></div>
+      <div className="loader-section section-right"></div>
     </div>
   );
 }
