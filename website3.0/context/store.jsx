@@ -26,7 +26,8 @@ console.log(theme)
                         setTimeout(()=>{
                                 setMsg('')
                                 setIsPopup(false)
-                        },2000)
+                                setColor('red')
+                        },4000)
                 }
         },[isPopup])
   return <Context.Provider value={{setColor,color,setIsAdminShow,isAdminShow,setFinalUser,finalUser,isPopup,setIsPopup,msg,setMsg,userGithub,setUserGithub,setUserDesignation,userDesignation,userCaption,setUserCaption,userName,setUserName,userEmail,setUserEmail,userImage,setUserImage,setIsLogin,isLogin,theme,setTheme}}>

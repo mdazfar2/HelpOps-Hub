@@ -83,6 +83,7 @@ const Login = ({ onClose, onSignupClick }) => {
 
     // Handle login errors
     if (!data.success) {
+      console.log(data.msg)
       setMsg(data.msg)
       setIsPopup(true)
       if (data.msg === "User Doesn't Valid" || data.msg === "Invalid Email") {
@@ -93,7 +94,7 @@ const Login = ({ onClose, onSignupClick }) => {
         // If only password is incorrect, clear just the password field
         setPassword("");
       }
-
+setLoading(false)
    
       return;
     }
