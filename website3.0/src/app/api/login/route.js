@@ -29,6 +29,7 @@ export async function POST(req) {
       //comparing the password
    let data1=await bcrypt.compareSync(password,data[0].password)
    // Checking for incorrect pass 
+   console.log(data1,"ddffffffffffffffffffff")
    if(!data1){
     return NextResponse.json({ success: false,msg:"Incorrect Password"},{status:"200"});
    }
@@ -38,6 +39,6 @@ export async function POST(req) {
        
     } catch (error) {
         console.error("Error in POST /api/check-email:", error);
-        return NextResponse.json({ success: false, error: error.message });
+        return NextResponse.json({ success: false, msg: "Error please login again"});
     }
 }

@@ -29,6 +29,11 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  authorEmail:{
+type:String
+  },id:{
+    type:String
+  },
   date: {
     type: Date,
     required: true,

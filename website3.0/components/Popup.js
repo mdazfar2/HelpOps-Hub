@@ -7,9 +7,9 @@ export default function Popup(props) {
    
     
     return (
-        <div className={`bg-${color} popup `} style={{backgroundColor:`${color}`}}>
+        <div className={`bg-${color} popup4 relative`} style={{backgroundColor:`${color}`}}>
             {msg}
-            <div className='line'></div>
+            <div className='line4'></div>
         </div>
     );
 }
