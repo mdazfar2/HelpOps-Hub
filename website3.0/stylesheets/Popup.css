@@ -1,44 +1,51 @@
-
-.popup4{
+.popup4 {
     min-width: 300px;
-    
+    max-width: 80vw; /* Set a maximum width */
     width: auto;
     height: auto;
     border-radius: 10px;
     position: fixed;
-    bottom: 100px;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
+    flex-direction: column; /* Ensure the text and line stack vertically */
     justify-content: center;
     align-items: center;
-    left: 30vw;
-   
     padding: 10px;
     color: white;
+    background-color: rgba(120, 0, 175, 0.8); /* Adjust background color as needed */
     animation: animate9 1s forwards;
-z-index: 999;
+    z-index: 999;
+    word-wrap: break-word; /* Ensure text wraps within the max-width */
 }
-.line4{
+
+.line4 {
     height: 3px;
     position: absolute;
-    bottom: 1px ;
-    animation: animate6 2s forwards;
-    left: 2px ;
-    /* width: 100% !important; */
-    color: rgb(5, 251, 255) ;
+    bottom: 1px;
+    animation: animate6 3s forwards;
+    left: 2px;
+    width: 98%; /* Adjusted width to avoid !important */
+    color: rgb(5, 251, 255);
     background-color: rgb(5, 251, 255);
     z-index: 1000;
 }
+
 @keyframes animate6 {
-    from{
+    from {
         width: 0px;
-    }to{
-        width: 98% ;
+    }
+    to {
+        width: 98%;
     }
 }
+
 @keyframes animate9 {
-    from{
+    from {
         opacity: 0;
-    }to{
+    }
+    to {
         opacity: 1;
     }
 }
