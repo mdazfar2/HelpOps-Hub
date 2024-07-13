@@ -27,21 +27,6 @@ let router=useRouter()
 //         window.removeEventListener('keydown', handlePaste);
 //     };
 // }, []);
-
-  const pasteImg = async ()=> {
-    const clipboardItems = await navigator.clipboard.read()
-    try {
-      
-        const blobOutput = await clipboardItems[0].getType('image/png')
-        
-        const data =await convertToBase64(blobOutput)
-        setIsImg(data)
-    } catch(e) {
-      const blobOutput = await clipboardItems[0].getType('text/plain')
-      console.log(blobOutput)
-      setTitle1((prev)=>prev+blobOutput)
-    }
-}
 const handlePaste1 = (event) => {
   const clipboardData = event.clipboardData;
   const items = clipboardData.items;
@@ -73,6 +58,20 @@ const handlePaste1 = (event) => {
   // Prevent the default paste behavior
   event.preventDefault();
 };
+  const pasteImg = async ()=> {
+    const clipboardItems = await navigator.clipboard.read()
+    try {
+      
+        const blobOutput = await clipboardItems[0].getType('image/png')
+        
+        const data =await convertToBase64(blobOutput)
+        setIsImg(data)
+    } catch(e) {
+      const blobOutput = await clipboardItems[0].getType('text/plain')
+      console.log(blobOutput)
+      setTitle1((prev)=>prev+blobOutput)
+    }
+}
 const handlePaste = (event) => {
   const clipboardData = event.clipboardData;
   const items = clipboardData.items;
@@ -197,8 +196,10 @@ const handlePaste = (event) => {
           <div
             className={`h-[100%] w-[1px] ${theme ? "bg-black" : "bg-white"}`}
           ></div>
-          <textarea
-            style={{height1
+          <input
+            style={{height1,
+              fontFamily:
+                "medium-content-title-font,Georgia,Cambria,Times New Roman,Times,serif",
             }}
             placeholder="Title"
             onClick={(e) => {
@@ -210,10 +211,10 @@ const handlePaste = (event) => {
             onInput={handletitle}
             onChange={(e)=>setTitle1(e.currentTarget.value)}
             ref={title}
-            className={` w-[100%]  h-auto w-[100%] placeholder:text-[#b3b3b1] focus:outline-none  bg-transparent  text-4xl font-georgia ${
+            className={` w-[100%]  w-[100%] placeholder:text-[#b3b3b1] focus:outline-none h-[100%] bg-transparent  text-4xl font-georgia ${
               theme ? "text-black" : "text-white"
             }`}
-          ></textarea>
+          ></input>
         </div>
         <input className="hidden" onChange={handleImageUpload} type="file" id="img-input"></input>
         <div htmlFor="img-input" className="h-auto m-auto">{isImg && <img src={isImg}></img>}</div>
@@ -245,7 +246,7 @@ const handlePaste = (event) => {
       placeholder='Write Something Amazing'
   
       onPaste={handlePaste1}
-      className={`h-auto  w-[100%]  border-b-white ${theme?"placeholder:text-[#b3b3b1]":"placeholder:text-[#b3b3b1] text-white "}  max-sm:text-3xl  overflow-hidden bg-transparent font-georgia text-3xl focus:outline-none`} 
+      className={`h-auto  w-[100%]  border-b-white ${theme?"placeholder:text-[#b3b3b1]":"placeholder:text-[#b3b3b1] text-white "}  max-sm:text-3xl  overflow-hidden bg-transparent font-georgia text-4xl focus:outline-none`} 
     />
           {/* <AutoResizeTextarea
             placeholder="Write Something Amazing"
