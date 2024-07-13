@@ -14,6 +14,7 @@ const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
+  const [oneTime,setOneTime]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
   let {setIsAdminShow,finalUser,userName,setFinalUser,setIsLogin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
@@ -97,17 +98,20 @@ let session=useSession()
       //     name:session.data.user.name
       //   })
       // })
+      if(!oneTime){
 
-        fetchData()
-     
-    setIsLogin1(true)
+        setOneTime(true)
+                fetchData()
+             
+            setIsLogin1(true)
+      }
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
 //       }
   
     }
-  },[session.status])
+  },[session.status,oneTime])
   const toggleAuth = () => {
     setShowAuth(!showAuth);
   };
