@@ -90,7 +90,7 @@ const Header = () => {
     >
       <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
         {/* Logo with VanillaTilt animation */}
-        <Link href="/">
+        <Link href="/" className="flex gap-1 items-center">
           <div data-tilt data-tilt-scale="1.1">
             <img
               src="new/HelpOps-H Fevicon.webp"
@@ -99,16 +99,17 @@ const Header = () => {
               draggable="false"
             />
           </div>
+          <h1 className={`${theme?"text-black":"text-white"} text-3xl  font-medium`}>elpOps Hub</h1>
         </Link>
 
         <div className="flex min-w-[70%] gap-[50px] justify-between max-xl:min-w-0 max-xl:justify-center items-center">
           {/* Main navigation links */}
-          <ul
-            className={`${
+       {  <ul
+            className={`${ 
               theme
                 ? "bg-white shadow-gray-300"
                 : "bg-[#393838] shadow-[#000000a6]"
-            } list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
+            }  ${pathname.startsWith('/blog')?"opacity-0":""}    list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
           >
             <li
               className={`${
@@ -138,7 +139,7 @@ const Header = () => {
             >
               <Link href="/contact">Contact</Link>
             </li>
-          </ul>
+          </ul>}
           {/* Navigation actions (sponsor button and toggle switch) */}
           <div className="flex items-center gap-2">
             {isAdminShow ? (
@@ -161,7 +162,7 @@ const Header = () => {
                     theme
                       ? "bg-gray-100/80 text-black hover:border-[1px] hover:border-whitesmoke"
                       : "bg-[#000] text-white hover:bg-transparent hover:border-[1px] hover:border-white"
-                  } rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
+                  } ${pathname.startsWith('/blog')?"opacity-0":""} rounded-2xl shadow-md shadow-black/20  text-xl cursor-pointer text-center transition-transform duration-500 ease-in-out w-30 p-2 hover:transform hover:translate-x-2.5 mr-5 max-[400px]:hidden`}
                   style={{ fontFamily: "ubuntu" }}
                 >
                   <FontAwesomeIcon icon={faHeart} id="heart" width={25} />

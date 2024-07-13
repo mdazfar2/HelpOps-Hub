@@ -154,8 +154,8 @@ function BlogPage({ theme }) {
   };
   return (
     <div className={`${theme?"bg-[#F4F4F4]":"bg-[#1e1d1d] "} transition-colors duration-500 min-h-screen pt-40 px-24`}>
-      <div className={`${theme?"text-black":"text-white "} text-center text-[30px] font-normal`}>
-        Ensuring You Never Get Stuck In DevOps Again!
+      <div className={`${theme?"text-black":"text-white "} font-medium text-center text-[30px] `}>
+        DevOps Blog Life
       </div>
       <div className="flex gap-20 mt-8 justify-center">
         <div className="w-[70%] flex flex-col">
@@ -290,7 +290,7 @@ function BlogPage({ theme }) {
         </div>
 
         <div className="w-[30%] flex flex-col relative items-center">
-        <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}  absolute top-[-130px] right-[10px] w-[300px] flex justify-center items-center gap-2  auth-btn`}  onClick={()=>router.push('createblog')}><FaPlus color="#9590d8"/> Create DevPost Now</button>          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
+        <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}  absolute top-[-130px] right-[10px] w-[228px] flex justify-center items-center gap-2  auth-btn`}  onClick={()=>router.push('createblog')}><FaPlus color="#9590d8"/> Create DevPost Now</button>          <div className={`${theme?"bg-[#D7E4EB] text-black border-black":"bg-[#111111] text-white border-[#525252]"}  border-2  border-dashed py-20 px-8 w-full h-[710px] rounded-2xl`}>
             <div className="text-center text-[30px] font-semibold">Top Posts</div>
             {topBlogs.map((blog, index) => (
               <div className={`top_blog_${index + 1} cursor-pointer my-8`} key={index} onClick={() => navigateToBlogDetails(blog._id)}>
