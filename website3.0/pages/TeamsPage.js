@@ -502,7 +502,7 @@ function TeamsPage({theme}) {
           <div className={`${theme? "bg-[#34a85330] border-[#3498db]" : "bg-gray-200 border-white" } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}>
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
-                <img className="rounded-[50%] w-[28%]" src="new/maintainer2.webp" alt="RamakrushnaBiswal" />
+                <img className="rounded-[50%] w-[28%]" src="https://github.com/RamakrushnaBiswal.png" alt="RamakrushnaBiswal" />
               </div>
               <div className="info-div text-center mt-[5px]">
                 <h2 className="mt-[10px] text-[1.5em] font-bold mb-2 font-arial">Ramakrushna</h2>
