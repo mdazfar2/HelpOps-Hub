@@ -252,7 +252,7 @@ async   function func() {
     <div
       className={`${
         theme ? "bg-gray-100" : " bg-[#1e1d1d]"
-      } transition-colors duration-500`}
+      } transition-colors duration-500 overflow-x-hidden md:overflow-x-auto`}
     >
       {
         Maintance?
