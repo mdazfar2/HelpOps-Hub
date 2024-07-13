@@ -7,36 +7,103 @@ export default function Createblog({ theme }) {
   const [isShow, setIsShow] = useState(false);
   const [showInTitle, setShowInTitle] = useState(true);
   let [isImg, setIsImg] = useState(false);
+  const [desc,desc1]=useState('')
+  let [title1,setTitle1]=useState('')
+  const [height1,setheight1]=useState('auto')
   let title=useRef()
   const textareaRef = useRef('');
   const [height, setHeight] = useState('auto');
 let router=useRouter()
-  useEffect(() => {
-    const handlePaste = (event) => {
-        if (event.ctrlKey && event.key === 'v') {
-            event.preventDefault();
-            pasteImg();
-        }
-    };
+//   useEffect(() => {
+//     const handlePaste = (event) => {
+//         if (event.ctrlKey && event.key === 'v') {
+//             event.preventDefault();
+//         }
+//     };
 
-    window.addEventListener('keydown', handlePaste);
+//     window.addEventListener('keydown', handlePaste);
 
-    return () => {
-        window.removeEventListener('keydown', handlePaste);
-    };
-}, []);
+//     return () => {
+//         window.removeEventListener('keydown', handlePaste);
+//     };
+// }, []);
 
   const pasteImg = async ()=> {
+    const clipboardItems = await navigator.clipboard.read()
     try {
-        const clipboardItems = await navigator.clipboard.read()
+      
         const blobOutput = await clipboardItems[0].getType('image/png')
+        
         const data =await convertToBase64(blobOutput)
         setIsImg(data)
     } catch(e) {
-        console.log(e);
+      const blobOutput = await clipboardItems[0].getType('text/plain')
+      console.log(blobOutput)
+      setTitle1((prev)=>prev+blobOutput)
     }
 }
+const handlePaste1 = (event) => {
+  const clipboardData = event.clipboardData;
+  const items = clipboardData.items;
+  
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
 
+    if (item.kind === 'file' && item.type.startsWith('image/')) {
+      const file = item.getAsFile();
+      const reader = new FileReader();
+      reader.onload =async (e) => {
+        // Handle image data
+        const imageSrc = e.target.result;
+        // For demonstration, we'll just log the image source
+        console.log('Image pasted:', imageSrc);
+        setIsImg(imageSrc)
+
+      };
+      reader.readAsDataURL(file);
+    } else if (item.kind === 'string') {
+      item.getAsString((text) => {
+        // Handle text data
+        console.log('Text pasted:', text);
+        desc1((prevContent) => prevContent + text);
+      });
+    }
+  }
+  
+  // Prevent the default paste behavior
+  event.preventDefault();
+};
+const handlePaste = (event) => {
+  const clipboardData = event.clipboardData;
+  const items = clipboardData.items;
+  
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+
+    if (item.kind === 'file' && item.type.startsWith('image/')) {
+      const file = item.getAsFile();
+      const reader = new FileReader();
+      reader.onload =async (e) => {
+        // Handle image data
+        const imageSrc = e.target.result;
+        // For demonstration, we'll just log the image source
+        console.log('Image pasted:', imageSrc);
+        setIsImg(imageSrc)
+
+      };
+      reader.readAsDataURL(file);
+    } else if (item.kind === 'string') {
+      item.getAsString((text) => {
+        // Handle text data
+        console.log('Text pasted:', text);
+        setTitle1((prevContent) => prevContent + text);
+      });
+    }
+  }
+  
+  // Prevent the default paste behavior
+  event.preventDefault();
+};
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -73,6 +140,8 @@ let router=useRouter()
         length:textareaRef.current.value.length,
         authorName:user.name,
         authorImage:user.image1,
+        id: JSON.parse(localStorage.getItem('finalUser'))._id,
+        authorEmail: JSON.parse(localStorage.getItem('finalUser')).email,
         authorCaption:user.caption,
         github:user.gthub,
         linkedin:user.linkedin,
@@ -90,6 +159,11 @@ let router=useRouter()
     setHeight('auto');
     setHeight(`${event.target.scrollHeight}px`);
   };
+  function handletitle(event){
+    
+    setheight1('auto');
+    setheight1(`${event.target.scrollHeight}px`);
+  }
   return (
     <div
       className={`flex flex-row items-start max-md:flex-col  ${
@@ -123,21 +197,23 @@ let router=useRouter()
           <div
             className={`h-[100%] w-[1px] ${theme ? "bg-black" : "bg-white"}`}
           ></div>
-          <input
-            style={{
-              fontFamily:
-                "medium-content-title-font,Georgia,Cambria,Times New Roman,Times,serif",
+          <textarea
+            style={{height1
             }}
             placeholder="Title"
             onClick={(e) => {
               changeShow(e);
             }}
             id="title"
+            value={title1}
+            onPaste={handlePaste}
+            onInput={handletitle}
+            onChange={(e)=>setTitle1(e.currentTarget.value)}
             ref={title}
-            className={` w-[100%]  w-[100%] placeholder:text-[#b3b3b1] focus:outline-none h-[100%] bg-transparent  text-4xl font-georgia ${
+            className={` w-[100%]  h-auto w-[100%] placeholder:text-[#b3b3b1] focus:outline-none  bg-transparent  text-4xl font-georgia ${
               theme ? "text-black" : "text-white"
             }`}
-          ></input>
+          ></textarea>
         </div>
         <input className="hidden" onChange={handleImageUpload} type="file" id="img-input"></input>
         <div htmlFor="img-input" className="h-auto m-auto">{isImg && <img src={isImg}></img>}</div>
@@ -163,10 +239,13 @@ let router=useRouter()
      onClick={changeShow}
       ref={textareaRef}
       style={{ height }}
+      onChange={(e)=>desc1(e.currentTarget.value)}
+          value={desc}
       onInput={handleInput}
       placeholder='Write Something Amazing'
   
-      className={`h-auto  w-[100%]  border-b-white ${theme?"placeholder:text-[#b3b3b1]":"placeholder:text-[#b3b3b1] text-white "}  max-sm:text-3xl  overflow-hidden bg-transparent font-georgia text-4xl focus:outline-none`} 
+      onPaste={handlePaste1}
+      className={`h-auto  w-[100%]  border-b-white ${theme?"placeholder:text-[#b3b3b1]":"placeholder:text-[#b3b3b1] text-white "}  max-sm:text-3xl  overflow-hidden bg-transparent font-georgia text-3xl focus:outline-none`} 
     />
           {/* <AutoResizeTextarea
             placeholder="Write Something Amazing"

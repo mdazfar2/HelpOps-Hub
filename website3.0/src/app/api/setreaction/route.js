@@ -1,6 +1,7 @@
 import user from "@utils/models/user"; // Importing Mongoose model for newsletter subscription
 import mongoose from "mongoose"; // Importing Mongoose for MongoDB interactions
 import { NextResponse } from "next/server"; // Importing Next.js server response utility
+import Blogs from "@utils/models/blog";
 
 export async function POST(req) {
         const { MONGO_URI } = process.env; 
@@ -9,6 +10,14 @@ export async function POST(req) {
         try{
 
             await mongoose.connect(MONGO_URI);
+            const blog = await Blogs.findById(blog_id);
+            const reactionIndex = blog.reactionList.findIndex(reaction => reaction.type === 'save');
+            if (reactionIndex !== -1) {
+                blog.reactionList[reactionIndex].count += 1;
+            } else {
+                blog.reactionList.push({ type: 'save', count: 1 });
+            }
+            await blog.save()
             //getting the data from db of both users 
             let data=await user.findById({_id:user_id})
             let reactionArray=data.reactions||new Map()
