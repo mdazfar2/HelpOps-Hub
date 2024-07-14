@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "@stylesheets/blogspage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faPlus, faHands } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faPlus, faHands, faBars } from "@fortawesome/free-solid-svg-icons";
 import {
   faComment as regularComment,
   faBookmark as regularBookmark,
@@ -18,6 +18,8 @@ function BlogPage({ theme }) {
   const [editorsChoiceCount, setEditorsChoiceCount] = useState(3);
   const [sortBy, setSortBy] = useState("date");
   const [filter, setFilter] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const sidebarRef = useRef(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -62,6 +64,32 @@ function BlogPage({ theme }) {
 
     fetchBlogs();
   }, [sortBy]);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        closeSidebar();
+      }
+    };
+
+    if (sidebarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sidebarOpen]);
 
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric" };
@@ -228,104 +256,157 @@ function BlogPage({ theme }) {
   }
   return (
     <div className="pt-24">
-    <div className="w-full bg-[#6089a4] h-9 mb-20 py-2 text-center text-white font-medium">Ensuring You Never Get Stuck in Devops Again !!</div>
-    <div className="flex gap-32 px-40">
-      <div
-        className={`${
-          theme ? "bg-[#F4F4F4]" : "bg-[#1e1d1d] "
-        } transition-colors duration-500 min-h-screen w-[70%]`}
-      >
-        <div className="text-sm flex gap-5 mb-6 cursor-pointer items-center text-gray-500 font-semibold">
-          <FontAwesomeIcon icon={faPlus} className="mr-2" />
-          <div
-            className={`${filter === "recentBlogs" ? "underline text-gray-900 underline-offset-[30px]" : ""}`}
-            onClick={handleRecentBlogsClick}
-          >
-            Recent Blogs
+      <div className="w-full bg-[#6089a4] h-9 mb-20 py-2 text-center text-white font-medium max-[425px]:font-[400] max-[425px]:text-[13px] max-[425px]:py-3">
+        Ensuring You Never Get Stuck in Devops Again !!
+      </div>
+      <div className="flex gap-32 px-40 max-lg:flex-col max-lg:gap-16 max-lg:px-20 max-md:px-10 max-sm:px-5">
+        <div
+          className={`${
+            theme ? "bg-[#F4F4F4]" : "bg-[#1e1d1d] "
+          } transition-colors duration-500 min-h-screen w-full`}
+        >
+          <div className="text-sm flex gap-5 mb-6 cursor-pointer items-center text-gray-500 font-semibold max-sm:flex-wrap max-[500px]:text-[12px] max-[500px]:gap-2">
+            <FontAwesomeIcon icon={faPlus} className="mr-2" />
+            <div
+              className={`${filter === "recentBlogs" ? "underline text-gray-900 underline-offset-[30px]" : ""}`}
+              onClick={handleRecentBlogsClick}
+            >
+              Recent Blogs
+            </div>
+            <div
+              onClick={handleTopPostsClick}
+              className={`${filter === "topPosts" ? "underline text-gray-900 underline-offset-[30px]" : ""}`}
+            >
+              Top Posts
+            </div>
+            <div>Book Marked</div>
+            <div
+              className={`${filter === "mustRead" ? "underline text-gray-900 underline-offset-[30px]" : ""}`}
+              onClick={handleMustReadClick}
+            >
+              Must Read
+            </div>
+            <div className="lg:hidden ml-auto" onClick={toggleSidebar}>
+              <FontAwesomeIcon icon={faBars} />
+            </div>
           </div>
-          <div
-            onClick={handleTopPostsClick}
-            className={`${filter === "topPosts" ? "underline text-gray-900 underline-offset-[30px]" : ""}`}
-          >
-            Top Posts
-          </div>
-          <div>Book Marked</div>
-          <div
-            className={`${filter === "mustRead" ? "underline text-gray-900 underline-offset-[30px]" : ""}`}
-            onClick={handleMustReadClick}
-          >
-            Must Read
+          <hr className="w-full border-[1px] border-gray-200" />
+          <div className="mt-10 w-full">
+            {(filter === "mustRead" ? mustReadBlogs : blogs).map((blog, index) => (
+              <div
+                className="cursor-pointer"
+                key={index}
+                onClick={() => navigateToBlogDetails(blog._id)}
+              >
+                <div className="flex items-center mb-2">
+                  <img
+                    src={blog.authorImage}
+                    onError={handleImageError}
+                    className="w-6 h-6 rounded-full mr-3"
+                  />
+                  <div className="text-sm">{blog.authorName}</div>
+                </div>
+                <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
+                  <div className="flex-1">
+                    <div className="text-2xl mb-2 font-extrabold max-sm:text-xl">
+                      {blog.title}
+                    </div>
+                    <div className="font-medium text-gray-600 max-sm:text-sm">
+                      {renderBlogDescription(blog.description)}
+                    </div>
+                    <div className="flex text-sm text-gray-500 justify-between items-center max-sm:flex-wrap max-sm:gap-2">
+                      <div className="flex gap-5 items-center max-sm:flex-wrap">
+                        <div className="my-2 font-medium ">
+                          {formatDate(blog.date)}
+                        </div>
+                        <div>
+                          <FontAwesomeIcon icon={faHands} className="mr-2" />
+                          {blog.reactionList.reduce(
+                            (sum, reaction) => sum + reaction.count,
+                            0
+                          )}
+                        </div>
+                        <div>
+                          <FontAwesomeIcon icon={faComment} className="mr-2" />
+                          {blog.comments.length}
+                        </div>
+                      </div>
+                      <div>
+                        <FontAwesomeIcon icon={regularBookmark} className="mr-2" />
+                        {blog.bookmarks}
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    src={blog.image}
+                    onError={handleImageError}
+                    className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
+                  />
+                </div>
+                <hr className="w-full mt-5 mb-5 border-gray-200" />
+              </div>
+            ))}
           </div>
         </div>
-        <hr className="w-full border-[1px] border-gray-200" />
-        <div className="mt-10 w-full">
-          {filter === "mustRead"
-            ? mustReadBlogs.map((blog, index) => (
-                <div
-                  className="cursor-pointer"
-                  key={index}
-                  onClick={() => navigateToBlogDetails(blog._id)}
-                >
-                  <div className="flex items-center mb-2">
-                    <img
-                      src={blog.authorImage}
-                      onError={handleImageError}
-                      className="w-6 h-6 rounded-full mr-3"
-                    />
-                    <div className="text-sm">{blog.authorName}</div>
-                  </div>
-                  <div className="flex gap-10 items-center">
-                    <div>
-                      <div className="text-2xl mb-2 font-extrabold " id="load" >
-                   {
-                        ' dssssssssssssssssss'
-
-                   }
-                      </div>
-                      <div className="font-medium text-gray-600"  >
-                        {renderBlogDescription(blog.description)}
-                      </div>
-                      <div className="flex text-sm text-gray-500 justify-between items-center">
-                        <div className="flex gap-5 items-center">
-                          <div className="my-2 font-medium ">
-                            {formatDate(blog.date)}
-                          </div>
-                          <div>
-                            <FontAwesomeIcon icon={faHands} className="mr-2" />
-                            {blog.reactionList.reduce(
-                              (sum, reaction) => sum + reaction.count,
-                              0
-                            )}
-                          </div>
-                          <div>
-                            <FontAwesomeIcon
-                              icon={faComment}
-                              className="mr-2"
-                            />
-                            {blog.comments.length}
-                          </div>
-                        </div>
-                        <div>
-                          <FontAwesomeIcon
-                            icon={regularBookmark}
-                            className="mr-2"
-                          />
-                          {blog.bookmarks}
-                        </div>
-                      </div>
-                    </div>
-                    <img
-                      src={blog.image}
-                      onError={handleImageError}
-                      className="h-[150px] w-[200px] bg-white object-cover object-center"
-                    />
-                  </div>
-                  <hr className="w-full mt-5 mb-5 border-gray-200" />
+        
+        {/* Sidebar for larger screens */}
+        <div className="hidden lg:flex flex-col gap-5 border-l-[1px] w-[30%] pl-10 border-gray-300">
+          <div className="text-sm font-semibold text-black">Editor's Choice</div>
+          <div>
+            {finalEditorsPick.map((blog, index) => (
+              <div
+                className="cursor-pointer mb-6"
+                key={index}
+                onClick={() => navigateToBlogDetails(blog._id)}
+              >
+                <div className="flex items-center mb-2">
+                  <img
+                    src={blog.authorImage}
+                    onError={handleImageError}
+                    className="w-5 h-5 rounded-full mr-3"
+                  />
+                  <div className="text-xs font-bold">{blog.authorName}</div>
                 </div>
-              ))
-            : blogs.map((blog, index) => (
+                <div className="text-sm font-extrabold">{blog.title}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-5">
+            <div className="text-sm font-semibold text-black">Key Influencers</div>
+            {topAuthors.map((author, index) => (
+              <div key={index}>
+                <div className="flex gap-2 items-center mb-2">
+                  <img
+                    src={author.authorImage}
+                    onError={handleImageError}
+                    className="w-5 h-5 rounded-full mr-3"
+                  />
+                  <div>
+                    <div className="text-xs font-bold">{author.authorName}</div>
+                    <div className="text-xs text-gray-500">{author.authorCaption}</div>
+                  </div>
+                  <div>
+                    <button className="px-3 py-2 bg-[#6089a4] rounded-3xl font-light text-sm text-white">
+                      Follow
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+  
+        {/* Hamburger menu for smaller screens */}
+        <div ref={sidebarRef} className={`lg:hidden fixed top-0 right-0 bottom-0 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-50`}>
+          <div className="p-4">
+            <div className="text-right">
+              <button onClick={toggleSidebar} className="text-2xl">&times;</button>
+            </div>
+            <div className="mt-8">
+              <div className="text-sm font-semibold text-black mb-4">Editor's Choice</div>
+              {finalEditorsPick.map((blog, index) => (
                 <div
-                  className="cursor-pointer"
+                  className="cursor-pointer mb-6"
                   key={index}
                   onClick={() => navigateToBlogDetails(blog._id)}
                 >
@@ -333,107 +414,38 @@ function BlogPage({ theme }) {
                     <img
                       src={blog.authorImage}
                       onError={handleImageError}
-                      className="w-6 h-6 rounded-full mr-3"
+                      className="w-5 h-5 rounded-full mr-3"
                     />
-                    <div className="text-sm">{blog.authorName}</div>
+                    <div className="text-xs font-bold">{blog.authorName}</div>
                   </div>
-                  <div className="flex gap-10 items-center">
-                    <div>
-                      <div className="text-2xl mb-2 font-extrabold"  dangerouslySetInnerHTML={{ __html: blog.title}}>
-                      </div>
-                      <div className="font-medium text-gray-600">
-                        {renderBlogDescription(blog.description)}
-                      </div>
-                      <div className="flex text-sm text-gray-500 justify-between items-center">
-                        <div className="flex gap-5 items-center">
-                          <div className="my-2 font-medium ">
-                            {formatDate(blog.date)}
-                          </div>
-                          <div>
-                            <FontAwesomeIcon icon={faHands} className="mr-2" />
-                            {blog.reactionList.reduce(
-                              (sum, reaction) => sum + reaction.count,
-                              0
-                            )}
-                          </div>
-                          <div>
-                            <FontAwesomeIcon
-                              icon={faComment}
-                              className="mr-2"
-                            />
-                            {blog.comments.length}
-                          </div>
-                        </div>
-                        <div>
-                          <FontAwesomeIcon
-                            icon={regularBookmark}
-                            className="mr-2"
-                          />
-                          {blog.bookmarks}
-                        </div>
-                      </div>
-                    </div>
-                    <img
-                      src={blog.image}
-                      onError={handleImageError}
-                      className="h-[150px] w-[200px] bg-white object-cover object-center"
-                    />
-                  </div>
-                  <hr className="w-full mt-5 mb-5 border-gray-200" />
+                  <div className="text-sm font-extrabold">{blog.title}</div>
                 </div>
               ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-5 border-l-[1px] w-[30%] pl-10 border-gray-300">
-        <div className="text-sm font-semibold text-black">Editor's Choice</div>
-        <div>
-          {finalEditorsPick.map((blog, index) => (
-            <div
-              className="cursor-pointer mb-6"
-              key={index}
-              onClick={() => navigateToBlogDetails(blog._id)}
-            >
-              <div className="flex items-center mb-2">
-                <img
-                  src={blog.authorImage}
-                  onError={handleImageError}
-                  className="w-5 h-5 rounded-full mr-3"
-                />
-                <div className="text-xs font-bold">{blog.authorName}</div>
-              </div>
-              <div className="text-sm font-extrabold"  dangerouslySetInnerHTML={{ __html: blog.title}}></div>
             </div>
-          ))}
-        </div>
-        <div className="flex flex-col gap-5">
-          <div className="text-sm font-semibold text-black">
-            Key Influencers
-          </div>
-          {topAuthors.map((author, index) => (
-            <div key={index}>
-              <div className="flex gap-2 items-center mb-2">
-                <img
-                  src={author.authorImage}
-                  onError={handleImageError}
-                  className="w-5 h-5 rounded-full mr-3"
-                />
-                <div>
-                  <div className="text-xs font-bold">{author.authorName}</div>
-                  <div className="text-xs text-gray-500">
-                    {author.authorCaption}
+            <div className="mt-8">
+              <div className="text-sm font-semibold text-black mb-4">Key Influencers</div>
+              {topAuthors.map((author, index) => (
+                <div key={index} className="mb-4">
+                  <div className="flex gap-2 items-center mb-2">
+                    <img
+                      src={author.authorImage}
+                      onError={handleImageError}
+                      className="w-5 h-5 rounded-full mr-3"
+                    />
+                    <div>
+                      <div className="text-xs font-bold">{author.authorName}</div>
+                      <div className="text-xs text-gray-500">{author.authorCaption}</div>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <button className="px-3 py-2 bg-[#6089a4] rounded-3xl font-light text-sm text-white">
+                  <button className="px-3 py-2 bg-[#6089a4] rounded-3xl font-light text-sm text-white mt-2">
                     Follow
                   </button>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
