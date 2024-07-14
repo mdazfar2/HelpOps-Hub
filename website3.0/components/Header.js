@@ -88,7 +88,7 @@ const Header = () => {
           theme ? "bg-transparent" : "transition-all bg-transparent"
         } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs ? "hidden" : "block"} `}
+        } ${isAdmin ? "hidden" : "block"} ${isBlogs|| pathname.startsWith('/createblog') ? "hidden" : "block"} `}
       >
         <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
           {/* Logo with VanillaTilt animation */}
@@ -284,7 +284,7 @@ const Header = () => {
     theme ? "bg-gray-100" : "transition-all bg-[#1e1d1d]"
   } z-50 fixed top-0 transition-all overflow-hidden ${
     show ? "top-0" : "top-[-550px]"
-  } ${isAdmin ? "hidden" : "block"} ${isBlogs ? "block" : "hidden"}`}
+  } ${isAdmin ? "hidden" : "block"} ${isBlogs || pathname.startsWith('/createblog') ? "block" : "hidden"}`}
 >
   <nav className="flex justify-between items-center w-[95%] my-5 mx-auto">
     <div className="flex items-center gap-4">
@@ -301,22 +301,22 @@ const Header = () => {
       </Link>
     </div>
 
-    <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[180px]">
+   {!pathname.startsWith('/createblog') && <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[180px]">
       <input
         type="text"
         placeholder="Search"
         className="bg-gray-200 py-2 px-5 rounded-3xl w-full"
       />
-    </div>
+    </div>}
 
     <div className="flex items-center lg:gap-10 lg:font-bold max-lg:gap-4 text-gray-600">
-      <Link href="/createblog" className="flex items-center gap-2">
+     {!pathname.startsWith('/createblog')&& <Link href="/createblog" className="flex items-center gap-2">
         <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
           <FontAwesomeIcon icon={faPen} className="max-md:w-5 max-md:h-5 text-gray-600" />
         </div>
         <span className="max-md:hidden">Create Blog</span>
       </Link>
-
+}
       <div className="block max-md:hidden">
         <AuthButton />
       </div>

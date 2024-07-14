@@ -180,16 +180,23 @@ function BlogPage({ theme }) {
     .sort((a, b) => b.totalReactions - a.totalReactions)
     .slice(0, 4);
 
-  const renderBlogDescription = (description) => {
-    const words = description.split(" ");
+    const renderBlogDescription = (description) => {
+      const words = description.split(" ");
     const limitedDescription = words.slice(0, 10).join(" ");
-
-    return words.length > 10 ? (
-      <React.Fragment>{limitedDescription}.... Read more</React.Fragment>
+    const hasMore = words.length > 10;
+  
+    // Check if description contains HTML tags
+    const containsHTML = /<[a-z][\s\S]*>/i.test(description);
+  
+    return containsHTML ? (
+      <div dangerouslySetInnerHTML={{ __html: limitedDescription + (hasMore ? ".... Read more" : "") }} />
     ) : (
-      limitedDescription
+      <React.Fragment>
+        {limitedDescription}
+        {hasMore && ".... Read more"}
+      </React.Fragment>
     );
-  };
+    };
 
   const navigateToBlogDetails = (blogId) => {
     router.push(`/blogs/${blogId}`);
@@ -285,8 +292,8 @@ function BlogPage({ theme }) {
                 </div>
                 <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
                   <div className="flex-1">
-                    <div className="text-2xl mb-2 font-extrabold max-sm:text-xl">
-                      {blog.title}
+                    <div className="text-2xl mb-2 font-normal max-sm:text-xl"   dangerouslySetInnerHTML={{ __html: blog.title}}>
+                  
                     </div>
                     <div className="font-medium text-gray-600 max-sm:text-sm">
                       {renderBlogDescription(blog.description)}
@@ -344,7 +351,7 @@ function BlogPage({ theme }) {
                   />
                   <div className="text-xs font-bold">{blog.authorName}</div>
                 </div>
-                <div className="text-sm font-extrabold">{blog.title}</div>
+                <div className="text-sm font-normal"   dangerouslySetInnerHTML={{ __html: blog.title}}></div>
               </div>
             ))}
           </div>
@@ -395,7 +402,7 @@ function BlogPage({ theme }) {
                     />
                     <div className="text-xs font-bold">{blog.authorName}</div>
                   </div>
-                  <div className="text-sm font-extrabold">{blog.title}</div>
+                  <div className="text-sm font-normal">{blog.title}</div>
                 </div>
               ))}
             </div>
