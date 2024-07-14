@@ -16,6 +16,61 @@ const regularIcons = {
   Comment: regularComment,
   Save: regularBookmark,
 };
+const fakeBlog = {
+  id: "fake-id-1",
+  title: "Sample Blog Post",
+  authorName: "John Doe",
+  authorImage: "https://via.placeholder.com/100",
+  date: "2024-07-14",
+  image: "https://via.placeholder.com/800x400",
+  introduction: "This is a sample blog post for testing purposes.",
+  sections: [
+    {
+      heading: "Section 1",
+      content: "This is the content of section 1.",
+      subsections: [
+        { subheading: "Subsection 1.1", content: "Content of subsection 1.1" },
+        { subheading: "Subsection 1.2", content: "Content of subsection 1.2" },
+      ],
+    },
+    {
+      heading: "Section 2",
+      content: "This is the content of section 2.",
+    },
+  ],
+  type: "Technology",
+  length: "5 min read",
+  mustRead: true,
+  editorsPick: false,
+  description: "This is a longer description of the sample blog post.",
+  authorTitle: "Senior Developer",
+  authorCaption: "Passionate about technology and writing",
+  github: "https://github.com",
+  linkedin: "https://linkedin.com",
+  reactionList: [
+    { type: "Icon1", count: 10 },
+    { type: "Icon2", count: 5 },
+    { type: "Icon3", count: 3 },
+  ],
+};
+
+const fakeComments = [
+  {
+    _id: "fake-comment-1",
+    user: { name: "Alice", image: "https://via.placeholder.com/50" },
+    comment: "Great article!",
+  },
+  {
+    _id: "fake-comment-2",
+    user: { name: "Bob", image: "https://via.placeholder.com/50" },
+    comment: "Very informative, thanks!",
+  },
+];
+
+const fakeOtherBlogs = [
+  { _id: "fake-blog-2", title: "Another Interesting Article" },
+  { _id: "fake-blog-3", title: "Yet Another Great Post" },
+];
 
 function BlogPost() {
   const [blog, setBlog] = useState({});
@@ -65,18 +120,17 @@ function BlogPost() {
           setBlog(data);
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
-          let count = 0;
-          data.reactionList.map((data1) => {
-            if (data1.type == "save") {
-              count += 1;
-            }
-          });
-          setCommentCount(count);
         } else {
-          setError("Failed to fetch blog.");
+          // Use fake data if backend request fails
+          setBlog(fakeBlog);
+          setComments(fakeComments);
+          updateTotalReactionCount(fakeBlog.reactionList);
         }
       } catch (error) {
-        setError("An error occurred while fetching the blog.");
+        // Use fake data if there's an error
+        setBlog(fakeBlog);
+        setComments(fakeComments);
+        updateTotalReactionCount(fakeBlog.reactionList);
       }
     };
 
@@ -139,7 +193,6 @@ function BlogPost() {
       setFinalUser(updatedData.user1);
 
       setIsFollowed(true);
-
     }
   }
   async function handleUnfollow() {
@@ -165,31 +218,21 @@ function BlogPost() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("/api/blog", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
+        const response = await fetch("/api/blog");
         if (response.ok) {
           const data = await response.json();
-          // Sort blogs by date in descending order
           const sortedBlogs = data.data.sort(
             (a, b) => new Date(b.date) - new Date(a.date)
           );
           setOtherBlogs(sortedBlogs);
-          setTimeout(() => {
-            setLoading(false);
-          }, 1500);
         } else {
-          setError("Failed to fetch blogs.");
-          setTimeout(() => {
-            setLoading(false);
-          }, 1500);
+          // Use fake data if backend request fails
+          setOtherBlogs(fakeOtherBlogs);
         }
       } catch (err) {
-        setError("An error occurred while fetching blogs.");
+        // Use fake data if there's an error
+        setOtherBlogs(fakeOtherBlogs);
+      } finally {
         setTimeout(() => {
           setLoading(false);
         }, 1500);
@@ -198,7 +241,6 @@ function BlogPost() {
 
     fetchBlogs();
   }, []);
-
   const otherBlogsByAuthor = otherBlogs.filter(
     (b) => b.authorName === blog.authorName
   );
@@ -381,19 +423,18 @@ function BlogPost() {
     <div
       className={`${
         theme ? "bg-[#F3F4F6]" : "bg-[#1e1d1d]"
-      } transition-colors duration-500 pt-20 md:pt-48 flex flex-col md:flex-row`}
+      } transition-colors duration-500 md:pt-28 pt-20 flex flex-col md:flex-row`}
     >
+      {/* Left sidebar */}
       <div className="w-full md:w-[10%] mb-4 md:mb-0">
         <div className="fixed bottom-0 left-0 right-0 md:static md:left-24 md:top-60 flex justify-center md:block z-10 bg-white md:bg-transparent">
           <div className="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4 p-4 md:p-0">
             <div className="flex md:flex-col space-x-4 md:space-x-0 md:space-y-4">
-     
               {panelIcons.slice(0, 3).map((panelIcon, index) => (
                 <div
                   key={index}
                   onClick={() => handleClick(index)}
                   className="flex flex-col justify-center items-center"
-
                   onMouseEnter={
                     panelIcon.label === "Heart"
                       ? handleMouseEnterIcon
@@ -421,7 +462,6 @@ function BlogPost() {
                           }`
                         : "text-white"
                     } text-[20px]`}
-                             
                   />
                   <span
                     className={`${
@@ -472,7 +512,7 @@ function BlogPost() {
                       src="/icon3.png"
                       width={100}
                       height={100}
-                      alt="Icon3"
+                      alt="Icon 3"
                     />
                   </div>
                 </div>
@@ -493,19 +533,14 @@ function BlogPost() {
           alt={blog.title}
           className="w-full h-48 md:h-96 object-cover mb-5 rounded-lg"
         />
- 
         <div className="px-2 md:px-10">
           <div
             className="flex items-center mb-5 cursor-pointer"
             onClick={handleOpenProfile}
           >
             <img
-              src={
-                fetchedUser
-                  ? fetchedUser.image1
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
-              }
-              alt={fetchedUser?fetchedUser.name:"User Image"}
+              src={blog.authorImage}
+              alt={blog.authorName}
               className="w-10 h-10 rounded-full mr-3"
             />
             <div>
@@ -548,7 +583,6 @@ function BlogPost() {
           <h1 className="text-2xl md:text-4xl font-extrabold mb-5">
             {blog.title}
           </h1>
-
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (
@@ -584,7 +618,7 @@ function BlogPost() {
               </div>
             )}
           </div>
-          <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
+          <div className="pb-10">{blog.description}</div>
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5">Top Comments</div>
           <div className="flex items-center justify-center mb-4">
@@ -607,7 +641,6 @@ function BlogPost() {
                 if (e.key === "Enter") handleAddComment();
               }}
             />
-            <FaPaperPlane onClick={handleAddComment} className="relative right-[50px] cursor-pointer z-50" color="blue" size={'2rem'}/>
           </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[300px] md:h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
@@ -636,22 +669,18 @@ function BlogPost() {
         </div>
       </div>
 
+      {/* Right sidebar */}
       <div className="w-full md:w-[25%] md:ml-5 px-4 md:px-0">
         <div
           className={`${
             theme ? "bg-white" : "bg-[#e2e2e2]"
           } h-[400px] rounded-xl overflow-hidden mb-5`}
         >
-
           <div className="w-full bg-[#000000] h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
-              src={
-                fetchedUser
-                  ? fetchedUser.image1
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
-              }
-              alt={fetchedUser?fetchedUser.name:"User Image"}
+              src={blog.authorImage}
+              alt={blog.authorName}
               className="w-12 h-12 rounded-full mr-3 relative -top-3"
             />
             <div className="py-1">
@@ -680,37 +709,16 @@ function BlogPost() {
               theme ? "bg-gray-100" : "bg-[#9d9d9d]"
             } flex flex-col items-center m-5 p-5 h-52`}
           >
-
-            {fetchedUser ? (
-              <>
-                <div className="text-lg font-bold mb-2">
-                  {fetchedUser.designation}
-                </div>
-                <div className="text-lg text-center">{fetchedUser.caption}</div>
-                <div className="flex gap-5 mt-5 text-2xl">
-                  {fetchedUser.github && (
-                    <a
-                      href={fetchedUser.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FontAwesomeIcon icon={faGithub} />
-                    </a>
-                  )}
-                  {fetchedUser.linkedin && (
-                    <a
-                      href={fetchedUser.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FontAwesomeIcon icon={faLinkedinIn} />
-                    </a>
-                  )}
-                </div>
-              </>
-            ) : (
-              <div className="text-lg font-bold mb-2">Loading...</div> // Fallback content while fetching
-            )}
+            <div className="text-lg font-bold mb-2">{blog.authorTitle}</div>
+            <div className="text-lg text-center">{blog.authorCaption}</div>
+            <div className="flex gap-5 mt-5 text-2xl">
+              <a href={`${blog.github}`}>
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+              <a href={`${blog.linkedin}`}>
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </a>
+            </div>
           </div>
         </div>
         <div
@@ -752,8 +760,8 @@ function BlogPost() {
                         : "bg-[#0f0e0e] text-white"
                     } my-5 rounded-xl p-5 cursor-pointer`}
                     onClick={() => navigateToBlogDetails(otherBlog._id)}
-                    dangerouslySetInnerHTML={{ __html: otherBlog.title}}
                   >
+                    {otherBlog.title}
                   </li>
                 ))}
               </ul>
