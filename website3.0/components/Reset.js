@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {FaEye,FaEyeSlash} from 'react-icons/fa'
 import "@stylesheets/reset.css";
-import Popup from './Popup';
 import { Context } from '@context/store';
 
 export default function Reset() {

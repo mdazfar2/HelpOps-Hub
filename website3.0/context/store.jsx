@@ -17,7 +17,7 @@ export const GlobalContext=({children})=>{
         let [theme,setTheme]=useState(true)
         let [isPopup,setIsPopup]=useState(false)
         let [msg,setMsg]=useState('sddddddddddddddddddddddddddddd')
-        let [color,setColor]=useState('red')
+        let [color,setColor]=useState('red-500')
         useEffect(()=>{
 console.log(theme)
         },[theme])
@@ -26,7 +26,7 @@ console.log(theme)
                         setTimeout(()=>{
                                 setMsg('')
                                 setIsPopup(false)
-                                setColor('red')
+                                setColor('red-500')
                         },4000)
                 }
         },[isPopup])

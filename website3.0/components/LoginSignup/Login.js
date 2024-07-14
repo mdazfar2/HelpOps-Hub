@@ -2,7 +2,6 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import "@stylesheets/login-signup.css";
-import Popup from "@components/Popup";
 import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { Context } from "@context/store";

@@ -7,7 +7,6 @@ import "@stylesheets/resourceloader.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {FaThumbsUp,FaHeart} from 'react-icons/fa6'
-import Popup from "@components/Popup";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
 function ResourcesPage() {

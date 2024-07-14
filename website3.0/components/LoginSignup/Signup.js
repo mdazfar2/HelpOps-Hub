@@ -2,7 +2,6 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import "../../stylesheets/login-signup.css";
-import Popup from "../Popup";
 import Popup1 from "../Popup1";
 import { signIn, useSession } from "next-auth/react";
 import OTP from "@pages/OTP";
