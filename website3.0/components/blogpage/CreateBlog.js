@@ -11,7 +11,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
 import { useRouter } from "next/navigation";
 export default function CreateBlog() {
-    const {theme}=useContext(Context)
+    const {theme,isLogin}=useContext(Context)
     const [isShow, setIsShow] = useState(false);
     const [showInTitle, setShowInTitle] = useState(true);
     let [isImg, setIsImg] = useState(false);
@@ -187,7 +187,9 @@ export default function CreateBlog() {
      
     }
    async function handleFormSubmit(){
-  
+    if(!isLogin){
+        return
+    }
     let user=await JSON.parse(localStorage.getItem("finalUser"))
       await fetch('/api/blog',{
         method:"POST",
