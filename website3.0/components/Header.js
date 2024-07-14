@@ -310,13 +310,13 @@ const Header = () => {
     </div>
 
     <div className="flex items-center lg:gap-10 lg:font-bold max-lg:gap-4 text-gray-600">
-      <Link href="/createblog" className="flex items-center gap-2">
+     {!pathname.startsWith('/createblog')&& <Link href="/createblog" className="flex items-center gap-2">
         <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
           <FontAwesomeIcon icon={faPen} className="max-md:w-5 max-md:h-5 text-gray-600" />
         </div>
         <span className="max-md:hidden">Create Blog</span>
       </Link>
-
+}
       <div className="block max-md:hidden">
         <AuthButton />
       </div>
