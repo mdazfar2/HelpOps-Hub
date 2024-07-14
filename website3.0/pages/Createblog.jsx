@@ -101,11 +101,11 @@ useEffect(() => {
 
 
 
-useEffect(() => {
-  Array.from(document.getElementsByClassName('ql-toolbar')).map((e)=>{
-e.style.visibility = 'hidden';
-  })
-}, []);
+// useEffect(() => {
+//   Array.from(document.getElementsByClassName('ql-toolbar')).map((e)=>{
+// e.style.visibility = 'hidden';
+//   })
+// }, []);
 
 function handleToolbar(e) {
 console.log(e,'in toolbar 1 ')
@@ -243,9 +243,9 @@ function handleToolbar1(e) {
                 <FaPlus fill={theme ? "black" : "white"} />
               </div>
               {isShow && (
-                <div className="border border-purple-600 w-[30px] h-[30px] flex justify-center items-center rounded-full">
+                <label htmlFor="img-input" className="border border-purple-600 w-[30px] h-[30px] flex justify-center items-center rounded-full">
                   <FaImage size={"1rem"} fill="blue" />
-                </div>
+                </label>
               )}
             </div>
           )}

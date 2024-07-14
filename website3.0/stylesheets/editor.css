@@ -37,3 +37,6 @@ font-style: normal;
     border: none !important;
     border-bottom: solid rgb(172, 167, 167) 1px !important;
   }
+  .ql-toolbar{
+    visibility: hidden;
+  }

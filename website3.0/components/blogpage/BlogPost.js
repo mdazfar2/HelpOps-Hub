@@ -475,7 +475,7 @@ function BlogPost() {
               </span>
             </div>
           </div>
-          <h1 className="text-4xl font-extrabold mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>
+          <h1 className="text-4xl font-normal mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (

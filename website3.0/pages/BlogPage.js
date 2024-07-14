@@ -292,7 +292,7 @@ function BlogPage({ theme }) {
                 </div>
                 <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
                   <div className="flex-1">
-                    <div className="text-2xl mb-2 font-extrabold max-sm:text-xl"   dangerouslySetInnerHTML={{ __html: blog.title}}>
+                    <div className="text-2xl mb-2 font-normal max-sm:text-xl"   dangerouslySetInnerHTML={{ __html: blog.title}}>
                   
                     </div>
                     <div className="font-medium text-gray-600 max-sm:text-sm">
@@ -351,7 +351,7 @@ function BlogPage({ theme }) {
                   />
                   <div className="text-xs font-bold">{blog.authorName}</div>
                 </div>
-                <div className="text-sm font-extrabold"   dangerouslySetInnerHTML={{ __html: blog.title}}></div>
+                <div className="text-sm font-normal"   dangerouslySetInnerHTML={{ __html: blog.title}}></div>
               </div>
             ))}
           </div>
@@ -402,7 +402,7 @@ function BlogPage({ theme }) {
                     />
                     <div className="text-xs font-bold">{blog.authorName}</div>
                   </div>
-                  <div className="text-sm font-extrabold">{blog.title}</div>
+                  <div className="text-sm font-normal">{blog.title}</div>
                 </div>
               ))}
             </div>
