@@ -26,17 +26,18 @@ function BlogPost() {
   const pathname = usePathname();
   const id = pathname.split("/blogs/")[1];
   const { theme } = useContext(Context);
-  const { finalUser, isLogin, setIsPopup, setMsg,setFinalUser } = useContext(Context);
+  const { finalUser, isLogin, setIsPopup, setMsg, setFinalUser } =
+    useContext(Context);
   const [hovered, setHovered] = useState(false);
   const iconRef = useRef(null);
   const panelRef = useRef(null);
-  const [isFollowed,setIsFollowed]=useState(false)
+  const [isFollowed, setIsFollowed] = useState(false);
   const timerRef = useRef(null);
   const [loading, setLoading] = useState(true);
-  let [commentCount,setCommentCount]=useState(0)
+  let [commentCount, setCommentCount] = useState(0);
   const router = useRouter();
   console.log(finalUser);
-  
+
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -58,8 +59,7 @@ function BlogPost() {
     if (!isLogin) {
       return;
     }
-    if(blog.authorEmail){
-
+    if (blog.authorEmail) {
       let updatedData = await fetch("/api/setfollow", {
         method: "POST",
         body: JSON.stringify({
@@ -68,12 +68,12 @@ function BlogPost() {
         }),
       });
       updatedData = await updatedData.json();
-      let d=await JSON.stringify(updatedData.user1)
-      localStorage.setItem('finalUser',d)
-      setFinalUser(updatedData.user1)
-     
-        setIsFollowed(true)
-      
+      let d = await JSON.stringify(updatedData.user1);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(updatedData.user1);
+
+      setIsFollowed(true);
+
       // if (updatedData.user.followers.hasOwnProperty(finalUser._id)) {
       //   setIsFollowed(true);
       // }
@@ -83,22 +83,19 @@ function BlogPost() {
     if (!isLogin) {
       return;
     }
-    if(blog.authorEmail){
-
+    if (blog.authorEmail) {
       let updatedData = await fetch("/api/unfollow", {
         method: "POST",
         body: JSON.stringify({
           user_id: finalUser.email,
-          other_user_id: blog.authorEmail
+          other_user_id: blog.authorEmail,
         }),
       });
       updatedData = await updatedData.json();
-      let d=await JSON.stringify(updatedData.user1)
-      localStorage.setItem('finalUser',d)
-      setFinalUser(updatedData.user1)
-        setIsFollowed(false)
-  
-      
+      let d = await JSON.stringify(updatedData.user1);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(updatedData.user1);
+      setIsFollowed(false);
     }
   }
   useEffect(() => {
@@ -110,13 +107,13 @@ function BlogPost() {
           setBlog(data);
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
-         let count=0
-          data.reactionList.map((data1)=>{
-            if(data1.type=="save"){
-              count+=1
+          let count = 0;
+          data.reactionList.map((data1) => {
+            if (data1.type == "save") {
+              count += 1;
             }
-          })
-          setCommentCount(count)
+          });
+          setCommentCount(count);
         } else {
           setError("Failed to fetch blog.");
         }
@@ -209,30 +206,30 @@ function BlogPost() {
       }
     }
   };
-  useEffect(()=>{
-    console.log(finalUser)
-  },[finalUser])
-    async function handleClick(key){
-      if (!isLogin) {
-        setIsPopup(true);
-        setMsg("Please Login ");
-        return;
-      }
-      if(key=='2'){
-     let data= await fetch('/api/setreaction',{
-        method:"POST",
-        body:JSON.stringify({
-          user_id:finalUser._id,
-          blog_id:id,
-          reaction:'2'
-        }) 
-      })
-      data=await data.json()
-      let d=await JSON.stringify(data.user)
-      localStorage.setItem('finalUser',d)
-      setFinalUser(data.user)
+  useEffect(() => {
+    console.log(finalUser);
+  }, [finalUser]);
+  async function handleClick(key) {
+    if (!isLogin) {
+      setIsPopup(true);
+      setMsg("Please Login ");
+      return;
     }
+    if (key == "2") {
+      let data = await fetch("/api/setreaction", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser._id,
+          blog_id: id,
+          reaction: "2",
+        }),
+      });
+      data = await data.json();
+      let d = await JSON.stringify(data.user);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(data.user);
     }
+  }
   const handleReactionClick = async (reactionType) => {
     if (!isLogin) {
       setIsPopup(true);
@@ -337,27 +334,26 @@ function BlogPost() {
   const navigateToBlogDetails = (blogId) => {
     router.push(`/blogs/id=${blogId}`);
   };
-  function handleOpenProfile(){
-    if(blog._id){
-
-      router.push(`/profile?id=${blog.id}`)
+  function handleOpenProfile() {
+    if (blog._id) {
+      router.push(`/profile?id=${blog.id}`);
     }
   }
   return (
     <div
       className={`${
-        theme ? "bg-[#F3F4F6]" : " bg-[#1e1d1d]"
-      } transition-colors duration-500 pt-48 flex`}
+        theme ? "bg-[#F3F4F6]" : "bg-[#1e1d1d]"
+      } transition-colors duration-500 pt-48 flex flex-col md:flex-row`}
     >
-      <div className="w-[10%]">
-        <div className="fixed left-24 top-60">
-          <div className="relative flex flex-col items-center space-y-4">
-            <div className="space-y-4">
-              {
-               panelIcons.slice(0, 3).map((panelIcon, index) => (
+      {/* Left sidebar */}
+      <div className="w-full md:w-[10%] mb-4 md:mb-0">
+        <div className="fixed bottom-0 left-0 right-0 md:static md:left-24 md:top-60 flex justify-center md:block z-10 bg-white md:bg-transparent">
+          <div className="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4 p-4 md:p-0">
+            <div className="flex md:flex-col space-x-4 md:space-x-0 md:space-y-4">
+              {panelIcons.slice(0, 3).map((panelIcon, index) => (
                 <div
                   key={index}
-                  onClick={()=>handleClick(index)} 
+                  onClick={() => handleClick(index)}
                   className="flex flex-col justify-center items-center"
                   onMouseEnter={
                     panelIcon.label === "Heart"
@@ -373,46 +369,71 @@ function BlogPost() {
                 >
                   <FontAwesomeIcon
                     icon={panelIcon.regularIcon}
-                    className={`${theme? `${isLogin&& index == 2 && id in JSON.parse( localStorage.getItem('finalUser')).reactions ? "text-blue-500  h-[30px]" : ""} `:" text-white "} \
-        text-[20px]
-      `}
+                    className={`${
+                      theme
+                        ? `${
+                            isLogin &&
+                            index == 2 &&
+                            id in
+                              JSON.parse(localStorage.getItem("finalUser"))
+                                .reactions
+                              ? "text-blue-500 h-[30px]"
+                              : ""
+                          }`
+                        : "text-white"
+                    } text-[20px]`}
                   />
                   <span
                     className={`${
-                      theme ? "text-gray-900 " : " text-white "
+                      theme ? "text-gray-900" : "text-white"
                     } my-2 text-sm`}
                   >
-                    {  index==2?commentCount: panelIcon.count}
+                    {index == 2 ? commentCount : panelIcon.count}
                   </span>
                 </div>
               ))}
             </div>
             {hovered && (
               <div
-                className="absolute top-0 left-full flex bg-white shadow-lg rounded-lg p-4"
+                className="absolute bottom-full left-0 md:top-0 md:left-full flex bg-white shadow-lg rounded-lg p-4"
                 onMouseEnter={handleMouseEnterPanel}
                 onMouseLeave={handleMouseLeavePanel}
                 ref={panelRef}
-                style={{ width: "auto", minWidth: "150px" }} // Fixed width to avoid resizing
+                style={{ width: "auto", minWidth: "150px" }}
               >
                 <div className="flex gap-5 py-2">
                   <div
                     className="cursor-pointer"
                     onClick={() => handleReactionClick("Icon1")}
                   >
-                    <img src="/icon1.png" width={100} height={100} />
+                    <img
+                      src="/icon1.png"
+                      width={100}
+                      height={100}
+                      alt="Icon 1"
+                    />
                   </div>
                   <div
                     className="cursor-pointer"
                     onClick={() => handleReactionClick("Icon2")}
                   >
-                    <img src="/icon2.png" width={100} height={100} />
+                    <img
+                      src="/icon2.png"
+                      width={100}
+                      height={100}
+                      alt="Icon 2"
+                    />
                   </div>
                   <div
                     className="cursor-pointer"
                     onClick={() => handleReactionClick("Icon3")}
                   >
-                    <img src="/icon3.png" width={100} height={100} />
+                    <img
+                      src="/icon3.png"
+                      width={100}
+                      height={100}
+                      alt="Icon 3"
+                    />
                   </div>
                 </div>
               </div>
@@ -421,18 +442,22 @@ function BlogPost() {
         </div>
       </div>
 
+      {/* Main content */}
       <div
         className={`${
-          theme ? "bg-white text-black " : " bg-[#0f0e0e] text-white "
-        } transition-colors duration-500 w-[55%] shadow-lg rounded-lg`}
+          theme ? "bg-white text-black" : "bg-[#0f0e0e] text-white"
+        } transition-colors duration-500 w-full md:w-[55%] shadow-lg rounded-lg px-4 md:px-10`}
       >
         <img
           src={blog.image}
           alt={blog.title}
-          className="w-full h-96 object-cover mb-5 rounded-lg"
+          className="w-full h-48 md:h-96 object-cover mb-5 rounded-lg"
         />
-        <div className="px-10">
-          <div className="flex items-center mb-5 cursor-pointer" onClick={handleOpenProfile}>
+        <div className="px-2 md:px-10">
+          <div
+            className="flex items-center mb-5 cursor-pointer"
+            onClick={handleOpenProfile}
+          >
             <img
               src={blog.authorImage}
               alt={blog.authorName}
@@ -451,7 +476,7 @@ function BlogPost() {
           </div>
           <div className="flex gap-5 py-2 mb-5">
             <div className="flex cursor-pointer">
-              <img src="/icon1.png" width={25} height={25} />
+              <img src="/icon1.png" width={25} height={25} alt="Icon 1" />
               <span>
                 {blog.reactionList?.find(
                   (reaction) => reaction.type === "Icon1"
@@ -459,7 +484,7 @@ function BlogPost() {
               </span>
             </div>
             <div className="flex cursor-pointer">
-              <img src="/icon2.png" width={25} height={25} />
+              <img src="/icon2.png" width={25} height={25} alt="Icon 2" />
               <span>
                 {blog.reactionList?.find(
                   (reaction) => reaction.type === "Icon2"
@@ -467,7 +492,7 @@ function BlogPost() {
               </span>
             </div>
             <div className="flex cursor-pointer">
-              <img src="/icon3.png" width={25} height={25} />
+              <img src="/icon3.png" width={25} height={25} alt="Icon 3" />
               <span>
                 {blog.reactionList?.find(
                   (reaction) => reaction.type === "Icon3"
@@ -475,18 +500,20 @@ function BlogPost() {
               </span>
             </div>
           </div>
-          <h1 className="text-4xl font-extrabold mb-5">{blog.title}</h1>
+          <h1 className="text-2xl md:text-4xl font-extrabold mb-5">
+            {blog.title}
+          </h1>
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (
               <div key={index} className="mb-5">
-                <h2 className="text-2xl font-semibold mb-3">
+                <h2 className="text-xl md:text-2xl font-semibold mb-3">
                   {section.heading}
                 </h2>
                 <p className="text-gray-600 mb-3">{section.content}</p>
                 {section.subsections?.map((sub, subIndex) => (
-                  <div key={subIndex} className="ml-5 mb-3">
-                    <h3 className="text-xl font-semibold mb-2">
+                  <div key={subIndex} className="ml-3 md:ml-5 mb-3">
+                    <h3 className="text-lg md:text-xl font-semibold mb-2">
                       {sub.subheading}
                     </h3>
                     <p className="text-gray-600">{sub.content}</p>
@@ -495,18 +522,18 @@ function BlogPost() {
               </div>
             ))}
           </div>
-          <div className="flex items-center mb-5">
-            <div className="text-sm font-medium bg-blue-100 text-blue-500 px-2 py-1 rounded">
+          <div className="flex flex-wrap items-center mb-5">
+            <div className="text-sm font-medium bg-blue-100 text-blue-500 px-2 py-1 rounded mb-2 mr-2">
               {blog.type}
             </div>
-            <div className="ml-3 text-sm text-gray-500">{blog.length}</div>
+            <div className="text-sm text-gray-500 mb-2 mr-2">{blog.length}</div>
             {blog.mustRead && (
-              <div className="ml-3 text-sm text-red-500 font-semibold">
+              <div className="text-sm text-red-500 font-semibold mb-2 mr-2">
                 Must Read
               </div>
             )}
             {blog.editorsPick && (
-              <div className="ml-3 text-sm text-green-500 font-semibold">
+              <div className="text-sm text-green-500 font-semibold mb-2">
                 Editor's Pick
               </div>
             )}
@@ -535,7 +562,7 @@ function BlogPost() {
               }}
             />
           </div>
-          <div className="border-gray-300 rounded-xl mb-10 w-full h-[500px] p-5 overflow-y-auto">
+          <div className="border-gray-300 rounded-xl mb-10 w-full h-[300px] md:h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
               comments.map((comment, index) => (
                 <div
@@ -545,6 +572,7 @@ function BlogPost() {
                   <img
                     src={comment.user.image}
                     className="w-10 h-10 rounded-full mr-3"
+                    alt={comment.user.name}
                   />
                   <div>
                     <div className="font-medium text-sm mb-1">
@@ -561,14 +589,14 @@ function BlogPost() {
         </div>
       </div>
 
-      <div className="w-[25%] ml-5">
+      {/* Right sidebar */}
+      <div className="w-full md:w-[25%] md:ml-5 px-4 md:px-0">
         <div
           className={`${
-            theme ? "bg-white" : " bg-[#e2e2e2]"
-          } h-[400px] rounded-xl overflow-hidden`}
+            theme ? "bg-white" : "bg-[#e2e2e2]"
+          } h-[400px] rounded-xl overflow-hidden mb-5`}
         >
-          {/* <img src="/banner.png" alt="" /> */}
-          <div className="w-full bg-[#000000] h-10" ></div>
+          <div className="w-full bg-[#000000] h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
               src={blog.authorImage}
@@ -580,20 +608,26 @@ function BlogPost() {
             </div>
           </div>
           <div className="w-full px-4">
-        
-         {
-
-    isFollowed?<button onClick={handleUnfollow} className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
-    UnFollow
-</button>:        <button onClick={handleFollow} className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
+            {isFollowed ? (
+              <button
+                onClick={handleUnfollow}
+                className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white"
+              >
+                UnFollow
+              </button>
+            ) : (
+              <button
+                onClick={handleFollow}
+                className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white"
+              >
                 Follow
-            </button>
-         }
+              </button>
+            )}
           </div>
           <div
             className={`${
-              theme ? "bg-gray-100" : " bg-[#9d9d9d]"
-            } flex flex-col items-center m-5 p-5 h-52 `}
+              theme ? "bg-gray-100" : "bg-[#9d9d9d]"
+            } flex flex-col items-center m-5 p-5 h-52`}
           >
             <div className="text-lg font-bold mb-2">{blog.authorTitle}</div>
             <div className="text-lg text-center">{blog.authorCaption}</div>
@@ -609,7 +643,7 @@ function BlogPost() {
         </div>
         <div
           className={`${
-            theme ? "bg-white text-black " : " bg-[#0f0e0e] text-white "
+            theme ? "bg-white text-black" : "bg-[#0f0e0e] text-white"
           } my-5 rounded-xl p-5`}
         >
           <div className="text-xl font-bold flex">
@@ -620,23 +654,17 @@ function BlogPost() {
             <>
               <div
                 className={`${
-                  theme
-                    ? "bg-gray-100  text-black "
-                    : " bg-[#9d9d9d] text-white "
+                  theme ? "bg-gray-100 text-black" : "bg-[#9d9d9d] text-white"
                 } my-5 h-16 rounded-xl p-5`}
               ></div>
               <div
                 className={`${
-                  theme
-                    ? "bg-gray-100 text-black "
-                    : " bg-[#9d9d9d] text-white "
+                  theme ? "bg-gray-100 text-black" : "bg-[#9d9d9d] text-white"
                 } my-5 h-16 rounded-xl p-5`}
               ></div>
               <div
                 className={`${
-                  theme
-                    ? "bg-gray-100  text-black "
-                    : " bg-[#9d9d9d] text-white "
+                  theme ? "bg-gray-100 text-black" : "bg-[#9d9d9d] text-white"
                 } my-5 h-16 rounded-xl p-5`}
               ></div>
             </>
@@ -648,8 +676,8 @@ function BlogPost() {
                     key={otherBlog.id}
                     className={`${
                       theme
-                        ? "bg-[#f5f5f5] text-black "
-                        : " bg-[#0f0e0e] text-white "
+                        ? "bg-[#f5f5f5] text-black"
+                        : "bg-[#0f0e0e] text-white"
                     } my-5 rounded-xl p-5 cursor-pointer`}
                     onClick={() => navigateToBlogDetails(otherBlog._id)}
                   >
