@@ -280,49 +280,65 @@ const Header = () => {
       </header>
 
       <header
-  className={`w-screen ${
-    theme ? "bg-gray-100" : "transition-all bg-[#1e1d1d]"
-  } z-50 fixed top-0 transition-all overflow-hidden ${
-    show ? "top-0" : "top-[-550px]"
-  } ${isAdmin ? "hidden" : "block"} ${isBlogs ? "block" : "hidden"}`}
->
-  <nav className="flex justify-between items-center w-[95%] my-5 mx-auto">
-    <div className="flex items-center gap-4">
-      <Link href="/" className="flex items-center">
-        <div data-tilt data-tilt-scale="1.1">
-          <img
-            src="new/HelpOps-H Fevicon.webp"
-            alt="Logo"
-            className="w-12 h-12 max-[445px]:w-10 max-[445px]:h-10"
-            draggable="false"
-          />
-        </div>
-        <div className="text-2xl max-md:text-xl max-sm:text-lg max-[475px]:text-base max-[445px]:text-[14px]">elpOps Hub</div>
-      </Link>
-    </div>
+        className={`w-screen ${
+          theme
+            ? "bg-gray-100 text-black"
+            : "transition-all text-white bg-[#1e1d1d]"
+        } z-50 fixed top-0 transition-all overflow-hidden ${
+          show ? "top-0" : "top-[-550px]"
+        } ${isAdmin ? "hidden" : "block"} ${isBlogs ? "block" : "hidden"}`}
+      >
+        <nav className="flex justify-between items-center w-[95%] my-5 mx-auto">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="flex items-center">
+              <div data-tilt data-tilt-scale="1.1">
+                <img
+                  src="new/HelpOps-H Fevicon.webp"
+                  alt="Logo"
+                  className="w-12 h-12 max-[445px]:w-10 max-[445px]:h-10"
+                  draggable="false"
+                />
+              </div>
+              <div className="text-2xl max-md:text-xl max-sm:text-lg max-[475px]:text-base max-[445px]:text-[14px]">
+                elpOps Hub
+              </div>
+            </Link>
+          </div>
 
-    <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[180px]">
-      <input
-        type="text"
-        placeholder="Search"
-        className="bg-gray-200 py-2 px-5 rounded-3xl w-full"
-      />
-    </div>
+          <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden">
+            <input
+              type="text"
+              placeholder="Search"
+              className="bg-gray-200 py-2 px-5 rounded-3xl w-full"
+            />
+          </div>
 
-    <div className="flex items-center lg:gap-10 lg:font-bold max-lg:gap-4 text-gray-600">
-      <Link href="/createblog" className="flex items-center gap-2">
-        <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
-          <FontAwesomeIcon icon={faPen} className="max-md:w-5 max-md:h-5 text-gray-600" />
-        </div>
-        <span className="max-md:hidden">Create Blog</span>
-      </Link>
+          <div
+            className={`${
+              theme
+                ? "text-gray-600"
+                : "transition-all text-gray-300"
+            } flex items-center lg:gap-10 lg:font-bold max-lg:gap-4`}
+          >
+            <Link href="/createblog" className="flex items-center gap-2">
+              <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
+                <FontAwesomeIcon
+                  icon={faPen}
+                  className="max-md:w-5 max-md:h-5"
+                />
+              </div>
+              <span className="max-md:hidden">Create Blog</span>
+            </Link>
 
-      <div className="block max-md:hidden">
-        <AuthButton />
-      </div>
-    </div>
-  </nav>
-</header>
+            <div className="block max-md:hidden">
+              <AuthButton />
+            </div>
+            <div className="relative flex justify-center items-center flex-row w-[70px] h-[35px] m-0">
+              <ToggleSwitch />
+            </div>
+          </div>
+        </nav>
+      </header>
     </div>
   );
 };

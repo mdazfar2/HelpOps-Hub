@@ -25,18 +25,19 @@ function BlogPost() {
   const [newComment, setNewComment] = useState("");
   const pathname = usePathname();
   const id = pathname.split("/blogs/")[1];
+  const authorid = blog.authorId;
   const { theme } = useContext(Context);
-  const { finalUser, isLogin, setIsPopup, setMsg,setFinalUser } = useContext(Context);
+  const { finalUser, isLogin, setIsPopup, setMsg, setFinalUser } =
+    useContext(Context);
   const [hovered, setHovered] = useState(false);
   const iconRef = useRef(null);
   const panelRef = useRef(null);
-  const [isFollowed,setIsFollowed]=useState(false)
+  const [isFollowed, setIsFollowed] = useState(false);
   const timerRef = useRef(null);
   const [loading, setLoading] = useState(true);
-  let [commentCount,setCommentCount]=useState(0)
+  let [commentCount, setCommentCount] = useState(0);
+  const [fetchedUser, setFetchedUser] = useState(null);
   const router = useRouter();
-  console.log(finalUser);
-  
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -54,53 +55,6 @@ function BlogPost() {
       count: 0,
     },
   ]);
-  async function handleFollow() {
-    if (!isLogin) {
-      return;
-    }
-    if(blog.authorEmail){
-
-      let updatedData = await fetch("/api/setfollow", {
-        method: "POST",
-        body: JSON.stringify({
-          user_id: finalUser._id,
-          other_user_id: blog.authorEmail,
-        }),
-      });
-      updatedData = await updatedData.json();
-      let d=await JSON.stringify(updatedData.user1)
-      localStorage.setItem('finalUser',d)
-      setFinalUser(updatedData.user1)
-     
-        setIsFollowed(true)
-      
-      // if (updatedData.user.followers.hasOwnProperty(finalUser._id)) {
-      //   setIsFollowed(true);
-      // }
-    }
-  }
-  async function handleUnfollow() {
-    if (!isLogin) {
-      return;
-    }
-    if(blog.authorEmail){
-
-      let updatedData = await fetch("/api/unfollow", {
-        method: "POST",
-        body: JSON.stringify({
-          user_id: finalUser.email,
-          other_user_id: blog.authorEmail
-        }),
-      });
-      updatedData = await updatedData.json();
-      let d=await JSON.stringify(updatedData.user1)
-      localStorage.setItem('finalUser',d)
-      setFinalUser(updatedData.user1)
-        setIsFollowed(false)
-  
-      
-    }
-  }
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -110,13 +64,13 @@ function BlogPost() {
           setBlog(data);
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
-         let count=0
-          data.reactionList.map((data1)=>{
-            if(data1.type=="save"){
-              count+=1
+          let count = 0;
+          data.reactionList.map((data1) => {
+            if (data1.type == "save") {
+              count += 1;
             }
-          })
-          setCommentCount(count)
+          });
+          setCommentCount(count);
         } else {
           setError("Failed to fetch blog.");
         }
@@ -127,6 +81,88 @@ function BlogPost() {
 
     fetchBlog();
   }, [id]);
+
+  useEffect(() => {
+    if (!authorid) {
+      console.warn("authorid is not defined");
+      return;
+    }
+
+    const fetchUserInfoById = async (idauth) => {
+      try {
+        console.log("Fetching user info for id:", authorid);
+
+        const response = await fetch("/api/getuser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: idauth }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log("API response:", result);
+
+          if (result.success) {
+            setFetchedUser(result.msg);
+          } else {
+            throw new Error("Failed to fetch user info");
+          }
+        } else {
+          throw new Error("Failed to fetch user info");
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfoById(authorid);
+  }, [authorid]);
+
+  async function handleFollow() {
+    if (!isLogin) {
+      return;
+    }
+    if (blog.authorEmail) {
+      let updatedData = await fetch("/api/setfollow", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser._id,
+          other_user_id: blog.authorEmail,
+        }),
+      });
+      updatedData = await updatedData.json();
+      let d = await JSON.stringify(updatedData.user1);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(updatedData.user1);
+
+      setIsFollowed(true);
+
+      // if (updatedData.user.followers.hasOwnProperty(finalUser._id)) {
+      //   setIsFollowed(true);
+      // }
+    }
+  }
+  async function handleUnfollow() {
+    if (!isLogin) {
+      return;
+    }
+    if (blog.authorEmail) {
+      let updatedData = await fetch("/api/unfollow", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser.email,
+          other_user_id: blog.authorEmail,
+        }),
+      });
+      updatedData = await updatedData.json();
+      let d = await JSON.stringify(updatedData.user1);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(updatedData.user1);
+      setIsFollowed(false);
+    }
+  }
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -209,30 +245,30 @@ function BlogPost() {
       }
     }
   };
-  useEffect(()=>{
-    console.log(finalUser)
-  },[finalUser])
-    async function handleClick(key){
-      if (!isLogin) {
-        setIsPopup(true);
-        setMsg("Please Login ");
-        return;
-      }
-      if(key=='2'){
-     let data= await fetch('/api/setreaction',{
-        method:"POST",
-        body:JSON.stringify({
-          user_id:finalUser._id,
-          blog_id:id,
-          reaction:'2'
-        }) 
-      })
-      data=await data.json()
-      let d=await JSON.stringify(data.user)
-      localStorage.setItem('finalUser',d)
-      setFinalUser(data.user)
+  useEffect(() => {
+    console.log(finalUser);
+  }, [finalUser]);
+  async function handleClick(key) {
+    if (!isLogin) {
+      setIsPopup(true);
+      setMsg("Please Login ");
+      return;
     }
+    if (key == "2") {
+      let data = await fetch("/api/setreaction", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser._id,
+          blog_id: id,
+          reaction: "2",
+        }),
+      });
+      data = await data.json();
+      let d = await JSON.stringify(data.user);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(data.user);
     }
+  }
   const handleReactionClick = async (reactionType) => {
     if (!isLogin) {
       setIsPopup(true);
@@ -337,10 +373,9 @@ function BlogPost() {
   const navigateToBlogDetails = (blogId) => {
     router.push(`/blogs/id=${blogId}`);
   };
-  function handleOpenProfile(){
-    if(blog._id){
-
-      router.push(`/profile?id=${blog.id}`)
+  function handleOpenProfile() {
+    if (blog._id) {
+      router.push(`/profile?id=${blog.id}`);
     }
   }
   return (
@@ -353,11 +388,10 @@ function BlogPost() {
         <div className="fixed left-24 top-60">
           <div className="relative flex flex-col items-center space-y-4">
             <div className="space-y-4">
-              {
-               panelIcons.slice(0, 3).map((panelIcon, index) => (
+              {panelIcons.slice(0, 3).map((panelIcon, index) => (
                 <div
                   key={index}
-                  onClick={()=>handleClick(index)} 
+                  onClick={() => handleClick(index)}
                   className="flex flex-col justify-center items-center"
                   onMouseEnter={
                     panelIcon.label === "Heart"
@@ -373,7 +407,19 @@ function BlogPost() {
                 >
                   <FontAwesomeIcon
                     icon={panelIcon.regularIcon}
-                    className={`${theme? `${isLogin&& index == 2 && id in JSON.parse( localStorage.getItem('finalUser')).reactions ? "text-blue-500  h-[30px]" : ""} `:" text-white "} \
+                    className={`${
+                      theme
+                        ? `${
+                            isLogin &&
+                            index == 2 &&
+                            id in
+                              JSON.parse(localStorage.getItem("finalUser"))
+                                .reactions
+                              ? "text-blue-500  h-[30px]"
+                              : ""
+                          } `
+                        : " text-white "
+                    } \
         text-[20px]
       `}
                   />
@@ -382,7 +428,7 @@ function BlogPost() {
                       theme ? "text-gray-900 " : " text-white "
                     } my-2 text-sm`}
                   >
-                    {  index==2?commentCount: panelIcon.count}
+                    {index == 2 ? commentCount : panelIcon.count}
                   </span>
                 </div>
               ))}
@@ -432,10 +478,17 @@ function BlogPost() {
           className="w-full h-96 object-cover mb-5 rounded-lg"
         />
         <div className="px-10">
-          <div className="flex items-center mb-5 cursor-pointer" onClick={handleOpenProfile}>
+          <div
+            className="flex items-center mb-5 cursor-pointer"
+            onClick={handleOpenProfile}
+          >
             <img
-              src={blog.authorImage}
-              alt={blog.authorName}
+              src={
+                fetchedUser
+                  ? fetchedUser.image1
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
+              }
+              alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-10 h-10 rounded-full mr-3"
             />
             <div>
@@ -568,11 +621,15 @@ function BlogPost() {
           } h-[400px] rounded-xl overflow-hidden`}
         >
           {/* <img src="/banner.png" alt="" /> */}
-          <div className="w-full bg-[#000000] h-10" ></div>
+          <div className="w-full bg-[#000000] h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
-              src={blog.authorImage}
-              alt={blog.authorName}
+              src={
+                fetchedUser
+                  ? fetchedUser.image1
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
+              }
+              alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-12 h-12 rounded-full mr-3 relative -top-3"
             />
             <div className="py-1">
@@ -580,31 +637,58 @@ function BlogPost() {
             </div>
           </div>
           <div className="w-full px-4">
-        
-         {
-
-    isFollowed?<button onClick={handleUnfollow} className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
-    UnFollow
-</button>:        <button onClick={handleFollow} className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white">
+            {isFollowed ? (
+              <button
+                onClick={handleUnfollow}
+                className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white"
+              >
+                UnFollow
+              </button>
+            ) : (
+              <button
+                onClick={handleFollow}
+                className="py-2 px-5 w-full bg-[#5271ff] rounded-xl text-bold text-white"
+              >
                 Follow
-            </button>
-         }
+              </button>
+            )}
           </div>
           <div
             className={`${
-              theme ? "bg-gray-100" : " bg-[#9d9d9d]"
-            } flex flex-col items-center m-5 p-5 h-52 `}
+              theme ? "bg-gray-100" : "bg-[#9d9d9d]"
+            } flex flex-col items-center m-5 p-5 h-52`}
           >
-            <div className="text-lg font-bold mb-2">{blog.authorTitle}</div>
-            <div className="text-lg text-center">{blog.authorCaption}</div>
-            <div className="flex gap-5 mt-5 text-2xl">
-              <a href={`${blog.github}`}>
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
-              <a href={`${blog.linkedin}`}>
-                <FontAwesomeIcon icon={faLinkedinIn} />
-              </a>
-            </div>
+            {/* Conditionally render fetchedUser content if it exists */}
+            {fetchedUser ? (
+              <>
+                <div className="text-lg font-bold mb-2">
+                  {fetchedUser.designation}
+                </div>
+                <div className="text-lg text-center">{fetchedUser.caption}</div>
+                <div className="flex gap-5 mt-5 text-2xl">
+                  {fetchedUser.github && (
+                    <a
+                      href={fetchedUser.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                  )}
+                  {fetchedUser.linkedin && (
+                    <a
+                      href={fetchedUser.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faLinkedinIn} />
+                    </a>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="text-lg font-bold mb-2">Loading...</div> // Fallback content while fetching
+            )}
           </div>
         </div>
         <div

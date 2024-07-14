@@ -139,13 +139,7 @@ const handlePaste = (event) => {
         length:textareaRef.current.value.length,
         authorName:user.name,
         authorImage:user.image1,
-        id: JSON.parse(localStorage.getItem('finalUser'))._id,
-        authorEmail: JSON.parse(localStorage.getItem('finalUser')).email,
-        authorCaption:user.caption,
-        github:user.gthub,
-        linkedin:user.linkedin,
-        authorTitle:user.designation
-
+        authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
       })
     })
     router.push('/blogs')
