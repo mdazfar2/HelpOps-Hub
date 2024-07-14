@@ -11,7 +11,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
 import { useRouter } from "next/navigation";
 export default function CreateBlog() {
-    const {theme,isLogin}=useContext(Context)
+  const {theme,isLogin,setColor,setMsg,setIsPopup}=useContext(Context)
     const [isShow, setIsShow] = useState(false);
     const [showInTitle, setShowInTitle] = useState(true);
     let [isImg, setIsImg] = useState(false);
@@ -188,7 +188,9 @@ export default function CreateBlog() {
     }
    async function handleFormSubmit(){
     if(!isLogin){
-        return
+      setIsPopup(true)
+      setMsg("Please Login First")
+      return
     }
     let user=await JSON.parse(localStorage.getItem("finalUser"))
       await fetch('/api/blog',{
@@ -201,12 +203,7 @@ export default function CreateBlog() {
           length:desc.length,
           authorName:user.name,
           authorImage:user.image1,
-          id: JSON.parse(localStorage.getItem('finalUser'))._id,
-          authorEmail: JSON.parse(localStorage.getItem('finalUser')).email,
-          authorCaption:user.caption,
-          github:user.gthub,
-          linkedin:user.linkedin,
-          authorTitle:user.designation
+          authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
   
         })
       })

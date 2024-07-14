@@ -59,23 +59,7 @@ type:String
     type: String,
     default: "",
   },
-  authorTitle: {
-    type: String,
-    default: "",
-  },
-  authorImage: {
-    type: String,
-    default: "",
-  },
-  authorCaption:{
-    type:String,
-    default: "",
-  },
-  github: {
-    type: String,
-    default: "",
-  },
-  linkedin: {
+  authorId:{
     type: String,
     default: "",
   },
