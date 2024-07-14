@@ -10,40 +10,58 @@ export async function POST(req) {
 
     try {
       const { MONGO_URI } = process.env; 
-      const {path,isDelete,email} = await req.json()
+      const {path,isDelete,id} = await req.json()
       await mongoose.connect(MONGO_URI);
-      let count=await resource.find({resourcePath:path})
-      if(count.length==0){
-        if(isDelete){
-          return NextResponse.json({ success: true},{status:"200"});
+      console.log(id)
+      let count=await user.findById({_id:id})
+      if(!isDelete){
 
-        }
+        count.resource.set(path,true)
+        await count.save()
+        let user1=await user.findById({_id:id})
+        console.log(user1)
 
-          let data=  resource({
-            resourcePath:path,
-            likeCount:1
-        });
-        await  data.save()
+        return NextResponse.json({ success: true,user:user1},{status:"200"});
+
       }else{
-        if(isDelete){
-          if(count[0].likeCount==1){
-            await resource.findByIdAndDelete({_id:count[0]._id})
-            return NextResponse.json({ success: true},{status:"200"});
-          }
-          await resource.findByIdAndUpdate({_id:count[0]._id},{
-            $set:{
-                likeCount:count[0].likeCount-1
-            }
-        })
-        return NextResponse.json({ success: true},{status:"200"});
-
-        }
-        await resource.findByIdAndUpdate({_id:count[0]._id},{
-            $set:{
-                likeCount:count[0].likeCount+1
-            }
-        })
+        
+        count.resource.delete(path)
+        await count.save()
+        let user1=await user.findById({_id:id})
+      console.log(user1)
+        return NextResponse.json({ success: true,user:user1},{status:"200"});
       }
+      // if(count.length==0){
+      //   if(isDelete){
+      //     return NextResponse.json({ success: true},{status:"200"});
+
+      //   }
+
+      //     let data=  resource({
+      //       resourcePath:path,
+      //       likeCount:1
+      //   });
+      //   await  data.save()
+      // }else{
+      //   if(isDelete){
+      //     if(count[0].likeCount==1){
+      //       await resource.findByIdAndDelete({_id:count[0]._id})
+      //       return NextResponse.json({ success: true},{status:"200"});
+      //     }
+      //     await resource.findByIdAndUpdate({_id:count[0]._id},{
+      //       $set:{
+      //           likeCount:count[0].likeCount-1
+      //       }
+      //   })
+      //   return NextResponse.json({ success: true},{status:"200"});
+
+      //   }
+      //   await resource.findByIdAndUpdate({_id:count[0]._id},{
+      //       $set:{
+      //           likeCount:count[0].likeCount+1
+      //       }
+      //   })
+      // }
 
  return NextResponse.json({ success: true},{status:"200"});
 

@@ -36,19 +36,19 @@ export default function CreateBlog() {
   
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-  
-        if (item.kind === 'file' && item.type.startsWith('image/')) {
+        console.log(item,'dsssssss')
+       if (item.kind === 'file' && item.type.startsWith('image/')) {
           const file = item.getAsFile();
           const reader = new FileReader();
           reader.onload = async (e) => {
             // Handle image data
             const imageSrc = e.target.result;
             // For demonstration, we'll just log the image source
-            console.log('Image pasted:', imageSrc);
             setImgCallback(imageSrc);
           };
           reader.readAsDataURL(file);
-        } else if (item.kind === 'string') {
+        } else if (item.kind === 'string' &&(items.length>1? items[1].kind!=='file':true)) {
+            console.log('sddddddddd',item)
           item.getAsString((text) => {
             // Handle text data
             setValueCallback((prevContent) => prevContent + text);
