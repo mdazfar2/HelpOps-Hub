@@ -90,7 +90,7 @@ function ContactPage({theme,setIsPopup,setIsMsg,setColor}) {
       if (response.ok) {
         setShowThankYouMessage(true);
         setIsPopup(true)
-        setColor('green-500')
+        setColor('green')
         setIsMsg("Thank you! We will connect soon.")
         setTimeout(() => {
           setShowThankYouMessage(false);

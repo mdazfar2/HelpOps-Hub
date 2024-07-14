@@ -13,6 +13,7 @@
     z-index: 1000;
     animation: animatorpopup forwards 2s;
 }
+
 @keyframes animatorpopup {
         from{
            opacity: 0;

@@ -258,7 +258,7 @@ async   function func() {
         Maintance?
         <Popup
           msg="This page is under development. We apologize for the inconvenience. Please check back soon."
-          color="purple-500"
+          color="purple"
         
         />:<></>
       }
