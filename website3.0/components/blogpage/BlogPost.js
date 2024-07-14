@@ -345,7 +345,6 @@ function BlogPost() {
         theme ? "bg-[#F3F4F6]" : "bg-[#1e1d1d]"
       } transition-colors duration-500 pt-48 flex flex-col md:flex-row`}
     >
-      {/* Left sidebar */}
       <div className="w-full md:w-[10%] mb-4 md:mb-0">
         <div className="fixed bottom-0 left-0 right-0 md:static md:left-24 md:top-60 flex justify-center md:block z-10 bg-white md:bg-transparent">
           <div className="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4 p-4 md:p-0">
@@ -589,7 +588,6 @@ function BlogPost() {
         </div>
       </div>
 
-      {/* Right sidebar */}
       <div className="w-full md:w-[25%] md:ml-5 px-4 md:px-0">
         <div
           className={`${
