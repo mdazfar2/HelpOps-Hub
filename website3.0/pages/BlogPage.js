@@ -26,7 +26,7 @@ function BlogPage({ theme }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const router = useRouter();
-  const { finalUser,searchedBlog } = useContext(Context);
+  const { finalUser, searchedBlog } = useContext(Context);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -237,11 +237,11 @@ function BlogPage({ theme }) {
       filtered = blogs.filter((blog) => reactionIds.includes(blog._id));
     }
     if (searchedBlog) {
-      filtered = filtered.filter(blog =>
+      filtered = filtered.filter((blog) =>
         blog.title.toLowerCase().includes(searchedBlog.toLowerCase())
       );
     }
-  
+
     return filtered;
   };
   return (
@@ -349,10 +349,10 @@ function BlogPage({ theme }) {
               : filteredBlogs().map((blog, index) => {
                   const author = authorDetails[blog.authorId];
                   if (!author) return null;
-
-                  const isBookmarked =
-                    finalUser.reactions &&
-                    finalUser.reactions.hasOwnProperty(blog._id);
+                  const isBookmarked = finalUser
+                  ? finalUser.reactions && finalUser.reactions.hasOwnProperty(blog._id)
+                  : false;
+                
                   return (
                     <div
                       className="cursor-pointer"
