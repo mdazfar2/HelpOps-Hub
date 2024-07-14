@@ -339,11 +339,12 @@ function BlogPost() {
       router.push(`/profile?id=${blog.id}`);
     }
   }
+
   return (
     <div
       className={`${
         theme ? "bg-[#F3F4F6]" : "bg-[#1e1d1d]"
-      } transition-colors duration-500 pt-48 flex flex-col md:flex-row`}
+      } transition-colors duration-500 pt-20 md:pt-48 flex flex-col md:flex-row`}
     >
       <div className="w-full md:w-[10%] mb-4 md:mb-0">
         <div className="fixed bottom-0 left-0 right-0 md:static md:left-24 md:top-60 flex justify-center md:block z-10 bg-white md:bg-transparent">
