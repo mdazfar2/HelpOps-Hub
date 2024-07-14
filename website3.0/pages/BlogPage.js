@@ -180,23 +180,23 @@ function BlogPage({ theme }) {
     .sort((a, b) => b.totalReactions - a.totalReactions)
     .slice(0, 4);
 
-  const renderBlogDescription = (description) => {
-    const words = description.split(" ");
-  const limitedDescription = words.slice(0, 10).join(" ");
-  const hasMore = words.length > 10;
-
-  // Check if description contains HTML tags
-  const containsHTML = /<[a-z][\s\S]*>/i.test(description);
-
-  return containsHTML ? (
-    <div dangerouslySetInnerHTML={{ __html: limitedDescription + (hasMore ? ".... Read more" : "") }} />
-  ) : (
-    <React.Fragment>
-      {limitedDescription}
-      {hasMore && ".... Read more"}
-    </React.Fragment>
-  );
-  };
+    const renderBlogDescription = (description) => {
+      const words = description.split(" ");
+    const limitedDescription = words.slice(0, 10).join(" ");
+    const hasMore = words.length > 10;
+  
+    // Check if description contains HTML tags
+    const containsHTML = /<[a-z][\s\S]*>/i.test(description);
+  
+    return containsHTML ? (
+      <div dangerouslySetInnerHTML={{ __html: limitedDescription + (hasMore ? ".... Read more" : "") }} />
+    ) : (
+      <React.Fragment>
+        {limitedDescription}
+        {hasMore && ".... Read more"}
+      </React.Fragment>
+    );
+    };
 
   const navigateToBlogDetails = (blogId) => {
     router.push(`/blogs/${blogId}`);
@@ -237,23 +237,7 @@ function BlogPage({ theme }) {
     setFilter("recentBlogs");
     setSortBy("date"); // Ensure recent blogs are sorted by date
   };
-  const renderBlogTitle = (title) => {
-    const maxLength = 20; // Adjust as needed
-    const truncatedTitle = title.length > maxLength ? title.substring(0, maxLength) + "..." : title;
-  
-    return title.length > maxLength ? (
-      <div>
-        <span dangerouslySetInnerHTML={{ __html: truncatedTitle }} />
-       {/* Replace with your logic */}
-      </div>
-    ) : (
-      <div>{title}</div>
-    );
-  };
-  function render(title){
-    console.log(title)
-    document.getElementById('load').innerHTML='sddddddd'
-  }
+
   return (
     <div className="pt-24">
       <div className="w-full bg-[#6089a4] h-9 mb-20 py-2 text-center text-white font-medium max-[425px]:font-[400] max-[425px]:text-[13px] max-[425px]:py-3">
@@ -308,8 +292,8 @@ function BlogPage({ theme }) {
                 </div>
                 <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
                   <div className="flex-1">
-                    <div className="text-2xl mb-2 font-extrabold max-sm:text-xl">
-                      {blog.title}
+                    <div className="text-2xl mb-2 font-extrabold max-sm:text-xl"   dangerouslySetInnerHTML={{ __html: blog.title}}>
+                  
                     </div>
                     <div className="font-medium text-gray-600 max-sm:text-sm">
                       {renderBlogDescription(blog.description)}
@@ -367,7 +351,7 @@ function BlogPage({ theme }) {
                   />
                   <div className="text-xs font-bold">{blog.authorName}</div>
                 </div>
-                <div className="text-sm font-extrabold">{blog.title}</div>
+                <div className="text-sm font-extrabold"   dangerouslySetInnerHTML={{ __html: blog.title}}></div>
               </div>
             ))}
           </div>
