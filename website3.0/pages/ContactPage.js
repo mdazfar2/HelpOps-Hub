@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Popup from "@components/Popup"; // Make sure to import the Popup component
 function ContactPage({theme,setIsPopup,setIsMsg,setColor}) {
   const [selectedRating, setSelectedRating] = useState(0);
   const [showError, setShowError] = useState(false);
