@@ -1,7 +1,7 @@
 .popupclass{
     position: fixed;
-    top: 15%;
-    right: 0px;
+    bottom: 80px;
+    left: 39%;
     padding: 10px ;   
     color: white ;
     text-align: center;
@@ -9,11 +9,15 @@
     border-radius: 5px ;
     width: auto;
     min-width: 300px;
-    max-width: 90vw;
+    max-width: 400px;
     z-index: 1000;
     animation: animatorpopup forwards 2s;
 }
-
+@media only screen and (max-width:600px) {
+    .popupclass{
+        left: 18% !important;
+    }
+}
 @keyframes animatorpopup {
         from{
            opacity: 0;

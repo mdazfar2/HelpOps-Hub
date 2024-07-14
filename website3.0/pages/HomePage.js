@@ -22,7 +22,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
 import Popup from "@components/Popup";
-function HomePage({ theme,  setIsPopup,setMsg,}) {
+function HomePage({ theme,  setIsPopup,setMsg,setColor}) {
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -197,7 +197,7 @@ async   function func() {
       if (subscribeData.success) {
         setMsg("Subscribed Successfully")
         setIsPopup(true)
-       
+       setColor('green')
       } else {
         if (subscribeData.message === "User already subscribed") {
           setMsg("User is already subscribed")
