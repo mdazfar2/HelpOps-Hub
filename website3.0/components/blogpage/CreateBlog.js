@@ -1,8 +1,11 @@
+"use client"
+
+import dynamic from "next/dynamic";
 import "../../stylesheets/editor.css"
 import React, { useEffect, useRef, useState ,useContext} from "react";
 import { FaPlus, FaImage } from "react-icons/fa";
 
-import ReactQuill, { Quill } from 'react-quill';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
 import { useRouter } from "next/navigation";
@@ -219,6 +222,9 @@ export default function CreateBlog() {
       setHeight('auto');
       setHeight(`${event.target.scrollHeight}px`);
     };
+    function createDraft(){
+
+    }
   return (
     <div
     className={`flex flex-row items-start max-md:flex-col  ${
@@ -334,6 +340,7 @@ export default function CreateBlog() {
       >
         Publish
       </button>
+      <button>Draft</button>
     </div>
   </div>
   )
