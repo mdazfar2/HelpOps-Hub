@@ -10,7 +10,7 @@ import {
   faComment as regularComment,
   faBookmark as regularBookmark,
 } from "@fortawesome/free-regular-svg-icons";
-
+import { FaPaperPlane } from "react-icons/fa";
 const regularIcons = {
   Heart: regularHeart,
   Comment: regularComment,
@@ -25,6 +25,7 @@ function BlogPost() {
   const [newComment, setNewComment] = useState("");
   const pathname = usePathname();
   const id = pathname.split("/blogs/")[1];
+  const authorid = blog.authorId;
   const { theme } = useContext(Context);
   const { finalUser, isLogin, setIsPopup, setMsg, setFinalUser } =
     useContext(Context);
@@ -35,9 +36,9 @@ function BlogPost() {
   const timerRef = useRef(null);
   const [loading, setLoading] = useState(true);
   let [commentCount, setCommentCount] = useState(0);
-  const router = useRouter();
-  console.log(finalUser);
 
+  const [fetchedUser, setFetchedUser] = useState(null);
+  const router = useRouter();
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -55,49 +56,6 @@ function BlogPost() {
       count: 0,
     },
   ]);
-  async function handleFollow() {
-    if (!isLogin) {
-      return;
-    }
-    if (blog.authorEmail) {
-      let updatedData = await fetch("/api/setfollow", {
-        method: "POST",
-        body: JSON.stringify({
-          user_id: finalUser._id,
-          other_user_id: blog.authorEmail,
-        }),
-      });
-      updatedData = await updatedData.json();
-      let d = await JSON.stringify(updatedData.user1);
-      localStorage.setItem("finalUser", d);
-      setFinalUser(updatedData.user1);
-
-      setIsFollowed(true);
-
-      // if (updatedData.user.followers.hasOwnProperty(finalUser._id)) {
-      //   setIsFollowed(true);
-      // }
-    }
-  }
-  async function handleUnfollow() {
-    if (!isLogin) {
-      return;
-    }
-    if (blog.authorEmail) {
-      let updatedData = await fetch("/api/unfollow", {
-        method: "POST",
-        body: JSON.stringify({
-          user_id: finalUser.email,
-          other_user_id: blog.authorEmail,
-        }),
-      });
-      updatedData = await updatedData.json();
-      let d = await JSON.stringify(updatedData.user1);
-      localStorage.setItem("finalUser", d);
-      setFinalUser(updatedData.user1);
-      setIsFollowed(false);
-    }
-  }
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -124,6 +82,85 @@ function BlogPost() {
 
     fetchBlog();
   }, [id]);
+
+  useEffect(() => {
+    if (!authorid) {
+      console.warn("authorid is not defined");
+      return;
+    }
+
+    const fetchUserInfoById = async (idauth) => {
+      try {
+        console.log("Fetching user info for id:", authorid);
+
+        const response = await fetch("/api/getuser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: idauth }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log("API response:", result);
+
+          if (result.success) {
+            setFetchedUser(result.msg);
+          } else {
+            throw new Error("Failed to fetch user info");
+          }
+        } else {
+          throw new Error("Failed to fetch user info");
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfoById(authorid);
+  }, [authorid]);
+
+  async function handleFollow() {
+    if (!isLogin) {
+      return;
+    }
+    if (blog.authorEmail) {
+      let updatedData = await fetch("/api/setfollow", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser._id,
+          other_user_id: blog.authorEmail,
+        }),
+      });
+      updatedData = await updatedData.json();
+      let d = await JSON.stringify(updatedData.user1);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(updatedData.user1);
+
+      setIsFollowed(true);
+
+    }
+  }
+  async function handleUnfollow() {
+    if (!isLogin) {
+      return;
+    }
+    if (blog.authorEmail) {
+      let updatedData = await fetch("/api/unfollow", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: finalUser.email,
+          other_user_id: blog.authorEmail,
+        }),
+      });
+      updatedData = await updatedData.json();
+      let d = await JSON.stringify(updatedData.user1);
+      localStorage.setItem("finalUser", d);
+      setFinalUser(updatedData.user1);
+      setIsFollowed(false);
+    }
+  }
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -350,11 +387,13 @@ function BlogPost() {
         <div className="fixed bottom-0 left-0 right-0 md:static md:left-24 md:top-60 flex justify-center md:block z-10 bg-white md:bg-transparent">
           <div className="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4 p-4 md:p-0">
             <div className="flex md:flex-col space-x-4 md:space-x-0 md:space-y-4">
+     
               {panelIcons.slice(0, 3).map((panelIcon, index) => (
                 <div
                   key={index}
                   onClick={() => handleClick(index)}
                   className="flex flex-col justify-center items-center"
+
                   onMouseEnter={
                     panelIcon.label === "Heart"
                       ? handleMouseEnterIcon
@@ -382,6 +421,7 @@ function BlogPost() {
                           }`
                         : "text-white"
                     } text-[20px]`}
+                             
                   />
                   <span
                     className={`${
@@ -432,7 +472,7 @@ function BlogPost() {
                       src="/icon3.png"
                       width={100}
                       height={100}
-                      alt="Icon 3"
+                      alt="Icon3"
                     />
                   </div>
                 </div>
@@ -453,14 +493,19 @@ function BlogPost() {
           alt={blog.title}
           className="w-full h-48 md:h-96 object-cover mb-5 rounded-lg"
         />
+ 
         <div className="px-2 md:px-10">
           <div
             className="flex items-center mb-5 cursor-pointer"
             onClick={handleOpenProfile}
           >
             <img
-              src={blog.authorImage}
-              alt={blog.authorName}
+              src={
+                fetchedUser
+                  ? fetchedUser.image1
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
+              }
+              alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-10 h-10 rounded-full mr-3"
             />
             <div>
@@ -503,6 +548,7 @@ function BlogPost() {
           <h1 className="text-2xl md:text-4xl font-extrabold mb-5">
             {blog.title}
           </h1>
+
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (
@@ -538,7 +584,7 @@ function BlogPost() {
               </div>
             )}
           </div>
-          <div className="pb-10">{blog.description}</div>
+          <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5">Top Comments</div>
           <div className="flex items-center justify-center mb-4">
@@ -561,6 +607,7 @@ function BlogPost() {
                 if (e.key === "Enter") handleAddComment();
               }}
             />
+            <FaPaperPlane onClick={handleAddComment} className="relative right-[50px] cursor-pointer z-50" color="blue" size={'2rem'}/>
           </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[300px] md:h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
@@ -595,11 +642,16 @@ function BlogPost() {
             theme ? "bg-white" : "bg-[#e2e2e2]"
           } h-[400px] rounded-xl overflow-hidden mb-5`}
         >
+
           <div className="w-full bg-[#000000] h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
-              src={blog.authorImage}
-              alt={blog.authorName}
+              src={
+                fetchedUser
+                  ? fetchedUser.image1
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
+              }
+              alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-12 h-12 rounded-full mr-3 relative -top-3"
             />
             <div className="py-1">
@@ -628,16 +680,37 @@ function BlogPost() {
               theme ? "bg-gray-100" : "bg-[#9d9d9d]"
             } flex flex-col items-center m-5 p-5 h-52`}
           >
-            <div className="text-lg font-bold mb-2">{blog.authorTitle}</div>
-            <div className="text-lg text-center">{blog.authorCaption}</div>
-            <div className="flex gap-5 mt-5 text-2xl">
-              <a href={`${blog.github}`}>
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
-              <a href={`${blog.linkedin}`}>
-                <FontAwesomeIcon icon={faLinkedinIn} />
-              </a>
-            </div>
+
+            {fetchedUser ? (
+              <>
+                <div className="text-lg font-bold mb-2">
+                  {fetchedUser.designation}
+                </div>
+                <div className="text-lg text-center">{fetchedUser.caption}</div>
+                <div className="flex gap-5 mt-5 text-2xl">
+                  {fetchedUser.github && (
+                    <a
+                      href={fetchedUser.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                  )}
+                  {fetchedUser.linkedin && (
+                    <a
+                      href={fetchedUser.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faLinkedinIn} />
+                    </a>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="text-lg font-bold mb-2">Loading...</div> // Fallback content while fetching
+            )}
           </div>
         </div>
         <div
@@ -679,8 +752,8 @@ function BlogPost() {
                         : "bg-[#0f0e0e] text-white"
                     } my-5 rounded-xl p-5 cursor-pointer`}
                     onClick={() => navigateToBlogDetails(otherBlog._id)}
+                    dangerouslySetInnerHTML={{ __html: otherBlog.title}}
                   >
-                    {otherBlog.title}
                   </li>
                 ))}
               </ul>

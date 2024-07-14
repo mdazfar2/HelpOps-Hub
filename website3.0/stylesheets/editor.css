@@ -1,0 +1,42 @@
+.ql-editor{
+    word-wrap: break-word !important;
+}
+.classsa .ql-editor.ql-blank::before 
+{
+font-style: normal;
+    color: rgba(0,0,0,0.6);
+    left: 15px;
+    pointer-events: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: absolute;
+    right: 15px;
+    top: -5px !important;
+    font-size: 30px;
+  }
+
+  .classsb .ql-editor.ql-blank::before {
+    color: rgba(0,0,0,0.6);
+    font-style: normal;
+
+    left: 15px;
+    pointer-events: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: absolute;
+    right: 15px;
+    font-size: 24px;
+  }
+  .ql-editor  p{
+    font-size: 24px !important;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+  }
+  .ql-editor{
+    border: none !important;
+  }
+  .ql-container{
+    border: none !important;
+    border-bottom: solid rgb(172, 167, 167) 1px !important;
+  }
+  .ql-toolbar{
+    visibility: hidden;
+  }

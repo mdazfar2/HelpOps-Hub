@@ -1,7 +1,6 @@
 "use client";
 import React, {  useRef, useState, useEffect, useContext } from 'react';
 import "@stylesheets/profile.css"
-import Popup from "@components/Popup";
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
 const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup}) => {
   const [username, setUsername] = useState('');

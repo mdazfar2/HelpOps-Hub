@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
 import "@stylesheets/otp.css";
-import Popup from "@components/Popup";
-import Popup1 from '@components/Popup1';
 
 const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme,setMsg, setIsPopup}) => {
   // State to store the 6-digit OTP
