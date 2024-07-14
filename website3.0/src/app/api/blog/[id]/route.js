@@ -1,17 +1,16 @@
-import Blogs from "@utils/models/blog";  // Importing Mongoose model for blog collection
-import mongoose from "mongoose";  // Importing Mongoose for MongoDB interactions
-import { NextResponse } from "next/server";  // Importing Next.js server response utility
+import Blogs from "@utils/models/blog";
+import mongoose from "mongoose";
+import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
-    const { id } = params;  // Extracting the blog ID from request parameters
-    const { MONGO_URI } = process.env;  
-    // Connect to MongoDB using Mongoose
+    const { id } = params;
+    const { MONGO_URI } = process.env;
+
     await mongoose.connect(MONGO_URI);
+
     try {
-        // Find the blog by ID
         const blog = await Blogs.findById(id);
 
-        // Return the found blog
         if (blog) {
             return NextResponse.json(blog);
         } else {
@@ -24,17 +23,29 @@ export async function GET(req, { params }) {
 }
 
 export async function PUT(req, { params }) {
-    const { id } = params;  // Extracting the blog ID from request parameters
-    const { MONGO_URI } = process.env;  
-    // Connect to MongoDB using Mongoose
-    await mongoose.connect(MONGO_URI);
-    try {
-        const { comment, user } = await req.json();  // Extract comment and user from request body
+    const { id } = params;
+    const { MONGO_URI } = process.env;
 
-        // Find the blog by ID and update comments
+    await mongoose.connect(MONGO_URI);
+
+    try {
+        const { comment, user, reactionType } = await req.json();
         const blog = await Blogs.findById(id);
+
         if (blog) {
-            blog.comments = [...blog.comments, { comment, user }];
+            if (comment && user) {
+                blog.comments = [...blog.comments, { comment, user }];
+            }
+            
+            if (reactionType) {
+                const reactionIndex = blog.reactionList.findIndex(reaction => reaction.type === reactionType);
+                if (reactionIndex !== -1) {
+                    blog.reactionList[reactionIndex].count += 1;
+                } else {
+                    blog.reactionList.push({ type: reactionType, count: 1 });
+                }
+            }
+
             await blog.save();
             return NextResponse.json(blog);
         } else {

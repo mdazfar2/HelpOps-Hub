@@ -29,6 +29,11 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  authorEmail:{
+type:String
+  },id:{
+    type:String
+  },
   date: {
     type: Date,
     required: true,
@@ -58,9 +63,21 @@ const blogSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  likes: {
-    type: Number,
-    default: 0,
+  authorImage: {
+    type: String,
+    default: "",
+  },
+  authorCaption:{
+    type:String,
+    default: "",
+  },
+  github: {
+    type: String,
+    default: "",
+  },
+  linkedin: {
+    type: String,
+    default: "",
   },
   reactionList: {
     type: [reactionSchema],

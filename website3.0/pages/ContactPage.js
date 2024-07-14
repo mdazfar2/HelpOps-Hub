@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Popup from "@components/Popup"; // Make sure to import the Popup component
-function ContactPage({theme}) {
+function ContactPage({theme,setIsPopup,setIsMsg,setColor}) {
   const [selectedRating, setSelectedRating] = useState(0);
   const [showError, setShowError] = useState(false);
   const [showThankYouMessage, setShowThankYouMessage] = useState(false);
@@ -62,8 +62,9 @@ function ContactPage({theme}) {
 
     if (selectedRating === 0) {
       setShowError(true);
-      setError("Please Give Any Rating");
-      setTimeout(() => setShowError(false), 2000);
+      
+      setIsPopup(true)
+      setIsMsg("Please Give Any Rating")
       return;
     }
 
@@ -89,7 +90,9 @@ function ContactPage({theme}) {
 
       if (response.ok) {
         setShowThankYouMessage(true);
-        setError("Thank you! We will connect soon.");
+        setIsPopup(true)
+        setColor('green')
+        setIsMsg("Thank you! We will connect soon.")
         setTimeout(() => {
           setShowThankYouMessage(false);
           document.getElementById("contact-form").reset();
@@ -97,10 +100,14 @@ function ContactPage({theme}) {
           setError("");
         }, 3000);
       } else {
-        setError("Failed to submit the form. Please try again.");
+        
+        setIsPopup(true)
+        setIsMsg("Failed to submit the form. Please try again.")
       }
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      
+      setIsPopup(true)
+      setIsMsg("An error occurred. Please try again.")
     }
 
     // Re-enable the submit button and stop loading after 5 seconds
@@ -113,7 +120,6 @@ function ContactPage({theme}) {
 
   return (
     <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#1e1d1d] "} flex-col-reverse items-center justify-center space-x-0 p-10 md:flex-row lg:space-x-40 max-lg:space-x-20 h-[100vh] pt-40 max-md:flex-col-reverse max-lg:h-full max-md:h-full max-md:pt-20 max-md:space-x-0 max-sm:p-[0rem]`}>
-      {error && <Popup msg={error} error={`${error === "Thank you! We will connect soon." ? "green1" : "red1"}`} />}
       <div className="mt-10 max-md:mt-[80px] max-sm:mt-[70px]">
         <img src="new/rateus.webp" className="w-[30rem] max-md:w-[28rem] max-sm:w-[25rem]" alt="rateus" />
       </div>
@@ -142,7 +148,7 @@ function ContactPage({theme}) {
             <button type="submit" id="button" disabled={disableSubmit} className={`w-1/3 max-md:w-1/3 max-sm:w-1/2 ${theme?"bg-[#fff]":"bg-black shadow-white shadow-sm border-white border text-white"} text-black border-2 border-black hover:bg-black hover:text-white shadow-lg font-bold py-2 px-4 rounded`}>
               Submit {loading && <div className="loader2"><div className="circle"><div className="dot"></div><div className="outline"></div></div></div>}
             </button>
-            {showThankYouMessage}
+            {showThankYouMessage && <p className={`${theme ? "text-black" : "text-white"}`}>Thank you! We will connect soon.</p>}
           </form>
         </div>
       </div>

@@ -22,10 +22,9 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
-function HomePage({ theme }) {
+function HomePage({ theme,  setIsPopup,setMsg,}) {
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loadSpline, setLoadSpline] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -49,16 +48,15 @@ function HomePage({ theme }) {
     }
   }, []);
 
-  function func() {
+async   function func() {
     if (session.status === "authenticated") {
       console.log(localStorage.getItem("count"));
       if (localStorage.getItem("count") == null) {
         localStorage.setItem("count", true);
-        setShowPopup(true);
-
-        setTimeout(() => {
-          setShowPopup(false);
-        }, 2000);
+        let d=await JSON.parse(localStorage.getItem('finalUser'))
+        setMsg(`${d.name} !! Welcome`)
+        setIsPopup(true)
+      
       }
     }
   }
@@ -155,7 +153,6 @@ function HomePage({ theme }) {
   };
 
   const [email, setEmail] = useState(""); // State to hold email input
-  const [error, setError] = useState(""); // State to hold error messages
 
   // Function to validate email format
   const validateEmail = (email) => {
@@ -172,17 +169,15 @@ function HomePage({ theme }) {
     // Validate email format
     setLoading(true);
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
-      setTimeout(() => {
-        setError("");
-      }, 2000);
+      setMsg("Please enter a valid email address.")
+        setIsPopup(true)
+      
       setLoading(false);
       setBLur(false);
 
       return;
     }
 
-    setError(""); // Clear any previous error messages
 
     try {
       // If email is valid, proceed to subscribe using local API
@@ -200,26 +195,23 @@ function HomePage({ theme }) {
 
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
-        setError("Subscribed Successfully");
-        setTimeout(() => {
-          setError("");
-        }, 2000);
+        setMsg("Subscribed Successfully")
+        setIsPopup(true)
+       
       } else {
         if (subscribeData.message === "User already subscribed") {
-          setError("User is already subscribed");
+          setMsg("User is already subscribed")
+        setIsPopup(true)
         } else {
-          setError("Subscription failed");
+          setMsg("Subscription failed")
+        setIsPopup(true)
         }
-        setTimeout(() => {
-          setError("");
-        }, 2000);
       }
     } catch (error) {
       // Handle any errors that occur during the process
-      setError("An error occurred. Please try again.");
-      setTimeout(() => {
-        setError("");
-      }, 2000);
+      setMsg("An error occurred. Please try again.")
+        setIsPopup(true)
+     
     }
     setLoading(false);
     setBLur(false);
@@ -260,7 +252,7 @@ function HomePage({ theme }) {
     <div
       className={`${
         theme ? "bg-gray-100" : " bg-[#1e1d1d]"
-      } transition-colors duration-500`}
+      } transition-colors duration-500 overflow-x-hidden md:overflow-x-auto`}
     >
       {
         Maintance?
@@ -270,19 +262,9 @@ function HomePage({ theme }) {
           img="https://cdn-icons-png.flaticon.com/128/11482/11482452.png"
         />:<></>
       }
-      {showPopup && (
-        <Popup
-          msg={`${localStorage.getItem("userName")} Welcome !!`}
-          error="green1"
-        />
-      )}
+     
       {showModal && <Reset />}
-      {error && (
-        <Popup
-          msg={error}
-          error={`${error === "Subscribed Successfully" ? "green1" : "red1"}`}
-        />
-      )}
+      
       <div
         className={`${
           theme ? "bg-gray-100" : "bg-[#656566]"
@@ -742,7 +724,7 @@ function HomePage({ theme }) {
                   )}
                 </button>
               </div>
-              {error && <p className="error-message-desktop">{error}</p>}
+              {/* {error && <p className="error-message-desktop">{error}</p>} */}
             </div>
           </div>
         </div>

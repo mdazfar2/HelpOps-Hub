@@ -16,9 +16,9 @@ export default function Logout() {
     setFinalUser({});
     setIsLogin(false);
     if (session.status == "authenticated") {
-      router.push("http://localhost:3000/api/auth/signout?csrf=true");
+      router.push("https://www.helpopshub.com/api/auth/signout?csrf=true");
     } else {
-      router.push("http://localhost:3000");
+      router.push("https://www.helpopshub.com");
     }
   }
   return (

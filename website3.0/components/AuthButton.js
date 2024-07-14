@@ -14,8 +14,9 @@ const AuthButton = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
+  const [oneTime,setOneTime]=useState(false)
   let [showProfile1,setShowProfile1]=useState(false)
-  let {setIsAdminShow,userName,setFinalUser,setIsLogin,setUserLinkedin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
+  let {setIsAdminShow,finalUser,userName,setFinalUser,setIsLogin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
   let router=useRouter()
   useEffect(()=>{
@@ -97,17 +98,20 @@ let session=useSession()
       //     name:session.data.user.name
       //   })
       // })
+      if(!oneTime){
 
-        fetchData()
-     
-    setIsLogin1(true)
+        setOneTime(true)
+                fetchData()
+             
+            setIsLogin1(true)
+      }
 //       if(localStorage.getItem('count')!==2){
 // console.log(localStorage.getItem('count'))
 //         localStorage.setItem('count',1)
 //       }
   
     }
-  },[session.status])
+  },[session.status,oneTime])
   const toggleAuth = () => {
     setShowAuth(!showAuth);
   };
@@ -158,7 +162,7 @@ console.log(userName)
     </div><button onClick={handleLogout}>Logout</button></>
 } */}
 {
-  isLogin && <div className={`auth-btn ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}`}  onClick={()=>router.push('/profile')}>Profile</div>
+  isLogin && <div className={`auth-btn ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}`}  onClick={()=>router.push(`/profile?id=${finalUser._id}`)}>Profile</div>
 }
 {
   showProfile1 && isLogin  && 

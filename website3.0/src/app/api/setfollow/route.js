@@ -23,13 +23,13 @@ export async function POST(req) {
             }
         } ,{ new: true }) 
         // updating the followinf done by the user 
-   await user.findOneAndUpdate({email:other_user_id},{
+  let dd= await user.findOneAndUpdate({email:other_user_id},{
             $set:{
                 following:count2
             }
-        }) 
+        },{ new: true }) 
         console.log(data)
-        return NextResponse.json({success:true,user:data})
+        return NextResponse.json({success:true,user:data,user1:dd})
 }
 
 

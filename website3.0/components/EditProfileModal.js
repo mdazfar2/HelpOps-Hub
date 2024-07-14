@@ -25,7 +25,6 @@ export default function EditProfileModal({
     setFinalUser,
     setUserName,
     setUserGithub,
-    setUserLinkedin,
     userEmail,
     setUserCaption,
     setUserDesignation,

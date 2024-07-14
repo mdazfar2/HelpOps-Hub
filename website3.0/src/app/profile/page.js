@@ -7,13 +7,14 @@ import { usePathname } from 'next/navigation';
 import {  } from 'next/router';
 
 const profile = () => {
-  let {theme,isLogin,finalUser}=useContext(Context)
+  let {theme, setIsPopup,setMsg,setColor,isLogin,finalUser}=useContext(Context)
   const pathname = usePathname(); // Get current path
   let [id,setId]=useState('')
   useEffect(() => {
     // Function to get query parameters from URL
     const getUrlParameter = (name) => {
       const params = new URLSearchParams(window.location.search);
+
       return params.get(name);
     };
 
@@ -21,9 +22,8 @@ const profile = () => {
     const idFromQuery = getUrlParameter('id');
 
     if (idFromQuery) {
-        if(finalUser._id!==idFromQuery){
+        if(JSON.parse(localStorage.getItem('finalUser'))._id!==idFromQuery){
           setId(idFromQuery);
-      
     }
     }
   }, []);
