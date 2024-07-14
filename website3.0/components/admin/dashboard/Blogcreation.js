@@ -1,7 +1,8 @@
 "use client";
-import React, { useState,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import "@stylesheets/admin.css";
 import { Context } from "@context/store";
+
 const Popup = ({ msg, onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -19,10 +20,11 @@ const Popup = ({ msg, onClose }) => {
     </div>
   );
 };
+
 const BlogCreation = () => {
   const [formData, setFormData] = useState({
     title: '',
-    image: null, // Change from empty string to null
+    image: null,
     type: '',
     date: new Date(),
     length: '',
@@ -30,11 +32,7 @@ const BlogCreation = () => {
     mustRead: false,
     editorsPick: false,
     authorName: '',
-    authorTitle: '',
-    authorImage: '',
-    authorCaption:'',
-    github: '',
-    linkedin: '',
+    authorId: '',
   });
   const [showPopup, setShowPopup] = useState(false);
   const [blur, setBlur] = useState(false);
@@ -42,6 +40,39 @@ const BlogCreation = () => {
   const [error, setError] = useState("");
   const [disableSubmit, setDisableSubmit] = useState(false);
   const { finalUser,isLogin } = useContext(Context);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('/api/getuserbyemail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: finalUser.email }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            setFormData((prevData) => ({
+              ...prevData,
+              authorId: result.msg._id,
+            }));
+          } else {
+            setError("Failed to fetch user info.");
+          }
+        } else {
+          setError("Failed to fetch user info.");
+        }
+      } catch (error) {
+        setError("An error occurred while fetching user info.");
+      }
+    };
+
+    fetchUserInfo();
+  }, [finalUser.email]);
+
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     setFormData((prevData) => ({
@@ -57,7 +88,6 @@ const BlogCreation = () => {
     setBlur(true);
     setDisableSubmit(true);
 
-    // Convert image to base64
     const convertToBase64 = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -77,18 +107,13 @@ const BlogCreation = () => {
         ...formData,
         image: base64Image,
         authorName: finalUser.name,
-        authorTitle: finalUser.designation,
-        authorImage: finalUser.image1,
-        github: finalUser.github,
-        linkedin: finalUser.linkedin,
-        authorCaption: finalUser.caption,
-        date: formData.date.toISOString()
+        date: formData.date.toISOString(),
       };
 
       const response = await fetch('/api/blog', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(blogData),
       });
@@ -108,14 +133,10 @@ const BlogCreation = () => {
             mustRead: false,
             editorsPick: false,
             authorName: '',
-            authorTitle: '',
-            authorImage: '',
-            authorCaption:'',
-            github: '',
-            linkedin: '',
+            authorId: '',
           });
           setError("");
-          setShowPopup(false); // Hide the popup after some time
+          setShowPopup(false);
         }, 3000);
       } else {
         setError("Failed to create the blog. Please try again.");
