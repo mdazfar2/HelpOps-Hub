@@ -22,6 +22,8 @@ console.log(email)
 
           const hash = await bcrypt.hash(password, saltRounds);
           
+let map=new Map()
+map.set(new Map())
           // Creating a new user in the database
           let users=  user({
               email: email,
@@ -34,7 +36,8 @@ console.log(email)
               caption:'',
               followers:new Map(),
               following:new Map(),
-              reactions:new Map()
+              reactions:new Map(),
+              likedBLogs:map
           });
          await  users.save()
         }else{
@@ -43,8 +46,10 @@ console.log(email)
           if(us.length>0){
             return NextResponse.json({success:true,user:us},{status:200})
           } 
-
-
+let map=new Map()
+let map1=new Map()
+map1.set('sdsd','sdsd')
+map.set(map1)
           let users= user({
             email: email,
             name: name,
@@ -55,8 +60,8 @@ console.log(email)
             caption:'',           
                followers:new Map(),
                following:new Map(),
-               reactions:new Map()
-
+               reactions:new Map(),
+likedBLogs:map
 
 
           });

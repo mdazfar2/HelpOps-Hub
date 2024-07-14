@@ -3,13 +3,14 @@
 import dynamic from "next/dynamic";
 import "../../stylesheets/editor.css"
 import React, { useEffect, useRef, useState ,useContext} from "react";
-import { FaPlus, FaImage } from "react-icons/fa";
+import { FaPlus, FaImage, FaTrash } from "react-icons/fa";
 
 import ReactQuill, { Quill } from 'react-quill';
 // const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
 import { useRouter } from "next/navigation";
+import { FaBucket } from "react-icons/fa6";
 export default function CreateBlog() {
   const {theme,isLogin,setColor,setMsg,setIsPopup}=useContext(Context)
     const [isShow, setIsShow] = useState(false);
@@ -275,7 +276,7 @@ export default function CreateBlog() {
         ></input> */}
       </div>
       <input className="hidden" onChange={handleImageUpload} type="file" id="img-input"></input>
-      <div htmlFor="img-input" className="h-auto m-auto mt-6">{isImg && <img src={isImg}></img>}</div>
+      <div htmlFor="img-input" className="h-auto m-auto mt-6">{isImg &&<><img src={isImg}></img><FaTrash color="red" size={'2rem'} onClick={()=>setIsImg('')}/></> }</div>
       <div className="h-auto classsb w-[90%] rounded-full  gap-4 flex items-center">
         {!showInTitle && (
           <div className="h-20 items-center gap-3  absolute left-[5%] flex flex-col ">
