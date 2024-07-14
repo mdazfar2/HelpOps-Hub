@@ -368,117 +368,147 @@ function HomePage({ theme, setIsPopup, setMsg }) {
         </div>
       </div>
 
-      <div className="mt-40 px-4 sm:px-8 lg:px-10 relative">
-        <div className="flex gap-5 max-lg:hidden">
-          {[
-            {
-              img: "new/i1.webp",
-              title: "Ask Questions",
-              desc: "Easily post detailed queries about your DevOps challenges.",
-            },
-            {
-              img: "new/i2.webp",
-              title: "Receive Expert Help",
-              desc: "Tap into the collective knowledge of experienced DevOps professionals.",
-            },
-            {
-              img: "new/i4.webp",
-              title: "Collaborate and Learn",
-              desc: "Engage with a community dedicated to sharing knowledge and solving problems.",
-            },
-            {
-              img: "new/i3.webp",
-              title: "Save Time",
-              desc: "Quickly resolve issues and focus on what matters most - driving your projects forward.",
-            },
-          ].map((card, index) => (
-            <div
-              key={index}
-              className={`
-          ${
-            theme
-              ? "text-black border-black"
-              : "text-white bg-[#26272b] border-white border-dashed"
-          }
-          w-full sm:w-1/2 lg:w-1/4 border-2 rounded-xl 
-          hover:scale-105 transition-all duration-700 cursor-pointer p-4
-          ${index === 0 || index === 3 ? "sm:-top-10" : ""}
-          mb-5 sm:mb-0
-        `}
-            >
-              <div className="flex gap-5 items-center">
-                <img
-                  src={card.img}
-                  className="w-14 rounded-full"
-                  alt={card.title}
-                />
-                <div className="font-medium text-xl sm:text-2xl">
-                  {card.title}
-                </div>
-              </div>
-              <div className="text-center mt-3 px-4 pb-4">{card.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="lg:hidden">
-          <div id="splideMobile" className="splide w-full">
-            <div className="splide__track">
-              <ul className="splide__list">
-                {[
-                  {
-                    img: "new/i1.webp",
-                    title: "Ask Questions",
-                    desc: "Easily post detailed queries about your DevOps challenges.",
-                  },
-                  {
-                    img: "new/i2.webp",
-                    title: "Receive Expert Help",
-                    desc: "Tap into the collective knowledge of experienced DevOps professionals.",
-                  },
-                  {
-                    img: "new/i4.webp",
-                    title: "Collaborate and Learn",
-                    desc: "Engage with a community dedicated to sharing knowledge and solving problems.",
-                  },
-                  {
-                    img: "new/i3.webp",
-                    title: "Save Time",
-                    desc: "Quickly resolve issues and focus on what matters most - driving your projects forward.",
-                  },
-                ].map((card, index) => (
-                  <li key={index} className="splide__slide p-2">
-                    <div
-                      className={`
-                  ${
-                    theme
-                      ? "text-black border-black"
-                      : "text-white bg-[#26272b] border-white border-dashed"
-                  }
-                  w-full h-full border-2 rounded-xl cursor-pointer p-4
-                `}
-                    >
-                      <div className="flex gap-5 items-center justify-center">
-                        <img
-                          src={card.img}
-                          className="w-16 rounded-full"
-                          alt={card.title}
-                        />
-                        <div className="font-medium text-xl sm:text-2xl">
-                          {card.title}
-                        </div>
-                      </div>
-                      <div className="text-center mt-3 text-lg sm:text-2xl">
-                        {card.desc}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+<div className="mt-40 px-4 sm:px-8 lg:px-16 relative">
+  <div className="h-56 flex gap-5 max-lg:hidden">
+    <div
+      className={`${
+        theme
+          ? "text-black border-black"
+          : "text-white bg-[#26272b] border-white border-dashed"
+      } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointer`}
+    >
+      <div className="flex p-4 gap-5 items-center">
+        <img src="new/i1.webp" className="w-14 rounded-full" alt="ask-questions" />
+        <div className="font-medium text-xl">Ask Questions</div>
       </div>
+      <div className="text-center px-4">
+        Easily post detailed queries about your DevOps challenges.
+      </div>
+    </div>
+    <div
+      className={`${
+        theme
+          ? "text-black border-black"
+          : "text-white bg-[#26272b] border-white border-dashed"
+      } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointer`}
+    >
+      <div className="flex p-4 gap-5 items-center">
+        <img src="new/i2.webp" className="w-14 rounded-full" alt="receive expert help" />
+        <div className="font-medium text-xl">Receive Expert Help</div>
+      </div>
+      <div className="text-center px-4">
+        Tap into the collective knowledge of experienced DevOps professionals.
+      </div>
+    </div>
+    <div
+      className={`${
+        theme
+          ? "text-black border-black"
+          : "text-white bg-[#26272b] border-white border-dashed"
+      } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointer`}
+    >
+      <div className="flex p-4 gap-5 items-center">
+        <img src="new/i4.webp" className="w-14 rounded-full" alt="collaborate and learn" />
+        <div className="font-medium text-xl">Collaborate and Learn</div>
+      </div>
+      <div className="text-center px-4">
+        Engage with a community dedicated to sharing knowledge and solving problems.
+      </div>
+    </div>
+    <div
+      className={`${
+        theme
+          ? "text-black border-black"
+          : "text-white bg-[#26272b] border-white border-dashed"
+      } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointer`}
+    >
+      <div className="flex p-4 gap-5 items-center">
+        <img src="new/i3.webp" className="w-14 rounded-full" alt="save time" />
+        <div className="font-medium text-xl">Save Time</div>
+      </div>
+      <div className="text-center px-4">
+        Quickly resolve issues and focus on what matters most - driving your projects forward.
+      </div>
+    </div>
+  </div>
+
+  <div className="lg:hidden">
+    <div id="splideMobile" className="splide w-full">
+      <div className="splide__track">
+        <ul className="splide__list">
+          <li className="splide__slide p-2">
+            <div
+              className={`${
+                theme
+                  ? "text-black border-black"
+                  : "text-white bg-[#26272b] border-white border-dashed"
+              } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+            >
+              <div className="flex gap-5 items-center justify-center">
+                <img src="new/i1.webp" className="w-16 rounded-full" alt="Ask questions" />
+                <div className="font-medium text-xl sm:text-2xl">Ask Questions</div>
+              </div>
+              <div className="text-center mt-3 text-lg sm:text-2xl">
+                Easily post detailed queries about your DevOps challenges.
+              </div>
+            </div>
+          </li>
+          <li className="splide__slide p-2">
+            <div
+              className={`${
+                theme
+                  ? "text-black border-black"
+                  : "text-white bg-[#26272b] border-white border-dashed"
+              } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+            >
+              <div className="flex p-4 gap-5 items-center justify-center">
+                <img src="new/i2.webp" className="w-16 rounded-full" alt="Receive expert help" />
+                <div className="font-medium text-xl sm:text-2xl">Receive Expert Help</div>
+              </div>
+              <div className="text-center mt-3 text-lg sm:text-2xl">
+                Tap into the collective knowledge of experienced DevOps professionals.
+              </div>
+            </div>
+          </li>
+          <li className="splide__slide p-2">
+            <div
+              className={`${
+                theme
+                  ? "text-black border-black"
+                  : "text-white bg-[#26272b] border-white border-dashed"
+              } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+            >
+              <div className="flex p-4 gap-5 items-center justify-center">
+                <img src="new/i4.webp" className="w-16 rounded-full" alt="collaborate and learn" />
+                <div className="font-medium text-xl sm:text-2xl">Collaborate and Learn</div>
+              </div>
+              <div className="text-center mt-3 text-lg sm:text-2xl">
+                Engage with a community dedicated to sharing knowledge and solving problems.
+              </div>
+            </div>
+          </li>
+          <li className="splide__slide p-2">
+            <div
+              className={`${
+                theme
+                  ? "text-black border-black"
+                  : "text-white bg-[#26272b] border-white border-dashed"
+              } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
+            >
+              <div className="flex p-4 gap-5 items-center justify-center">
+                <img src="new/i3.webp" className="w-16 rounded-full" alt="access resources" />
+                <div className="font-medium text-xl sm:text-2xl">Save Time</div>
+              </div>
+              <div className="text-center mt-3 text-lg sm:text-2xl">
+                Quickly resolve issues and focus on what matters most - driving your projects forward.
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div className="flex items-center max-lg:flex-col max-lg:h-auto max-lg:justify-center max-sm:my-0 relative h-[600px] mt-16 mb-16 px-32 max-md:px-3">
         <div className="w-1/2 max-lg:w-3/4 max-md:w-full max-md:scale-75 mt-16 mb-8">
