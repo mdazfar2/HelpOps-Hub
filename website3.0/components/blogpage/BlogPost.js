@@ -270,24 +270,88 @@ function BlogPost() {
     }
   }
   const handleReactionClick = async (reactionType) => {
+    console.log(reactionType)
     if (!isLogin) {
       setIsPopup(true);
       setMsg("Please Login to React");
       return;
     }
+    let map=new Map(Object.entries(finalUser.likedBlogs))
 
+    if(map.has(id)){
+      let map1=new Map(Object.entries(map.get(id)))
+      if(map1.has(reactionType)){
+        const response = await fetch(`/api/blog/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({reactionType: reactionType,user1:finalUser }),
+        });
+        if (response.ok) {
+          const updatedBlog = await response.json();
+          setBlog(updatedBlog);
+          let user=await fetch('/api/getuser',{
+            method:"POST",
+            body:JSON.stringify({
+              id:finalUser._id
+            })
+          })
+          user=await user.json()
+          setFinalUser(user.msg)
+          user=await JSON.stringify(user.msg)
+          localStorage.setItem('finalUser',user)        
+          updateTotalReactionCount(updatedBlog.reactionList);
+        }
+      }else{
+        const response = await fetch(`/api/blog/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({reactionType: reactionType,user1:finalUser }),
+        });
+  
+        if (response.ok) {
+          const updatedBlog = await response.json();
+          setBlog(updatedBlog);
+          let user=await fetch('/api/getuser',{
+            method:"POST",
+            body:JSON.stringify({
+             id:finalUser._id
+            })
+          })
+          user=await user.json()
+          setFinalUser(user.msg)
+          user=await JSON.stringify(user.msg)
+          localStorage.setItem('finalUser',user)        
+          updateTotalReactionCount(updatedBlog.reactionList);
+        } 
+      }
+      return
+    }
     try {
       const response = await fetch(`/api/blog/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ reactionType }),
+        body: JSON.stringify({reactionType: reactionType,user1:finalUser }),
       });
 
       if (response.ok) {
         const updatedBlog = await response.json();
         setBlog(updatedBlog);
+        let user=await fetch('/api/getuser',{
+          method:"POST",
+          body:JSON.stringify({
+            id:finalUser._id
+          })
+        })
+        user=await user.json()
+        setFinalUser(user.msg)
+        user=await JSON.stringify(user.msg)
+        localStorage.setItem('finalUser')        
         updateTotalReactionCount(updatedBlog.reactionList);
       } else {
         setError("Failed to update reactions.");

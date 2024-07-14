@@ -26,6 +26,10 @@ const newsletterModel = new mongoose.Schema({
   resource:{
     type:Map,
     default:new Map()
+  },
+  likedBlogs:{
+    type:Map,
+    default:new Map()
   }
 });
 
