@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import Profile from '@pages/Profile';
-import Popup from './Popup';
 import Login from './LoginSignup/Login';
 import Signup from './LoginSignup/Signup';
 import { useRouter } from 'next/navigation';

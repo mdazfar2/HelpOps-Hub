@@ -10,7 +10,7 @@ import {
   faComment as regularComment,
   faBookmark as regularBookmark,
 } from "@fortawesome/free-regular-svg-icons";
-
+import { FaPaperPlane } from "react-icons/fa";
 const regularIcons = {
   Heart: regularHeart,
   Comment: regularComment,
@@ -358,7 +358,7 @@ function BlogPost() {
                 <div
                   key={index}
                   onClick={()=>handleClick(index)} 
-                  className="flex flex-col justify-center items-center"
+                  className="flex cursor-pointer flex-col justify-center items-center"
                   onMouseEnter={
                     panelIcon.label === "Heart"
                       ? handleMouseEnterIcon
@@ -475,7 +475,7 @@ function BlogPost() {
               </span>
             </div>
           </div>
-          <h1 className="text-4xl font-extrabold mb-5">{blog.title}</h1>
+          <h1 className="text-4xl font-normal mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (
@@ -511,7 +511,7 @@ function BlogPost() {
               </div>
             )}
           </div>
-          <div className="pb-10">{blog.description}</div>
+          <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5">Top Comments</div>
           <div className="flex items-center justify-center mb-4">
@@ -533,7 +533,9 @@ function BlogPost() {
               onKeyPress={(e) => {
                 if (e.key === "Enter") handleAddComment();
               }}
+
             />
+            <FaPaperPlane onClick={handleAddComment} className="relative right-[50px] cursor-pointer z-50" color="blue" size={'2rem'}/>
           </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
@@ -614,7 +616,7 @@ function BlogPost() {
         >
           <div className="text-xl font-bold flex">
             More From{" "}
-            <span className="text-blue-500 ml-1">{blog.authorName}</span>
+            <span className="text-blue-500 ml-1" >{blog.authorName}</span>
           </div>
           {loading ? (
             <>
@@ -652,8 +654,7 @@ function BlogPost() {
                         : " bg-[#0f0e0e] text-white "
                     } my-5 rounded-xl p-5 cursor-pointer`}
                     onClick={() => navigateToBlogDetails(otherBlog._id)}
-                  >
-                    {otherBlog.title}
+                    dangerouslySetInnerHTML={{ __html: otherBlog.title}}    >
                   </li>
                 ))}
               </ul>

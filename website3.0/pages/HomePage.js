@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import "@stylesheets/homepage.css";
 import { useRouter } from "next/navigation";
 import Lodaernewletter from "../components/Loadernewletter";
-import Popup from "@components/Popup";
 import Spline from "@splinetool/react-spline";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +21,12 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
+
 function HomePage({ theme, setIsPopup, setMsg }) {
+
+import Popup from "@components/Popup";
+function HomePage({ theme,  setIsPopup,setMsg,setColor}) {
+
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -136,12 +140,21 @@ function HomePage({ theme, setIsPopup, setMsg }) {
 
   // Maintance
 
+
   const maintanance = () => {
     setMaintanance(true);
     setTimeout(() => {
       setMaintanance(false);
     }, 2000);
   };
+
+  const maintanance=()=>{
+    setMaintanance(true)
+    setTimeout(()=>{
+      setMaintanance(false)
+    },4000)
+  }
+
 
   // Navigate to the /resources page when "Get started" button is clicked
   const handleGetStartedClick = () => {
@@ -193,8 +206,14 @@ function HomePage({ theme, setIsPopup, setMsg }) {
 
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
+
         setMsg("Subscribed Successfully");
         setIsPopup(true);
+
+        setMsg("Subscribed Successfully")
+        setIsPopup(true)
+       setColor('green')
+
       } else {
         if (subscribeData.message === "User already subscribed") {
           setMsg("User is already subscribed");
@@ -253,12 +272,20 @@ function HomePage({ theme, setIsPopup, setMsg }) {
       {Maintance ? (
         <Popup
           msg="This page is under development. We apologize for the inconvenience. Please check back soon."
+
           error="puple1"
           img="https://cdn-icons-png.flaticon.com/128/11482/11482452.png"
         />
       ) : (
         <></>
       )}
+
+
+          color="purple"
+        
+        />:<></>
+      }
+     
 
       {showModal && <Reset />}
 
