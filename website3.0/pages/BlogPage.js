@@ -154,13 +154,20 @@ function BlogPage({ theme }) {
 
   const renderBlogDescription = (description) => {
     const words = description.split(" ");
-    const limitedDescription = words.slice(0, 10).join(" ");
+  const limitedDescription = words.slice(0, 10).join(" ");
+  const hasMore = words.length > 10;
 
-    return words.length > 10 ? (
-      <React.Fragment>{limitedDescription}.... Read more</React.Fragment>
-    ) : (
-      limitedDescription
-    );
+  // Check if description contains HTML tags
+  const containsHTML = /<[a-z][\s\S]*>/i.test(description);
+
+  return containsHTML ? (
+    <div dangerouslySetInnerHTML={{ __html: limitedDescription + (hasMore ? ".... Read more" : "") }} />
+  ) : (
+    <React.Fragment>
+      {limitedDescription}
+      {hasMore && ".... Read more"}
+    </React.Fragment>
+  );
   };
 
   const navigateToBlogDetails = (blogId) => {
@@ -202,7 +209,23 @@ function BlogPage({ theme }) {
     setFilter("recentBlogs");
     setSortBy("date"); // Ensure recent blogs are sorted by date
   };
-
+  const renderBlogTitle = (title) => {
+    const maxLength = 20; // Adjust as needed
+    const truncatedTitle = title.length > maxLength ? title.substring(0, maxLength) + "..." : title;
+  
+    return title.length > maxLength ? (
+      <div>
+        <span dangerouslySetInnerHTML={{ __html: truncatedTitle }} />
+       {/* Replace with your logic */}
+      </div>
+    ) : (
+      <div>{title}</div>
+    );
+  };
+  function render(title){
+    console.log(title)
+    document.getElementById('load').innerHTML='sddddddd'
+  }
   return (
     <div className="pt-24">
     <div className="w-full bg-[#6089a4] h-9 mb-20 py-2 text-center text-white font-medium">Ensuring You Never Get Stuck in Devops Again !!</div>
@@ -253,10 +276,13 @@ function BlogPage({ theme }) {
                   </div>
                   <div className="flex gap-10 items-center">
                     <div>
-                      <div className="text-2xl mb-2 font-extrabold">
-                        {blog.title}
+                      <div className="text-2xl mb-2 font-extrabold " id="load" >
+                   {
+                        ' dssssssssssssssssss'
+
+                   }
                       </div>
-                      <div className="font-medium text-gray-600">
+                      <div className="font-medium text-gray-600"  >
                         {renderBlogDescription(blog.description)}
                       </div>
                       <div className="flex text-sm text-gray-500 justify-between items-center">
@@ -313,8 +339,7 @@ function BlogPage({ theme }) {
                   </div>
                   <div className="flex gap-10 items-center">
                     <div>
-                      <div className="text-2xl mb-2 font-extrabold">
-                        {blog.title}
+                      <div className="text-2xl mb-2 font-extrabold"  dangerouslySetInnerHTML={{ __html: blog.title}}>
                       </div>
                       <div className="font-medium text-gray-600">
                         {renderBlogDescription(blog.description)}
@@ -376,7 +401,7 @@ function BlogPage({ theme }) {
                 />
                 <div className="text-xs font-bold">{blog.authorName}</div>
               </div>
-              <div className="text-sm font-extrabold">{blog.title}</div>
+              <div className="text-sm font-extrabold"  dangerouslySetInnerHTML={{ __html: blog.title}}></div>
             </div>
           ))}
         </div>

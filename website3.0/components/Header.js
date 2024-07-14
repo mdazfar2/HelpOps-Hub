@@ -88,7 +88,7 @@ const Header = () => {
           theme ? "bg-transparent" : "transition-all bg-transparent"
         } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs ? "hidden" : "block"} `}
+        } ${isAdmin ? "hidden" : "block"} ${isBlogs|| pathname.startsWith('/createblog') ? "hidden" : "block"} `}
       >
         <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
           {/* Logo with VanillaTilt animation */}
@@ -284,7 +284,7 @@ const Header = () => {
           theme ? "bg-gray-100" : "transition-all"
         } z-50 fixed top-0  transition-all overflow-hidden ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs ? "block" : "hidden"} `}
+        } ${isAdmin ? "hidden" : "block"} ${isBlogs || pathname.startsWith('/createblog') ? "block" : "hidden"} `}
       >
         <nav className="flex justify-between items-center w-[90%] my-5 mx-auto">
           <div className="flex w-1/2 gap-10 items-center">
