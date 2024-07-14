@@ -270,96 +270,104 @@ function BlogPost() {
     }
   }
   const handleReactionClick = async (reactionType) => {
-    console.log(reactionType)
+    console.log(reactionType);
+    
     if (!isLogin) {
       setIsPopup(true);
       setMsg("Please Login to React");
       return;
     }
-    let map=new Map(Object.entries(finalUser.likedBlogs))
-
-    if(map.has(id)){
-      let map1=new Map(Object.entries(map.get(id)))
-      if(map1.has(reactionType)){
-        const response = await fetch(`/api/blog/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({reactionType: reactionType,user1:finalUser }),
-        });
-        if (response.ok) {
-          const updatedBlog = await response.json();
-          setBlog(updatedBlog);
-          let user=await fetch('/api/getuser',{
-            method:"POST",
-            body:JSON.stringify({
-              id:finalUser._id
-            })
-          })
-          user=await user.json()
-          setFinalUser(user.msg)
-          user=await JSON.stringify(user.msg)
-          localStorage.setItem('finalUser',user)        
-          updateTotalReactionCount(updatedBlog.reactionList);
+    
+    try {
+      let map = new Map(Object.entries(finalUser.likedBlogs));
+  
+      if (map.has(id)) {
+        let map1 = new Map(Object.entries(map.get(id)));
+  
+        if (map1.has(reactionType)) {
+          // Reaction exists, so delete it
+          const response = await fetch(`/api/blog/${id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ reactionType: reactionType, user1: finalUser }),
+          });
+  
+          if (response.ok) {
+            const updatedBlog = await response.json();
+            setBlog(updatedBlog);
+            await updateUser(finalUser._id);
+            updateTotalReactionCount(updatedBlog.reactionList);
+          } else {
+            setError("Failed to delete reaction.");
+          }
+        } else {
+          // Reaction does not exist, so add it
+          const response = await fetch(`/api/blog/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ reactionType: reactionType, user1: finalUser }),
+          });
+  
+          if (response.ok) {
+            const updatedBlog = await response.json();
+            setBlog(updatedBlog);
+            await updateUser(finalUser._id);
+            updateTotalReactionCount(updatedBlog.reactionList);
+          } else {
+            setError("Failed to add reaction.");
+          }
         }
-      }else{
+      } else {
+        // No reactions for this blog yet, so add the reaction
         const response = await fetch(`/api/blog/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({reactionType: reactionType,user1:finalUser }),
+          body: JSON.stringify({ reactionType: reactionType, user1: finalUser }),
         });
   
         if (response.ok) {
           const updatedBlog = await response.json();
           setBlog(updatedBlog);
-          let user=await fetch('/api/getuser',{
-            method:"POST",
-            body:JSON.stringify({
-             id:finalUser._id
-            })
-          })
-          user=await user.json()
-          setFinalUser(user.msg)
-          user=await JSON.stringify(user.msg)
-          localStorage.setItem('finalUser',user)        
+          await updateUser(finalUser._id);
           updateTotalReactionCount(updatedBlog.reactionList);
-        } 
-      }
-      return
-    }
-    try {
-      const response = await fetch(`/api/blog/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({reactionType: reactionType,user1:finalUser }),
-      });
-
-      if (response.ok) {
-        const updatedBlog = await response.json();
-        setBlog(updatedBlog);
-        let user=await fetch('/api/getuser',{
-          method:"POST",
-          body:JSON.stringify({
-            id:finalUser._id
-          })
-        })
-        user=await user.json()
-        setFinalUser(user.msg)
-        user=await JSON.stringify(user.msg)
-        localStorage.setItem('finalUser')        
-        updateTotalReactionCount(updatedBlog.reactionList);
-      } else {
-        setError("Failed to update reactions.");
+        } else {
+          setError("Failed to add reaction.");
+        }
       }
     } catch (error) {
       setError("An error occurred while updating reactions.");
     }
   };
+  
+  // Function to update user state and local storage
+  const updateUser = async (userId) => {
+    try {
+      let response = await fetch('/api/getuser', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: userId }),
+      });
+  
+      if (response.ok) {
+        let user = await response.json();
+        setFinalUser(user.msg);
+        localStorage.setItem('finalUser', JSON.stringify(user.msg));
+      } else {
+        console.error("Failed to fetch updated user data.");
+      }
+    } catch (error) {
+      console.error("An error occurred while updating user state.", error);
+    }
+  };
+  
 
   const updateTotalReactionCount = (reactionList) => {
     const totalCount = reactionList.reduce(
