@@ -7,10 +7,9 @@ import "@stylesheets/resourceloader.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FaThumbsUp, FaHeart } from "react-icons/fa6";
-import Popup from "@components/Popup";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
-function ResourcesPage({ theme }) {
+function ResourcesPage({ theme,setIsPopup,setMsg,isLogin }) {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -22,7 +21,6 @@ function ResourcesPage({ theme }) {
   const [showPopup, setShowPopup] = useState(false);
   const [likedFolders, setLikedFolders] = useState(new Set()); //to add body bg color
   const [showAuth, setShowAuth] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
 
   const switchToSignup = () => {
     setIsLogin(false);
@@ -302,16 +300,16 @@ function ResourcesPage({ theme }) {
   async function handleLike(e, folderName) {
     e.stopPropagation();
     if (
-      !localStorage.getItem("userName") &&
-      !localStorage.getItem("userEmail")
+      !isLogin
     ) {
-      setShowPopup(true);
-      setTimeout(() => {
-        setShowAuth(true);
-      }, 800);
-      setTimeout(() => {
-        setShowPopup(false);
-      }, 2000);
+      setIsPopup(true);
+      setMsg("Please Login First")
+      // setTimeout(() => {
+      //   setShowAuth(true);
+      // }, 800);
+      // setTimeout(() => {
+      //   setShowPopup(false);
+      // }, 2000);
       return;
     }
     let folder = likedFolders;
@@ -422,8 +420,8 @@ function ResourcesPage({ theme }) {
       } `}
     >
       {/* Section: Heading */}
-      {showPopup && <Popup msg="Please Login" error="red1" />}
-      {showAuth && (
+      {/* {showPopup && <Popup msg="Please Login" error="red1" />} */}
+      {/* {showAuth && (
         <div className="auth-overlay" onClick={closeAuth}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             {isLogin ? (
@@ -433,7 +431,7 @@ function ResourcesPage({ theme }) {
             )}
           </div>
         </div>
-      )}
+      )} */}
       <div className="heading">
         <h1
           class={`${

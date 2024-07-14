@@ -10,7 +10,7 @@ import {
   faComment as regularComment,
   faBookmark as regularBookmark,
 } from "@fortawesome/free-regular-svg-icons";
-
+import { FaPaperPlane } from "react-icons/fa";
 const regularIcons = {
   Heart: regularHeart,
   Comment: regularComment,
@@ -355,6 +355,7 @@ function BlogPost() {
                   key={index}
                   onClick={() => handleClick(index)}
                   className="flex flex-col justify-center items-center"
+
                   onMouseEnter={
                     panelIcon.label === "Heart"
                       ? handleMouseEnterIcon
@@ -561,7 +562,9 @@ function BlogPost() {
               onKeyPress={(e) => {
                 if (e.key === "Enter") handleAddComment();
               }}
+
             />
+            <FaPaperPlane onClick={handleAddComment} className="relative right-[50px] cursor-pointer z-50" color="blue" size={'2rem'}/>
           </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[300px] md:h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (

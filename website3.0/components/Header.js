@@ -18,15 +18,17 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "@context/store";
+import { useRouter } from "next/navigation";
 const Header = () => {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
   const isBlogs = pathname && pathname.startsWith("/blogs"); // Check if path starts with '/blogs'
-  let { theme, isAdminShow } = useContext(Context);
+  let { theme, isAdminShow,isLogin,setIsPopup,setMsg } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
   // to set the status of show navbar or not
   const [show, setShow] = useState(true);
+  let router=useRouter()
   let lastScrollTop = 0; // to keep the position of lastscroll
 
   useEffect(() => {
@@ -80,7 +82,15 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+function handleValidate(){
+  if(!isLogin){
+    setIsPopup(true)
+    setMsg("Please login First ")
+    return 
+  }
+  router.push('/createblog')
 
+}
   return (
     <div>
       <header
@@ -310,12 +320,12 @@ const Header = () => {
     </div>}
 
     <div className="flex items-center lg:gap-10 lg:font-bold max-lg:gap-4 text-gray-600">
-     {!pathname.startsWith('/createblog')&& <Link href="/createblog" className="flex items-center gap-2">
+     {!pathname.startsWith('/createblog')&& <div onClick={handleValidate} className="flex cursor-pointer items-center gap-2">
         <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
           <FontAwesomeIcon icon={faPen} className="max-md:w-5 max-md:h-5 text-gray-600" />
         </div>
         <span className="max-md:hidden">Create Blog</span>
-      </Link>
+      </div>
 }
       <div className="block max-md:hidden">
         <AuthButton />

@@ -1,51 +1,41 @@
-.popup4 {
-    min-width: 300px;
-    max-width: 80vw; /* Set a maximum width */
-    width: auto;
-    height: auto;
-    border-radius: 10px;
+.popupclass{
     position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column; /* Ensure the text and line stack vertically */
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    color: white;
-    background-color: rgba(120, 0, 175, 0.8); /* Adjust background color as needed */
-    animation: animate9 1s forwards;
-    z-index: 999;
-    word-wrap: break-word; /* Ensure text wraps within the max-width */
-}
-
-.line4 {
-    height: 3px;
-    position: absolute;
-    bottom: 1px;
-    animation: animate6 3s forwards;
-    left: 2px;
-    width: 98%; /* Adjusted width to avoid !important */
-    color: rgb(5, 251, 255);
-    background-color: rgb(5, 251, 255);
+    bottom: 80px;
+    left: 39%;
+    padding: 10px ;   
+    color: white ;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 5px ;
+    width: auto;
+    min-width: 300px;
+    max-width: 400px;
     z-index: 1000;
+    animation: animatorpopup forwards 2s;
 }
-
-@keyframes animate6 {
-    from {
-        width: 0px;
-    }
-    to {
-        width: 98%;
+@media only screen and (max-width:600px) {
+    .popupclass{
+        left: 18% !important;
     }
 }
-
-@keyframes animate9 {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
+@keyframes animatorpopup {
+        from{
+           opacity: 0;
+        }to{
+            opacity: 1;
+        }
+}
+.jdikfgf{
+    bottom: 0px !important;
+    left: 0px !important;
+    animation: lineanimator forwards 2s;
+    background-color: rgb(80, 80, 80);
+    height: 2px;
+}
+@keyframes lineanimator {
+    from{
+        width: 0px ;
+    }to{
+        width: 100%;
     }
 }

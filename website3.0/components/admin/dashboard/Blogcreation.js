@@ -41,7 +41,7 @@ const BlogCreation = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [disableSubmit, setDisableSubmit] = useState(false);
-  const { finalUser } = useContext(Context);
+  const { finalUser,isLogin } = useContext(Context);
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     setFormData((prevData) => ({
