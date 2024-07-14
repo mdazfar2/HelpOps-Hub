@@ -36,7 +36,6 @@ function BlogPost() {
   const timerRef = useRef(null);
   const [loading, setLoading] = useState(true);
   let [commentCount, setCommentCount] = useState(0);
-  console.log(finalUser);
 
   const [fetchedUser, setFetchedUser] = useState(null);
   const router = useRouter();
@@ -57,7 +56,6 @@ function BlogPost() {
       count: 0,
     },
   ]);
-
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -141,6 +139,7 @@ function BlogPost() {
       setFinalUser(updatedData.user1);
 
       setIsFollowed(true);
+
     }
   }
   async function handleUnfollow() {
@@ -388,11 +387,13 @@ function BlogPost() {
         <div className="fixed bottom-0 left-0 right-0 md:static md:left-24 md:top-60 flex justify-center md:block z-10 bg-white md:bg-transparent">
           <div className="flex md:flex-col items-center space-x-4 md:space-x-0 md:space-y-4 p-4 md:p-0">
             <div className="flex md:flex-col space-x-4 md:space-x-0 md:space-y-4">
+     
               {panelIcons.slice(0, 3).map((panelIcon, index) => (
                 <div
                   key={index}
                   onClick={() => handleClick(index)}
                   className="flex flex-col justify-center items-center"
+
                   onMouseEnter={
                     panelIcon.label === "Heart"
                       ? handleMouseEnterIcon
@@ -420,6 +421,7 @@ function BlogPost() {
                           }`
                         : "text-white"
                     } text-[20px]`}
+                             
                   />
                   <span
                     className={`${
@@ -491,6 +493,7 @@ function BlogPost() {
           alt={blog.title}
           className="w-full h-48 md:h-96 object-cover mb-5 rounded-lg"
         />
+ 
         <div className="px-2 md:px-10">
           <div
             className="flex items-center mb-5 cursor-pointer"
@@ -502,7 +505,7 @@ function BlogPost() {
                   ? fetchedUser.image1
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
               }
-              alt={fetchedUser ? fetchedUser.name : "User Image"}
+              alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-10 h-10 rounded-full mr-3"
             />
             <div>
@@ -639,6 +642,7 @@ function BlogPost() {
             theme ? "bg-white" : "bg-[#e2e2e2]"
           } h-[400px] rounded-xl overflow-hidden mb-5`}
         >
+
           <div className="w-full bg-[#000000] h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
@@ -647,7 +651,7 @@ function BlogPost() {
                   ? fetchedUser.image1
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
               }
-              alt={fetchedUser ? fetchedUser.name : "User Image"}
+              alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-12 h-12 rounded-full mr-3 relative -top-3"
             />
             <div className="py-1">
@@ -676,6 +680,7 @@ function BlogPost() {
               theme ? "bg-gray-100" : "bg-[#9d9d9d]"
             } flex flex-col items-center m-5 p-5 h-52`}
           >
+
             {fetchedUser ? (
               <>
                 <div className="text-lg font-bold mb-2">
@@ -684,7 +689,7 @@ function BlogPost() {
                 <div className="text-lg text-center">{fetchedUser.caption}</div>
                 <div className="flex gap-5 mt-5 text-2xl">
                   {fetchedUser.github && (
-                    
+                    <a
                       href={fetchedUser.github}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -693,7 +698,7 @@ function BlogPost() {
                     </a>
                   )}
                   {fetchedUser.linkedin && (
-                    
+                    <a
                       href={fetchedUser.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -704,7 +709,7 @@ function BlogPost() {
                 </div>
               </>
             ) : (
-              <div className="text-lg font-bold mb-2">Loading...</div>
+              <div className="text-lg font-bold mb-2">Loading...</div> // Fallback content while fetching
             )}
           </div>
         </div>
