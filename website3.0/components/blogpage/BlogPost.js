@@ -503,6 +503,7 @@ function BlogPost() {
           <h1 className="text-2xl md:text-4xl font-extrabold mb-5">
             {blog.title}
           </h1>
+
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (
@@ -538,7 +539,7 @@ function BlogPost() {
               </div>
             )}
           </div>
-          <div className="pb-10">{blog.description}</div>
+          <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5">Top Comments</div>
           <div className="flex items-center justify-center mb-4">
@@ -647,7 +648,7 @@ function BlogPost() {
         >
           <div className="text-xl font-bold flex">
             More From{" "}
-            <span className="text-blue-500 ml-1">{blog.authorName}</span>
+            <span className="text-blue-500 ml-1" >{blog.authorName}</span>
           </div>
           {loading ? (
             <>
@@ -679,8 +680,7 @@ function BlogPost() {
                         : "bg-[#0f0e0e] text-white"
                     } my-5 rounded-xl p-5 cursor-pointer`}
                     onClick={() => navigateToBlogDetails(otherBlog._id)}
-                  >
-                    {otherBlog.title}
+                    dangerouslySetInnerHTML={{ __html: otherBlog.title}}    >
                   </li>
                 ))}
               </ul>

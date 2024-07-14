@@ -37,6 +37,7 @@
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-modal": "^3.16.1",
+    "react-quill": "^2.0.0",
     "rellax": "^1.12.1",
     "resend": "^3.4.0",
     "showdown": "^2.1.0",
