@@ -9,7 +9,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FaThumbsUp, FaHeart } from "react-icons/fa6";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
-function ResourcesPage({ theme,setIsPopup,setMsg,isLogin }) {
+function ResourcesPage({ theme,setIsPopup,setMsg,isLogin,setFinalUser,finalUser }) {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -32,17 +32,16 @@ function ResourcesPage({ theme,setIsPopup,setMsg,isLogin }) {
   };
   useEffect(() => {
     fetchdataa();
-  }, []);
+  }, [isLogin]);
   async function fetchdataa() {
-    let msg = await fetch("/api/likedfolder", {
-      method: "GET",
-    });
-    msg = await msg.json();
-    let folder = new Set();
-    msg.msg.map((data) => {
-      folder.add(data.resourcePath);
-    });
-    setLikedFolders(folder);
+    if(isLogin){
+let dd=await JSON.parse(localStorage.getItem("finalUser"))
+      let folder = new Set();
+      Object.keys(dd.resource).map((data) => {
+        folder.add(data);
+      });
+      setLikedFolders(folder);
+    }
   }
   useEffect(() => {
     function updateBackground() {
@@ -313,32 +312,38 @@ function ResourcesPage({ theme,setIsPopup,setMsg,isLogin }) {
       return;
     }
     let folder = likedFolders;
+    let id=await JSON.parse(localStorage.getItem('finalUser'))
     if (folder.has(folderName)) {
-      await fetch("/api/like", {
+     let user= await fetch("/api/like", {
         method: "POST",
         body: JSON.stringify({
           path: `${folderName}`,
+          id:id._id,
           isDelete: true,
         }),
       });
+      user=await user.json()
+      console.log(user)
+      setFinalUser(user.user)
+      user =await JSON.stringify(user.user)
+      localStorage.setItem('finalUser',user)
+     await fetchdataa()
     } else {
-      await fetch("/api/like", {
+     let user= await fetch("/api/like", {
         method: "POST",
         body: JSON.stringify({
           path: `${folderName}`,
+          id:id._id,
+
           isDelete: false,
         }),
       });
+      user=await user.json()
+      setFinalUser(user.user)
+      user =await JSON.stringify(user.user)
+      localStorage.setItem('finalUser',user)
+   await   fetchdataa()
     }
-    setLikedFolders((prev) => {
-      const newLikedFolders = new Set(prev);
-      if (newLikedFolders.has(folderName)) {
-        newLikedFolders.delete(folderName);
-      } else {
-        newLikedFolders.add(folderName);
-      }
-      return newLikedFolders;
-    });
   }
   const displayFolders = (data) => {
     return data.map((item, index) => {
