@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState ,useContext} from "react";
 
-import CreateBlog from "@components/blogpage/CreateBlog";
+import dynamic from "next/dynamic";
+
+const CreateBlog = dynamic(() => import("@components/blogpage/CreateBlog"), { ssr: false });
 
 export default function blogPage() {
   return (

@@ -301,13 +301,13 @@ const Header = () => {
       </Link>
     </div>
 
-    <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[180px]">
+   {!pathname.startsWith('/createblog') && <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[180px]">
       <input
         type="text"
         placeholder="Search"
         className="bg-gray-200 py-2 px-5 rounded-3xl w-full"
       />
-    </div>
+    </div>}
 
     <div className="flex items-center lg:gap-10 lg:font-bold max-lg:gap-4 text-gray-600">
      {!pathname.startsWith('/createblog')&& <Link href="/createblog" className="flex items-center gap-2">

@@ -5,7 +5,8 @@ import "../../stylesheets/editor.css"
 import React, { useEffect, useRef, useState ,useContext} from "react";
 import { FaPlus, FaImage } from "react-icons/fa";
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import ReactQuill, { Quill } from 'react-quill';
+// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
 import { useRouter } from "next/navigation";
@@ -27,76 +28,71 @@ export default function CreateBlog() {
   console.log(value)
   },[value])
   useEffect(() => {
-    if (quillRef.current) {
-      const quill = quillRef.current.getEditor();
-          quill.root.addEventListener('paste', (event) => {
-            const clipboardData = event.clipboardData;
-            const items = clipboardData.items;
-            
-            for (let i = 0; i < items.length; i++) {
-              const item = items[i];
-          
-              if (item.kind === 'file' && item.type.startsWith('image/')) {
-                const file = item.getAsFile();
-                const reader = new FileReader();
-                reader.onload =async (e) => {
-                  // Handle image data
-                  let imageSrc = e.target.result;
-                  imageSrc=await convertToBase64(imageSrc)
-                  // For demonstration, we'll just log the image source
-                  setIsImg(imageSrc)
-          
-                };
-                reader.readAsDataURL(file);
-              } else if (item.kind === 'string') {
-                item.getAsString((text) => {
-                  // Handle text data
-                  setValue((prevContent) => prevContent + text);
-                });
-              }
-            }
-            
-            // Prevent the default paste behavior
-            event.preventDefault();
-      });
-    }
-    if (quillRef1.current) {
-      const quill = quillRef1.current.getEditor();
-          quill.root.addEventListener('paste', (event) => {
-            const clipboardData = event.clipboardData;
-            const items = clipboardData.items;
-            
-            for (let i = 0; i < items.length; i++) {
-              const item = items[i];
-          
-              if (item.kind === 'file' && item.type.startsWith('image/')) {
-                const file = item.getAsFile();
-                const reader = new FileReader();
-                reader.onload =async (e) => {
-                  // Handle image data
-                  let imageSrc = e.target.result;
-                  imageSrc=await convertToBase64(imageSrc)
+    const handlePaste = (event, setValueCallback, setImgCallback) => {
+      event.preventDefault(); // Prevent the default paste behavior
   
-                  // For demonstration, we'll just log the image source
-                  console.log('Image pasted:', imageSrc);
-                  setIsImg(imageSrc)
-          
-                };
-                reader.readAsDataURL(file);
-              } else if (item.kind === 'string') {
-                item.getAsString((text) => {
-                  // Handle text data
-                  setDesc((prevContent) => prevContent + text);
-                });
-              }
-            }
-            
-            // Prevent the default paste behavior
-            event.preventDefault();
-      });
+      const clipboardData = event.clipboardData;
+      const items = clipboardData.items;
+  
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+  
+        if (item.kind === 'file' && item.type.startsWith('image/')) {
+          const file = item.getAsFile();
+          const reader = new FileReader();
+          reader.onload = async (e) => {
+            // Handle image data
+            const imageSrc = e.target.result;
+            // For demonstration, we'll just log the image source
+            console.log('Image pasted:', imageSrc);
+            setImgCallback(imageSrc);
+          };
+          reader.readAsDataURL(file);
+        } else if (item.kind === 'string') {
+          item.getAsString((text) => {
+            // Handle text data
+            setValueCallback((prevContent) => prevContent + text);
+          });
+        }
+      }
+    };
+  
+    const quill = quillRef.current?.getEditor();
+    const quill1 = quillRef1.current?.getEditor();
+  
+    if (quill) {
+      const handlePasteForQuill = (event) => {
+        console.log('Pasting in first editor');
+        handlePaste(event, setValue, setIsImg);
+      };
+      const handlePasteForQuill1 = (event) => {
+        console.log('Pasting in second editor');
+        handlePaste(event, setDesc, setIsImg);
+      };
+      quill1.root.addEventListener('paste', handlePasteForQuill1);
+  
+      quill.root.addEventListener('paste', handlePasteForQuill);
+  
+      return () => {
+        quill.root.removeEventListener('paste', handlePasteForQuill);
+        quill1.root.removeEventListener('paste', handlePasteForQuill1);
+
+      };
+    }
+  
+    if (quill1) {
+      console.log('Initializing paste handler for second editor');
+      const handlePasteForQuill1 = (event) => {
+        console.log('Pasting in second editor');
+        handlePaste(event, setDesc, setIsImg);
+      };
+      quill1.root.addEventListener('paste', handlePasteForQuill1);
+  
+      return () => {
+        quill1.root.removeEventListener('paste', handlePasteForQuill1);
+      };
     }
   }, []);
-  
   
   
   
@@ -234,7 +230,7 @@ export default function CreateBlog() {
     <div
       className={`flex relative flex-col rounded-xl pt-10 pb-10 border-dashed ${
         theme ? "border-black" : "border-white"
-      } pl-1 max-sm:pl-6 max-md:pl-4 mt-0  gap-16 items-end mr-0 w-[60vw] max-sm:w-[98vw] max-md:w-[80vw] m-auto h-auto`}
+      } pl-1 max-sm:pl-6 max-md:pl-4 mt-0   items-end mr-0 w-[60vw] max-sm:w-[98vw] max-md:w-[80vw] m-auto h-auto`}
     >
 
        <div className="h-auto classsa w-[90%] rounded-full mt-8 flex items-center">
@@ -280,8 +276,8 @@ export default function CreateBlog() {
         ></input> */}
       </div>
       <input className="hidden" onChange={handleImageUpload} type="file" id="img-input"></input>
-      <div htmlFor="img-input" className="h-auto m-auto">{isImg && <img src={isImg}></img>}</div>
-      <div className="h-auto classsb w-[90%] rounded-full mt-8 gap-4 flex items-center">
+      <div htmlFor="img-input" className="h-auto m-auto mt-6">{isImg && <img src={isImg}></img>}</div>
+      <div className="h-auto classsb w-[90%] rounded-full  gap-4 flex items-center">
         {!showInTitle && (
           <div className="h-20 items-center gap-3  absolute left-[5%] flex flex-col ">
             <div
@@ -340,7 +336,7 @@ export default function CreateBlog() {
       >
         Publish
       </button>
-      <button>Draft</button>
+      {/* <button>Draft</button> */}
     </div>
   </div>
   )
