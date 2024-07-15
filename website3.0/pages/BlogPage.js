@@ -9,6 +9,8 @@ import {
   faTimes,
   faBookmark as solidBookmark,
 } from "@fortawesome/free-solid-svg-icons";
+import Confetti from "react-confetti";
+
 import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
 import { useRouter } from "next/navigation";
 import Skeleton from "react-loading-skeleton";
@@ -25,6 +27,7 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
   const [filter, setFilter] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
+  const [confetti,setShowConfetti]=useState(false)
   const router = useRouter();
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -102,7 +105,16 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
   const closeSidebar = () => {
     setSidebarOpen(false);
   };
+useEffect(()=>{
+  if(localStorage.getItem('showConfetti')){
+    setShowConfetti(true)
+    setTimeout(()=>{
+      localStorage.removeItem('showConfetti')
+      setShowConfetti(false)
+    },6000)
+  }
 
+},[])
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -242,6 +254,8 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
     return filtered;
   };
   return (
+   <>
+    {confetti && <Confetti/>}
     <div
       className={`${
         theme ? "" : "bg-[#1e1d1d] text-white"
@@ -607,7 +621,7 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
           </div>
         )}
       </div>
-    </div>
+    </div></>
   );
 }
 

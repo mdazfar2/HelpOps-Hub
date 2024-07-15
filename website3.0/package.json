@@ -34,6 +34,7 @@
     "next-auth": "^4.24.7",
     "nodemailer": "^6.9.14",
     "react": "^18",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-loading-skeleton": "^3.4.0",
