@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState, useRef, useContext } from "react";
 import "@stylesheets/blogspage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,8 +13,8 @@ import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-ico
 import { useRouter } from "next/navigation";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Context } from "@context/store";
-function BlogPage({ theme }) {
+
+function BlogPage({ theme,finalUser,searchedBlog }) {
   const [blogs, setBlogs] = useState([]);
   const [authorDetails, setAuthorDetails] = useState({});
   const [error, setError] = useState("");
@@ -27,8 +26,6 @@ function BlogPage({ theme }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const router = useRouter();
-  const { finalUser, searchedBlog } = useContext(Context);
-
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
