@@ -317,7 +317,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {!pathname.startsWith('/createblog') && <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden">
+          {!pathname.startsWith('/createblog') && <div className={`flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden ${theme?"":"text-black"}`}>
             <input
             type="text"
             placeholder="Search blogs..."

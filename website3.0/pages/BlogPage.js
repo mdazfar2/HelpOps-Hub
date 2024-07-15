@@ -253,6 +253,9 @@ useEffect(()=>{
 
     return filtered;
   };
+  useEffect(()=>{
+setTimeout(()=>{setLoading(false)},4000)
+  },[])
   return (
    <>
     {confetti && <Confetti/>}
@@ -357,7 +360,7 @@ useEffect(()=>{
                     <hr className="w-full mt-5 mb-5 border-gray-200" />
                   </div>
                 ))
-              : filteredBlogs().map((blog, index) => {
+              :filteredBlogs().length==0?<div className="m-auto relative text-xl font-bold top-[17vh] text-center">No more blogs </div>: filteredBlogs().map((blog, index) => {
                   const author = authorDetails[blog.authorId];
                   if (!author) return null;
                   const isBookmarked = finalUser
@@ -458,7 +461,7 @@ useEffect(()=>{
                     <Skeleton count={2} />
                   </div>
                 ))
-              : finalEditorsPick.map((blog, index) => {
+              : finalEditorsPick.length==0?<div className="text-center w-[100%] relative m-auto ">No more Editor's Choice</div>:finalEditorsPick.map((blog, index) => {
                   const author = authorDetails[blog.authorId];
                   if (!author) return null;
 
@@ -499,7 +502,7 @@ useEffect(()=>{
                     <Skeleton width={100} />
                   </div>
                 ))
-              : topAuthors.map((author, index) => (
+              :topAuthors?<div className="text-center w-[100%] relative m-auto ">No more Key Influencers </div>: topAuthors.map((author, index) => (
                   <div key={index}>
                     <div className="flex gap-2 items-center mb-2">
                       <img

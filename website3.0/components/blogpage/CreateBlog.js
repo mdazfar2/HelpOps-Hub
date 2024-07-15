@@ -309,7 +309,11 @@ console.log('sddddddddddddddd')
   const toolbar = quillInstance.container.parentNode.querySelector('.ql-toolbar');
   
   if(e &&e.length>0){
+    const { top, left, height } = quillInstance.getBounds(e.index, e.length);
     toolbar.style.visibility =  'visible';
+    toolbar.style.position = 'absolute';
+    toolbar.style.left = `${left}px`;
+    toolbar.style.top = `${top - toolbar.offsetHeight+50}px`;
   }else{
     toolbar.style.visibility =  'hidden';
   
@@ -321,7 +325,14 @@ console.log('sddddddddddddddd')
     
     console.log(e,'in toolbar 2 ')
     if(e && e.length>0){
+      const { top, left, height } = quillInstance.getBounds(e.index, e.length);
+
       toolbar.style.visibility =  'visible';
+      
+    toolbar.style.position = 'absolute';
+    toolbar.style.left = `${left}px`;
+    toolbar.style.top = `${top - toolbar.offsetHeight+200}px`;
+      
     }else{
       toolbar.style.visibility =  'hidden';
     
