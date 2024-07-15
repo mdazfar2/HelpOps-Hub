@@ -331,7 +331,7 @@ console.log('sddddddddddddddd')
       
     toolbar.style.position = 'absolute';
     toolbar.style.left = `${left}px`;
-    toolbar.style.top = `${top - toolbar.offsetHeight+500}px`;
+    toolbar.style.top = `${top - toolbar.offsetHeight+200}px`;
       
     }else{
       toolbar.style.visibility =  'hidden';
