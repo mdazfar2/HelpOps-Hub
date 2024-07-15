@@ -9,7 +9,7 @@ import Profile from "@pages/Profile";
 import { Context } from "@context/store";
 
 // Signup component definition, receives onClose and onLoginClick as props from AuthButton.js
-const Signup = ({ onClose, onLoginClick, onBack }) => {
+const Signup = ({ onClose, onLoginClick, onBack, onOTPStart, onProfileStart, onProfileComplete }) => {
   const session = useSession(); // Retrieves the current session
   const [showOTP, setShowOTP] = useState(false); // State to show/hide OTP input
   const [showProfile, setShowProfile] = useState(false); // State to show/hide Profile input
@@ -80,6 +80,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
       setOtp(data.otp)
       setUserEmail(email);
       setShowOTP(true); // Show OTP input
+      onOTPStart();
       setLoading(false);
     } else {
       // Show error for invalid email
@@ -108,6 +109,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
       // Verify the OTP
       if (otp == otp1) {
         setShowProfile(true); // Show Profile input
+        onProfileStart();
       } else {
         setErrorOtp(true);
         setTimeout(() => {
@@ -127,7 +129,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
   const handleProfileSubmit = (profileData) => {
     // Handle profile submission
     console.log("Profile data:", profileData);
-    onClose(); // Close the signup process
+    onProfileComplete();
   };
 
   // Function to go back to signup from OTP input
@@ -146,6 +148,7 @@ const Signup = ({ onClose, onLoginClick, onBack }) => {
         theme={theme} 
         setMsg={setMsg}
         setIsPopup={setIsPopup}
+        onProfileComplete={onProfileComplete}
       />
     );
   }

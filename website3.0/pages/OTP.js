@@ -71,10 +71,6 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme,setMsg, setIsPo
       <button className={`absolute top-[0.5rem]  ${!theme?"text-black":"text-white"}  left-[1.5rem] bg-transparent border-none text-2xl cursor-pointer h-auto hover:text-[#666]`} onClick={onBack}>
         &#8592; {/* Left arrow Unicode character */}
       </button>
-      {/* Close button */}
-      <button className={`absolute top-[10px] right-[10px]  ${!theme?"text-black":"text-white"}  bg-transparent border-none text-2xl hover:text-[#666] cursor-pointer text-gray-700`} onClick={onClose}>
-        &#10005; {/* Cross Unicode character */}
-      </button>
       <h5 className={` ${!theme?"text-black":"text-white"} max-sm:mt-[40px]  `}>To continue, enter the OTP sent to your registered email address.</h5>
       <p  className={` ${!theme?"text-black":"text-white"} `}>This helps us keep your account secure.</p>
       {/* OTP input fields */}
