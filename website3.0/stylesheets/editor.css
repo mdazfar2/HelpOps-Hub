@@ -1,5 +1,6 @@
 .ql-editor{
-    word-wrap: break-word !important;
+    word-wrap: anywhere !important;
+    width: 100% !important;
 }
 .classsa .ql-editor.ql-blank::before 
 {

@@ -10,6 +10,7 @@ import {
   faComment as regularComment,
   faBookmark as regularBookmark,
 } from "@fortawesome/free-regular-svg-icons";
+import {FaHeart} from 'react-icons/fa6'
 import { FaPaperPlane } from "react-icons/fa";
 const regularIcons = {
   Heart: regularHeart,
@@ -26,11 +27,13 @@ function BlogPost() {
   const pathname = usePathname();
   const id = pathname.split("/blogs/")[1];
   const authorid = blog.authorId;
+  const [isReact,setIsReact]=useState(false)
   const { theme } = useContext(Context);
   const { finalUser, isLogin, setIsPopup, setMsg, setFinalUser } =
     useContext(Context);
   const [hovered, setHovered] = useState(false);
   const iconRef = useRef(null);
+  let [canLike,setCanLike]=useState(true)
   const panelRef = useRef(null);
   const [isFollowed, setIsFollowed] = useState(false);
   const timerRef = useRef(null);
@@ -269,18 +272,32 @@ function BlogPost() {
       setFinalUser(data.user);
     }
   }
+  useEffect(()=>{
+    if(finalUser&&finalUser.likedBlogs){
+      let map = new Map(Object.entries(finalUser.likedBlogs));
+      if(map.size>0){
+        setIsReact(true)
+        console.log('sdddddddddddddjnnnnnnnnnnnnnnnnnn')
+      }else{
+        setIsReact(false)
+      }
+    }
+  },[finalUser])
+
   const handleReactionClick = async (reactionType) => {
     console.log(reactionType);
-    
+    if(!canLike){
+      return
+    }
     if (!isLogin) {
       setIsPopup(true);
       setMsg("Please Login to React");
       return;
     }
-    
+    setCanLike(false)
     try {
       let map = new Map(Object.entries(finalUser.likedBlogs));
-  
+      
       if (map.has(id)) {
         let map1 = new Map(Object.entries(map.get(id)));
   
@@ -340,9 +357,11 @@ function BlogPost() {
           setError("Failed to add reaction.");
         }
       }
+     
     } catch (error) {
       setError("An error occurred while updating reactions.");
     }
+    setCanLike(true)
   };
   
   // Function to update user state and local storage
@@ -461,7 +480,8 @@ function BlogPost() {
           <div className="relative flex flex-col items-center space-y-4">
             <div className="space-y-4">
               {panelIcons.slice(0, 3).map((panelIcon, index) => (
-                <div
+               
+               <div
                   key={index}
                   onClick={() => handleClick(index)}
                   className="flex cursor-pointer flex-col justify-center items-center"
@@ -477,9 +497,10 @@ function BlogPost() {
                   }
                   ref={panelIcon.label === "Heart" ? iconRef : null}
                 >
-                  <FontAwesomeIcon
+             {panelIcon.label!=="Heart" ?    
+              <FontAwesomeIcon
                     icon={panelIcon.regularIcon}
-                    className={`${
+                    className={`    ${
                       theme
                         ? `${
                             isLogin &&
@@ -494,12 +515,30 @@ function BlogPost() {
                     } \
         text-[20px]
       `}
-                  />
+                  />:isReact?<FaHeart color="red" className="bg-transparent"/>:  <FontAwesomeIcon
+                  icon={panelIcon.regularIcon}
+                  className={`    ${
+                    theme
+                      ? `${
+                          isLogin &&
+                          index == 2 &&
+                          id in
+                            JSON.parse(localStorage.getItem("finalUser"))
+                              .reactions
+                            ? "text-blue-500  h-[30px]"
+                            : ""
+                        } `
+                      : " text-white "
+                  } \
+      text-[20px]
+    `}
+                />}
                   <span
                     className={`${
                       theme ? "text-gray-900 " : " text-white "
                     } my-2 text-sm`}
                   >
+                    
                     {index == 2 ? commentCount : panelIcon.count}
                   </span>
                 </div>
