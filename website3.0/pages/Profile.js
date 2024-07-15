@@ -2,7 +2,7 @@
 import React, {  useRef, useState, useEffect, useContext } from 'react';
 import "@stylesheets/profile.css"
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
-const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup}) => {
+const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, onProfileComplete}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
@@ -76,7 +76,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup}) =
     d=await d.json()
     console.log(d.user._id)
     fetchData(d.user._id)
-    onClose();
+    onProfileComplete();
   }else{
     setLoading(true)
       setTimeout(() => {
@@ -151,17 +151,13 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup}) =
   return (
     <div  className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] max-sm:w-[96vw] max-sm:h-auto relative pb-[35px]`}>
 
-      {/* Close button */}
-      <button className={`absolute bg-transparent   ${theme?"text-black":"text-white"}  border-none cursor-pointer text-[#333] right-[15px] hover:text-[#666] text-[24px] top-[5px]`} >
-        &#10005; {/* Cross Unicode character */}
-      </button>
       <h1 className={`${theme?"text-black":"text-white"} mb-[20px] text-[24px]  font-bold`}>
         Profile
         </h1>
       <label htmlFor='fileupload' className='relative'>
 
       <img src={`${url.length==0?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s":url}`}  className={`h-[110px] w-[110px] adjusturl  mt-[25px] m-auto mb-[45px] ${theme?"":"border border-white"}`}  alt="Profile-circle" />
-      <FaPen color={`${theme?"black":"white"}`} className={`$ md:right-[-64px] max-sm:right-6 bottom-[-109px] absolute`} />
+      <FaPen color={`${theme?"black":"white"}`} className={`$ md:right-[124px] max-sm:right-6 bottom-[-9px] absolute`} />
       </label>    
      <form onSubmit={handleSubmit}>
         {/* Username input */}

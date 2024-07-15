@@ -23,7 +23,7 @@ const Header = () => {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
   const isBlogs = pathname && pathname.startsWith("/blogs"); // Check if path starts with '/blogs'
-  let { theme, isAdminShow,isLogin,setIsPopup,setMsg } = useContext(Context);
+  let { theme, isAdminShow,isLogin,setIsPopup,setMsg,setSearchedBlog } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
   // to set the status of show navbar or not
@@ -89,8 +89,10 @@ const Header = () => {
       return 
     }
     router.push('/createblog')
-  
   }
+  const handleSearchChange = (e) => {
+    setSearchedBlog(e.target.value); 
+  };
   return (
     <div>
       <header
@@ -317,10 +319,11 @@ const Header = () => {
 
           {!pathname.startsWith('/createblog') && <div className="flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden">
             <input
-              type="text"
-              placeholder="Search"
-              className="bg-gray-200 py-2 px-5 rounded-3xl w-full"
-            />
+            type="text"
+            placeholder="Search blogs..."
+            onChange={handleSearchChange} // Update global searchBlog value
+            className="p-2 border rounded-md w-full max-w-md"
+          />
           </div>}
 
           <div
