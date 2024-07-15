@@ -127,6 +127,7 @@ console.log('sddddddddddddddd')
   // }, [draftId]);
 
   async function saveDraft() {
+    setIsDraftSaved(true);
     let response = await fetch('/api/savedraft', {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
@@ -143,7 +144,6 @@ console.log('sddddddddddddddd')
       setDraftId(data.id);
       
       localStorage.setItem('draftId',data.id)
-      setIsDraftSaved(true);
       router.replace(`/createblog?id=${data.id}`);
     }
   }
@@ -389,6 +389,13 @@ console.log('sddddddddddddddd')
       setMsg("Please Login First")
       return
     }
+    localStorage.setItem("showConfetti",true)
+    fetch('/api/getdraft',{
+      method:"DELETE",
+      body:JSON.stringify({
+        id:localStorage.getItem('draftId')
+      })
+    })
     let user=await JSON.parse(localStorage.getItem("finalUser"))
       await fetch('/api/blog',{
         method:"POST",
