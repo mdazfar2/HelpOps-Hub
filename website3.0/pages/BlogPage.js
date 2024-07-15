@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState, useRef, useContext } from "react";
 import "@stylesheets/blogspage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -63,7 +64,6 @@ function BlogPage({ theme }) {
         setError("An error occurred while fetching blogs.");
       }
     };
-
     const fetchAuthorDetails = async (blogs) => {
       const authorIds = [...new Set(blogs.map((blog) => blog.authorId))];
       const authorData = {};
@@ -233,7 +233,7 @@ function BlogPage({ theme }) {
     if (filter === "mustRead") {
       filtered = mustReadBlogs;
     } else if (filter === "bookmarked") {
-      const reactionIds = Object.keys(finalUser.reactions);
+      const reactionIds = finalUser? Object.keys(finalUser.reactions) : [];
       filtered = blogs.filter((blog) => reactionIds.includes(blog._id));
     }
     if (searchedBlog) {
