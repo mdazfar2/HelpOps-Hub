@@ -34,6 +34,7 @@ function BlogPost() {
   const [hovered, setHovered] = useState(false);
   const iconRef = useRef(null);
   let [canLike, setCanLike] = useState(true);
+
   const panelRef = useRef(null);
   const [isFollowed, setIsFollowed] = useState(false);
   const timerRef = useRef(null);
@@ -272,35 +273,35 @@ function BlogPost() {
       setFinalUser(data.user);
     }
   }
-  useEffect(() => {
-    if (finalUser && finalUser.likedBlogs) {
+  useEffect(()=>{
+    if(finalUser&&finalUser.likedBlogs){
       let map = new Map(Object.entries(finalUser.likedBlogs));
-      if (map.size > 0) {
-        setIsReact(true);
-        console.log("sdddddddddddddjnnnnnnnnnnnnnnnnnn");
-      } else {
-        setIsReact(false);
+      if(map.size>0){
+        setIsReact(true)
+        console.log('sdddddddddddddjnnnnnnnnnnnnnnnnnn')
+      }else{
+        setIsReact(false)
       }
     }
-  }, [finalUser]);
+  },[finalUser])
 
   const handleReactionClick = async (reactionType) => {
     console.log(reactionType);
-    if (!canLike) {
-      return;
+    if(!canLike){
+      return
     }
     if (!isLogin) {
       setIsPopup(true);
       setMsg("Please Login to React");
       return;
     }
-    setCanLike(false);
+    setCanLike(false)
     try {
       let map = new Map(Object.entries(finalUser.likedBlogs));
-
+      
       if (map.has(id)) {
         let map1 = new Map(Object.entries(map.get(id)));
-
+  
         if (map1.has(reactionType)) {
           // Reaction exists, so delete it
           const response = await fetch(`/api/blog/${id}`, {
@@ -329,12 +330,9 @@ function BlogPost() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              reactionType: reactionType,
-              user1: finalUser,
-            }),
+            body: JSON.stringify({ reactionType: reactionType, user1: finalUser }),
           });
-
+  
           if (response.ok) {
             const updatedBlog = await response.json();
             setBlog(updatedBlog);
@@ -376,17 +374,28 @@ function BlogPost() {
   const updateUser = async (userId) => {
     try {
       let response = await fetch("/api/getuser", {
+     
+    } catch (error) {
+      setError("An error occurred while updating reactions.");
+    }
+    setCanLike(true)
+  };
+  
+  // Function to update user state and local storage
+  const updateUser = async (userId) => {
+    try {
+      let response = await fetch('/api/getuser', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ id: userId }),
       });
-
+  
       if (response.ok) {
         let user = await response.json();
         setFinalUser(user.msg);
-        localStorage.setItem("finalUser", JSON.stringify(user.msg));
+        localStorage.setItem('finalUser', JSON.stringify(user.msg));
       } else {
         console.error("Failed to fetch updated user data.");
       }
@@ -394,6 +403,7 @@ function BlogPost() {
       console.error("An error occurred while updating user state.", error);
     }
   };
+  
 
   const updateTotalReactionCount = (reactionList) => {
     const totalCount = reactionList.reduce(
@@ -489,6 +499,85 @@ function BlogPost() {
             <div className="relative flex flex-row lg:flex-col items-center justify-around lg:justify-start lg:space-y-4 bg-white lg:bg-transparent p-2 lg:p-0 shadow-lg lg:shadow-none">
               <div className="flex lg:flex-col space-x-4 lg:space-x-0 lg:space-y-4">
                 {panelIcons.slice(0, 3).map((panelIcon, index) => (
+
+               <div
+                  key={index}
+                  onClick={() => handleClick(index)}
+                  className="flex cursor-pointer flex-col justify-center items-center"
+                  onMouseEnter={
+                    panelIcon.label === "Heart"
+                      ? handleMouseEnterIcon
+                      : undefined
+                  }
+                  onMouseLeave={
+                    panelIcon.label === "Heart"
+                      ? handleMouseLeaveIcon
+                      : undefined
+                  }
+                  ref={panelIcon.label === "Heart" ? iconRef : null}
+                >
+             {panelIcon.label!=="Heart" ?    
+              <FontAwesomeIcon
+                    icon={panelIcon.regularIcon}
+                    className={`    ${
+                      theme
+                        ? `${
+                            isLogin &&
+                            index == 2 &&
+                            id in
+                              JSON.parse(localStorage.getItem("finalUser"))
+                                .reactions
+                              ? "text-blue-500  h-[30px]"
+                              : ""
+                          } `
+                        : " text-white "
+                    } \
+        text-[20px]
+      `}
+                  />:isReact?<FaHeart color="red" className="bg-transparent"/>:  <FontAwesomeIcon
+                  icon={panelIcon.regularIcon}
+                  className={`    ${
+                    theme
+                      ? `${
+                          isLogin &&
+                          index == 2 &&
+                          id in
+                            JSON.parse(localStorage.getItem("finalUser"))
+                              .reactions
+                            ? "text-blue-500  h-[30px]"
+                            : ""
+                        } `
+                      : " text-white "
+                  } \
+      text-[20px]
+    `}
+                />}
+                  <span
+                    className={`${
+                      theme ? "text-gray-900 " : " text-white "
+                    } my-2 text-sm`}
+                  >
+                    
+                    {index == 2 ? commentCount : panelIcon.count}
+                  </span>
+                </div>
+              ))}
+            </div>
+            {hovered && (
+              <div
+                className="absolute top-0 left-full flex bg-white shadow-lg rounded-lg p-4"
+                onMouseEnter={handleMouseEnterPanel}
+                onMouseLeave={handleMouseLeavePanel}
+                ref={panelRef}
+                style={{ width: "auto", minWidth: "150px" }} // Fixed width to avoid resizing
+              >
+                <div className="flex gap-5 py-2">
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => handleReactionClick("Icon1")}
+                  >
+                    <img src="/icon1.png" width={100} height={100} />
+                  </div>
                   <div
                     key={index}
                     onClick={() => handleClick(index)}

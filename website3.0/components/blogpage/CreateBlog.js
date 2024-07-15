@@ -3,30 +3,227 @@
 import dynamic from "next/dynamic";
 import "../../stylesheets/editor.css"
 import React, { useEffect, useRef, useState ,useContext} from "react";
-import { FaPlus, FaImage } from "react-icons/fa";
+import { FaPlus, FaImage, FaTrash } from "react-icons/fa";
 
 import ReactQuill, { Quill } from 'react-quill';
 // const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
-import { useRouter } from "next/navigation";
-export default function CreateBlog() {
-  const {theme,isLogin,setColor,setMsg,setIsPopup}=useContext(Context)
+import { usePathname, useRouter } from "next/navigation";
+import { FaBucket } from "react-icons/fa6";
+export default function CreateBlog({id}) {
+  const {theme,isLogin,setColor,setMsg,setIsPopup,finalUser}=useContext(Context)
     const [isShow, setIsShow] = useState(false);
     const [showInTitle, setShowInTitle] = useState(true);
-    let [isImg, setIsImg] = useState(false);
+    let [isImg, setIsImg] = useState('');
     const [desc,setDesc]=useState('')
     const textareaRef = useRef('');
+    const [draftId,setDraftId]=useState(id)
     const [height, setHeight] = useState('auto');
+    const [isDraftSaved, setIsDraftSaved] = useState(false);
+    const [draftLink,setDraftLink]=useState('')
   let router=useRouter()
   const [value, setValue] = useState('');
   
   const quillRef = useRef(null);
   const quillRef1 = useRef(null);
-  
-  useEffect(()=>{
-  console.log(value)
-  },[value])
+
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      // Send data to the server
+      saveDraftOnUnload();
+      // Optionally, show a confirmation dialog (this behavior is discouraged in modern browsers)
+      event.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [ ]);
+
+  const saveDraftOnUnload = async () => {
+    const savedDraft = JSON.parse(localStorage.getItem("draftBlog"));
+    const draftData = {
+      title: savedDraft.title,
+      image: savedDraft.image,
+      description: savedDraft.description,
+      id: draftId,
+      author_id: finalUser._id,
+    };
+console.log('sddddddddddddddd')
+    // Convert data to FormData for sendBeacon
+    const formData = new FormData();
+    for (const key in draftData) {
+      formData.append(key, draftData[key]);
+    }
+    console.log(draftId,'assssssssssssssssssss')
+    localStorage.removeItem("draftBlog");
+    let id1=  localStorage.getItem('draftId')
+    await fetch('/api/updatedraft',{
+      method:"POST",
+      body:JSON.stringify({
+        title: savedDraft.title,
+        image: savedDraft.image,
+        description: savedDraft.description,
+        id:     localStorage.getItem('draftId')
+        ,
+        author_id: JSON.parse(localStorage.getItem("finalUser"))._id,
+      })
+    })
+    // navigator.sendBeacon("/api/updatedraft", formData);
+    localStorage.removeItem("draftBlog");
+  };
+  // useEffect(() => {
+  //   event.preventDefault();
+  //   event.returnValue = '';
+  //   const handleBeforeUnload = (event) => {
+  //     const savedDraft = JSON.parse(localStorage.getItem('draftBlog'));
+  //     if (savedDraft) {
+  //       fetch('/api/savedraft', {
+  //         method: "PUT",
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({
+  //           title: savedDraft.title,
+  //           image: savedDraft.image,
+  //           description: savedDraft.description,
+  //           id: draftId,
+  //           author_id: JSON.parse(localStorage.getItem('finalUser'))._id,
+  //         })
+  //       });
+  //       console.log('sddddddddddddddddddddddddddddddddddddddddddddddddd')
+  //       localStorage.removeItem('draftBlog');
+  //     }
+  //     // Prevent the default unload behavior
+  //   };
+
+  //   const handleUnload = () => {
+  //     const savedDraft = JSON.parse(localStorage.getItem('draftBlog'));
+  //     if (savedDraft) {
+  //       fetch('/api/savedraft', {
+  //         method: "PUT",
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({
+  //           title: savedDraft.title,
+  //           image: savedDraft.image,
+  //           description: savedDraft.description,
+  //           id: draftId,
+  //           author_id: JSON.parse(localStorage.getItem('finalUser'))._id,
+  //         })
+  //       });
+  //       localStorage.removeItem('draftBlog');
+  //     }
+  //   };
+
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
+  //   window.addEventListener('unload', handleUnload);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //     window.removeEventListener('unload', handleUnload);
+  //   };
+  // }, [draftId]);
+
+  async function saveDraft() {
+    let response = await fetch('/api/savedraft', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: value,
+        image: isImg,
+        description: desc,
+        author_id: JSON.parse(localStorage.getItem('finalUser'))._id,
+      })
+    });
+    if (response.ok) {
+      let data = await response.json();
+      console.log('sdsaveing id ddddd',data.id)
+      setDraftId(data.id);
+      
+      localStorage.setItem('draftId',data.id)
+      setIsDraftSaved(true);
+      router.replace(`/createblog?id=${data.id}`);
+    }
+  }
+
+  useEffect(() => {
+    const autoSaveDraft = async () => {
+      const draft = { title: value, description: desc, image: isImg };
+      localStorage.setItem("draftBlog", JSON.stringify(draft));
+      let id1=  localStorage.getItem('draftId')
+      await fetch('/api/updatedraft',{
+        method:"POST",
+        body:JSON.stringify({
+          title: draft.title,
+          image: draft.image,
+          description: draft.description,
+          id:     localStorage.getItem('draftId')
+          ,
+          author_id: JSON.parse(localStorage.getItem("finalUser"))._id,
+        })
+      })
+      if (!isDraftSaved) {
+        await saveDraft();
+      }
+    };
+    let intervalId;
+    if(value.length>0||desc.length>0||isImg.length>0){
+
+        autoSaveDraft()
+    }
+    if((value.length>0||desc.length>0||isImg.length>0)&&id){
+
+      autoSaveDraft()
+  }
+  }, [value, desc, isImg, isDraftSaved]);
+
+  async function fetchDraft() {
+    let response = await fetch("/api/getdraft", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id })
+    });
+    if (response.ok) {
+      let data = await response.json();
+      setValue(data.blog.title);
+      setDesc(data.blog.description);
+      setIsImg(data.blog.image);
+    }
+  }
+ useEffect(()=>{
+
+   if (id) {
+     fetchDraft();
+   }
+ },[])
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   useEffect(() => {
     const handlePaste = (event, setValueCallback, setImgCallback) => {
       event.preventDefault(); // Prevent the default paste behavior
@@ -36,19 +233,19 @@ export default function CreateBlog() {
   
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-  
-        if (item.kind === 'file' && item.type.startsWith('image/')) {
+        console.log(item,'dsssssss')
+       if (item.kind === 'file' && item.type.startsWith('image/')) {
           const file = item.getAsFile();
           const reader = new FileReader();
           reader.onload = async (e) => {
             // Handle image data
             const imageSrc = e.target.result;
             // For demonstration, we'll just log the image source
-            console.log('Image pasted:', imageSrc);
             setImgCallback(imageSrc);
           };
           reader.readAsDataURL(file);
-        } else if (item.kind === 'string') {
+        } else if (item.kind === 'string' &&(items.length>1? items[1].kind!=='file':true)) {
+            console.log('sddddddddd',item)
           item.getAsString((text) => {
             // Handle text data
             setValueCallback((prevContent) => prevContent + text);
@@ -275,7 +472,7 @@ export default function CreateBlog() {
         ></input> */}
       </div>
       <input className="hidden" onChange={handleImageUpload} type="file" id="img-input"></input>
-      <div htmlFor="img-input" className="h-auto m-auto mt-6">{isImg && <img src={isImg}></img>}</div>
+      <div htmlFor="img-input" className="h-auto m-auto mt-6">{isImg &&<><img src={isImg}></img><FaTrash color="red" size={'2rem'} onClick={()=>setIsImg('')}/></> }</div>
       <div className="h-auto classsb w-[90%] rounded-full  gap-4 flex items-center">
         {!showInTitle && (
           <div className="h-20 items-center gap-3  absolute left-[5%] flex flex-col ">

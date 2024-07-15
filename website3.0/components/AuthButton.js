@@ -14,6 +14,7 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   const [oneTime,setOneTime]=useState(false)
+  const [currentModal, setCurrentModal] = useState('login');
   let [showProfile1,setShowProfile1]=useState(false)
   let {setIsAdminShow,finalUser,userName,setFinalUser,setIsLogin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme}=useContext(Context)
 
@@ -113,17 +114,21 @@ let session=useSession()
   },[session.status,oneTime])
   const toggleAuth = () => {
     setShowAuth(!showAuth);
+    setCurrentModal('login');
   };
 
   const switchToSignup = () => {
     setIsLogin1(false);
+    setCurrentModal('signup');
   };
 const onBack=()=>{
-  setIsLogin1(true)
+  setIsLogin1(true);
+  setCurrentModal('login');
 
 }
   const switchToLogin = () => {
     setIsLogin1(true);
+    setCurrentModal('login');
   };
   async function handleLogout(){
     if(session.status=="authenticated"){
@@ -139,8 +144,11 @@ const onBack=()=>{
         window.location.reload()
     }
   const closeAuth = () => {
-    setShowAuth(false);
-    setIsLogin1(true);
+    if (['login', 'signup'].includes(currentModal)) {
+      setShowAuth(false);
+      setIsLogin1(true);
+      setCurrentModal('login');
+    }
   };
   function handleProfileShow(){
     setShowProfile1(true)
@@ -149,8 +157,22 @@ const onBack=()=>{
     setShowProfile1(false)
   }
   useEffect(()=>{
-console.log(userName)
+    console.log(userName)
   },[userName])
+
+  const handleOTPStart = () => {
+    setCurrentModal('otp');
+  };
+
+  const handleProfileStart = () => {
+    setCurrentModal('profile');
+  };
+
+  const handleProfileComplete = () => {
+    setShowAuth(false);
+    setCurrentModal('login');
+  };
+
   return (
     <>
    {!isLogin&& userName.length==0 &&   <button className={` ${theme?"bg-gray-100/80 text-black border-none":"text-white bg-black border-white border"}    auth-btn`} onClick={toggleAuth}>Login/Signup</button>
@@ -172,12 +194,19 @@ console.log(userName)
         </div>
 }
       {showAuth && !userName && (
-        <div className="auth-overlay" onClick={closeAuth}>
+        <div className="auth-overlay" onClick={['login', 'signup'].includes(currentModal) ? closeAuth : undefined}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             {isLogin1 ? (
               <Login onClose={closeAuth} onSignupClick={switchToSignup} />
             ) : (
-              <Signup onClose={closeAuth} onBack={onBack} onLoginClick={switchToLogin} />
+              <Signup 
+                onClose={closeAuth} 
+                onBack={onBack} 
+                onLoginClick={switchToLogin} 
+                onOTPStart={handleOTPStart}
+                onProfileStart={handleProfileStart}
+                onProfileComplete={handleProfileComplete}
+              />
             )}
           </div>
         </div>
