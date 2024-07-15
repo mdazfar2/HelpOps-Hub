@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import "@stylesheets/blogspage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,12 +7,14 @@ import {
   faHands,
   faBars,
   faTimes,
+  faBookmark as solidBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
 import { useRouter } from "next/navigation";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-function BlogPage({ theme }) {
+
+function BlogPage({ theme,finalUser,searchedBlog }) {
   const [blogs, setBlogs] = useState([]);
   const [authorDetails, setAuthorDetails] = useState({});
   const [error, setError] = useState("");
@@ -24,7 +26,6 @@ function BlogPage({ theme }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const router = useRouter();
-
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -58,9 +59,8 @@ function BlogPage({ theme }) {
         }
       } catch (err) {
         setError("An error occurred while fetching blogs.");
-      } 
+      }
     };
-
     const fetchAuthorDetails = async (blogs) => {
       const authorIds = [...new Set(blogs.map((blog) => blog.authorId))];
       const authorData = {};
@@ -78,16 +78,15 @@ function BlogPage({ theme }) {
           if (response.ok) {
             const result = await response.json();
             authorData[authorId] = result.msg;
-            console.log(authorData);
           }
         } catch (err) {
           console.error(
             `Failed to fetch author data for authorId ${authorId}`,
             err
           );
-        }finally {
-            setLoading(false);
-            setShowContent(true);
+        } finally {
+          setLoading(false);
+          setShowContent(true);
         }
       }
       setAuthorDetails(authorData);
@@ -210,7 +209,6 @@ function BlogPage({ theme }) {
         count,
       };
     });
-
   const handleTopPostsClick = () => {
     setSortBy("reactions");
     setFilter("topPosts");
@@ -224,7 +222,25 @@ function BlogPage({ theme }) {
     setFilter("recentBlogs");
     setSortBy("date"); // Ensure recent blogs are sorted by date
   };
+  const handleBookmarkedClick = () => {
+    setFilter("bookmarked");
+  };
+  const filteredBlogs = () => {
+    let filtered = blogs;
+    if (filter === "mustRead") {
+      filtered = mustReadBlogs;
+    } else if (filter === "bookmarked") {
+      const reactionIds = finalUser && finalUser.reactions ? Object.keys(finalUser.reactions) : [];
+      filtered = blogs.filter((blog) => reactionIds.includes(blog._id));
+    }
+    if (searchedBlog) {
+      filtered = filtered.filter((blog) =>
+        blog.title.toLowerCase().includes(searchedBlog.toLowerCase())
+      );
+    }
 
+    return filtered;
+  };
   return (
     <div
       className={`${
@@ -274,7 +290,20 @@ function BlogPage({ theme }) {
             >
               Top Posts
             </div>
-            <div>Book Marked</div>
+            <div
+              className={`${
+                theme
+                  ? filter === "bookmarked"
+                    ? "text-gray-900 underline underline-offset-[30px]"
+                    : ""
+                  : filter === "bookmarked"
+                  ? "underline text-gray-400 underline-offset-[30px]"
+                  : ""
+              }`}
+              onClick={handleBookmarkedClick}
+            >
+              Book Marked
+            </div>
             <div
               className={`${
                 theme
@@ -302,9 +331,9 @@ function BlogPage({ theme }) {
                       <div className="flex flex-col gap-1 w-full">
                         <div className="flex gap-2 w-full h-full ">
                           <Skeleton height={30} width={30} borderRadius={100} />
-                          <Skeleton height={30} width={100}/>
+                          <Skeleton height={30} width={100} />
                         </div>
-                        <Skeleton height={30}/>
+                        <Skeleton height={30} />
                         <Skeleton height={100} />
                       </div>
                       <div className="max-md:w-full w-1/2">
@@ -314,85 +343,87 @@ function BlogPage({ theme }) {
                     <hr className="w-full mt-5 mb-5 border-gray-200" />
                   </div>
                 ))
-              : (filter === "mustRead" ? mustReadBlogs : blogs).map(
-                  (blog, index) => {
-                    const author = authorDetails[blog.authorId];
-                    if (!author) return null;
-
-                    return (
-                      <div
-                        className="cursor-pointer"
-                        key={index}
-                        onClick={() => navigateToBlogDetails(blog._id)}
-                      >
-                        <div className="flex items-center mb-2">
-                          <img
-                            src={author.image1}
-                            onError={handleImageError}
-                            className="w-6 h-6 rounded-full mr-3"
-                          />
-                          <div className="text-sm">{author.name}</div>
-                        </div>
-                        <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
-                          <div className="flex-1">
-                            <div
-                              className="text-2xl mb-2 font-normal max-sm:text-xl"
-                              dangerouslySetInnerHTML={{ __html: blog.title }}
-                            ></div>
-                            <div
-                              className={`${
-                                theme ? "text-gray-600" : "text-gray-300"
-                              } font-medium max-sm:text-sm transition-all duration-200`}
-                            >
-                              {renderBlogDescription(blog.description)}
-                            </div>
-                            <div
-                              className={`${
-                                theme ? "text-gray-500" : "text-gray-300"
-                              } flex text-sm justify-between items-center max-sm:flex-wrap max-sm:gap-2 transition-all duration-200`}
-                            >
-                              <div className="flex gap-5 items-center max-sm:flex-wrap">
-                                <div className="my-2 font-medium">
-                                  {formatDate(blog.date)}
-                                </div>
-                                <div>
-                                  <FontAwesomeIcon
-                                    icon={faHands}
-                                    className="mr-2"
-                                  />
-                                  {blog.reactionList.reduce(
-                                    (sum, reaction) => sum + reaction.count,
-                                    0
-                                  )}
-                                </div>
-                                <div>
-                                  <FontAwesomeIcon
-                                    icon={faComment}
-                                    className="mr-2"
-                                  />
-                                  {blog.comments.length}
-                                </div>
+              : filteredBlogs().map((blog, index) => {
+                  const author = authorDetails[blog.authorId];
+                  if (!author) return null;
+                  const isBookmarked = finalUser
+                  ? finalUser.reactions && finalUser.reactions.hasOwnProperty(blog._id)
+                  : false;
+                
+                  return (
+                    <div
+                      className="cursor-pointer"
+                      key={index}
+                      onClick={() => navigateToBlogDetails(blog._id)}
+                    >
+                      <div className="flex items-center mb-2">
+                        <img
+                          src={author.image1}
+                          onError={handleImageError}
+                          className="w-6 h-6 rounded-full mr-3"
+                        />
+                        <div className="text-sm">{author.name}</div>
+                      </div>
+                      <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
+                        <div className="flex-1">
+                          <div
+                            className="text-2xl mb-2 font-normal max-sm:text-xl"
+                            dangerouslySetInnerHTML={{ __html: blog.title }}
+                          ></div>
+                          <div
+                            className={`${
+                              theme ? "text-gray-600" : "text-gray-300"
+                            } font-medium max-sm:text-sm transition-all duration-200`}
+                          >
+                            {renderBlogDescription(blog.description)}
+                          </div>
+                          <div
+                            className={`${
+                              theme ? "text-gray-500" : "text-gray-300"
+                            } flex text-sm justify-between items-center max-sm:flex-wrap max-sm:gap-2 transition-all duration-200`}
+                          >
+                            <div className="flex gap-5 items-center max-sm:flex-wrap">
+                              <div className="my-2 font-medium">
+                                {formatDate(blog.date)}
                               </div>
                               <div>
                                 <FontAwesomeIcon
-                                  icon={regularBookmark}
+                                  icon={faHands}
                                   className="mr-2"
                                 />
-                                {blog.bookmarks}
+                                {blog.reactionList.reduce(
+                                  (sum, reaction) => sum + reaction.count,
+                                  0
+                                )}
+                              </div>
+                              <div>
+                                <FontAwesomeIcon
+                                  icon={faComment}
+                                  className="mr-2"
+                                />
+                                {blog.comments.length}
                               </div>
                             </div>
+                            <div>
+                              <FontAwesomeIcon
+                                icon={
+                                  isBookmarked ? solidBookmark : regularBookmark
+                                }
+                                className="mr-2"
+                              />
+                            </div>
                           </div>
-                          <img
-                            src={blog.image}
-                            onError={handleImageError}
-                            className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
-                          />
                         </div>
-                        <hr className="w-full mt-5 mb-5 border-gray-200" />
+                        <img
+                          src={blog.image}
+                          onError={handleImageError}
+                          className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
+                        />
                       </div>
-                    );
-                  }
-                )}
+                      <hr className="w-full mt-5 mb-5 border-gray-200" />
+                    </div>
+                  );
+                })}
           </div>
         </div>
 
