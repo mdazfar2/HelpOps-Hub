@@ -41,6 +41,24 @@ export async function POST(req) {
     return NextResponse.json({ success: false, error: error.message });
   }
 }
+export async function DELETE(req) {
+  let { id} = await req.json();
+
+  try {
+    // Create a new draft blog document
+
+   
+
+    // Save the blog document to MongoDB
+  let blog=  await Draftblogs.findByIdAndDelete({_id:id});
+
+    // Return success response
+    return NextResponse.json({ success: true});
+  } catch (error) {
+    console.error("Error saving draft:", error);
+    return NextResponse.json({ success: false, error: error.message });
+  }
+}
 
 // Export your database connection instance for reuse
 export { db };
