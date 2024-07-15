@@ -230,7 +230,7 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
     if (filter === "mustRead") {
       filtered = mustReadBlogs;
     } else if (filter === "bookmarked") {
-      const reactionIds = finalUser? Object.keys(finalUser.reactions) : [];
+      const reactionIds = finalUser && finalUser.reactions ? Object.keys(finalUser.reactions) : [];
       filtered = blogs.filter((blog) => reactionIds.includes(blog._id));
     }
     if (searchedBlog) {
