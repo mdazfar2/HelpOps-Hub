@@ -9,7 +9,11 @@ import {
   faHeart as regularHeart,
   faComment as regularComment,
   faBookmark as regularBookmark,
+
 } from "@fortawesome/free-regular-svg-icons";
+import {
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 import {FaHeart} from 'react-icons/fa6'
 import { FaPaperPlane } from "react-icons/fa";
 const regularIcons = {
@@ -591,9 +595,9 @@ function BlogPost() {
         <div className="px-10">
           <div
             className="flex items-center mb-5 cursor-pointer"
-            onClick={handleOpenProfile}
+            
           >
-            <img
+            <img onClick={handleOpenProfile}
               src={
                 fetchedUser
                   ? fetchedUser.image1
@@ -602,7 +606,7 @@ function BlogPost() {
               alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-10 h-10 rounded-full mr-3"
             />
-            <div>
+            <div onClick={handleOpenProfile}>
               <div className="text-base font-bold">{blog.authorName}</div>
               <div className="text-gray-500 text-xs">
                 Posted on{" "}
@@ -612,6 +616,15 @@ function BlogPost() {
                 })}
               </div>
             </div>
+              {finalUser._id==blog.authorId&&<div className="z-[100000] flex w-[100%] gap-1 justify-end"> 
+                <div onClick={(e)=>{
+                 e.preventDefault(); router.push(`/editblog?id=${blog._id}`)}} className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
+                <FontAwesomeIcon
+                  icon={faPen}
+                  className="max-md:w-5 max-md:h-5"
+                />
+              </div>
+              <span  onClick={()=>{router.push(`/editblog?id=${blog._id}`)}}  className="max-md:hidden text-[#5a6370] font-semibold">Create Blog</span></div>}
           </div>
           <div className="flex gap-5 py-2 mb-5">
             <div className="flex cursor-pointer">

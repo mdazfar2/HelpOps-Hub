@@ -53,3 +53,16 @@ font-style: normal;
   .ql-toolbar{
     visibility: hidden;
   }
+  .classsa .ql-editor li{
+    font-size: 40px;
+  }
+  
+  .classsb .ql-editor li{
+    font-size: 30px;
+  }
+  .ql-editor ul{
+padding-left: 0px !important;
+  }
+  .ql-editor li{
+padding-left: 0.7em !important;
+  }
