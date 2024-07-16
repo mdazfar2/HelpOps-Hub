@@ -502,7 +502,7 @@ setTimeout(()=>{setLoading(false)},4000)
                     <Skeleton width={100} />
                   </div>
                 ))
-              :topAuthors?<div className="text-center w-[100%] relative m-auto ">No more Key Influencers </div>: topAuthors.map((author, index) => (
+              :topAuthors.length==0?<div className="text-center w-[100%] relative m-auto ">No more Key Influencers </div>: topAuthors.map((author, index) => (
                   <div key={index}>
                     <div className="flex gap-2 items-center mb-2">
                       <img
