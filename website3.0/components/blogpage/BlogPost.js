@@ -498,123 +498,49 @@ function BlogPost() {
           <div className="fixed left-0 lg:left-24 bottom-0 lg:top-60 w-full lg:w-auto">
             <div className="relative flex flex-row lg:flex-col items-center justify-around lg:justify-start lg:space-y-4 bg-white lg:bg-transparent p-2 lg:p-0 shadow-lg lg:shadow-none">
               <div className="flex lg:flex-col space-x-4 lg:space-x-0 lg:space-y-4">
-                {panelIcons.slice(0, 3).map((panelIcon, index) => (
-
-               <div
-                  key={index}
-                  onClick={() => handleClick(index)}
-                  className="flex cursor-pointer flex-col justify-center items-center"
-                  onMouseEnter={
-                    panelIcon.label === "Heart"
-                      ? handleMouseEnterIcon
-                      : undefined
-                  }
-                  onMouseLeave={
-                    panelIcon.label === "Heart"
-                      ? handleMouseLeaveIcon
-                      : undefined
-                  }
-                  ref={panelIcon.label === "Heart" ? iconRef : null}
-                >
-             {panelIcon.label!=="Heart" ?    
-              <FontAwesomeIcon
-                    icon={panelIcon.regularIcon}
-                    className={`    ${
-                      theme
-                        ? `${
-                            isLogin &&
-                            index == 2 &&
-                            id in
-                              JSON.parse(localStorage.getItem("finalUser"))
-                                .reactions
-                              ? "text-blue-500  h-[30px]"
-                              : ""
-                          } `
-                        : " text-white "
-                    } \
-        text-[20px]
-      `}
-                  />:isReact?<FaHeart color="red" className="bg-transparent"/>:  <FontAwesomeIcon
-                  icon={panelIcon.regularIcon}
-                  className={`    ${
-                    theme
-                      ? `${
-                          isLogin &&
-                          index == 2 &&
-                          id in
-                            JSON.parse(localStorage.getItem("finalUser"))
-                              .reactions
-                            ? "text-blue-500  h-[30px]"
-                            : ""
-                        } `
-                      : " text-white "
-                  } \
-      text-[20px]
-    `}
-                />}
-                  <span
-                    className={`${
-                      theme ? "text-gray-900 " : " text-white "
-                    } my-2 text-sm`}
-                  >
-                    
-                    {index == 2 ? commentCount : panelIcon.count}
-                  </span>
-                </div>
-              ))}
-            </div>
-            {hovered && (
-              <div
-                className="absolute top-0 left-full flex bg-white shadow-lg rounded-lg p-4"
-                onMouseEnter={handleMouseEnterPanel}
-                onMouseLeave={handleMouseLeavePanel}
-                ref={panelRef}
-                style={{ width: "auto", minWidth: "150px" }} // Fixed width to avoid resizing
-              >
-                <div className="flex gap-5 py-2">
-                  <div
-                    className="cursor-pointer"
-                    onClick={() => handleReactionClick("Icon1")}
-                  >
-                    <img src="/icon1.png" width={100} height={100} />
-                  </div>
+                {panelIcons.map((panelIcon, index) => (
                   <div
                     key={index}
                     onClick={() => handleClick(index)}
                     className="flex cursor-pointer flex-col justify-center items-center"
-                    onMouseEnter={
-                      panelIcon.label === "Heart"
-                        ? handleMouseEnterIcon
-                        : undefined
-                    }
-                    onMouseLeave={
-                      panelIcon.label === "Heart"
-                        ? handleMouseLeaveIcon
-                        : undefined
-                    }
+                    onMouseEnter={panelIcon.label === "Heart" ? handleMouseEnterIcon : undefined}
+                    onMouseLeave={panelIcon.label === "Heart" ? handleMouseLeaveIcon : undefined}
                     ref={panelIcon.label === "Heart" ? iconRef : null}
                   >
-                    <FontAwesomeIcon
-                      icon={panelIcon.regularIcon}
-                      className={`${
-                        theme
-                          ? `${
-                              isLogin &&
-                              index == 2 &&
-                              id in
-                                JSON.parse(localStorage.getItem("finalUser"))
-                                  .reactions
-                                ? "text-blue-500 h-[30px]"
-                                : ""
-                            } `
-                          : "text-black lg:text-white"
-                      } text-[20px]`}
-                    />
-                    <span
-                      className={`${
-                        theme ? "text-gray-900" : "text-black lg:text-white"
-                      } my-2 text-xs lg:text-sm`}
-                    >
+                    {panelIcon.label !== "Heart" ? (
+                      <FontAwesomeIcon
+                        icon={panelIcon.regularIcon}
+                        className={`${
+                          theme
+                            ? `${
+                                isLogin &&
+                                index == 2 &&
+                                id in JSON.parse(localStorage.getItem("finalUser")).reactions
+                                  ? "text-blue-500 h-[30px]"
+                                  : ""
+                              }`
+                            : "text-white"
+                        } text-[20px]`}
+                      />
+                    ) : isReact ? (
+                      <FaHeart color="red" className="bg-transparent" />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={panelIcon.regularIcon}
+                        className={`${
+                          theme
+                            ? `${
+                                isLogin &&
+                                index == 2 &&
+                                id in JSON.parse(localStorage.getItem("finalUser")).reactions
+                                  ? "text-blue-500 h-[30px]"
+                                  : ""
+                              }`
+                            : "text-white"
+                        } text-[20px]`}
+                      />
+                    )}
+                    <span className={`${theme ? "text-gray-900" : "text-white"} my-2 text-sm`}>
                       {index == 2 ? commentCount : panelIcon.count}
                     </span>
                   </div>
@@ -629,41 +555,14 @@ function BlogPost() {
                   style={{ width: "100%", minWidth: "150px" }}
                 >
                   <div className="flex justify-around w-full lg:justify-start lg:gap-5 py-2">
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => handleReactionClick("Icon1")}
-                    >
-                      <img
-                        src="/icon1.png"
-                        width={50}
-                        height={50}
-                        alt="Icon 1"
-                        className="lg:w-[100px] lg:h-[100px]"
-                      />
+                    <div className="cursor-pointer" onClick={() => handleReactionClick("Icon1")}>
+                      <img src="/icon1.png" width={50} height={50} alt="Icon 1" className="lg:w-[100px] lg:h-[100px]" />
                     </div>
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => handleReactionClick("Icon2")}
-                    >
-                      <img
-                        src="/icon2.png"
-                        width={50}
-                        height={50}
-                        alt="Icon 2"
-                        className="lg:w-[100px] lg:h-[100px]"
-                      />
+                    <div className="cursor-pointer" onClick={() => handleReactionClick("Icon2")}>
+                      <img src="/icon2.png" width={50} height={50} alt="Icon 2" className="lg:w-[100px] lg:h-[100px]" />
                     </div>
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => handleReactionClick("Icon3")}
-                    >
-                      <img
-                        src="/icon3.png"
-                        width={50}
-                        height={50}
-                        alt="Icon 3"
-                        className="lg:w-[100px] lg:h-[100px]"
-                      />
+                    <div className="cursor-pointer" onClick={() => handleReactionClick("Icon3")}>
+                      <img src="/icon3.png" width={50} height={50} alt="Icon 3" className="lg:w-[100px] lg:h-[100px]" />
                     </div>
                   </div>
                 </div>
@@ -671,7 +570,6 @@ function BlogPost() {
             </div>
           </div>
         </div>
-
         {/* Main Content */}
         <div
           className={`${
