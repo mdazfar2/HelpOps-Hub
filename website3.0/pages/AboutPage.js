@@ -1,184 +1,221 @@
-"use client";
 import React, { useEffect, useState } from "react";
-// import "@stylesheets/abouts.css";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-function AboutPage({ theme }) {
+const AboutPage = ({ theme }) => {
   const [loading, setLoading] = useState(true);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000); 
-
-    return () => clearTimeout(timer); 
+    const timer = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timer);
   }, []);
-  return (
-    <div
-      className={` w-full items-center pt-32 p-4  md:px-8 lg:px-16  ${
-        theme ? "" : "bg-[#1e1d1d]"
-      }`}
-    >
-      {/* Section: Title */}
-      <div
-        className={` ${
-          theme ? "" : "text-white"
-        } text-4xl text-center font-semibold`}
-      >
-        About us
-      </div>
 
-      {/* Section: Video */}
-      <div className="w-full flex justify-center">
-        {loading ? (
-                   <div className="w-full md:w-4/5 mt-10 rounded-2xl shadow-2xl bg-gray-600 animate-pulse" style={{height:'500px'}}></div>
-        ) : (
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const Section = ({ id, children, className = "" }) => {
+    const [ref, inView] = useInView({
+      triggerOnce: true,
+      threshold: 0.1,
+    });
+
+    return (
+      <motion.section
+        id={id}
+        ref={ref}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        className={`py-20 ${className}`}
+      >
+        {children}
+      </motion.section>
+    );
+  };
+
+  return (
+    <div className={`w-full ${theme ? "bg-gradient-to-br from-indigo-50 via-white to-purple-50" : "bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900"}`}>
+
+
+      {/* Hero Section */}
+      <Section id="hero" className="h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <video
-            src="/HelpOps-H.mp4"
             autoPlay
             loop
             muted
-            className="w-full md:w-4/5 mt-10 rounded-2xl shadow-2xl"
-          ></video>
-        )}
-      </div>
+            className="w-full h-full object-cover"
+            style={{ filter: "brightness(50%)" }}
+          >
+            <source src="/HelpOps-H.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="z-10 text-center">
+          <motion.h1
+            className="text-7xl font-extrabold text-white mb-4 tracking-tight"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{
+              textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Adds a subtle text shadow
+              letterSpacing: "-2px", // Adjusts letter spacing for a tighter look
+              fontFamily: "'Roboto', sans-serif", // Custom font family if needed
+            }}
+          >
+            HelpOps-Hub
+          </motion.h1>
 
-      {/* Section: What is HelpOps-Hub */}
-      <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 w-full mb-10">
-        <div
-          className="flex flex-col justify-start items-start w-full p-10 pl-1 max-md:pl-10 md:w-1/2 ml-2 md:mr-36"
-          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-        >
-          <h1
-            className={`text-3xl text-left md:text-5xl font-semibold  ${
-              theme ? "" : "text-white"
-            } mb-4`}
+          <motion.p
+            className="text-2xl text-white mb-8 font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            whileHover={{ scale: 1.03 }}
           >
-            What is HelpOps-Hub?
-          </h1>
-          <p
-            className={`text-desc   ${
-              theme ? "" : "text-white"
-            }  text-justify max-w-[500px]  w-auto`}
+            Empowering <motion.span style={{ fontWeight: "bold", textShadow: "0px 0px 8px rgba(255, 255, 255, 0.8)" }}>DevOps Professionals</motion.span> Worldwide
+          </motion.p>
+          <motion.button
+            className="mt-4 px-8 py-4 bg-indigo-600 text-white rounded-full font-bold text-xl hover:bg-indigo-700 transition duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            HelpOps-Hub is a comprehensive, community-driven platform designed
-            to support and empower DevOps beginners and professionals. Founded
-            by Azfar Alam, HelpOps-Hub offers a centralized resource for tools,
-            best practices, tutorials, and real-world examples to streamline
-            workflows, enhance productivity, and foster collaboration in the
-            DevOps field. Whether you're a seasoned expert or just starting out,
-            HelpOps-Hub provides the knowledge and support needed to overcome
-            challenges, improve skills, and achieve success in DevOps projects.
-            Join our vibrant community to share experiences, contribute
-            solutions, and drive the future of DevOps together.
-          </p>
+            Learn More
+          </motion.button>
         </div>
-        <div className="w-[150px] flex justify-center max-md:hidden">
-          <img
-            src="new/HelpOps-H Fevicon.webp"
-            alt="HelpOps Logo"
-            className="w-2/4 md:w-full hover:scale-90 transition-all"
-          />
-        </div>
-      </div>
+      </Section>
 
-      {/* Section: Our Mission */}
-      <div className="flex flex-col md:flex-row justify-center items-center md:space-x-20 mb-10">
-        <div className=" md:w-1/4 mx-auto md:mb-0">
-          <img
-            src="new/mission.webp"
-            alt="Mission"
-            className="w-3/4 md:w-full mx-auto hover:scale-90 transition-all"
-          />
-        </div>
-        <div
-          className="flex flex-col justify-center items-center w-full p-10  md:w-1/2 ml-2 mx-auto"
-          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-        >
-          <h1
-            className={`  ${
-              theme ? "" : "text-white"
-            } text-3xl md:text-5xl font-semibold text-center mb-4`}
-          >
-            Our Mission
-          </h1>
-          <p
-            className={` text-desc text-justify max-w-[400px] w-auto  ${
-              theme ? "" : "text-white"
-            }`}
-          >
-            Our mission at HelpOps-Hub is to empower DevOps professionals by
-            providing a comprehensive, community-driven platform that
-            consolidates tools, best practices, tutorials, and real-world
-            examples. We aim to streamline workflows, enhance productivity, and
-            foster collaboration and innovation within the DevOps community. By
-            offering a centralized hub of resources and support, HelpOps-Hub
-            seeks to prevent individuals from getting stuck on issues,
-            accelerate learning, and promote continuous improvement in DevOps
-            practices. Join us to share your knowledge, contribute solutions,
-            and help shape the future of DevOps.
-          </p>
-        </div>
-      </div>
 
-      {/* Section: Benefits of HelpOps-Hub */}
-      <div className="flex flex-col md:flex-row flex-col-reverse justify-center items-center md:space-x-20 mb-10">
-        <div className="flex flex-col justify-center items-start w-full p-10 md:w-1/2 md:ml-2 mx-auto">
-          <h4
-            className={` ${
-              theme ? "" : "text-white"
-            } text-[2rem] md:text-[2rem] font-semibold text-left mb-4`}
+      {/* What is HelpOps-Hub */}
+      <Section id="what" className="relative">
+        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-white rounded-lg shadow-xl overflow-hidden">
+          <motion.div
+            className="lg:w-1/2 order-2 lg:order-1 p-6 lg:p-10"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 text-indigo-700">
+              What is HelpOps-Hub?
+            </h2>
+            <p className="text-lg lg:text-xl leading-relaxed text-gray-700">
+              HelpOps-Hub is a revolutionary platform designed to empower DevOps professionals. We provide cutting-edge tools, resources, and a vibrant community to streamline your workflow and boost productivity.
+            </p>
+          </motion.div>
+          <motion.div
+            className="lg:w-1/2 order-1 lg:order-2 relative p-4"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.img
+              src="new/HelpOps-H Fevicon.webp"
+              alt="HelpOps Logo"
+              className="w-full max-w-xs lg:max-w-sm mx-auto rounded-lg shadow-2xl"
+              style={{ translateY: '-30px' }}
+              whileHover={{
+                scale: 1.1,
+                rotate: [0, 10, -10, 0],
+                transition: { duration: 0.5 }
+              }}
+              whileTap={{ scale: 0.9 }}
+            />
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* Our Mission */}
+      <Section id="mission" className="relative bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-10 lg:py-20">
+        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-opacity-75 rounded-lg shadow-xl">
+          <motion.div
+            className="lg:w-1/2 mb-6 lg:mb-0 relative z-10 p-6 lg:p-10"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 lg:mb-6">
+              Our Mission
+            </h2>
+            <p className="text-lg lg:text-xl leading-relaxed">
+              At HelpOps-Hub, we're on a mission to revolutionize the DevOps landscape. We're building a global community of innovators, problem-solvers, and tech enthusiasts. Our goal is to provide a platform where knowledge flows freely, collaboration thrives, and groundbreaking solutions are born.
+            </p>
+          </motion.div>
+          <motion.div
+            className="lg:w-1/2 relative z-10 p-4"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.img
+              src="new/mission.webp"
+              alt="Mission"
+              className="w-full max-w-xs lg:max-w-md mx-auto rounded-lg shadow-2xl"
+              style={{ translateY: '-30px' }}
+              whileHover={{
+                scale: 1.1,
+                rotate: [0, 15, -15, 0],
+                transition: { duration: 0.5 }
+              }}
+              whileTap={{ scale: 0.9 }}
+            />
+          </motion.div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent to-indigo-900 z-0 pointer-events-none"></div>
+      </Section>
+
+      {/* Benefits of HelpOps-Hub */}
+      <Section id="benefits">
+        <div className="container mx-auto px-4">
+          <h2 className={`text-5xl font-bold mb-16 text-center ${theme ? "text-indigo-700" : "text-indigo-300"}`}>
             Benefits of HelpOps-Hub
-          </h4>
-          <ol
-            style={{ listStyle: "none" }}
-            className={` ${
-              theme ? "" : "text-white"
-            } text-desc text-justify md:text-justify list-decimal list-inside`}
-          >
-            <li>
-              <b>Comprehensive Resources</b>: Access a wide range of tools, best
-              practices, tutorials, and real-world examples, all in one place.
-            </li>
-            <li>
-              <b>Community Collaboration</b>: Join a vibrant community of DevOps
-              enthusiasts to share experiences, provide solutions, and
-              collaborate on projects.
-            </li>
-            <li>
-              <b>Time Savings</b>: Quickly resolve issues and avoid common
-              pitfalls with guidance from experts and community contributions.
-            </li>
-            <li>
-              <b>Continuous Learning</b>: Stay up-to-date with the latest
-              trends, technologies, and methodologies in the rapidly evolving
-              field of DevOps.
-            </li>
-            <li>
-              <b>Skill Enhancement</b>: Improve your DevOps skills through
-              in-depth guides, step-by-step tutorials, and hands-on examples.
-            </li>
-            <li>
-              <b>Support and Feedback</b>: Receive support from a community of
-              peers and experts, and contribute your own insights to help
-              others.
-            </li>
-            <li>
-              <b>Innovation and Improvement</b>: Participate in the continuous
-              improvement of the platform by raising issues, suggesting
-              enhancements, and sharing innovative ideas.
-            </li>
-          </ol>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {[
+              { title: "Comprehensive Resources", icon: "📚" },
+              { title: "Community Collaboration", icon: "🤝" },
+              { title: "Time Savings", icon: "⏱️" },
+              { title: "Continuous Learning", icon: "🧠" },
+              { title: "Skill Enhancement", icon: "🚀" },
+              { title: "Innovation Hub", icon: "💡" },
+            ].map((benefit, index) => (
+              <motion.div
+                key={index}
+                className={`p-6 rounded-xl shadow-lg ${theme ? 'bg-white' : 'bg-gray-800'} transform hover:-translate-y-2 transition-all duration-300`}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <motion.div
+                    className="w-16 h-16 rounded-full flex items-center justify-center bg-indigo-600 text-white text-3xl"
+                    whileHover={{
+                      scale: 1.2,
+                      rotate: [0, 10, -10, 0],
+                      transition: { duration: 0.5 }
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {benefit.icon}
+                  </motion.div>
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-2 text-center text-gray-900">{benefit.title}</h3>
+                <p className="text-lg text-center text-gray-700">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero non est lacinia, at iaculis nisi ullamcorper.
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <div className="w-full md:w-2/5 mx-auto flex justify-center">
-          <img
-            src="new/benefit.webp"
-            alt="Benefits"
-            className="w-3/4 md:w-full hover:scale-90 transition-all"
-          />
-        </div>
-      </div>
+      </Section>
     </div>
   );
-}
+};
 
 export default AboutPage;
