@@ -246,9 +246,10 @@ useEffect(()=>{
       filtered = blogs.filter((blog) => reactionIds.includes(blog._id));
     }
     if (searchedBlog) {
-      filtered = filtered.filter((blog) =>
-        blog.title.toLowerCase().includes(searchedBlog.toLowerCase())
-      );
+      filtered = filtered.filter((blog) => {
+        const title = blog.title ? blog.title.toLowerCase() : "";
+        return title.includes(searchedBlog.toLowerCase());
+      });
     }
 
     return filtered;
