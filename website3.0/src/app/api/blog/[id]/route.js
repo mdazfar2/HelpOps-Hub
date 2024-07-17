@@ -14,6 +14,7 @@ export async function GET(req, { params }) {
         let user;
        
         if (blog) {
+            console.log('sdddddddddddddddddddddddddddddddddddddddd',blog)
             return NextResponse.json(blog);
         } else {
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });

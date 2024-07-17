@@ -557,7 +557,6 @@ function BlogPost() {
                   </span>
                 </div>
               ))}
-              <div><FaTrash className="hover:cursor-pointer" color="red" onClick={handleBlogDelete}/></div>
             </div>
             {hovered && (
               <div
@@ -627,15 +626,7 @@ function BlogPost() {
                 })}
               </div>
             </div>
-              {finalUser._id==blog.authorId&&<div className="z-[100000] flex w-[100%] gap-1 justify-end"> 
-                <div onClick={(e)=>{
-                 e.preventDefault(); router.push(`/editblog?id=${blog._id}`)}} className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
-                <FontAwesomeIcon
-                  icon={faPen}
-                  className="max-md:w-5 max-md:h-5"
-                />
-              </div>
-              <span  onClick={()=>{router.push(`/editblog?id=${blog._id}`)}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>}
+            
           </div>
           <div className="flex gap-5 py-2 mb-5">
             <div className="flex cursor-pointer">
