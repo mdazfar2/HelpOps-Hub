@@ -24,13 +24,25 @@ export default function Editblog({ id }) {
   let router = useRouter();
 
   async function fetchData() {
-    let data = await fetch(`/api/blog?id=${id}`, {
-      method: "GET",
+    console.log(id,'sddddddddddddddddddddddddddddd')
+    let data = await fetch(`/api/getblog`,{
+      method:"POST",
+      body:JSON.stringify({id:id})
     });
     data = await data.json();
-    data = data.data[0];
+    // let finalData=data.data[0];
+    // data.data.map((d)=>{
+    //   console.log(d,id,d._id)
+    //   if(d._id==id){
+    //     console.log(d,'sdddddddddddddddddddddddd')
+    //     finalData=d
+      
+    //   }
+    // })
+   
     setValue(data.title);
     setDesc(data.description);
+    console.log(data)
     setIsImg(data.image);
   }
   useEffect(() => {
