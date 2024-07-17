@@ -260,16 +260,22 @@ useEffect(()=>{
   };
 
   async function handleBlogDelete(blog){
+    let res=confirm('Are You Sure that you want to delete this Blog')
     console.log(blog._id)
-   let data= await fetch('/api/blog',{
-      method:"DELETE",
-      body:JSON.stringify({
-        id:blog._id
-      })
-    })
-    data=await data.json()
-    console.log(data)
-    window.location.reload()
+    if(res){
+
+      let data= await fetch('/api/blog',{
+         method:"DELETE",
+         body:JSON.stringify({
+           id:blog._id
+         })
+       })
+       data=await data.json()
+       console.log(data)
+       window.location.reload()
+    }else{
+      return
+    }
   }
   useEffect(()=>{
 setTimeout(()=>{setLoading(false)},4000)
@@ -439,15 +445,15 @@ setTimeout(()=>{setLoading(false)},4000)
                                 {blog.comments.length}
                               </div>
                             </div>
-                            <div className="flex gap-4">
+                        <div className="flex gap-4">
                               <FontAwesomeIcon
                                 icon={
                                   isBookmarked ? solidBookmark : regularBookmark
                                 }
                                 className="mr-2"
                               />
-                        <FaEllipsis onClick={()=>modalIndex==index?setModalIndex(-1):setModalIndex(index)}/>
-                            </div>
+                      {blog.authorId==finalUser._id &&      <FaEllipsis onClick={()=>modalIndex==index?setModalIndex(-1):setModalIndex(index)}/>
+                           } </div>
                           
                           </div>
                         </div>
@@ -461,10 +467,19 @@ setTimeout(()=>{setLoading(false)},4000)
                  <div className="flex flex-row gap-[10px] justify-center" onClick={()=>handleBlogDelete(blog)}> <FaTrash className="hover:cursor-pointer" color="red" onClick={()=>handleBlogDelete(blog)}/>Delete Post</div>
                  <div className="z-[100000] flex w-[100%] gap-[10px] items-center justify-center"> 
                 <div onClick={(e)=>{
-                 e.preventDefault(); router.push(`/editblog?id=${blog._id}`)}} className=" flex gap-[10px] ">
+                 e.preventDefault();
+                 let res=confirm("Are you sure that you want to edit this blog ")
+                 if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                  return
+                 }}} className=" flex gap-[10px] ">
                <FaPen color="#5a6370"/>
               </div>
-              <span  onClick={()=>{router.push(`/editblog?id=${blog._id}`)}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
+              <span  onClick={(e)=>{
+                 e.preventDefault();
+                 let res=confirm("Are you sure that you want to edit this blog ")
+                 if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                  return
+                 }}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
                  
                  </div>}
                       

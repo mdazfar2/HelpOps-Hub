@@ -18,6 +18,7 @@ export default function page() {
   
       // Get the 'id' query parameter from the URL
       const idFromQuery = getUrlParameter('id');
+      console.log(idFromQuery,'sddddddddddddddddd')
             setId(idFromQuery);
       
      

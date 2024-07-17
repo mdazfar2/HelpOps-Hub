@@ -24,6 +24,7 @@ export default function Editblog({ id }) {
   let router = useRouter();
 
   async function fetchData() {
+    console.log(id,'sddddddddddddddddddddddddddddd')
     let data = await fetch(`/api/getblog`,{
       method:"POST",
       body:JSON.stringify({id:id})
