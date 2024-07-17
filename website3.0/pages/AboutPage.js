@@ -49,7 +49,7 @@ const AboutPage = ({ theme }) => {
   };
 
   return (
-    <div className={`w-full ${theme ? "bg-gradient-to-br from-indigo-50 via-white to-purple-50" : "bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900"}`}>
+    <div className="w-full bg-gray-100">
 
       {/* Hero Section */}
       <Section id="hero" className="h-screen flex items-center justify-center relative overflow-hidden">
