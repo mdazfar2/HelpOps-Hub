@@ -23,6 +23,8 @@ const Header = () => {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
   const isBlogs = pathname && pathname.startsWith("/blogs"); // Check if path starts with '/blogs'
+  const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/profile'
+  const isCreateBlog = pathname && pathname.startsWith("/createblog"); // Check if path starts with '/createblog'
   let { theme, isAdminShow,isLogin,setIsPopup,setMsg,setSearchedBlog } = useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
@@ -100,7 +102,7 @@ const Header = () => {
           theme ? "bg-transparent" : "transition-all bg-transparent"
         } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs || pathname.startsWith('/createblog') ? "hidden" : "block"}  `}
+        } ${isAdmin ? "hidden" : "block"} ${isBlogs || isCreateBlog || isProfile ? "hidden" : "block"}  `}
       >
         <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
           {/* Logo with VanillaTilt animation */}
@@ -298,7 +300,7 @@ const Header = () => {
             : "transition-all text-white bg-[#1e1d1d]"
         } z-50 fixed top-0 transition-all overflow-hidden ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs || pathname.startsWith('/createblog') ? "block" : "hidden"}`}
+        } ${isAdmin ? "hidden" : "block"} ${isBlogs || isCreateBlog || isProfile ? "block" : "hidden"}`}
       >
         <nav className="flex justify-between items-center w-[95%] my-5 mx-auto">
           <div className="flex items-center gap-4">
@@ -317,7 +319,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {!pathname.startsWith('/createblog') && <div className={`flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden ${theme?"":"text-black"}`}>
+          {!isCreateBlog || !isProfile && <div className={`flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden ${theme?"":"text-black"}`}>
             <input
             type="text"
             placeholder="Search blogs..."
@@ -333,7 +335,7 @@ const Header = () => {
                 : "transition-all text-gray-300"
             } flex items-center lg:gap-10 lg:font-bold max-lg:gap-4`}
           >
-            {!pathname.startsWith('/createblog')&& <div onClick={handleValidate} className="flex cursor-pointer items-center gap-2">
+            {!isCreateBlog && <div onClick={handleValidate} className="flex cursor-pointer items-center gap-2">
               <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
                 <FontAwesomeIcon
                   icon={faPen}

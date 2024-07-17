@@ -23,9 +23,9 @@ export default function Logout() {
   }
   return (
     <button
-      className={`w-[200px] bg-black  h-[52px] flex justify-center content-center items-center p-2 relative  ${
-        theme ? "" : "shadow-md shadow-white"
-      } bg-[#098CCD] text-white mt-4 border-none rounded-[18px] cursor-pointer  m-auto gap-[18px] text-[19px] font-semibold `}
+      className={`w-28 h-12 flex justify-center items-center p-2 relative  ${
+        theme ? "bg-[#6089a4] text-white" : "bg-white text-black"
+      }  border-none rounded-2xl cursor-pointer m-auto text-base `}
       onClick={handleLogout}
     >
       Logout
