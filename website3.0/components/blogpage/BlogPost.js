@@ -5,13 +5,14 @@ import { Context } from "@context/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
+import { FacebookShareButton,FacebookIcon , LinkedinShareButton,LinkedinIcon} from "react-share";
 import {
   faHeart as regularHeart,
   faComment as regularComment,
   faBookmark as regularBookmark,
 
 } from "@fortawesome/free-regular-svg-icons";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash,FaShare,FaLink,FaArrowUpFromBracket} from "react-icons/fa6";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
@@ -32,9 +33,10 @@ function BlogPost() {
   const pathname = usePathname();
   const id = pathname.split("/blogs/")[1];
   const authorid = blog.authorId;
+  let [isSHare,setIsShare]=useState(false)
   const [isReact,setIsReact]=useState(false)
   const { theme } = useContext(Context);
-  const { finalUser, isLogin, setIsPopup, setMsg, setFinalUser } =
+  const { finalUser,setColor, isLogin, setIsPopup, setMsg, setFinalUser } =
     useContext(Context);
   const [hovered, setHovered] = useState(false);
   const iconRef = useRef(null);
@@ -483,6 +485,16 @@ function BlogPost() {
     })
     router.push('/blogs')
   }
+  function handleLinkCopy(){
+    navigator.clipboard.writeText(`https://www.helpopshub.com/blogs/${id}`)
+    setIsPopup(true)
+    setMsg("Link Copied")
+    setColor('green')
+    setTimeout(()=>{
+
+      setIsShare(false)
+    },1000)
+  }
   return (
     <div
       className={`${
@@ -588,6 +600,22 @@ function BlogPost() {
                 </div>
               </div>
             )}
+            {
+              isSHare&&<div className="w-[240px] pl-[20px] flex flex-col pt-[10px] gap-3 h-[140px] bg-slate-100  rounded-lg absolute left-10 top-20">
+                                <p onClick={handleLinkCopy} className=" hover:cursor-pointer  font-semibold text-gray-600 flex gap-6 items-center">
+                            <FaLink/>    Copy Link</p>
+                <p className="flex  hover:cursor-pointer font-semibold text-gray-600 gap-2 items-center">
+                  <FacebookShareButton className="hover:cursor-pointer flex items-center gap-[10px]" url={`https://www.helpopshub.com/blogs/${id}`}>
+                    <FacebookIcon borderRadius={50} size={30}/>
+
+                   Share on Facebook </FacebookShareButton></p>
+                    <p className="flex hover:cursor-pointer  font-semibold text-gray-600 gap-2 items-center">
+                    <LinkedinShareButton  className="hover:cursor-pointer flex items-center gap-[10px]"  url={`https://www.helpopshub.com/blogs/${id}`}>
+                    <LinkedinIcon borderRadius={50} size={30}/>
+
+                   Share On Linkedin </LinkedinShareButton></p>
+                  </div>}
+            <FaArrowUpFromBracket size={'1.5rem'} onClick={()=>isSHare?setIsShare(false):setIsShare(true)}/>
           </div>
         </div>
       </div>
