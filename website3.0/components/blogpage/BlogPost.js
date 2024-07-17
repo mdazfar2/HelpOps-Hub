@@ -11,6 +11,7 @@ import {
   faBookmark as regularBookmark,
 
 } from "@fortawesome/free-regular-svg-icons";
+import { FaTrash } from "react-icons/fa";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
@@ -470,8 +471,17 @@ function BlogPost() {
   };
   function handleOpenProfile() {
     if (blog._id) {
-      router.push(`/profile?id=${blog.id}`);
+      router.push(`/profile?id=${blog.authorId}`);
     }
+  }
+  async function handleBlogDelete(){
+    await fetch('/api/blog',{
+      method:"DELETE",
+      body:JSON.stringify({
+        id:blog._id
+      })
+    })
+    router.push('/blogs')
   }
   return (
     <div
@@ -547,6 +557,7 @@ function BlogPost() {
                   </span>
                 </div>
               ))}
+              <div><FaTrash className="hover:cursor-pointer" color="red" onClick={handleBlogDelete}/></div>
             </div>
             {hovered && (
               <div
@@ -624,7 +635,7 @@ function BlogPost() {
                   className="max-md:w-5 max-md:h-5"
                 />
               </div>
-              <span  onClick={()=>{router.push(`/editblog?id=${blog._id}`)}}  className="max-md:hidden text-[#5a6370] font-semibold">Create Blog</span></div>}
+              <span  onClick={()=>{router.push(`/editblog?id=${blog._id}`)}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>}
           </div>
           <div className="flex gap-5 py-2 mb-5">
             <div className="flex cursor-pointer">
