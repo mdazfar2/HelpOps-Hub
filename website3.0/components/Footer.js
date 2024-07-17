@@ -11,11 +11,12 @@ import { usePathname } from "next/navigation";
 function Footer() {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
+  const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/admin'
   let { theme } = useContext(Context);
   return (
     <div
       className={`${theme ? "bg-gray-100" : "bg-[#1e1d1d]"} ${
-        isAdmin ? "hidden" : "block"
+        isAdmin || isProfile ? "hidden" : "block"
       } pt-12 pb-6 flex flex-col items-center justify-center text-center w-full transition-colors duration-500`}
     >
       {/* Social media icons */}
