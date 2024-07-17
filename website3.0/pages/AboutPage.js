@@ -4,23 +4,30 @@ import { useInView } from "react-intersection-observer";
 
 const AboutPage = ({ theme }) => {
   const [loading, setLoading] = useState(true);
+  
+  // Hook to track scroll progress
   const { scrollYProgress } = useScroll();
+  
+  // Create a spring animation for the scroll progress
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
+  // Simulate loading time
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Animation variant for fading in elements
   const fadeInUp = {
     hidden: { opacity: 0, y: 60 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
+  // Custom Section component with intersection observer for animations
   const Section = ({ id, children, className = "" }) => {
     const [ref, inView] = useInView({
       triggerOnce: true,
@@ -44,7 +51,6 @@ const AboutPage = ({ theme }) => {
   return (
     <div className={`w-full ${theme ? "bg-gradient-to-br from-indigo-50 via-white to-purple-50" : "bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900"}`}>
 
-
       {/* Hero Section */}
       <Section id="hero" className="h-screen flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -58,42 +64,9 @@ const AboutPage = ({ theme }) => {
             <source src="/HelpOps-H.mp4" type="video/mp4" />
           </video>
         </div>
-        <div className="z-10 text-center">
-          <motion.h1
-            className="text-7xl font-extrabold text-white mb-4 tracking-tight"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
-              textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Adds a subtle text shadow
-              letterSpacing: "-2px", // Adjusts letter spacing for a tighter look
-              fontFamily: "'Roboto', sans-serif", // Custom font family if needed
-            }}
-          >
-            HelpOps-Hub
-          </motion.h1>
-
-          <motion.p
-            className="text-2xl text-white mb-8 font-light"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            whileHover={{ scale: 1.03 }}
-          >
-            Empowering <motion.span style={{ fontWeight: "bold", textShadow: "0px 0px 8px rgba(255, 255, 255, 0.8)" }}>DevOps Professionals</motion.span> Worldwide
-          </motion.p>
-          <motion.button
-            className="mt-4 px-8 py-4 bg-indigo-600 text-white rounded-full font-bold text-xl hover:bg-indigo-700 transition duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Learn More
-          </motion.button>
-        </div>
       </Section>
 
-
-      {/* What is HelpOps-Hub */}
+      {/* What is HelpOps-Hub Section */}
       <Section id="what" className="relative">
         <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-white rounded-lg shadow-xl overflow-hidden">
           <motion.div
@@ -131,7 +104,7 @@ const AboutPage = ({ theme }) => {
         </div>
       </Section>
 
-      {/* Our Mission */}
+      {/* Our Mission Section */}
       <Section id="mission" className="relative bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-10 lg:py-20">
         <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-opacity-75 rounded-lg shadow-xl">
           <motion.div
@@ -167,23 +140,49 @@ const AboutPage = ({ theme }) => {
             />
           </motion.div>
         </div>
+        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-indigo-900 z-0 pointer-events-none"></div>
       </Section>
 
-      {/* Benefits of HelpOps-Hub */}
+      {/* Benefits of HelpOps-Hub Section */}
       <Section id="benefits">
         <div className="container mx-auto px-4">
           <h2 className={`text-5xl font-bold mb-16 text-center ${theme ? "text-indigo-700" : "text-indigo-300"}`}>
             Benefits of HelpOps-Hub
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {/* Map through benefits array to create benefit cards */}
             {[
-              { title: "Comprehensive Resources", icon: "📚" },
-              { title: "Community Collaboration", icon: "🤝" },
-              { title: "Time Savings", icon: "⏱️" },
-              { title: "Continuous Learning", icon: "🧠" },
-              { title: "Skill Enhancement", icon: "🚀" },
-              { title: "Innovation Hub", icon: "💡" },
+              { 
+                title: "Comprehensive Resources", 
+                icon: "📚",
+                description: "Access a vast library of tools, guides, and best practices tailored for HelpOps professionals in the Resources. Find everything you need in one centralized location."
+              },
+              { 
+                title: "Community Collaboration", 
+                icon: "🤝",
+                description: "Connect with fellow HelpOps experts worldwide. Share experiences in the form of blogs, solve challenges together, and build a supportive network of professionals."
+              },
+              { 
+                title: "Time Savings", 
+                icon: "⏱️",
+                description: "Streamline your workflow with ready-to-use templates and automation scripts. Spend less time on repetitive tasks and more on strategic initiatives."
+              },
+              { 
+                title: "Continuous Learning", 
+                icon: "🧠",
+                description: "Stay ahead of the curve with regularly updated content, webinars, and courses. Embrace lifelong learning in the ever-evolving HelpOps landscape."
+              },
+              { 
+                title: "Skill Enhancement", 
+                icon: "🚀",
+                description: "Boost your expertise through hands-on projects, skill assessments, and personalized learning paths. Elevate your career in HelpOps."
+              },
+              { 
+                title: "Innovation Hub", 
+                icon: "💡",
+                description: "Explore cutting-edge tools and methodologies. Be at the forefront of HelpOps innovation and shape the future of customer support."
+              },
             ].map((benefit, index) => (
               <motion.div
                 key={index}
@@ -207,7 +206,7 @@ const AboutPage = ({ theme }) => {
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-2 text-center text-gray-900">{benefit.title}</h3>
                 <p className="text-lg text-center text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero non est lacinia, at iaculis nisi ullamcorper.
+                  {benefit.description}
                 </p>
               </motion.div>
             ))}
