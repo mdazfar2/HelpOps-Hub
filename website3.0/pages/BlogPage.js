@@ -13,8 +13,10 @@ import Confetti from "react-confetti";
 
 import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
 import { useRouter } from "next/navigation";
+import {FaEllipsis,FaTrash} from 'react-icons/fa6'
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { FaPen } from "react-icons/fa";
 
 function BlogPage({ theme,finalUser,searchedBlog }) {
   const [blogs, setBlogs] = useState([]);
@@ -25,6 +27,7 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
   const [editorsChoiceCount, setEditorsChoiceCount] = useState(3);
   const [sortBy, setSortBy] = useState("date");
   const [filter, setFilter] = useState("");
+  const [modalIndex,setModalIndex]=useState(-1)
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const [confetti,setShowConfetti]=useState(false)
@@ -237,6 +240,7 @@ useEffect(()=>{
   const handleBookmarkedClick = () => {
     setFilter("bookmarked");
   };
+ 
   const filteredBlogs = () => {
     let filtered = blogs;
     if (filter === "mustRead") {
@@ -254,6 +258,25 @@ useEffect(()=>{
 
     return filtered;
   };
+
+  async function handleBlogDelete(blog){
+    let res=confirm('Are You Sure that you want to delete this Blog')
+    console.log(blog._id)
+    if(res){
+
+      let data= await fetch('/api/blog',{
+         method:"DELETE",
+         body:JSON.stringify({
+           id:blog._id
+         })
+       })
+       data=await data.json()
+       console.log(data)
+       window.location.reload()
+    }else{
+      return
+    }
+  }
   useEffect(()=>{
 setTimeout(()=>{setLoading(false)},4000)
   },[])
@@ -370,11 +393,11 @@ setTimeout(()=>{setLoading(false)},4000)
                 
                   return (
                     <div
-                      className="cursor-pointer"
+                      className="cursor-pointer relative"
                       key={index}
-                      onClick={() => navigateToBlogDetails(blog._id)}
+                      
                     >
-                      <div className="flex items-center mb-2">
+                      <div className="flex items-center mb-2" onClick={() => navigateToBlogDetails(blog._id)}>
                         <img
                           src={author.image1}
                           onError={handleImageError}
@@ -382,13 +405,13 @@ setTimeout(()=>{setLoading(false)},4000)
                         />
                         <div className="text-sm">{author.name}</div>
                       </div>
-                      <div className="flex gap-10 items-center max-md:flex-col max-md:items-start">
+                      <div  className="flex gap-10 items-center max-md:flex-col max-md:items-start">
                         <div className="flex-1">
-                          <div
+                          <div onClick={() => navigateToBlogDetails(blog._id)}
                             className="text-2xl mb-2 font-normal max-sm:text-xl"
                             dangerouslySetInnerHTML={{ __html: blog.title }}
                           ></div>
-                          <div
+                          <div onClick={() => navigateToBlogDetails(blog._id)}
                             className={`${
                               theme ? "text-gray-600" : "text-gray-300"
                             } font-medium max-sm:text-sm transition-all duration-200`}
@@ -400,13 +423,13 @@ setTimeout(()=>{setLoading(false)},4000)
                               theme ? "text-gray-500" : "text-gray-300"
                             } flex text-sm justify-between items-center max-sm:flex-wrap max-sm:gap-2 transition-all duration-200`}
                           >
-                            <div className="flex gap-5 items-center max-sm:flex-wrap">
+                            <div className="flex gap-5 items-center max-sm:flex-wrap" onClick={() => navigateToBlogDetails(blog._id)}>
                               <div className="my-2 font-medium">
                                 {formatDate(blog.date)}
                               </div>
                               <div>
-                                <FontAwesomeIcon
-                                  icon={faHands}
+                                <FontAwesomeIcon onClick={() => navigateToBlogDetails(blog._id)}
+                                  icon={faHands} 
                                   className="mr-2"
                                 />
                                 {blog.reactionList.reduce(
@@ -422,22 +445,44 @@ setTimeout(()=>{setLoading(false)},4000)
                                 {blog.comments.length}
                               </div>
                             </div>
-                            <div>
+                        <div className="flex gap-4">
                               <FontAwesomeIcon
                                 icon={
                                   isBookmarked ? solidBookmark : regularBookmark
                                 }
                                 className="mr-2"
                               />
-                            </div>
+                      {blog.authorId==finalUser._id &&      <FaEllipsis onClick={()=>modalIndex==index?setModalIndex(-1):setModalIndex(index)}/>
+                           } </div>
+                          
                           </div>
                         </div>
-                        <img
+                        <img onClick={() => navigateToBlogDetails(blog._id)}
                           src={blog.image}
                           onError={handleImageError}
                           className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
                         />
                       </div>
+                 {index == modalIndex &&     <div className="absolute h-[auto] w-[200px]  flex flex-col gap-[20px] right-36 p-[20px] bottom-20 rounded-lg bg-white">
+                 <div className="flex flex-row gap-[10px] justify-center" onClick={()=>handleBlogDelete(blog)}> <FaTrash className="hover:cursor-pointer" color="red" onClick={()=>handleBlogDelete(blog)}/>Delete Post</div>
+                 <div className="z-[100000] flex w-[100%] gap-[10px] items-center justify-center"> 
+                <div onClick={(e)=>{
+                 e.preventDefault();
+                 let res=confirm("Are you sure that you want to edit this blog ")
+                 if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                  return
+                 }}} className=" flex gap-[10px] ">
+               <FaPen color="#5a6370"/>
+              </div>
+              <span  onClick={(e)=>{
+                 e.preventDefault();
+                 let res=confirm("Are you sure that you want to edit this blog ")
+                 if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                  return
+                 }}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
+                 
+                 </div>}
+                      
                       <hr className="w-full mt-5 mb-5 border-gray-200" />
                     </div>
                   );

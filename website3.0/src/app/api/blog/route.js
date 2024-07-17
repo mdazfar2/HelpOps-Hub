@@ -21,7 +21,13 @@ export async function POST(req) {
         
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
-
+        if(!payload.image){
+            payload.image=""
+        }
+        if(!payload.description)
+        {
+            payload.description=""
+        }
         // Create a new instance of Blogs model with the received payload
         let blog = new Blogs(payload);
 
@@ -29,6 +35,48 @@ export async function POST(req) {
         const result = await blog.save();
 
         // Return success response with saved blog details
+        return NextResponse.json({ result, success: true });
+    } catch (error) {
+        console.error("Error in POST /api/blog:", error);
+        return NextResponse.json({ success: false, error: error.message });
+    }
+}
+
+export async function PUT(req) {
+    try {
+        // Parse JSON payload from request body
+        const {payload} = await req.json();
+
+        const { MONGO_URI } = process.env;  
+        
+        // Connect to MongoDB using Mongoose
+        await mongoose.connect(MONGO_URI);
+       
+        // Create a new instance of Blogs model with the received payload
+        let blog =await  Blogs.findByIdAndUpdate(payload.id,{
+            $set:payload
+        });
+
+        return NextResponse.json({ result, success: true });
+    } catch (error) {
+        console.error("Error in POST /api/blog:", error);
+        return NextResponse.json({ success: false, error: error.message });
+    }
+}
+
+export async function DELETE(req) {
+    try {
+        // Parse JSON payload from request body
+        const {id} = await req.json();
+
+        const { MONGO_URI } = process.env;  
+        
+        // Connect to MongoDB using Mongoose
+        await mongoose.connect(MONGO_URI);
+       
+        // Create a new instance of Blogs model with the received payload
+        let blog =await  Blogs.findByIdAndDelete(id)
+
         return NextResponse.json({ result, success: true });
     } catch (error) {
         console.error("Error in POST /api/blog:", error);

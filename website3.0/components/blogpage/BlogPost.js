@@ -9,7 +9,12 @@ import {
   faHeart as regularHeart,
   faComment as regularComment,
   faBookmark as regularBookmark,
+
 } from "@fortawesome/free-regular-svg-icons";
+import { FaTrash } from "react-icons/fa";
+import {
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 import {FaHeart} from 'react-icons/fa6'
 import { FaPaperPlane } from "react-icons/fa";
 const regularIcons = {
@@ -466,8 +471,17 @@ function BlogPost() {
   };
   function handleOpenProfile() {
     if (blog._id) {
-      router.push(`/profile?id=${blog.id}`);
+      router.push(`/profile?id=${blog.authorId}`);
     }
+  }
+  async function handleBlogDelete(){
+    await fetch('/api/blog',{
+      method:"DELETE",
+      body:JSON.stringify({
+        id:blog._id
+      })
+    })
+    router.push('/blogs')
   }
   return (
     <div
@@ -591,9 +605,9 @@ function BlogPost() {
         <div className="px-10">
           <div
             className="flex items-center mb-5 cursor-pointer"
-            onClick={handleOpenProfile}
+            
           >
-            <img
+            <img onClick={handleOpenProfile}
               src={
                 fetchedUser
                   ? fetchedUser.image1
@@ -602,7 +616,7 @@ function BlogPost() {
               alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-10 h-10 rounded-full mr-3"
             />
-            <div>
+            <div onClick={handleOpenProfile}>
               <div className="text-base font-bold">{blog.authorName}</div>
               <div className="text-gray-500 text-xs">
                 Posted on{" "}
@@ -612,6 +626,7 @@ function BlogPost() {
                 })}
               </div>
             </div>
+            
           </div>
           <div className="flex gap-5 py-2 mb-5">
             <div className="flex cursor-pointer">
