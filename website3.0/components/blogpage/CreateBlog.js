@@ -28,7 +28,17 @@ export default function CreateBlog({id}) {
   const quillRef = useRef(null);
   const quillRef1 = useRef(null);
 
-
+  useEffect(()=>{
+    if(!finalUser||!localStorage.getItem('finalUser')){
+      setIsPopup(true)
+      setMsg("Please Login to Create Blog")
+      setTimeout(()=>{
+        setIsPopup(false)
+        setMsg('')
+        router.push('/blogs')
+      },1000)
+      }
+  },[])
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       // Send data to the server

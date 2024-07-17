@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
+import { motion } from "framer-motion";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -345,6 +346,10 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
    await   fetchdataa()
     }
   }
+  const eventVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+  };
   const displayFolders = (data) => {
     return data.map((item, index) => {
       // Render only directories (type === "dir")
@@ -354,10 +359,15 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
 
         // Return JSX for each directory item
         return (
-          <div
-            className={`folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8  ${
+          <motion.div
+          initial="hidden"
+          whileInView="visible"
+          whileHover={{ scale: 1.06  }}
+          viewport={{ once: true }}
+          variants={eventVariants}
+          transition={{ duration: 0.5, ease: "easeInOut" }}   className={`folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8  ${
               theme ? "bg-[#0000000d]" : "bg-[#121111] shadow-sm shadow-white"
-            } rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer [transition:background-color_0.3s_ease]  hover:scale-[1.03] hover:[transition:0.5s] hover:rounded-3xl hover:text-[0.9rem]`}
+            } rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer `}
             key={item.name}
             onClick={() => {
               // Redirect to detailed resources page on click
@@ -408,7 +418,7 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
                 size={"2rem"}
               />
             </div>
-          </div>
+          </motion.div>
         );
       }
       // Return null for non-directory items
