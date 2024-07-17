@@ -302,6 +302,9 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
     }
   }
   const renderBlogDescription = (description) => {
+    if (typeof description !== "string") {
+      return null;
+    }
     const words = description.split(" ");
     const limitedDescription = words.slice(0, 10).join(" ");
     const hasMore = words.length > 10;
