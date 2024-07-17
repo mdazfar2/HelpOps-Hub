@@ -18,7 +18,7 @@ export const GlobalContext = ({ children }) => {
   let [isPopup, setIsPopup] = useState(false);
   let [msg, setMsg] = useState("sddddddddddddddddddddddddddddd");
   let [color, setColor] = useState("red");
-  let [searchedBlog,setSearchedBlog] = useState("")
+  let [searchedBlog, setSearchedBlog] = useState("");
   useEffect(() => {
     console.log(theme);
   }, [theme]);
@@ -61,7 +61,7 @@ export const GlobalContext = ({ children }) => {
         theme,
         setTheme,
         searchedBlog,
-        setSearchedBlog
+        setSearchedBlog,
       }}
     >
       {children}

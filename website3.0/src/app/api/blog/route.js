@@ -64,3 +64,22 @@ export async function PUT(req) {
     }
 }
 
+export async function DELETE(req) {
+    try {
+        // Parse JSON payload from request body
+        const {id} = await req.json();
+
+        const { MONGO_URI } = process.env;  
+        
+        // Connect to MongoDB using Mongoose
+        await mongoose.connect(MONGO_URI);
+       
+        // Create a new instance of Blogs model with the received payload
+        let blog =await  Blogs.findByIdAndDelete(id)
+
+        return NextResponse.json({ result, success: true });
+    } catch (error) {
+        console.error("Error in POST /api/blog:", error);
+        return NextResponse.json({ success: false, error: error.message });
+    }
+}
