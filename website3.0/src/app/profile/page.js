@@ -1,6 +1,8 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import ProfilepageDetails from "@components/ProfilepageDetails";
+import ProfilepageDetails from "@components/profile/ProfilepageDetails";
+import SettingsTab from "@components/profile/SettingsTab";
+import ResourcesTab from "@components/profile/ResourcesTab";
 import { Context } from "@context/store";
 import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +13,7 @@ import {
   faComment,
 } from "@fortawesome/free-regular-svg-icons";
 import {
+  faBlog,
   faChevronRight,
   faCog,
   faHouseUser,
@@ -18,8 +21,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Settings = () => <div>Settings Component</div>;
-const Resources = () => <div>Reports Component</div>;
+const Settings = () => (
+  <div className="min-h-screen mt-10 rounded-xl">
+    <SettingsTab />
+  </div>
+);
+const Resources = () => (
+  <div className="min-h-screen mt-10 rounded-xl">
+    <ResourcesTab />
+  </div>
+);
 const Notifications = () => <div>Notifications Component</div>;
 const Followers = () => <div>Grow Your Reach</div>;
 const PostDetails = () => <div>Post Details</div>;
@@ -37,7 +48,7 @@ const MenuItem = ({
   isCollapsible,
   onClick,
   isActive,
-  theme
+  theme,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -109,7 +120,10 @@ const profile = () => {
     const idFromQuery = getUrlParameter("id");
 
     if (idFromQuery) {
-      if (JSON.parse(localStorage.getItem("finalUser"))._id !== idFromQuery) {
+      const storedUser = localStorage.getItem("finalUser");
+      const parsedUser = storedUser ? JSON.parse(storedUser) : isViewProfile;
+    
+      if (parsedUser._id !== idFromQuery) {
         setId(idFromQuery);
       }
     }
@@ -186,6 +200,15 @@ const profile = () => {
                 handleMenuClick(<DevopsInsights />, "DevopsInsights")
               }
               isActive={activeMenuItem === "DevopsInsights"}
+              theme={theme}
+            />
+            <MenuItem
+              title="Blogs Page"
+              icon={faBlog}
+              isCollapsible={false}
+              onClick={() =>
+                router.push("/blogs")
+              }
               theme={theme}
             />
             <MenuItem

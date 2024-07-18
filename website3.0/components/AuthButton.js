@@ -79,7 +79,7 @@ let session=useSession()
       })
       let  e=await a.json()
 
-      if(e.msg.email==process.env.NEXT_PUBLIC_ADMIN_URL){
+      if(e.msg? e.msg.email==process.env.NEXT_PUBLIC_ADMIN_URL:""){
         setIsAdminShow(true)
       }
       setFinalUser(e.msg)

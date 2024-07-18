@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheets/profilecontainer.css";
+import "@stylesheets/profilecontainer.css";
 export default function UserProfile({ onClose, onLogout }) {
   function handleClose() {
     onClose();
