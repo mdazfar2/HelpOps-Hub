@@ -501,9 +501,7 @@ function BlogPost() {
       setIsShare(false)
     },1000)
   }
-  function handleError(){
-    document.getElementById("image-section").src="https://via.placeholder.com/600x400/DEDEDE/555555?text=No+Image+Available"
-  }
+
   return (
     <div
       className={`${
