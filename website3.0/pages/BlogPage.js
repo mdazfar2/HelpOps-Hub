@@ -144,7 +144,8 @@ useEffect(()=>{
   const handleImageError = (e) => {
     const src = e.target.src;
     e.target.onerror = null;
-    e.target.src = src;
+    e.target.src = "https://via.placeholder.com/600x400/DEDEDE/555555?text=No+Image+Available"
+ 
   };
 
   const mustReadBlogs = blogs.filter((blog) => blog.mustRead);
