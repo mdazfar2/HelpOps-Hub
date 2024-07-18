@@ -22,9 +22,7 @@ const blogSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String,
-    required: true,
-  },
+    type: String  },
   type: {
     type: String,
     required: true,
@@ -44,9 +42,7 @@ type:String
     required: true,
   },
   description: {
-    type: String,
-    required: true,
-  },
+    type: String  },
   mustRead: {
     type: Boolean,
     default: false,
@@ -71,6 +67,14 @@ type:String
     type: [commentSchema],
     default: [],
   },
+  views:{
+    type:Number,
+    default:0
+  },
+  average:{
+    type:Number,
+    default:0
+  }
 });
 
 const Blogs = mongoose.models.blogcollection || mongoose.model("blogcollection", blogSchema);
