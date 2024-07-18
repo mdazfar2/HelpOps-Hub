@@ -501,7 +501,7 @@ function BlogPost() {
       setIsShare(false)
     },1000)
   }
-function handleError(e){
+function handleError(){
   
   document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
 }
@@ -645,7 +645,7 @@ function handleError(e){
         <img
           src={blog.image}
           alt={blog.title}
-          onClick={handleError}
+          onError={handleError}
           id="image-section"
           className="w-full h-96 object-cover mb-5 rounded-lg"
         />
