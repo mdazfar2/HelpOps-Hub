@@ -501,7 +501,10 @@ function BlogPost() {
       setIsShare(false)
     },1000)
   }
-
+function handleError(){
+  
+  document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
+}
   return (
     <div
       className={`${
@@ -642,8 +645,8 @@ function BlogPost() {
         <img
           src={blog.image}
           alt={blog.title}
-          id="image-section"
           onError={handleError}
+          id="image-section"
           className="w-full h-96 object-cover mb-5 rounded-lg"
         />
         <div className="px-10">
