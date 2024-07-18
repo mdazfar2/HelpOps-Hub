@@ -144,7 +144,8 @@ useEffect(()=>{
   const handleImageError = (e) => {
     const src = e.target.src;
     e.target.onerror = null;
-    e.target.src = src;
+    e.target.src = ""
+ 
   };
 
   const mustReadBlogs = blogs.filter((blog) => blog.mustRead);
