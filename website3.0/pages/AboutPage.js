@@ -49,36 +49,38 @@ const AboutPage = ({ theme }) => {
   };
 
   return (
-    <div className="w-full bg-gray-100">
+    <div className={`w-full ${theme ? "bg-gray-100" : "bg-[#1e1d1d]"}`}>
 
       {/* Hero Section */}
       <Section id="hero" className="h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            className="w-full h-full object-cover"
-            style={{ filter: "brightness(50%)" }}
-          >
-            <source src="/HelpOps-H.mp4" type="video/mp4" />
-          </video>
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
+          <div className="w-9/12 h-[75%] relative mt-[135px] max-lg:w-3/4 max-md:w-full aspect-video">
+            <video
+              autoPlay
+              loop
+              muted
+              className="w-full h-full object-contain max-md:h-1/2"
+              style={{ filter: "brightness(50%)" }}
+            >
+              <source src="/HelpOps-H.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </Section>
 
       {/* What is HelpOps-Hub Section */}
       <Section id="what" className="relative">
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-white rounded-lg shadow-xl overflow-hidden">
+        <div className={`${theme ? "bg-white" : "bg-[#292727]"} container mx-auto px-4 flex flex-col lg:flex-row items-center rounded-lg shadow-xl overflow-hidden`}>
           <motion.div
             className="lg:w-1/2 order-2 lg:order-1 p-6 lg:p-10"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 text-indigo-700">
+            <h2 className={`${theme ? "text-indigo-700" : "text-white"} text-4xl lg:text-5xl font-bold mb-4 lg:mb-6`}>
               What is HelpOps-Hub?
             </h2>
-            <p className="text-lg lg:text-xl leading-relaxed text-gray-700">
+            <p className={`${theme ? "text-gray-700" : "text-white"} text-lg lg:text-xl leading-relaxed text-gray-700`}>
               HelpOps-Hub is a revolutionary platform designed to empower DevOps professionals. We provide cutting-edge tools, resources, and a vibrant community to streamline your workflow and boost productivity.
             </p>
           </motion.div>
@@ -91,8 +93,8 @@ const AboutPage = ({ theme }) => {
             <motion.img
               src="new/HelpOps-H Fevicon.webp"
               alt="HelpOps Logo"
-              className="w-full max-w-xs lg:max-w-sm mx-auto rounded-lg shadow-2xl"
-              style={{ translateY: '-30px' }}
+              className={`w-full max-w-xs lg:max-w-sm mx-auto rounded-lg shadow-2xl`}
+              style={{ translateY: "-30px" }}
               whileHover={{
                 scale: 1.1,
                 rotate: [0, 10, -10, 0],
@@ -130,7 +132,7 @@ const AboutPage = ({ theme }) => {
               src="new/mission.webp"
               alt="Mission"
               className="w-full max-w-xs lg:max-w-md mx-auto rounded-lg shadow-2xl"
-              style={{ translateY: '-30px' }}
+              style={{ translateY: "-30px" }}
               whileHover={{
                 scale: 1.1,
                 rotate: [0, 15, -15, 0],
@@ -147,7 +149,7 @@ const AboutPage = ({ theme }) => {
       {/* Benefits of HelpOps-Hub Section */}
       <Section id="benefits">
         <div className="container mx-auto px-4">
-          <h2 className={`text-5xl font-bold mb-16 text-center ${theme ? "text-indigo-700" : "text-indigo-300"}`}>
+          <h2 className={`text-5xl font-bold mb-16 text-center ${theme ? "text-indigo-700" : "text-white"}`}>
             Benefits of HelpOps-Hub
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -186,7 +188,7 @@ const AboutPage = ({ theme }) => {
             ].map((benefit, index) => (
               <motion.div
                 key={index}
-                className={`p-6 rounded-xl shadow-lg ${theme ? 'bg-white' : 'bg-gray-800'} transform hover:-translate-y-2 transition-all duration-300`}
+                className={`p-6 rounded-xl shadow-lg ${theme ? "bg-white" : "bg-[#292727]"} transform hover:-translate-y-2 transition-all duration-300`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -204,8 +206,8 @@ const AboutPage = ({ theme }) => {
                     {benefit.icon}
                   </motion.div>
                 </div>
-                <h3 className="text-xl lg:text-2xl font-bold mb-2 text-center text-gray-900">{benefit.title}</h3>
-                <p className="text-lg text-center text-gray-700">
+                <h3 className={`${theme ? "text-gray-900" : "text-white"} text-xl lg:text-2xl font-bold mb-2 text-center`}>{benefit.title}</h3>
+                <p className={`${theme ? "text-gray-700" : "text-[#f5f5f5]"} text-lg text-center`}>
                   {benefit.description}
                 </p>
               </motion.div>
