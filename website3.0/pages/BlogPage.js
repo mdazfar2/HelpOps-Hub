@@ -144,7 +144,7 @@ useEffect(()=>{
   const handleImageError = (e) => {
     const src = e.target.src;
     e.target.onerror = null;
-    e.target.src = "https://via.placeholder.com/600x400/DEDEDE/555555?text=No+Image+Available"
+    e.target.src = ""
  
   };
 
