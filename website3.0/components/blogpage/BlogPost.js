@@ -447,7 +447,13 @@ function BlogPost() {
       timerRef.current = setTimeout(() => setHovered(false), 1000);
     }
   };
-
+  function handleScroll(){
+    setTimeout(()=>{
+  
+      document.getElementById('comment').scrollIntoView({behavior:"smooth"})
+    },300)  
+    }
+  
   useEffect(() => {
     if (iconRef.current) {
       const iconElement = iconRef.current;
@@ -526,6 +532,12 @@ function BlogPost() {
              {panelIcon.label!=="Heart" ?    
               <FontAwesomeIcon
                     icon={panelIcon.regularIcon}
+                    onClick={()=>{
+                      if(index==1){
+                        handleScroll()
+                      }
+                      return
+                    }}  
                     className={`    ${
                       theme
                         ? `${
@@ -543,6 +555,7 @@ function BlogPost() {
       `}
                   />:isReact?<FaHeart color="red" className="bg-transparent"/>:  <FontAwesomeIcon
                   icon={panelIcon.regularIcon}
+                  
                   className={`    ${
                     theme
                       ? `${
@@ -720,7 +733,7 @@ function BlogPost() {
           </div>
           <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
-          <div className="text-2xl font-bold pb-5">Top Comments</div>
+          <div className="text-2xl font-bold pb-5" id="comment">Top Comments</div>
           <div className="flex items-center justify-center mb-4">
             <img
               src={
