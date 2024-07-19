@@ -6,6 +6,14 @@ const commentSchema = new mongoose.Schema({
     image: String,
   },
   comment: String,
+  likes:{
+    type:Number,
+    default:0
+  },
+  replies:{
+    type:Array,
+    default:[]
+  }
 });
 
 const reactionSchema = new mongoose.Schema({

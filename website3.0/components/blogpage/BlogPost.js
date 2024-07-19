@@ -12,7 +12,7 @@ import {
   faBookmark as regularBookmark,
 
 } from "@fortawesome/free-regular-svg-icons";
-import { FaTrash,FaShare,FaLink,FaArrowUpFromBracket} from "react-icons/fa6";
+import { FaTrash,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
@@ -32,6 +32,8 @@ function BlogPost() {
   const [newComment, setNewComment] = useState("");
   const pathname = usePathname();
   const id = pathname.split("/blogs/")[1];
+  const [reply, setReply] = useState({});
+
   const authorid = blog.authorId;
   let [isSHare,setIsShare]=useState(false)
   const [isReact,setIsReact]=useState(false)
@@ -110,6 +112,7 @@ function BlogPost() {
             body:JSON.stringify({id:id})
           })
           setBlog(data);
+          
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
           let count = 0;
@@ -260,6 +263,15 @@ function BlogPost() {
     }
     if (newComment.trim() !== "") {
       const newCommentObject = {
+        user1: {
+          name: finalUser.name || "Unknown",
+          image:
+            finalUser.image1 ||
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
+        },
+        comment: newComment,
+      };
+      let duplicate={
         user: {
           name: finalUser.name || "Unknown",
           image:
@@ -268,8 +280,8 @@ function BlogPost() {
         },
         comment: newComment,
       };
-
-      const updatedComments = [...comments, newCommentObject];
+      const updatedComments = [...comments, duplicate];
+      console.log(updatedComments)
       setComments(updatedComments);
       setNewComment("");
 
@@ -479,7 +491,22 @@ function BlogPost() {
     clearTimeout(timerRef.current);
     setHovered(true);
   };
+  async function handleCommentLike(index){
+    let comment_id=comments[index]
+    let updatedComment=await fetch('/api/commentlike',{
+      method:"POST",
+      body:JSON.stringify({
+        comment_id:comment_id,
+        blog_id:id
+      })
+    })
 
+    let tempcomments=comments
+    tempcomments[index].likes=tempcomments[index].likes+1
+    
+    setComments([...tempcomments])
+    
+  }
   const handleMouseLeavePanel = (e) => {
     if (!iconRef.current.contains(e.relatedTarget)) {
       timerRef.current = setTimeout(() => setHovered(false), 1000);
@@ -512,6 +539,7 @@ function BlogPost() {
   if (error) {
     return <p>{error}</p>;
   }
+ 
   const navigateToBlogDetails = (blogId) => {
     router.push(`/blogs/id=${blogId}`);
   };
@@ -539,6 +567,7 @@ function BlogPost() {
       setIsShare(false)
     },1000)
   }
+  
 function handleError(){
   
   document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
@@ -803,11 +832,14 @@ function handleError(){
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
               comments.map((comment, index) => (
+         <>
+          <>
                 <div
                   key={comment._id || index}
-                  className="bg-white text-black flex gap-4 p-4 mb-4 rounded-lg shadow"
+                  className="bg-white text-black flex flex-col gap-4 p-4 mb-4 rounded-lg shadow"
                 >
-                  <img
+             <div className="flex ">
+                   <img
                     src={comment.user.image}
                     className="w-10 h-10 rounded-full mr-3"
                   />
@@ -817,7 +849,14 @@ function handleError(){
                     </div>
                     <p>{comment.comment}</p>
                   </div>
+              </div>
+                    
+                  <div className="flex gap-4 text-gray-600 font-medium">
+                    <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'}/></div>{comment.likes && <span>{comment.likes}</span>}
+                    </div>
                 </div>
+          </>
+         </>
               ))
             ) : (
               <p className="text-center text-gray-500">No comments yet.</p>
