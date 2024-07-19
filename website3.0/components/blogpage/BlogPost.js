@@ -44,6 +44,7 @@ function BlogPost() {
   const panelRef = useRef(null);
   const [isFollowed, setIsFollowed] = useState(false);
   const timerRef = useRef(null);
+  let [startTime,setStartTime]=useState('')
   const [loading, setLoading] = useState(true);
   let [commentCount, setCommentCount] = useState(0);
   const [fetchedUser, setFetchedUser] = useState(null);
@@ -66,11 +67,48 @@ function BlogPost() {
     },
   ]);
   useEffect(() => {
+    const handleBeforeUnload = () => {
+      sendData();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        sendData();
+      }
+    };
+
+    const handlePopstate = () => {
+      sendData();
+    };
+
+    const sendData = () => {
+      const payload = JSON.stringify({ id: id, time: 1, views: blog.views });
+      navigator.sendBeacon('/api/averagetime', payload);
+    };
+
+    setStartTime(performance.now());
+
+   let a= setInterval(()=>{
+      sendData()
+      
+    },1000)
+
+    // Cleanup function to remove event listeners on component unmount
+    return () => {
+      clearInterval(a)
+    };
+  }, [id, blog]);
+  
+  useEffect(() => {
     const fetchBlog = async () => {
       try {
         const response = await fetch(`/api/blog/${id}`);
         if (response.ok) {
           const data = await response.json();
+          await fetch("/api/viewincrease",{
+            method:"POST",
+            body:JSON.stringify({id:id})
+          })
           setBlog(data);
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
