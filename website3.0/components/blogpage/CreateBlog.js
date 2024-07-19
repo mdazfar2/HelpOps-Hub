@@ -457,13 +457,14 @@ console.log('sddddddddddddddd')
       } pl-1 max-sm:pl-6 max-md:pl-4 mt-0   items-end mr-0 w-[60vw] max-sm:w-[98vw] max-md:w-[80vw] m-auto h-auto`}
     >
 
-       <div className="h-auto classsa w-[90%] rounded-full mt-8 flex items-center">
+       <div className={`h-auto classsa w-[90%]  rounded-full mt-8 flex items-center ${theme?"":"classsc"}`}>
        {showInTitle && (
           <div className="h-20 items-center gap-3  absolute left-[5%] flex flex-col ">
             <div
               className={`w-[30px]  h-[30px] border ${
                 theme ? "border-black" : "border-white"
               } flex justify-center items-center rounded-full`}
+
               onClick={handleClick}
             >
               <FaPlus fill={theme ? "black" : "white"} />
@@ -478,7 +479,7 @@ console.log('sddddddddddddddd')
         <div
           className={`h-[100%] w-[1px] ${theme ? "bg-black" : "bg-white"}`}
         ></div>
-        <ReactQuill onFocus={changeShow1}  placeholder="Title"  ref={quillRef} className="w-[100vw]"  onChangeSelection={handleToolbar}  theme="snow" value={value} onChange={setValue} />
+        <ReactQuill onFocus={changeShow1}  placeholder="Title"  ref={quillRef} className={` w-[100vw] ${theme?"text-black":"text-white"}`}  onChangeSelection={handleToolbar}  theme="snow" value={value} onChange={setValue} />
         {/* <input
           style={{height1,
             fontFamily:
@@ -501,7 +502,7 @@ console.log('sddddddddddddddd')
       </div>
       <input className="hidden" onChange={handleImageUpload} type="file" id="img-input"></input>
       <div htmlFor="img-input" className="h-auto m-auto mt-6">{isImg &&<><img src={isImg}></img><FaTrash color="red" size={'2rem'} onClick={()=>setIsImg('')}/></> }</div>
-      <div className="h-auto classsb w-[90%] rounded-full  gap-4 flex items-center">
+      <div className={`h-auto classsb w-[90%] rounded-full  gap-4 flex items-center ${theme?"":"classsd"}`}>
         {!showInTitle && (
           <div className="h-20 items-center gap-3  absolute left-[5%] flex flex-col ">
             <div
@@ -519,7 +520,7 @@ console.log('sddddddddddddddd')
             )}
           </div>
         )}
-                  <ReactQuill  onFocus={changeShow2} ref={quillRef1} className="w-[100vw]"  placeholder="Write Something Amazing" onChangeSelection={handleToolbar1}  theme="snow" value={desc} onChange={setDesc} />
+                  <ReactQuill  onFocus={changeShow2} ref={quillRef1} className={` w-[100vw] ${theme?"text-black quill-placeholder-light ":"text-white quill-placeholder-dark"}`}  placeholder="Write Something Amazing" onChangeSelection={handleToolbar1}  theme="snow" value={desc} onChange={setDesc} />
 
         {/* <textarea
    onClick={changeShow}

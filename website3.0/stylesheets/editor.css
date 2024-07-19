@@ -14,6 +14,10 @@
   .classsb .ql-editor p{
     font-size: 33px !important;
   }
+  .classsc .ql-editor.ql-blank::before 
+{
+color: white !important;
+}
 .classsa .ql-editor.ql-blank::before 
 {
 font-style: normal;
@@ -37,6 +41,10 @@ font-style: normal;
     position: absolute;
     right: 15px;
     font-size: 24px;
+  }
+  .classsd .ql-editor.ql-blank::before {
+    color: white;
+    
   }
   .ql-editor  p{
     font-size: 24px !important;
