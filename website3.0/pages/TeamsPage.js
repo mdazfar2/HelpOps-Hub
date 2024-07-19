@@ -33,6 +33,7 @@ function TeamsPage({ theme }) {
   const [allContributors, setAllContributors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [allLoaded, setAllLoaded] = useState(false);
 
   // Checks for window innerwidth
   useEffect(() => {
@@ -571,6 +572,11 @@ function TeamsPage({ theme }) {
     const end = start + itemsPerPage;
     const remainingContributors = otherContri.slice(start, end);
     setCurrentPage(currentPage + 1);
+
+    // Check if we've loaded all contributors
+    if (end >= otherContri.length) {
+      setAllLoaded(true);
+    }
   }
 
   return (
@@ -1175,15 +1181,17 @@ function TeamsPage({ theme }) {
 
       {/* Section: Load More Button */}
 
-      <div className="load p-5">
-        <button
-          id="load-more"
-          className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
-          onClick={loadMore}
-        >
-          Load More
-        </button>
-      </div>
+      {!allLoaded && (
+           <div className="load p-5">
+             <button
+               id="load-more"
+               className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
+               onClick={loadMore}
+             >
+               Load More
+             </button>
+           </div>
+         )}
     </div>
   );
 }

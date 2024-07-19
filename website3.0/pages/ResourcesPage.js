@@ -7,10 +7,181 @@ import { motion } from "framer-motion";
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FaThumbsUp, FaHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
-function ResourcesPage({ theme,setIsPopup,setMsg,isLogin,setFinalUser,finalUser }) {
+import { FaSave } from "react-icons/fa";
+import { FaThLarge, FaList } from "react-icons/fa";
+const CustomDropdown = ({
+  options,
+  selectedOption,
+  onSelect,
+  value,
+  onChange,
+}) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [currentValue, setCurrentValue] = useState(value);
+
+  useEffect(() => {
+    setCurrentValue(value.charAt(0).toUpperCase() + value.slice(1));
+  }, [value]);
+
+  const handleOptionSelect = (option) => {
+    setCurrentValue(option.charAt(0).toUpperCase() + option.slice(1));
+    onSelect(option);
+    onChange({ target: { value: option } });
+    setDropdownOpen(false);
+  };
+
+  return (
+    <div className="relative w-52">
+      <button
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+        className=" w-full px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-md flex items-center justify-between focus:outline-none transition-all duration-300 ease-in-out outline-none"
+      >
+        {currentValue || "Select an option"}
+        <svg
+          className="w-4 h-4 text-gray-500 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
+      </button>
+
+      {dropdownOpen && (
+        <div className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-md">
+          {options.map((option) => (
+            <div
+              key={option.value}
+              onClick={() => handleOptionSelect(option.value)}
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            >
+              {option.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+const ListView = ({ data, theme, handleShare, handleLike, likedFolders }) => {
+  return (
+    <div className="w-full">
+      {data.map((item) => {
+        if (item.type === "dir") {
+          const createdDate = new Date(item.created_at);
+
+          return (
+            <div
+              key={item.name}
+              className={`flex p-4 cursor-pointer shadow-lg mb-12 border rounded-lg ${
+                theme
+                  ? "bg-white border-gray-300"
+                  : "bg-[#2c2b2b] border-gray-900"
+              }`}
+              onClick={() => {
+                const folder = `${item.name}`;
+                window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${
+                  item.html_url
+                }&isLike=${likedFolders.has(item.name) ? "true" : "false"}`;
+              }}
+            >
+              <div className="w-16 h-16 bg-gray-200 flex justify-center items-center rounded-lg overflow-hidden">
+                <img
+                  src="/HelpOps-H Fevicon.png"
+                  className="w-12 h-12"
+                  alt="Icon"
+                />
+              </div>
+              <div className="ml-4 flex-1">
+                <h3
+                  className={`text-xl font-bold ${
+                    theme ? "text-gray-900" : "text-white"
+                  }`}
+                >
+                  {item.name}
+                </h3>
+                <p
+                  className={`text-lg ${
+                    theme ? "text-gray-700" : "text-gray-300"
+                  }`}
+                >
+                  Comprehensive Resource for {item.path}
+                </p>
+                <p
+                  className={`text-md ${
+                    theme ? "text-gray-600" : "text-gray-400"
+                  }`}
+                >
+                  Created on:{" "}
+                  {createdDate.toLocaleString() !== "Invalid Date"
+                    ? createdDate.toLocaleString()
+                    : "N/A"}
+                </p>
+                <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center gap-2">
+                    <FaSave
+                     className={`${
+                      theme
+                        ? likedFolders.has(item.name)
+                          ? "text-gray-900 "
+                          : "text-gray-500"
+                        : likedFolders.has(item.name)
+                        ? "text-gray-500"
+                        : "text-gray-300"
+                    } transition-colors duration-300`}
+                      size={"1.5rem"}
+                      onClick={(e) => handleLike(e, item.name)}
+                    />
+                    <span
+                      className={`text-lg font-medium ${
+                        likedFolders.has(item.name)
+                          ? theme
+                            ? "text-gray-900"
+                            : "text-gray-500"
+                          : theme
+                          ? "text-gray-700"
+                          : "text-gray-300"
+                      }`}
+                    >
+                      {likedFolders.has(item.name) ? "Saved" : "Save"}
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <button
+                      onClick={() => handleShare(item)}
+                      className="bg-gray-600 text-white rounded-lg px-4 py-2"
+                    >
+                      Share
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
+};
+
+function ResourcesPage({
+  theme,
+  setIsPopup,
+  setMsg,
+  isLogin,
+  setFinalUser,
+  finalUser,
+}) {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -22,7 +193,11 @@ function ResourcesPage({ theme,setIsPopup,setMsg,isLogin,setFinalUser,finalUser 
   const [showPopup, setShowPopup] = useState(false);
   const [likedFolders, setLikedFolders] = useState(new Set()); //to add body bg color
   const [showAuth, setShowAuth] = useState(false);
-
+  const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [selectedFilterOption, setSelectedFilterOption] = useState("");
+  const [viewMode, setViewMode] = useState("card");
+  const [activeModalIndex, setActiveModalIndex] = useState(null);
+  const [currentItem, setCurrentItem] = useState(null);
   const switchToSignup = () => {
     setIsLogin(false);
   };
@@ -35,8 +210,8 @@ function ResourcesPage({ theme,setIsPopup,setMsg,isLogin,setFinalUser,finalUser 
     fetchdataa();
   }, [isLogin]);
   async function fetchdataa() {
-    if(isLogin){
-let dd=await JSON.parse(localStorage.getItem("finalUser"))
+    if (isLogin) {
+      let dd = await JSON.parse(localStorage.getItem("finalUser"));
       let folder = new Set();
       Object.keys(dd.resource).map((data) => {
         folder.add(data);
@@ -299,11 +474,9 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
 
   async function handleLike(e, folderName) {
     e.stopPropagation();
-    if (
-      !isLogin
-    ) {
+    if (!isLogin) {
       setIsPopup(true);
-      setMsg("Please Login First")
+      setMsg("Please Login First");
       // setTimeout(() => {
       //   setShowAuth(true);
       // }, 800);
@@ -313,125 +486,255 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
       return;
     }
     let folder = likedFolders;
-    let id=await JSON.parse(localStorage.getItem('finalUser'))
+    let id = await JSON.parse(localStorage.getItem("finalUser"));
     if (folder.has(folderName)) {
-     let user= await fetch("/api/like", {
+      let user = await fetch("/api/like", {
         method: "POST",
         body: JSON.stringify({
           path: `${folderName}`,
-          id:id._id,
+          id: id._id,
           isDelete: true,
         }),
       });
-      user=await user.json()
-      console.log(user)
-      setFinalUser(user.user)
-      user =await JSON.stringify(user.user)
-      localStorage.setItem('finalUser',user)
-     await fetchdataa()
+      user = await user.json();
+      console.log(user);
+      setFinalUser(user.user);
+      user = await JSON.stringify(user.user);
+      localStorage.setItem("finalUser", user);
+      await fetchdataa();
     } else {
-     let user= await fetch("/api/like", {
+      let user = await fetch("/api/like", {
         method: "POST",
         body: JSON.stringify({
           path: `${folderName}`,
-          id:id._id,
+          id: id._id,
 
           isDelete: false,
         }),
       });
-      user=await user.json()
-      setFinalUser(user.user)
-      user =await JSON.stringify(user.user)
-      localStorage.setItem('finalUser',user)
-   await   fetchdataa()
+      user = await user.json();
+      setFinalUser(user.user);
+      user = await JSON.stringify(user.user);
+      localStorage.setItem("finalUser", user);
+      await fetchdataa();
     }
   }
+
+  const handleShare = (item, index) => {
+    setCurrentItem(item);
+    setActiveModalIndex(index);
+  };
+
+  const handleCloseShareModal = () => {
+    setActiveModalIndex(null);
+  };
   const eventVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0 },
   };
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  const adjustColorBrightness = (color, amount) => {
+    const hex = color.replace(/^#/, "");
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    const adjust = (component) =>
+      Math.min(255, Math.max(0, component + amount));
+    const adjustedColor = [adjust(r), adjust(g), adjust(b)]
+      .map((x) => x.toString(16).padStart(2, "0"))
+      .join("");
+
+    return `#${adjustedColor}`;
+  };
+
+  const getStoredColor = (itemName) => {
+    // Retrieve the color from localStorage, if it exists
+    const storedColors = JSON.parse(localStorage.getItem("cardColors")) || {};
+    return storedColors[itemName];
+  };
+
+  const setStoredColor = (itemName, color) => {
+    // Retrieve existing colors from localStorage
+    const storedColors = JSON.parse(localStorage.getItem("cardColors")) || {};
+    // Update the color for the specific item
+    storedColors[itemName] = color;
+    // Save the updated colors back to localStorage
+    localStorage.setItem("cardColors", JSON.stringify(storedColors));
+  };
+  const refreshColorsInLocalStorage = (data) => {
+    const newColors = data.reduce((acc, item) => {
+      if (item.type === "dir") {
+        const baseColor = getRandomColor();
+        acc[item.name] = baseColor;
+      }
+      return acc;
+    }, {});
+
+    localStorage.setItem("cardColors", JSON.stringify(newColors));
+  };
+  useEffect(() => {
+    // Refresh colors when the component mounts
+    refreshColorsInLocalStorage(filteredData);
+  }, [filteredData]);
   const displayFolders = (data) => {
     return data.map((item, index) => {
-      // Render only directories (type === "dir")
       if (item.type === "dir") {
-        // Parse creation date
         const createdDate = new Date(item.created_at);
+        let baseColor = getStoredColor(item.name);
 
-        // Return JSX for each directory item
+        if (!baseColor) {
+          // Generate a new color if one is not already stored
+          baseColor = getRandomColor();
+          setStoredColor(item.name, baseColor);
+        }
+
+        const darkerColor = adjustColorBrightness(baseColor, -50);
+        const lighterColor = adjustColorBrightness(baseColor, 50);
+
         return (
           <motion.div
-          initial="hidden"
-          whileInView="visible"
-          whileHover={{ scale: 1.06  }}
-          viewport={{ once: true }}
-          variants={eventVariants}
-          transition={{ duration: 0.5, ease: "easeInOut" }}   className={`folder-card flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] justify-center p-8  ${
+            initial="hidden"
+            whileInView="visible"
+            whileHover={{ scale: 1.06 }}
+            viewport={{ once: true }}
+            variants={eventVariants}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className={`flex-[0_0_calc(25%_-_20px)] m-[20px] min-w-[400px] max-sm:min-w-[350px] justify-center ${
               theme ? "bg-[#0000000d]" : "bg-[#121111] shadow-sm shadow-white"
-            } rounded-[30px] border-[1px] border-[solid] border-[#ddd] [box-shadow:0_2px_4px_rgba(0,_0,_0,_0.5)] cursor-pointer `}
+            } cursor-pointer rounded-2xl overflow-hidden bg-white`}
             key={item.name}
             onClick={() => {
-              // Redirect to detailed resources page on click
               const folder = `${item.name}`;
               window.location.href = `/resourcesdetails?folder=${folder}&htmlUrl=${
                 item.html_url
               }&isLike=${likedFolders.has(item.name) ? "true" : "false"}`;
             }}
           >
-            {/* Display folder name */}
-            <h3
-              className={`resourcesTitle ${
-                theme ? "" : "text-white"
-              } text-[25px] font-bold`}
-            >
-              {item.name}
-            </h3>
-            {/* Display folder path */}
-            <p
-              className={`resourcesPara ${
-                theme ? "" : "text-white"
-              } text-[18px] font-[cursive] m-[10px]`}
-            >
-              {item.path}
-            </p>
-            {/* Display creation date */}
-            <p
-              className={`resourcesDate ${
-                theme ? "" : "text-white"
-              } text-[16px] font-[cursive] m-[10px]`}
-            >
-              Created on:{" "}
-              {createdDate.toLocaleString() !== "Invalid Date"
-                ? createdDate.toLocaleString()
-                : "N/A"}
-            </p>
             <div
-              className="like-button"
-              onClick={(e) => handleLike(e, item.name)}
+              className="w-full relative flex justify-center items-center h-52 overflow-hidden"
+              style={{ backgroundColor: darkerColor }}
             >
-              <FaHeart
-                className={`${likedFolders.has(item.name) ? "gradientdd" : ""}`}
-                style={{
-                  color: likedFolders.has(item.name)
-                    ? "red"
-                    : `${theme ? "inherit" : "white"}`,
-                }}
-                size={"2rem"}
-              />
+              <div
+                className="absolute top-0 left-0 w-24 text-center h-6 rounded-br-2xl text-white"
+                style={{ backgroundColor: lighterColor }}
+              >
+                Resource
+              </div>
+              <div
+                className="absolute z-10 w-full h-96 rounded-full -bottom-[120%]"
+                style={{ backgroundColor: lighterColor }}
+              ></div>
+              <img src="/HelpOps-H Fevicon.png" className="z-30" width={125} />
+            </div>
+            <div
+              className={`p-8 h-full relative ${
+                theme ? "text-gray-800" : "bg-[#282727] text-gray-300"
+              }`}
+            >
+              <h3
+                className={`resourcesTitle ${
+                  theme ? "text-gray-800" : "text-gray-300"
+                } text-2xl font-bold mb-4`}
+              >
+                {item.name}
+              </h3>
+              <p
+                className={`resourcesPara ${
+                  theme ? "text-gray-700" : "text-gray-300"
+                } text-lg mb-4`}
+              >
+                Comprehensive Resource for {item.path}
+              </p>
+              <p
+                className={`resourcesDate ${
+                  theme ? "text-gray-600" : "text-gray-400"
+                } text-md mb-4`}
+              >
+                Created on:{" "}
+                {createdDate.toLocaleString() !== "Invalid Date"
+                  ? createdDate.toLocaleString()
+                  : "N/A"}
+              </p>
+              <div
+                className="like-button flex justify-between items-center mt-4 cursor-pointer"
+                onClick={(e) => handleLike(e, item.name)}
+              >
+                <div className="flex gap-2 items-center">
+                  <FaSave
+                    className={`${
+                      theme
+                        ? likedFolders.has(item.name)
+                          ? "text-gray-900 "
+                          : "text-gray-500"
+                        : likedFolders.has(item.name)
+                        ? "text-gray-500"
+                        : "text-gray-300"
+                    } transition-colors duration-300`}
+                    size={"1.5rem"}
+                  />
+                  <span
+                    className={`text-lg font-medium ${
+                      likedFolders.has(item.name)
+                        ? theme
+                          ? "text-gray-900"
+                          : "text-gray-500"
+                        : theme
+                        ? "text-gray-700"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    {likedFolders.has(item.name) ? "Saved" : "Save"}
+                  </span>
+                </div>
+                <div className="">
+                  <div
+                    onClick={() => handleShare(item, index)}
+                    className="text-sm bg-gray-600 text-white rounded-xl px-4 py-2"
+                  >
+                    Share
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         );
       }
-      // Return null for non-directory items
       return null;
     });
   };
   const switchToLogin = () => {
     setIsLogin(true);
   };
+
+  const sortOptions = [
+    { value: "name", label: "Name" },
+    { value: "date", label: "Date" },
+  ];
+
+  const filterOptions = [
+    { value: "all", label: "All" },
+    { value: "lastWeek", label: "Last Week" },
+    { value: "lastMonth", label: "Last Month" },
+  ];
+
+  const toggleViewModeCard = () => {
+    setViewMode("card");
+  };
+  const toggleViewModeList = () => {
+    setViewMode("list");
+  };
   return (
     <div
       className={`flex flex-col items-center justify-center m-0 font-arial ${
-        theme ? "" : "bg-[#1e1d1d]"
+        theme ? "bg-[#F3F4F6]" : "bg-[#1e1d1d]"
       } `}
     >
       {/* Section: Heading */}
@@ -451,58 +754,51 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
         <h1
           class={`${
             theme ? "" : "text-white"
-          } text-4xl text-center font-bold mt-[160px] mb-5`}
+          } text-4xl text-center font-base mt-[160px] mb-10`}
         >
           Resources
         </h1>
       </div>
 
-      {/* Section: Search-Bar */}
-      <div className="search-container flex justify-center items-center relative mb-[13px]">
-        <div
-          id="search-box"
-          className="flex justify-center items-center w-[400px] h-16 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] hover:[box-shadow:0_0px_8px_rgba(48,48,48,.8)]"
-        >
-          <div className="icon">
-            <FontAwesomeIcon icon={faMagnifyingGlass} color="black" />
+      <div
+        className={`w-[85%] gap-2 shadow-xl max-md:flex-col mb-10 flex items-center justify-between py-6 px-8 rounded-3xl  min-h-20 ${
+          theme ? "bg-gray-200 " : "bg-[#242424] text-black"
+        }`}
+      >
+        <div className="search-container flex justify-center items-center relative mb-[13px]">
+          <div
+            id="search-box"
+            className="flex justify-center items-center w-full h-16 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] "
+          >
+            <div className="icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} color="black" />
+            </div>
+            <input
+              type="text"
+              id="search-bar"
+              placeholder="Search topics..."
+              onInput={handleSearch}
+              className="w-[90%] outline-none border-none text-[20px] bg-[white] relative placeholder:text-[#9e9e9e]"
+            />
           </div>
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search topics..."
-            onInput={handleSearch}
-            className="w-[90%] outline-none border-none text-[20px] bg-[white] relative placeholder:text-[#9e9e9e]"
-          />
         </div>
-      </div>
-
-      {/* Section: Sort & Filter */}
-
-      <div className="sort-filter-container flex justify-center gap-[20px] mb-[20px]">
-        <div className="sort-options flex items-center gap-[10px]">
-          <label className={`${theme ? "" : "text-white"}`}>Sort by: </label>
-          <select
-            value={sortOption}
-            onChange={(e) => handleSort(e.target.value)}
-            className="p-[5px] rounded-[5px] border-[1px] border-[solid] border-[#ddd] bg-[white] cursor-pointer"
-          >
-            <option value="name">Name</option>
-            <option value="date">Date</option>
-          </select>
-        </div>
-        <div className="filter-options flex items-center gap-[10px]">
-          <label className={`${theme ? "text-black" : "text-white"} `}>
-            Filter:{" "}
-          </label>
-          <select
-            value={filterOption}
-            onChange={(e) => handleFilter(e.target.value)}
-            className="p-[5px] rounded-[5px] border-[1px] border-[solid] border-[#ddd] bg-[white] cursor-pointer"
-          >
-            <option value="all">All</option>
-            <option value="lastWeek">Last Week</option>
-            <option value="lastMonth">Last Month</option>
-          </select>
+        <div className="sort-filter-container flex justify-center gap-[20px]">
+          <div className="flex max-sm:flex-col gap-4">
+            <CustomDropdown
+              options={sortOptions}
+              selectedOption={selectedSortOption}
+              onSelect={setSelectedSortOption}
+              value={sortOption}
+              onChange={(e) => handleSort(e.target.value)}
+            />
+            <CustomDropdown
+              options={filterOptions}
+              selectedOption={selectedFilterOption}
+              onSelect={setSelectedFilterOption}
+              value={filterOption}
+              onChange={(e) => handleFilter(e.target.value)}
+            />
+          </div>
         </div>
       </div>
 
@@ -533,11 +829,103 @@ let dd=await JSON.parse(localStorage.getItem("finalUser"))
             </p>
           </div>
         ) : (
-          <div
-            id="folders-container"
-            className="flex w-full flex-wrap justify-center m-auto"
-          >
-            {displayFolders(filteredData)}
+          <div>
+            <div className="flex flex-col mt-4 gap-8 justify-center items-center w-full">
+              <div className="flex gap-10 justify-between items-center mb-4">
+                <button
+                  onClick={toggleViewModeCard}
+                  className="bg-white flex gap-2 items-center shadow-lg text-gray-600 rounded-lg px-6 py-2"
+                >
+                  <FaThLarge />
+                  Card View
+                </button>
+                <button
+                  onClick={toggleViewModeList}
+                  className="bg-white flex gap-2 items-center shadow-lg text-gray-600 rounded-lg px-6 py-2"
+                >
+                  <FaList />
+                  List View
+                </button>
+              </div>
+
+              {viewMode === "card" ? (
+                <div
+                  id="folders-container"
+                  className="flex w-full flex-wrap justify-center m-auto"
+                >
+                  {displayFolders(filteredData)}
+                  {activeModalIndex !== null && currentItem && (
+                    <div className="auth-overlay">
+                      <div
+                        className="auth-modal z-500"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div
+                          className={`z-500 w-[500px] gap-6 rounded-lg p-6 border-2 flex flex-col items-center ${
+                            theme
+                              ? "border-black bg-slate-100 text-black"
+                              : "border-white bg-[#1e1d1d] text-white"
+                          }`}
+                        >
+                          <h1 className="text-xl font-bold">Resource Link</h1>
+                          <input
+                            className={`w-[90%] bg-transparent border-b-[1px] outline-none ${
+                              theme
+                                ? "border-b-black text-black"
+                                : "border-b-white text-white"
+                            }`}
+                            value={`https://www.helpopshub.com/resourcesdetails?folder=${
+                              currentItem.name
+                            }&htmlUrl=${currentItem.html_url}&isLike=${
+                              likedFolders.has(currentItem.name)
+                                ? "true"
+                                : "false"
+                            }`}
+                            readOnly
+                          />
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(
+                                `https://www.helpopshub.com/resourcesdetails?folder=${
+                                  currentItem.name
+                                }&htmlUrl=${currentItem.html_url}&isLike=${
+                                  likedFolders.has(currentItem.name)
+                                    ? "true"
+                                    : "false"
+                                }`
+                              );
+                            }}
+                            className={` w-28 h-12 p-2 ${
+                              theme
+                                ? "bg-[#6089a4] text-white"
+                                : "bg-white text-black"
+                            }  border-none rounded-2xl cursor-pointer text-base`}
+                          >
+                            Copy Link
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        onClick={handleCloseShareModal}
+                        className="fixed z-0 top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black"
+                      />
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="w-screen">
+                  <div className="w-[80%] m-auto max-sm:w-[90%]">
+                    <ListView
+                      data={filteredData}
+                      theme={theme}
+                      handleShare={handleShare}
+                      handleLike={handleLike}
+                      likedFolders={likedFolders}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
