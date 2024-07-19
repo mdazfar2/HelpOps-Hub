@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import {FaEllipsis,FaTrash} from 'react-icons/fa6'
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { FaPen } from "react-icons/fa";
+import { FaEye, FaPen } from "react-icons/fa";
 
 function BlogPage({ theme,finalUser,searchedBlog }) {
   const [blogs, setBlogs] = useState([]);
@@ -444,6 +444,10 @@ setTimeout(()=>{setLoading(false)},4000)
                                   className="mr-2"
                                 />
                                 {blog.comments.length}
+                              </div>
+                            <div className="flex gap-2 items-center">
+                              <FaEye/> {Math.ceil(blog.views/2)} &nbsp; &nbsp;
+                              {blog.average?Math.ceil(blog.average/Math.ceil((blog.views/2))):0 }&nbsp;min read
                               </div>
                             </div>
                         <div className="flex gap-4">
