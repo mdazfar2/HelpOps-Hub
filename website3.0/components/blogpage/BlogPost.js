@@ -12,6 +12,8 @@ import {
   faBookmark as regularBookmark,
 
 } from "@fortawesome/free-regular-svg-icons";
+import { Tooltip } from 'react-tooltip'
+
 import { FaTrash,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
 import {
   faPen,
@@ -123,6 +125,7 @@ function BlogPost() {
           setReply(arr)
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
+          console.log(data.comments,'sdddddddddddddddddddd')
           let count = 0;
           data.reactionList.map((data1) => {
             if (data1.type == "save") {
@@ -317,7 +320,6 @@ function BlogPost() {
       };
       const updatedComments = [...comments, duplicate];
       console.log(updatedComments)
-      setComments(updatedComments);
       setNewComment("");
       setReply((prev)=>[...prev,[]])
       try {
@@ -638,6 +640,8 @@ function handleError(){
              {panelIcon.label!=="Heart" ?    
               <FontAwesomeIcon
                     icon={panelIcon.regularIcon}
+                    data-tooltip-id={panelIcon.label}
+                    data-tooltip-content={panelIcon.label}
                     onClick={()=>{
                       if(index==1){
                         handleScroll()
@@ -659,7 +663,10 @@ function handleError(){
                     } \
         text-[20px]
       `}
-                  />:isReact?<FaHeart color="red" className="bg-transparent"/>:  <FontAwesomeIcon
+
+                  />
+                :isReact?<FaHeart data-tooltip-id="heart"
+                data-tooltip-content="Reaction" color="red" className="bg-transparent"/>:  <FontAwesomeIcon
                   icon={panelIcon.regularIcon}
                   
                   className={`    ${
@@ -676,8 +683,10 @@ function handleError(){
                       : " text-white "
                   } \
       text-[20px]
-    `}
+    `}data-tooltip-id="heart"
+data-tooltip-content="Reaction"
                 />}
+                <Tooltip id="heart"/>
                   <span
                     className={`${
                       theme ? "text-gray-900 " : " text-white "
@@ -686,8 +695,9 @@ function handleError(){
                     
                     {index == 2 ? commentCount : panelIcon.count}
                   </span>
+                  <Tooltip id={panelIcon.label}/>
                 </div>
-              ))}
+                ))}
             </div>
             {hovered && (
               <div
@@ -734,7 +744,9 @@ function handleError(){
 
                    Share On Linkedin </LinkedinShareButton></p>
                   </div>}
-            <FaArrowUpFromBracket size={'1.5rem'} onClick={()=>isSHare?setIsShare(false):setIsShare(true)}/>
+           <FaArrowUpFromBracket  data-tooltip-id="aa" data-tooltip-content="Share" size={'1.5rem'} color={`${theme?"black":"white"} `} className="cursor-pointer" onClick={()=>isSHare?setIsShare(false):setIsShare(true)}/>
+           <Tooltip id="aa"/>
+
           </div>
         </div>
       </div>
@@ -875,7 +887,7 @@ function handleError(){
                 >
              <div className="flex ">
                    <img
-rc={comment?.user?.image ?? 'default-image-path'}    
+src={comment?.user?.image }    
                 className="w-10 h-10 rounded-full mr-3"
                   />
                   <div>
@@ -902,7 +914,7 @@ rc={comment?.user?.image ?? 'default-image-path'}
               placeholder="Add a Comment"
               id={index}
              
-            /> <button onClick={()=>handleAddReply(index)} className="border bg-blue-500  border-blue-500 text-white w-[150px] rounded-md ">Submit</button>
+            /> <button onClick={()=>handleAddReply(index)} className="border bg-blue-500  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">Submit</button>
                     </div>
                     <div className="h-[auto]  pl-[50px]">
                     {

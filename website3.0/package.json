@@ -43,6 +43,7 @@
     "react-modal": "^3.16.1",
     "react-quill": "^2.0.0",
     "react-share": "^5.1.0",
+    "react-tooltip": "^5.27.1",
     "rellax": "^1.12.1",
     "resend": "^3.4.0",
     "showdown": "^2.1.0",
