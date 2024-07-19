@@ -309,10 +309,10 @@ async   function func() {
             Ensuring You Never Get Stuck In DevOps Again!
           </p>
           <button
-            className={`${
+              className={`${
               theme ? "bg-[#63B5C3] text-white" : "bg-gray-100 text-black"
-            } rounded-full max-sm:w-32 max-sm:px-3 max-sm:py-2 px-5 py-3 transition-colors duration-500`}
-            onClick={handleGetStartedClick}
+              } rounded-full max-sm:w-32 max-sm:px-3 max-sm:py-2 px-5 py-3 transition duration-500 transform hover:scale-105`}
+              onClick={handleGetStartedClick}
           >
             Get started
           </button>
@@ -358,8 +358,11 @@ async   function func() {
               } relative mt-8 cursor-pointer transition-all w-full flex`}
             >
               <div className=" relative left-[45%] max-[620px]:left-[38%]">
-                <div className="text-black h-12 w-32 bg-white absolute z-10 text-lg flex justify-center items-center" onClick={handleStartNowClick}>
-                  Start Now
+                <div
+                   className="text-black h-12 w-32 bg-white absolute z-10 text-lg flex justify-center items-center transition-transform duration-500 hover:scale-105"
+                   onClick={handleStartNowClick}
+                   >
+                   Start Now
                 </div>
                 <div className="h-12 w-32 absolute bg-gray-400 top-2 -left-2 z-0"></div>
               </div>
