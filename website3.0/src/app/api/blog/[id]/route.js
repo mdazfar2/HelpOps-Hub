@@ -33,7 +33,8 @@ export async function PUT(req, { params }) {
 
     try {
         const { comment, user1, reactionType } = await req.json();
-        const blog = await Blogs.findById(id);
+        let blog = await Blogs.findById(id);
+        console.log(comment,user1)
         let   userData;
         if(reactionType=='Icon1'||reactionType=='Icon3'||reactionType=='Icon2'){
              let   userData=await user.findById({_id:user1._id})
@@ -68,7 +69,7 @@ export async function PUT(req, { params }) {
         
         if (blog) {
             if (comment && user1) {
-                blog.comments = [...blog.comments, { comment, user1 }];
+                blog.comments = [...blog.comments, { comment, user:user1 }];
             }
             
             if (reactionType) {
@@ -80,7 +81,8 @@ export async function PUT(req, { params }) {
                 }
             }
 
-            await blog.save();
+           blog=  await blog.save();
+          console.log(blog)
             return NextResponse.json(blog);
         } else {
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });

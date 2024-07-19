@@ -447,7 +447,7 @@ setTimeout(()=>{setLoading(false)},4000)
                               </div>
                             <div className="flex gap-2 items-center">
                               <FaEye/> {Math.ceil(blog.views/2)} &nbsp; &nbsp;
-                              {blog.average?Math.ceil(blog.average/Math.ceil((blog.views/2))):0 }&nbsp;min read
+                              {blog.average?Math.ceil(Math.ceil(blog.average/Math.ceil((blog.views/2)))/60):0 }&nbsp;min read
                               </div>
                             </div>
                         <div className="flex gap-4">

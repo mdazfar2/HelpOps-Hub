@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FaHeart} from 'react-icons/fa6'
 import { FaPaperPlane } from "react-icons/fa";
+import { comment } from "postcss";
 const regularIcons = {
   Heart: regularHeart,
   Comment: regularComment,
@@ -31,6 +32,7 @@ function BlogPost() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const pathname = usePathname();
+  let [replyIndex,setReplyIndex]=useState(-1)
   const id = pathname.split("/blogs/")[1];
   const [reply, setReply] = useState({});
 
@@ -112,7 +114,13 @@ function BlogPost() {
             body:JSON.stringify({id:id})
           })
           setBlog(data);
-          
+          let arr=[]
+          data.comments.map((res,index)=>{
+              arr.push(res.replies)
+              console.log(res,'sdsfdsdsdsjdns')
+          })
+          console.log(arr,'sdsdsdsds')
+          setReply(arr)
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
           let count = 0;
@@ -195,6 +203,33 @@ function BlogPost() {
       // }
     }
   }
+  async function handleAddReply(index){
+    let input=document.getElementById(index)
+     await fetch('/api/addreply',{
+      method:"POST",
+      body:JSON.stringify({
+        user_name:finalUser.name,
+        index:index,
+        blog_id:id,
+        image:finalUser.image1||            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
+        
+        comment:input.value
+      })
+    })
+    let arr={
+      name:finalUser.name,
+      index:index,
+      blog_id:id,
+      image:finalUser.image1||            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
+            comment:input.value
+    }
+    let arr1=reply
+    arr1[index].push(arr)
+    console.log(arr1)
+    setReply([...arr1])
+    input.value=""
+  } 
+
   async function handleUnfollow() {
     if (!isLogin) {
       return;
@@ -284,7 +319,7 @@ function BlogPost() {
       console.log(updatedComments)
       setComments(updatedComments);
       setNewComment("");
-
+      setReply((prev)=>[...prev,[]])
       try {
         const response = await fetch(`/api/blog/${id}`, {
           method: "PUT",
@@ -840,8 +875,8 @@ function handleError(){
                 >
              <div className="flex ">
                    <img
-                    src={comment.user.image}
-                    className="w-10 h-10 rounded-full mr-3"
+rc={comment?.user?.image ?? 'default-image-path'}    
+                className="w-10 h-10 rounded-full mr-3"
                   />
                   <div>
                     <div className="font-medium text-sm mb-1">
@@ -853,8 +888,33 @@ function handleError(){
                     
                   <div className="flex gap-4 text-gray-600 font-medium">
                     <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'}/></div>{comment.likes && <span>{comment.likes}</span>}
+                    <span onClick={()=>replyIndex!==-1?setReplyIndex(-1):setReplyIndex(index)}>Reply</span>
                     </div>
                 </div>
+               {
+
+               replyIndex==index&& <>
+               
+                   <div className="flex gap-2  pl-[50px]">
+                   <input
+              type="text"
+              className="w-full p-4 border-[1px] border-gray-300 rounded-lg"
+              placeholder="Add a Comment"
+              id={index}
+             
+            /> <button onClick={()=>handleAddReply(index)} className="border bg-blue-500  border-blue-500 text-white w-[150px] rounded-md ">Submit</button>
+                    </div>
+                    <div className="h-[auto]  pl-[50px]">
+                    {
+                      reply[index].map(data=>{
+                        return <div className="flex flex-col pb-3 pt-2 gap-1 border-b-[1px] border-b-gray-300">
+                          <p className="flex items-center gap-4 "><img height={'40px'} width={'40px'} className="rounded-full" src={data.image?data.image:""}></img>{data.name}</p>
+                          <span className="ml-[60px]">{data.comment}</span></div>
+                      })
+                    }
+                    </div>
+                    </>
+               }
           </>
          </>
               ))
