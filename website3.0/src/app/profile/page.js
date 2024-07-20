@@ -117,7 +117,7 @@ const ProfilePage = () => {
   const { theme, setColor, isLogin, finalUser } = useContext(Context);
   const [activeComponent, setActiveComponent] = useState(<Profile id="" />);
   const [activeMenuItem, setActiveMenuItem] = useState("Profile");
-  const [menuVisible, setMenuVisible] = useState(window.innerWidth > 1024);
+  const [menuVisible, setMenuVisible] = useState(true);
   const pathname = usePathname(); // Get current path
   const [id, setId] = useState("");
   const isViewProfile = id.length > 0;
