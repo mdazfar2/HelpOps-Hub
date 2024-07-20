@@ -170,7 +170,6 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
       }),
     });
     data = await data.json();
-    console.log(data);
     if (data.success) {
       setViewUserDetails(data.msg);
       if (isLogin1) {
@@ -232,8 +231,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
   }
   // Function to handle saving changes from the modal
   const handleSaveChanges = (updatedData) => {
-    // Update the user data logic here
-    console.log(updatedData);
+  
   };
   let userIma =
     finalUser.image1?.length > 0
@@ -288,7 +286,6 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
   function handleIsSHareclose() {
     setIsShare(false);
   }
-  console.log("sakjdaskjdfkjs", finalUser);
   return (
     <div className="relative overflow-hidden w-full h-full bg-gray-200">
       {isModalFollow && <Followers onClose={handleClose} id={id} />}
@@ -327,8 +324,8 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
             className="w-full h-full object-cover object-center"
           />
         </div>
-        <div className="mx-10 flex my-4 justify-between ">
-          <div className="flex gap-5">
+        <div className="mx-10 flex my-4 max-sm:flex-col max-sm:relative max-sm:-top-20 gap-5 justify-between max-sm:h-[300px]">
+          <div className="flex max-sm:flex-col max-sm:items-center gap-5">
             <img
               src={
                 isViewProfile
@@ -338,22 +335,22 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
               }
               alt="Profile Picture"
-              className="w-36 h-36 relative -top-20 rounded-full object-cover overflow-hidden"
+              className="w-36 h-36 relative -top-20 max-sm:top-0 rounded-full object-cover overflow-hidden"
             />
             <div>
-              <h1 className={`text-2xl font-bold `}>
+              <h1 className={`text-2xl font-bold max-sm:text-center`}>
                 {isViewProfile ? viewUserDetails.name : finalUser.name}
               </h1>
               <p
                 className={`mt-1 text-sm ${
                   theme ? "text-[#5a5151]" : "text-white"
-                }`}
+                } max-sm:text-center`}
               >
                 {isViewProfile
                   ? viewUserDetails.designation
                   : finalUser.designation}
               </p>
-              <div className="flex gap-2 mt-2 items-center">
+              <div className="flex gap-2 mt-2 items-center max-sm:justify-center">
                 <p
                   className={`text-center flex gap-2 items-center ${
                     theme ? "text-[#5a5151]" : "text-white"
@@ -387,7 +384,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                   <p className="text-sm">Following </p>
                 </span>
               </div>
-              <div className="flex gap-5 text-left items-center w-full mt-2">
+              <div className="flex gap-5 text-left items-center max-sm:justify-center w-full mt-2">
                 <div
                   className={`w-8 h-8 p-3 border-[1px] rounded-xl border-[rgb(211,211,211)] flex flex-col items-center justify-center text-base cursor-pointer transition-all duration-300 ease-in-out hover:text-[#1a1a1a] hover:translate-y-[-5px] ${
                     theme ? "hover:text-[#1a1a1a]" : "hover:text-[#635e5e]"
@@ -527,8 +524,8 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
         </div>
       </div>
 
-      <div className="flex gap-6">
-        <div className="w-[30%] py-5">
+      <div className="flex max-[900px]:flex-col gap-6">
+        <div className="w-[30%] max-[900px]:w-full py-5">
           <div
             className={`min-h-96 p-4 mt-2 rounded-lg ${
               theme ? "bg-white text-black" : "bg-[#1e1d1d] text-white"
@@ -563,7 +560,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
             </div>
           </div>
         </div>
-        <div className="w-[70%] py-5">
+        <div className="w-[70%] max-[900px]:w-full py-5">
           <div
             className={`min-h-96 p-4 mt-2 rounded-lg ${
               theme ? "bg-white" : "bg-[#1e1d1d]"
