@@ -166,6 +166,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
       method: "POST",
       body: JSON.stringify({
         id: id,
+        username:id
       }),
     });
     data = await data.json();

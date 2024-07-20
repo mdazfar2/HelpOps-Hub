@@ -4,6 +4,8 @@ import "@stylesheets/profile.css"
 import {FaEye,FaEyeSlash, FaPen} from 'react-icons/fa'
 const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, onProfileComplete}) => {
   const [username, setUsername] = useState('');
+  const [username1, setUsername1] = useState('');
+
   const [password, setPassword] = useState('');
   const [loading , setLoading ]=useState(false)
   const [showPassword,setShowPassword]=useState(false)
@@ -25,11 +27,14 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
       }else{
         if(username.length==0){
           // if username not entered 
-          setMsg("Please Enter Username")
+          setMsg("Please Enter Name")
         setIsPopup(true)
           return false
+        }else if(username1.length==0){
+          setMsg("Please Enter Username")
+          setIsPopup(true)
+          return false
         }else{
-          
           return true
         }
 
@@ -44,7 +49,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
     let a=await    fetch("/api/getuser",{
          method:"POST",
          body:JSON.stringify({
-           id :id
+           username :username1
          })
        })
 
@@ -62,19 +67,36 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
     setLoading(true)
     // TODO: Add account creation logic here
     if(validateDetails()){
+
+      let canCreate=await fetch('/api/checkusername',{
+        method:"POST",
+        body:JSON.stringify({
+          username:username1
+        }),
+      })
+      console.log(canCreate)
+      canCreate=await canCreate.json()
+      if(!canCreate.success){
+        setMsg(canCreate.msg)
+        setIsPopup(true)
+        setLoading(false)
+        return
+      }
      let d= await fetch('/api/createaccount', {
         method: 'POST',
         body: JSON.stringify({
           email:localStorage.getItem('useremail1'),
           name: username,
+          username:username1,
           password: password,
           image:url.length>0?url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s'
         })
       })
     // to top loading on button 
     setLoading(false)
+
     d=await d.json()
-    console.log(d.user._id)
+   
     fetchData(d.user._id)
     onProfileComplete();
   }else{
@@ -103,6 +125,8 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
 
   // New refs for input fields
   const usernameRef = useRef(null);
+  const usernameRef1 = useRef(null);
+
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
 
@@ -113,6 +137,8 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
         event.preventDefault();
         if (!username) {
           usernameRef.current.focus();
+        }else if (!username1){
+          usernameRef1.current.focus()
         } else if (!password) {
           passwordRef.current.focus();
         } else if (!confirmPassword) {
@@ -128,7 +154,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
-  }, [username, password, confirmPassword]);
+  }, [username, password, confirmPassword,username1]);
 
   async function handlefilechange(event){
   
@@ -149,7 +175,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
     }
   }
   return (
-    <div  className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[40px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] max-sm:w-[96vw] max-sm:h-auto relative pb-[35px]`}>
+    <div  className={` border-dashed  border-black border-[2px]  ${theme? "bg-slate-100 border-black":"bg-[#0f0c0c] whiteshadow border-white"}  md:pl-[70px] md:pt-[10px] md:pr-[70px] rounded-lg text-center md:w-[500px] md:h-[550px] max-sm:w-[96vw] max-sm:h-auto relative pb-[35px]`}>
 
       <h1 className={`${theme?"text-black":"text-white"} mb-[20px] text-[24px]  font-bold`}>
         Profile
@@ -170,6 +196,17 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
             ref={usernameRef} // Added ref
             className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className={`mb-[15px] mt-[20px] relative`}>
+          <input
+            type="text"
+            placeholder="Enter Username"
+            value={username1}
+            ref={usernameRef1} // Added ref
+            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
+            onChange={(e) => setUsername1(e.target.value)}
             required
           />
         </div>
