@@ -10,6 +10,10 @@ const commentSchema = new mongoose.Schema({
     type:Number,
     default:0
   },
+  likeusers:{
+    type:Array,
+    default:['a']
+  },
   replies:{
     type:Array,
     default:[]

@@ -54,6 +54,7 @@ function BlogPost() {
   const [loading, setLoading] = useState(true);
   let [commentCount, setCommentCount] = useState(0);
   const [fetchedUser, setFetchedUser] = useState(null);
+  let [isLiked,setIsLiked]=useState([])
   const router = useRouter();
   const [panelIcons, setPanelIcons] = useState([
     {
@@ -126,6 +127,19 @@ function BlogPost() {
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
           console.log(data.comments,'sdddddddddddddddddddd')
+          let userid=JSON.parse(localStorage.getItem('finalUser'))._id
+          data.comments.map((res)=>{
+            let ans=false
+            res.likeusers.map(r=>{
+              
+              console.log(ans,r,userid,'ansssssssss')
+              if(r==userid){
+                ans=true
+              }
+            })
+
+            setIsLiked((prev)=>[...prev,ans])
+          })
           let count = 0;
           data.reactionList.map((data1) => {
             if (data1.type == "save") {
@@ -530,11 +544,37 @@ function BlogPost() {
   };
   async function handleCommentLike(index){
     let comment_id=comments[index]
+    if(isLiked[index]){
+      let arr=isLiked
+      arr[index]=false
+      setIsLiked([...arr])
+      await fetch('/api/commentlike',{
+        method:"POST",
+        body:JSON.stringify({
+          comment_id:comment_id,
+          blog_id:id,
+          isDelete:true,
+          index:index,
+          user_id:finalUser._id
+        })
+      })
+      let tempcomments=comments
+    tempcomments[index].likes=tempcomments[index].likes-1
+    
+    setComments([...tempcomments])
+      return
+    }
+    let arr=isLiked
+    arr[index]=true
+    setIsLiked([...arr])
     let updatedComment=await fetch('/api/commentlike',{
       method:"POST",
       body:JSON.stringify({
         comment_id:comment_id,
-        blog_id:id
+        blog_id:id,
+        isDelete:false,
+        index:index,
+        user_id:finalUser._id
       })
     })
 
@@ -899,8 +939,8 @@ src={comment?.user?.image }
               </div>
                     
                   <div className="flex gap-4 text-gray-600 font-medium">
-                    <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'}/></div>{comment.likes && <span>{comment.likes}</span>}
-                    <span onClick={()=>replyIndex!==-1?setReplyIndex(-1):setReplyIndex(index)}>Reply</span>
+                    <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'} color={`${isLiked[index]?"blue":""}`}  className="cursor-pointer" /></div>{comment.likes && <span>{comment.likes}</span>}
+                    <span className="cursor-pointer" onClick={()=>replyIndex!==-1?setReplyIndex(-1):setReplyIndex(index)}>Reply</span>
                     </div>
                 </div>
                {
