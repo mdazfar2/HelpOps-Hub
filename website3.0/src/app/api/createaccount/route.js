@@ -7,10 +7,10 @@ const saltRounds = 10;
 
 export async function POST(req) {
         const { MONGO_URI } = process.env; 
-        let {email,name,password,image}=await req.json()
+        let {email,name,password,image,username}=await req.json()
+        
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
-console.log(email)
         let data=await user.find({email:email})
         // checking if user exist or not 
         if(data.length>0){
@@ -28,6 +28,7 @@ map.set(new Map())
           let users=  user({
               email: email,
               name: name,
+              username:username,
               password: hash,
               image1:String(image),
               designation:"",
@@ -52,6 +53,7 @@ map1.set('sdsd','sdsd')
 map.set(map1)
           let users= user({
             email: email,
+            username:username,
             name: name,
             image1:image,
             designation:"",

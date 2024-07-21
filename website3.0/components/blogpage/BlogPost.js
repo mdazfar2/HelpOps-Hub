@@ -37,7 +37,10 @@ function BlogPost() {
   let [replyIndex,setReplyIndex]=useState(-1)
   const id = pathname.split("/blogs/")[1];
   const [reply, setReply] = useState({});
-
+  let [users,setUsers]=useState([])
+  const [showUserList, setShowUserList] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const inputRef = useRef(null);
   const authorid = blog.authorId;
   let [isSHare,setIsShare]=useState(false)
   const [isReact,setIsReact]=useState(false)
@@ -56,6 +59,7 @@ function BlogPost() {
   const [fetchedUser, setFetchedUser] = useState(null);
   let [isLiked,setIsLiked]=useState([])
   const router = useRouter();
+  let [relatedUsers,setRelatedUsers]=useState([])
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -73,11 +77,51 @@ function BlogPost() {
       count: 0,
     },
   ]);
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddComment();
+    } else if (e.key === "@") {
+      const input = inputRef.current;
+      const { x, y } = input.getBoundingClientRect();
+      
+      // Get the caret position
+      const caretPosition = input.selectionStart;
+      
+      // Create a temporary span to measure the caret position
+      const span = document.createElement("span");
+      const inputText = input.value.substring(0, caretPosition);
+      span.textContent = inputText;
+      
+      // Apply input field styles to the span
+      const inputStyle = window.getComputedStyle(input);
+      span.style.font = inputStyle.font;
+      span.style.visibility = "hidden";
+      span.style.whiteSpace = "pre";
+
+      document.body.appendChild(span);
+
+      const spanRect = span.getBoundingClientRect();
+      const caretX = spanRect.width + x;
+      const caretY = y;
+
+      document.body.removeChild(span);
+
+      setCursorPosition({ x: caretX, y: caretY + window.scrollY-20 });
+      setShowUserList(true);
+    }else{
+      setShowUserList(false);
+
+    }
+  };
   useEffect(() => {
     const handleBeforeUnload = () => {
       sendData();
     };
-
+    const handleUserSelect = (user) => {
+      // Logic to handle user selection from the list
+      setShowUserList(false);
+    };
+  
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
         sendData();
@@ -106,6 +150,9 @@ function BlogPost() {
     };
   }, [id, blog]);
   
+
+
+
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -118,10 +165,27 @@ function BlogPost() {
           })
           setBlog(data);
           let arr=[]
+          let arr1=[]
+          arr1.push(data.authorName)
           data.comments.map((res,index)=>{
               arr.push(res.replies)
               console.log(res,'sdsfdsdsdsjdns')
-          })
+              arr1.push(res.user.username)
+              res.replies.map((r)=>{
+                arr1.push(r.username)
+
+              })
+            })
+            let set=new Set()
+            let finalarr=[]
+            arr1.map(da=>{
+              if(!set.has(da)&&da!==undefined){
+                set.add(da)
+                finalarr.push(da)
+              }
+            })
+            
+            setRelatedUsers([...finalarr])
           console.log(arr,'sdsdsdsds')
           setReply(arr)
           setComments(data.comments || []);
@@ -157,7 +221,9 @@ function BlogPost() {
 
     fetchBlog();
   }, [id]);
-
+useEffect(()=>{
+  console.log('related user',relatedUsers)
+},[relatedUsers])
   useEffect(() => {
     if (!authorid) {
       console.warn("authorid is not defined");
@@ -228,6 +294,7 @@ function BlogPost() {
         user_name:finalUser.name,
         index:index,
         blog_id:id,
+        username:finalUser.username,
         image:finalUser.image1||            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
         
         comment:input.value
@@ -317,6 +384,7 @@ function BlogPost() {
       const newCommentObject = {
         user1: {
           name: finalUser.name || "Unknown",
+          username:finalUser.username,
           image:
             finalUser.image1 ||
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
@@ -471,7 +539,11 @@ function BlogPost() {
     }
     setCanLike(true)
   };
-  
+  function handleSetUser(data){
+    setNewComment((prev)=>prev+data)
+    inputRef.current.focus()
+    setShowUserList(false)
+  }
   // Function to update user state and local storage
   const updateUser = async (userId) => {
     try {
@@ -894,28 +966,50 @@ data-tooltip-content="Reaction"
           <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5" id="comment">Top Comments</div>
-          <div className="flex items-center justify-center mb-4">
-            <img
-              src={
-                finalUser.image1?.length > 0
-                  ? finalUser.image1
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
-              }
-              alt={blog.authorName}
-              className="w-10 h-10 rounded-full mr-3"
-            />
-            <input
-              type="text"
-              className="w-full p-4 border-[1px] border-gray-300 rounded-lg"
-              placeholder="Add to the Discussion"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") handleAddComment();
-              }}
-            />
-            <FaPaperPlane onClick={handleAddComment} className="relative right-[50px] cursor-pointer z-50" color="blue" size={'2rem'}/>
-          </div>
+             <div className="flex items-center justify-center mb-4">
+      <img
+        src={
+          finalUser.image1?.length > 0
+            ? finalUser.image1
+            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
+        }
+        alt={blog.authorName}
+        className="w-10 h-10 rounded-full mr-3"
+      />
+      <input
+        type="text"
+        ref={inputRef}
+        className="w-full p-4 border-[1px] border-gray-300 rounded-lg"
+        placeholder="Add to the Discussion"
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        onKeyPress={handleKeyPress}
+      />
+      <FaPaperPlane
+        onClick={handleAddComment}
+        className="relative right-[50px] cursor-pointer z-50"
+        color="blue"
+        size={"2rem"}
+      />
+       {showUserList && (
+        <div
+          style={{
+            position: "absolute",
+            top: cursorPosition.y-relatedUsers.length*30,
+            left: cursorPosition.x,
+            border: "1px solid #ccc",
+            backgroundColor: "#fff",
+            borderRadius:"20px",
+            padding:"15px",
+            zIndex: 1000,
+            height:"auto"
+          }}
+        >
+          {/* Your modal content goes here */}
+      { relatedUsers.map(data=>   <p className="cursor-pointer border-b-[1px] pb-[5px] pt-[5px] border-b-gray-200 border-b-solid"  onClick={()=>handleSetUser(data)}>{data}</p>)}
+        </div>
+      )}
+    </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
               comments.map((comment, index) => (

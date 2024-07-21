@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -181,6 +181,7 @@ function ResourcesPage({
   isLogin,
   setFinalUser,
   finalUser,
+  setColor
 }) {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -894,7 +895,11 @@ function ResourcesPage({
                                     : "false"
                                 }`
                               );
+                              setMsg("Copied to Clipboard !");
+                              setIsPopup(true);
+                              setColor("green")
                             }}
+
                             className={` w-28 h-12 p-2 ${
                               theme
                                 ? "bg-[#6089a4] text-white"

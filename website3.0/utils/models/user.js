@@ -4,6 +4,7 @@ const newsletterModel = new mongoose.Schema({
   email:String,
   password:String,
   name:String,
+  username:String,
   image1:{
     type:String,
   },

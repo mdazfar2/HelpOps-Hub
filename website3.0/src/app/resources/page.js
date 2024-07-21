@@ -4,10 +4,10 @@ import ResourcesPage from "@pages/ResourcesPage";
 import { useContext } from "react";
 
 export default function Contact() {
-  let {theme,setIsPopup,setMsg,isLogin,finalUser,setFinalUser}=useContext(Context)
+  let {theme,setIsPopup,setMsg,setColor,isLogin,finalUser,setFinalUser}=useContext(Context)
   return (
     <div>
-      <ResourcesPage theme={theme} finalUser={finalUser} setFinalUser={setFinalUser} isLogin={isLogin} setMsg={setMsg} setIsPopup={setIsPopup} />
+      <ResourcesPage theme={theme} setColor={setColor} finalUser={finalUser} setFinalUser={setFinalUser} isLogin={isLogin} setMsg={setMsg} setIsPopup={setIsPopup} />
     </div>
   );
 }

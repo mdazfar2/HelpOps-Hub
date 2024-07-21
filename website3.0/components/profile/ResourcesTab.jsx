@@ -12,14 +12,14 @@ function ResourcesTab() {
   };
 
   return (
-    <div className="relative overflow-hidden w-full h-full bg-gray-100 p-10">
+    <div className={`${theme? "bg-gray-100 text-black": "bg-[#111111] text-white"} relative overflow-hidden w-full h-full p-10 max-sm:px-4`}>
       <div className="text-center text-2xl mb-10">Saved Resources</div>
-      <div className="bg-white shadow rounded p-5">
+      <div className={`${theme? "bg-white text-black": "bg-[#303030] text-white"} shadow rounded p-5`}>
         {finalUser?finalUser.resource &&
           Object.keys(finalUser.resource).map((resourceKey) => (
             <div
               key={resourceKey}
-              className="border-b last:border-0 p-3 flex justify-between items-center rounded-xl hover:bg-gray-200"
+              className={`${theme? "hover:bg-gray-200": "hover:bg-[#1f1f1f]"} border-b last:border-0 p-3 flex justify-between items-center  `}
             >
               <div>
                 <div className="text-lg font-semibold">{resourceKey}</div>
@@ -28,7 +28,7 @@ function ResourcesTab() {
                 </div>
               </div>
               <button
-                className={`w-28 text-center h-12 p-2 ${
+                className={`min-w-28 max-sm:min-w-20 text-center h-12 p-2 ${
                   theme ? "bg-[#6089a4] text-white" : "bg-white text-black"
                 } border-none rounded-2xl cursor-pointer text-base`}
                 onClick={(e) => {
