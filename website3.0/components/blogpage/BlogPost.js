@@ -175,17 +175,17 @@ function BlogPost() {
                 arr1.push(r.username)
 
               })
-              let set=new Set()
-              let finalarr=[]
-              arr1.map(da=>{
-                if(!set.has(da)&&da!==undefined){
-                  set.add(da)
-                  finalarr.push(da)
-                }
-              })
-              
-              setRelatedUsers([...finalarr])
-          })
+            })
+            let set=new Set()
+            let finalarr=[]
+            arr1.map(da=>{
+              if(!set.has(da)&&da!==undefined){
+                set.add(da)
+                finalarr.push(da)
+              }
+            })
+            
+            setRelatedUsers([...finalarr])
           console.log(arr,'sdsdsdsds')
           setReply(arr)
           setComments(data.comments || []);

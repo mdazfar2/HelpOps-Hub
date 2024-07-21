@@ -9,6 +9,9 @@ import {
   faTimes,
   faBookmark as solidBookmark,
 } from "@fortawesome/free-solid-svg-icons";
+import styles from '../stylesheets/tags-cards.css'
+import ReactTooltip from 'react-tooltip';
+
 import Confetti from "react-confetti";
 
 import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
@@ -26,12 +29,64 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
   const [showContent, setShowContent] = useState(false);
   const [editorsChoiceCount, setEditorsChoiceCount] = useState(3);
   const [sortBy, setSortBy] = useState("date");
+  let [showTags,setShowTags]=useState(false)
   const [filter, setFilter] = useState("");
   const [modalIndex,setModalIndex]=useState(-1)
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const [confetti,setShowConfetti]=useState(false)
+  let [tags,setTags]=useState([])
   const router = useRouter();
+  let tagsData=[
+    {
+      "tagName": "CI/CD",
+      "tagDescription": "Continuous Integration and Continuous Delivery (CI/CD) practices for automating software release processes."
+    },
+    {
+      "tagName": "Infrastructure as Code",
+      "tagDescription": "Managing and provisioning computing infrastructure through machine-readable definition files."
+    },
+    {
+      "tagName": "Containerization",
+      "tagDescription": "Encapsulating applications into lightweight containers for easy deployment and scalability."
+    },
+    {
+      "tagName": "Orchestration",
+      "tagDescription": "Automating the management, coordination, and deployment of complex software systems."
+    },
+    {
+      "tagName": "Monitoring and Logging",
+      "tagDescription": "Tools and practices for monitoring system performance, detecting issues, and logging events."
+    },
+    {
+      "tagName": "Configuration Management",
+      "tagDescription": "Automating the configuration and coordination of software applications and systems."
+    },
+    {
+      "tagName": "DevSecOps",
+      "tagDescription": "Integrating security practices into the DevOps lifecycle to deliver secure software faster."
+    },
+    {
+      "tagName": "Microservices",
+      "tagDescription": "Architectural style that structures an application as a collection of loosely coupled services."
+    },
+    {
+      "tagName": "Cloud Native",
+      "tagDescription": "Designing and running applications that leverage cloud computing principles and services."
+    },
+    {
+      "tagName": "Agile",
+      "tagDescription": "Software development methodology emphasizing collaboration, flexibility, and continuous improvement."
+    }
+  ]
+  
+  async function fetchTagsData(){
+  
+    setTags(tagsData)
+  }
+  useEffect(()=>{
+      fetchTagsData()
+  },[])
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -241,9 +296,17 @@ useEffect(()=>{
   const handleBookmarkedClick = () => {
     setFilter("bookmarked");
   };
- 
+ useEffect(()=>{
+  if(filter!=="Tags"){
+
+    setShowTags(false)
+  }
+ },[filter])
   const filteredBlogs = () => {
-    let filtered = blogs;
+   let filtered=[];
+   
+  filtered = blogs;
+  
     if (filter === "mustRead") {
       filtered = mustReadBlogs;
     } else if (filter === "bookmarked") {
@@ -277,6 +340,10 @@ useEffect(()=>{
     }else{
       return
     }
+  }
+  function handleTagsClick(){
+    setFilter("Tags")
+    setShowTags(true)
   }
   useEffect(()=>{
 setTimeout(()=>{setLoading(false)},4000)
@@ -360,13 +427,27 @@ setTimeout(()=>{setLoading(false)},4000)
             >
               Must Read
             </div>
+            <div
+              className={`w-[100px] ${
+                theme
+                  ? filter === "Tags"
+                    ? "text-gray-900 underline underline-offset-[30px]"
+                    : ""
+                  : filter === "Tags"
+                  ? "underline text-gray-400 underline-offset-[30px]"
+                  : ""
+              }`}
+              onClick={handleTagsClick}
+            >
+              Tags
+            </div>
             <div className="lg:hidden ml-auto" onClick={toggleSidebar}>
               <FontAwesomeIcon icon={faBars} />
             </div>
           </div>
           <hr className="w-full border-[1px] border-gray-200" />
           <div className="mt-10 w-full">
-            {loading
+            { !showTags &&(  loading
               ? Array.from({ length: 5 }).map((_, index) => (
                   <div key={index} className="mb-10">
                     <div className="flex max-md:flex-col items-end gap-5">
@@ -385,7 +466,8 @@ setTimeout(()=>{setLoading(false)},4000)
                     <hr className="w-full mt-5 mb-5 border-gray-200" />
                   </div>
                 ))
-              :filteredBlogs().length==0?<div className="m-auto relative text-xl font-bold top-[17vh] text-center">No more blogs </div>: filteredBlogs().map((blog, index) => {
+              :
+              filteredBlogs().length==0?<div className="m-auto relative text-xl font-bold top-[17vh] text-center">No more blogs </div>: filteredBlogs().map((blog, index) => {
                   const author = authorDetails[blog.authorId];
                   if (!author) return null;
                   const isBookmarked = finalUser
@@ -404,7 +486,7 @@ setTimeout(()=>{setLoading(false)},4000)
                           onError={handleImageError}
                           className="w-6 h-6 rounded-full mr-3"
                         />
-                        <div className="text-sm">{author.name}</div>
+                        <div className="text-sm">{blog.authorName}</div>
                       </div>
                       <div  className="flex gap-10 items-center max-md:flex-col max-md:items-start">
                         <div className="flex-1">
@@ -491,7 +573,30 @@ setTimeout(()=>{setLoading(false)},4000)
                       <hr className="w-full mt-5 mb-5 border-gray-200" />
                     </div>
                   );
-                })}
+                }))}
+                {
+                  showTags && <div className="w-[100%] flex flex-wrap max-sm:justify-center justify-between">
+                    <div className="flex w-[100%]  gap-[30px] flex-wrap justify-center">
+                      <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `}>Following Tags</button>
+                      <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `}>Hidden Tags</button>
+                      <input className="p-[10px] placeholder:text-xl rounded-lg" placeholder="Search For Tag"/>
+                      </div>
+           {
+            tags.map((data)=>{
+
+                return  <div class={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
+
+  <p class="cookieHeading">#{data.tagName}</p>
+  <p class="cookieDescription">{data.tagDescription}</p>
+  {/* <button class="acceptButton">Understood</button> */}
+</div>
+            })
+           }  
+
+
+
+                  </div>
+                }
           </div>
         </div>
 
