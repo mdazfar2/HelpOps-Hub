@@ -7,12 +7,12 @@ import { NextResponse } from "next/server";  // Importing Next.js server respons
 export async function POST(req) {
     try {
         // Parse JSON payload from request body
-        const {comment_id,user_name,blog_id,comment,index,image} = await req.json();
+        const {comment_id,user_name,blog_id,comment,index,image,username} = await req.json();
         
         const { MONGO_URI } = process.env;  
         await mongoose.connect(MONGO_URI);
         let blog=await Blogs.findById(blog_id)
-        blog.comments[index].replies.push({name:user_name,comment:comment,image:image})
+        blog.comments[index].replies.push({username:username,name:user_name,comment:comment,image:image})
         
 
         // Save the new blog record to MongoDB

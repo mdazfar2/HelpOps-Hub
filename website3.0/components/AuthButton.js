@@ -14,8 +14,8 @@ const AuthButton = () => {
   const [isLogin1, setIsLogin1] = useState(true);
   const [profile,showProfile]=useState(false)
   let [usernameValue,setusernameValue]=useState('')
-  const [oneTime,setOneTime]=useState(false)
-  let [usernameModal,setUsernameModal]=useState('')
+  const [oneTime,setOneTime]=useState('')
+  let [usernameModal,setUsernameModal]=useState(false)
   const [currentModal, setCurrentModal] = useState('login');
   let [showProfile1,setShowProfile1]=useState(false)
   let {setIsAdminShow,finalUser,userName,setFinalUser,setIsLogin,setUserGithub,setUserName,setUserEmail,userImage,setUserImage,isLogin,theme,setIsPopup,setMsg}=useContext(Context)
