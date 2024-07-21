@@ -4,6 +4,7 @@ const commentSchema = new mongoose.Schema({
   user: {
     name: String,
     image: String,
+    username:String
   },
   comment: String,
   likes:{
@@ -33,6 +34,7 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username:String,
   image: {
     type: String  },
   type: {
