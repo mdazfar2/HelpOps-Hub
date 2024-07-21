@@ -425,7 +425,7 @@ console.log('sddddddddddddddd')
           image:isImg,
           type:'blog',
           description:desc,
-          username:finalUser.username,
+          username:user.username,
           length:desc.length,
           authorName:user.name,
           authorImage:user.image1,
