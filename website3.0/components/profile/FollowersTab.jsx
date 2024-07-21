@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import styles from '@stylesheets/followers.css'
 import { Context } from "@context/store";
 
-export default function Followers({ onClose, id }) {
+export default function FollowersTab({ setFollowTab,FollowTab,id }) {
   const {
     finalUser,
     setFinalUser,
@@ -67,7 +66,13 @@ export default function Followers({ onClose, id }) {
     setFinalUser(updatedData.user1);
     localStorage.setItem('finalUser', JSON.stringify(updatedData.user1));
   }
-
+  function handleClose(){
+    if(FollowTab){
+      setFollowTab(false);
+    }else{
+      setFollowTab(true);
+    }
+  }
   return (
     <>
       <div className="auth-overlay">
@@ -94,7 +99,7 @@ export default function Followers({ onClose, id }) {
                 {userDetails.followers && Object.entries(userDetails.followers).map(([userId, [userImg, userName]]) =>{ 
                   if(userId!==finalUser._id){
 
-               return   <div id={userId} className="w-[100%] mt-[20px] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px] overflow-hidden">
+               return   <div id={userId} className="w-[100%] mt-[20px] h-[60px] items-center flex justify-between pl-[10px] pr-[10px] overflow-hidden">
                     <img height='60px' width='60px' className="rounded-full" src={userImg}></img>
                     <h1 className={`text-wrap text-center ${theme ? "text-black" : "text-white"}`}>{userName}</h1>
                     {(userId in finalUser.following) ? 
@@ -108,7 +113,7 @@ export default function Followers({ onClose, id }) {
               <div className={`${firstShow ? "coming3" : "coming1"} h-[42vh] overflow-y-scroll w-[100%] div-animate`}>
                 {userDetails.following && Object.entries(userDetails.following).map(([userId, [userImg, userName]]) => (
                   userId !== finalUser._id &&
-                  <div key={userId} className="w-[100%] h-[60px] font-cursive items-center flex justify-between pl-[10px] pr-[10px] overflow-hidden">
+                  <div key={userId} className="w-[100%] h-[60px] items-center flex justify-between pl-[10px] pr-[10px] overflow-hidden">
                     <img height='60px' width='60px' className="rounded-full" src={userImg}></img>
                     <h1 className={`text-wrap text-center ${theme ? "text-black" : "text-white"}`}>{userName}</h1>
                     {(userId in finalUser.following) ? 
@@ -120,7 +125,7 @@ export default function Followers({ onClose, id }) {
             </div>
           </div>
         </div>
-        <div className="fixed top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black" onClick={onClose}></div>
+        <div className="fixed top-0 left-0 h-[100vh] w-[100vw] opacity-35 bg-black" onClick={handleClose}></div>
       </div>
     </>
   );

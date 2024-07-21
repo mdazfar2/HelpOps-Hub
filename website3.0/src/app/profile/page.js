@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ProfilepageDetails from "@components/profile/ProfilepageDetails";
 import SettingsTab from "@components/profile/SettingsTab";
 import ResourcesTab from "@components/profile/ResourcesTab";
+import NotificationTab from "@components/profile/NotificationTab";
 import { Context } from "@context/store";
 import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +21,7 @@ import {
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
+import GrowYourReachTab from "@components/profile/GrowYourReachTab";
 
 const Settings = () => (
   <div className="min-h-screen mt-10 rounded-xl">
@@ -31,8 +33,8 @@ const Resources = () => (
     <ResourcesTab />
   </div>
 );
-const Notifications = () => <div>Notifications Component</div>;
-const Followers = () => <div>Grow Your Reach</div>;
+const Notifications = () => <div><NotificationTab/></div>;
+const GrowYourReach = () => <div><GrowYourReachTab/></div>;
 const PostDetails = () => <div>Post Details</div>;
 const DevopsInsights = () => <div>DevOps Insights: Ask & Answer</div>;
 const Profile = ({ id }) => (
@@ -188,8 +190,8 @@ const profile = () => {
               title="Grow Your Reach"
               icon={faUserFriends}
               isCollapsible={false}
-              onClick={() => handleMenuClick(<Followers />, "Followers")}
-              isActive={activeMenuItem === "Followers"}
+              onClick={() => handleMenuClick(<GrowYourReach/>, "GrowYourReach")}
+              isActive={activeMenuItem === "GrowYourReach"}
               theme={theme}
             />
             <MenuItem
