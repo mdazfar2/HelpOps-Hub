@@ -50,7 +50,6 @@ const AboutPage = ({ theme }) => {
 
   return (
     <div className={`w-full ${theme ? "bg-gray-100" : "bg-[#1e1d1d]"}`}>
-
       {/* Hero Section */}
       <Section id="hero" className="h-screen flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 flex items-center justify-center">
@@ -59,7 +58,7 @@ const AboutPage = ({ theme }) => {
               autoPlay
               loop
               muted
-              className="w-full h-full object-contain max-md:h-1/2"
+              className="w-full h-full object-cover"
               style={{ filter: "brightness(50%)" }}
             >
               <source src="/HelpOps-H.mp4" type="video/mp4" />
@@ -69,18 +68,18 @@ const AboutPage = ({ theme }) => {
       </Section>
 
       {/* What is HelpOps-Hub Section */}
-      <Section id="what" className="relative">
-        <div className={`${theme ? "bg-white" : "bg-[#292727]"} container mx-auto px-4 flex flex-col lg:flex-row items-center rounded-lg shadow-xl overflow-hidden`}>
+      <Section id="what" className={`relative ${theme ? "bg-white" : "bg-[#292727]"}`}>
+        <div className={`container mx-auto px-4 flex flex-col lg:flex-row items-center rounded-lg shadow-xl overflow-hidden ${theme ? "bg-white" : "bg-[#292727]"}`}>
           <motion.div
             className="lg:w-1/2 order-2 lg:order-1 p-6 lg:p-10"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className={`${theme ? "text-indigo-700" : "text-white"} text-4xl lg:text-5xl font-bold mb-4 lg:mb-6`}>
+            <h2 className={`text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 ${theme ? "text-indigo-700" : "text-white"}`}>
               What is HelpOps-Hub?
             </h2>
-            <p className={`${theme ? "text-gray-700" : "text-white"} text-lg lg:text-xl leading-relaxed text-gray-700`}>
+            <p className={`text-lg lg:text-xl leading-relaxed ${theme ? "text-gray-700" : "text-white"}`}>
               HelpOps-Hub is a revolutionary platform designed to empower DevOps professionals. We provide cutting-edge tools, resources, and a vibrant community to streamline your workflow and boost productivity.
             </p>
           </motion.div>
@@ -93,7 +92,7 @@ const AboutPage = ({ theme }) => {
             <motion.img
               src="new/HelpOps-H Fevicon.webp"
               alt="HelpOps Logo"
-              className={`w-full max-w-xs lg:max-w-sm mx-auto rounded-lg shadow-2xl`}
+              className="w-full max-w-xs lg:max-w-sm mx-auto rounded-lg shadow-2xl"
               style={{ translateY: "-30px" }}
               whileHover={{
                 scale: 1.1,
@@ -206,8 +205,8 @@ const AboutPage = ({ theme }) => {
                     {benefit.icon}
                   </motion.div>
                 </div>
-                <h3 className={`${theme ? "text-gray-900" : "text-white"} text-xl lg:text-2xl font-bold mb-2 text-center`}>{benefit.title}</h3>
-                <p className={`${theme ? "text-gray-700" : "text-[#f5f5f5]"} text-lg text-center`}>
+                <h3 className={`text-xl lg:text-2xl font-bold mb-2 text-center ${theme ? "text-gray-900" : "text-white"}`}>{benefit.title}</h3>
+                <p className={`text-lg text-center ${theme ? "text-gray-700" : "text-[#f5f5f5]"}`}>
                   {benefit.description}
                 </p>
               </motion.div>
