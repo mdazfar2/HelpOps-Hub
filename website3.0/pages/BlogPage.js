@@ -21,7 +21,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaEye, FaPen } from "react-icons/fa";
 
-function BlogPage({ theme,finalUser,searchedBlog }) {
+function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
   const [blogs, setBlogs] = useState([]);
   const [authorDetails, setAuthorDetails] = useState({});
   const [error, setError] = useState("");
@@ -37,6 +37,8 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
   const [confetti,setShowConfetti]=useState(false)
   let [tags,setTags]=useState([])
   const router = useRouter();
+  const [followedTags, setFollowedTags] = useState([]);
+  const [hiddenTags, setHiddenTags] = useState([]);
   let tagsData=[
     {
       "tagName": "CI/CD",
@@ -79,11 +81,17 @@ function BlogPage({ theme,finalUser,searchedBlog }) {
       "tagDescription": "Software development methodology emphasizing collaboration, flexibility, and continuous improvement."
     }
   ]
-  
+  let [allTags,setAllTags]=useState([])
   async function fetchTagsData(){
-  
-    setTags(tagsData)
-  }
+    let user=await JSON.parse(localStorage.getItem('finalUser'))
+    console.log(user.hidedTags,'dsdsd')
+
+      let arr=  tagsData.filter((data)=> !user.hidedTags.includes(data.tagName))
+      
+      setTags([...arr])
+        setHiddenTags([...user.hidedTags])
+        setFollowedTags([...user.followedTags])
+    }
   useEffect(()=>{
       fetchTagsData()
   },[])
@@ -348,6 +356,132 @@ useEffect(()=>{
   useEffect(()=>{
 setTimeout(()=>{setLoading(false)},4000)
   },[])
+
+  
+
+  const toggleFollow =async (tagName) => {
+    // Check if tag is already followed
+    
+   
+     
+      // Perform API call or any other action to follow the tag
+      // Example: API call to follow the tag
+      // followTag(tagName);
+      if(followedTags.includes(tagName)){
+        let arr=[...followedTags]    
+        arr=arr.filter((data)=>data!==tagName)
+        console.log(arr)
+        setFollowedTags([...arr])  
+        if(isShowFollow){
+            arr=tagsData.filter((data)=>arr.includes(data.tagName))
+          setTags([...arr])
+        }
+      let res=  await fetch('/api/tagfollow',{
+          method:"PUT",
+          body:JSON.stringify({
+            id:finalUser._id,
+            tagname:tagName
+          })
+        })
+        res=await res.json()
+        setFinalUser(res.user)
+        res=JSON.stringify(res.user)
+        localStorage.setItem("finalUser",res)
+        return
+      }
+  
+      setFollowedTags([...followedTags, tagName]);
+     let res= await fetch('/api/tagfollow',{
+        method:"POST",
+        body:JSON.stringify({
+          id:finalUser._id,
+          tagname:tagName
+        })
+      })
+      res=await res.json()
+
+      setFinalUser(res.user)
+      res=JSON.stringify(res.user)
+      localStorage.setItem("finalUser",res)
+  };
+
+  const hideTag =async (tagName) => {
+
+    if(hiddenTags.includes(tagName)){
+      let arr=[...hiddenTags]    
+      arr=arr.filter((data)=>data!==tagName)
+      setHiddenTags([...arr])  
+      if(isShowHide){
+        arr=tagsData.filter((data)=>arr.includes(data.tagName))
+        setTags([...arr])
+      }
+
+     let res= await fetch('/api/taghide',{
+        method:"PUT",
+        body:JSON.stringify({
+          id:finalUser._id,
+          tagname:tagName
+        })
+      })
+      res=await res.json()
+      setFinalUser(res.user)
+      res=JSON.stringify(res.user)
+      localStorage.setItem("finalUser",res)
+      return
+    }
+
+    setHiddenTags([...hiddenTags, tagName]);
+    let arr1=tagsData.filter((data)=>![...hiddenTags,tagName].includes(data.tagName))
+      setTags(arr1)
+   let res= await fetch('/api/taghide',{
+      method:"POST",
+      body:JSON.stringify({
+        id:finalUser._id,
+        tagname:tagName
+      })
+    })
+    res=await res.json()
+    setFinalUser(res.user)
+    res=JSON.stringify(res.user)
+    localStorage.setItem("finalUser",res)
+    // Perform API call or any other action to hide the tag
+    // Example: API call to hide the tag
+    // hideTag(tagName);
+  };
+  let [isShowFollow,setIsShowFollow]=useState(false)
+  let [isShowHide,setIsShowHide]=useState(false)
+
+  function showFollow(){
+    if(isShowFollow){
+      let arr=tagsData.filter((Data)=>!hiddenTags.includes(Data.tagName))
+      setIsShowFollow(false)
+      setIsShowHide(false)
+      setTags([...arr])
+    }else{
+      let arr=tagsData.filter((data)=>followedTags.includes(data.tagName))
+      console.log(arr)
+      setTags([...arr])
+      setIsShowHide(false)
+      setIsShowFollow(true)
+    }
+  }
+  function showHide(){
+
+    if(isShowHide){
+    console.log(finalUser.hidedTags)
+      let arr=tagsData.filter((data)=>!hiddenTags.includes(data.tagName))
+      console.log(arr)
+      setTags([...arr])
+      setIsShowHide(false)
+      setIsShowFollow(false)
+    }else{
+      let arr=tagsData.filter((data)=>hiddenTags.includes(data.tagName))
+      console.log(arr)
+      setTags([...arr])
+      setIsShowHide(true)
+      setIsShowFollow(false)
+    }
+  }
   return (
    <>
     {confetti && <Confetti/>}
@@ -577,8 +711,8 @@ setTimeout(()=>{setLoading(false)},4000)
                 {
                   showTags && <div className="w-[100%] flex flex-wrap max-sm:justify-center justify-between">
                     <div className="flex w-[100%]  gap-[30px] flex-wrap justify-center">
-                      <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `}>Following Tags</button>
-                      <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `}>Hidden Tags</button>
+                      <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `} onClick={showFollow}>Following Tags</button>
+                      <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `} onClick={showHide}>Hidden Tags</button>
                       <input className="p-[10px] placeholder:text-xl rounded-lg" placeholder="Search For Tag"/>
                       </div>
            {
@@ -588,7 +722,24 @@ setTimeout(()=>{setLoading(false)},4000)
 
   <p class="cookieHeading">#{data.tagName}</p>
   <p class="cookieDescription">{data.tagDescription}</p>
-  {/* <button class="acceptButton">Understood</button> */}
+  <div className="flex justify-between w-[100%]">
+
+  <button
+                className="acceptButton rounded-lg"
+                onClick={() => toggleFollow(data.tagName)}
+              >
+                {followedTags.includes(data.tagName) ? 'Unfollow' : 'Follow'}
+              </button>
+              {/* Hide button */}
+              <button
+                className="acceptButton rounded-lg"
+                onClick={() => hideTag(data.tagName)}
+              >
+                                {hiddenTags.includes(data.tagName) ? 'UnHide' : 'Hide'}
+
+              </button>
+   </div> 
+
 </div>
             })
            }  

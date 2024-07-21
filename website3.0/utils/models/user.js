@@ -31,6 +31,15 @@ const newsletterModel = new mongoose.Schema({
   likedBlogs:{
     type:Map,
     default:new Map()
+  },
+  followedTags:{
+    type:Array,
+    default:[]
+  },
+  hidedTags:{
+    
+    type:Array,
+    default:[]
   }
 });
 
