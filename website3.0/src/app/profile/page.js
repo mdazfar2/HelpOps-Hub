@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ProfilepageDetails from "@components/profile/ProfilepageDetails";
 import SettingsTab from "@components/profile/SettingsTab";
 import ResourcesTab from "@components/profile/ResourcesTab";
+import NotificationTab from "@components/profile/NotificationTab";
 import { Context } from "@context/store";
 import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +21,7 @@ import {
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
+import GrowYourReachTab from "@components/profile/GrowYourReachTab";
 import { FaX, FaBars } from "react-icons/fa6";
 
 // Define animation variants for menu
@@ -40,11 +42,8 @@ const Resources = () => (
     <ResourcesTab />
   </div>
 );
-
-const Notifications = () => <div>Notifications Component</div>;
-
-const Followers = () => <div>Grow Your Reach</div>;
-
+const Notifications = () => <div><NotificationTab/></div>;
+const GrowYourReach = () => <div><GrowYourReachTab/></div>;
 const PostDetails = () => <div>Post Details</div>;
 
 const DevopsInsights = () => <div>DevOps Insights: Ask & Answer</div>;
@@ -210,7 +209,6 @@ const ProfilePage = () => {
                 theme ? "text-gray-600" : "text-white"
               } flex-1 overflow-y-auto space-y-4`}
             >
-              
               <MenuItem
                 title="Home"
                 icon={faHouseUser}
@@ -238,14 +236,14 @@ const ProfilePage = () => {
                   </li>
                 </ul>
               </MenuItem>
-              <MenuItem
-                title="Grow Your Reach"
-                icon={faUserFriends}
-                isCollapsible={false}
-                onClick={() => handleMenuClick(<Followers />, "Followers")}
-                isActive={activeMenuItem === "Followers"}
-                theme={theme}
-              />
+             <MenuItem
+              title="Grow Your Reach"
+              icon={faUserFriends}
+              isCollapsible={false}
+              onClick={() => handleMenuClick(<GrowYourReach/>, "GrowYourReach")}
+              isActive={activeMenuItem === "GrowYourReach"}
+              theme={theme}
+            />
               <MenuItem
                 title="DevOps Insights"
                 icon={faComment}

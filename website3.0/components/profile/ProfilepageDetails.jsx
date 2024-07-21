@@ -8,7 +8,7 @@ import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
 import { useSession } from "next-auth/react";
-import Followers from "./Followers";
+import FollowersTab from "./FollowersTab";
 import Logout from "./Logout";
 
 const TabHeader = ({ selectedTab, setSelectedTab, theme }) => (
@@ -112,6 +112,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
   const [blogs, setBlogs] = useState([]);
   const [sortBy, setSortBy] = useState("date");
   const [selectedTab, setSelectedTab] = useState("Posts");
+  const [FollowTab,setFollowTab] = useState(false);
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -286,12 +287,12 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
   function handleIsSHareclose() {
     setIsShare(false);
   }
+  function handlefollowTab(){
+    setFollowTab(true);
+  }
   return (
     <div className="relative overflow-hidden w-full h-full bg-gray-200">
-      {isModalFollow && <Followers onClose={handleClose} id={id} />}
-      <div
-        className="absolute left-4 top-4"
-      >
+      <div className="absolute left-4 top-4">
         <FaShareFromSquare
           color="#1e1d1d"
           className="cursor-pointer"
@@ -350,13 +351,16 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                   ? viewUserDetails.designation
                   : finalUser.designation}
               </p>
-              <div className="flex gap-2 mt-2 items-center max-sm:justify-center">
+              {FollowTab && (
+                    <FollowersTab setFollowTab={setFollowTab} FollowTab={FollowTab} id={id} />
+                  )}
+              <div className="flex gap-2 mt-2 items-center cursor-pointer" onClick={handlefollowTab}>
                 <p
                   className={`text-center flex gap-2 items-center ${
                     theme ? "text-[#5a5151]" : "text-white"
                   }`}
                 >
-                  <span className="text-sm">
+                  <span className="text-sm cursor-pointer" >
                     {isViewProfile
                       ? viewUserDetails.followers
                         ? Object.keys(viewUserDetails.followers).length
@@ -372,6 +376,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                     theme ? "text-[#5a5151]" : "text-white"
                   }`}
                 >
+                  
                   <span className="text-sm">
                     {isViewProfile
                       ? viewUserDetails.following
