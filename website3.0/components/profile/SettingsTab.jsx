@@ -110,12 +110,12 @@ function SettingsTab() {
   }
 
   return (
-    <div className="relative overflow-hidden w-full h-full bg-gray-100">
+    <div className={`${theme? "bg-gray-100 text-black": "bg-[#111111] text-white"} relative overflow-hidden w-full h-full`}>
       <div className="flex flex-col p-10 w-full h-72 gap-5">
         <div className="text-center text-2xl">
             Profile Settings
         </div>
-        <div className="flex mt-5 bg-gray-200 items-center h-20 p-5 w-full justify-between">
+        <div className={`${theme? "bg-gray-200 text-black": "bg-[#393939] text-white"} flex mt-5 items-center h-20 p-5 w-full justify-between`}>
           <div className="text-xl">Delete Your Account</div>
           <button
             className={` w-28 text-center h-12 p-2 ${
