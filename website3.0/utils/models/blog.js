@@ -88,6 +88,10 @@ type:String
   average:{
     type:Number,
     default:0
+  },
+  tags:{
+    type:Array,
+    default:[]
   }
 });
 

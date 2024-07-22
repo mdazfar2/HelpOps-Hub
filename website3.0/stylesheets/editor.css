@@ -30,6 +30,17 @@ font-style: normal;
     top: -5px !important;
     font-size: 30px;
   }
+ .classsa .ql-editor  p{
+    font-size: 50px !important;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500 !important;
+  } .classsb .ql-editor  p{
+    font-size: 30px !important;
+    font-weight: 100 !important;
+    font-family: "medium-content-serif-font",Georgia,Cambria,"Times New Roman",Times,serif;
+
+
+  }
 
   .classsb .ql-editor.ql-blank::before {
     color: rgba(0,0,0,0.6);
@@ -37,7 +48,7 @@ font-style: normal;
 
     left: 15px;
     pointer-events: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family:  'Times New Roman', Times, serif !important;
     position: absolute;
     right: 15px;
     font-size: 24px;
@@ -45,11 +56,6 @@ font-style: normal;
   .classsd .ql-editor.ql-blank::before {
     color: white;
     
-  }
-  .ql-editor  p{
-    font-size: 24px !important;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-
   }
   .ql-editor{
     border: none !important;
@@ -67,6 +73,7 @@ font-style: normal;
   
   .classsb .ql-editor li{
     font-size: 30px;
+    font-weight: 100 !important;
   }
   .ql-editor ul{
 padding-left: 0px !important;

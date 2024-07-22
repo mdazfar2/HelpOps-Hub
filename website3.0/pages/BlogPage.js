@@ -645,7 +645,11 @@ setTimeout(()=>{setLoading(false)},4000)
                             className="text-2xl mb-2 font-normal max-sm:text-xl"
                             dangerouslySetInnerHTML={{ __html: blog.title }}
                           ></div>
-                        
+                         <div className="flex gap-[15px] ">
+                           {blog.tags && blog.tags.map(data=>{
+                        console.log(data)
+                        return <div className="text-[14px]">{"#"+data}</div>})}
+                          </div>
                           <div onClick={() => navigateToBlogDetails(blog._id)}
                             className={`${
                               theme ? "text-gray-600" : "text-gray-300"
