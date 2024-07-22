@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { Tooltip } from 'react-tooltip'
 
-import { FaTrash,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
+import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
@@ -52,6 +52,7 @@ function BlogPost() {
   let [canLike,setCanLike]=useState(true)
   const panelRef = useRef(null);
   const [isFollowed, setIsFollowed] = useState(false);
+  let [isTagModal,setIsTagModal]=useState(false)
   const timerRef = useRef(null);
   let [startTime,setStartTime]=useState('')
   const [loading, setLoading] = useState(true);
@@ -370,7 +371,23 @@ useEffect(()=>{
 
     fetchBlogs();
   }, []);
-
+  async function handleDeleteComment(index){
+    let arr=comments
+     arr=arr.filter((data,index1)=>index1!==index)
+     setComments([...arr])
+    let res= await fetch("/api/deletecomment",{
+       method:"DELETE",
+       body:JSON.stringify({
+         id:id,
+         index:index,
+         id_user:finalUser._id
+       })
+     })
+     res=await res.json()
+     setBlog(res.blog)
+    
+   }
+ 
   const otherBlogsByAuthor = otherBlogs.filter(
     (b) => b.authorName === blog.authorName
   );
@@ -716,6 +733,7 @@ useEffect(()=>{
       setIsShare(false)
     },1000)
   }
+
   
 function handleError(){
   
@@ -1026,7 +1044,7 @@ data-tooltip-content="Reaction"
                   key={comment._id || index}
                   className="bg-white text-black flex flex-col gap-4 p-4 mb-4 rounded-lg shadow"
                 >
-             <div className="flex ">
+             <div className="flex relative">
                    <img
 src={comment?.user?.image }    
                 className="w-10 h-10 rounded-full mr-3"
@@ -1037,8 +1055,8 @@ src={comment?.user?.image }
                     </div>
                     <p>{comment.comment}</p>
                   </div>
+              {finalUser.username==comment.user.username &&  <FaTrashCan size={"1rem"} onClick={()=>handleDeleteComment(index)} color="red" className=" cursor-pointer absolute top-[10px] right-[20px]"/>}
               </div>
-                    
                   <div className="flex gap-4 text-gray-600 font-medium">
                     <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'} color={`${isLiked[index]?"blue":""}`}  className="cursor-pointer" /></div>{comment.likes && <span>{comment.likes}</span>}
                     <span className="cursor-pointer" onClick={()=>replyIndex!==-1?setReplyIndex(-1):setReplyIndex(index)}>Reply</span>
