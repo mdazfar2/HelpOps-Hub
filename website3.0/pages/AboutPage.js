@@ -59,7 +59,6 @@ const AboutPage = ({ theme }) => {
               loop
               muted
               className="w-full h-full object-cover"
-              style={{ filter: "brightness(50%)" }}
             >
               <source src="/HelpOps-H.mp4" type="video/mp4" />
             </video>
@@ -71,15 +70,15 @@ const AboutPage = ({ theme }) => {
       <Section id="what" className={`relative ${theme ? "bg-white" : "bg-[#292727]"}`}>
         <div className={`container mx-auto px-4 flex flex-col lg:flex-row items-center rounded-lg shadow-xl overflow-hidden ${theme ? "bg-white" : "bg-[#292727]"}`}>
           <motion.div
-            className="lg:w-1/2 order-2 lg:order-1 p-6 lg:p-10"
+            className="lg:w-1/2 order-2 lg:order-1 p-6 lg:p-10 ml-28"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className={`text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 ${theme ? "text-indigo-700" : "text-white"}`}>
+            <h2 className={`text-4xl lg:text-4xl font-bold mb-4 lg:mb-6 ${theme ? "text-indigo-700" : "text-white"}`}>
               What is HelpOps-Hub?
             </h2>
-            <p className={`text-lg lg:text-xl leading-relaxed ${theme ? "text-gray-700" : "text-white"}`}>
+            <p className={`text-lg lg:text-xl leading-relaxed text-justify ${theme ? "text-gray-700" : "text-white"}`}>
               HelpOps-Hub is a revolutionary platform designed to empower DevOps professionals. We provide cutting-edge tools, resources, and a vibrant community to streamline your workflow and boost productivity.
             </p>
           </motion.div>
@@ -92,11 +91,12 @@ const AboutPage = ({ theme }) => {
             <motion.img
               src="new/HelpOps-H Fevicon.webp"
               alt="HelpOps Logo"
-              className="w-full max-w-xs lg:max-w-sm mx-auto rounded-lg shadow-2xl"
-              style={{ translateY: "-30px" }}
+              className="w-full max-w-xs lg:max-w-sm mx-auto rounded-lg"
+              style={{ translateY: "-15px"}}
+              animate={{ scale: 1, rotate: 0 }}
               whileHover={{
                 scale: 1.1,
-                rotate: [0, 10, -10, 0],
+                rotate: [0, 6, -6, 0],
                 transition: { duration: 0.5 }
               }}
               whileTap={{ scale: 0.9 }}
@@ -109,7 +109,7 @@ const AboutPage = ({ theme }) => {
       <Section id="mission" className="relative bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-10 lg:py-20">
         <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-opacity-75 rounded-lg shadow-xl">
           <motion.div
-            className="lg:w-1/2 mb-6 lg:mb-0 relative z-10 p-6 lg:p-10"
+            className="lg:w-1/2 mb-6 lg:mb-0 relative z-10 p-6 lg:p-10 ml-28"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -117,7 +117,7 @@ const AboutPage = ({ theme }) => {
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 lg:mb-6">
               Our Mission
             </h2>
-            <p className="text-lg lg:text-xl leading-relaxed">
+            <p className="text-lg lg:text-xl leading-relaxed text-justify">
               At HelpOps-Hub, we're on a mission to revolutionize the DevOps landscape. We're building a global community of innovators, problem-solvers, and tech enthusiasts. Our goal is to provide a platform where knowledge flows freely, collaboration thrives, and groundbreaking solutions are born.
             </p>
           </motion.div>
@@ -130,11 +130,12 @@ const AboutPage = ({ theme }) => {
             <motion.img
               src="new/mission.webp"
               alt="Mission"
-              className="w-full max-w-xs lg:max-w-md mx-auto rounded-lg shadow-2xl"
-              style={{ translateY: "-30px" }}
+              className="w-full max-w-xs lg:max-w-md mx-auto rounded-lg"
+              style={{ translateY: "-15px" }}
+              animate={{ scale: 1, rotate: 0 }}
               whileHover={{
                 scale: 1.1,
-                rotate: [0, 15, -15, 0],
+                rotate: [0, 10, -10, 0],
                 transition: { duration: 0.5 }
               }}
               whileTap={{ scale: 0.9 }}
@@ -151,7 +152,7 @@ const AboutPage = ({ theme }) => {
           <h2 className={`text-5xl font-bold mb-16 text-center ${theme ? "text-indigo-700" : "text-white"}`}>
             Benefits of HelpOps-Hub
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 cursor-default">
             {/* Map through benefits array to create benefit cards */}
             {[
               { 
