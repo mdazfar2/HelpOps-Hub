@@ -766,7 +766,7 @@ function ResourcesPage({
         <div className="search-container flex justify-center items-center relative mb-[13px]">
           <div
             id="search-box"
-            className="flex justify-center items-center w-full h-16 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] "
+            className="flex justify-center items-center w-full h-12 mt-4 p-[17px] text-[16px] border-[none] outline-[none] rounded-[24px] bg-[white] [box-shadow:inset_0_-3px_6px_rgba(0,_0,_0,_0.1)] relative gap-[7px] "
           >
             <div className="icon">
               <FontAwesomeIcon icon={faMagnifyingGlass} color="black" />
