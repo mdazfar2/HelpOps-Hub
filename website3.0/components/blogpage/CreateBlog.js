@@ -17,6 +17,7 @@ export default function CreateBlog({id}) {
     const [showInTitle, setShowInTitle] = useState(true);
     let [isImg, setIsImg] = useState('');
     const [desc,setDesc]=useState('')
+    let [loading,setLoading]=useState(false)
     const textareaRef = useRef('');
     let [isTagModalShow,setIsTagModalShow]=useState(false)
     let [modal,setModal]=useState(false)
@@ -480,6 +481,7 @@ console.log('sddddddddddddddd')
       setMsg("Please Login First")
       return
     }
+    setLoading(true)
     localStorage.setItem("showConfetti",true)
     fetch('/api/getdraft',{
       method:"DELETE",
@@ -504,6 +506,7 @@ console.log('sddddddddddddddd')
   
         })
       })
+      setLoading(false)
       router.push('/blogs')
     }
     useEffect(() => {
@@ -711,14 +714,21 @@ console.log('sddddddddddddddd')
      }
       </div>
               <button
-                    className={`w-[220px] h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 m-auto rounded-[18px] cursor-pointer gap-[18px] text-[19px] ${
+                    className={`${!loading?"w-[220px]":"w-[300px]"} h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 m-auto rounded-[18px] cursor-pointer gap-[18px] text-[19px] ${
                       theme
                         ? "bg-[#098CCD] border-none"
                         : "bg-[#272525] border-white border whiteshadow"
                     } max-sm:m-[auto] max-sm:mt-[20px]  font-semibold mt-[50px]`}
                     onClick={handleFormSubmit}
                   >
-                    Confirm Publish &nbsp;
+                    Confirm Publish &nbsp; {loading && (
+                  <div className="loader3">
+                    <div className="circle">
+                      <div className="dot"></div>
+                      <div className="outline"></div>
+                    </div>
+                  </div>
+                )}
                    
                   </button>
                     </div>
