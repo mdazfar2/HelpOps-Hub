@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { Tooltip } from 'react-tooltip'
 
-import { FaTrash,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
+import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
@@ -1055,7 +1055,7 @@ src={comment?.user?.image }
                     </div>
                     <p>{comment.comment}</p>
                   </div>
-              {finalUser.username==comment.user.username &&  <FaTrash size={"1rem"} onClick={()=>handleDeleteComment(index)} color="red" className=" cursor-pointer absolute top-[10px] right-[20px]"/>}
+              {finalUser.username==comment.user.username &&  <FaTrashCan size={"1rem"} onClick={()=>handleDeleteComment(index)} color="red" className=" cursor-pointer absolute top-[10px] right-[20px]"/>}
               </div>
                   <div className="flex gap-4 text-gray-600 font-medium">
                     <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'} color={`${isLiked[index]?"blue":""}`}  className="cursor-pointer" /></div>{comment.likes && <span>{comment.likes}</span>}
