@@ -726,8 +726,11 @@ function ResourcesPage({
     { value: "lastMonth", label: "Last Month" },
   ];
 
-  const toggleViewMode = () => {
-    setViewMode(prevMode => (prevMode === "card" ? "list" : "card"));
+  const toggleViewModeCard = () => {
+    setViewMode("card");
+  };
+  const toggleViewModeList = () => {
+    setViewMode("list");
   };
   return (
     <div
@@ -831,20 +834,18 @@ function ResourcesPage({
             <div className="flex flex-col mt-4 gap-8 justify-center items-center w-full">
               <div className="flex gap-10 justify-between items-center mb-4">
                 <button
-                  onClick={toggleViewMode}
+                  onClick={toggleViewModeCard}
                   className="bg-white flex gap-2 items-center shadow-lg text-gray-600 rounded-lg px-6 py-2"
                 >
-                   {viewMode === "card" ? (
-                    <>
-                      <FaList />
-                      List View
-                    </>
-                  ) : (
-                    <>
-                      <FaThLarge />
-                      Card View
-                    </>
-                  )}
+                  <FaThLarge />
+                  Card View
+                </button>
+                <button
+                  onClick={toggleViewModeList}
+                  className="bg-white flex gap-2 items-center shadow-lg text-gray-600 rounded-lg px-6 py-2"
+                >
+                  <FaList />
+                  List View
                 </button>
               </div>
 
