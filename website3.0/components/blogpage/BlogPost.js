@@ -935,6 +935,7 @@ data-tooltip-content="Reaction"
                 <h2 className="text-2xl font-semibold mb-3">
                   {section.heading}
                 </h2>
+                
                 <p className="text-gray-600 mb-3">{section.content}</p>
                 {section.subsections?.map((sub, subIndex) => (
                   <div key={subIndex} className="ml-5 mb-3">
@@ -944,6 +945,7 @@ data-tooltip-content="Reaction"
                     <p className="text-gray-600">{sub.content}</p>
                   </div>
                 ))}
+                
               </div>
             ))}
           </div>
@@ -963,6 +965,11 @@ data-tooltip-content="Reaction"
               </div>
             )}
           </div>
+          <div className="flex gap-[20px] mb-[30px] ">
+                           {blog.tags && blog.tags.map(data=>{
+                        console.log(data)
+                        return <div className="text-[14px]">{"#"+data}</div>})}
+                          </div>
           <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5" id="comment">Top Comments</div>

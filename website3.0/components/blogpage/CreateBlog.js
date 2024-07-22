@@ -2,15 +2,15 @@
 
 import dynamic from "next/dynamic";
 import "../../stylesheets/editor.css"
-import React, { useEffect, useRef, useState ,useContext} from "react";
-import { FaPlus, FaImage, FaTrash } from "react-icons/fa";
+import React, { useEffect, useRef, useState ,useContext, useMemo} from "react";
+import { FaPlus, FaImage, FaTrash, FaCross } from "react-icons/fa";
 
 import ReactQuill, { Quill } from 'react-quill';
 // const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { Context } from "@context/store";
 import { usePathname, useRouter } from "next/navigation";
-import { FaBucket } from "react-icons/fa6";
+import { FaBucket, FaXmark } from "react-icons/fa6";
 export default function CreateBlog({id}) {
   const {theme,isLogin,setColor,setMsg,setIsPopup,finalUser}=useContext(Context)
     const [isShow, setIsShow] = useState(false);
@@ -18,6 +18,7 @@ export default function CreateBlog({id}) {
     let [isImg, setIsImg] = useState('');
     const [desc,setDesc]=useState('')
     const textareaRef = useRef('');
+    let [isTagModalShow,setIsTagModalShow]=useState(false)
     const [draftId,setDraftId]=useState(id)
     const [height, setHeight] = useState('auto');
     const [isDraftSaved, setIsDraftSaved] = useState(false);
@@ -27,7 +28,59 @@ export default function CreateBlog({id}) {
   
   const quillRef = useRef(null);
   const quillRef1 = useRef(null);
-
+  let tagsData=[
+    {
+      "tagName": "CI/CD",
+      "tagDescription": "Continuous Integration and Continuous Delivery (CI/CD) practices for automating software release processes."
+    },
+    {
+      "tagName": "Infrastructure as Code",
+      "tagDescription": "Managing and provisioning computing infrastructure through machine-readable definition files."
+    },
+    {
+      "tagName": "Containerization",
+      "tagDescription": "Encapsulating applications into lightweight containers for easy deployment and scalability."
+    },
+    {
+      "tagName": "Orchestration",
+      "tagDescription": "Automating the management, coordination, and deployment of complex software systems."
+    },
+    {
+      "tagName": "Monitoring and Logging",
+      "tagDescription": "Tools and practices for monitoring system performance, detecting issues, and logging events."
+    },
+    {
+      "tagName": "Configuration Management",
+      "tagDescription": "Automating the configuration and coordination of software applications and systems."
+    },
+    {
+      "tagName": "DevSecOps",
+      "tagDescription": "Integrating security practices into the DevOps lifecycle to deliver secure software faster."
+    },
+    {
+      "tagName": "Microservices",
+      "tagDescription": "Architectural style that structures an application as a collection of loosely coupled services."
+    },
+    {
+      "tagName": "Cloud Native",
+      "tagDescription": "Designing and running applications that leverage cloud computing principles and services."
+    },
+    {
+      "tagName": "Agile",
+      "tagDescription": "Software development methodology emphasizing collaboration, flexibility, and continuous improvement."
+    }
+  ]
+  let [tags,setTags]=useState([])
+  let [selectedTag,setSelectedTags]=useState([])
+  useEffect(()=>{
+    setTags(tagsData)
+  },[])
+  function handleSelectTags(tagName){
+    let tag=tagsData.filter((data)=>data.tagName==tagName)
+    let arr=tags.filter((data)=>!data.tagName==tagName)
+    setTags([...arr])
+    setSelectedTags((prev)=>[...prev,tag[0]])
+  }
   useEffect(()=>{
     if(!finalUser||!localStorage.getItem('finalUser')){
       setIsPopup(true)
@@ -329,6 +382,36 @@ console.log('sddddddddddddddd')
   
   }
   }
+  const insertCommand = () => {
+    console.log("dsdsd")
+    const editor = quillRef1.current.getEditor();
+    const cursorPosition = editor.getSelection().index;
+    editor.insertText(cursorPosition, '`command`');
+    editor.setSelection(cursorPosition + 1, cursorPosition + 8);
+  };
+  const modules = useMemo(
+    () => ({
+      toolbar: [
+        [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+        [{size: []}],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, 
+         {'indent': '-1'}, {'indent': '+1'}],
+        ['link', 'image', 'video'],
+        ['clean']
+      ],
+      keyboard: {
+        bindings: {
+          backtick: {
+            key: '`',
+            handler: () => {
+              insertCommand();
+            }          }
+        }
+      }
+    }),
+    [insertCommand]
+  );
   function handleToolbar1(e) {
      const quillInstance = quillRef1.current.getEditor();
     const toolbar = quillInstance.container.parentNode.querySelector('.ql-toolbar');
@@ -348,39 +431,13 @@ console.log('sddddddddddddddd')
     
     }
     }
-  // const handlePaste1 = (event) => {
-  //   const clipboardData = event.clipboardData;
-  //   const items = clipboardData.items;
-    
-  //   for (let i = 0; i < items.length; i++) {
-  //     const item = items[i];
-  
-  //     if (item.kind === 'file' && item.type.startsWith('image/')) {
-  //       const file = item.getAsFile();
-  //       const reader = new FileReader();
-  //       reader.onload =async (e) => {
-  //         // Handle image data
-  //         const imageSrc = e.target.result;
-  //         // For demonstration, we'll just log the image source
-  //         console.log('Image pasted:', imageSrc);
-  //         setIsImg(imageSrc)
-  
-  //       };
-  //       reader.readAsDataURL(file);
-  //     } else if (item.kind === 'string') {
-  //       item.getAsString((text) => {
-  //         // Handle text data
-  //         console.log('Text pasted:', text);
-  //         desc1((prevContent) => prevContent + text);
-  //       });
-  //     }
-  //   }
-    
-  //   // Prevent the default paste behavior
-  //   event.preventDefault();
-  // };
   
   
+  function handleTagClick(tag){
+    setSelectedTags([...selectedTag,tag.tagName])
+    let arr=tags.filter((data)=>data.tagName!==tag.tagName)
+    setTags([...arr])
+  }
     const convertToBase64 = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -389,6 +446,11 @@ console.log('sddddddddddddddd')
         reader.onerror = (error) => reject(error);
       });
     };
+    useEffect(()=>{
+      if(selectedTag.length==4){
+        setIsTagModalShow(false)
+      }
+    },[selectedTag])
     async function handleImageUpload(e){
       let img=e.target.files[0]
       img=await convertToBase64(img)
@@ -398,9 +460,12 @@ console.log('sddddddddddddddd')
       setIsShow(!isShow);
     }
     function changeShow1() {
+      setIsTagModalShow(false)
       setShowInTitle(true)
     }
     function changeShow2() {
+      setIsTagModalShow(false)
+
         setShowInTitle(false);
      
     }
@@ -426,6 +491,7 @@ console.log('sddddddddddddddd')
           type:'blog',
           description:desc,
           username:user.username,
+          tags:selectedTag,
           length:desc.length,
           authorName:user.name,
           authorImage:user.image1,
@@ -445,6 +511,17 @@ console.log('sddddddddddddddd')
     };
     function createDraft(){
 
+    }
+    function handleCut(tagName){
+      let arr=selectedTag.filter((data)=>data!==tagName)
+      setSelectedTags([...arr])
+      let ele;
+      for(let i of tagsData){
+        if(i.tagName==tagName){
+          ele=i
+        }
+      }
+      setTags(prev=>[...prev,ele])
     }
   return (
     <div
@@ -480,7 +557,7 @@ console.log('sddddddddddddddd')
         <div
           className={`h-[100%] w-[1px] ${theme ? "bg-black" : "bg-white"}`}
         ></div>
-        <ReactQuill onFocus={changeShow1}  placeholder="Title"  ref={quillRef} className={` w-[100vw] ${theme?"text-black":"text-white"}`}  onChangeSelection={handleToolbar}  theme="snow" value={value} onChange={setValue} />
+        <ReactQuill  onFocus={changeShow1}  placeholder="Title"  ref={quillRef} className={` w-[100vw] ${theme?"text-black":"text-white"}`}  onChangeSelection={handleToolbar}  theme="snow" value={value} onChange={setValue} />
         {/* <input
           style={{height1,
             fontFamily:
@@ -521,7 +598,7 @@ console.log('sddddddddddddddd')
             )}
           </div>
         )}
-                  <ReactQuill  onFocus={changeShow2} ref={quillRef1} className={` w-[100vw] ${theme?"text-black quill-placeholder-light ":"text-white quill-placeholder-dark"}`}  placeholder="Write Something Amazing" onChangeSelection={handleToolbar1}  theme="snow" value={desc} onChange={setDesc} />
+                  <ReactQuill   onFocus={changeShow2} ref={quillRef1} className={` w-[100vw] ${theme?"text-black quill-placeholder-light ":"text-white quill-placeholder-dark"}`}  placeholder="Write Something Amazing" onChangeSelection={handleToolbar1}  theme="snow" value={desc} onChange={setDesc} />
 
         {/* <textarea
    onClick={changeShow}
@@ -544,6 +621,28 @@ console.log('sddddddddddddddd')
           ref={desc}
           show={changeShow}
         /> */}
+      </div>
+      <div className="flex flex-col gap-6 w-[100%] mt-[50px]">
+        <div className="w-[100%] justify-center flex gap-2 pl-[39px]">
+
+        {
+          selectedTag.map((data,index)=>{
+            return <p className={`min-w-[80px] p-[9px] ${index==0?"bg-[#eee9ef]":index==1?"bg-[#fffce8]":index==2?"bg-[#e5f2ea]":index==3?"bg-[#f3e5e5]":""} rounded-lg flex justify-between items-center`}>{data}<FaXmark className="cursor-pointer" onClick={()=>handleCut(data)}/></p>
+          })
+        }
+ {selectedTag.length<4 &&<input onClick={()=>setIsTagModalShow(true)} placeholder="Enter Upto 4 Tags" className={`bg-transparent border-b-[1px] placeholder:text-2xl pl-[20px] ml-[20px] pb-[10px] border-b-gray-500  ${selectedTag.length==0?"w-[90%]":selectedTag.length==1?"w-[60%]":selectedTag.length==2?"w-[40%]":selectedTag.length==3?"w-[20%]":selectedTag.length==4?"w-[40%]":""}`}/>     }   </div>
+     {
+      isTagModalShow && <div className=" pb-[20px] z-[10000] max-h-[200px] flex flex-col  overflow-scroll bg-slate-100 rounded-lg h-auto w-[90%]  left-[99px] absolute bottom-[84px]">
+      
+
+        {
+          tags.map((data)=>{
+          return <div  onClick={()=>handleTagClick(data)} className="pl-[20px]   pr-[20px] border-b-[1px] border-b-gray-400 p-[10px] cursor-pointer hover:bg-gray-200"><p className="text-[15px]">#{data.tagName}</p><p className="text-[15px]">{data.tagDescription}</p></div>
+          })
+        }
+        <FaXmark onClick={()=>setIsTagModalShow(false)} className="absolute right-[15px] cursor-pointer " size={"1.2rem"}/>
+      </div>
+     }
       </div>
     </div>
     <div className="w-[20%] justify-start max-md:justify-center max-md:w-[100%] flex">
