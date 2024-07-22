@@ -59,7 +59,6 @@ const AboutPage = ({ theme }) => {
               loop
               muted
               className="w-full h-full object-cover"
-              style={{ filter: "brightness(50%)" }}
             >
               <source src="/HelpOps-H.mp4" type="video/mp4" />
             </video>
