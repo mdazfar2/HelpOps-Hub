@@ -20,6 +20,7 @@ import {FaEllipsis,FaTrash} from 'react-icons/fa6'
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaEye, FaPen } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
   const [blogs, setBlogs] = useState([]);
@@ -34,6 +35,7 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
   const [modalIndex,setModalIndex]=useState(-1)
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
+  let tagSearch=useRef()
   const [confetti,setShowConfetti]=useState(false)
   let [tags,setTags]=useState([])
   const router = useRouter();
@@ -292,7 +294,10 @@ useEffect(()=>{
     setSortBy("reactions");
     setFilter("topPosts");
   };
-
+  const eventVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+  };
   const handleMustReadClick = () => {
     setFilter("mustRead");
   };
@@ -357,7 +362,19 @@ useEffect(()=>{
 setTimeout(()=>{setLoading(false)},4000)
   },[])
 
-  
+  function handleSearchChange(){
+    let value=tagSearch.current.value.toLowerCase()
+    if(value==""){
+      setTags(tagsData)
+      return
+    }
+    let arr=tagsData.filter((value1)=>{
+      if(value1.tagName.toLowerCase().includes(value)){
+        return value1
+      }
+    })
+    setTags([...arr])
+  }
 
   const toggleFollow =async (tagName) => {
     // Check if tag is already followed
@@ -628,6 +645,7 @@ setTimeout(()=>{setLoading(false)},4000)
                             className="text-2xl mb-2 font-normal max-sm:text-xl"
                             dangerouslySetInnerHTML={{ __html: blog.title }}
                           ></div>
+                        
                           <div onClick={() => navigateToBlogDetails(blog._id)}
                             className={`${
                               theme ? "text-gray-600" : "text-gray-300"
@@ -713,12 +731,18 @@ setTimeout(()=>{setLoading(false)},4000)
                     <div className="flex w-[100%]  gap-[30px] flex-wrap justify-center">
                       <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `} onClick={showFollow}>Following Tags</button>
                       <button className={`${theme?"bg-white":"bg-black border-[1px] border-white "} rounded-2xl shadow-md p-[10px] `} onClick={showHide}>Hidden Tags</button>
-                      <input className="p-[10px] placeholder:text-xl rounded-lg" placeholder="Search For Tag"/>
+                      <input onChange={handleSearchChange} className="p-[10px] placeholder:text-xl rounded-lg" placeholder="Search For Tag" ref={tagSearch}/>
                       </div>
            {
             tags.map((data)=>{
-
-                return  <div class={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
+                return  <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                whileHover={{ scale: 1.06 }}
+                viewport={{ once: true }}
+                variants={eventVariants}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                class={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
 
   <p class="cookieHeading">#{data.tagName}</p>
   <p class="cookieDescription">{data.tagDescription}</p>
@@ -740,7 +764,7 @@ setTimeout(()=>{setLoading(false)},4000)
               </button>
    </div> 
 
-</div>
+</motion.div>
             })
            }  
 
@@ -882,6 +906,7 @@ setTimeout(()=>{setLoading(false)},4000)
                           />
                           <div className="text-xs font-bold">{author.name}</div>
                         </div>
+
                         <div
                           className="text-sm font-normal"
                           dangerouslySetInnerHTML={{ __html: blog.title }}
