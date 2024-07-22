@@ -135,13 +135,8 @@ async   function func() {
     };
   }, [theme]);
 
-  // Maintance
-
-  const maintanance=()=>{
-    setMaintanance(true)
-    setTimeout(()=>{
-      setMaintanance(false)
-    },4000)
+  const handleDevopsForum=()=>{
+    router.push("/devopsforum");
   }
 
   // Navigate to the /resources page when "Get started" button is clicked
@@ -543,7 +538,7 @@ async   function func() {
             } ml-5 mt-8 cursor-pointer hover:scale-105 transition-all hover:translate-x-4`}
           >
             <div className="relative w-1/4 max-[450px]:w-2/4 max-lg:m-auto h-full">
-              <div className="text-black h-12 w-32 bg-white absolute z-10 text-2xl flex justify-center items-center" onClick={maintanance}>
+              <div className="text-black h-12 w-32 bg-white absolute z-10 text-2xl flex justify-center items-center" onClick={handleDevopsForum}>
                 Let's Go
               </div>
               <div className="h-12 w-32 absolute bg-black top-1.5 -left-1.5 z-0"></div>
