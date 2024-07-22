@@ -19,6 +19,7 @@ export default function CreateBlog({id}) {
     const [desc,setDesc]=useState('')
     const textareaRef = useRef('');
     let [isTagModalShow,setIsTagModalShow]=useState(false)
+    let [modal,setModal]=useState(false)
     const [draftId,setDraftId]=useState(id)
     const [height, setHeight] = useState('auto');
     const [isDraftSaved, setIsDraftSaved] = useState(false);
@@ -469,6 +470,10 @@ console.log('sddddddddddddddd')
         setShowInTitle(false);
      
     }
+    async function handleTagTaker(){
+      console.log('sdsdsd')
+      setModal(true)
+    }
    async function handleFormSubmit(){
     if(!isLogin){
       setIsPopup(true)
@@ -524,6 +529,7 @@ console.log('sddddddddddddddd')
       setTags(prev=>[...prev,ele])
     }
   return (
+   <>
     <div
     className={`flex flex-row items-start max-md:flex-col  ${
       theme ? "bg-slate-100" : "bg-[#1e1d1d]"
@@ -622,7 +628,7 @@ console.log('sddddddddddddddd')
           show={changeShow}
         /> */}
       </div>
-      <div className="flex flex-col gap-6 w-[100%] mt-[50px]">
+      {/* <div className="flex flex-col gap-6 w-[100%] mt-[50px]">
         <div className="w-[100%] justify-center flex gap-2 pl-[39px]">
 
         {
@@ -643,11 +649,11 @@ console.log('sddddddddddddddd')
         <FaXmark onClick={()=>setIsTagModalShow(false)} className="absolute right-[15px] cursor-pointer " size={"1.2rem"}/>
       </div>
      }
-      </div>
+      </div> */}
     </div>
     <div className="w-[20%] justify-start max-md:justify-center max-md:w-[100%] flex">
       <button
-      onClick={handleFormSubmit}
+      onClick={handleTagTaker}
         className={`p-2  pl-4 pr-4 rounded-md right-[-100px]  ${
           theme
             ? "bg-[#2e87b7] text-white"
@@ -664,5 +670,61 @@ console.log('sddddddddddddddd')
       {/* <button>Draft</button> */}
     </div>
   </div>
+  {
+    modal && <div className="auth-overlay" >
+    <div className="auth-modal" onClick={(e) => e.stopPropagation()}><div
+                  className={`bg-[rgba(255, 255, 255, 1)] border-dashed border-[2px] ${
+                    theme
+                      ? "bg-slate-100 border-black"
+                      : "bg-[#0f0c0c] whiteshadow border-white"
+                  } p-8 border-rounded1  lg:w-[600px] md:w-[500px] max-sm:h-auto   relative select`}>
+                      <h1
+                className={`text-center mt-[5px] ${
+                  theme ? "text-black" : "text-white"
+                } font-bold max-sm:mt-[20px] text-2xl `}
+                style={{fontFamily:"georgia"}}
+              >
+                Please Enter Tags
+              </h1>
+              <div className="flex flex-col gap-6 w-[100%] mt-[50px]">
+        <div className="w-[100%] justify-center flex-col-reverse flex gap-2 ">
+<div className="w-[100%] flex flex-wrap gap-4">
+
+        {
+          selectedTag.map((data,index)=>{
+            return <p className={`min-w-[80px] p-[9px] ${index==0?"bg-[#eee9ef]":index==1?"bg-[#fffce8]":index==2?"bg-[#e5f2ea]":index==3?"bg-[#f3e5e5]":""} rounded-lg flex justify-between items-center`}>{data}<FaXmark className="cursor-pointer" onClick={()=>handleCut(data)}/></p>
+          })
+        }
+</div>
+ {selectedTag.length<4 &&<input onClick={()=>setIsTagModalShow(true)} placeholder="Enter Upto 4 Tags" className={`bg-transparent border-b-[1px] placeholder:text-2xl pl-[20px]  pb-[10px] border-b-gray-500 w-[100%]`}/>     }   </div>
+     {
+      isTagModalShow && <div className=" pb-[20px] z-[10000] max-h-[200px] flex flex-col  overflow-scroll bg-slate-100 rounded-lg h-auto w-[100%]  left-[0px] absolute bottom-[200px]">
+      
+
+        {
+          tags.map((data)=>{
+          return <div  onClick={()=>handleTagClick(data)} className="pl-[20px]   pr-[20px] border-b-[1px] border-b-gray-400 p-[10px] cursor-pointer hover:bg-gray-200"><p className="text-[15px]">#{data.tagName}</p><p className="text-[15px]">{data.tagDescription}</p></div>
+          })
+        }
+        <FaXmark onClick={()=>setIsTagModalShow(false)} className="absolute right-[15px] cursor-pointer " size={"1.2rem"}/>
+      </div>
+     }
+      </div>
+              <button
+                    className={`w-[220px] h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 m-auto rounded-[18px] cursor-pointer gap-[18px] text-[19px] ${
+                      theme
+                        ? "bg-[#098CCD] border-none"
+                        : "bg-[#272525] border-white border whiteshadow"
+                    } max-sm:m-[auto] max-sm:mt-[20px]  font-semibold mt-[50px]`}
+                    onClick={handleFormSubmit}
+                  >
+                    Confirm Publish &nbsp;
+                   
+                  </button>
+                    </div>
+                  </div>
+                  </div>
+  }
+   </>
   )
 }
