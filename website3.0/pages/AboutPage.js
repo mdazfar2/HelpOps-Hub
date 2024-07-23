@@ -51,14 +51,14 @@ const AboutPage = ({ theme }) => {
   return (
     <div className={`w-full ${theme ? "bg-gray-100" : "bg-[#1e1d1d]"}`}>
       {/* Hero Section */}
-      <Section id="hero" className="h-screen flex items-center justify-center relative overflow-hidden">
+      <Section id="hero" className="h-[500px] md:h-screen flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 flex items-center justify-center">
           <div className="w-9/12 h-[75%] relative mt-[135px] max-lg:w-3/4 max-md:w-full aspect-video">
             <video
               autoPlay
               loop
               muted
-              className="w-full h-full object-cover"
+              className="md:w-full md:h-full w-auto h-auto object-cover"
             >
               <source src="/HelpOps-H.mp4" type="video/mp4" />
             </video>
