@@ -58,7 +58,7 @@ const AboutPage = ({ theme }) => {
               autoPlay
               loop
               muted
-              className="md:w-full md:h-full w-auto h-auto object-cover"
+              className="object-cover w-auto h-auto md:w-full md:h-full"
             >
               <source src="/HelpOps-H.mp4" type="video/mp4" />
             </video>
@@ -70,7 +70,7 @@ const AboutPage = ({ theme }) => {
       <Section id="what" className={`relative ${theme ? "bg-white" : "bg-[#292727]"}`}>
         <div className={`container mx-auto px-4 flex flex-col lg:flex-row items-center rounded-lg shadow-xl overflow-hidden ${theme ? "bg-white" : "bg-[#292727]"}`}>
           <motion.div
-            className="lg:w-1/2 order-2 lg:order-1 p-6 lg:p-10 ml-28"
+            className="order-2 p-6 ml-0 lg:w-1/2 lg:order-1 lg:p-10 md:ml-28"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -83,7 +83,7 @@ const AboutPage = ({ theme }) => {
             </p>
           </motion.div>
           <motion.div
-            className="lg:w-1/2 order-1 lg:order-2 relative p-4"
+            className="relative order-1 p-4 lg:w-1/2 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -91,7 +91,7 @@ const AboutPage = ({ theme }) => {
             <motion.img
               src="new/HelpOps-H Fevicon.webp"
               alt="HelpOps Logo"
-              className="w-full max-w-xs lg:max-w-sm mx-auto rounded-lg"
+              className="w-full max-w-xs mx-auto rounded-lg lg:max-w-sm"
               style={{ translateY: "-15px"}}
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{
@@ -106,23 +106,23 @@ const AboutPage = ({ theme }) => {
       </Section>
 
       {/* Our Mission Section */}
-      <Section id="mission" className="relative bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-10 lg:py-20">
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center bg-opacity-75 rounded-lg shadow-xl">
+      <Section id="mission" className="relative py-10 text-white bg-gradient-to-r from-indigo-500 to-purple-500 lg:py-20">
+        <div className="container flex flex-col items-center px-4 mx-auto bg-opacity-75 rounded-lg shadow-xl lg:flex-row">
           <motion.div
-            className="lg:w-1/2 mb-6 lg:mb-0 relative z-10 p-6 lg:p-10 ml-28"
+            className="relative z-10 p-6 mb-6 ml-0 lg:w-1/2 lg:mb-0 lg:p-10 md:ml-28"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 lg:mb-6">
+            <h2 className="mb-4 text-4xl font-bold lg:text-5xl lg:mb-6">
               Our Mission
             </h2>
-            <p className="text-lg lg:text-xl leading-relaxed text-justify">
+            <p className="text-lg leading-relaxed text-justify lg:text-xl">
               At HelpOps-Hub, we're on a mission to revolutionize the DevOps landscape. We're building a global community of innovators, problem-solvers, and tech enthusiasts. Our goal is to provide a platform where knowledge flows freely, collaboration thrives, and groundbreaking solutions are born.
             </p>
           </motion.div>
           <motion.div
-            className="lg:w-1/2 relative z-10 p-4"
+            className="relative z-10 p-4 lg:w-1/2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -130,7 +130,7 @@ const AboutPage = ({ theme }) => {
             <motion.img
               src="new/mission.webp"
               alt="Mission"
-              className="w-full max-w-xs lg:max-w-md mx-auto rounded-lg"
+              className="w-full max-w-xs mx-auto rounded-lg lg:max-w-md"
               style={{ translateY: "-15px" }}
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{
@@ -143,16 +143,16 @@ const AboutPage = ({ theme }) => {
           </motion.div>
         </div>
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent to-indigo-900 z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-transparent to-indigo-900"></div>
       </Section>
 
       {/* Benefits of HelpOps-Hub Section */}
       <Section id="benefits">
-        <div className="container mx-auto px-4">
+        <div className="container px-4 mx-auto">
           <h2 className={`text-5xl font-bold mb-16 text-center ${theme ? "text-indigo-700" : "text-white"}`}>
             Benefits of HelpOps-Hub
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 cursor-default">
+          <div className="grid grid-cols-1 gap-12 cursor-default md:grid-cols-2 lg:grid-cols-3">
             {/* Map through benefits array to create benefit cards */}
             {[
               { 
@@ -195,7 +195,7 @@ const AboutPage = ({ theme }) => {
               >
                 <div className="flex items-center justify-center mb-4">
                   <motion.div
-                    className="w-16 h-16 rounded-full flex items-center justify-center bg-indigo-600 text-white text-3xl"
+                    className="flex items-center justify-center w-16 h-16 text-3xl text-white bg-indigo-600 rounded-full"
                     whileHover={{
                       scale: 1.2,
                       rotate: [0, 10, -10, 0],
