@@ -25,11 +25,30 @@ export default function CreateBlog({id}) {
     const [height, setHeight] = useState('auto');
     const [isDraftSaved, setIsDraftSaved] = useState(false);
     const [draftLink,setDraftLink]=useState('')
+    let [ifSchedule,setISSchedule]=useState(false)
   let router=useRouter()
   const [value, setValue] = useState('');
-  
+  const datetime = useRef(null);
+
   const quillRef = useRef(null);
   const quillRef1 = useRef(null);
+  useEffect(() => {
+    if(ifSchedule){
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      
+      const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+      if(datetime){
+
+        datetime.current.min = currentDateTime;
+      }
+    }
+  }, [ifSchedule]);
   let tagsData=[
     {
       "tagName": "CI/CD",
@@ -475,40 +494,98 @@ console.log('sddddddddddddddd')
       console.log('sdsdsd')
       setModal(true)
     }
-   async function handleFormSubmit(){
-    if(!isLogin){
-      setIsPopup(true)
-      setMsg("Please Login First")
-      return
-    }
-    setLoading(true)
-    localStorage.setItem("showConfetti",true)
-    fetch('/api/getdraft',{
-      method:"DELETE",
-      body:JSON.stringify({
-        id:localStorage.getItem('draftId')
-      })
-    })
-    let user=await JSON.parse(localStorage.getItem("finalUser"))
-      await fetch('/api/blog',{
-        method:"POST",
+    async function handleFormSubmit(){
+      if(!isLogin){
+        setIsPopup(true)
+        setMsg("Please Login First")
+        return
+      }
+      setLoading(true)
+      fetch('/api/getdraft',{
+        method:"DELETE",
         body:JSON.stringify({
-          title:value,
-          image:isImg,
-          type:'blog',
-          description:desc,
-          username:user.username,
-          tags:selectedTag,
-          length:desc.length,
-          authorName:user.name,
-          authorImage:user.image1,
-          authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
-  
+          id:localStorage.getItem('draftId')
         })
       })
-      setLoading(false)
-      router.push('/blogs')
-    }
+      let user=await JSON.parse(localStorage.getItem("finalUser"))
+      if(!ifSchedule){
+  
+          await fetch('/api/blog',{
+            method:"POST",
+            body:JSON.stringify({
+              title:value,
+              image:isImg,
+              type:'blog',
+              description:desc,
+              username:user.username,
+              tags:selectedTag,
+              length:desc.length,
+              authorName:user.name,
+              authorImage:user.image1,
+              authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
+              
+            })
+          })
+          localStorage.setItem("showConfetti",true)
+
+      }else{
+        await fetch('/api/scheduleblog',{
+          method:"POST",
+          body:JSON.stringify({
+            title:value,
+            image:isImg,
+            type:'blog',
+            description:desc,
+            username:user.username,
+            tags:selectedTag,
+            datetime:datetime.current.value,
+            length:desc.length,
+            authorName:user.name,
+            authorImage:user.image1,
+            authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
+            
+          })
+        })
+
+      }
+        setLoading(false)
+        router.push('/blogs')
+      }
+  
+  //  async function handleFormSubmit(){
+  //   if(!isLogin){
+  //     setIsPopup(true)
+  //     setMsg("Please Login First")
+  //     return
+  //   }
+  //   setLoading(true)
+  //   localStorage.setItem("showConfetti",true)
+  //   fetch('/api/getdraft',{
+  //     method:"DELETE",
+  //     body:JSON.stringify({
+  //       id:localStorage.getItem('draftId')
+  //     })
+  //   })
+  //   let user=await JSON.parse(localStorage.getItem("finalUser"))
+  //     await fetch('/api/blog',{
+  //       method:"POST",
+  //       body:JSON.stringify({
+  //         title:value,
+  //         image:isImg,
+  //         type:'blog',
+  //         description:desc,
+  //         username:user.username,
+  //         tags:selectedTag,
+  //         length:desc.length,
+  //         authorName:user.name,
+  //         authorImage:user.image1,
+  //         authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
+  
+  //       })
+  //     })
+  //     setLoading(false)
+  //     router.push('/blogs')
+  //   }
     useEffect(() => {
       setHeight(`${textareaRef.current.scrollHeight}px`);
     }, [textareaRef.current.value]);
@@ -531,6 +608,7 @@ console.log('sddddddddddddddd')
       }
       setTags(prev=>[...prev,ele])
     }
+
   return (
    <>
     <div
@@ -691,7 +769,7 @@ console.log('sddddddddddddddd')
               </h1>
               <div className="flex flex-col gap-6 w-[100%] mt-[50px]">
         <div className="w-[100%] justify-center flex-col-reverse flex gap-2 ">
-<div className="w-[100%] flex flex-wrap gap-4">
+<div className="w-[100%] h-auto flex flex-wrap gap-4">
 
         {
           selectedTag.map((data,index)=>{
@@ -701,7 +779,7 @@ console.log('sddddddddddddddd')
 </div>
  {selectedTag.length<4 &&<input onClick={()=>setIsTagModalShow(true)} placeholder="Enter Upto 4 Tags" className={`bg-transparent border-b-[1px] placeholder:text-2xl pl-[20px]  pb-[10px] border-b-gray-500 w-[100%]`}/>     }   </div>
      {
-      isTagModalShow && <div className=" pb-[20px] z-[10000] max-h-[200px] flex flex-col  overflow-scroll bg-slate-100 rounded-lg h-auto w-[100%]  left-[0px] absolute bottom-[200px]">
+      isTagModalShow && <div className={` pb-[20px] z-[10000] max-h-[200px] flex flex-col  overflow-scroll bg-slate-100 rounded-lg h-auto w-[100%]  left-[0px] absolute ${!ifSchedule?"bottom-[200px]":"bottom-[280px]"}`}>
       
 
         {
@@ -713,12 +791,18 @@ console.log('sddddddddddddddd')
       </div>
      }
       </div>
+
+    {ifSchedule &&<div className="flex justify-center">
+        <input type="datetime-local" placeholder="Enter date time"  className="bg-transparent m-auto mt-[30px] mb-[30px] border-b-gray-400 border-b-[1px]  focus:outline-none " ref={datetime}></input></div>
+}
+      <div className="w-[100%] flex justify-around mt-4 items-center">
+
               <button
-                    className={`${!loading?"w-[220px]":"w-[300px]"} h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white mt-4 m-auto rounded-[18px] cursor-pointer gap-[18px] text-[19px] ${
+                    className={`${!loading?"w-[220px]":"w-[300px]"} h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white   rounded-[18px] cursor-pointer  text-[19px] ${
                       theme
                         ? "bg-[#098CCD] border-none"
                         : "bg-[#272525] border-white border whiteshadow"
-                    } max-sm:m-[auto] max-sm:mt-[20px]  font-semibold mt-[50px]`}
+                    } max-sm:m-[auto] max-sm:mt-[20px]  font-semibold `}
                     onClick={handleFormSubmit}
                   >
                     Confirm Publish &nbsp; {loading && (
@@ -731,6 +815,10 @@ console.log('sddddddddddddddd')
                 )}
                    
                   </button>
+                  <p className="text-gray-500 cursor-pointer" onClick={()=>setISSchedule(true)}>
+                    Schedule Post 
+                  </p>
+      </div>
                     </div>
                   </div>
                   </div>

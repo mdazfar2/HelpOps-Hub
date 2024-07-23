@@ -129,15 +129,15 @@ const ListView = ({ data, theme, handleShare, handleLike, likedFolders }) => {
                 <div className="flex items-center justify-between mt-2">
                   <div className="flex items-center gap-2">
                     <FaSave
-                     className={`${
-                      theme
-                        ? likedFolders.has(item.name)
-                          ? "text-gray-900 "
-                          : "text-gray-500"
-                        : likedFolders.has(item.name)
-                        ? "text-gray-500"
-                        : "text-gray-300"
-                    } transition-colors duration-300`}
+                      className={`${
+                        theme
+                          ? likedFolders.has(item.name)
+                            ? "text-gray-900 "
+                            : "text-gray-500"
+                          : likedFolders.has(item.name)
+                          ? "text-gray-500"
+                          : "text-gray-300"
+                      } transition-colors duration-300`}
                       size={"1.5rem"}
                       onClick={(e) => handleLike(e, item.name)}
                     />
@@ -181,7 +181,7 @@ function ResourcesPage({
   isLogin,
   setFinalUser,
   finalUser,
-  setColor
+  setColor,
 }) {
   // State variables to manage Data and Loading State
   const [originalData, setOriginalData] = useState([]);
@@ -727,7 +727,7 @@ function ResourcesPage({
   ];
 
   const toggleViewMode = () => {
-    setViewMode(prevMode => (prevMode === "card" ? "list" : "card"));
+    setViewMode((prevMode) => (prevMode === "card" ? "list" : "card"));
   };
   return (
     <div
@@ -834,7 +834,7 @@ function ResourcesPage({
                   onClick={toggleViewMode}
                   className="bg-white flex gap-2 items-center shadow-lg text-gray-600 rounded-lg px-6 py-2"
                 >
-                   {viewMode === "card" ? (
+                  {viewMode === "card" ? (
                     <>
                       <FaList />
                       List View
@@ -896,9 +896,8 @@ function ResourcesPage({
                               );
                               setMsg("Copied to Clipboard !");
                               setIsPopup(true);
-                              setColor("green")
+                              setColor("green");
                             }}
-
                             className={` w-28 h-12 p-2 ${
                               theme
                                 ? "bg-[#6089a4] text-white"
@@ -917,7 +916,7 @@ function ResourcesPage({
                   )}
                 </div>
               ) : (
-                <div className="w-screen">
+                <div className="w-[95vw]">
                   <div className="w-[80%] m-auto max-sm:w-[90%]">
                     <ListView
                       data={filteredData}

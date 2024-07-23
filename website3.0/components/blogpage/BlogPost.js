@@ -14,11 +14,11 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { Tooltip } from 'react-tooltip'
 
-import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping} from "react-icons/fa6";
+import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping, FaEllipsisVertical} from "react-icons/fa6";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
-import {FaHeart} from 'react-icons/fa6'
+import {FaHeart,FaPen} from 'react-icons/fa6'
 import { FaPaperPlane } from "react-icons/fa";
 import { comment } from "postcss";
 import { createGlobalStyle } from "styled-components";
@@ -76,6 +76,10 @@ function BlogPost() {
   let [isLiked,setIsLiked]=useState([])
   const router = useRouter();
   let [relatedUsers,setRelatedUsers]=useState([])
+  let [editCommentNumber,setEditCommentNumber]=useState(-1)
+  let [editValue,setEditValue]=useState('')
+  let [showOptions,setShowOptions]=useState(false)
+  let [optionsIndex,setOptionIndex]=useState(-1)
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -390,7 +394,7 @@ useEffect(()=>{
     let arr=comments
      arr=arr.filter((data,index1)=>index1!==index)
      setComments([...arr])
-    let res= await fetch("/api/deletecomment",{
+    let res= await fetch("/api/commentoperations",{
        method:"DELETE",
        body:JSON.stringify({
          id:id,
@@ -402,7 +406,32 @@ useEffect(()=>{
      setBlog(res.blog)
     
    }
- 
+   let edit=useRef()
+   async function handleEditComment(index,value){
+    console.log(index)
+    setEditCommentNumber(index)
+    setEditValue(value)
+    setShowOptions(false)
+    setOptionIndex(-1)
+   }
+   async function handleEditSubmit(index){
+    let arr=comments
+     arr[index].comment=editValue
+     setComments([...arr])
+    let res= await fetch("/api/commentoperations",{
+       method:"PUT",
+       body:JSON.stringify({
+         id:id,
+         index:index,
+         comment:editValue
+       })
+     })
+     res=await res.json()
+     setBlog(res.blog)
+     setEditCommentNumber(-1)
+     setEditValue('')
+    
+   }
   const otherBlogsByAuthor = otherBlogs.filter(
     (b) => b.authorName === blog.authorName
   );
@@ -1069,9 +1098,10 @@ data-tooltip-content="Reaction"
                     <div className="font-medium text-sm mb-1">
                       {comment.user.name}
                     </div>
-                    <p>{comment.comment}</p>
+                {!editCommentNumber==index ?    <p>{comment.comment}</p>:<><input value={editValue} className="p-3 w-[300px] border-gray-400 border-[1px]"   onChange={(e)=>setEditValue(e.target.value)}></input><button className="p-3 bg-blue-500 text-white rounded-lg ml-[20px]" onClick={()=>handleEditSubmit(index)}>Submit</button></>}
                   </div>
-              {finalUser.username==comment.user.username &&  <FaTrashCan size={"1rem"} onClick={()=>handleDeleteComment(index)} color="red" className=" cursor-pointer absolute top-[10px] right-[20px]"/>}
+              {finalUser.username==comment.user.username && <><FaEllipsisVertical  onClick={()=>{showOptions?setShowOptions(false):setShowOptions(true);setOptionIndex(index)}} size={"1.3rem"} className="cursor-pointer absolute top-[10px] right-[20px]"/></>}
+                {showOptions && optionsIndex==index&& <div className="absolute bg-slate-100 h-[100px] flex flex-col justify-center pl-[20px] gap-3 rounded-lg w-[200px] right-0 top-[1.8rem]"><p className="flex gap-2 cursor-pointer"  onClick={()=>handleDeleteComment(index)}><FaTrashCan size={"1rem"} color="red" className=" cursor-pointer "/>Delete Comment</p><p className="flex gap-2 cursor-pointer"  onClick={()=>handleEditComment(index,comment.comment)}><FaPen className=" cursor-pointer " color="black" size={'1rem'}/>Edit Comment</p></div> }
               </div>
                   <div className="flex gap-4 text-gray-600 font-medium">
                     <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'} color={`${isLiked[index]?"blue":""}`}  className="cursor-pointer" /></div>{comment.likes && <span>{comment.likes}</span>}

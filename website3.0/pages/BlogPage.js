@@ -645,7 +645,7 @@ setTimeout(()=>{setLoading(false)},4000)
                             className="text-2xl mb-2 font-normal max-sm:text-xl"
                             dangerouslySetInnerHTML={{ __html: blog.title }}
                           ></div>
-                         <div className="flex gap-[15px] ">
+                         <div className="flex gap-[10px] mb-[10px] flex-wrap">
                            {blog.tags && blog.tags.map(data=>{
                         console.log(data)
                         return <div className="text-[14px]">{"#"+data}</div>})}
