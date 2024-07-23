@@ -12,9 +12,7 @@ export async function POST(req) {
   await mongoose.connect(MONGO_URI);
   try {
     let data = await user.findOne({ _id: id });
-    console.log(id,'sdsdsdsdsd',data)
     // checking if user exist or not
-    console.log(data)
     if (data) {
       return NextResponse.json({ success: true, msg: data }, { status: "200" });
     } else {
