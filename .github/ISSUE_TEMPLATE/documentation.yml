@@ -1,18 +1,34 @@
-name: "📑 Documentation Update"
+name: "DevOps-Topic"
 description: "Improve Documentation"
-title: "DOC:"
-labels: [documentation]
+title: "Topic:"
+labels: 
+  - "DevOps Documentation"
 body:
   - type: textarea
     attributes:
-      label: "What's wrong with the existing documentation"
-      description: "Which things do we need to add or delete"
+      label: "Describe the types of DevOps topics you'd add in HelpOps-Hub Resource pages"
+      description: "Describe in 30 words or more."
     validations:
       required: true
+
   - type: textarea
     attributes:
-      label: "Add ScreenShots"
-      description: "Add sufficient SS to explain your issue."
+      label: "How many and what types of DevOps tools are you adding?"
+      description: "Write tools or technology name"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "How many years of experience do you have in the DevOps field?"
+      description: "Write the year or month with numerals (e.g., 3 years / 6 months+)"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "Could you share some screenshots or a video of your previous DevOps work?"
+      description: "It would be great to know what areas you'd like to contribute to"
     validations:
       required: false
 
@@ -23,4 +39,7 @@ body:
         - label: "I agree to follow this project's Code of Conduct"
           required: true
         - label: "I'm a GSSOC'24 contributor"
-        - label: "I want to work on this issue"
+        - label: "I'm a VSoC'24 contributor"
+        - label: "I'm DevOps professional"
+        - label: "Soon, I'll complete it and create a Pull Request."
+        - label: "I'm a beginner in DevOps, but I'll try to contribute the best resources with hands-on experience."

@@ -1,0 +1,93 @@
+/* Profile Component Styles */
+
+
+
+.form-group input::placeholder{
+  color: #1f1f1f;
+}
+
+
+.borderinput{
+  background-color: none;
+  background: none;
+  border-radius: 0px !important;
+  border:none;
+  border-bottom: solid 1px gray;
+}
+
+
+
+.dark-mode .close-btn{
+  color: #f5f5f5;
+}
+
+.dark-mode .profile-container{
+  background-color: #333;
+}
+
+.dark-mode .profile-container input{
+  border-bottom: 1px solid #f5f5f5;
+  color: #f5f5f5;
+}
+.dark-mode .profile-container .create-account-btn{
+  background-color: #ffa500;
+  color: black;
+}
+
+
+/* Responsiveness for smaller screens */
+@media screen and (max-width: 768px) {
+  
+  .profile-container h1 {
+    font-size: 22px;
+  }
+  .profile-container {
+    width: 400px;
+    height: auto;
+    min-height: 450px;
+    padding: 15px;
+  }
+  .profile-container img {
+    margin-left: 40%;
+    width: 20%;
+  }
+
+
+  .profile-container .form-group input {
+    width: 80%;
+
+    margin-left: 10%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile-container {
+    width: 300px;
+
+    min-height: 420px;
+  }
+
+  .profile-container h1 {
+    font-size: 20px;
+
+  }
+
+  .profile-container img {
+    margin-left: 35%;
+    width: 30%;
+  }
+  
+  .profile-container .create-account-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .profile-container .form-group input {
+    width: 90%;
+    font-size: 14px;
+    margin-left: 5%;
+  }
+
+}
+.adjusturl{
+  border-radius: 50%;
+}

@@ -24,7 +24,7 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
      Here in the below screenshot you can see the main argocd-server and then you have to expose this to `NodePort` 👇
    <br/>
    
-      ![service screenshot](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/7e8b8790-8418-4586-b473-27dd746aad82)
+![image](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/7e8b8790-8418-4586-b473-27dd746aad82)
 
 6. No go the edit service of 'argocd-server' and replace type 'ClusterIP' to 'NodePort'
    ```bash
@@ -33,7 +33,7 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
      You have to write it as written in the screenshot and then save. 👇
    <br/>
 
-      ![nodeport screenshot](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/dbed61fd-788d-4ae4-99ed-348f16b18863)
+![image](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/dbed61fd-788d-4ae4-99ed-348f16b18863)
    <br/>
    
       > If you deploy it using AKS or Eks then you must have to write `LoadBalancer`.
@@ -45,7 +45,7 @@ Once the cluster is running, you can install ArgoCD inside the cluster. You will
      Here you will find the exposed port as seen in the screenshot below.
    <br/>
 
-      ![Exposed port](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/b73c4912-9732-4634-a89e-6d483367619b)
+![image](https://github.com/mdazfar2/ShellScript-Toolkit/assets/100375390/b73c4912-9732-4634-a89e-6d483367619b)
 
 9. Now Copy that Port and paste it via your `<Public-IP:32236>`  & then Enter you will get ArgoCD dashboard
 10. Enter `admin` in username and for password use the below command-

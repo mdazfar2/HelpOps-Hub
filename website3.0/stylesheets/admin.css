@@ -1,0 +1,17 @@
+.popup-overlay {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .popup-overlay.visible {
+    opacity: 1;
+  }
+  
+  
+  .popup-content.visible {
+    transform: scale(1);
+  }
+  .popup-content {
+    transform: scale(0.9);
+    transition: transform 0.5s ease-in-out;
+  }

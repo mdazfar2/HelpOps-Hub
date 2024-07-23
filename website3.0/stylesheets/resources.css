@@ -1,0 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
+
+.dark-mode header  ul li{
+  color: white !important;
+}
+
+/* Individual folder card */
+
+.dark-mode .folder-card:hover {
+  box-shadow: 5px 5px 20px #ff9d00;
+  ;
+}
+
+.dark-mode .folder-card {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .folder-card {
+    flex: 0 0 calc(50% - 120px); 
+  }
+}
+
+@media (max-width: 576px) {
+  .folder-card {
+    flex: 0 0 calc(100% - 120px); 
+  }
+}
+
+/* Dark mode specific styles */
+body.dark-mode {
+  background: #353535 !important; 
+  color: #322d2d; 
+}
+.dark-mode .toggle-switch{
+  color: white;
+}
+.dark-mode .form-container {
+  background: #333333;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+@media only screen and (max-width: 409px) {
+  .toggle-switch {
+    position: fixed;
+    top: 15px;
+    left: 3% !important;
+  }
+}
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #aaa; 
+}
+
+.dark-mode #get-started-btn {
+  background-color: #fff;
+  color: #333;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .form-container {
+    background: #333333;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #aaa;
+  }
+
+  #get-started-btn {
+    background-color: #fff;
+    color: #333;
+  }
+} */
+
+/* Style for the search bar */
+
+
+/* Placeholder text color */
+#search-box.dark-mode {
+  background-color: #2c2c2c;
+}
+#search-bar.dark-mode {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+}
+
+/* Styles for Sort & Filter */
+
+.dark-mode .sort-options select, .dark-mode .filter-options select{
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+.dark-mode .sort-options label, .dark-mode .filter-options label {
+  color: #e0e0e0;
+}
+/* body{
+  background: linear-gradient(180deg, #FDD86C 8.1%, #FF7D1F 100%) !important;
+
+} */
+

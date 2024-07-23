@@ -1,0 +1,83 @@
+.ql-editor{
+    word-wrap: anywhere !important;
+    width: 100% !important;
+    z-index: 10000 !important;
+}
+.ql-toolbar{background-color: rgb(255, 255, 255) !important; 
+  z-index: 100000 !important;}
+  .classsa .ql-editor{
+    font-weight: 500;
+  }
+  .classsa .ql-editor p{
+    font-size: 40px !important;
+  }
+  .classsb .ql-editor p{
+    font-size: 33px !important;
+  }
+  .classsc .ql-editor.ql-blank::before 
+{
+color: white !important;
+}
+.classsa .ql-editor.ql-blank::before 
+{
+font-style: normal;
+    color: rgba(0,0,0,0.6);
+    left: 15px;
+    pointer-events: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: absolute;
+    right: 15px;
+    top: -5px !important;
+    font-size: 30px;
+  }
+ .classsa .ql-editor  p{
+    font-size: 50px !important;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500 !important;
+  } .classsb .ql-editor  p{
+    font-size: 30px !important;
+    font-weight: 100 !important;
+    font-family: "medium-content-serif-font",Georgia,Cambria,"Times New Roman",Times,serif;
+
+
+  }
+
+  .classsb .ql-editor.ql-blank::before {
+    color: rgba(0,0,0,0.6);
+    font-style: normal;
+
+    left: 15px;
+    pointer-events: none;
+    font-family:  'Times New Roman', Times, serif !important;
+    position: absolute;
+    right: 15px;
+    font-size: 24px;
+  }
+  .classsd .ql-editor.ql-blank::before {
+    color: white;
+    
+  }
+  .ql-editor{
+    border: none !important;
+  }
+  .ql-container{
+    border: none !important;
+    border-bottom: solid rgb(172, 167, 167) 1px !important;
+  }
+  .ql-toolbar{
+    visibility: hidden;
+  }
+  .classsa .ql-editor li{
+    font-size: 40px;
+  }
+  
+  .classsb .ql-editor li{
+    font-size: 30px;
+    font-weight: 100 !important;
+  }
+  .ql-editor ul{
+padding-left: 0px !important;
+  }
+  .ql-editor li{
+padding-left: 0.7em !important;
+  }

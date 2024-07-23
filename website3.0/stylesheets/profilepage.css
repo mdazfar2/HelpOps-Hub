@@ -1,0 +1,153 @@
+.main{
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+}
+/* .profile-page{
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-top: 250px;
+    padding: 80px 80px 60px 80px ;
+    flex-direction: column;
+    width: 50%;
+    min-width: 350px;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.195);
+} */
+.image-container{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: -180px;
+}
+.edit-profile{
+    position: absolute;
+    right: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    top:20px;
+    transition: all 0.3s ease-in-out;
+}
+.pen-icon{
+    font-size: 14px;
+}
+.edit-profile:hover{
+    color: rgb(36, 36, 160);
+    text-decoration: underline;
+}
+.profile-img{
+    border: 15px solid rgb(162, 160, 160);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+}
+.profile-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mail{
+    margin-top: 20px;
+    font-size: 12px;
+}
+.user-designation{
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+.user-caption{
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 10px;
+}
+.social-icons{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+   
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.social-icon-box{
+    width: 100%;
+    border-right: 1px solid rgb(94, 94, 94);
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: center;
+    transition: 0.3s all ease-in-out;
+}
+.social-icon-box:last-child{
+    border: none;
+}
+
+.social-icon-box:hover p{
+   transform: translateY(-5px);
+ 
+    
+}
+@media (max-width:900px) {
+    .edit-profile{
+        font-size: 14px;
+    }
+    .pen-icon{
+        font-size: 10px;
+    }
+    .username{
+        font-size: 28px;
+    }
+    .profile-page{
+        padding: 80px 20px 60px 20px;
+    }
+}
+@media (max-width:768px){
+    .profile-page{
+        padding: 80px 20px 40px 20px;
+    }
+    .profile-img{
+        width: 100px;
+        height: 100px;
+        border: 5px solid rgb(162, 160, 160);
+    }
+    .image-container{
+        margin-top: -130px;
+    }
+    .username{
+        font-size: 24px;
+    }
+    .mail{
+        font-size: 10px;
+        margin-top: 10px;
+    }
+    .edit-profile{
+        font-size: 12px;
+    }
+    .pen-icon{
+        font-size: 8px;
+    }
+    .user-designation{
+        font-size: 16px;
+    }
+    .user-caption{
+        font-size: 12px;
+    }
+    .social-icon-box{
+        font-size: 24px;
+    }
+}
+

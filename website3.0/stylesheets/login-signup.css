@@ -1,0 +1,336 @@
+/* Styles for Login auth-container */
+.custome-dotted{
+  border-style: dotted;
+  border-width: 4px;
+}
+.border-rounded1{
+  border-radius: 26px;
+
+}
+.whiteshadow{
+  box-shadow: 0px 0px 5px white ;
+}
+.aa{
+  background-color: rgba(255, 255, 255, 1);
+}
+.text-shad{
+  color: rgb(65, 65, 65);
+  font-weight: 600;
+  text-shadow: rgba(0,0,0,0.25) !important;
+}
+.background-none{
+  background: none;
+  border-radius: 0px !important;
+}
+.input-place::placeholder{
+  font-weight: 600 !important;
+  font-style: Roboto;
+  
+}
+
+
+.loader3 {
+display: flex;
+justify-content: center;
+align-items: center;
+--color: hsl(0, 0%, 87%);
+z-index: 10000 !important;
+--animation: 2s ease-in-out infinite;
+}
+
+.loader3 .circle {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+width: 20px;
+height: 20px;
+border: solid 2px var(--color);
+border-radius: 50%;
+margin: 0 10px;
+background-color: transparent;
+animation: circle-keys var(--animation);
+}
+
+.loader3 .circle .dot {
+position: absolute;
+transform: translate(-50%, -50%);
+width: 16px;
+height: 16px;
+border-radius: 50%;
+background-color: var(--color);
+animation: dot-keys var(--animation);
+}
+
+.loader3 .circle .outline {
+position: absolute;
+transform: translate(-50%, -50%);
+width: 20px;
+height: 20px;
+border-radius: 50%;
+animation: outline-keys var(--animation);
+}
+.dark-mode .login-auth-container {
+  background-color: #333;
+}
+
+
+.dark-mode .login-auth-container input {
+  border-bottom: 1px solid #f5f5f5;
+  color: #f5f5f5;
+}
+.dark-mode .login-btn{
+  background-color: #ff8c00;
+}
+.dark-mode .login-auth-container button {
+  color: black;
+}
+
+
+.login-signup-link{
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.login-signup-link:hover{
+  color: #1c1c1b;
+  text-decoration: underline;
+}
+
+.forgot-password{
+  cursor: pointer;
+}
+
+.forgot-password:hover{
+  text-decoration: underline;
+}
+
+
+/* Styles for Signup auth container */
+
+
+
+
+.signup-auth-container h5 {
+  font-family: cursive;
+
+}
+
+
+.signup-auth-container p {
+  text-align: center;
+  margin-top: 15px;
+  font-family: cursive;
+  font-size: 16px;
+}
+.signup-auth-container img {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+}
+
+.signup-auth-container .github-btn img{
+  width: 35px;
+  height: 30px;
+}
+
+
+.signup-auth-container input::placeholder {
+  color: #1f1f1f;
+}
+.signup-auth-container input {
+  width: 65%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+  color: black;
+  margin-left: 70px;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+
+.signup-auth-container .google-btn{
+  margin-top: 50px;
+}
+.google-btn1:hover , .github-btn1:hover{
+  box-shadow: inset 0 0 0 150px #0000001a !important;
+}
+.google-btn2:hover , .github-btn2:hover{
+  box-shadow: inset 0 0 0 150px #ffffff1a !important;
+}
+.signup-auth-container button {
+  width: 65%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 18px;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 70px;
+  gap: 18px;
+}
+
+.signup-auth-container .google-btn{
+  margin-top: 50px;
+}
+.google-btn1:hover , .github-btn1:hover{
+  box-shadow: inset 0 0 0 150px #0000001a !important;
+}
+.continue-btn:hover,.login-btn:hover{
+  background-color: #024d82 !important;
+}
+.signup-auth-container .close-btn {
+  position: absolute;
+  top: -15px;
+  right: -135px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.signup-auth-container a{
+  position: absolute;
+  right: 110px;
+  font-size: 13px;
+}
+
+.signup-auth-container .continue-btn{
+  width: 210px;
+  padding: 10px;
+  position: relative;
+  left: 50px;
+  background-color: rgb(21, 21, 22);
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+
+.dark-mode .signup-auth-container input{
+  border-bottom: 1px solid #f5f5f5;
+  color: #f5f5f5;
+}
+.dark-mode .signup-auth-container button {
+  color: black;
+}
+.dark-mode .signup-auth-container{
+  background-color: #333;
+}
+
+
+.dark-mode .continue-btn{
+  background-color: #ff8c00;
+}
+
+.dark-mode .login-auth-container .close-btn,
+.dark-mode .signup-auth-container .close-btn{
+  color: #f5f5f5;
+}
+
+
+@media screen and (max-width: 600px) {
+  .login-auth-container,
+  .signup-auth-container {
+    width: 350px !important;
+   margin: 0px !important;
+   
+  }
+.eye1{
+  right: 12% !important;
+}
+  .login-auth-container h1,
+  .signup-auth-container h1 {
+    font-size: 18px;
+  }
+
+  .login-auth-container p,
+  .signup-auth-container p {
+    font-size: 14px;
+  }
+
+  .login-auth-container input,
+  .signup-auth-container input {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .login-auth-container button,
+  .signup-auth-container button {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .login-auth-container .close-btn{
+    right: -120px !important;
+  }
+  
+    .login-auth-container .login-btn,
+    .signup-auth-container .continue-btn {
+      left: 0;
+      width: 80%;
+    }
+
+  
+  .login-auth-container,
+  .signup-auth-container {
+    overflow: visible !important;
+  }
+  .login-auth-container a,
+.signup-auth-container a {
+  position: static !important;
+  display: block !important;
+  text-align: center !important;
+  margin: 10px auto !important;
+  right: auto !important;
+  font-size: 12px !important;
+  width: 80% !important;
+  max-width: 200px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: visible !important;
+}
+}
+
+@media screen and (max-width: 410px) {
+
+  .login-auth-container,
+  .signup-auth-container{
+      margin-top: 20px;
+  }
+
+  .login-auth-container h1,
+  .signup-auth-container h1 {
+    font-size: 16px;
+  }
+
+  .login-auth-container p,
+  .signup-auth-container p {
+    font-size: 12px;
+  }
+
+  .signup-auth-container h5 {
+    font-size: 14px;
+  }
+
+  .login-auth-container button,
+  .signup-auth-container button {
+    font-size: 14px;
+  }
+
+  .login-auth-container .close-btn{
+    right: -120px !important;
+  }
+  .login-auth-container .close-btn,
+  .signup-auth-container .close-btn {
+    position: absolute;
+    top: -10px;
+    right: -120px !important;
+  }
+  .login-auth-container a,
+  .signup-auth-container a {
+  font-size: 11px !important;
+ }
+}
