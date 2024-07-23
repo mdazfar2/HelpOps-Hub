@@ -22,7 +22,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { FaEye, FaPen } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
+function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject }) {
   const [blogs, setBlogs] = useState([]);
   const [authorDetails, setAuthorDetails] = useState({});
   const [error, setError] = useState("");
@@ -100,13 +100,26 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("/api/blog", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
+        let response;
+        if(subject){
+           response = await fetch("/api/filterblogs", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body:JSON.stringify({id:subject})      
+          });
+        }else{
+           response = await fetch("/api/blog", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "isId":subject
+            },
+          });
+        }
+        console.log("THE ID IF SJSIDSD",subject)
+       
         if (response.ok) {
           const data = await response.json();
           const sortedBlogs = data.data.sort((a, b) => {
@@ -164,7 +177,7 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
     };
 
     fetchBlogs();
-  }, [sortBy]);
+  }, [sortBy,subject]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -745,10 +758,11 @@ setTimeout(()=>{setLoading(false)},4000)
                 whileHover={{ scale: 1.06 }}
                 viewport={{ once: true }}
                 variants={eventVariants}
+                
                 transition={{ duration: 0.2, ease: "easeInOut" }}
                 class={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
 
-  <p class="cookieHeading">#{data.tagName}</p>
+  <p class="cookieHeading cursor-pointer hover:text-blue-500 hover:underline" onClick={()=>{router.push(`/blogs?subject=${data.tagName}`);window.location.reload()}}>#{data.tagName}</p>
   <p class="cookieDescription">{data.tagDescription}</p>
   <div className="flex justify-between w-[100%]">
 
@@ -780,7 +794,7 @@ setTimeout(()=>{setLoading(false)},4000)
         </div>
 
         {/* Sidebar for larger screens */}
-        <div className="hidden lg:flex flex-col gap-5 border-l-[1px] w-[40%] pl-10 border-gray-300">
+        <div className="hidden  lg:flex flex-col gap-5 border-l-[1px] w-[40%] pl-10 border-gray-300">
           <div
             className={`${
               theme ? "text-black" : "text-gray-300"
@@ -871,7 +885,7 @@ setTimeout(()=>{setLoading(false)},4000)
         {/* Sidebar for smaller screens */}
         {sidebarOpen && (
           <div
-            className={`fixed lg:hidden flex flex-col gap-5 bg-white dark:bg-black h-full w-64 top-0 right-0 z-50 transition-transform duration-200 ${
+            className={`fixed lg:hidden flex flex-col gap-5 ${theme?"bg-[#f4f4f4]":"bg-black"} h-full w-64 top-0 right-0 z-50 transition-transform duration-200 ${
               sidebarOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
