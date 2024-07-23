@@ -21,11 +21,26 @@ import {
 import {FaHeart} from 'react-icons/fa6'
 import { FaPaperPlane } from "react-icons/fa";
 import { comment } from "postcss";
+import { createGlobalStyle } from "styled-components";
 const regularIcons = {
   Heart: regularHeart,
   Comment: regularComment,
   Save: regularBookmark,
 };
+
+const GlobalStyle = createGlobalStyle`
+  @media not all and (min-width: 1024px) {
+    body {
+      padding-bottom: 80px;
+    }
+  }
+  
+  @media not all and (min-width: 640px) {
+    body {
+      padding-bottom: 60px;
+    }
+  }
+`;
 
 function BlogPost() {
   const [blog, setBlog] = useState({});
@@ -740,15 +755,17 @@ function handleError(){
   document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
 }
   return (
+    <>
+    <GlobalStyle />
     <div
       className={`${
         theme ? "bg-[#F3F4F6]" : " bg-[#1e1d1d]"
-      } transition-colors duration-500 pt-48 flex`}
+      } transition-colors duration-500 pt-48 flex flex flex-col lg:flex-row max-lg:pt-24 max-md:pt-16`}
     >
-      <div className="w-[10%]">
-        <div className="fixed left-24 top-60">
-          <div className="relative flex flex-col items-center space-y-4">
-            <div className="space-y-4">
+      <div className="w-[10%] max-lg:w-full max-lg:order-3">
+        <div className={`fixed left-24 top-60 max-lg:flex max-lg:fixed max-lg:justify-center max-lg:mt-8 max-lg:left-0 max-lg:right-0 max-lg:top-auto max-lg:bottom-0 ${ theme ? "max-lg:bg-[#ccc]" : "max-lg:bg-[#3a3a3a]"} max-lg:pt-[9px] max-lg:z-[100]`}>
+          <div className="relative flex flex-col items-center space-y-4 max-lg:flex-row max-lg:space-y-0 max-lg:space-x-4 max-lg:gap-[70px] max-md:gap-[50px] max-[425px]:gap-[40px]">
+            <div className="space-y-4 max-lg:flex max-lg:flex-row max-lg:space-y-0 max-lg:space-x-4 max-lg:gap-[70px] max-md:gap-[50px] max-[425px]:gap-[40px]">
               {panelIcons.slice(0, 3).map((panelIcon, index) => (
                
                <div
@@ -791,7 +808,7 @@ function handleError(){
                           } `
                         : " text-white "
                     } \
-        text-[20px]
+        text-[20px]  max-[635px]:text-[25px] sm:text-[35px]
       `}
 
                   />
@@ -812,7 +829,7 @@ function handleError(){
                         } `
                       : " text-white "
                   } \
-      text-[20px]
+      text-[20px] max-[425px]:text-[25px] sm:text-[35px]
     `}data-tooltip-id="heart"
 data-tooltip-content="Reaction"
                 />}
@@ -820,7 +837,7 @@ data-tooltip-content="Reaction"
                   <span
                     className={`${
                       theme ? "text-gray-900 " : " text-white "
-                    } my-2 text-sm`}
+                    } my-2 text-sm s`}
                   >
                     
                     {index == 2 ? commentCount : panelIcon.count}
@@ -831,7 +848,7 @@ data-tooltip-content="Reaction"
             </div>
             {hovered && (
               <div
-                className="absolute top-0 left-full flex bg-white shadow-lg rounded-lg p-4"
+                className="absolute top-0 left-full flex bg-white shadow-lg rounded-lg p-4 max-lg:left-0"
                 onMouseEnter={handleMouseEnterPanel}
                 onMouseLeave={handleMouseLeavePanel}
                 ref={panelRef}
@@ -874,7 +891,9 @@ data-tooltip-content="Reaction"
 
                    Share On Linkedin </LinkedinShareButton></p>
                   </div>}
-           <FaArrowUpFromBracket  data-tooltip-id="aa" data-tooltip-content="Share" size={'1.5rem'} color={`${theme?"black":"white"} `} className="cursor-pointer" onClick={()=>isSHare?setIsShare(false):setIsShare(true)}/>
+                  <div>
+           <FaArrowUpFromBracket  data-tooltip-id="aa" data-tooltip-content="Share" size={'1.5rem'} color={`${theme?"black":"white"} `} className="cursor-pointer max-lg:mb-[29px] max-lg:w-[2rem] max-lg:h-[2rem] max-sm:w-[1.5rem] max-sm:h-[1.5rem]" onClick={()=>isSHare?setIsShare(false):setIsShare(true)}/>
+           </div>
            <Tooltip id="aa"/>
 
           </div>
@@ -884,16 +903,16 @@ data-tooltip-content="Reaction"
       <div
         className={`${
           theme ? "bg-white text-black " : " bg-[#0f0e0e] text-white "
-        } transition-colors duration-500 w-[55%] shadow-lg rounded-lg`}
+        } transition-colors duration-500 w-[55%] shadow-lg rounded-lg max-lg:w-full max-lg:order-1`}
       >
         <img
           src={blog.image}
           alt={blog.title}
           onError={handleError}
           id="image-section"
-          className="w-full h-96 object-cover mb-5 rounded-lg"
+          className="w-full h-96 object-cover mb-5 rounded-lg max-md:mt-[30px] max-md:p-[8px]"
         />
-        <div className="px-10">
+        <div className="px-10 max-[425px]:px-8">
           <div
             className="flex items-center mb-5 cursor-pointer"
             
@@ -945,12 +964,12 @@ data-tooltip-content="Reaction"
               </span>
             </div>
           </div>
-          <h1 className="text-4xl font-normal mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>
+          <h1 className="text-4xl max-md:text-3xl max-[425px]:text-2xl font-normal mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>
           <div className="text-gray-600 mb-5">{blog.introduction}</div>
           <div className="mb-5">
             {blog.sections?.map((section, index) => (
               <div key={index} className="mb-5">
-                <h2 className="text-2xl font-semibold mb-3">
+                <h2 className="text-2xl max-[425px]:text-xl font-semibold mb-3">
                   {section.heading}
                 </h2>
                 
@@ -986,55 +1005,55 @@ data-tooltip-content="Reaction"
           <div className="flex gap-[20px] mb-[30px] ">
                            {blog.tags && blog.tags.map(data=>{
                         console.log(data)
-                        return <div className="text-[14px]">{"#"+data}</div>})}
+                        return <div className="text-[14px] max-sm:text-[13px] max-[425px]:text-[12px]">{"#"+data}</div>})}
                           </div>
-          <div className="pb-10" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
+          <div className="pb-10 " dangerouslySetInnerHTML={{ __html: blog.description }}></div>
           <hr className="w-full h-1 pb-5" />
-          <div className="text-2xl font-bold pb-5" id="comment">Top Comments</div>
-             <div className="flex items-center justify-center mb-4">
-      <img
-        src={
-          finalUser.image1?.length > 0
-            ? finalUser.image1
-            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
-        }
-        alt={blog.authorName}
-        className="w-10 h-10 rounded-full mr-3"
-      />
-      <input
-        type="text"
-        ref={inputRef}
-        className="w-full p-4 border-[1px] border-gray-300 rounded-lg"
-        placeholder="Add to the Discussion"
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
-      <FaPaperPlane
-        onClick={handleAddComment}
-        className="relative right-[50px] cursor-pointer z-50"
-        color="blue"
-        size={"2rem"}
-      />
-       {showUserList && (
-        <div
-          style={{
-            position: "absolute",
-            top: cursorPosition.y-relatedUsers.length*30,
-            left: cursorPosition.x,
-            border: "1px solid #ccc",
-            backgroundColor: "#fff",
-            borderRadius:"20px",
-            padding:"15px",
-            zIndex: 1000,
-            height:"auto"
-          }}
-        >
-          {/* Your modal content goes here */}
-      { relatedUsers.map(data=>   <p className="cursor-pointer border-b-[1px] pb-[5px] pt-[5px] border-b-gray-200 border-b-solid"  onClick={()=>handleSetUser(data)}>{data}</p>)}
-        </div>
-      )}
-    </div>
+          <div className="text-2xl font-bold pb-5 max-[425px]:text-xl" id="comment">Top Comments</div>
+             <div className="flex items-center justify-center mb-4 max-[425px]:mb-2">
+              <img
+                src={
+                  finalUser.image1?.length > 0
+                    ? finalUser.image1
+                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
+                }
+                alt={blog.authorName}
+                className="w-10 h-10 rounded-full mr-3 max-[425px]:mb-2 max-[425px]:mr-6"
+              />
+              <input
+                type="text"
+                ref={inputRef}
+                className="w-full p-4 border-[1px] border-gray-300 rounded-lg max-[425px]:mb-2"
+                placeholder="Add to the Discussion"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                onKeyPress={handleKeyPress}
+              />
+              <FaPaperPlane
+                onClick={handleAddComment}
+                className="relative right-[50px] cursor-pointer z-50 max-[425px]:right-[35px]"
+                color="blue"
+                size={"2rem"}
+              />
+               {showUserList && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: cursorPosition.y-relatedUsers.length*30,
+                    left: cursorPosition.x,
+                    border: "1px solid #ccc",
+                    backgroundColor: "#fff",
+                    borderRadius:"20px",
+                    padding:"15px",
+                    zIndex: 1000,
+                    height:"auto"
+                  }}
+                >
+                  {/* Your modal content goes here */}
+                  { relatedUsers.map(data=>   <p className="cursor-pointer border-b-[1px] pb-[5px] pt-[5px] border-b-gray-200 border-b-solid"  onClick={()=>handleSetUser(data)}>{data}</p>)}
+               </div>
+                )}
+          </div>
           <div className="border-gray-300 rounded-xl mb-10 w-full h-[500px] p-5 overflow-y-auto">
             {comments.length > 0 ? (
               comments.map((comment, index) => (
@@ -1045,10 +1064,7 @@ data-tooltip-content="Reaction"
                   className="bg-white text-black flex flex-col gap-4 p-4 mb-4 rounded-lg shadow"
                 >
              <div className="flex relative">
-                   <img
-src={comment?.user?.image }    
-                className="w-10 h-10 rounded-full mr-3"
-                  />
+                   <img src={comment?.user?.image } className="w-10 h-10 rounded-full mr-3" />
                   <div>
                     <div className="font-medium text-sm mb-1">
                       {comment.user.name}
@@ -1068,12 +1084,14 @@ src={comment?.user?.image }
                
                    <div className="flex gap-2  pl-[50px]">
                    <input
-              type="text"
-              className="w-full p-4 border-[1px] border-gray-300 rounded-lg"
-              placeholder="Add a Comment"
-              id={index}
-             
-            /> <button onClick={()=>handleAddReply(index)} className="border bg-blue-500  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">Submit</button>
+                      type="text"
+                      className="w-full p-4 border-[1px] border-gray-300 rounded-lg"
+                      placeholder="Add a Comment"
+                      id={index}
+                   /> 
+                    <button onClick={()=>handleAddReply(index)} className="border bg-blue-500  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
+                      Submit
+                    </button>
                     </div>
                     <div className="h-[auto]  pl-[50px]">
                     {
@@ -1096,7 +1114,7 @@ src={comment?.user?.image }
         </div>
       </div>
 
-      <div className="w-[25%] ml-5">
+      <div className="w-[25%] ml-5 max-lg:w-full max-lg:ml-0 max-lg:mt-5 max-lg:order-2 max-lg:p-[15px] ">
         <div
           className={`${
             theme ? "bg-white" : " bg-[#e2e2e2]"
@@ -1228,6 +1246,7 @@ src={comment?.user?.image }
         </div>
       </div>
     </div>
+    </>
   );
 }
 

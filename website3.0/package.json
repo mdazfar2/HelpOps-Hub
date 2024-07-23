@@ -47,6 +47,7 @@
     "rellax": "^1.12.1",
     "resend": "^3.4.0",
     "showdown": "^2.1.0",
+    "styled-components": "^6.1.12",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

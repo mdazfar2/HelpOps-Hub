@@ -340,7 +340,7 @@ const Header = () => {
               <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
                 <FontAwesomeIcon
                   icon={faPen}
-                  className="max-md:w-5 max-md:h-5"
+                  className={`max-md:w-5 max-md:h-5 ${theme ? "max-md:text-[#555]" : "max-md:text-[#333]"}`}
                 />
               </div>
               <span className="max-md:hidden">Create Blog</span>
