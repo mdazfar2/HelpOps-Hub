@@ -849,7 +849,7 @@ function handleError(){
                           } `
                         : " text-white "
                     } \
-        text-[20px]  max-[635px]:text-[25px] sm:text-[35px]
+        text-[20px]  max-[635px]:text-[25px] max-sm:text-[35px]
       `}
 
                   />
@@ -870,7 +870,7 @@ function handleError(){
                         } `
                       : " text-white "
                   } \
-      text-[20px] max-[425px]:text-[25px] sm:text-[35px]
+      text-[20px] max-[425px]:text-[25px] max-sm:text-[35px]
     `}data-tooltip-id="heart"
 data-tooltip-content="Reaction"
                 />}
@@ -1160,7 +1160,7 @@ data-tooltip-content="Reaction"
         <div
           className={`${
             theme ? "bg-white" : " bg-[#e2e2e2]"
-          } h-[400px] rounded-xl overflow-hidden`}
+          } h-auto rounded-xl overflow-hidden`}
         >
           {/* <img src="/banner.png" alt="" /> */}
           <div className="w-full  h-10"></div>
