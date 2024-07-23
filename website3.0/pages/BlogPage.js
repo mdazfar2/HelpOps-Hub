@@ -871,7 +871,7 @@ setTimeout(()=>{setLoading(false)},4000)
         {/* Sidebar for smaller screens */}
         {sidebarOpen && (
           <div
-            className={`fixed lg:hidden flex flex-col gap-5 bg-white ${theme?"bg-[#f4f4f4]":"bg-black"} h-full w-64 top-0 right-0 z-50 transition-transform duration-200 ${
+            className={`fixed lg:hidden flex flex-col gap-5 ${theme?"bg-[#f4f4f4]":"bg-black"} h-full w-64 top-0 right-0 z-50 transition-transform duration-200 ${
               sidebarOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
