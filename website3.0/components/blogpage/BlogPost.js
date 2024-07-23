@@ -778,7 +778,19 @@ useEffect(()=>{
     },1000)
   }
 
-  
+  function dateFormat(createdAtString){
+    const createdAtDate = new Date(createdAtString);
+
+const options = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+};
+
+const formattedDate = createdAtDate.toLocaleDateString('en-US', options);
+return formattedDate
+  }
+
 function handleError(){
   
   document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
@@ -1151,7 +1163,7 @@ data-tooltip-content="Reaction"
           } h-[400px] rounded-xl overflow-hidden`}
         >
           {/* <img src="/banner.png" alt="" /> */}
-          <div className="w-full bg-[#000000] h-10"></div>
+          <div className="w-full  h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
             <img
               src={
@@ -1186,13 +1198,35 @@ data-tooltip-content="Reaction"
           <div
             className={`${
               theme ? "bg-gray-100" : "bg-[#9d9d9d]"
-            } flex flex-col items-center m-5 p-5 h-52`}
+            } flex flex-col m-5 p-5 h-52`}
           >
             {/* Conditionally render fetchedUser content if it exists */}
             {fetchedUser ? (
               <>
-                <div className="text-lg font-bold mb-2">
-                  {fetchedUser.designation}
+                  <div className="overflow-hidden flex text-[15px] flex-col items-start gap-2 text-gray-600 font-bold mb-2">
+              <span>Designation</span>
+              {
+  fetchedUser.designation.length > 50 && (
+    <div className="flex flex-col overflow-hidden">
+      <span className="font-medium">{fetchedUser.designation.substring(0, 31)}</span>
+      <span key="truncated" className="font-medium ">
+        {fetchedUser.designation.substring(31,fetchedUser.designation.length>60?60:fetchedUser.designation.length)}{fetchedUser.designation.length>60?"...":''}
+      </span>
+    </div>
+  ) 
+ }
+ {!fetchedUser.designation.length>50 && (
+    <span key="full" className="font-medium">
+      {fetchedUser.designation}
+    </span>
+  )
+}
+
+                </div>
+                <div className="flex text-[15px] flex-col items-start gap-2 text-gray-600 font-bold mb-2">
+                  <span>Joined</span>
+                  <span className="font-medium">{dateFormat(fetchedUser.createdAt)}</span>
+
                 </div>
                 <div className="text-lg text-center">{fetchedUser.caption}</div>
                 <div className="flex gap-5 mt-5 text-2xl">
