@@ -320,7 +320,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
 
         <div className="w-full h-72 overflow-hidden">
           <img
-            src="/default_banner.png"
+            src={finalUser.banner}
             alt="banner"
             className="w-full h-full object-cover object-center"
           />
@@ -480,6 +480,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
               userData={userData}
               onSave={handleSaveChanges}
               img={finalUser.image1}
+              banner={finalUser.banner}
             />
           )}
           {isShare && (

@@ -19,6 +19,7 @@ export const GlobalContext = ({ children }) => {
   let [msg, setMsg] = useState("sddddddddddddddddddddddddddddd");
   let [color, setColor] = useState("red");
   let [searchedBlog, setSearchedBlog] = useState("");
+  let [isReadNotif, setisReadNotif] = useState(0);
   useEffect(() => {
     console.log(theme);
   }, [theme]);
@@ -62,6 +63,8 @@ export const GlobalContext = ({ children }) => {
         setTheme,
         searchedBlog,
         setSearchedBlog,
+        isReadNotif,
+        setisReadNotif
       }}
     >
       {children}

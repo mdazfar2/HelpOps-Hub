@@ -11,6 +11,10 @@ const notificationModel = new mongoose.Schema({
       dateTime: {
         type: Date,
         default: Date.now
+      },
+      isRead: {
+        type: Boolean,
+        default: false
       }
     }
   },
@@ -20,9 +24,13 @@ const notificationModel = new mongoose.Schema({
       dateTime: {
         type: Date,
         default: Date.now
+      },
+      isRead: {
+        type: Boolean,
+        default: false
       }
     }
-  }
+  },
 });
 
 const Notifications = mongoose.models.notifications || mongoose.model("notifications", notificationModel);
