@@ -1206,7 +1206,7 @@ data-tooltip-content="Reaction"
                   <div className="overflow-hidden flex text-[15px] flex-col items-start gap-2 text-gray-600 font-bold mb-2">
               <span>Designation</span>
               {
-  fetchedUser.designation.length > 50 && (
+  fetchedUser.designation.length > 30 && (
     <div className="flex flex-col overflow-hidden">
       <span className="font-medium">{fetchedUser.designation.substring(0, 31)}</span>
       <span key="truncated" className="font-medium ">
@@ -1215,7 +1215,7 @@ data-tooltip-content="Reaction"
     </div>
   ) 
  }
- {!fetchedUser.designation.length>50 && (
+ {!fetchedUser.designation.length>30 && (
     <span key="full" className="font-medium">
       {fetchedUser.designation}
     </span>
@@ -1228,7 +1228,7 @@ data-tooltip-content="Reaction"
                   <span className="font-medium">{dateFormat(fetchedUser.createdAt)}</span>
 
                 </div>
-                <div className="text-lg text-center">{fetchedUser.caption}</div>
+                {/* <div className="text-lg text-center">{fetchedUser.caption}</div> */}
                 <div className="flex gap-5 mt-5 text-2xl">
                   {fetchedUser.github && (
                     <a

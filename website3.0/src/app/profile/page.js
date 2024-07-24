@@ -23,6 +23,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import GrowYourReachTab from "@components/profile/GrowYourReachTab";
 import { FaX, FaBars } from "react-icons/fa6";
+import DashboardTab from "@components/profile/DashboardTab";
 
 // Define animation variants for menu
 const menuVariants = {
@@ -45,7 +46,7 @@ const Resources = () => (
 
 const Notifications = () => <div><NotificationTab/></div>;
 const GrowYourReach = () => <div><GrowYourReachTab/></div>;
-const PostDetails = () => <div>Post Details</div>;
+const BlogDetails = () => <div className="min-h-screen mt-10 rounded-xl"><DashboardTab/></div>;;
 
 const Profile = ({ id }) => (
   <div className="bg-gray-100 mt-10 rounded-xl">
@@ -261,10 +262,10 @@ const ProfilePage = () => {
                   <li
                     className="py-2 px-4 hover:bg-gray-300 rounded"
                     onClick={() =>
-                      handleMenuClick(<PostDetails />, "PostDetails")
+                      handleMenuClick(<BlogDetails />, "BlogDetails")
                     }
                   >
-                    Post Details
+                    Blog Details
                   </li>
                 </ul>
               </MenuItem>

@@ -795,7 +795,7 @@ console.log('sddddddddddddddd')
     {ifSchedule &&<div className="flex justify-center">
         <input type="datetime-local" placeholder="Enter date time"  className="bg-transparent m-auto mt-[30px] mb-[30px] border-b-gray-400 border-b-[1px]  focus:outline-none " ref={datetime}></input></div>
 }
-      <div className="w-[100%] flex justify-around mt-4 items-center">
+      <div className="w-[100%] flex justify-around max-sm:flex-col max-sm:justify-center gap-[10px] mt-4 items-center">
 
               <button
                     className={`${!loading?"w-[220px]":"w-[300px]"} h-[52px] flex justify-center content-center items-center p-2 relative  bg-[#098CCD] text-white   rounded-[18px] cursor-pointer  text-[19px] ${
