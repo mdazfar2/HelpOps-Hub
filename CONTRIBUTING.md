@@ -80,6 +80,11 @@ To get started, look at the existing [**create a new issue**](https://github.com
 - Congrats! 🥳 You've made your first pull request to this project repo.
 - Wait for your pull request to be reviewed and if required suggestions would be provided to improve it.
 - Celebrate 🥳 your success after your pull request is merged successfully.
+  
+> [!NOTE]
+> All images must be in webp or avif format, not png, jpeg, jpg, or others. This practice applies to the entire repository.
+> 
+> Use [Convertio.co](https://convertio.co/) to convert images to the required webp or avif formats.
 
 ## 💡 Want to contribute some documents related DevOps?
 - Just crate new folder in the root directory according to your requirement
