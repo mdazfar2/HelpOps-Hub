@@ -863,13 +863,13 @@ setTimeout(()=>{setLoading(false)},4000)
                         <div className="text-xs font-bold">
                           {author.authorName}
                         </div>
-                        <div
+                        {/* <div
                           className={`${
                             theme ? "text-gray-500" : "text-gray-300"
                           } text-xs`}
                         >
                           {author.authorCaption}
-                        </div>
+                        </div> */}
                       </div>
                       <div>
                         <button className="px-3 py-2 bg-[#6089a4] rounded-3xl font-light text-sm text-white">

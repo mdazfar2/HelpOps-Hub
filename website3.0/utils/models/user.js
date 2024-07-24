@@ -41,6 +41,8 @@ const newsletterModel = new mongoose.Schema({
     type:Array,
     default:[]
   }
+}, {
+  timestamps: true // Add timestamps (createdAt, updatedAt)
 });
 
 const user = mongoose.models.user || mongoose.model("user", newsletterModel);
