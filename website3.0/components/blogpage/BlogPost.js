@@ -1064,7 +1064,7 @@ data-tooltip-content="Reaction"
               <input
                 type="text"
                 ref={inputRef}
-                className="w-full p-4 border-[1px] border-gray-300 rounded-lg max-[425px]:mb-2"
+                className={`w-full p-4 border-[1px] border-gray-300 rounded-lg max-[425px]:mb-2 ${theme?"text-black bg-white":"text-white bg-gray-900"}`}
                 placeholder="Add to the Discussion"
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
@@ -1102,7 +1102,7 @@ data-tooltip-content="Reaction"
           <>
                 <div
                   key={comment._id || index}
-                  className="bg-white text-black flex flex-col gap-4 p-4 mb-4 rounded-lg shadow"
+                  className={`  flex flex-col gap-4 p-4 mb-4 rounded-lg shadow ${theme?"bg-white text-black":"bg-black border-[1px] text-white border-white"}`}
                 >
              <div className="flex relative">
                    <img src={comment?.user?.image } className="w-10 h-10 rounded-full mr-3" />
@@ -1116,8 +1116,8 @@ data-tooltip-content="Reaction"
                 {showOptions && optionsIndex==index&& <div className="absolute bg-slate-100 h-[100px] flex flex-col justify-center pl-[20px] gap-3 rounded-lg w-[200px] right-0 top-[1.8rem]"><p className="flex gap-2 cursor-pointer"  onClick={()=>handleDeleteComment(index)}><FaTrashCan size={"1rem"} color="red" className=" cursor-pointer "/>Delete Comment</p><p className="flex gap-2 cursor-pointer"  onClick={()=>handleEditComment(index,comment.comment)}><FaPen className=" cursor-pointer " color="black" size={'1rem'}/>Edit Comment</p></div> }
               </div>
                   <div className="flex gap-4 text-gray-600 font-medium">
-                    <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'} color={`${isLiked[index]?"blue":""}`}  className="cursor-pointer" /></div>{comment.likes && <span>{comment.likes}</span>}
-                    <span className="cursor-pointer" onClick={()=>replyIndex!==-1?setReplyIndex(-1):setReplyIndex(index)}>Reply</span>
+                    <div className="cursor:pointer" onClick={()=>handleCommentLike(index)}><FaHandsClapping size={'1.5rem'} color={`${isLiked[index]?"blue":`${theme?"":"#5d636f"}`}`}  className="cursor-pointer" /></div>{comment.likes && <p className={`${theme?"":"text-white"}`}>{comment.likes}</p>}
+                    <span className={`cursor-pointer ${theme?"":"text-gray-400"}`} onClick={()=>replyIndex!==-1?setReplyIndex(-1):setReplyIndex(index)}>Reply</span>
                     </div>
                 </div>
                {
@@ -1138,7 +1138,7 @@ data-tooltip-content="Reaction"
                     <div className="h-[auto]  pl-[50px]">
                     {
                       reply[index].map(data=>{
-                        return <div className="flex flex-col pb-3 pt-2 gap-1 border-b-[1px] border-b-gray-300">
+                        return <div className={`flex flex-col pb-3 pt-2 gap-1 border-b-[1px] border-b-gray-300 ${theme?"bg-white":"bg-black "}`}>
                           <p className="flex items-center gap-4 "><img height={'40px'} width={'40px'} className="rounded-full" src={data.image?data.image:""}></img>{data.name}</p>
                           <span className="ml-[60px]">{data.comment}</span></div>
                       })
