@@ -1,8 +1,13 @@
+"use client"
+
 import { Context } from "@context/store";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {FaEye} from 'react-icons/fa6'
 export default function DashboardTab() {
   const { finalUser, setFinalUser, theme } = useContext(Context);
+  useEffect(()=>{
+
+  })
   return (
     <div
       className={`${
