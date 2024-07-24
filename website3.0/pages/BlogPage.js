@@ -22,7 +22,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { FaEye, FaPen } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
+function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject }) {
   const [blogs, setBlogs] = useState([]);
   const [authorDetails, setAuthorDetails] = useState({});
   const [error, setError] = useState("");
@@ -100,13 +100,26 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("/api/blog", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
+        let response;
+        if(subject){
+           response = await fetch("/api/filterblogs", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body:JSON.stringify({id:subject})      
+          });
+        }else{
+           response = await fetch("/api/blog", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "isId":subject
+            },
+          });
+        }
+        console.log("THE ID IF SJSIDSD",subject)
+       
         if (response.ok) {
           const data = await response.json();
           const sortedBlogs = data.data.sort((a, b) => {
@@ -164,7 +177,7 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser }) {
     };
 
     fetchBlogs();
-  }, [sortBy]);
+  }, [sortBy,subject]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -745,10 +758,11 @@ setTimeout(()=>{setLoading(false)},4000)
                 whileHover={{ scale: 1.06 }}
                 viewport={{ once: true }}
                 variants={eventVariants}
+                
                 transition={{ duration: 0.2, ease: "easeInOut" }}
                 class={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
 
-  <p class="cookieHeading">#{data.tagName}</p>
+  <p class="cookieHeading cursor-pointer hover:text-blue-500 hover:underline" onClick={()=>{router.push(`/blogs?subject=${data.tagName}`);window.location.reload()}}>#{data.tagName}</p>
   <p class="cookieDescription">{data.tagDescription}</p>
   <div className="flex justify-between w-[100%]">
 
@@ -849,13 +863,13 @@ setTimeout(()=>{setLoading(false)},4000)
                         <div className="text-xs font-bold">
                           {author.authorName}
                         </div>
-                        <div
+                        {/* <div
                           className={`${
                             theme ? "text-gray-500" : "text-gray-300"
                           } text-xs`}
                         >
                           {author.authorCaption}
-                        </div>
+                        </div> */}
                       </div>
                       <div>
                         <button className="px-3 py-2 bg-[#6089a4] rounded-3xl font-light text-sm text-white">

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useContext, useEffect, useState } from "react";
 import ProfilepageDetails from "@components/profile/ProfilepageDetails";
 import SettingsTab from "@components/profile/SettingsTab";
@@ -42,11 +42,10 @@ const Resources = () => (
     <ResourcesTab />
   </div>
 );
+
 const Notifications = () => <div><NotificationTab/></div>;
 const GrowYourReach = () => <div><GrowYourReachTab/></div>;
 const PostDetails = () => <div>Post Details</div>;
-
-const DevopsInsights = () => <div>DevOps Insights: Ask & Answer</div>;
 
 const Profile = ({ id }) => (
   <div className="bg-gray-100 mt-10 rounded-xl">
@@ -62,6 +61,7 @@ const MenuItem = ({
   onClick,
   isActive,
   theme,
+  notificationCount // Add notificationCount as a prop
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -81,9 +81,14 @@ const MenuItem = ({
             : "hover:!bg-[#262626]"
         }`}
       >
-        <div className="flex items-center">
+        <div className="flex items-center relative">
           <FontAwesomeIcon icon={icon} className="mr-2" />
           {title}
+          {title === "Notifications" && notificationCount > 0 && (
+            <span className="absolute -top-1 -left-2 bg-gray-500 text-white rounded-full px-2 py-1 scale-75 text-xs font-bold">
+              {notificationCount}
+            </span>
+          )}
         </div>
         {isCollapsible && (
           <FontAwesomeIcon
@@ -117,6 +122,7 @@ const ProfilePage = () => {
   const [activeComponent, setActiveComponent] = useState(<Profile id="" />);
   const [activeMenuItem, setActiveMenuItem] = useState("Profile");
   const [menuVisible, setMenuVisible] = useState(true);
+  const [notificationCount, setNotificationCount] = useState(0); // State for unread notifications count
   const pathname = usePathname(); // Get current path
   const [id, setId] = useState("");
   const isViewProfile = id.length > 0;
@@ -161,6 +167,29 @@ const ProfilePage = () => {
     };
   }, [setColor]);
 
+  useEffect(() => {
+    // Fetch notifications and calculate unread count
+    const fetchNotifications = async () => {
+      if (finalUser?.email) {
+        try {
+          const response = await fetch(`/api/notifications?userEmail=${finalUser.email}`);
+          if (response.ok) {
+            const data = await response.json();
+            const unreadCount = Object.values(data.followerList).filter(notif => !notif.isRead).length +
+                                Object.values(data.blogList).filter(notif => !notif.isRead).length;
+            setNotificationCount(unreadCount);
+          } else {
+            console.error("Error fetching notifications:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error fetching notifications:", error);
+        }
+      }
+    };
+
+    fetchNotifications();
+  }, [finalUser]);
+
   const handleMenuClick = (component, title) => {
     setActiveComponent(component);
     setActiveMenuItem(title);
@@ -168,6 +197,9 @@ const ProfilePage = () => {
 
   const handleHomeButton = () => {
     router.push("/");
+  };
+  const handleDevopsInsights = () => {
+    router.push("/devopsforum");
   };
 
   const toggleMenu = () => {
@@ -236,20 +268,20 @@ const ProfilePage = () => {
                   </li>
                 </ul>
               </MenuItem>
-             <MenuItem
-              title="Grow Your Reach"
-              icon={faUserFriends}
-              isCollapsible={false}
-              onClick={() => handleMenuClick(<GrowYourReach/>, "GrowYourReach")}
-              isActive={activeMenuItem === "GrowYourReach"}
-              theme={theme}
-            />
+              <MenuItem
+                title="Grow Your Reach"
+                icon={faUserFriends}
+                isCollapsible={false}
+                onClick={() => handleMenuClick(<GrowYourReach/>, "GrowYourReach")}
+                isActive={activeMenuItem === "GrowYourReach"}
+                theme={theme}
+              />
               <MenuItem
                 title="DevOps Insights"
                 icon={faComment}
                 isCollapsible={false}
                 onClick={() =>
-                  handleMenuClick(<DevopsInsights />, "DevopsInsights")
+                  handleDevopsInsights()
                 }
                 isActive={activeMenuItem === "DevopsInsights"}
                 theme={theme}
@@ -278,6 +310,7 @@ const ProfilePage = () => {
                 }
                 isActive={activeMenuItem === "Notifications"}
                 theme={theme}
+                notificationCount={notificationCount} // Pass notificationCount to MenuItem
               />
               <MenuItem
                 title="Settings"

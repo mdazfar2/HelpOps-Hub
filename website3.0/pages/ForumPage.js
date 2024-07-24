@@ -69,11 +69,11 @@ const HelpfulUser = ({ user }) => (
   </div>
 );
 const TopIssue = ({ title, index }) => (
-  <div className="flex items-center justify-between py-2">
-    <span className=" text-base mr-4 max-sm:mr-0 border-gray-300 border-[1px] px-2 py-1 rounded-full">
+  <div className="flex items-center 2xl:justify-between max-md:gap-2 ">
+    <span className=" text-base mr-4 max-sm:mr-0 border-gray-300 border-[1px] px-2 py-1 rounded-full ">
       {index + 1 < 10 ? `0${index + 1}` : index + 1}
     </span>
-    <span className="text-[12px]">{title}</span>
+    <span className="text-[12px]"  style={{lineHeight:"17px"}}>{title}</span>
   </div>
 );
 
@@ -324,7 +324,7 @@ function ForumPage({theme}) {
           </div>
           <div className="w-[85%] max-xl:w-[100%]  max-lg:w-[100%] gap-10 pl-16 pr-16 max-xl:pl-0 max-xl:pr-0 max-lg:flex-col flex">
 
-          <div className="w-[90%] max-lg:w-[100%]">
+          <div className="w-[80%] max-lg:w-[100%]">
             <div className="border-[1px] border-gray-300 min-h-screen">
               <div className="h-16 bg-[#6089a4] text-white px-12 max-md:px-2 max-sm:px-0 max-md:h-20">
                 <div className="flex justify-between items-center h-full flex-wrap max-md:justify-start">

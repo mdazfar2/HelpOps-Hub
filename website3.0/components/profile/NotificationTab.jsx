@@ -2,8 +2,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "@context/store";
 import Link from 'next/link';
+
 function NotificationTab() {
-  const { finalUser,theme } = useContext(Context);
+  const { finalUser, theme, setisReadNotif } = useContext(Context);
   const [notifications, setNotifications] = useState({
     followers: [],
     blogs: [],
@@ -72,12 +73,14 @@ function NotificationTab() {
                   followerId,
                   followerName,
                   dateTime: details.dateTime,
+                  isRead: details.isRead,
                 };
               }
               return {
                 followerId,
                 followerName: "Unknown",
                 dateTime: details.dateTime,
+                isRead: details.isRead,
               };
             })
           );
@@ -127,8 +130,10 @@ function NotificationTab() {
               blogId,
               blogName: blogDataMap[blogId]?.title || "Unknown Blog",
               dateTime: details.dateTime,
+              isRead: details.isRead,
             })),
           });
+
           // Handle new follower notifications
           for (const followerId in followers) {
             if (followers.hasOwnProperty(followerId)) {
@@ -168,33 +173,76 @@ function NotificationTab() {
     return () => clearInterval(interval);
   }, [finalUser]);
 
+  const handleNotificationClick = async (type, id) => {
+    try {
+      const response = await fetch("/api/updateNotificationStatus", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userEmail: finalUser.email, type, id }),
+      });
+  
+      if (response.ok) {
+        // Update the state to mark the notification as read
+        setNotifications((prevNotifications) => {
+          if (type === "follower") {
+            return {
+              ...prevNotifications,
+              followers: prevNotifications.followers.map((notif) =>
+                notif.followerId === id ? { ...notif, isRead: true } : notif
+              ),
+            };
+          } else if (type === "blog") {
+            return {
+              ...prevNotifications,
+              blogs: prevNotifications.blogs.map((notif) =>
+                notif.blogId === id ? { ...notif, isRead: true } : notif
+              ),
+            };
+          }
+          return prevNotifications;
+        });
+      } else {
+        console.error("Failed to update notification status");
+      }
+    } catch (error) {
+      console.error("Error marking notification as read:", error);
+    }
+  };
+  
+
   return (
     <div className="h-screen p-4">
-      <div className={`${theme?"bg-gray-100 text-black":"bg-[#111111] text-white"} p-4 rounded-xl flex flex-col gap-4 `}>
+      <div className={`${theme ? "bg-gray-100 text-black" : "bg-[#111111] text-white"} p-4 rounded-xl flex flex-col gap-4 `}>
         <h2 className="text-xl text-center">Notifications</h2>
-        <hr className={`${theme?"border-gray-300 text-black":"bg-[#3c3c3c] text-white"} w-full border-2 my-4`} />
+        <hr className={`${theme ? "border-gray-300 text-black" : "bg-[#3c3c3c] text-white"} w-full border-2 my-4`} />
         <ul>
           {notifications.followers.map(
-            ({ followerId, followerName, dateTime }) => (
+            ({ followerId, followerName, dateTime, isRead }) => (
               <Link href={`/profile?id=${followerId}`} key={followerId} target="_blank">
-              <li key={followerId} className={`${theme?"bg-gray-200 text-black":"bg-[#3c3c3c] text-white"} py-3 px-2 rounded-xl `}>
-                {followerName} has started following you.{" "}
-                ({new Date(dateTime).toLocaleString()})
-              </li>
+                <li key={followerId}
+                className={`py-3 px-2 rounded-xl ${isRead ? (theme ? "bg-gray-300 text-gray-400" : "bg-[#2c2c2c] text-gray-400") : (theme ? "bg-gray-200 text-black" : "bg-[#3c3c3c] text-black")}`}
+                    onClick={() => handleNotificationClick("follower", followerId)}>
+                  {followerName} has started following you.{" "}
+                  ({new Date(dateTime).toLocaleString()})
+                </li>
               </Link>
             )
           )}
         </ul>
         <ul className="flex flex-col gap-4 ">
-          {notifications.blogs.map(({ blogId, blogName, dateTime }) => (
+          {notifications.blogs.map(({ blogId, blogName, dateTime, isRead }) => (
             <Link href={`/blogs/${blogId}`} key={blogId} target="_blank">
-            <li key={blogId} className={`${theme?"bg-gray-200 text-black":"bg-[#3c3c3c] text-white"} py-3 px-2 rounded-xl`}>
-              <span className="flex gap-1">
-                Read a blog on the topic{" "}
-                <span dangerouslySetInnerHTML={{ __html: blogName }}></span>
-                ({new Date(dateTime).toLocaleString()})
-              </span>
-            </li>
+              <li key={blogId}
+                  className={`py-3 px-2 rounded-xl ${isRead ? (theme ? "bg-gray-300 text-gray-400" : "bg-[#2c2c2c] text-gray-400") : (theme ? "bg-gray-200 text-black" : "bg-[#3c3c3c] text-black")}`}
+                  onClick={() => handleNotificationClick("blog", blogId)}>
+                <span className="flex gap-1">
+                  Read a blog on the topic{" "}
+                  <span dangerouslySetInnerHTML={{ __html: blogName }}></span>
+                  ({new Date(dateTime).toLocaleString()})
+                </span>
+              </li>
             </Link>
           ))}
         </ul>

@@ -8,6 +8,9 @@ const newsletterModel = new mongoose.Schema({
   image1:{
     type:String,
   },
+  banner: {
+    type: String,
+  },
   designation:String,
   caption:String,
   github:String,
@@ -41,6 +44,8 @@ const newsletterModel = new mongoose.Schema({
     type:Array,
     default:[]
   }
+}, {
+  timestamps: true // Add timestamps (createdAt, updatedAt)
 });
 
 const user = mongoose.models.user || mongoose.model("user", newsletterModel);
