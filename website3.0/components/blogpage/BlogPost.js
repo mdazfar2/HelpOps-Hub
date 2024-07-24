@@ -80,6 +80,7 @@ function BlogPost() {
   let [editValue,setEditValue]=useState('')
   let [showOptions,setShowOptions]=useState(false)
   let [optionsIndex,setOptionIndex]=useState(-1)
+  let [relatedBlogs,setRelatedBlogs]=useState([])
   const [panelIcons, setPanelIcons] = useState([
     {
       regularIcon: regularIcons.Heart,
@@ -97,6 +98,10 @@ function BlogPost() {
       count: 0,
     },
   ]);
+  const formatDate = (dateString) => {
+    const options = { month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleAddComment();
@@ -189,7 +194,6 @@ function BlogPost() {
           arr1.push(data.authorName)
           data.comments.map((res,index)=>{
               arr.push(res.replies)
-              console.log(res,'sdsfdsdsdsjdns')
               arr1.push(res.user.username)
               res.replies.map((r)=>{
                 arr1.push(r.username)
@@ -206,17 +210,14 @@ function BlogPost() {
             })
             
             setRelatedUsers([...finalarr])
-          console.log(arr,'sdsdsdsds')
           setReply(arr)
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
-          console.log(data.comments,'sdddddddddddddddddddd')
           let userid=JSON.parse(localStorage.getItem('finalUser'))._id
           data.comments.map((res)=>{
             let ans=false
             res.likeusers.map(r=>{
               
-              console.log(ans,r,userid,'ansssssssss')
               if(r==userid){
                 ans=true
               }
@@ -231,6 +232,17 @@ function BlogPost() {
             }
           });
           setCommentCount(count);
+          let relatedBlogs1=await fetch('/api/blog')
+          relatedBlogs1=await relatedBlogs1.json()
+          relatedBlogs1=relatedBlogs1.data
+          let arr2=[]
+          relatedBlogs1.map((res)=>{
+            if(res.authorId==data.authorId && res._id!==data._id){
+              console.log(res.authorId,data.authorId,'ANSSSSSSSSSSSSSSSS')
+              arr2.push(res)
+            }
+          })
+          setRelatedBlogs([...arr2])
         } else {
           setError("Failed to fetch blog.");
         }
@@ -242,7 +254,6 @@ function BlogPost() {
     fetchBlog();
   }, [id]);
 useEffect(()=>{
-  console.log('related user',relatedUsers)
 },[relatedUsers])
   useEffect(() => {
     if (!authorid) {
@@ -252,7 +263,6 @@ useEffect(()=>{
 
     const fetchUserInfoById = async (idauth) => {
       try {
-        console.log("Fetching user info for id:", authorid);
 
         const response = await fetch("/api/getuser", {
           method: "POST",
@@ -264,7 +274,6 @@ useEffect(()=>{
 
         if (response.ok) {
           const result = await response.json();
-          console.log("API response:", result);
 
           if (result.success) {
             setFetchedUser(result.msg);
@@ -329,7 +338,6 @@ useEffect(()=>{
     }
     let arr1=reply
     arr1[index].push(arr)
-    console.log(arr1)
     setReply([...arr1])
     input.value=""
   } 
@@ -408,7 +416,6 @@ useEffect(()=>{
    }
    let edit=useRef()
    async function handleEditComment(index,value){
-    console.log(index)
     setEditCommentNumber(index)
     setEditValue(value)
     setShowOptions(false)
@@ -462,7 +469,6 @@ useEffect(()=>{
         comment: newComment,
       };
       const updatedComments = [...comments, duplicate];
-      console.log(updatedComments)
       setNewComment("");
       setReply((prev)=>[...prev,[]])
       try {
@@ -486,7 +492,6 @@ useEffect(()=>{
     }
   };
   useEffect(() => {
-    console.log(finalUser);
   }, [finalUser]);
   async function handleClick(key) {
     if (!isLogin) {
@@ -514,7 +519,6 @@ useEffect(()=>{
       let map = new Map(Object.entries(finalUser.likedBlogs));
       if(map.size>0){
         setIsReact(true)
-        console.log('sdddddddddddddjnnnnnnnnnnnnnnnnnn')
       }else{
         setIsReact(false)
       }
@@ -522,7 +526,6 @@ useEffect(()=>{
   },[finalUser])
 
   const handleReactionClick = async (reactionType) => {
-    console.log(reactionType);
     if(!canLike){
       return
     }
@@ -801,7 +804,7 @@ function handleError(){
     <div
       className={`${
         theme ? "bg-[#F3F4F6]" : " bg-[#1e1d1d]"
-      } transition-colors duration-500 pt-48 flex flex flex-col lg:flex-row max-lg:pt-24 max-md:pt-16`}
+      } transition-colors duration-500 pt-48 flex flex flex-wrap flex-col lg:flex-row max-lg:pt-24 max-md:pt-16`}
     >
       <div className="w-[10%] max-lg:w-full max-lg:order-3">
         <div className={`fixed left-24 top-60 max-lg:flex max-lg:fixed max-lg:justify-center max-lg:mt-8 max-lg:left-0 max-lg:right-0 max-lg:top-auto max-lg:bottom-0 ${ theme ? "max-lg:bg-[#ccc]" : "max-lg:bg-[#3a3a3a]"} max-lg:pt-[9px] max-lg:z-[100]`}>
@@ -1045,7 +1048,6 @@ data-tooltip-content="Reaction"
           </div>
           <div className="flex gap-[20px] mb-[30px] ">
                            {blog.tags && blog.tags.map(data=>{
-                        console.log(data)
                         return <div className="text-[14px] max-sm:text-[13px] max-[425px]:text-[12px]">{"#"+data}</div>})}
                           </div>
           <div className="pb-10 " dangerouslySetInnerHTML={{ __html: blog.description }}></div>
@@ -1153,6 +1155,7 @@ data-tooltip-content="Reaction"
               <p className="text-center text-gray-500">No comments yet.</p>
             )}
           </div>
+
         </div>
       </div>
 
@@ -1309,7 +1312,42 @@ data-tooltip-content="Reaction"
           )}
         </div>
       </div>
+      <div className={`h-[300px] overflow-scroll  max-lg:hidden ml-[10%] w-[55%] mt-[40px] pl-[60px]  pt-[40px]  rounded-lg ${theme?"bg-white":"bg-[#0f0e0e] border-white border-[1px]"} `}>
+        <h1 className={`${theme?"":"text-white"} text-2xl font-semibold mb-[30px]`}>Read Next</h1>
+        {
+
+        relatedBlogs.map((data)=>{
+
+        return <div className="flex gap-6 items-center mt-[10px]">
+            <img src={data.image} className="h-[80px] w-[80px]" style={{borderRadius:"50%"}}></img>
+            <div className="flex flex-col gap-1 h-[100%]  justify-center">
+            <p className={`${theme?"":"text-white"} font-bold text-2xl hover:cursor-pointer hover:text-blue-600 `} onClick={()=>router.push(`/blogs/${data._id}`)} dangerouslySetInnerHTML={{__html:data.title}}/>
+            <p className={`${theme?"":"text-white"}`}>{formatDate(data.date)}</p>
+              </div>
+          </div>
+        })
+        } 
+
+      </div>
+
     </div>
+    <div className={`h-[300px] max-lg:block hidden overflow-scroll  max-sm:pl-[10px]  w-[96%] m-auto  pl-[60px]  pt-[40px]  rounded-lg ${theme?"bg-white":"bg-[#0f0e0e] border-white border-[1px]"} `}>
+        <h1 className={`${theme?"":"text-white"} text-2xl font-semibold mb-[30px]`}>Read Next</h1>
+        {
+
+        relatedBlogs.map((data)=>{
+
+        return <div className="flex gap-6 items-center mt-[10px]">
+            <img src={data.image} className="h-[80px] w-[80px]" style={{borderRadius:"50%"}}></img>
+            <div className="flex flex-col gap-1 h-[100%]  justify-center">
+            <p className={`${theme?"":"text-white"} font-bold text-2xl hover:cursor-pointer hover:text-blue-600 `} onClick={()=>router.push(`/blogs/${data._id}`)} dangerouslySetInnerHTML={{__html:data.title}}/>
+            <p className={`${theme?"":"text-white"}`}>{formatDate(data.date)}</p>
+              </div>
+          </div>
+        })
+        } 
+
+      </div>
     </>
   );
 }
