@@ -8,6 +8,9 @@ const newsletterModel = new mongoose.Schema({
   image1:{
     type:String,
   },
+  banner: {
+    type: String,
+  },
   designation:String,
   caption:String,
   github:String,
