@@ -8,6 +8,8 @@ function NotificationTab() {
   const [notifications, setNotifications] = useState({
     followers: [],
     blogs: [],
+    comments: [],
+
   });
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function NotificationTab() {
             }
           );
 
-          let existingNotifications = { followerList: {}, blogList: {},blogComments:{} };
+          let existingNotifications = { followerList: {}, blogList: {} , blogCommentList:{}};
 
           if (checkResponse.ok) {
             existingNotifications = await checkResponse.json();
@@ -53,7 +55,7 @@ function NotificationTab() {
             return;
           }
 
-          const { followerList = {}, blogList = {} } = existingNotifications;
+          const { followerList = {}, blogList = {},blogCommentList={} } = existingNotifications;
 
           // Handle follower notifications
           const updatedFollowers = await Promise.all(
@@ -103,6 +105,28 @@ function NotificationTab() {
               return map;
             }, {});
 
+            blogs.data.map((res)=>{
+              res.comments.map(async (comment)=>{
+                console.log(res._id)
+                if(!Object.keys(blogCommentList).includes(comment._id)){
+                    const response3 = await fetch("/api/notifications", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        userEmail: finalUser.email,
+                        commentId: comment._id,
+                        blogId:res._id,
+                        blogName:res.title
+                        }),
+                    });
+    
+                    console.log("New blog notification sent:", response3.ok);
+                  
+                }
+              })
+            })
             if (blogs.data.length > 0) {
               latestBlogId = blogs.data[blogs.data.length - 1]._id;
               const isNewBlog = !Object.keys(blogList).includes(latestBlogId);
@@ -115,15 +139,16 @@ function NotificationTab() {
                   },
                   body: JSON.stringify({
                     userEmail: finalUser.email,
-                    blogId: latestBlogId,
-                  }),
+                    blogId: latestBlogId
+                                    }),
                 });
 
                 console.log("New blog notification sent:", response2.ok);
               }
             }
           }
-
+         
+          
           setNotifications({
             followers: updatedFollowers,
             blogs: Object.entries(blogList).map(([blogId, details]) => ({
@@ -131,8 +156,16 @@ function NotificationTab() {
               blogName: blogDataMap[blogId]?.title || "Unknown Blog",
               dateTime: details.dateTime,
               isRead: details.isRead,
+              
             })),
-          });
+            comments: Object.entries(blogCommentList).map(([commentId, details]) => ({
+             _id: commentId,
+              dateTime: details.dateTime,
+              isRead: details.isRead,
+              id:details.blogId,
+              blogName:details.blogName
+              
+            })),          });
 
           // Handle new follower notifications
           for (const followerId in followers) {
@@ -200,6 +233,13 @@ function NotificationTab() {
                 notif.blogId === id ? { ...notif, isRead: true } : notif
               ),
             };
+          }else if(type=="comments"){
+            return {
+              ...prevNotifications,
+              comments: prevNotifications.comments.map((notif) =>
+                notif._id === id ? { ...notif, isRead: true } : notif
+              ),
+            };
           }
           return prevNotifications;
         });
@@ -245,6 +285,32 @@ function NotificationTab() {
               </li>
             </Link>
           ))}
+          <ul className="flex flex-col gap-4">
+  {notifications.comments.map(({ _id,id, dateTime, isRead,blogName }) => (
+    <Link href={`/blogs/${id}`} key={id} target="_blank">
+      <li
+        key={id}
+        className={`py-3 px-2 rounded-xl ${
+          isRead
+            ? theme
+              ? "bg-gray-300 text-gray-400"
+              : "bg-[#2c2c2c] text-gray-400"
+            : theme
+            ? "bg-gray-200 text-black"
+            : "bg-[#3c3c3c] text-black"
+        }`}
+        onClick={() => handleNotificationClick("comments", _id)}
+      >
+        <span className="flex gap-1">
+          New comment on blog:{" "}
+          <span dangerouslySetInnerHTML={{ __html: blogName }}></span>{" "}
+          ({new Date(dateTime).toLocaleString()})
+        </span>
+      </li>
+    </Link>
+  ))}
+</ul>
+
         </ul>
       </div>
     </div>
