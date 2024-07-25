@@ -26,12 +26,13 @@ const Header = () => {
   const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/profile'
   const isCreateBlog = pathname && pathname.startsWith("/createblog"); // Check if path starts with '/createblog'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
-  let { theme, isAdminShow,isLogin,setIsPopup,setMsg,setSearchedBlog } = useContext(Context);
+  let { theme, isAdminShow, isLogin, setIsPopup, setMsg, setSearchedBlog } =
+    useContext(Context);
   // State to manage mobile menu toggle
   const [isActive, setIsActive] = useState(false);
   // to set the status of show navbar or not
   const [show, setShow] = useState(true);
-  let router=useRouter()
+  let router = useRouter();
   let lastScrollTop = 0; // to keep the position of lastscroll
 
   useEffect(() => {
@@ -85,16 +86,16 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  function handleValidate(){
-    if(!isLogin){
-      setIsPopup(true)
-      setMsg("Please login First ")
-      return 
+  function handleValidate() {
+    if (!isLogin) {
+      setIsPopup(true);
+      setMsg("Please login First ");
+      return;
     }
-    router.push('/createblog')
+    router.push("/createblog");
   }
   const handleSearchChange = (e) => {
-    setSearchedBlog(e.target.value); 
+    setSearchedBlog(e.target.value);
   };
   return (
     <div>
@@ -103,7 +104,11 @@ const Header = () => {
           theme ? "bg-transparent" : "transition-all bg-transparent"
         } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs || isCreateBlog || isProfile || isDevopsForum ? "hidden" : "block"}  `}
+        } ${isAdmin ? "hidden" : "block"} ${
+          isBlogs || isCreateBlog || isProfile || isDevopsForum
+            ? "hidden"
+            : "block"
+        }  `}
       >
         <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
           {/* Logo with VanillaTilt animation */}
@@ -296,12 +301,18 @@ const Header = () => {
 
       <header
         className={`w-screen ${
-          theme
+          isDevopsForum
             ? "bg-gray-200 text-black"
+            : theme
+            ? "bg-gray-100 text-black"
             : "transition-all text-white bg-[#1e1d1d]"
         } z-50 fixed top-0 transition-all overflow-hidden ${
           show ? "top-0" : "top-[-550px]"
-        } ${isAdmin ? "hidden" : "block"} ${isBlogs || isCreateBlog || isProfile || isDevopsForum ? "block" : "hidden"}`}
+        } ${isAdmin ? "hidden" : "block"} ${
+          isBlogs || isCreateBlog || isProfile || isDevopsForum
+            ? "block"
+            : "hidden"
+        }`}
       >
         <nav className="flex justify-between items-center w-[95%] my-5 mx-auto">
           <div className="flex items-center gap-4">
@@ -320,31 +331,42 @@ const Header = () => {
             </Link>
           </div>
 
-          {!isCreateBlog && !isProfile && !isDevopsForum && <div className={`flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden ${theme?"":"text-black"}`}>
-            <input
-            type="text"
-            placeholder="Search"
-            onChange={handleSearchChange} // Update global searchBlog value
-            className="p-2 border rounded-md w-full max-w-md"
-          />
-          </div>}
+          {!isCreateBlog && !isProfile && !isDevopsForum && (
+            <div
+              className={`flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden ${
+                theme ? "" : "text-black"
+              }`}
+            >
+              <input
+                type="text"
+                placeholder="Search"
+                onChange={handleSearchChange} // Update global searchBlog value
+                className="p-2 border rounded-md w-full max-w-md"
+              />
+            </div>
+          )}
 
           <div
             className={`${
-              theme
-                ? "text-gray-600"
-                : "transition-all text-gray-300"
+              theme ? "text-gray-600" : "transition-all text-gray-300"
             } flex items-center lg:gap-10 lg:font-bold max-lg:gap-4`}
           >
-            {!isCreateBlog && !isDevopsForum && <div onClick={handleValidate} className="flex cursor-pointer items-center gap-2">
-              <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
-                <FontAwesomeIcon
-                  icon={faPen}
-                  className={`max-md:w-5 max-md:h-5 ${theme ? "max-md:text-[#555]" : "max-md:text-[#333]"}`}
-                />
+            {!isCreateBlog && !isDevopsForum && (
+              <div
+                onClick={handleValidate}
+                className="flex cursor-pointer items-center gap-2"
+              >
+                <div className="max-md:w-10 max-md:h-10 max-md:rounded-full max-md:bg-gray-200 max-md:flex max-md:items-center max-md:justify-center ">
+                  <FontAwesomeIcon
+                    icon={faPen}
+                    className={`max-md:w-5 max-md:h-5 ${
+                      theme ? "max-md:text-[#555]" : "max-md:text-[#333]"
+                    }`}
+                  />
+                </div>
+                <span className="max-md:hidden">Create Blog</span>
               </div>
-              <span className="max-md:hidden">Create Blog</span>
-            </div>}
+            )}
 
             <div className="block max-md:hidden">
               <AuthButton />
