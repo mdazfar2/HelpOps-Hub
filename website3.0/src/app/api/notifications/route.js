@@ -13,16 +13,18 @@ const connectToDatabase = async () => {
 export async function POST(req) {
   try {
     await connectToDatabase();
-    const { userEmail, followerId, blogId } = await req.json();
+    const { userEmail, followerId, blogId, commentId ,blogName} = await req.json();
 
     // Find or create the notification document by userEmail
     let userNotification = await Notifications.findOne({ userEmail });
-
+    
     if (!userNotification) {
       userNotification = new Notifications({
         userEmail,
         followerList: followerId ? { [followerId]: { dateTime: new Date() } } : {},
         blogList: blogId ? { [blogId]: { dateTime: new Date() } } : {},
+        blogCommentList: commentId ? { [commentId]: { dateTime: new Date() ,blogId:blogId,blogName:blogName} } : {},
+
       });
     } else {
       if (followerId) {
@@ -32,6 +34,10 @@ export async function POST(req) {
       if (blogId) {
         // Update the blogList if the document exists
         userNotification.blogList.set(blogId, { dateTime: new Date() });
+      }
+      if(commentId){
+        userNotification.blogCommentList.set(commentId, { dateTime: new Date(),blogId:blogId,blogName:blogName });
+
       }
     }
 

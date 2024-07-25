@@ -31,6 +31,26 @@ const notificationModel = new mongoose.Schema({
       }
     }
   },
+  blogCommentList:{
+    type: Map,
+    of: {
+      dateTime: {
+        type: Date,
+        default: Date.now
+      },
+      isRead: {
+        type: Boolean,
+        default: false
+      },
+      blogId:{
+        type:String,
+        default:''
+      },
+      blogName:{
+        type:String,default:''
+      }
+    }
+  }
 });
 
 const Notifications = mongoose.models.notifications || mongoose.model("notifications", notificationModel);
