@@ -77,6 +77,9 @@ export async function DELETE(req) {
         // Create a new instance of Blogs model with the received payload
         let blog =await  Blogs.findById(id)
         blog.isDeleted=true
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + 30)
+        blog.expiryDate = expiryDate; 
         await blog.save()
         return NextResponse.json({ result, success: true });
     } catch (error) {
