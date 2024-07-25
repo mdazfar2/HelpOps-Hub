@@ -13,7 +13,6 @@ export default function Popup1(props) {
         return () => clearTimeout(timer);
     }, []);
     
-    console.log('sdsdsdsdsd')
     return (
         <div className={`${error} popup ${none ? "none1" : ""}`}>
             {msg}

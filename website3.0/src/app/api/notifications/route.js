@@ -29,9 +29,7 @@ export async function POST(req) {
         // Update the followerList if the document exists
         userNotification.followerList.set(followerId, { dateTime: new Date() });
       }
-      console.log("helloooeorfeofieisdofidsiofid - ",blogId)
       if (blogId) {
-        console.log("helloooeorfeofieisdofidsiofdfdfdfdsfdsfdsfdsfid  sffdsfdfdfdfdsfd- ",blogId)
         // Update the blogList if the document exists
         userNotification.blogList.set(blogId, { dateTime: new Date() });
       }

@@ -137,7 +137,6 @@ export default function CreateBlog({id}) {
       id: draftId,
       author_id: finalUser._id,
     };
-console.log('sddddddddddddddd')
     // Convert data to FormData for sendBeacon
     const formData = new FormData();
     for (const key in draftData) {
@@ -224,7 +223,6 @@ console.log('sddddddddddddddd')
     });
     if (response.ok) {
       let data = await response.json();
-      console.log('sdsaveing id ddddd',data.id)
       setDraftId(data.id);
       
       localStorage.setItem('draftId',data.id)

@@ -22,7 +22,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { FaEye, FaPen } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject }) {
+function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser }) {
   const [blogs, setBlogs] = useState([]);
   const [authorDetails, setAuthorDetails] = useState({});
   const [error, setError] = useState("");
@@ -97,6 +97,25 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject }) {
   useEffect(()=>{
       fetchTagsData()
   },[])
+  useEffect(()=>{
+    console.log(finalUser)
+  },[])
+  async function handleBlockBlog(data){
+    console.log("fetching...")
+    let user=finalUser
+    console.log(user.blockedBlogs)
+    user.blockedBlogs=[...user.blockedBlogs,data]
+    console.log(user.blockedBlogs)
+    updateUser(user)
+  let res=await fetch("/api/blockblog",{
+    method:"POST",
+    body:JSON.stringify({
+      user_id:finalUser._id,
+      blog_id:data
+    })
+  })
+  
+}
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -334,10 +353,13 @@ useEffect(()=>{
   filtered = blogs;
   
     if (filter === "mustRead") {
-      filtered = mustReadBlogs;
+      filtered = mustReadBlogs.filter((data)=>!data.isDeleted);
     } else if (filter === "bookmarked") {
       const reactionIds = finalUser && finalUser.reactions ? Object.keys(finalUser.reactions) : [];
       filtered = blogs.filter((blog) => reactionIds.includes(blog._id));
+    }else if(filter=="delete"){
+      filtered=blogs.filter((data)=>data.isDeleted&& data.authorId==finalUser._id)
+      
     }
     if (searchedBlog) {
       filtered = filtered.filter((blog) => {
@@ -370,6 +392,10 @@ useEffect(()=>{
   function handleTagsClick(){
     setFilter("Tags")
     setShowTags(true)
+  }
+  function handleDeleteTabClick(){
+    setFilter("delete")
+    filteredBlogs()
   }
   useEffect(()=>{
 setTimeout(()=>{setLoading(false)},4000)
@@ -512,6 +538,15 @@ setTimeout(()=>{setLoading(false)},4000)
       setIsShowFollow(false)
     }
   }
+  async function handleRecoverBlog(id){
+    let res=await fetch('/api/recoverblog',{
+      method:"PUT",
+      body:JSON.stringify({
+        id:id
+      })
+    })
+    window.location.reload()
+  }
   return (
    <>
     {confetti && <Confetti/>}
@@ -605,6 +640,20 @@ setTimeout(()=>{setLoading(false)},4000)
             >
               Tags
             </div>
+            <div
+              className={`w-[100px] ${
+                theme
+                  ? filter === "Tags"
+                    ? "text-gray-900 underline underline-offset-[30px]"
+                    : ""
+                  : filter === "Tags"
+                  ? "underline text-gray-400 underline-offset-[30px]"
+                  : ""
+              }`}
+              onClick={handleDeleteTabClick}
+            >
+              Deleted Blogs
+            </div>
             <div className="lg:hidden ml-auto" onClick={toggleSidebar}>
               <FontAwesomeIcon icon={faBars} />
             </div>
@@ -638,110 +687,115 @@ setTimeout(()=>{setLoading(false)},4000)
                   ? finalUser.reactions && finalUser.reactions.hasOwnProperty(blog._id)
                   : false;
                 
-                  return (
-                    <div
-                      className="cursor-pointer relative"
-                      key={index}
-                      
-                    >
-                      <div className="flex items-center mb-2" onClick={() => navigateToBlogDetails(blog._id)}>
-                        <img
-                          src={author.image1}
-                          onError={handleImageError}
-                          className="w-6 h-6 rounded-full mr-3"
-                        />
-                        <div className="text-sm">{blog.authorName}</div>
-                      </div>
-                      <div  className="flex gap-10 items-center max-md:flex-col max-md:items-start">
-                        <div className="flex-1">
-                          <div onClick={() => navigateToBlogDetails(blog._id)}
-                            className="text-2xl mb-2 font-normal max-sm:text-xl"
-                            dangerouslySetInnerHTML={{ __html: blog.title }}
-                          ></div>
-                         <div className="flex gap-[10px] mb-[10px] flex-wrap">
-                           {blog.tags && blog.tags.map(data=>{
-                        console.log(data)
-                        return <div className="text-[14px]">{"#"+data}</div>})}
-                          </div>
-                          <div onClick={() => navigateToBlogDetails(blog._id)}
-                            className={`${
-                              theme ? "text-gray-600" : "text-gray-300"
-                            } font-medium max-sm:text-sm transition-all duration-200`}
-                          >
-                            {renderBlogDescription(blog.description)}
-                          </div>
-                          <div
-                            className={`${
-                              theme ? "text-gray-500" : "text-gray-300"
-                            } flex text-sm justify-between items-center max-sm:flex-wrap max-sm:gap-2 transition-all duration-200`}
-                          >
-                            <div className="flex gap-5 items-center max-sm:flex-wrap" onClick={() => navigateToBlogDetails(blog._id)}>
-                              <div className="my-2 font-medium">
-                                {formatDate(blog.date)}
-                              </div>
-                              <div>
-                                <FontAwesomeIcon onClick={() => navigateToBlogDetails(blog._id)}
-                                  icon={faHands} 
-                                  className="mr-2"
-                                />
-                                {blog.reactionList.reduce(
-                                  (sum, reaction) => sum + reaction.count,
-                                  0
-                                )}
-                              </div>
-                              <div>
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  className="mr-2"
-                                />
-                                {blog.comments.length}
-                              </div>
-                            <div className="flex gap-2 items-center">
-                              <FaEye/> {Math.ceil(blog.views/2)} &nbsp; &nbsp;
-                              {blog.average?Math.ceil(Math.ceil(blog.average/Math.ceil((blog.views/2)))/60):0 }&nbsp;min read
-                              </div>
-                            </div>
-                        <div className="flex gap-4">
-                              <FontAwesomeIcon
-                                icon={
-                                  isBookmarked ? solidBookmark : regularBookmark
-                                }
-                                className="mr-2"
-                              />
-                      {blog.authorId==finalUser._id &&      <FaEllipsis onClick={()=>modalIndex==index?setModalIndex(-1):setModalIndex(index)}/>
-                           } </div>
-                          
-                          </div>
+                  if(finalUser&&(!finalUser?.blockedBlogs?.includes(blog._id))&&(filter=="delete"?blog.isDeleted:(!blog.isDeleted&&blog.authorId==finalUser._id))){
+
+
+                    return (
+                      <div
+                        className="cursor-pointer relative"
+                        key={index}
+                        
+                      >
+                        <div className="flex items-center mb-2" onClick={() => navigateToBlogDetails(blog._id)}>
+                          <img
+                            src={author.image1}
+                            onError={handleImageError}
+                            className="w-6 h-6 rounded-full mr-3"
+                          />
+                          <div className="text-sm">{blog.authorName}</div>
                         </div>
-                        <img onClick={() => navigateToBlogDetails(blog._id)}
-                          src={blog.image}
-                          onError={handleImageError}
-                          className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
-                        />
+                        <div  className="flex gap-10 items-center max-md:flex-col max-md:items-start">
+                          <div className="flex-1">
+                            <div onClick={() => navigateToBlogDetails(blog._id)}
+                              className="text-2xl mb-2 font-normal max-sm:text-xl"
+                              dangerouslySetInnerHTML={{ __html: blog.title }}
+                            ></div>
+                           <div className="flex gap-[10px] mb-[10px] flex-wrap">
+                             {blog.tags && blog.tags.map(data=>{
+                          console.log(data)
+                          return <div className="text-[14px]">{"#"+data}</div>})}
+                            </div>
+                            <div onClick={() => navigateToBlogDetails(blog._id)}
+                              className={`${
+                                theme ? "text-gray-600" : "text-gray-300"
+                              } font-medium max-sm:text-sm transition-all duration-200`}
+                            >
+                              {renderBlogDescription(blog.description)}
+                            </div>
+                            <div
+                              className={`${
+                                theme ? "text-gray-500" : "text-gray-300"
+                              } flex text-sm justify-between items-center max-sm:flex-wrap max-sm:gap-2 transition-all duration-200`}
+                            >
+                              <div className="flex gap-5 items-center max-sm:flex-wrap" onClick={() => navigateToBlogDetails(blog._id)}>
+                                <div className="my-2 font-medium">
+                                  {formatDate(blog.date)}
+                                </div>
+                                <div>
+                                  <FontAwesomeIcon onClick={() => navigateToBlogDetails(blog._id)}
+                                    icon={faHands} 
+                                    className="mr-2"
+                                  />
+                                  {blog.reactionList.reduce(
+                                    (sum, reaction) => sum + reaction.count,
+                                    0
+                                  )}
+                                </div>
+                                <div>
+                                  <FontAwesomeIcon
+                                    icon={faComment}
+                                    className="mr-2"
+                                  />
+                                  {blog.comments.length}
+                                </div>
+                              <div className="flex gap-2 items-center">
+                                <FaEye/> {Math.ceil(blog.views/2)} &nbsp; &nbsp;
+                                {blog.average?Math.ceil(Math.ceil(blog.average/Math.ceil((blog.views/2)))/60):0 }&nbsp;min read
+                                </div>
+                              </div>
+                          <div className="flex gap-4">
+                                <FontAwesomeIcon
+                                  icon={
+                                    isBookmarked ? solidBookmark : regularBookmark
+                                  }
+                                  className="mr-2"
+                                />
+                        {blog.authorId==finalUser._id &&      <FaEllipsis onClick={()=>modalIndex==index?setModalIndex(-1):setModalIndex(index)}/>
+                             } </div>
+                            
+                            </div>
+                          </div>
+                          <img onClick={() => navigateToBlogDetails(blog._id)}
+                            src={blog.image}
+                            onError={handleImageError}
+                            className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
+                          />
+                        </div>
+                   {index == modalIndex &&  !blog.isDeleted &&     <div className="absolute h-[auto] w-[200px]  flex flex-col gap-[20px] right-36 p-[20px] bottom-20 rounded-lg bg-white">
+                  <> <div className="flex flex-row gap-[10px] justify-center" onClick={()=>handleBlogDelete(blog)}> <FaTrash className="hover:cursor-pointer" color="red" onClick={()=>handleBlogDelete(blog)}/>Delete Post</div>
+                   <div className="z-[100000] flex w-[100%] gap-[10px] items-center justify-center"> 
+                  <div onClick={(e)=>{
+                   e.preventDefault();
+                   let res=confirm("Are you sure that you want to edit this blog ")
+                   if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                    return
+                   }}} className=" flex gap-[10px] ">
+                 <FaPen color="#5a6370"/>
+                </div>
+                <span  onClick={(e)=>{
+                   e.preventDefault();
+                   let res=confirm("Are you sure that you want to edit this blog ")
+                   if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                    return
+                   }}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
+                   <p className="w-[100%] flex justify-center items-center"  onClick={()=>handleBlockBlog(blog._id)}>Block Blog</p></>
+                   </div>}
+                    {blog.isDeleted && <p onClick={()=>handleRecoverBlog(blog._id)}>Recover Blog</p>}    
+                    
+                        <hr className="w-full mt-5 mb-5 border-gray-200" />
                       </div>
-                 {index == modalIndex &&     <div className="absolute h-[auto] w-[200px]  flex flex-col gap-[20px] right-36 p-[20px] bottom-20 rounded-lg bg-white">
-                 <div className="flex flex-row gap-[10px] justify-center" onClick={()=>handleBlogDelete(blog)}> <FaTrash className="hover:cursor-pointer" color="red" onClick={()=>handleBlogDelete(blog)}/>Delete Post</div>
-                 <div className="z-[100000] flex w-[100%] gap-[10px] items-center justify-center"> 
-                <div onClick={(e)=>{
-                 e.preventDefault();
-                 let res=confirm("Are you sure that you want to edit this blog ")
-                 if(res){ router.push(`/editblog?id=${blog._id}`)}else{
-                  return
-                 }}} className=" flex gap-[10px] ">
-               <FaPen color="#5a6370"/>
-              </div>
-              <span  onClick={(e)=>{
-                 e.preventDefault();
-                 let res=confirm("Are you sure that you want to edit this blog ")
-                 if(res){ router.push(`/editblog?id=${blog._id}`)}else{
-                  return
-                 }}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
-                 
-                 </div>}
-                      
-                      <hr className="w-full mt-5 mb-5 border-gray-200" />
-                    </div>
-                  );
+                    );
+                  }
                 }))}
                 {
                   showTags && <div className="w-[100%] flex flex-wrap max-sm:justify-center justify-between">

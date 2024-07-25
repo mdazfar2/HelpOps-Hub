@@ -12,14 +12,12 @@ export async function POST(req) {
       const { MONGO_URI } = process.env; 
       const {path,isDelete,id} = await req.json()
       await mongoose.connect(MONGO_URI);
-      console.log(id)
       let count=await user.findById({_id:id})
       if(!isDelete){
 
         count.resource.set(path,true)
         await count.save()
         let user1=await user.findById({_id:id})
-        console.log(user1)
 
         return NextResponse.json({ success: true,user:user1},{status:"200"});
 
@@ -28,7 +26,6 @@ export async function POST(req) {
         count.resource.delete(path)
         await count.save()
         let user1=await user.findById({_id:id})
-      console.log(user1)
         return NextResponse.json({ success: true,user:user1},{status:"200"});
       }
       // if(count.length==0){

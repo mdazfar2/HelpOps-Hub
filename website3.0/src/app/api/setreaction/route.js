@@ -30,13 +30,11 @@ export async function POST(req) {
                 return NextResponse.json({success:true,user:data})
     
             }else {
-                console.log(reactionArray)
                 data= await user.findByIdAndUpdate({_id:user_id},{
                     $set:{
                         reactions:reactionArray
                     }
                 } ,{ new: true }) 
-                console.log(data)
                 return NextResponse.json({success:true,user:data})
     
             }

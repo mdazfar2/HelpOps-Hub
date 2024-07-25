@@ -17,9 +17,12 @@ export default function blogPage() {
     console.log(idFromQuery,'sdddddddddddddddddddddd')
     
   },[])
+  function updateUser(data){
+    setFinalUser(data)
+  }
   return (
     <div>
-      <BlogPage subject={subject} theme={theme} finalUser={finalUser} setFinalUser={setFinalUser} searchedBlog={searchedBlog}/>
+      <BlogPage subject={subject} theme={theme} updateUser={updateUser} finalUser={finalUser} setFinalUser={setFinalUser} searchedBlog={searchedBlog}/>
     </div>
   );
 }

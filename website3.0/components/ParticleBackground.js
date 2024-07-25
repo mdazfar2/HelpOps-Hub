@@ -19,7 +19,6 @@ const ParticlesComponent = (props) => {
 
   // Function to handle when particles are loaded into the container
   const particlesLoaded = (container) => {
-    console.log(container); // Example: Log the container where particles are loaded
   };
 
   // Memoized options for particles configuration
