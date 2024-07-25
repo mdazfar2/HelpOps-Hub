@@ -28,7 +28,6 @@ export async function POST(req) {
                 following:count2
             }
         }) 
-        console.log(data)
         return NextResponse.json({success:true,user:data})
 }
 

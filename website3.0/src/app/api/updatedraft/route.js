@@ -19,7 +19,6 @@ db.on("error", (error) => {
 });
 
 db.once("open", () => {
-  console.log("Connected to MongoDB");
 });
 
 export async function POST(req) {
@@ -35,7 +34,6 @@ export async function POST(req) {
           description: description,
         }
       },{new:true})
-      console.log(blog)
   
       // Save the blog document to MongoDB
    await blog.save();

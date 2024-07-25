@@ -12,17 +12,14 @@ export async function POST(req) {
   await mongoose.connect(MONGO_URI);
   try {
     let data = await user.find({ email: email });
-    console.log("the data is ", data);
     // checking if user exist or not
     if (data.length > 0) {
-      console.log(data);
 
       return NextResponse.json(
         { success: true, msg: data[0] },
         { status: "200" }
       );
     } else {
-      console.log(data);
       return NextResponse.json({ success: false }, { status: "200" });
     }
   } catch {

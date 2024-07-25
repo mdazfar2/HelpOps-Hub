@@ -18,11 +18,9 @@ export async function POST(req) {
      //for connecting with db 
 
       await mongoose.connect(MONGO_URI);
-  console.log(email,password)
       // for finding the user 
       let data=await user.find({email:email})
       // checking if user exist or not 
-      console.log(data)
       if(data.length==0){
         return NextResponse.json({ success: false,msg:"User Doesn't Valid"},{status:"200"});
       }

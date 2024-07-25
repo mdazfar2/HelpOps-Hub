@@ -19,18 +19,14 @@ export async function POST(req) {
     const userNotification = await Notifications.findOne({ userEmail });
 
     if (!userNotification) {
-      console.log("No notifications found for this user");
       return NextResponse.json({ message: "No notifications found for this user" }, { status: 404 });
     }
 
     if (type === "follower" && userNotification.followerList.has(id)) {
       userNotification.followerList.get(id).isRead = true;
-      console.log("Updated follower notification as read:", id);
     } else if (type === "blog" && userNotification.blogList.has(id)) {
       userNotification.blogList.get(id).isRead = true;
-      console.log("Updated blog notification as read:", id);
     } else {
-      console.log("Notification not found:", { type, id });
       return NextResponse.json({ message: "Notification not found" }, { status: 404 });
     }
 

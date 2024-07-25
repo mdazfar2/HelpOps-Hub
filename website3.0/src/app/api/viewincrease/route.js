@@ -9,7 +9,6 @@ export async function POST(req) {
         const payload = await req.json();
 
         const { MONGO_URI } = process.env;  
-        console.log('yes i am calliungggggggggggggggggggggggggggggggg')
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
         let blog=await Blogs.findById(payload.id)
@@ -43,7 +42,6 @@ export async function PUT(req) {
         // Create a new instance of Blogs model with the received payload
         blog.average=(blog.average+payload.time)/payload.views
         blog.average=Math.ceil(blog.average)
-        console.log(blog.average,'sdddddhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
         await Blogs.findByIdAndUpdate(payload.id,{
             $set:blog
         })

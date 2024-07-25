@@ -92,6 +92,10 @@ type:String
   tags:{
     type:Array,
     default:[]
+  },
+  isDeleted:{
+    type:Boolean,
+    default:false
   }
 });
 

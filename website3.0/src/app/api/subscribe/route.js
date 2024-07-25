@@ -12,7 +12,6 @@ export async function GET(request) {
 
   if (apiKey === validApiKey) {
     let data = []; // Initialize variable to store fetched data
-    console.log("GET");
     try {
       // Connect to MongoDB using Mongoose
       await mongoose.connect(MONGO_URI);
@@ -44,7 +43,6 @@ export async function POST(req) {
     let user = await NewsLetterSubscribe.findOne({ email });
 
     if (user) {
-      console.log("user exists");
       return NextResponse.json({
         success: false,
         message: "User already subscribed",
@@ -376,7 +374,6 @@ export async function POST(req) {
 
       // Send email
       await transporter.sendMail(mailOptions);
-      console.log("Email sent!!");
 
       // Return success response with saved subscription details
       return NextResponse.json({ result, success: true });

@@ -39,7 +39,7 @@ function NotificationTab() {
             }
           );
 
-          let existingNotifications = { followerList: {}, blogList: {} };
+          let existingNotifications = { followerList: {}, blogList: {},blogComments:{} };
 
           if (checkResponse.ok) {
             existingNotifications = await checkResponse.json();

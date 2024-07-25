@@ -39,6 +39,10 @@ const newsletterModel = new mongoose.Schema({
     type:Array,
     default:[]
   },
+  blockedBlogs:{
+    type:Array,
+    default:[]
+  },
   hidedTags:{
     
     type:Array,

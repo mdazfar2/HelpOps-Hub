@@ -19,7 +19,6 @@ db.on("error", (error) => {
 });
 
 db.once("open", () => {
-  console.log("Connected to MongoDB");
 });
 
 // Define your POST request handler

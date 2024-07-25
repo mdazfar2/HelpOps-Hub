@@ -19,7 +19,6 @@ db.on("error", (error) => {
 });
 
 db.once("open", () => {
-  console.log("Connected to MongoDB");
 });
 
 // Define your POST request handler
@@ -28,7 +27,6 @@ export async function POST(req) {
 
   try {
     // Create a new draft blog document
-console.log(image,description,title,author_id)
     let blog = new Draftblogs({
       image: image||"",
       authorId: author_id,
