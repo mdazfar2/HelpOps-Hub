@@ -189,8 +189,8 @@ function ResourcesPage({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // New state variables for sorting and filtering
-  const [sortOption, setSortOption] = useState("name");
-  const [filterOption, setFilterOption] = useState("all");
+  const [sortOption, setSortOption] = useState("sort By");
+  const [filterOption, setFilterOption] = useState("uploaded");
   const [showPopup, setShowPopup] = useState(false);
   const [likedFolders, setLikedFolders] = useState(new Set()); //to add body bg color
   const [showAuth, setShowAuth] = useState(false);

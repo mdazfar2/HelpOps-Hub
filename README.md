@@ -53,10 +53,10 @@ The goal of our project is to empower DevOps professionals by providing a compre
 <p>
   <a href="https://nextjs.org/">
     <img src="https://img.shields.io/badge/Next.js-7c3aed?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js Official Website"/>
-  </a>
+  </a> &nbsp;
   <a href="https://tailwindcss.com/">
     <img src="https://img.shields.io/badge/tailwind_css-7c3aed?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailWind CSS Official Website"/>
-  </a>
+  </a> &nbsp;
   <a href="https://www.mongodb.com/">
     <img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB official Website"/>
   </a>
@@ -71,15 +71,15 @@ The goal of our project is to empower DevOps professionals by providing a compre
 
 <table border="1">
   <tr>
-      <td><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/5ca6c472-5c73-41b2-a2df-389cc3e14881.png" alt="Discord Logo" width="50"></td>
+      <td><img src="website3.0\public\new\discord-icon.svg" alt="Discord Logo" width="50"></td>
       <td><a href="https://discord.gg/UWTrRhqywt"> Join our Official Discord Server </a></td>
   </tr>
   <tr>
-      <td><img src="https://pngimg.com/uploads/linkedIn/linkedIn_PNG27.png" alt="Linkedin Logo" width="50"></td>
+      <td><img src="website3.0\public\new\linkedin-icon.svg" alt="Linkedin Logo" width="50"></td>
       <td><a href="https://linkedin.com/company/HelpOps-Hub/"> Follow us on Linkedin</a></td>
   </tr>
   <tr>
-      <td><img src="https://github.com/krishnaacharyaa/wanderlust/assets/133582566/47d71dd6-0390-479e-9d4e-3f077ef1a987.png" alt="YouTube Logo" width="50"></td>
+      <td><img src="website3.0\public\new\youtube-icon.svg" alt="YouTube Logo" width="50"></td>
       <td><a href="https://www.youtube.com/watch?v=MCCc5mT5Pio"> Find us on Youtube </a></td>
   </tr>
 </table>
@@ -199,3 +199,5 @@ HelpOps-Hub is licensed under the terms of the MIT License. check out <a href=".
 
 - 💰 Become our [Sponsor](https://github.com/sponsors/mdazfar2)!
 - ⭐ Star our Repo 
+
+<p align="right">(<a href="#top">Back to top⬆️</a>)</p>
