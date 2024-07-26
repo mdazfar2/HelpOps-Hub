@@ -24,6 +24,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import GrowYourReachTab from "@components/profile/GrowYourReachTab";
 import { FaX, FaBars } from "react-icons/fa6";
 import DashboardTab from "@components/profile/DashboardTab";
+import DeletedBlogs from "@components/profile/DeletedBlogs";
+import Unblock from "@components/profile/Unblock";
 
 // Define animation variants for menu
 const menuVariants = {
@@ -46,7 +48,9 @@ const Resources = () => (
 
 const Notifications = () => <div><NotificationTab/></div>;
 const GrowYourReach = () => <div><GrowYourReachTab/></div>;
-const BlogDetails = () => <div className="min-h-screen mt-10 rounded-xl"><DashboardTab/></div>;;
+const BlogDetails = () => <div className="min-h-screen mt-10 rounded-xl"><DashboardTab/></div>;
+const DeletedBlogs1=()=><div  className="min-h-screen mt-10 rounded-xl"><DeletedBlogs/></div>
+const UnblockBlogs1=()=><div  className="min-h-screen mt-10 rounded-xl"><Unblock/></div>
 
 const Profile = ({ id }) => (
   <div className="bg-gray-100 mt-10 rounded-xl">
@@ -266,6 +270,22 @@ const ProfilePage = () => {
                     }
                   >
                     Blog Details
+                  </li>
+                  <li
+                    className="py-2 px-4 hover:bg-gray-300 rounded"
+                    onClick={() =>
+                      handleMenuClick(<DeletedBlogs />, "DeletedBlogs1")
+                    }
+                  >
+                    Deleted Blogs
+                  </li>
+                  <li
+                    className="py-2 px-4 hover:bg-gray-300 rounded"
+                    onClick={() =>
+                      handleMenuClick(<Unblock />, "UnblockBlogs1")
+                    }
+                  >
+                    Blocked Blogs
                   </li>
                 </ul>
               </MenuItem>
