@@ -96,7 +96,7 @@ const AdminPanel = ({authKey}) => {
           {/* Sidebar */}
           <div className="w-64 bg-[#607f90] text-white flex flex-col fixed h-full">
             <div className="p-4 text-center text-2xl font-bold border-b border-gray-700">
-              <img src="HelpOps-H Fevicon.png" width={60} className='m-auto mb-5'/>
+              <img src="HelpOps-H Fevicon.webp" width={60} className='m-auto mb-5'/>
               HelpOps Hub
             </div>
             <div className="flex-1 p-4 overflow-y-auto space-y-4">

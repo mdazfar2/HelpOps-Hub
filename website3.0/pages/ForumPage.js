@@ -275,7 +275,7 @@ function ForumPage({ theme }) {
             Popular Searches: Docker, Azure, CI/CD
           </div>
         </div>
-        <img src="/forum.png" alt="img" className="w-[95%] absolute bottom-0" />
+        <img src="/forum.webp" alt="img" className="w-[95%] absolute bottom-0" />
       </div>
       <div
         className={`w-full h-12 ${theme ? "bg-[#dbe2e8]" : "bg-[#1e1d1d]"}`}

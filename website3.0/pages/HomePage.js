@@ -276,7 +276,7 @@ async   function func() {
           } shadow-inner w-full h-[300px] absolute bottom-0 transition-colors duration-500`}
         ></div>
         <img
-          src="new/temp_bg.webp"
+          src="temp_bg.webp"
           alt="HelpOps-Hub"
           className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] hover:scale-105 transition-all duration-500 ease-in-out"
           draggable="false"
@@ -375,7 +375,7 @@ async   function func() {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="new/i1.webp" className="w-14 rounded-full" alt="ask-questions" />
+            <img src="i1.webp" className="w-14 rounded-full" alt="ask-questions" />
             <div className="font-medium text-2xl">Ask Questions</div>
           </div>
           <div className="text-center">
@@ -390,7 +390,7 @@ async   function func() {
           } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="new/i2.webp" className="w-14 rounded-full"  alt="receive ecpert help" />
+            <img src="i2.webp" className="w-14 rounded-full"  alt="receive ecpert help" />
             <div className="font-medium text-2xl">Receive Expert Help</div>
           </div>
           <div className="text-center">
@@ -406,7 +406,7 @@ async   function func() {
           } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="new/i4.webp" className="w-14 rounded-full"  alt="collaborate and learn" />
+            <img src="i4.webp" className="w-14 rounded-full"  alt="collaborate and learn" />
             <div className="font-medium text-2xl">Collaborate and Learn</div>
           </div>
           <div className="text-center px-4">
@@ -422,7 +422,7 @@ async   function func() {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="new/i3.webp" className="w-14 rounded-full"  alt="save time" />
+            <img src="i3.webp" className="w-14 rounded-full"  alt="save time" />
             <div className="font-medium text-2xl">Save Time</div>
           </div>
           <div className="text-center">
@@ -445,7 +445,7 @@ async   function func() {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="new/i1.webp" className="w-16 rounded-full"  alt="Ask questions" />
+                    <img src="i1.webp" className="w-16 rounded-full"  alt="Ask questions" />
                     <div className="font-medium text-3xl">Ask Questions</div>
                   </div>
                   <div className="text-center text-2xl">
@@ -462,7 +462,7 @@ async   function func() {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="new/i2.webp" className="w-16 rounded-full" />
+                    <img src="i2.webp" className="w-16 rounded-full" />
                     <div className="font-medium text-3xl">
                       Receive Expert Help
                     </div>
@@ -482,7 +482,7 @@ async   function func() {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="new/i4.webp" className="w-16 rounded-full"  alt="collaborate and learn" />
+                    <img src="i4.webp" className="w-16 rounded-full"  alt="collaborate and learn" />
                     <div className="font-medium text-3xl">
                       Collaborate and Learn
                     </div>
@@ -502,7 +502,7 @@ async   function func() {
                   } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
                 >
                   <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="new/i3.webp" className="w-16 rounded-full"  alt="access resources" />
+                    <img src="i3.webp" className="w-16 rounded-full"  alt="access resources" />
                     <div className="font-medium text-3xl">Access Resources</div>
                   </div>
                   <div className="text-center text-2xl">
@@ -616,7 +616,7 @@ async   function func() {
     <button className="profile_item w-[200px] h-[200px] p-1 border-2 rounded-full hover:border-gray-400/50 cursor-pointer transition-all duration-500 z-0">
       <div className="w-full h-full flex items-center justify-center p-2 rounded-full active:scale-95 hover:scale-95 object-cover transition-all duration-500">
         <span className="w-20 h-20 inline-block">
-          <img src="./new/HelpOps-H Fevicon.webp" className="w-full h-full object-cover rounded-full" />
+          <img src="./HelpOps-H Fevicon.webp" className="w-full h-full object-cover rounded-full" />
         </span>
       </div>
     </button>
@@ -648,22 +648,22 @@ async   function func() {
           <div className="splide__track">
             <div className="splide__list icons">
               <div className="splide__slide">
-                <img src="new/b1.webp" alt="Cloud Icon" />
+                <img src="b1.webp" alt="Cloud Icon" />
               </div>
               <div className="splide__slide">
-                <img src="new/b2.webp" alt="Monitor Icon" />
+                <img src="b2.webp" alt="Monitor Icon" />
               </div>
               <div className="splide__slide">
-                <img src="new/b3.webp" alt="Pipeline Icon" />
+                <img src="b3.webp" alt="Pipeline Icon" />
               </div>
               <div className="splide__slide">
-                <img src="new/b4.webp" alt="DevOps Icon" />
+                <img src="b4.webp" alt="DevOps Icon" />
               </div>
               <div className="splide__slide">
-                <img src="new/b5.webp" alt="Container Icon" />
+                <img src="b5.webp" alt="Container Icon" />
               </div>
               <div className="splide__slide">
-                <img src="new/b6.webp" alt="Tools Icon" />
+                <img src="b6.webp" alt="Tools Icon" />
               </div>
             </div>
           </div>
@@ -679,7 +679,7 @@ async   function func() {
           >
             <div className="w-2/5 flex justify-center items-center max-[900px]:w-full">
               <img
-                src="new/HelpOps-H Fevicon.webp"
+                src="HelpOps-H Fevicon.webp"
                 alt="Logo"
                 data-tilt
                 className="h-20"

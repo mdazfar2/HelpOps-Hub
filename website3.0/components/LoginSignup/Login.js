@@ -209,7 +209,7 @@ setLoading(false)
               >
                 <img
                   className="w-[30px] h-[30px] ml-[5px]"
-                  src="new/google.webp"
+                  src="google.webp"
                   alt="Google"
                 />
                 Sign in with Google
@@ -225,7 +225,7 @@ setLoading(false)
                 {theme ? (
                   <img
                     className="w-[35px] h-[30px] ml-[5px]"
-                    src="new/github.webp"
+                    src="github.webp"
                     alt="GitHub"
                   />
                 ) : (

@@ -309,7 +309,7 @@ function TeamsPage({ theme }) {
                       id="rank1"
                     >
                       <img
-                        src="new/crown.webp"
+                        src="crown.webp"
                         className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none"
                         alt="crown"
                       />
@@ -357,7 +357,7 @@ function TeamsPage({ theme }) {
                     >
                       <img
                         className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
-                        src="new/crown.webp"
+                        src="crown.webp"
                       />
                     </div>
                     <p
@@ -403,7 +403,7 @@ function TeamsPage({ theme }) {
                     >
                       <img
                         className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
-                        src="new/crown.webp"
+                        src="crown.webp"
                       />
                     </div>
                     <p
@@ -454,7 +454,7 @@ function TeamsPage({ theme }) {
             >
               <img
                 className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
-                src="new/crown.webp"
+                src="crown.webp"
               />
             </div>
             <p
@@ -496,7 +496,7 @@ function TeamsPage({ theme }) {
               id="rank1"
             >
               <img
-                src="new/crown.webp"
+                src="crown.webp"
                 alt="crown"
                 className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none"
               />
@@ -541,7 +541,7 @@ function TeamsPage({ theme }) {
             >
               <img
                 className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
-                src="new/crown.webp"
+                src="crown.webp"
               />
             </div>
             <p
@@ -627,7 +627,7 @@ function TeamsPage({ theme }) {
               <div className="image-div flex-none flex justify-center items-center">
                 <img
                   className="rounded-[50%] w-[28%]"
-                  src="new/founder.webp"
+                  src="founder.webp"
                   alt="Azfar Alam"
                 />
               </div>
@@ -728,7 +728,7 @@ function TeamsPage({ theme }) {
               <div className="image-div flex-none flex justify-center items-center">
                 <img
                   className="rounded-[50%] w-[28%]"
-                  src="new/maintainer.webp"
+                  src="maintainer.webp"
                   alt="Anurag Pandey"
                 />
               </div>
@@ -930,7 +930,7 @@ function TeamsPage({ theme }) {
               <div className="image-div flex-none flex justify-center items-center">
                 <img
                   className="rounded-[50%] w-[28%]"
-                  src="new/maintainer3.webp"
+                  src="maintainer3.webp"
                   alt="Ayushmaan"
                 />
               </div>
@@ -1155,7 +1155,7 @@ function TeamsPage({ theme }) {
 
       <div className="trophy-card flex pl-[20px] ml-[74px] mr-[51px] bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
         <img
-          src="new/trophy.webp"
+          src="trophy.webp"
           alt="Trophy"
           className="trophy h-[66px] relative"
         />

@@ -77,7 +77,7 @@ function ForumPost({theme}) {
             Popular Searches: Docker, Azure, CI/CD
           </div>
         </div>
-        <img src="/forum.png" alt="img" className="w-[95%] absolute bottom-0" />
+        <img src="/forum.webp" alt="img" className="w-[95%] absolute bottom-0" />
       </div>
       <div className={`px-10 flex pt-24 pb-16 justify-center gap-10 min-h-screen w-full max-md:pl-[0.4rem] max-md:mr-[0.2rem] max-md:px-4 flex-wrap ${theme?"bg-white":"bg-[#1e1d1d]"}`}>
         <div className="w-[75%] max-md:w-[99%]">

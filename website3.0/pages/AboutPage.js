@@ -114,7 +114,7 @@ const AboutPage = ({ theme }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.img
-              src="new/HelpOps-H Fevicon.webp"
+              src="HelpOps-H Fevicon.webp"
               alt="HelpOps Logo"
               className="w-full max-w-xs mx-auto rounded-lg lg:max-w-sm"
               style={{ translateY: "-15px" }}
@@ -160,7 +160,7 @@ const AboutPage = ({ theme }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.img
-              src="new/mission.webp"
+              src="mission.webp"
               alt="Mission"
               className="w-full max-w-xs mx-auto rounded-lg lg:max-w-md"
               style={{ translateY: "-15px" }}

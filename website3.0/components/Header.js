@@ -115,7 +115,7 @@ const Header = () => {
           <Link href="/">
             <div data-tilt data-tilt-scale="1.1">
               <img
-                src="new/HelpOps-H Fevicon.webp"
+                src="HelpOps-H Fevicon.webp"
                 alt="Logo"
                 className="w-20 h-20 top-2 max-[400px]:relative max-[400px]:left-36"
                 draggable="false"
@@ -319,7 +319,7 @@ const Header = () => {
             <Link href="/" className="flex items-center">
               <div data-tilt data-tilt-scale="1.1">
                 <img
-                  src="new/HelpOps-H Fevicon.webp"
+                  src="HelpOps-H Fevicon.webp"
                   alt="Logo"
                   className="w-12 h-12 max-[445px]:w-10 max-[445px]:h-10"
                   draggable="false"

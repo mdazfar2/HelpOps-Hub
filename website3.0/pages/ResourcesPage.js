@@ -96,7 +96,7 @@ const ListView = ({ data, theme, handleShare, handleLike, likedFolders }) => {
             >
               <div className="w-16 h-16 bg-gray-200 flex justify-center items-center rounded-lg overflow-hidden">
                 <img
-                  src="/HelpOps-H Fevicon.png"
+                  src="/HelpOps-H Fevicon.webp"
                   className="w-12 h-12"
                   alt="Icon"
                 />
@@ -633,7 +633,7 @@ function ResourcesPage({
                 className="absolute z-10 w-full h-96 rounded-full -bottom-[120%]"
                 style={{ backgroundColor: lighterColor }}
               ></div>
-              <img src="/HelpOps-H Fevicon.png" className="z-30" width={125} />
+              <img src="/HelpOps-H Fevicon.webp" className="z-30" width={125} />
             </div>
             <div
               className={`p-8 h-full relative ${
