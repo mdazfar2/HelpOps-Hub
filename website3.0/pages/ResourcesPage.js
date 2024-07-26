@@ -6,7 +6,7 @@ import { color, motion } from "framer-motion";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faSortAlphaDown, faSortAlphaUp, faSortAmountDown, faSortAmountUp } from "@fortawesome/free-solid-svg-icons";
 import { FaHeart } from "react-icons/fa6";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
@@ -27,9 +27,9 @@ const CustomDropdown = ({
   }, [value]);
 
   const handleOptionSelect = (option) => {
-    setCurrentValue(option.charAt(0).toUpperCase() + option.slice(1));
-    onSelect(option);
-    onChange({ target: { value: option } });
+    setCurrentValue(option.value.charAt(0).toUpperCase() + option.value.slice(1));
+    onSelect(option.value);
+    onChange({ target: { value: option.value } });
     setDropdownOpen(false);
   };
 
@@ -190,6 +190,7 @@ function ResourcesPage({
   const [error, setError] = useState(null);
   // New state variables for sorting and filtering
   const [sortOption, setSortOption] = useState("sort By");
+  let [sortOrder, setSortOrder] = useState("ascending"); // New state for sort order
   const [filterOption, setFilterOption] = useState("uploaded");
   const [showPopup, setShowPopup] = useState(false);
   const [likedFolders, setLikedFolders] = useState(new Set()); //to add body bg color
@@ -431,9 +432,13 @@ function ResourcesPage({
     // Apply current sort
     results.sort((a, b) => {
       if (sortOption === "name") {
-        return a.name.localeCompare(b.name);
+        return sortOrder === "ascending"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name);
       } else if (sortOption === "date") {
-        return new Date(b.created_at) - new Date(a.created_at);
+        return sortOrder === "ascending"
+          ? new Date(a.created_at) - new Date(b.created_at)
+          : new Date(b.created_at) - new Date(a.created_at);
       }
       return 0;
     });
@@ -445,9 +450,13 @@ function ResourcesPage({
     setSortOption(option);
     const sorted = [...filteredData].sort((a, b) => {
       if (option === "name") {
-        return a.name.localeCompare(b.name);
+        return sortOrder === "ascending"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name);
       } else if (option === "date") {
-        return new Date(b.created_at) - new Date(a.created_at);
+        return sortOrder === "ascending"
+        ? new Date(a.created_at) - new Date(b.created_at)
+        : new Date(b.created_at) - new Date(a.created_at);
       }
       return 0;
     });
@@ -471,6 +480,48 @@ function ResourcesPage({
       });
       setFilteredData(filtered);
     }
+  };
+
+  // handles sort order
+  const handleSortOrderChange = () => {
+    setSortOrder(sortOrder === "ascending" ? "descending" : "ascending");
+    handleSort(sortOption);
+  };
+
+  // to get the appropriate sort icon
+  const getSortIcon = (option) => {
+    if (sortOption === option) {
+      if (option === 'name') {
+        return sortOrder === 'asc' ? faSortAlphaDown : faSortAlphaUp;
+      } else if (option === 'date') {
+        return sortOrder === 'asc' ? faSortAmountDown : faSortAmountUp;
+      }
+    } else {
+      if (option === 'name') {
+        return faSortAlphaDown;
+      } else if (option === 'date') {
+        return faSortAmountDown;
+      }
+    }
+    return null;
+  };
+  
+  // to get the appropriate sort title on hovering the icon
+  const getSortTitle = (option) => {
+    if (sortOption === option) {
+      if (option === 'name') {
+        return sortOrder === 'asc' ? 'Sort from A to Z' : 'Sort from Z to A';
+      } else if (option === 'date') {
+        return sortOrder === 'asc' ? 'Sort by earliest date' : 'Sort by latest date';
+      }
+    } else {
+      if (option === 'name') {
+        return 'Sort from A to Z';
+      } else if (option === 'date') {
+        return 'Sort by earliest date';
+      }
+    }
+    return '';
   };
 
   async function handleLike(e, folderName) {
@@ -783,9 +834,17 @@ function ResourcesPage({
         <div className="sort-filter-container flex justify-center gap-[20px]">
           <div className="flex max-sm:flex-col gap-4">
             <CustomDropdown
-              options={sortOptions}
+              options={sortOptions.map(option => ({
+                value: option,
+                label: (
+                  <span>    {/* Add relevant icon for sorting purpose */}
+                    {option.label} 
+                    <FontAwesomeIcon icon={getSortIcon(option.value)} className="ml-2" title= {getSortTitle(option.value)} />
+                  </span>
+                ),
+              }))}
               selectedOption={selectedSortOption}
-              onSelect={setSelectedSortOption}
+              onSelect={handleSortOrderChange}
               value={sortOption}
               onChange={(e) => handleSort(e.target.value)}
             />
