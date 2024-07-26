@@ -3,6 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { Context } from "@context/store";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Logout from "./Logout";
 
 function SettingsTab() {
   const {
@@ -111,9 +112,13 @@ function SettingsTab() {
 
   return (
     <div className={`${theme? "bg-gray-100 text-black": "bg-[#111111] text-white"} relative overflow-hidden w-full h-full`}>
-      <div className="flex flex-col p-10 w-full h-72 gap-5">
+      <div className="flex flex-col p-10 w-full h-84 gap-5">
         <div className="text-center text-2xl">
             Profile Settings
+        </div>
+        <div className={`${theme? "bg-gray-200 text-black": "bg-[#393939] text-white"} flex mt-5 items-center h-20 p-5 w-full justify-between`}>
+          <div className="text-xl">Logout</div>
+          <div className="">{<Logout />}</div>
         </div>
         <div className={`${theme? "bg-gray-200 text-black": "bg-[#393939] text-white"} flex mt-5 items-center h-20 p-5 w-full justify-between`}>
           <div className="text-xl">Delete Your Account</div>
