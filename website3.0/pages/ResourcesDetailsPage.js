@@ -166,10 +166,10 @@ const [isLike,setIslike]=useState(false)
             <FontAwesomeIcon 
             icon={faGithub} />
          </a>
-         <h5 
+           <h5 
          className={`${theme?"":"text-white"}`}>More Info</h5>
          <div 
-         className="like-button liq">
+         className=" max-xl:relative  max-xl:right-0 max-xl:top-[-80px] max-xl:left-16 absolute top-[136px] right-[98px] ">
               <FaHeart 
               style={{color:`${isLike?"orange":"black"}`}}  
                size={'2rem'}/>

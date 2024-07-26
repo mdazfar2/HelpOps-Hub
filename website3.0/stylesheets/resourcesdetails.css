@@ -245,26 +245,9 @@ pre {
     font-size: 24px;
   }
 
-  .repo-info-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
+ 
 
-  .repo-link {
-    position: static;
-    top: auto;
-    right: auto;
-    margin-bottom: 10px;
-  }
-
-  #container h5 {
-    position: static;
-    top: auto;
-    right: auto;
-    margin-top: 5px;
-  }
+ 
 
   pre {
     padding: 5px;
@@ -277,9 +260,35 @@ pre {
     font-size: 12px;
   }
 }
-
+@media only screen and (max-width:1200px){
+  .repo-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  #container h5 {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-top: 5px;
+  }
+  .repo-link {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-bottom: 10px;
+  }
+}
 @media screen and (max-width: 480px) {
-
+.repo-link{
+  position: relative;
+  right: 50px;
+}
+#container h5{
+  right: 50px;
+  position: relative;
+}
   #container {
     width: 80%;
     padding: 10px;
@@ -303,9 +312,7 @@ pre {
     padding: 12px;
   }
 
-  #container h5 {
-    font-size: 14px;
-  }
+
 
   .copy-button {
     top: 2px;
@@ -339,9 +346,7 @@ pre {
     padding: 10px;
   }
 
-  #container h5 {
-    font-size: 12px;
-  }
+  
 
   .copy-button {
     top: 2px;
