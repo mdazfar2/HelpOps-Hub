@@ -56,30 +56,32 @@ const replies = [
       "If you're using a framework, ensure it supports sticky positioning. That was the fix in my case.",
   },
 ];
-const Tag = ({ name }) => (
-  <div className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-500">
+const Tag = ({ name ,theme}) => (
+  <div className={`${theme?"bg-gray-200 text-gray-700 ":"bg-[#2c303a] text-gray-100"} px-4 py-1 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-500`}>
     {name}
   </div>
 );
-function ForumPost() {
+function ForumPost({theme}) {
   return (
     <div className="mt-20 overflow-x-hidden">
-      <div className="h-80 bg-gray-200 px-10 pt-20 relative">
+      <div className={`h-80 ${
+          theme ? "bg-gray-200" : "bg-[#212020]"
+        }  px-10 max-md:px-5 max-sm:px-2 pt-20 relative`}>
         <div className="w-full flex flex-col items-center justify-center">
           <input
             type="text"
             placeholder="Search for Topics..."
             className="py-3 shadow-md px-4 border rounded-full w-full z-50 max-w-md focus:outline-none"
           />
-          <div className="text-black mt-4">
+          <div className={` ${theme?"text-black":"text-white"} mt-4`}>
             Popular Searches: Docker, Azure, CI/CD
           </div>
         </div>
         <img src="/forum.png" alt="img" className="w-[95%] absolute bottom-0" />
       </div>
-      <div className="px-10 flex mt-24 justify-center gap-10 min-h-screen w-full">
-        <div className="w-[75%]">
-          <div className="flex w-full justify-between">
+      <div className={`px-10 flex pt-24 pb-16 justify-center gap-10 min-h-screen w-full max-md:pl-[0.4rem] max-md:mr-[0.2rem] max-md:px-4 flex-wrap ${theme?"bg-white":"bg-[#1e1d1d]"}`}>
+        <div className="w-[75%] max-md:w-[99%]">
+          <div className="flex w-full justify-between  max-md:flex-wrap">
             <div className="flex gap-5">
               <img
                 src="https://randomuser.me/api/portraits/men/5.jpg"
@@ -87,30 +89,30 @@ function ForumPost() {
                 className="w-12 h-12 rounded-full"
               />
               <div className="text-lg">
-                <div>Billy Woosh</div>
+                <div className={`${theme?"":"text-white"}`}>Billy Woosh</div>
                 <div className="flex gap-5 text-sm text-gray-500">
-                  <div>
+                  <div className={`${theme?"":"text-[#767677]"}`}>
                     <FontAwesomeIcon icon={faCoffee} /> Conversation Starter
                   </div>
-                  <div>
+                  <div  className={`${theme?"":"text-[#767677]"}`}>
                     <FontAwesomeIcon icon={faCalendar} /> January 16 at 10:32 PM
                   </div>
                 </div>
               </div>
             </div>
-            <div>
+            <div className={`max-md:mt-[30px] max-md:mr-[0px]`}>
               <div className="bg-[#6089a4] px-5 py-3 text-white">
                 Ask Question
               </div>
             </div>
           </div>
           <div className="mt-10 flex text-gray-600 gap-4">
-            <div className="text-5xl font-bold">Q:</div>
+            <div className="text-5xl font-bold max-md:hidden">Q:</div>
             <div className="mt-2">
-              <div className="text-3xl font-bold">
-                Sticky navbar is shown, but state is inactive
+              <div className={`${theme?"":"text-white"} text-3xl max-md:flex font-bold`}>
+              <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  Sticky navbar is shown, but state is inactive
               </div>
-              <div className="text-base mt-5 text-justify">
+              <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`}>
                 The sticky navbar is displayed, but it remains inactive. This
                 issue has been causing quite a bit of frustration. Despite
                 attempting multiple solutions, the navbar stubbornly refuses to
@@ -150,8 +152,8 @@ function ForumPost() {
                 </div>
               </div>
               <div className="mt-10">
-                <div className="min-h-96 w-full bg-[#eeeeee] p-8">
-                  <div className="flex w-full justify-between">
+                <div className={`min-h-96 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
+                  <div className="flex w-full justify-between flex-wrap">
                     <div className="flex gap-5">
                       <img
                         src="https://randomuser.me/api/portraits/men/6.jpg"
@@ -159,27 +161,27 @@ function ForumPost() {
                         className="w-12 h-12 rounded-full"
                       />
                       <div className="text-lg">
-                        <div>Jack Frost</div>
+                        <div className={`${theme?"":"text-white"}`}>Jack Frost</div>
                         <div className="flex gap-5 text-sm text-gray-500">
-                          <div>
+                          <div className={`${theme?"":"text-gray-300"}`}>
                             <FontAwesomeIcon icon={faCoffee} /> Conversation
                             Starter
                           </div>
-                          <div>
+                          <div className={`${theme?"":"text-gray-300"}`}>
                             <FontAwesomeIcon icon={faCalendar} /> January 16 at
                             10:32 PM
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className=" text-green text-sm flex gap-2 items-center text-green-500">
+                    <div className="max-md:mt-[20px] text-green text-sm flex gap-2 items-center text-green-500">
                       <FontAwesomeIcon icon={faCheck} /> Accepted Solution
                     </div>
                   </div>
                   <div className="mt-10 flex text-gray-600 gap-4">
-                    <div className="text-5xl font-bold">A:</div>
+                    <div className={`${theme?"":"text-white"} text-5xl font-bold`}>A:</div>
                     <div className="">
-                      <div className="text-base text-justify">
+                      <div className={`${theme?"":"text-gray-300"} text-base text-justify`}>
                         Hi, I understand the frustration with the sticky navbar
                         remaining inactive. Here are a few steps you can follow
                         to troubleshoot and potentially fix the issue:
@@ -224,10 +226,10 @@ function ForumPost() {
                 </div>
               </div>
               <div className="mt-10">
-                <div className="text-xl font-medium">All Replies</div>
-                <div className="min-h-16 rounded-md border border-[#d3cabd] flex items-center px-10 mt-10 justify-between w-full bg-[#e3e3e3]">
-                  <div>Sort By</div>
-                  <div>Page 1 to 4</div>
+                <div className={`text-xl font-medium ${theme?"":"text-gray-200"}` }>All Replies</div>
+                <div className={`min-h-16 rounded-md border border-[#d3cabd] flex items-center px-10 mt-10 justify-between w-full ${theme?"bg-[#e3e3e3]":"bg-[#383838]"}`}>
+                  <div className={`${theme?"":"text-gray-300"}`}>Sort By</div>
+                  <div className={`${theme?"":"text-gray-300"}`}>Page 1 to 4</div>
                 </div>
               </div>
               <div className="mt-10 min-h-96">
@@ -243,18 +245,18 @@ function ForumPost() {
                         className="w-12 h-12 rounded-full"
                       />
                       <div className="text-lg">
-                        <div>{reply.username}</div>
+                        <div className={`${theme?"":"text-white"}`}>{reply.username}</div>
                         <div className="flex gap-5 text-sm text-gray-500">
-                          <div>
+                          <div className={`${theme?"":"text-gray-300"}`}>
                             <FontAwesomeIcon icon={faCoffee} /> {reply.role}
                           </div>
-                          <div>
+                          <div className={`${theme?"":"text-gray-300"}`}>
                             <FontAwesomeIcon icon={faCalendar} /> {reply.date}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="mt-5">{reply.replyText}</div>
+                    <div className={`${theme?"":"text-gray-300"} mt-5`}>{reply.replyText}</div>
                     <div className="absolute bottom-0 right-0 flex gap-2 p-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 bg-white rounded-md shadow-md transition-all duration-300">
                       <button className="bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-1">
                         <FontAwesomeIcon icon={faReply} /> Reply
@@ -270,27 +272,27 @@ function ForumPost() {
             </div>
           </div>
         </div>
-        <div className="w-[20%]">
-          <div className="text-2xl font-bold">Tags</div>
+        <div className="w-[20%] max-md:w-[100%]">
+          <div className={`${theme?"":"text-white"} text-2xl font-bold`}>Tags</div>
           <div>
-            <div className="mt-10 max-xl:hidden">
+            <div className="mt-10 ">
               <div className="flex flex-wrap mt-5 gap-4">
                 {tags.map((tag, index) => (
-                  <Tag key={index} name={tag} />
+                  <Tag key={index} theme={theme} name={tag} />
                 ))}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="relative pt-16 pb-6 bg-gray-200 text-gray-600 mt-16 px-10">
+      <footer class={`relative pt-16 pb-6 ${theme?"bg-gray-200":"bg-[#1e1d1d]"} max-sm:px-2 text-gray-600 px-10`}>
         <div class="container mx-auto px-4">
           <div class="flex flex-wrap text-left lg:text-left">
-            <div class="w-full lg:w-6/12 px-4">
-              <h4 class="text-3xl font-semibold text-blueGray-700">
+            <div class="w-full lg:w-6/12 px-4 max-sm:px-0">
+              <h4 class={`text-3xl font-semibold ${theme?"":"text-white"} text-blueGray-700`}>
                 Let's keep in touch!
               </h4>
-              <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+              <h5 class={`text-lg ${theme?"":"text-white"} mt-0 mb-2 text-blueGray-600`}>
                 Find us on any of these platforms, we respond in 1-2 business
                 days.
               </h5>
@@ -321,13 +323,45 @@ function ForumPost() {
                 </button>
               </div>
             </div>
-            <div class="w-full lg:w-6/12 px-4">
+            <div class="w-full lg:w-6/12 px-4 max-sm:px-0">
               <div class="flex flex-wrap items-top mb-6">
-                <div class="w-full lg:w-4/12 px-4 ml-auto">
-                  <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                <div class={`w-full max-sm:flex flex-wrap lg:w-4/12 px-4 ml-auto ${theme?"":"text-gray-200"} ` }>
+                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                     Useful Links
                   </span>
-                  <ul class="list-unstyled">
+                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
+                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        href="#"
+                      >
+                        About Us
+                      </a>
+                  </span>
+                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
+                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        href="#"
+                      >
+                        Blog
+                      </a>
+                  </span>
+                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
+                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        href="#"
+                      >
+                        Github
+                      </a>
+                  </span>
+                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
+                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        href="#"
+                      >
+                        Devops Resources
+                      </a>
+                  </span>
+                  {/* <ul class="list-unstyled">
                     <li>
                       <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
@@ -360,46 +394,45 @@ function ForumPost() {
                         Devops Resources
                       </a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
-                <div class="w-full lg:w-4/12 px-4">
-                  <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                <div class={ ` max-sm:flex flex-wrap w-full lg:w-4/12 px-4 o ${theme?"":"text-gray-200"} ` }>
+                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                     Other Resources
                   </span>
-                  <ul class="list-unstyled">
-                    <li>
-                      <a
+                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         MIT License
                       </a>
-                    </li>
-                    <li>
-                      <a
+                  </span>
+                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Terms &amp; Conditions
                       </a>
-                    </li>
-                    <li>
-                      <a
+                  </span>
+                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Privacy Policy
                       </a>
-                    </li>
-                    <li>
-                      <a
+                  </span>
+                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Contact Us
                       </a>
-                    </li>
-                  </ul>
+                  </span>
+            
                 </div>
               </div>
             </div>
@@ -407,7 +440,7 @@ function ForumPost() {
           <hr class="my-6 border-gray-300" />
           <div class="flex flex-wrap items-center md:justify-between justify-center">
             <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-              <div class="text-sm text-blueGray-500 font-semibold py-1">
+              <div class={`text-sm text-blueGray-500 font-semibold py-1 o ${theme?"":"text-gray-200"} ` }>
                 Copyright © <span id="get-current-year">2024</span>
                 <a
                   href="#"
