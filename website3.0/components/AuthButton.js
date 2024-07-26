@@ -35,7 +35,6 @@ const AuthButton = () => {
 
   async function fetchData1() {
     setIsLogin(true);
-    console.log('inside fetdshdjsd');
     let session = await JSON.parse(localStorage.getItem('finalUser'));
     let a = await fetch("/api/createaccount", {
       method: "POST",
@@ -151,7 +150,6 @@ const AuthButton = () => {
   }
 
   useEffect(() => {
-    console.log(userName);
   }, [userName]);
 
   const handleOTPStart = () => {

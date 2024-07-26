@@ -24,25 +24,14 @@ export default function Editblog({ id }) {
   let router = useRouter();
 
   async function fetchData() {
-    console.log(id,'sddddddddddddddddddddddddddddd')
     let data = await fetch(`/api/getblog`,{
       method:"POST",
       body:JSON.stringify({id:id})
     });
     data = await data.json();
-    // let finalData=data.data[0];
-    // data.data.map((d)=>{
-    //   console.log(d,id,d._id)
-    //   if(d._id==id){
-    //     console.log(d,'sdddddddddddddddddddddddd')
-    //     finalData=d
-      
-    //   }
-    // })
-   
+  
     setValue(data.title);
     setDesc(data.description);
-    console.log(data)
     setIsImg(data.image);
   }
   useEffect(() => {
@@ -58,7 +47,6 @@ export default function Editblog({ id }) {
 
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-        console.log(item, "dsssssss");
         if (item.kind === "file" && item.type.startsWith("image/")) {
           const file = item.getAsFile();
           const reader = new FileReader();
@@ -73,7 +61,6 @@ export default function Editblog({ id }) {
           item.kind === "string" &&
           (items.length > 1 ? items[1].kind !== "file" : true)
         ) {
-          console.log("sddddddddd", item);
           item.getAsString((text) => {
             // Handle text data
             setValueCallback((prevContent) => prevContent + text);
@@ -87,11 +74,9 @@ export default function Editblog({ id }) {
 
     if (quill) {
       const handlePasteForQuill = (event) => {
-        console.log("Pasting in first editor");
         handlePaste(event, setValue, setIsImg);
       };
       const handlePasteForQuill1 = (event) => {
-        console.log("Pasting in second editor");
         handlePaste(event, setDesc, setIsImg);
       };
       quill1.root.addEventListener("paste", handlePasteForQuill1);
@@ -105,9 +90,7 @@ export default function Editblog({ id }) {
     }
 
     if (quill1) {
-      console.log("Initializing paste handler for second editor");
       const handlePasteForQuill1 = (event) => {
-        console.log("Pasting in second editor");
         handlePaste(event, setDesc, setIsImg);
       };
       quill1.root.addEventListener("paste", handlePasteForQuill1);
@@ -118,7 +101,6 @@ export default function Editblog({ id }) {
     }
   }, []);
   function handleToolbar(e) {
-    console.log(e, "in toolbar 1 ");
     const quillInstance = quillRef.current.getEditor();
     const toolbar =
       quillInstance.container.parentNode.querySelector(".ql-toolbar");
@@ -138,7 +120,6 @@ export default function Editblog({ id }) {
     const toolbar =
       quillInstance.container.parentNode.querySelector(".ql-toolbar");
 
-    console.log(e, "in toolbar 2 ");
     if (e && e.length > 0) {
       const { top, left, height } = quillInstance.getBounds(e.index, e.length);
 

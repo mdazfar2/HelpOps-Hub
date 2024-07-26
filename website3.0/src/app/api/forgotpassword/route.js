@@ -11,18 +11,15 @@ export async function POST(req) {
       const { MONGO_URI } = process.env; 
       const { email,} = await req.json();  // Extract email from request body
      //for connecting with db 
-     console.log(email)
       await mongoose.connect(MONGO_URI);
       // for finding the user 
       let data=await user.find({email:email})
       // checking if user exist or not 
-      console.log(data)
       if(data.length==0){
         return NextResponse.json({ success: false,msg:"User Doesn't Valid"},{status:"200"});
       }
       //comparing the password
    let token= jwt.sign(email, 'myanemislovu')
-   console.log(token)
    let transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -44,7 +41,6 @@ export async function POST(req) {
 
   // Send email
  let res= await transporter.sendMail(mailOptions);
- console.log(res)  
  return NextResponse.json({ success: true},{status:"200"});
 
        

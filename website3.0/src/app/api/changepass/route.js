@@ -16,7 +16,6 @@ export async function POST(req) {
     // for finding the user
     let user1 = await jwt.decode(token);
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
     await user.updateOne(
       { email: user1 },
       { $set: { password: hashedPassword } }

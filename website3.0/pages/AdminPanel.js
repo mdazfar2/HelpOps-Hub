@@ -55,8 +55,6 @@ const AdminPanel = ({authKey}) => {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [inputKey, setInputKey] = useState("");
   const handleDbKeySubmit = (event) => {
-    console.log("input",inputKey);
-    console.log(authKey);
     event.preventDefault();
     if (inputKey === authKey) {
       setShowAdminPanel(true);

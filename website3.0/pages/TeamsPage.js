@@ -279,7 +279,6 @@ function TeamsPage({ theme }) {
   // Function to render the top 3 contributors
   function renderTopContributors(contributors) {
     if (contributors.length < 3) return null;
-    console.log(contributors.html_url);
 
     if (isMobile) {
       return (

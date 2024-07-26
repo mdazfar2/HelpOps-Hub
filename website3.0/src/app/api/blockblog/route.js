@@ -9,7 +9,6 @@ export async function GET() {
     await mongoose.connect(MONGO_URI);
     let data = [];
     data = await Blogs.find();
-console.log(data)
     return NextResponse.json({data});
 }
 
@@ -25,11 +24,9 @@ export async function POST(req) {
        
         // Create a new instance of Blogs model with the received payload
         let user1 = await user.findById(user_id)
-        console.log(user1)
         user1.blockedBlogs.push(blog_id)
         // Save the new blog record to MongoDB
         const result = await user1.save();
-        console.log(user1)
         // Return success response with saved blog details
         return NextResponse.json({success: true });
     } catch (error) {

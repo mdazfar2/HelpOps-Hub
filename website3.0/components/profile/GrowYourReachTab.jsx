@@ -21,17 +21,12 @@ function GrowYourReachTab() {
           const data = await response.json();
           const allUsers = data.msg;
 
-          console.log("All users:", allUsers);
 
           if (finalUser && finalUser.following) {
             const followingIds = Object.keys(finalUser.following);
-            console.log("Following IDs:", followingIds);
-
             const nonFollowersList = allUsers.filter(
               user => !followingIds.includes(user._id) && user._id !== finalUser._id
             );
-
-            console.log("Non-followers list:", nonFollowersList);
 
             setNonFollowers(nonFollowersList);
           }

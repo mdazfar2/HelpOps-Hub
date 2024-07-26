@@ -14,10 +14,8 @@ export async function POST(req) {
   await connectToDatabase();
   try {
     const { userEmail, type, id } = await req.json();
-    console.log("Received request to update notification status:", { userEmail, type, id });
 
     const userNotification = await Notifications.findOne({ userEmail });
-    console.log(userNotification.blogCommentList)
     if (!userNotification) {
       return NextResponse.json({ message: "No notifications found for this user" }, { status: 404 });
     }
@@ -29,7 +27,6 @@ export async function POST(req) {
     }else if(type=="comments" && userNotification.blogCommentList.has(id)){
       userNotification.blogCommentList.get(id).isRead = true;
     } else {
-      console.log("Notification not found:", { type, id });
       return NextResponse.json({ message: "Notification not found" }, { status: 404 });
     }
 

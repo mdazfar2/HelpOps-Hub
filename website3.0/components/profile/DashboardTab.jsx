@@ -22,14 +22,11 @@ export default function DashboardTab() {
     let relatedBlogs=[]
     blogs.map((data)=>{
       data.comments.map((res)=>{
-        console.log("THE RESPONSDIE ",res.user)
         if(res.user.username==finalUser.username){
           relatedBlogs.push(data)
         }
       })
     })
-console.log("THE OVERALL RELATED BLOGS ARE ",relatedBlogs
-)
     setRelatedAllBlogs([...relatedBlogs])
     blogs=blogs.filter((data)=>data.authorId==finalUser._id)
     let views=0

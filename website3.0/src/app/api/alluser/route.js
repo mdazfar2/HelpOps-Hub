@@ -9,7 +9,6 @@ export async function POST(req) {
 
   try {
     let data = await user.find({});
-    console.log("the data is ", data);
     if (data.length > 0) {
       return NextResponse.json({ success: true, msg: data }, { status: 200 });
     } else {

@@ -128,7 +128,6 @@ const Signup = ({ onClose, onLoginClick, onBack, onOTPStart, onProfileStart, onP
   // Function to handle profile submission
   const handleProfileSubmit = (profileData) => {
     // Handle profile submission
-    console.log("Profile data:", profileData);
     onProfileComplete();
   };
 
@@ -170,7 +169,6 @@ const Signup = ({ onClose, onLoginClick, onBack, onOTPStart, onProfileStart, onP
     );
   }
 
-  console.log(session);
 
   return (
     <div

@@ -14,7 +14,6 @@ export async function GET(req, { params }) {
         let user;
        
         if (blog) {
-            console.log('sdddddddddddddddddddddddddddddddddddddddd',blog)
             return NextResponse.json(blog);
         } else {
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });
@@ -34,7 +33,6 @@ export async function PUT(req, { params }) {
     try {
         const { comment, user1, reactionType } = await req.json();
         let blog = await Blogs.findById(id);
-        console.log(comment,user1)
         let   userData;
         if(reactionType=='Icon1'||reactionType=='Icon3'||reactionType=='Icon2'){
              let   userData=await user.findById({_id:user1._id})
@@ -55,7 +53,6 @@ export async function PUT(req, { params }) {
 
                    userData=   await  userData.save()
                }
-               console.log(userData)
             }
              else{
                 let map=new Map(Object.entries(userData.likedBlogs.get(id)))
@@ -82,7 +79,6 @@ export async function PUT(req, { params }) {
             }
 
            blog=  await blog.save();
-          console.log(blog)
             return NextResponse.json(blog);
         } else {
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });
@@ -103,7 +99,6 @@ export async function DELETE(req, { params }) {
         const blog = await Blogs.findById(id);
         let   userData=await user.findById({_id:user1._id})
        let map=new Map(Object.entries(userData.likedBlogs.get(id)))
-       console.log("sjddddddddk",map)
        map.delete(reactionType)
        userData.likedBlogs.set(id,map)
 

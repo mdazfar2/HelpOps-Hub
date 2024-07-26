@@ -14,7 +14,6 @@ export async function POST(req) {
   let data = await user.find({ email: email });
   // checking if user exist or not
   if (data.length > 0) {
-    console.log(data);
     return NextResponse.json(
       { success: true, msg: data[0] },
       { status: "200" }
@@ -46,7 +45,6 @@ export async function POST(req) {
     await users.save();
   } else {
     let us = await user.find({ email: email });
-    console.log(us);
     if (us.length > 0) {
       return NextResponse.json({ success: true, user: us }, { status: 200 });
     }
@@ -74,7 +72,6 @@ export async function POST(req) {
     await user.findByIdAndDelete(data1[0]._id);
   }
   let data1 = await user.find({ email: email });
-  console.log("after data ", data1);
   // await user.deleteOne({email:email})
   //sending response user
   return NextResponse.json({ success: true, user: data1[0] });

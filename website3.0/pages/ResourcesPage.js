@@ -27,9 +27,15 @@ const CustomDropdown = ({
   }, [value]);
 
   const handleOptionSelect = (option) => {
-    setCurrentValue(option.value.charAt(0).toUpperCase() + option.value.slice(1));
-    onSelect(option.value);
-    onChange({ target: { value: option.value } });
+    if(typeof option === 'object'){
+      setCurrentValue(option.value.charAt(0).toUpperCase() + option.value.slice(1));
+      onSelect(option.value);
+      onChange({ target: { value: option.value } });
+    } else if(typeof option === 'string'){
+      setCurrentValue(option.charAt(0).toUpperCase() + option.slice(1));
+      onSelect(option);
+      onChange({ target: { value: option } });
+    }
     setDropdownOpen(false);
   };
 
@@ -549,7 +555,6 @@ function ResourcesPage({
         }),
       });
       user = await user.json();
-      console.log(user);
       setFinalUser(user.user);
       user = await JSON.stringify(user.user);
       localStorage.setItem("finalUser", user);
@@ -801,7 +806,7 @@ function ResourcesPage({
       )} */}
       <div className="heading">
         <h1
-          class={`${
+          className={`${
             theme ? "" : "text-white"
           } text-4xl text-center font-base mt-[160px] mb-10`}
         >
@@ -878,7 +883,7 @@ function ResourcesPage({
           0 /* Display message when resouce not found on searching */ ? (
           <div id="not-found">
             <p
-              class={`${
+              className={`${
                 theme ? "" : "text-white"
               } text-center text-4xl font-bold py-20 mb-5 mt-[7px]`}
             >

@@ -16,7 +16,6 @@ export async function POST(req) {
         // Updating arrays for followers 
         count2.set(user_id,[data.image1,data.name])
         // updating the followers for followed user 
-        console.log(count,count2)
     data= await user.findByIdAndUpdate({_id:user_id},{
             $set:{
                 followers:count
