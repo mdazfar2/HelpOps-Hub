@@ -219,13 +219,13 @@ const ProfilePage = () => {
     >
       {!menuVisible && (
         <div className="w-[80%] bg-gray-100 m-auto pt-8 pl-4 mb-10 z-50 cursor-pointer max-lg:block hidden" >
-          <FaBars size={24} className={theme ? "text-gray-600" : "text-white"} onClick={toggleMenu}/>
+          <FaBars size={24} className={theme ? "text-gray-600" : "text-black"} onClick={toggleMenu}/>
           <hr className="w-full border-gray-200 border-[3px] my-6"/>
         </div>
       )}
       {menuVisible && (
         <div className="w-[80%] m-auto bg-gray-100 pt-8 pl-4 mb-10 z-50 cursor-pointer max-lg:block hidden" >
-          <FaX size={24} className={theme ? "text-gray-600" : "text-white"} onClick={toggleMenu}/>
+          <FaX size={24} className={theme ? "text-gray-600" : "text-black"} onClick={toggleMenu}/>
         </div>
       )}
       <AnimatePresence>
@@ -233,8 +233,8 @@ const ProfilePage = () => {
           <motion.div
             id="menu"
             className={`${
-              theme ? "" : "bg-[#1c1a1a]"
-            } w-[20%] max-lg:w-[80%] max-lg:m-auto max-lg:bg-gray-100 max-sm:h-full border-t-4 border-gray-200 px-5 py-10 text-lg`}
+              theme ? "max-lg:bg-gray-100" : "bg-[#1c1a1a]"
+            } w-[20%] max-lg:w-[80%] max-lg:m-auto  max-sm:h-full border-t-4 border-gray-200 px-5 py-10 text-lg`}
             variants={menuVariants}
             initial="hidden"
             animate="visible"
