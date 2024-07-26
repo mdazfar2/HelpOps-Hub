@@ -903,19 +903,19 @@ data-tooltip-content="Reaction"
                     className="cursor-pointer"
                     onClick={() => handleReactionClick("Icon1")}
                   >
-                    <img src="/icon1.png" width={100} height={100} />
+                    <img src="/icon1.webp" width={100} height={100} />
                   </div>
                   <div
                     className="cursor-pointer"
                     onClick={() => handleReactionClick("Icon2")}
                   >
-                    <img src="/icon2.png" width={100} height={100} />
+                    <img src="/icon2.webp" width={100} height={100} />
                   </div>
                   <div
                     className="cursor-pointer"
                     onClick={() => handleReactionClick("Icon3")}
                   >
-                    <img src="/icon3.png" width={100} height={100} />
+                    <img src="/icon3.webp" width={100} height={100} />
                   </div>
                 </div>
               </div>
@@ -984,7 +984,7 @@ data-tooltip-content="Reaction"
           </div>
           <div className="flex gap-5 py-2 mb-5">
             <div className="flex cursor-pointer">
-              <img src="/icon1.png" width={25} height={25} />
+              <img src="/icon1.webp" width={25} height={25} />
               <span>
                 {blog.reactionList?.find(
                   (reaction) => reaction.type === "Icon1"
@@ -992,7 +992,7 @@ data-tooltip-content="Reaction"
               </span>
             </div>
             <div className="flex cursor-pointer">
-              <img src="/icon2.png" width={25} height={25} />
+              <img src="/icon2.webp" width={25} height={25} />
               <span>
                 {blog.reactionList?.find(
                   (reaction) => reaction.type === "Icon2"
@@ -1000,7 +1000,7 @@ data-tooltip-content="Reaction"
               </span>
             </div>
             <div className="flex cursor-pointer">
-              <img src="/icon3.png" width={25} height={25} />
+              <img src="/icon3.webp" width={25} height={25} />
               <span>
                 {blog.reactionList?.find(
                   (reaction) => reaction.type === "Icon3"

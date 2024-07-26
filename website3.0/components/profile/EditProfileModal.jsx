@@ -155,7 +155,7 @@ export default function EditProfileModal({
           className="absolute top-14 left-0 w-full text-center"
         >
           <img
-            src={bannerUrl?.length > 0 ? bannerUrl : "default_banner.png"}
+            src={bannerUrl?.length > 0 ? bannerUrl : "default_banner.webp"}
             alt="Banner Picture"
             className="w-full h-48 object-cover cursor-pointer"
           />

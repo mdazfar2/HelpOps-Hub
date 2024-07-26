@@ -120,7 +120,7 @@ function ContactPage({theme,setIsPopup,setIsMsg,setColor}) {
   return (
     <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#1e1d1d] "} flex-col-reverse items-center justify-center space-x-0 p-10 md:flex-row lg:space-x-40 max-lg:space-x-20 h-[100vh] pt-40 max-md:flex-col-reverse max-lg:h-full max-md:h-full max-md:pt-20 max-md:space-x-0 max-sm:p-[0rem]`}>
       <div className="mt-10 max-md:mt-[80px] max-sm:mt-[70px]">
-        <img src="new/rateus.webp" className="w-[30rem] max-md:w-[28rem] max-sm:w-[25rem]" alt="rateus" />
+        <img src="rateus.webp" className="w-[30rem] max-md:w-[28rem] max-sm:w-[25rem]" alt="rateus" />
       </div>
         <div className={`flex flex-col items-center border-dashed border-2 border-black p-10  w-[30rem] rounded-3xl shadow-2xl  ${theme?"bg-[#098CCD] bg-opacity-10":"bg-[#181616]  border-white"} md:justify-center max-sm:scale-75 max-md:w-full max-md:max-w-[90%] max-sm:w-[95%] max-md:mt-20 max-sm:mt-[100px]`}>
           <h1 className={`${theme?"":"text-white"} text-3xl max-sm:text-2xl`}>Contact Us</h1>
