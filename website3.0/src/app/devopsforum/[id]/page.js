@@ -1,10 +1,14 @@
+"use client"
 import ForumPost from '@components/forumpage/ForumPost'
-import React from 'react'
+import { Context } from '@context/store'
+import React, { useContext } from 'react'
 
 function page() {
+  let {theme,finalUser,setFinalUser}=useContext(Context)
+
   return (
     <div>
-      <ForumPost/>
+      <ForumPost theme={theme}/>
     </div>
   )
 }
