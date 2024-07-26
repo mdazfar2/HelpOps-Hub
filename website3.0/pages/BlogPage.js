@@ -114,6 +114,7 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
       blog_id:data
     })
   })
+  window.location.reload()
   
 }
   useEffect(() => {
@@ -640,20 +641,7 @@ setTimeout(()=>{setLoading(false)},4000)
             >
               Tags
             </div>
-            <div
-              className={`w-[100px] ${
-                theme
-                  ? filter === "Tags"
-                    ? "text-gray-900 underline underline-offset-[30px]"
-                    : ""
-                  : filter === "Tags"
-                  ? "underline text-gray-400 underline-offset-[30px]"
-                  : ""
-              }`}
-              onClick={handleDeleteTabClick}
-            >
-              Deleted Blogs
-            </div>
+           
             <div className="lg:hidden ml-auto" onClick={toggleSidebar}>
               <FontAwesomeIcon icon={faBars} />
             </div>
