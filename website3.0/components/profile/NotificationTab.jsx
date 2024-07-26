@@ -253,11 +253,11 @@ function NotificationTab() {
   
 
   return (
-    <div className="h-screen p-4">
-      <div className={`${theme ? "bg-gray-100 text-black" : "bg-[#111111] text-white"} p-4 rounded-xl flex flex-col gap-4 `}>
+    <div className="h-screen overflow-scroll p-4">
+      <div className={`${theme ? "bg-gray-100 text-black" : "bg-[#111111] text-white"} p-4 rounded-xl overflow-scroll flex flex-col gap-4 `}>
         <h2 className="text-xl text-center">Notifications</h2>
         <hr className={`${theme ? "border-gray-300 text-black" : "bg-[#3c3c3c] text-white"} w-full border-2 my-4`} />
-        <ul>
+        <ul className=" overflow-scroll">
           {notifications.followers.map(
             ({ followerId, followerName, dateTime, isRead }) => (
               <Link href={`/profile?id=${followerId}`} key={followerId} target="_blank">
@@ -285,7 +285,7 @@ function NotificationTab() {
               </li>
             </Link>
           ))}
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col gap-4  overflow-scroll">
   {notifications.comments.map(({ _id,id, dateTime, isRead,blogName }) => (
     <Link href={`/blogs/${id}`} key={id} target="_blank">
       <li
