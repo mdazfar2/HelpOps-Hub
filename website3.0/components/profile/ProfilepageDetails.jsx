@@ -9,7 +9,6 @@ import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
 import { useSession } from "next-auth/react";
 import FollowersTab from "./FollowersTab";
-import Logout from "./Logout";
 
 const TabHeader = ({ selectedTab, setSelectedTab, theme }) => (
   <div className={`flex border-b ${theme ? "text-black" : "text-white"}`}>
@@ -436,7 +435,6 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
               </div>
             </div>
           </div>
-          <div className="">{!id && <Logout />}</div>
           {finalUser
             ? finalUser._id
               ? isViewProfile &&
