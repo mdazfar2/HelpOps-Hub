@@ -285,77 +285,77 @@ function ForumPost({theme}) {
           </div>
         </div>
       </div>
-      <footer class={`relative pt-16 pb-6 ${theme?"bg-gray-200":"bg-[#1e1d1d]"} max-sm:px-2 text-gray-600 px-10`}>
-        <div class="container mx-auto px-4">
-          <div class="flex flex-wrap text-left lg:text-left">
-            <div class="w-full lg:w-6/12 px-4 max-sm:px-0">
-              <h4 class={`text-3xl font-semibold ${theme?"":"text-white"} text-blueGray-700`}>
+      <footer className={`relative pt-16 pb-6 ${theme?"bg-gray-200":"bg-[#1e1d1d]"} max-sm:px-2 text-gray-600 px-10`}>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap text-left lg:text-left">
+            <div className="w-full lg:w-6/12 px-4 max-sm:px-0">
+              <h4 className={`text-3xl font-semibold ${theme?"":"text-white"} text-blueGray-700`}>
                 Let's keep in touch!
               </h4>
-              <h5 class={`text-lg ${theme?"":"text-white"} mt-0 mb-2 text-blueGray-600`}>
+              <h5 className={`text-lg ${theme?"":"text-white"} mt-0 mb-2 text-blueGray-600`}>
                 Find us on any of these platforms, we respond in 1-2 business
                 days.
               </h5>
-              <div class="mt-6 lg:mb-0 mb-6">
+              <div className="mt-6 lg:mb-0 mb-6">
                 <button
-                  class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
                 >
                   <FontAwesomeIcon icon={faLinkedin} />
                 </button>
                 <button
-                  class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
                 >
                   <FontAwesomeIcon icon={faGithub} />
                 </button>
                 <button
-                  class="bg-white text-red-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-red-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
                 >
                   <FontAwesomeIcon icon={faEnvelope} />
                 </button>
                 <button
-                  class="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
                 >
                   <FontAwesomeIcon icon={faGlobe} />
                 </button>
               </div>
             </div>
-            <div class="w-full lg:w-6/12 px-4 max-sm:px-0">
-              <div class="flex flex-wrap items-top mb-6">
-                <div class={`w-full max-sm:flex flex-wrap lg:w-4/12 px-4 ml-auto ${theme?"":"text-gray-200"} ` }>
-                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+            <div className="w-full lg:w-6/12 px-4 max-sm:px-0">
+              <div className="flex flex-wrap items-top mb-6">
+                <div className={`w-full max-sm:flex flex-wrap lg:w-4/12 px-4 ml-auto ${theme?"":"text-gray-200"} ` }>
+                  <span className="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                     Useful Links
                   </span>
-                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         About Us
                       </a>
                   </span>
-                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Blog
                       </a>
                   </span>
-                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Github
                       </a>
                   </span>
-                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Devops Resources
@@ -396,37 +396,37 @@ function ForumPost({theme}) {
                     </li>
                   </ul> */}
                 </div>
-                <div class={ ` max-sm:flex flex-wrap w-full lg:w-4/12 px-4 o ${theme?"":"text-gray-200"} ` }>
-                  <span class="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                <div className={ ` max-sm:flex flex-wrap w-full lg:w-4/12 px-4 o ${theme?"":"text-gray-200"} ` }>
+                  <span className="block max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                     Other Resources
                   </span>
-                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         MIT License
                       </a>
                   </span>
-                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Terms &amp; Conditions
                       </a>
                   </span>
-                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Privacy Policy
                       </a>
                   </span>
-                  <span class="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="block  max-sm:w-[50%] uppercase text-blueGray-500 text-sm font-semibold mb-2">
                   <a
-                        class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="#"
                       >
                         Contact Us
@@ -437,14 +437,14 @@ function ForumPost({theme}) {
               </div>
             </div>
           </div>
-          <hr class="my-6 border-gray-300" />
-          <div class="flex flex-wrap items-center md:justify-between justify-center">
-            <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-              <div class={`text-sm text-blueGray-500 font-semibold py-1 o ${theme?"":"text-gray-200"} ` }>
+          <hr className="my-6 border-gray-300" />
+          <div className="flex flex-wrap items-center md:justify-between justify-center">
+            <div className="w-full md:w-4/12 px-4 mx-auto text-center">
+              <div className={`text-sm text-blueGray-500 font-semibold py-1 o ${theme?"":"text-gray-200"} ` }>
                 Copyright © <span id="get-current-year">2024</span>
                 <a
                   href="#"
-                  class="text-blueGray-500 hover:text-gray-800"
+                  className="text-blueGray-500 hover:text-gray-800"
                   target="_blank"
                 >
                   {" "}

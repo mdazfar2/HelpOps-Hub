@@ -1,0 +1,41 @@
+User-agent: *
+
+# Block access to any API endpoints
+Disallow: /api/
+
+# Block access to authentication pages
+Disallow: /login
+Disallow: /signup
+Disallow: /forgotpassword
+
+# Block access to user account pages
+Disallow: /account
+Disallow: /profile
+Disallow: /admin
+
+# Block access to create and edit blog
+Disallow: /createblog
+Disallow: /editblog
+
+# Allow access to content
+Allow: /resources/
+Allow: /resourcesdetails/
+Allow: /about
+Allow: /team
+Allow: /contact
+Allow: /blogs
+Allow: /devopsforum
+
+# Block access to any React-specific files
+Disallow: /*.js$
+Disallow: /*.json$
+
+# Block access to development or build-specific directories
+Disallow: /static/
+Disallow: /build/
+
+# Specify the location of your XML sitemap
+Sitemap: https://www.helpopshub.com/sitemap.xml
+
+# Specify the location of your Progressive Web App manifest
+Allow: /manifest.json

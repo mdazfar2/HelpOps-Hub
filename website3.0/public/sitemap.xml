@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+		<urlset
+            xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"  
+            xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" 
+            xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+            xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
+            xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        >
+<url>
+	<loc>https://www.helpopshub.com/</loc>
+	<priority>1</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/about</loc>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/team</loc>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/contact</loc>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/api/auth/signout?csrf=true</loc>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/admin</loc>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/blogs</loc>
+	<priority>0.7</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/createblogs</loc>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/resources</loc>
+	<priority>0.7</priority>
+</url>
+<url>
+	<loc>https://www.helpopshub.com/resourcesdetails</loc>
+	<priority>0.7</priority>
+</url>
+</urlset>
