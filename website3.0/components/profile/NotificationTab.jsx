@@ -4,7 +4,7 @@ import { Context } from "@context/store";
 import Link from 'next/link';
 
 function NotificationTab() {
-  const { finalUser, theme, setisReadNotif } = useContext(Context);
+  const { finalUser, theme, setisReadNotif,setIsNotification } = useContext(Context);
   const [notifications, setNotifications] = useState({
     followers: [],
     blogs: [],
@@ -14,7 +14,7 @@ function NotificationTab() {
 
   useEffect(() => {
     if (!finalUser || !finalUser.email) return;
-
+setIsNotification(false)
     const updateNotifications = async () => {
       try {
         // Fetch user data

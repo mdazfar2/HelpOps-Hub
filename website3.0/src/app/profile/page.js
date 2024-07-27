@@ -90,7 +90,7 @@ const MenuItem = ({
           <FontAwesomeIcon icon={icon} className="mr-2" />
           {title}
           {title === "Notifications" && notificationCount > 0 && (
-            <span className="absolute -top-1 -left-2 bg-gray-500 text-white rounded-full px-2 py-1 scale-75 text-xs font-bold">
+            <span className="absolute -top-1 -left-2 bg-red-500 text-white rounded-full px-2 py-1 scale-75 text-xs font-bold">
               {notificationCount}
             </span>
           )}
@@ -123,7 +123,7 @@ const MenuItem = ({
 };
 
 const ProfilePage = () => {
-  const { theme, setColor, isLogin, finalUser } = useContext(Context);
+  const { theme, setColor, isLogin, finalUser,setIsNotification } = useContext(Context);
   const [activeComponent, setActiveComponent] = useState(<Profile id="" />);
   const [activeMenuItem, setActiveMenuItem] = useState("Profile");
   const [menuVisible, setMenuVisible] = useState(true);
@@ -196,8 +196,12 @@ const ProfilePage = () => {
   }, [finalUser]);
 
   const handleMenuClick = (component, title) => {
+    if(title=="Notifications"){
+      setIsNotification(0)
+    }
     setActiveComponent(component);
     setActiveMenuItem(title);
+
   };
 
   const handleHomeButton = () => {
