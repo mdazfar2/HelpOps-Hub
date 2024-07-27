@@ -142,7 +142,6 @@ export default function CreateBlog({id}) {
     for (const key in draftData) {
       formData.append(key, draftData[key]);
     }
-    console.log(draftId,'assssssssssssssssssss')
     localStorage.removeItem("draftBlog");
     let id1=  localStorage.getItem('draftId')
     await fetch('/api/updatedraft',{
@@ -159,55 +158,6 @@ export default function CreateBlog({id}) {
     // navigator.sendBeacon("/api/updatedraft", formData);
     localStorage.removeItem("draftBlog");
   };
-  // useEffect(() => {
-  //   event.preventDefault();
-  //   event.returnValue = '';
-  //   const handleBeforeUnload = (event) => {
-  //     const savedDraft = JSON.parse(localStorage.getItem('draftBlog'));
-  //     if (savedDraft) {
-  //       fetch('/api/savedraft', {
-  //         method: "PUT",
-  //         headers: { 'Content-Type': 'application/json' },
-  //         body: JSON.stringify({
-  //           title: savedDraft.title,
-  //           image: savedDraft.image,
-  //           description: savedDraft.description,
-  //           id: draftId,
-  //           author_id: JSON.parse(localStorage.getItem('finalUser'))._id,
-  //         })
-  //       });
-  //       console.log('sddddddddddddddddddddddddddddddddddddddddddddddddd')
-  //       localStorage.removeItem('draftBlog');
-  //     }
-  //     // Prevent the default unload behavior
-  //   };
-
-  //   const handleUnload = () => {
-  //     const savedDraft = JSON.parse(localStorage.getItem('draftBlog'));
-  //     if (savedDraft) {
-  //       fetch('/api/savedraft', {
-  //         method: "PUT",
-  //         headers: { 'Content-Type': 'application/json' },
-  //         body: JSON.stringify({
-  //           title: savedDraft.title,
-  //           image: savedDraft.image,
-  //           description: savedDraft.description,
-  //           id: draftId,
-  //           author_id: JSON.parse(localStorage.getItem('finalUser'))._id,
-  //         })
-  //       });
-  //       localStorage.removeItem('draftBlog');
-  //     }
-  //   };
-
-  //   window.addEventListener('beforeunload', handleBeforeUnload);
-  //   window.addEventListener('unload', handleUnload);
-
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload);
-  //     window.removeEventListener('unload', handleUnload);
-  //   };
-  // }, [draftId]);
 
   async function saveDraft() {
     setIsDraftSaved(true);
@@ -281,31 +231,6 @@ export default function CreateBlog({id}) {
    }
  },[])
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   useEffect(() => {
     const handlePaste = (event, setValueCallback, setImgCallback) => {
       event.preventDefault(); // Prevent the default paste behavior
@@ -315,7 +240,6 @@ export default function CreateBlog({id}) {
   
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-        console.log(item,'dsssssss')
        if (item.kind === 'file' && item.type.startsWith('image/')) {
           const file = item.getAsFile();
           const reader = new FileReader();
@@ -327,7 +251,6 @@ export default function CreateBlog({id}) {
           };
           reader.readAsDataURL(file);
         } else if (item.kind === 'string' &&(items.length>1? items[1].kind!=='file':true)) {
-            console.log('sddddddddd',item)
           item.getAsString((text) => {
             // Handle text data
             setValueCallback((prevContent) => prevContent + text);
@@ -341,11 +264,9 @@ export default function CreateBlog({id}) {
   
     if (quill) {
       const handlePasteForQuill = (event) => {
-        console.log('Pasting in first editor');
         handlePaste(event, setValue, setIsImg);
       };
       const handlePasteForQuill1 = (event) => {
-        console.log('Pasting in second editor');
         handlePaste(event, setDesc, setIsImg);
       };
       quill1.root.addEventListener('paste', handlePasteForQuill1);
@@ -360,9 +281,7 @@ export default function CreateBlog({id}) {
     }
   
     if (quill1) {
-      console.log('Initializing paste handler for second editor');
       const handlePasteForQuill1 = (event) => {
-        console.log('Pasting in second editor');
         handlePaste(event, setDesc, setIsImg);
       };
       quill1.root.addEventListener('paste', handlePasteForQuill1);
@@ -386,7 +305,6 @@ export default function CreateBlog({id}) {
   // }, []);
   
   function handleToolbar(e) {
-  console.log(e,'in toolbar 1 ')
       const quillInstance = quillRef.current.getEditor();
   const toolbar = quillInstance.container.parentNode.querySelector('.ql-toolbar');
   
@@ -402,7 +320,6 @@ export default function CreateBlog({id}) {
   }
   }
   const insertCommand = () => {
-    console.log("dsdsd")
     const editor = quillRef1.current.getEditor();
     const cursorPosition = editor.getSelection().index;
     editor.insertText(cursorPosition, '`command`');
@@ -435,7 +352,6 @@ export default function CreateBlog({id}) {
      const quillInstance = quillRef1.current.getEditor();
     const toolbar = quillInstance.container.parentNode.querySelector('.ql-toolbar');
     
-    console.log(e,'in toolbar 2 ')
     if(e && e.length>0){
       const { top, left, height } = quillInstance.getBounds(e.index, e.length);
 
@@ -489,7 +405,6 @@ export default function CreateBlog({id}) {
      
     }
     async function handleTagTaker(){
-      console.log('sdsdsd')
       setModal(true)
     }
     async function handleFormSubmit(){

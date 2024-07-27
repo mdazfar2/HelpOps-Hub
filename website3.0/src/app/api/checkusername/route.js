@@ -11,7 +11,6 @@ export async function POST(req) {
         await mongoose.connect(MONGO_URI);
 
         let res=await user.find({username:username})
-        console.log("responsseeee",res)
         if(res.length>0){
             return NextResponse.json({ success: false,msg:"This Username is not available "},{status:"200"});
 
@@ -30,7 +29,6 @@ export async function PUT(req) {
             username:username
         }
     },{new:true})
-   console.log(res,id,username)
         return NextResponse.json({ success: true},{status:"200"});
 
     

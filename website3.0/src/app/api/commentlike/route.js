@@ -12,14 +12,11 @@ export async function POST(req) {
         const { MONGO_URI } = process.env;  
         await mongoose.connect(MONGO_URI);
         let blog=await Blogs.findById(blog_id)
-        console.log(isDelete,'sdsdsdsd')
         if(isDelete){
             blog.comments[index].likes=blog.comments[index].likes-1
                 blog.comments[index].likeusers=blog.comments[index].likeusers.filter(data=>data!==user_id) 
-                console.log(blog.comments[index],'sdssdsdsd')   
                 await blog.save();
                 blog=await Blogs.findById(blog_id)
-console.log(blog.comments,'blog')
                 return NextResponse.json({  success: true });
 
         }
@@ -30,12 +27,10 @@ console.log(blog.comments,'blog')
         let arr= blog.comments[index].likeusers
         arr= [...arr,user_id]
       blog.comments[index].likeusers=[...arr]
-      console.log(blog.comments[index])
         // Save the new blog record to MongoDB
         
         await blog.save();
         blog=await Blogs.findById(blog_id)
-        console.log(blog.comments,'blog')
         // Return success response with saved blog details
         return NextResponse.json({  success: true });
     } catch (error) {

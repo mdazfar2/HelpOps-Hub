@@ -238,7 +238,6 @@ function BlogPost() {
           let arr2=[]
           relatedBlogs1.map((res)=>{
             if(res.authorId==data.authorId && res._id!==data._id){
-              console.log(res.authorId,data.authorId,'ANSSSSSSSSSSSSSSSS')
               arr2.push(res)
             }
           })

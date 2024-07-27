@@ -14,7 +14,6 @@ export default function blogPage() {
 
     const idFromQuery = getUrlParameter("subject");
     setSubject(idFromQuery)
-    console.log(idFromQuery,'sdddddddddddddddddddddd')
     
   },[])
   function updateUser(data){

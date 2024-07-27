@@ -41,16 +41,13 @@ function HomePage({ theme,  setIsPopup,setMsg,setColor}) {
     if (token) {
       setShowModal(true);
       // Perform any actions you need with the token
-      console.log("Token:", token);
     } else {
       // If no token, you can handle it accordingly
-      console.log("No token found");
     }
   }, []);
 
 async   function func() {
     if (session.status === "authenticated") {
-      console.log(localStorage.getItem("count"));
       if (localStorage.getItem("count") == null) {
         localStorage.setItem("count", true);
         let d=await JSON.parse(localStorage.getItem('finalUser'))
@@ -186,7 +183,6 @@ async   function func() {
 
       // Process the response from the subscription endpoint
       const subscribeData = await subscribeResult.json();
-      console.log("data: " + subscribeData);
 
       // Display success or failure message based on subscription result
       if (subscribeData.success) {
@@ -278,7 +274,7 @@ async   function func() {
         <img
           src="temp_bg.webp"
           alt="HelpOps-Hub"
-          className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] hover:scale-105 transition-all duration-500 ease-in-out"
+          className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] transition-all duration-500 ease-in-out"
           draggable="false"
         />
       </div>

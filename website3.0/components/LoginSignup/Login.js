@@ -70,7 +70,6 @@ const Login = ({ onClose, onSignupClick }) => {
   // Function to handle login process
   async function handleLogin() {
     setLoading(true);
-    console.log(email2,password)
     let res = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({
@@ -82,7 +81,6 @@ const Login = ({ onClose, onSignupClick }) => {
 
     // Handle login errors
     if (!data.success) {
-      console.log(data.msg)
       setMsg(data.msg)
       setIsPopup(true)
       if (data.msg === "User Doesn't Valid" || data.msg === "Invalid Email") {
@@ -109,7 +107,6 @@ setLoading(false)
     // localStorage.setItem('userEmail', data.user[0].email);
     // localStorage.setItem('userImage',data.user[0].image1);
     // setIsLogin(true)
-    // console.log('setting data')
     // setError(`${data.user[0].name} Welcome !!`);
 
     // // Close the login popup and reload the page after 2 seconds

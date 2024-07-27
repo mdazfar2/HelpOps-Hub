@@ -28,7 +28,5 @@ export async function PUT(req) {
     data.hidedTags.filter((name)=>name!==tagname)
     await data.save()
     let user1=await user.findById(id)
-    console.log(user1)
     return NextResponse.json({success:true,user:user1})
 }
-

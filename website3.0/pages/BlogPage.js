@@ -86,7 +86,6 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
   let [allTags,setAllTags]=useState([])
   async function fetchTagsData(){
     let user=await JSON.parse(localStorage.getItem('finalUser'))
-    console.log(user.hidedTags,'dsdsd')
 
       let arr=  tagsData.filter((data)=> !user.hidedTags.includes(data.tagName))
       
@@ -98,14 +97,10 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
       fetchTagsData()
   },[])
   useEffect(()=>{
-    console.log(finalUser)
   },[])
   async function handleBlockBlog(data){
-    console.log("fetching...")
     let user=finalUser
-    console.log(user.blockedBlogs)
     user.blockedBlogs=[...user.blockedBlogs,data]
-    console.log(user.blockedBlogs)
     updateUser(user)
   let res=await fetch("/api/blockblog",{
     method:"POST",
@@ -138,7 +133,6 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
             },
           });
         }
-        console.log("THE ID IF SJSIDSD",subject)
        
         if (response.ok) {
           const data = await response.json();
@@ -374,7 +368,6 @@ useEffect(()=>{
 
   async function handleBlogDelete(blog){
     let res=confirm('Are You Sure that you want to delete this Blog')
-    console.log(blog._id)
     if(res){
 
       let data= await fetch('/api/blog',{
@@ -384,7 +377,6 @@ useEffect(()=>{
          })
        })
        data=await data.json()
-       console.log(data)
        window.location.reload()
     }else{
       return
@@ -427,7 +419,6 @@ setTimeout(()=>{setLoading(false)},4000)
       if(followedTags.includes(tagName)){
         let arr=[...followedTags]    
         arr=arr.filter((data)=>data!==tagName)
-        console.log(arr)
         setFollowedTags([...arr])  
         if(isShowFollow){
             arr=tagsData.filter((data)=>arr.includes(data.tagName))
@@ -516,7 +507,6 @@ setTimeout(()=>{setLoading(false)},4000)
       setTags([...arr])
     }else{
       let arr=tagsData.filter((data)=>followedTags.includes(data.tagName))
-      console.log(arr)
       setTags([...arr])
       setIsShowHide(false)
       setIsShowFollow(true)
@@ -525,15 +515,12 @@ setTimeout(()=>{setLoading(false)},4000)
   function showHide(){
 
     if(isShowHide){
-    console.log(finalUser.hidedTags)
       let arr=tagsData.filter((data)=>!hiddenTags.includes(data.tagName))
-      console.log(arr)
       setTags([...arr])
       setIsShowHide(false)
       setIsShowFollow(false)
     }else{
       let arr=tagsData.filter((data)=>hiddenTags.includes(data.tagName))
-      console.log(arr)
       setTags([...arr])
       setIsShowHide(true)
       setIsShowFollow(false)
@@ -700,7 +687,6 @@ setTimeout(()=>{setLoading(false)},4000)
                             ></div>
                            <div className="flex gap-[10px] mb-[10px] flex-wrap">
                              {blog.tags && blog.tags.map(data=>{
-                          console.log(data)
                           return <div className="text-[14px]">{"#"+data}</div>})}
                             </div>
                             <div onClick={() => navigateToBlogDetails(blog._id)}

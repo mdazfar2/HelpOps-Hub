@@ -8,7 +8,6 @@ export async function GET() {
     await mongoose.connect(MONGO_URI);
     let data = [];
     data = await Blogs.find();
-console.log(data)
     return NextResponse.json({data});
 }
 

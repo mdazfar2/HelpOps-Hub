@@ -74,7 +74,6 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
           username:username1
         }),
       })
-      console.log(canCreate)
       canCreate=await canCreate.json()
       if(!canCreate.success){
         setMsg(canCreate.msg)
@@ -171,7 +170,6 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
   
       const data = await response.json();
       setUrl( data.secure_url);
-      console.log(imageUrl)
     }
   }
   return (

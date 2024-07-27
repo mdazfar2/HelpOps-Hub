@@ -34,7 +34,6 @@ export async function PUT(req) {
         const payload = await req.json();
 
         const { MONGO_URI } = process.env;  
-        console.log(payload.time,'assssssssssssssssssssssssssssssssssddadadadad')
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
         let blog=await Blogs.findById(payload.id)

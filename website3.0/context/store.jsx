@@ -21,7 +21,6 @@ export const GlobalContext = ({ children }) => {
   let [searchedBlog, setSearchedBlog] = useState("");
   let [isReadNotif, setisReadNotif] = useState(0);
   useEffect(() => {
-    console.log(theme);
   }, [theme]);
   useEffect(() => {
     if (isPopup) {

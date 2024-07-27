@@ -2277,7 +2277,6 @@ const handlePageChange = (page) => {
         break;
     }
     setIssues(arr);
-    console.log(currentIssues)
     // setCurrentIssues(arr.slice((currentPage - 1) * issuesPerPage, currentPage * issuesPerPage));
   };
 

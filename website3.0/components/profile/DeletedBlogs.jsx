@@ -20,7 +20,6 @@ export default function DeletedBlogs() {
          
           if (response.ok) {
             const data = await response.json();
-          console.log(data)
             setBlogs(data.data);
           } else {
             setError("Failed to fetch blogs.");

@@ -46,7 +46,6 @@ function NotificationTab() {
           if (checkResponse.ok) {
             existingNotifications = await checkResponse.json();
           } else if (checkResponse.status === 404) {
-            console.log("No existing notifications found. Creating new ones.");
           } else {
             console.error(
               "Error fetching existing notifications:",
@@ -107,7 +106,6 @@ function NotificationTab() {
 
             blogs.data.map((res)=>{
               res.comments.map(async (comment)=>{
-                console.log(res._id)
                 if(!Object.keys(blogCommentList).includes(comment._id)){
                     const response3 = await fetch("/api/notifications", {
                       method: "POST",
@@ -121,9 +119,6 @@ function NotificationTab() {
                         blogName:res.title
                         }),
                     });
-    
-                    console.log("New blog notification sent:", response3.ok);
-                  
                 }
               })
             })
@@ -143,7 +138,6 @@ function NotificationTab() {
                                     }),
                 });
 
-                console.log("New blog notification sent:", response2.ok);
               }
             }
           }
@@ -185,11 +179,6 @@ function NotificationTab() {
                   }),
                 });
 
-                console.log("New follower notification sent:", response2.ok);
-              } else {
-                console.log(
-                  "Duplicate follower notification found, not sending again."
-                );
               }
             }
           }
