@@ -21,6 +21,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
+import styles from '../stylesheets/forumanimation.css'
 const Sidebar01Item = ({ title, isActive, onClick, icon, theme }) => {
   return (
     <div
@@ -89,8 +90,20 @@ const TopIssue = ({ title, index }) => (
 function ForumPage({ theme }) {
   const [activeMenuItem, setActiveMenuItem] = useState("View All");
   const router = useRouter();
+  const [hoveredUser, setHoveredUser] = useState(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseEnter = (event, userImg) => {
+    setCursorPosition({ x: event.clientX, y: event.clientY });
+    setHoveredUser(userImg);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredUser(null);
+  };
   const handleSidebar01 = (title) => {
     setActiveMenuItem(title);
+    
   };
  let [issues,setIssues]=useState([])
 
@@ -2454,6 +2467,8 @@ const handlePageChange = (page) => {
                                 src={userImg}
                                 alt="Discussion User"
                                 className="rounded-full w-5 h-5"
+                                onMouseEnter={(event) => handleMouseEnter(event, userImg)}
+                                onMouseLeave={handleMouseLeave}
                               />
                             ))}
                           </div>
@@ -2473,6 +2488,25 @@ const handlePageChange = (page) => {
                       </div>
                     </div>
                   ))}
+                   {hoveredUser && (
+        <div
+          className={`forummodal ease-out fixed  border  p-4 w-[400px] h-[200px] rounded-lg ${theme?"bg-white border-gray-300": "bg-[#2b2b2b] border-slate-50 border-[1px] text-gray-400"} shadow-lg`}
+          style={{ top: cursorPosition.y + 10, left: cursorPosition.x - 400 }}
+        >
+         <div className="w-[100%] flex gap-4 items-center">
+           <img src={hoveredUser} alt="Hovered User" className="w-20 h-20 rounded-full" />
+          <div className="flex w-[100%] items-start gap-2 h-[100%] justify-center flex-col ">
+            <p>User Name</p>
+            <button className={`bg-transparent pt-1 pb-1 pl-3 pr-3 rounded-md border-[1px] border-gray-500 `}>Follow</button>
+            </div>
+          </div>
+          <div className="p-[20px] mt-4 flex gap-6 w-[100%] justify-center">
+            <p className="flex flex-col h-[100%] items-center"><h2>Answers</h2><p>40</p></p>
+            <p className="flex h-[100%] flex-col items-center"><h2>Questions</h2><p>40</p></p>
+            <p className="flex h-[100%] items-center flex-col"><h2>Followers</h2><p>40</p></p>
+          </div>
+        </div>
+      )}
                 </div>
               </div>
               <div className="mt-10 flex justify-between mb-20 max-sm:flex-col max-md:gap-4 max-md:justify-center">

@@ -1,0 +1,10 @@
+@keyframes animateusermodal {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+.forummodal{
+    animation: animateusermodal 0.3s ease-in;
+}
