@@ -103,7 +103,13 @@ function ForumPage({ theme }) {
   };
   const handleSidebar01 = (title) => {
     setActiveMenuItem(title);
-    
+    if(title=="View All"){
+      setIssues([...originalIssues])
+      return
+    }
+    let arr=[...originalIssues]
+    arr=arr.filter((data)=>data.type==title)
+    setIssues([...arr])
   };
  let [issues,setIssues]=useState([])
 
@@ -133,7 +139,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/2.jpg",
     title: "Database Connection Failure",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "1 hour ago",
     reactions: { likes: 12, views: 600, comments: 25 },
     discussionUsers: [
@@ -144,7 +150,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/3.jpg",
     title: "UI Layout Misalignment",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "2 hours ago",
     reactions: { likes: 7, views: 350, comments: 40 },
     discussionUsers: [
@@ -155,7 +161,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/4.jpg",
     title: "Security Vulnerability in Authentication",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "3 hours ago",
     reactions: { likes: 19, views: 800, comments: 55 },
     discussionUsers: [
@@ -177,7 +183,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/6.jpg",
     title: "API Rate Limiting Issue",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "5 hours ago",
     reactions: { likes: 25, views: 950, comments: 30 },
     discussionUsers: [
@@ -188,7 +194,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/7.jpg",
     title: "Optimize Load Times",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "6 hours ago",
     reactions: { likes: 15, views: 500, comments: 10 },
     discussionUsers: [
@@ -199,7 +205,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/8.jpg",
     title: "Update Documentation",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "7 hours ago",
     reactions: { likes: 3, views: 200, comments: 5 },
     discussionUsers: [
@@ -221,7 +227,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/10.jpg",
     title: "Deployment Failure in Production",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "9 hours ago",
     reactions: { likes: 18, views: 700, comments: 50 },
     discussionUsers: [
@@ -232,7 +238,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/11.jpg",
     title: "Refactor Codebase",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "10 hours ago",
     reactions: { likes: 6, views: 270, comments: 15 },
     discussionUsers: [
@@ -243,7 +249,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/12.jpg",
     title: "User Permissions Issue",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "11 hours ago",
     reactions: { likes: 22, views: 800, comments: 40 },
     discussionUsers: [
@@ -254,7 +260,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/13.jpg",
     title: "UI/UX Enhancements",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "12 hours ago",
     reactions: { likes: 13, views: 430, comments: 30 },
     discussionUsers: [
@@ -264,8 +270,8 @@ let originalIssues= [
   },
   {
     userImage: "https://randomuser.me/api/portraits/men/14.jpg",
-    title: "Bug in Authentication Flow",
-    type: "Bug",
+    title: "Ideas in Authentication Flow",
+    type: "Ideas",
     dateTime: "13 hours ago",
     reactions: { likes: 24, views: 900, comments: 45 },
     discussionUsers: [
@@ -287,7 +293,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/16.jpg",
     title: "Improve Search Functionality",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "15 hours ago",
     reactions: { likes: 14, views: 600, comments: 25 },
     discussionUsers: [
@@ -298,7 +304,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/17.jpg",
     title: "Fix Broken Links",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "16 hours ago",
     reactions: { likes: 17, views: 700, comments: 35 },
     discussionUsers: [
@@ -309,7 +315,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/18.jpg",
     title: "Enhance Mobile Responsiveness",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "17 hours ago",
     reactions: { likes: 20, views: 800, comments: 45 },
     discussionUsers: [
@@ -320,7 +326,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/19.jpg",
     title: "Optimize Database Queries",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "18 hours ago",
     reactions: { likes: 11, views: 550, comments: 22 },
     discussionUsers: [
@@ -331,7 +337,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/20.jpg",
     title: "Update API Documentation",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "19 hours ago",
     reactions: { likes: 8, views: 400, comments: 15 },
     discussionUsers: [
@@ -353,7 +359,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/22.jpg",
     title: "Revise Error Handling Logic",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "21 hours ago",
     reactions: { likes: 12, views: 500, comments: 30 },
     discussionUsers: [
@@ -375,7 +381,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/24.jpg",
     title: "Fix CSS Grid Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "23 hours ago",
     reactions: { likes: 14, views: 550, comments: 25 },
     discussionUsers: [
@@ -386,7 +392,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/25.jpg",
     title: "Improve Form Validation",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "24 hours ago",
     reactions: { likes: 19, views: 700, comments: 40 },
     discussionUsers: [
@@ -408,7 +414,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/27.jpg",
     title: "Update Privacy Policy",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "2 days ago",
     reactions: { likes: 11, views: 500, comments: 22 },
     discussionUsers: [
@@ -419,7 +425,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/28.jpg",
     title: "Enhance Error Reporting",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "3 days ago",
     reactions: { likes: 13, views: 600, comments: 28 },
     discussionUsers: [
@@ -430,7 +436,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/29.jpg",
     title: "Review Code Quality",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "4 days ago",
     reactions: { likes: 15, views: 700, comments: 32 },
     discussionUsers: [
@@ -441,7 +447,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/30.jpg",
     title: "Fix Broken API Endpoints",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "5 days ago",
     reactions: { likes: 22, views: 800, comments: 40 },
     discussionUsers: [
@@ -452,7 +458,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/31.jpg",
     title: "Optimize Frontend Performance",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "6 days ago",
     reactions: { likes: 17, views: 750, comments: 35 },
     discussionUsers: [
@@ -463,7 +469,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/32.jpg",
     title: "Revise User Interface Design",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "7 days ago",
     reactions: { likes: 20, views: 850, comments: 45 },
     discussionUsers: [
@@ -474,7 +480,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/33.jpg",
     title: "Resolve Cross-Browser Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "8 days ago",
     reactions: { likes: 24, views: 900, comments: 50 },
     discussionUsers: [
@@ -496,7 +502,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/35.jpg",
     title: "Improve User Onboarding",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "10 days ago",
     reactions: { likes: 14, views: 650, comments: 35 },
     discussionUsers: [
@@ -507,7 +513,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/36.jpg",
     title: "Update Security Protocols",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "11 days ago",
     reactions: { likes: 18, views: 700, comments: 40 },
     discussionUsers: [
@@ -529,7 +535,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/38.jpg",
     title: "Resolve Memory Leak Issue",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "13 days ago",
     reactions: { likes: 30, views: 900, comments: 55 },
     discussionUsers: [
@@ -551,7 +557,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/40.jpg",
     title: "Improve Code Documentation",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "15 days ago",
     reactions: { likes: 22, views: 800, comments: 35 },
     discussionUsers: [
@@ -562,7 +568,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/41.jpg",
     title: "Fix Login Authentication",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "16 days ago",
     reactions: { likes: 18, views: 650, comments: 40 },
     discussionUsers: [
@@ -573,7 +579,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/42.jpg",
     title: "Optimize API Response Times",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "17 days ago",
     reactions: { likes: 25, views: 900, comments: 50 },
     discussionUsers: [
@@ -584,7 +590,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/43.jpg",
     title: "Revise Frontend Code",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "18 days ago",
     reactions: { likes: 15, views: 700, comments: 30 },
     discussionUsers: [
@@ -617,7 +623,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/46.jpg",
     title: "Update User Profile Features",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "21 days ago",
     reactions: { likes: 19, views: 700, comments: 40 },
     discussionUsers: [
@@ -627,8 +633,8 @@ let originalIssues= [
   },
   {
     userImage: "https://randomuser.me/api/portraits/men/47.jpg",
-    title: "Fix Backend Caching Bugs",
-    type: "Bug",
+    title: "Fix Backend Caching Ideass",
+    type: "Ideas",
     dateTime: "22 days ago",
     reactions: { likes: 24, views: 750, comments: 45 },
     discussionUsers: [
@@ -639,7 +645,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/48.jpg",
     title: "Improve Accessibility",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "23 days ago",
     reactions: { likes: 30, views: 800, comments: 50 },
     discussionUsers: [
@@ -650,7 +656,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/49.jpg",
     title: "Update User Permissions",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "24 days ago",
     reactions: { likes: 16, views: 700, comments: 35 },
     discussionUsers: [
@@ -672,7 +678,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/51.jpg",
     title: "Refactor Legacy Code",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "26 days ago",
     reactions: { likes: 18, views: 700, comments: 30 },
     discussionUsers: [
@@ -682,8 +688,8 @@ let originalIssues= [
   },
   {
     userImage: "https://randomuser.me/api/portraits/men/52.jpg",
-    title: "Fix Frontend Bugs",
-    type: "Bug",
+    title: "Fix Frontend Ideass",
+    type: "Ideas",
     dateTime: "27 days ago",
     reactions: { likes: 25, views: 750, comments: 35 },
     discussionUsers: [
@@ -705,7 +711,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/54.jpg",
     title: "Improve Data Visualization",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "29 days ago",
     reactions: { likes: 23, views: 850, comments: 45 },
     discussionUsers: [
@@ -716,7 +722,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/55.jpg",
     title: "Fix Mobile Layout Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "30 days ago",
     reactions: { likes: 30, views: 900, comments: 50 },
     discussionUsers: [
@@ -738,7 +744,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/57.jpg",
     title: "Optimize Image Loading",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "32 days ago",
     reactions: { likes: 18, views: 700, comments: 30 },
     discussionUsers: [
@@ -749,7 +755,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/58.jpg",
     title: "Improve User Feedback System",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "33 days ago",
     reactions: { likes: 15, views: 650, comments: 25 },
     discussionUsers: [
@@ -760,7 +766,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/59.jpg",
     title: "Enhance Mobile User Experience",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "34 days ago",
     reactions: { likes: 23, views: 800, comments: 40 },
     discussionUsers: [
@@ -771,7 +777,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/60.jpg",
     title: "Update Error Reporting System",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "35 days ago",
     reactions: { likes: 25, views: 850, comments: 50 },
     discussionUsers: [
@@ -793,7 +799,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/62.jpg",
     title: "Improve Data Integrity Checks",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "37 days ago",
     reactions: { likes: 22, views: 800, comments: 40 },
     discussionUsers: [
@@ -826,7 +832,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/65.jpg",
     title: "Update Documentation Guidelines",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "40 days ago",
     reactions: { likes: 22, views: 750, comments: 35 },
     discussionUsers: [
@@ -837,7 +843,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/66.jpg",
     title: "Fix Broken User Profile",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "41 days ago",
     reactions: { likes: 17, views: 600, comments: 25 },
     discussionUsers: [
@@ -848,7 +854,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/67.jpg",
     title: "Enhance API Error Handling",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "42 days ago",
     reactions: { likes: 19, views: 650, comments: 30 },
     discussionUsers: [
@@ -870,7 +876,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/69.jpg",
     title: "Optimize Database Queries",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "44 days ago",
     reactions: { likes: 22, views: 750, comments: 35 },
     discussionUsers: [
@@ -881,7 +887,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/70.jpg",
     title: "Improve User Feedback Mechanism",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "45 days ago",
     reactions: { likes: 28, views: 800, comments: 45 },
     discussionUsers: [
@@ -914,7 +920,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/73.jpg",
     title: "Fix Payment Gateway Integration",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "48 days ago",
     reactions: { likes: 12, views: 650, comments: 25 },
     discussionUsers: [
@@ -936,7 +942,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/75.jpg",
     title: "Improve Session Management",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "50 days ago",
     reactions: { likes: 25, views: 750, comments: 35 },
     discussionUsers: [
@@ -947,7 +953,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/76.jpg",
     title: "Fix Data Import Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "51 days ago",
     reactions: { likes: 18, views: 700, comments: 30 },
     discussionUsers: [
@@ -958,7 +964,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/77.jpg",
     title: "Enhance Data Visualization Tools",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "52 days ago",
     reactions: { likes: 20, views: 750, comments: 35 },
     discussionUsers: [
@@ -980,7 +986,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/79.jpg",
     title: "Update User Onboarding Process",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "54 days ago",
     reactions: { likes: 25, views: 800, comments: 40 },
     discussionUsers: [
@@ -991,7 +997,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/80.jpg",
     title: "Fix API Rate Limiting Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "55 days ago",
     reactions: { likes: 22, views: 750, comments: 30 },
     discussionUsers: [
@@ -1002,7 +1008,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/81.jpg",
     title: "Optimize Frontend Performance",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "56 days ago",
     reactions: { likes: 18, views: 700, comments: 25 },
     discussionUsers: [
@@ -1024,7 +1030,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/83.jpg",
     title: "Fix Data Synchronization Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "58 days ago",
     reactions: { likes: 25, views: 850, comments: 40 },
     discussionUsers: [
@@ -1035,7 +1041,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/84.jpg",
     title: "Improve Backend Logging",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "59 days ago",
     reactions: { likes: 22, views: 750, comments: 35 },
     discussionUsers: [
@@ -1057,7 +1063,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/86.jpg",
     title: "Fix API Authentication Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "61 days ago",
     reactions: { likes: 30, views: 900, comments: 55 },
     discussionUsers: [
@@ -1068,7 +1074,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/87.jpg",
     title: "Update User Activity Tracking",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "62 days ago",
     reactions: { likes: 25, views: 800, comments: 40 },
     discussionUsers: [
@@ -1090,7 +1096,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/89.jpg",
     title: "Improve API Documentation",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "64 days ago",
     reactions: { likes: 22, views: 750, comments: 35 },
     discussionUsers: [
@@ -1101,7 +1107,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/90.jpg",
     title: "Optimize Backend Performance",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "65 days ago",
     reactions: { likes: 20, views: 700, comments: 30 },
     discussionUsers: [
@@ -1112,7 +1118,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/91.jpg",
     title: "Fix Database Backup Issues",
-    type: "Bug",
+    type: "Ideas",
     dateTime: "66 days ago",
     reactions: { likes: 15, views: 650, comments: 20 },
     discussionUsers: [
@@ -1123,7 +1129,7 @@ let originalIssues= [
   {
     userImage: "https://randomuser.me/api/portraits/men/92.jpg",
     title: "Enhance Real-time Data Processing",
-    type: "Improvement",
+    type: "User Feedback",
     dateTime: "67 days ago",
     reactions: { likes: 25, views: 800, comments: 40 },
     discussionUsers: [
@@ -1181,7 +1187,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/2.jpg",
       title: "Database Connection Failure",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "1 hour ago",
       reactions: { likes: 12, views: 600, comments: 25 },
       discussionUsers: [
@@ -1192,7 +1198,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/3.jpg",
       title: "UI Layout Misalignment",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "2 hours ago",
       reactions: { likes: 7, views: 350, comments: 40 },
       discussionUsers: [
@@ -1203,7 +1209,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/4.jpg",
       title: "Security Vulnerability in Authentication",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "3 hours ago",
       reactions: { likes: 19, views: 800, comments: 55 },
       discussionUsers: [
@@ -1225,7 +1231,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/6.jpg",
       title: "API Rate Limiting Issue",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "5 hours ago",
       reactions: { likes: 25, views: 950, comments: 30 },
       discussionUsers: [
@@ -1236,7 +1242,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/7.jpg",
       title: "Optimize Load Times",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "6 hours ago",
       reactions: { likes: 15, views: 500, comments: 10 },
       discussionUsers: [
@@ -1247,7 +1253,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/8.jpg",
       title: "Update Documentation",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "7 hours ago",
       reactions: { likes: 3, views: 200, comments: 5 },
       discussionUsers: [
@@ -1269,7 +1275,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/10.jpg",
       title: "Deployment Failure in Production",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "9 hours ago",
       reactions: { likes: 18, views: 700, comments: 50 },
       discussionUsers: [
@@ -1280,7 +1286,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/11.jpg",
       title: "Refactor Codebase",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "10 hours ago",
       reactions: { likes: 6, views: 270, comments: 15 },
       discussionUsers: [
@@ -1291,7 +1297,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/12.jpg",
       title: "User Permissions Issue",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "11 hours ago",
       reactions: { likes: 22, views: 800, comments: 40 },
       discussionUsers: [
@@ -1302,7 +1308,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/13.jpg",
       title: "UI/UX Enhancements",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "12 hours ago",
       reactions: { likes: 13, views: 430, comments: 30 },
       discussionUsers: [
@@ -1312,8 +1318,8 @@ useEffect(()=>{
     },
     {
       userImage: "https://randomuser.me/api/portraits/men/14.jpg",
-      title: "Bug in Authentication Flow",
-      type: "Bug",
+      title: "Ideas in Authentication Flow",
+      type: "Ideas",
       dateTime: "13 hours ago",
       reactions: { likes: 24, views: 900, comments: 45 },
       discussionUsers: [
@@ -1335,7 +1341,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/16.jpg",
       title: "Improve Search Functionality",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "15 hours ago",
       reactions: { likes: 14, views: 600, comments: 25 },
       discussionUsers: [
@@ -1346,7 +1352,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/17.jpg",
       title: "Fix Broken Links",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "16 hours ago",
       reactions: { likes: 17, views: 700, comments: 35 },
       discussionUsers: [
@@ -1357,7 +1363,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/18.jpg",
       title: "Enhance Mobile Responsiveness",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "17 hours ago",
       reactions: { likes: 20, views: 800, comments: 45 },
       discussionUsers: [
@@ -1368,7 +1374,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/19.jpg",
       title: "Optimize Database Queries",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "18 hours ago",
       reactions: { likes: 11, views: 550, comments: 22 },
       discussionUsers: [
@@ -1379,7 +1385,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/20.jpg",
       title: "Update API Documentation",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "19 hours ago",
       reactions: { likes: 8, views: 400, comments: 15 },
       discussionUsers: [
@@ -1401,7 +1407,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/22.jpg",
       title: "Revise Error Handling Logic",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "21 hours ago",
       reactions: { likes: 12, views: 500, comments: 30 },
       discussionUsers: [
@@ -1423,7 +1429,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/24.jpg",
       title: "Fix CSS Grid Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "23 hours ago",
       reactions: { likes: 14, views: 550, comments: 25 },
       discussionUsers: [
@@ -1434,7 +1440,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/25.jpg",
       title: "Improve Form Validation",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "24 hours ago",
       reactions: { likes: 19, views: 700, comments: 40 },
       discussionUsers: [
@@ -1456,7 +1462,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/27.jpg",
       title: "Update Privacy Policy",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "2 days ago",
       reactions: { likes: 11, views: 500, comments: 22 },
       discussionUsers: [
@@ -1467,7 +1473,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/28.jpg",
       title: "Enhance Error Reporting",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "3 days ago",
       reactions: { likes: 13, views: 600, comments: 28 },
       discussionUsers: [
@@ -1478,7 +1484,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/29.jpg",
       title: "Review Code Quality",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "4 days ago",
       reactions: { likes: 15, views: 700, comments: 32 },
       discussionUsers: [
@@ -1489,7 +1495,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/30.jpg",
       title: "Fix Broken API Endpoints",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "5 days ago",
       reactions: { likes: 22, views: 800, comments: 40 },
       discussionUsers: [
@@ -1500,7 +1506,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/31.jpg",
       title: "Optimize Frontend Performance",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "6 days ago",
       reactions: { likes: 17, views: 750, comments: 35 },
       discussionUsers: [
@@ -1511,7 +1517,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/32.jpg",
       title: "Revise User Interface Design",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "7 days ago",
       reactions: { likes: 20, views: 850, comments: 45 },
       discussionUsers: [
@@ -1522,7 +1528,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/33.jpg",
       title: "Resolve Cross-Browser Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "8 days ago",
       reactions: { likes: 24, views: 900, comments: 50 },
       discussionUsers: [
@@ -1544,7 +1550,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/35.jpg",
       title: "Improve User Onboarding",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "10 days ago",
       reactions: { likes: 14, views: 650, comments: 35 },
       discussionUsers: [
@@ -1555,7 +1561,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/36.jpg",
       title: "Update Security Protocols",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "11 days ago",
       reactions: { likes: 18, views: 700, comments: 40 },
       discussionUsers: [
@@ -1577,7 +1583,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/38.jpg",
       title: "Resolve Memory Leak Issue",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "13 days ago",
       reactions: { likes: 30, views: 900, comments: 55 },
       discussionUsers: [
@@ -1599,7 +1605,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/40.jpg",
       title: "Improve Code Documentation",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "15 days ago",
       reactions: { likes: 22, views: 800, comments: 35 },
       discussionUsers: [
@@ -1610,7 +1616,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/41.jpg",
       title: "Fix Login Authentication",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "16 days ago",
       reactions: { likes: 18, views: 650, comments: 40 },
       discussionUsers: [
@@ -1621,7 +1627,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/42.jpg",
       title: "Optimize API Response Times",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "17 days ago",
       reactions: { likes: 25, views: 900, comments: 50 },
       discussionUsers: [
@@ -1632,7 +1638,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/43.jpg",
       title: "Revise Frontend Code",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "18 days ago",
       reactions: { likes: 15, views: 700, comments: 30 },
       discussionUsers: [
@@ -1665,7 +1671,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/46.jpg",
       title: "Update User Profile Features",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "21 days ago",
       reactions: { likes: 19, views: 700, comments: 40 },
       discussionUsers: [
@@ -1675,8 +1681,8 @@ useEffect(()=>{
     },
     {
       userImage: "https://randomuser.me/api/portraits/men/47.jpg",
-      title: "Fix Backend Caching Bugs",
-      type: "Bug",
+      title: "Fix Backend Caching Ideass",
+      type: "Ideas",
       dateTime: "22 days ago",
       reactions: { likes: 24, views: 750, comments: 45 },
       discussionUsers: [
@@ -1687,7 +1693,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/48.jpg",
       title: "Improve Accessibility",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "23 days ago",
       reactions: { likes: 30, views: 800, comments: 50 },
       discussionUsers: [
@@ -1698,7 +1704,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/49.jpg",
       title: "Update User Permissions",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "24 days ago",
       reactions: { likes: 16, views: 700, comments: 35 },
       discussionUsers: [
@@ -1720,7 +1726,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/51.jpg",
       title: "Refactor Legacy Code",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "26 days ago",
       reactions: { likes: 18, views: 700, comments: 30 },
       discussionUsers: [
@@ -1730,8 +1736,8 @@ useEffect(()=>{
     },
     {
       userImage: "https://randomuser.me/api/portraits/men/52.jpg",
-      title: "Fix Frontend Bugs",
-      type: "Bug",
+      title: "Fix Frontend Ideass",
+      type: "Ideas",
       dateTime: "27 days ago",
       reactions: { likes: 25, views: 750, comments: 35 },
       discussionUsers: [
@@ -1753,7 +1759,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/54.jpg",
       title: "Improve Data Visualization",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "29 days ago",
       reactions: { likes: 23, views: 850, comments: 45 },
       discussionUsers: [
@@ -1764,7 +1770,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/55.jpg",
       title: "Fix Mobile Layout Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "30 days ago",
       reactions: { likes: 30, views: 900, comments: 50 },
       discussionUsers: [
@@ -1786,7 +1792,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/57.jpg",
       title: "Optimize Image Loading",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "32 days ago",
       reactions: { likes: 18, views: 700, comments: 30 },
       discussionUsers: [
@@ -1797,7 +1803,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/58.jpg",
       title: "Improve User Feedback System",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "33 days ago",
       reactions: { likes: 15, views: 650, comments: 25 },
       discussionUsers: [
@@ -1808,7 +1814,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/59.jpg",
       title: "Enhance Mobile User Experience",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "34 days ago",
       reactions: { likes: 23, views: 800, comments: 40 },
       discussionUsers: [
@@ -1819,7 +1825,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/60.jpg",
       title: "Update Error Reporting System",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "35 days ago",
       reactions: { likes: 25, views: 850, comments: 50 },
       discussionUsers: [
@@ -1841,7 +1847,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/62.jpg",
       title: "Improve Data Integrity Checks",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "37 days ago",
       reactions: { likes: 22, views: 800, comments: 40 },
       discussionUsers: [
@@ -1874,7 +1880,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/65.jpg",
       title: "Update Documentation Guidelines",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "40 days ago",
       reactions: { likes: 22, views: 750, comments: 35 },
       discussionUsers: [
@@ -1885,7 +1891,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/66.jpg",
       title: "Fix Broken User Profile",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "41 days ago",
       reactions: { likes: 17, views: 600, comments: 25 },
       discussionUsers: [
@@ -1896,7 +1902,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/67.jpg",
       title: "Enhance API Error Handling",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "42 days ago",
       reactions: { likes: 19, views: 650, comments: 30 },
       discussionUsers: [
@@ -1918,7 +1924,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/69.jpg",
       title: "Optimize Database Queries",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "44 days ago",
       reactions: { likes: 22, views: 750, comments: 35 },
       discussionUsers: [
@@ -1929,7 +1935,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/70.jpg",
       title: "Improve User Feedback Mechanism",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "45 days ago",
       reactions: { likes: 28, views: 800, comments: 45 },
       discussionUsers: [
@@ -1962,7 +1968,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/73.jpg",
       title: "Fix Payment Gateway Integration",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "48 days ago",
       reactions: { likes: 12, views: 650, comments: 25 },
       discussionUsers: [
@@ -1984,7 +1990,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/75.jpg",
       title: "Improve Session Management",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "50 days ago",
       reactions: { likes: 25, views: 750, comments: 35 },
       discussionUsers: [
@@ -1995,7 +2001,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/76.jpg",
       title: "Fix Data Import Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "51 days ago",
       reactions: { likes: 18, views: 700, comments: 30 },
       discussionUsers: [
@@ -2006,7 +2012,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/77.jpg",
       title: "Enhance Data Visualization Tools",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "52 days ago",
       reactions: { likes: 20, views: 750, comments: 35 },
       discussionUsers: [
@@ -2028,7 +2034,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/79.jpg",
       title: "Update User Onboarding Process",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "54 days ago",
       reactions: { likes: 25, views: 800, comments: 40 },
       discussionUsers: [
@@ -2039,7 +2045,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/80.jpg",
       title: "Fix API Rate Limiting Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "55 days ago",
       reactions: { likes: 22, views: 750, comments: 30 },
       discussionUsers: [
@@ -2050,7 +2056,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/81.jpg",
       title: "Optimize Frontend Performance",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "56 days ago",
       reactions: { likes: 18, views: 700, comments: 25 },
       discussionUsers: [
@@ -2072,7 +2078,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/83.jpg",
       title: "Fix Data Synchronization Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "58 days ago",
       reactions: { likes: 25, views: 850, comments: 40 },
       discussionUsers: [
@@ -2083,7 +2089,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/84.jpg",
       title: "Improve Backend Logging",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "59 days ago",
       reactions: { likes: 22, views: 750, comments: 35 },
       discussionUsers: [
@@ -2105,7 +2111,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/86.jpg",
       title: "Fix API Authentication Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "61 days ago",
       reactions: { likes: 30, views: 900, comments: 55 },
       discussionUsers: [
@@ -2116,7 +2122,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/87.jpg",
       title: "Update User Activity Tracking",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "62 days ago",
       reactions: { likes: 25, views: 800, comments: 40 },
       discussionUsers: [
@@ -2138,7 +2144,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/89.jpg",
       title: "Improve API Documentation",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "64 days ago",
       reactions: { likes: 22, views: 750, comments: 35 },
       discussionUsers: [
@@ -2149,7 +2155,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/90.jpg",
       title: "Optimize Backend Performance",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "65 days ago",
       reactions: { likes: 20, views: 700, comments: 30 },
       discussionUsers: [
@@ -2160,7 +2166,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/91.jpg",
       title: "Fix Database Backup Issues",
-      type: "Bug",
+      type: "Ideas",
       dateTime: "66 days ago",
       reactions: { likes: 15, views: 650, comments: 20 },
       discussionUsers: [
@@ -2171,7 +2177,7 @@ useEffect(()=>{
     {
       userImage: "https://randomuser.me/api/portraits/men/92.jpg",
       title: "Enhance Real-time Data Processing",
-      type: "Improvement",
+      type: "User Feedback",
       dateTime: "67 days ago",
       reactions: { likes: 25, views: 800, comments: 40 },
       discussionUsers: [
@@ -2672,7 +2678,7 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/about"
                       >
                         About Us
                       </a>
@@ -2680,7 +2686,7 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/blogs"
                       >
                         Blog
                       </a>
@@ -2688,7 +2694,7 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="https://github.com/mdazfar2/HelpOps-Hub"
                       >
                         Github
                       </a>
@@ -2696,7 +2702,7 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/resources"
                       >
                         Devops Resources
                       </a>
@@ -2735,7 +2741,7 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="/contact"
                       >
                         Contact Us
                       </a>
