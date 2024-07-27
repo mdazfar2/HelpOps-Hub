@@ -218,7 +218,7 @@ console.log("NOTIFICATION",isNotification)
   return (
     <>
       {!isLogin && userName.length == 0 && <button className={` ${theme ? "bg-gray-100/80 text-black border-none" : "text-white bg-black border-white border"} auth-btn`} onClick={toggleAuth}>Login/Signup</button>}
-      {isLogin && <div className={`auth-btn relative ${theme ? "bg-gray-100/80 text-black border-none" : "text-white bg-black border-white border"}`} onClick={() => router.push(`/profile?id=${finalUser.username || finalUser._id}`)}>{isNotification && <span className='h-[5px] block rounded-full absolute top-[17%] right-[2px] w-[5px] bg-red-500'></span>}Profile</div>}
+      {isLogin && <div className={`auth-btn relative ${theme ? "bg-gray-100/80 text-black border-none" : "text-white bg-black border-white border"}`} onClick={() => router.push(`/profile?id=${finalUser.username || finalUser._id}`)}>{isNotification && <span className='h-[14px] block rounded-full absolute top-[1%] right-[0px] w-[14px] bg-red-500'></span>}Profile</div>}
       {showProfile1 && isLogin && 
         <div className="auth-overlay">
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
