@@ -213,7 +213,6 @@ const AuthButton = () => {
     return;
   }
 useEffect(()=>{
-console.log("NOTIFICATION",isNotification)
 }),[isNotification]
   return (
     <>
