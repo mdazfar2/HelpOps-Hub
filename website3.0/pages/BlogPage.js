@@ -788,10 +788,10 @@ setTimeout(()=>{setLoading(false)},4000)
                 variants={eventVariants}
                 
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                class={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
+                className={`${theme?"light-cookieCard":""}  cookieCard mt-[50px]`}>
 
-  <p class="cookieHeading cursor-pointer hover:text-blue-500 hover:underline" onClick={()=>{router.push(`/blogs?subject=${data.tagName}`);window.location.reload()}}>#{data.tagName}</p>
-  <p class="cookieDescription">{data.tagDescription}</p>
+  <p className="cookieHeading cursor-pointer hover:text-blue-500 hover:underline" onClick={()=>{router.push(`/blogs?subject=${data.tagName}`);window.location.reload()}}>#{data.tagName}</p>
+  <p className="cookieDescription">{data.tagDescription}</p>
   <div className="flex justify-between w-[100%]">
 
   <button
