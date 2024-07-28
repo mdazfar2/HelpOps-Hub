@@ -12,8 +12,12 @@ export default function EditProfileModal({
   onSave,
   img,
   banner,
+  finalUserData
 }) {
-  const [formData, setFormData] = useState({ ...userData, password: "" });
+  const [formData, setFormData] = useState({ ...finalUserData, password: "" });
+useEffect(()=>{
+  console.log(formData,finalUserData)
+},[formData])
   let {
     userName,
     finalUser,
@@ -38,7 +42,7 @@ export default function EditProfileModal({
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+  
   const handleSaveChanges = async () => {
     await fetch("/api/editaccount", {
       method: "POST",
@@ -192,8 +196,9 @@ export default function EditProfileModal({
             <input
               type="text"
               name="designation"
-              placeholder="Software Engineer"
+              // placeholder={`${finalUser.designation?finalUser.designation:"Please Enter Designation"}`}
               value={formData.designation}
+              placeholder="Please Enter Designation"
               onChange={handleChange}
               className={`p-2 mt-1 border border-gray-300 rounded ${
                 theme ? "" : "text-white bg-[#1d1b1b]"
@@ -205,8 +210,9 @@ export default function EditProfileModal({
             <textarea
               type="text"
               name="caption"
-              placeholder="Creating visually appealing and highly functional software that bridges technology and user needs."
+              placeholder={`"Please Enter Caption"`}
               value={formData.caption}
+
               onChange={handleChange}
               className={`p-2 mt-1 border border-gray-300 rounded resize-none h-24 ${
                 theme ? "" : "text-white bg-[#1d1b1b]"
@@ -218,7 +224,7 @@ export default function EditProfileModal({
             <input
               type="text"
               name="github"
-              placeholder="Enter Your Github Link"
+              placeholder={`"Please Enter Github Link"`}
               value={formData.github}
               onChange={handleChange}
               className={`${
@@ -230,9 +236,9 @@ export default function EditProfileModal({
             LinkedIn:
             <input
               type="text"
-              name="linkedin"
-              placeholder="Enter Your LinkedIn Link"
               value={formData.linkedin}
+              name="linkedin"
+              placeholder={`"Please Enter Linkedin Link"`}
               onChange={handleChange}
               className={`${
                 theme ? "" : "text-white bg-[#1d1b1b]"
