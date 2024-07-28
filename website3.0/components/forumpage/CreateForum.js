@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Context } from "@context/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,7 +19,13 @@ function CreateForum() {
   const [activeSection, setActiveSection] = useState("title");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  useEffect(() => {
+    const toolbar = document.querySelector('.ql-toolbar');
+    if (toolbar) {
+      toolbar.style.visibility = 'visible';
+      toolbar.style.background = 'transparent';
+    }
+  }, []);
   const renderSection = () => {
     switch (activeSection) {
       case "title":
