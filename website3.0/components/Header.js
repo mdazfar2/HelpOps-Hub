@@ -26,6 +26,7 @@ const Header = () => {
   const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/profile'
   const isCreateBlog = pathname && pathname.startsWith("/createblog"); // Check if path starts with '/createblog'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
+  const isCreateForum = pathname && pathname.startsWith("/createforum");
   let { theme, isAdminShow, isLogin, setIsPopup, setMsg, setSearchedBlog } =
     useContext(Context);
   // State to manage mobile menu toggle
@@ -105,7 +106,7 @@ const Header = () => {
         } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
           show ? "top-0" : "top-[-550px]"
         } ${isAdmin ? "hidden" : "block"} ${
-          isBlogs || isCreateBlog || isProfile || isDevopsForum
+          isBlogs || isCreateBlog || isProfile || isDevopsForum || isCreateForum
             ? "hidden"
             : "block"
         }  `}
@@ -307,7 +308,7 @@ const Header = () => {
         } z-50 fixed top-0 transition-all overflow-hidden ${
           show ? "top-0" : "top-[-550px]"
         } ${isAdmin ? "hidden" : "block"} ${
-          isBlogs || isCreateBlog || isProfile || isDevopsForum
+          isBlogs || isCreateBlog || isProfile || isDevopsForum || isCreateForum
             ? "block"
             : "hidden"
         }`}
@@ -329,7 +330,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {!isCreateBlog && !isProfile && !isDevopsForum && (
+          {!isCreateBlog && !isProfile && !isDevopsForum && !isCreateForum && (
             <div
               className={`flex-grow lg:max-w-[300px] max-lg:max-w-[230px] max-sm:max-w-[220px] max-[445px]:max-w-[100px] max-[400px]:hidden ${
                 theme ? "" : "text-black"
@@ -349,7 +350,7 @@ const Header = () => {
               theme ? "text-gray-600" : "transition-all text-gray-300"
             } flex items-center lg:gap-10 lg:font-bold max-lg:gap-4`}
           >
-            {!isCreateBlog && !isDevopsForum && (
+            {!isCreateBlog && !isDevopsForum && !isCreateForum && (
               <div
                 onClick={handleValidate}
                 className="flex cursor-pointer items-center gap-2"
