@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
+import dynamic from "next/dynamic";
 import { Context } from "@context/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,8 +12,7 @@ import {
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import 'react-quill/dist/quill.snow.css';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 function CreateForum() {
   const { theme } = useContext(Context);
