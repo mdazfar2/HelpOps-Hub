@@ -474,6 +474,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
           {isModalOpen && (
             <EditProfileModal
               isOpen={true}
+              finalUserData={{name:finalUser.name,designation:finalUser.designation,caption:finalUser.caption,linkedin:finalUser.linkedin,github:finalUser.github}}
               onRequestClose={handleCloseModal}
               userData={userData}
               onSave={handleSaveChanges}
