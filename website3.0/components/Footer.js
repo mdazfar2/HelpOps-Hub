@@ -13,11 +13,12 @@ function Footer() {
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
   const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/admin'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
+  const isCreateForum = pathname && pathname.startsWith("/createforum");
   let { theme } = useContext(Context);
   return (
     <div
       className={`${theme ? "bg-gray-100" : "bg-[#1e1d1d]"} ${
-        isAdmin || isProfile || isDevopsForum ? "hidden" : "block"
+        isAdmin || isProfile || isDevopsForum || isCreateForum ? "hidden" : "block"
       } pt-12 pb-6 flex flex-col items-center justify-center text-center w-full transition-colors duration-500`}
     >
       {/* Social media icons */}

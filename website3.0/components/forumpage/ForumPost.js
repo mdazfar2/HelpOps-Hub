@@ -11,6 +11,7 @@ import {
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { useRouter } from "next/navigation";
 const tags = [
   "Docker",
   "Devops",
@@ -62,6 +63,10 @@ const Tag = ({ name ,theme}) => (
   </div>
 );
 function ForumPost({theme}) {
+  const router = useRouter();
+  function handleAskQuestion(){
+    router.push("/createforum")
+  }
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
@@ -101,7 +106,7 @@ function ForumPost({theme}) {
               </div>
             </div>
             <div className={`max-md:mt-[30px] max-md:mr-[0px]`}>
-              <div className="bg-[#6089a4] px-5 py-3 text-white">
+              <div className="bg-[#6089a4] px-5 py-3 text-white cursor-pointer" onClick={handleAskQuestion}>
                 Ask Question
               </div>
             </div>

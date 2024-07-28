@@ -2286,6 +2286,9 @@ const handlePageChange = (page) => {
     // setCurrentIssues(arr.slice((currentPage - 1) * issuesPerPage, currentPage * issuesPerPage));
   };
 
+  function handleAskQuestion(){
+    router.push("/createforum")
+  }
   return (
     <div className="mt-20 overflow-x-hidden">
       <div
@@ -2558,7 +2561,7 @@ const handlePageChange = (page) => {
         </div>
             </div>
             <div className="max-lg:w-[100%] w-[25%]">
-              <div className="bg-[#6089a4] rounded-full text-white py-5 px-3 text-center text-base">
+              <div className="bg-[#6089a4] rounded-full text-white py-5 px-3 text-center text-base cursor-pointer" onClick={handleAskQuestion}>
                 <FontAwesomeIcon icon={faComments} /> Ask Question{" "}
                 <FontAwesomeIcon icon={faChevronRight} />
               </div>
