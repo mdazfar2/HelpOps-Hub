@@ -13,7 +13,7 @@ export const metadata = {
   title: "Helpops-Hub",
   description: "Ensuring You Never Get Stuck In DevOps Again!",
   icons: {
-    favicon: "HelpOps-H Fevicon.webp",
+    icon: "HelpOps-H Fevicon.webp",
     appleTouchIcons: [
       { size: "180x180", href: "/HelpOps-H Fevicon-180.webp" },
       { size: "152x152", href: "/HelpOps-H Fevicon-152.webp" },

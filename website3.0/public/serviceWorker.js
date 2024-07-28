@@ -1,5 +1,14 @@
 const cacheName = "HelpOpsHub-v1.0.0";
 const filesToCache = [
+  "/",
+  "/about",
+  "/team",
+  "/contact",
+  "/resources",
+  "/blogs",
+  "/createblog",
+  "/devopsforum",
+  "/profile",
   "/HelpOps-H Fevicon.webp",
   "/linkedin-icon.svg",
   "/youtube-icon.svg",
@@ -25,7 +34,14 @@ const filesToCache = [
   "/maintainer3.webp",
   "/Devops-Dark.mp4",
   "/Mobile-Devops.mp4",
-  "/HelpOps-H.mp4"
+  "/HelpOps-H.mp4",
+  "/_next/static/css/app/layout.css?v=1722187274213",
+  "/_next/static/css/app/page.css?v=1722187274213",
+  "/_next/static/chunks/main-app.js?v=1722187274213",
+  "/_next/static/chunks/app-pages-internals.js",
+  "/_next/static/chunks/app/page.js",
+  "/_next/static/chunks/app/layout.js",
+  "/_next/static/chunks/polyfills.js"
 ];
 
 self.addEventListener("install", installEvent => {
@@ -51,7 +67,7 @@ self.addEventListener('activate', evt => {
 
 self.addEventListener("fetch", fetchEvent => {
   fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
+    caches.match(fetchEvent.request, {ignoreVary: true}).then(res => {
       return res || fetch(fetchEvent.request);
     })
   )
