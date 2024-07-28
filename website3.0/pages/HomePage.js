@@ -22,6 +22,9 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { useSession } from "next-auth/react";
 import Reset from "@components/Reset";
 import Popup from "@components/Popup";
+
+import { register } from '../utils/registerServiceWorker';
+
 function HomePage({ theme,  setIsPopup,setMsg,setColor}) {
   const [loading, setLoading] = useState(false);
   const [blur, setBLur] = useState(false);
@@ -32,6 +35,10 @@ function HomePage({ theme,  setIsPopup,setMsg,setColor}) {
   const [Maintance,setMaintanance]=useState(false)
   const splineRef = useRef(null);
   let session = useSession();
+
+  useEffect(() => {
+    register();
+  }, []);
 
   useEffect(() => {
     // Extract token from URL query parameters
