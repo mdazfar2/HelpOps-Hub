@@ -4,6 +4,7 @@ import nodemailer from "nodemailer"; // Importing nodemailer to send welcome ema
 import { NextResponse } from "next/server"; // Importing Next.js server response utility
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+import newaccount from "@utils/models/newaccounts"; // Importing Mongoose model for newsletter subscription
 
 export async function POST(req) {
   const { MONGO_URI } = process.env;
@@ -14,6 +15,15 @@ export async function POST(req) {
   let data = await user.find({ email: email });
   // checking if user exist or not
   if (data.length > 0) {
+    let date=Date.now()
+    const formattedDate = new Date(date).toISOString().split('T')[0]; // Format date to YYYY-MM-DD
+  
+    let result = await newaccount.findOne({purpose:"account"});
+    
+    result.accounts[formattedDate][1]+=1
+    await newaccount.findByIdAndUpdate(result._id,{
+      $set:result
+    })
     return NextResponse.json(
       { success: true, msg: data[0] },
       { status: "200" }
@@ -43,7 +53,8 @@ export async function POST(req) {
       likedBLogs: map,
     });
     await users.save();
-  } else {
+  }
+   else {
     let us = await user.find({ email: email });
     if (us.length > 0) {
       return NextResponse.json({ success: true, user: us }, { status: 200 });
@@ -71,6 +82,18 @@ export async function POST(req) {
     let data1 = await user.find({ email: email });
     await user.findByIdAndDelete(data1[0]._id);
   }
+  let date=Date.now()
+  const formattedDate = new Date(date).toISOString().split('T')[0]; // Format date to YYYY-MM-DD
+
+  let result = await newaccount.findOne({purpose:"account"});
+  
+  if(!result.accounts[formattedDate]){
+    result.accounts[formattedDate]=[0,0]
+  }
+  result.accounts[formattedDate][0]+=1
+  await newaccount.findByIdAndUpdate(result._id,{
+    $set:result
+  })
   let data1 = await user.find({ email: email });
   // await user.deleteOne({email:email})
   //sending response user
