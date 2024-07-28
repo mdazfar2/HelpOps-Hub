@@ -46,7 +46,7 @@ function GrowYourReachTab() {
   };
 
   return (
-    <div className="h-screen p-10">
+    <div className="min-h-screen p-10">
       <div className= {`${theme?"bg-gray-100 text-black":"bg-[#111111] text-white"} w-full rounded-xl min-h-96 text-2xl text-center p-5`}>
         Grow Your Reach
         <div className="mt-10 text-xl">

@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import 'react-quill/dist/quill.snow.css';
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import ReactQuill, { Quill } from 'react-quill';
 function CreateForum() {
   const { theme } = useContext(Context);
   const [activeSection, setActiveSection] = useState("title");
