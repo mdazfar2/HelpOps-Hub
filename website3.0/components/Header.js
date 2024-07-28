@@ -301,9 +301,7 @@ const Header = () => {
 
       <header
         className={`w-screen ${
-          isDevopsForum
-            ? "bg-gray-200 text-black"
-            : theme
+          theme
             ? "bg-gray-100 text-black"
             : "transition-all text-white bg-[#1e1d1d]"
         } z-50 fixed top-0 transition-all overflow-hidden ${

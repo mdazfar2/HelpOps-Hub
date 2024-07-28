@@ -25,7 +25,7 @@ import styles from '../stylesheets/forumanimation.css'
 const Sidebar01Item = ({ title, isActive, onClick, icon, theme }) => {
   return (
     <div
-      className={`${theme ? "" : "text-[#c4bbbb]"} ${
+      className={`${theme ? "" : "text-white"} ${
         isActive
           ? "bg-[#6089a4] hover:bg-[#6089a4] text-white"
           : "hover:bg-[#deecf5] hover:text-[#6089a4]"
@@ -38,7 +38,7 @@ const Sidebar01Item = ({ title, isActive, onClick, icon, theme }) => {
 };
 
 const Tag = ({ name }) => (
-  <div className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-500">
+  <div className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200">
     {name}
   </div>
 );
@@ -2290,7 +2290,7 @@ const handlePageChange = (page) => {
     <div className="mt-20 overflow-x-hidden">
       <div
         className={`h-80 ${
-          theme ? "bg-gray-200" : "bg-[#212020]"
+          theme ? "bg-gray-200" : "bg-[#1e1d1d]"
         } px-10 pt-20 relative`}
       >
         <div className="w-full flex flex-col items-center justify-center">
@@ -2322,7 +2322,7 @@ const handlePageChange = (page) => {
                 Forums
               </div>
               <div
-                className={` flex flex-col max-xl:flex-row max-xl:w-[100vw]  gap-1 mt-4 flex-wrap`}
+                className={`${theme ? "" : "text-white"} flex flex-col max-xl:flex-row max-xl:w-[100vw]  gap-1 mt-4 flex-wrap`}
               >
                 <Sidebar01Item
                   title="View All"
@@ -2522,7 +2522,7 @@ const handlePageChange = (page) => {
             className={`flex gap-5 items-center max-sm:gap-2 max-sm:justify-center ${theme ? "" : "text-white"}`}
           >
             <button
-              className="flex items-center"
+              className={`flex items-center ${currentPage===1 ? "hidden" : ""}`}
               disabled={currentPage === 1}
               onClick={() => handlePageChange(currentPage - 1)}
             >
@@ -2544,7 +2544,7 @@ const handlePageChange = (page) => {
           !(currentPage==totalPages) && <div>{totalPages}</div>
            }
             <button
-              className="flex items-center"
+              className={`flex items-center ${currentPage===totalPages ? "hidden" : ""}`}
               disabled={currentPage === totalPages}
               onClick={() => handlePageChange(currentPage + 1)}
             >
@@ -2648,7 +2648,7 @@ const handlePageChange = (page) => {
                   <FontAwesomeIcon icon={faLinkedin} />
                 </button>
                 <button
-                  className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className={`${theme ? "text-lightBlue-600" : "text-black"} bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2`}
                   type="button"
                 >
                   <FontAwesomeIcon icon={faGithub} />
@@ -2693,17 +2693,17 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://github.com/mdazfar2/HelpOps-Hub"
+                        href="/resources"
                       >
-                        Github
+                        Devops Resources
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="/resources"
+                        href="https://github.com/mdazfar2/HelpOps-Hub"
                       >
-                        Devops Resources
+                        Github
                       </a>
                     </li>
                   </ul>
@@ -2716,7 +2716,7 @@ const handlePageChange = (page) => {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="https://github.com/mdazfar2/HelpOps-Hub/blob/main/LICENSE"
                       >
                         MIT License
                       </a>
