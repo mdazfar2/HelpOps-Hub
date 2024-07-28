@@ -61,7 +61,7 @@ function CreateForum() {
               </div>
               <div className="w-full bg-gray-200 min-h-96 rounded-3xl relative overflow-hidden">
                 <ReactQuill
-                  className="h-[340px] visible bg-transparent"
+                  className="h-[340px] !visible !bg-transparent"
                   value={content}
                   onChange={setContent}
                 />
