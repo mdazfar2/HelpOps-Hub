@@ -71,15 +71,15 @@ The goal of our project is to empower DevOps professionals by providing a compre
 
 <table border="1">
   <tr>
-      <td><img src="website3.0\public\new\discord-icon.svg" alt="Discord Logo" width="50"></td>
+      <td><img src="website3.0\public\discord-icon.svg" alt="Discord Logo" width="50"></td>
       <td><a href="https://discord.gg/UWTrRhqywt"> Join our Official Discord Server </a></td>
   </tr>
   <tr>
-      <td><img src="website3.0\public\new\linkedin-icon.svg" alt="Linkedin Logo" width="50"></td>
+      <td><img src="website3.0\public\linkedin-icon.svg" alt="Linkedin Logo" width="50"></td>
       <td><a href="https://linkedin.com/company/HelpOps-Hub/"> Follow us on Linkedin</a></td>
   </tr>
   <tr>
-      <td><img src="website3.0\public\new\youtube-icon.svg" alt="YouTube Logo" width="50"></td>
+      <td><img src="website3.0\public\youtube-icon.svg" alt="YouTube Logo" width="50"></td>
       <td><a href="https://www.youtube.com/watch?v=MCCc5mT5Pio"> Find us on Youtube </a></td>
   </tr>
 </table>
