@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
 const newaccountschema = new mongoose.Schema({
+   purpose:{
+      type:String
+   },
  accounts:{
     type: Object,
     default:{}

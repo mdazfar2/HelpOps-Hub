@@ -14,9 +14,11 @@ import {
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill, { Quill } from 'react-quill';
+import { useRouter } from "next/navigation";
 function CreateForum() {
-  const { theme } = useContext(Context);
+  const { theme ,finalUser} = useContext(Context);
   const [activeSection, setActiveSection] = useState("title");
+  let router=useRouter()
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   useEffect(() => {
@@ -26,6 +28,21 @@ function CreateForum() {
       toolbar.style.background = 'transparent';
     }
   }, []);
+  async function postQuestion(){
+    let payload={
+      title:title,
+      content:content,
+      authorUsername:finalUser.username,
+      authorEmail:finalUser.email,
+      authorId:finalUser._id,
+      authorName:finalUser.name
+    }
+    await fetch('/api/createquestion',{
+      method:"POST",
+      body:JSON.stringify(payload)
+    })
+    router.push("/devopsforum")
+  }
   const renderSection = () => {
     switch (activeSection) {
       case "title":
@@ -162,7 +179,7 @@ function CreateForum() {
               </div>
               <div
                 className="w-20 rounded-xl h-12 flex justify-center items-center text-white bg-[#6089a4] cursor-pointer"
-                onClick={() => alert("Posted!")}
+                onClick={() => postQuestion()}
               >
                 Post
               </div>
