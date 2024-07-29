@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -62,10 +62,25 @@ const Tag = ({ name ,theme}) => (
     {name}
   </div>
 );
-function ForumPost({theme}) {
+function ForumPost({theme,id}) {
   const router = useRouter();
+  let [issue,setIssue]=useState({})
   function handleAskQuestion(){
     router.push("/createforum")
+  }
+  useEffect(()=>{
+    fetchData()
+  },[id])
+  async function fetchData(){
+    
+    let data=await fetch("/api/getquestion",{
+      method:"POST",
+      body:JSON.stringify({id:id})
+    })
+    data=await data.json()
+ 
+    console.log(data)
+    setIssue(data.data)
   }
   return (
     <div className="mt-20 overflow-x-hidden">
@@ -115,33 +130,10 @@ function ForumPost({theme}) {
             <div className="text-5xl font-bold max-md:hidden">Q:</div>
             <div className="mt-2">
               <div className={`${theme?"":"text-white"} text-3xl max-md:flex font-bold`}>
-              <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  Sticky navbar is shown, but state is inactive
+              <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  <p dangerouslySetInnerHTML={{__html:issue.title}}/>
               </div>
-              <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`}>
-                The sticky navbar is displayed, but it remains inactive. This
-                issue has been causing quite a bit of frustration. Despite
-                attempting multiple solutions, the navbar stubbornly refuses to
-                become functional. This seems to be a common issue, as others
-                have reported similar problems in various forums. I've ensured
-                that the CSS properties for the sticky behavior are correctly
-                applied and have verified that the JavaScript is executed as
-                expected. Despite these efforts, the state of the navbar doesn't
-                change when it should, remaining static and unresponsive.
-                <br />
-                <br />
-                To provide more context, I've tried various debugging
-                techniques, including checking for conflicting CSS rules and
-                ensuring that there are no JavaScript errors in the console.
-                I've also experimented with different libraries and frameworks
-                to see if they might offer a solution, but the problem persists.
-                It's possible that there is an underlying issue in the way the
-                components are structured or in the interaction between the
-                different elements of the page. If anyone has encountered this
-                issue before or has suggestions on how to resolve it, your
-                assistance would be greatly appreciated. This has been a
-                challenging problem, and any insights or advice would be
-                invaluable. Thank you in advance for your help!
-              </div>
+              <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue.content}}/>
+              
 
               <div className="mt-10 flex gap-2 text-gray-500 items-center">
                 <FontAwesomeIcon icon={faTags} />
