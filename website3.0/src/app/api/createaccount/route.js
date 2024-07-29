@@ -19,8 +19,11 @@ export async function POST(req) {
     const formattedDate = new Date(date).toISOString().split('T')[0]; // Format date to YYYY-MM-DD
   
     let result = await newaccount.findOne({purpose:"account"});
-    
+    if(!result.accounts[formattedDate]){
+      result.accounts[formattedDate]=[0,0]
+    }
     result.accounts[formattedDate][1]+=1
+    console.log(result.accounts,'ACCOUNTTTTTTTTTT')
     await newaccount.findByIdAndUpdate(result._id,{
       $set:result
     })
