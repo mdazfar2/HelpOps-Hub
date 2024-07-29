@@ -35,7 +35,8 @@ function CreateForum() {
       authorUsername:finalUser.username,
       authorEmail:finalUser.email,
       authorId:finalUser._id,
-      authorName:finalUser.name
+      authorName:finalUser.name,
+      authorImage:finalUser.image1
     }
     await fetch('/api/createquestion',{
       method:"POST",
