@@ -86,7 +86,9 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
   let [allTags,setAllTags]=useState([])
   async function fetchTagsData(){
     let user=await JSON.parse(localStorage.getItem('finalUser'))
-
+    if(!user){
+      return
+    }
       let arr=  tagsData.filter((data)=> !user.hidedTags.includes(data.tagName))
       
       setTags([...arr])
@@ -662,7 +664,7 @@ setTimeout(()=>{setLoading(false)},4000)
                   ? finalUser.reactions && finalUser.reactions.hasOwnProperty(blog._id)
                   : false;
                 
-                  if(finalUser&&(!finalUser?.blockedBlogs?.includes(blog._id))&&(filter=="delete"?blog.isDeleted:(!blog.isDeleted&&blog.authorId==finalUser._id))){
+                  if((finalUser&&(!finalUser?.blockedBlogs?.includes(blog._id))&&(filter=="delete"?blog.isDeleted:(!blog.isDeleted)))||!finalUser){
 
 
                     return (
@@ -745,7 +747,7 @@ setTimeout(()=>{setLoading(false)},4000)
                             className="h-[150px] w-[200px] bg-white object-cover object-center max-md:w-full max-md:h-[200px]"
                           />
                         </div>
-                   {index == modalIndex &&  !blog.isDeleted &&     <div className="absolute h-[auto] w-[200px]  flex flex-col gap-[20px] right-36 p-[20px] bottom-20 rounded-lg bg-white">
+                  {finalUser && index == modalIndex &&  !blog.isDeleted &&     <div className="absolute h-[auto] w-[200px]  flex flex-col gap-[20px] right-36 p-[20px] bottom-20 rounded-lg bg-white">
                   <> <div className="flex flex-row gap-[10px] justify-center" onClick={()=>handleBlogDelete(blog)}> <FaTrash className="hover:cursor-pointer" color="red" onClick={()=>handleBlogDelete(blog)}/>Delete Post</div>
                    <div className="z-[100000] flex w-[100%] gap-[10px] items-center justify-center"> 
                   <div onClick={(e)=>{
@@ -764,7 +766,7 @@ setTimeout(()=>{setLoading(false)},4000)
                    }}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
                    <p className="w-[100%] flex justify-center items-center"  onClick={()=>handleBlockBlog(blog._id)}>Block Blog</p></>
                    </div>}
-                    {blog.isDeleted && <p onClick={()=>handleRecoverBlog(blog._id)}>Recover Blog</p>}    
+                    {finalUser && blog.isDeleted && <p onClick={()=>handleRecoverBlog(blog._id)}>Recover Blog</p>}    
                     
                         <hr className="w-full mt-5 mb-5 border-gray-200" />
                       </div>
