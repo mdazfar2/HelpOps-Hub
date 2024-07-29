@@ -19,6 +19,10 @@ export async function POST(req) {
     const formattedDate = new Date(date).toISOString().split('T')[0]; // Format date to YYYY-MM-DD
   
     let result = await newaccount.findOne({purpose:"account"});
+    if(!result){
+      result=new newaccount({purpose:"account",accounts:{"":[0,0]}})
+      await result.save()
+    }
     if(!result.accounts[formattedDate]){
       result.accounts[formattedDate]=[0,0]
     }
@@ -89,7 +93,11 @@ export async function POST(req) {
   const formattedDate = new Date(date).toISOString().split('T')[0]; // Format date to YYYY-MM-DD
 
   let result = await newaccount.findOne({purpose:"account"});
-  
+  console.log(result,'sdddddddddddddddddddd')
+  if(!result){
+    result=new newaccount({purpose:"account",accounts:{"":[0,0]}})
+    await result.save()
+  }
   if(!result.accounts[formattedDate]){
     result.accounts[formattedDate]=[0,0]
   }
