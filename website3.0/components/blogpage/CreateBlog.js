@@ -527,7 +527,7 @@ export default function CreateBlog({id}) {
     <div
     className={`flex flex-row items-start max-md:flex-col  ${
       theme ? "bg-slate-100" : "bg-[#1e1d1d]"
-    } min-h-[100vh] w-[100vw] h-[auto] pt-32 pb-10`}
+    } min-h-[100vh] w-[100vw] h-[auto] pt-32 pb-10 foreditor`}
   >
     <div
       className={`flex relative flex-col rounded-xl pt-10 pb-10 border-dashed ${

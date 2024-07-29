@@ -64,7 +64,7 @@ font-style: normal;
     border: none !important;
     border-bottom: solid rgb(172, 167, 167) 1px !important;
   }
-  .ql-toolbar{
+  .foreditor .ql-toolbar{
     visibility: hidden;
   }
   .classsa .ql-editor li{
