@@ -14,12 +14,12 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { Tooltip } from 'react-tooltip'
 
-import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping, FaEllipsisVertical} from "react-icons/fa6";
+import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping, FaEllipsisVertical, FaEllipsis} from "react-icons/fa6";
 import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import {FaHeart,FaPen} from 'react-icons/fa6'
-import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane, FaTrash } from "react-icons/fa";
 import { comment } from "postcss";
 import { createGlobalStyle } from "styled-components";
 const regularIcons = {
@@ -156,7 +156,20 @@ function BlogPost() {
     const handlePopstate = () => {
       sendData();
     };
-
+    async function handleBlockBlog(data){
+      let user=finalUser
+      user.blockedBlogs=[...user.blockedBlogs,data]
+      updateUser(user)
+    let res=await fetch("/api/blockblog",{
+      method:"POST",
+      body:JSON.stringify({
+        user_id:finalUser._id,
+        blog_id:data
+      })
+    })
+    window.location.reload()
+    
+  }
     const sendData = () => {
       const payload = JSON.stringify({ id: id, time: 1, views: blog.views });
       navigator.sendBeacon('/api/averagetime', payload);
@@ -760,6 +773,22 @@ useEffect(()=>{
       router.push(`/profile?id=${blog.authorId}`);
     }
   }
+  async function handleBlogDelete(blog){
+    let res=confirm('Are You Sure that you want to delete this Blog')
+    if(res){
+
+      let data= await fetch('/api/blog',{
+         method:"DELETE",
+         body:JSON.stringify({
+           id:blog._id
+         })
+       })
+       data=await data.json()
+       window.location.reload()
+    }else{
+      return
+    }
+  }
   async function handleBlogDelete(){
     await fetch('/api/blog',{
       method:"DELETE",
@@ -792,7 +821,7 @@ const options = {
 const formattedDate = createdAtDate.toLocaleDateString('en-US', options);
 return formattedDate
   }
-
+let [modalIndex,setModalIndex]=useState(false)
 function handleError(){
   
   document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
@@ -936,6 +965,27 @@ data-tooltip-content="Reaction"
                   </div>}
                   <div>
            <FaArrowUpFromBracket  data-tooltip-id="aa" data-tooltip-content="Share" size={'1.5rem'} color={`${theme?"black":"white"} `} className="cursor-pointer max-lg:mb-[29px] max-lg:w-[2rem] max-lg:h-[2rem] max-sm:w-[1.5rem] max-sm:h-[1.5rem]" onClick={()=>isSHare?setIsShare(false):setIsShare(true)}/>
+           {blog.authorId==finalUser._id &&      <FaEllipsis className="mt-[20px] ml-[4px] cursor-pointer " size={'1.2rem'} onClick={()=>modalIndex?setModalIndex(false):setModalIndex(true)}/>
+                             } 
+                              { modalIndex &&  <div className="absolute h-[auto] w-[200px]  flex flex-col gap-[20px]  p-[20px] rounded-lg bg-white">
+                  <> <div className="flex flex-row gap-[10px] justify-center cursor-pointer" onClick={()=>handleBlogDelete(blog)}> <FaTrash className="hover:cursor-pointer" color="red" onClick={()=>handleBlogDelete(blog)}/>Delete Post</div>
+                   <div className="z-[100000] flex w-[100%] gap-[10px] items-center justify-center cursor-pointer"> 
+                  <div onClick={(e)=>{
+                   e.preventDefault();
+                   let res=confirm("Are you sure that you want to edit this blog ")
+                   if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                    return
+                   }}} className=" flex gap-[10px] cursor-pointer">
+                 <FaPen color="#5a6370"/>
+                </div>
+                <span  onClick={(e)=>{
+                   e.preventDefault();
+                   let res=confirm("Are you sure that you want to edit this blog ")
+                   if(res){ router.push(`/editblog?id=${blog._id}`)}else{
+                    return
+                   }}}  className="max-md:hidden text-[#5a6370] font-semibold">Edit Blog</span></div>
+                   <p className="w-[100%] flex justify-center items-center cursor-pointer"  onClick={()=>handleBlockBlog(blog._id)}>Block Blog</p></>
+                   </div>}
            </div>
            <Tooltip id="aa"/>
 
