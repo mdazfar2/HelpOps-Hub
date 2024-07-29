@@ -5,6 +5,8 @@ import { faTachometerAlt, faUsers, faCogs, faChartBar, faBell, faLifeRing, faChe
 import { motion, AnimatePresence } from 'framer-motion';
 import Overview from '@components/admin/dashboard/Overview';
 import Blogs from '@components/admin/dashboard/Blogcreation';
+import BlogCreation from '@components/admin/dashboard/Blogcreation';
+import AllBlogs from '@components/admin/dashboard/AllBlogs';
 
 const Users = () => <div>Users Component</div>;
 const Settings = () => <div>Settings Component</div>;
@@ -110,6 +112,9 @@ const AdminPanel = ({authKey}) => {
                   </li>
                   <li className="py-2 px-4 hover:bg-[#546a76] rounded" onClick={() => handleMenuClick(<Blogs />)}>
                     Blog Creation
+                  </li>
+                  <li className="py-2 px-4 hover:bg-[#546a76] rounded" onClick={() => handleMenuClick(<AllBlogs />)}>
+                    All Blogs
                   </li>
                 </ul>
               </MenuItem>
