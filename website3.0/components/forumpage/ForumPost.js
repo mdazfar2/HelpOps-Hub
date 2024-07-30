@@ -239,7 +239,7 @@ function ForumPost({theme,id,finalUser}) {
                     </button>
                     </div>
                 }
-       {                            issue.solutions?.map((data)=>{
+       {                            issue?.solutions?.map((data)=>{
 
       return  <div className="mt-10">
                 <div className={`min-h-20 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
@@ -376,7 +376,7 @@ function ForumPost({theme,id,finalUser}) {
                   </div>
                 ))}
                 <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
-                 {issue.isCLose ?"Mark As UnSolved": "Mark As Solved"}
+                 {issue?.isCLose ?"Mark As UnSolved": "Mark As Solved"}
                 </div>
               </div>
             </div>
