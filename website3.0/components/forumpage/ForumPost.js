@@ -13,6 +13,10 @@ import {
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
 import { comment } from "postcss";
+// import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from 'react-quill';
+// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import 'react-quill/dist/quill.snow.css';
 const tags = [
   "Docker",
   "Devops",
@@ -67,6 +71,7 @@ function ForumPost({theme,id,finalUser}) {
   const router = useRouter();
   let [isComment,setIsComment]=useState(false)
   let [issue,setIssue]=useState({})
+  let content=useRef()
   let comment=useRef()
   function handleAskQuestion(){
     router.push("/createforum")
@@ -97,6 +102,18 @@ function ForumPost({theme,id,finalUser}) {
     }else{
       issue1.isCLose=true
     }
+    window.location.reload()
+  }
+  async function handleAddSolution(){
+    let data=await fetch("/api/addsolution",{
+      method:"POST",
+      body:JSON.stringify({
+        ans:content.current.value,
+        id:id,
+        authorImage:finalUser.image1,
+        authorName:finalUser.name
+      })
+    })
     window.location.reload()
   }
   async function handleAddComment(){
@@ -213,28 +230,28 @@ function ForumPost({theme,id,finalUser}) {
               </div>
               {
                   isComment &&<div className="mt-[25px] mb-[25px] w-[100%]">
-                   <input
-                      type="text"
-                      className="w-[70%] p-4 border-[1px] border-gray-300 rounded-lg"
-                      placeholder="Add a Reply"
-                      ref={comment}
-                   /> 
-                    <button onClick={handleAddComment}  className="border bg-blue-500 ml-[20px] p-[15px]  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
+                  
+                  <ReactQuill className="h-[200px]"
+                  ref={content}
+                />
+                    <button  onClick={handleAddSolution}  className="border mt-16 bg-blue-500 ml-[20px] p-[15px]  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
                       Submit
                     </button>
                     </div>
                 }
-              <div className="mt-10">
-                <div className={`min-h-96 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
+       {                            issue.solutions?.map((data)=>{
+
+      return  <div className="mt-10">
+                <div className={`min-h-20 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
                   <div className="flex w-full justify-between flex-wrap">
                     <div className="flex gap-5">
                       <img
-                        src="https://randomuser.me/api/portraits/men/6.jpg"
+                        src={data.authorImage?data.authorImage:"https://randomuser.me/api/portraits/men/6.jpg"}
                         alt="User"
                         className="w-12 h-12 rounded-full"
                       />
                       <div className="text-lg">
-                        <div className={`${theme?"":"text-white"}`}>Jack Frost</div>
+                        <div className={`${theme?"":"text-white"}`}>{data.authorName?data.authorName:"Jack"}</div>
                         <div className="flex gap-5 text-sm text-gray-500">
                           <div className={`${theme?"":"text-gray-300"}`}>
                             <FontAwesomeIcon icon={faCoffee} /> Conversation
@@ -253,51 +270,17 @@ function ForumPost({theme,id,finalUser}) {
                   </div>
                   <div className="mt-10 flex text-gray-600 gap-4">
                     <div className={`${theme?"":"text-white"} text-5xl font-bold`}>A:</div>
-                    <div className="">
-                      <div className={`${theme?"":"text-gray-300"} text-base text-justify`}>
-                        Hi, I understand the frustration with the sticky navbar
-                        remaining inactive. Here are a few steps you can follow
-                        to troubleshoot and potentially fix the issue:
-                        <br />
-                        <br />
-                        <strong>Step 1</strong> - Ensure that the CSS properties
-                        for the sticky behavior are correctly applied. The CSS
-                        should include <code>position: -webkit-sticky;</code>,{" "}
-                        <code>position: sticky;</code>, and a top value like{" "}
-                        <code>top: 0;</code>.
-                        <br />
-                        <strong>Step 2</strong> - Check for any conflicting CSS
-                        rules that might be overriding the sticky behavior. Use
-                        browser developer tools to inspect the navbar element
-                        and ensure no other styles are interfering.
-                        <br />
-                        <strong>Step 3</strong> - Verify that JavaScript is not
-                        interfering with the sticky behavior. Make sure there
-                        are no JavaScript errors in the console and that any
-                        scripts related to the navbar are functioning correctly.
-                        <br />
-                        <strong>Step 4</strong> - Test the navbar in different
-                        browsers to rule out browser-specific issues. Sometimes,
-                        sticky behavior might work in one browser but not in
-                        another due to compatibility issues.
-                        <br />
-                        <strong>Step 5</strong> - If you are using a framework
-                        or library, ensure that it supports sticky positioning
-                        and that there are no known issues with the version you
-                        are using.
-                        <br />
-                        <br />
-                        I hope these steps help you resolve the issue. If the
-                        problem persists, please provide more details or code
-                        snippets, and I'll be happy to assist further.
-                        <br />
-                        <br />
-                        Thanks!
-                      </div>
+                   
+                      <div className="">
+
+                    <div className={`${theme?"":"text-gray-300"} text-base text-justify`} dangerouslySetInnerHTML={{__html:data.ans}}/>
                     </div>
+                 
+                   
                   </div>
                 </div>
-              </div>
+              </div>   })
+}
               <div className="mt-10">
                 <div className={`text-xl font-medium ${theme?"":"text-gray-200"}` }>All Replies</div>
                 <div className={`min-h-16 rounded-md border border-[#d3cabd] flex items-center px-10 mt-10 justify-between w-full ${theme?"bg-[#e3e3e3]":"bg-[#383838]"}`}>
@@ -305,6 +288,19 @@ function ForumPost({theme,id,finalUser}) {
                   <div className={`${theme?"":"text-gray-300"}`}>Page 1 to 4</div>
                 </div>
               </div>
+             <div className="mt-[25px] mb-[25px] w-[100%]">
+                   <input
+                      type="text"
+                      className="w-[82%] p-4 border-[1px] border-gray-300 rounded-lg"
+                      placeholder="Add a Reply"
+                      ref={comment}
+                   /> 
+                   
+                    <button onClick={handleAddComment}  className="border bg-blue-500 ml-[20px] p-[15px]  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
+                      Submit
+                    </button>
+                    </div>
+                
               <div className="mt-10 min-h-96">
                 {
                   issue?.comments?.map((com,index)=>{
