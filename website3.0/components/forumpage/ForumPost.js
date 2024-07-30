@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
+import { comment } from "postcss";
 const tags = [
   "Docker",
   "Devops",
@@ -62,9 +63,11 @@ const Tag = ({ name ,theme}) => (
     {name}
   </div>
 );
-function ForumPost({theme,id}) {
+function ForumPost({theme,id,finalUser}) {
   const router = useRouter();
+  let [isComment,setIsComment]=useState(false)
   let [issue,setIssue]=useState({})
+  let comment=useRef()
   function handleAskQuestion(){
     router.push("/createforum")
   }
@@ -82,6 +85,46 @@ function ForumPost({theme,id}) {
     console.log(data)
     setIssue(data.data)
   }
+  async function handleAddComment(){
+      let data=await fetch("/api/questioncomment",{
+        method:"POST",
+        body:JSON.stringify({
+          id:issue._id,
+          comment:comment.current.value,
+          user_id:finalUser._id,
+          userEmail:finalUser.email,
+          userName:finalUser.name,image:finalUser.image1
+        })
+      })
+      setIsComment(false)
+      let obj=issue
+      let date=new Date(Date.now())
+      obj.comments.push({image:finalUser.image1,comment:comment.current.value,user:finalUser._id,userEmail:finalUser.email,userName:finalUser.name,date:date})
+      setIssue(obj)
+    }
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+    
+      // Format the date using `toLocaleString`
+      const options = {
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      };
+      const formattedDate = date.toLocaleString('en-US', options);
+    
+      // Split the formatted date into parts
+      const [monthDay, time] = formattedDate.split(' at ');
+      const [month, day] = monthDay.split(', ');
+      const [hourMinute, period] = time.split(' ');
+      const [hour, minute] = hourMinute.split(':');
+    
+      // Custom format
+      const customFormattedDate = `${month}  at ${hour}:${minute} ${period}`;
+      return customFormattedDate;
+    }
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
@@ -141,13 +184,27 @@ function ForumPost({theme,id}) {
               </div>
               <hr className="border-[1px] border-gray-300 mt-5" />
               <div className="flex gap-5 mt-5">
-                <div className="bg-[#6089a4] px-4 py-1 rounded-md text-base text-white">
+                <div onClick={()=>isComment?setIsComment(false):setIsComment(true)} className="bg-[#6089a4] px-4 py-1 rounded-md text-base text-white">
                   Reply
                 </div>
+                
                 <div className="border-[#6089a4] px-4 py-1 rounded-md text-base text-[#6089a4] border-2">
                   I have this Question Too
                 </div>
               </div>
+              {
+                  isComment &&<div className="mt-[25px] mb-[25px] w-[100%]">
+                   <input
+                      type="text"
+                      className="w-[70%] p-4 border-[1px] border-gray-300 rounded-lg"
+                      placeholder="Add a Reply"
+                      ref={comment}
+                   /> 
+                    <button onClick={handleAddComment}  className="border bg-blue-500 ml-[20px] p-[15px]  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
+                      Submit
+                    </button>
+                    </div>
+                }
               <div className="mt-10">
                 <div className={`min-h-96 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
                   <div className="flex w-full justify-between flex-wrap">
@@ -230,6 +287,44 @@ function ForumPost({theme,id}) {
                 </div>
               </div>
               <div className="mt-10 min-h-96">
+                {
+                  issue?.comments?.map((com,index)=>{
+                  return  <div
+                    key={index}
+                    className="relative group mt-8 cursor-pointer"
+                  >
+                    <div className="flex gap-5">
+                      <img
+                        src={com?.image}
+                        alt="User"
+                        className="w-12 h-12 rounded-full"
+                      />
+                      <div className="text-lg">
+                        <div className={`${theme?"":"text-white"}`}>{com.userName}</div>
+                        <div className="flex gap-5 text-sm text-gray-500">
+                          <div className={`${theme?"":"text-gray-300"}`}>
+                            <FontAwesomeIcon icon={faCoffee} /> {"Converstaion Starter"}
+                          </div>
+                          <div className={`${theme?"":"text-gray-300"}`}>
+                            <FontAwesomeIcon icon={faCalendar} /> {formatDate(com.date)}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`${theme?"":"text-gray-300"} mt-5`}>{com.comment}</div>
+                    <div className="absolute bottom-0 right-0 flex gap-2 p-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 bg-white rounded-md shadow-md transition-all duration-300">
+                      <button className="bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-1">
+                        <FontAwesomeIcon icon={faReply} /> Reply
+                      </button>
+                      <button className="bg-[#6089a4] text-white px-4 py-2 rounded-md flex items-center gap-1">
+                        <FontAwesomeIcon icon={faThumbsUp} /> Helpful
+                      </button>
+                    </div>
+                    <hr className="border-[1px] border-gray-200 mt-10" />
+                  </div>
+                  }
+                )
+                }
                 {replies.map((reply, index) => (
                   <div
                     key={index}
