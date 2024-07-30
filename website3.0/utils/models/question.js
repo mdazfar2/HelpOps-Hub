@@ -64,7 +64,7 @@ type:String
     type:Array,default:[]
   },comments:{
     type:Array,
-    default:0
+    default:[]
   },
   views:{
     type:Number,

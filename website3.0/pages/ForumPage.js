@@ -2494,8 +2494,10 @@ const handlePageChange = (page) => {
                         <div                       onClick={()=>handleOnClick(issue._id)}
  className="flex items-center gap-4">
                           <img
-                            src={issue.authorImage}
-                            alt="User"
+                            src={issue.authorImage?issue.authorImage:"https://www.google.com/imgres?q=image%20placeholder&imgurl=https%3A%2F%2Fpomerancedentalcare.com%2Fwp-content%2Fuploads%2F2024%2F06%2Fplaceholder-image-person-jpg-1.jpg&imgrefurl=https%3A%2F%2Fpomerancedentalcare.com%2Fplaceholder-image-person-jpg-2%2F&docid=qbWGHcHhlJt70M&tbnid=Cn7x48J0PlsGsM&vet=12ahUKEwj-2r_Ahs6HAxULslYBHbpnPZUQM3oECCcQAA..i&w=820&h=678&hcb=2&ved=2ahUKEwj-2r_Ahs6HAxULslYBHbpnPZUQM3oECCcQAA"}
+                            onError={(e)=>{
+                              e.target.src=issue.userImage
+                            }}
                             className="rounded-full w-10 h-10"
                           />
                           <div>
@@ -2531,11 +2533,10 @@ const handlePageChange = (page) => {
                           </div>
                           <div className="flex items-center gap-2 max-sm:text-[11px]">
                             <FontAwesomeIcon icon={faComments} />
-                            <span>{issue?.comments}</span>
+                            <span>{issue?.comments?.length}</span>
                           </div>
                           <div className="flex items-center gap-2 max-sm:text-[11px]">
                             <FontAwesomeIcon icon={faEye} />
-                            <span>{issue?.reactions?.views}</span>
                           </div>
                         </div>
                       </div>
