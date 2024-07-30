@@ -130,9 +130,9 @@ function ForumPost({theme,id}) {
             <div className="text-5xl font-bold max-md:hidden">Q:</div>
             <div className="mt-2">
               <div className={`${theme?"":"text-white"} text-3xl max-md:flex font-bold`}>
-              <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  <p dangerouslySetInnerHTML={{__html:issue.title}}/>
+              <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  <p dangerouslySetInnerHTML={{__html:issue?.title}}/>
               </div>
-              <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue.content}}/>
+              <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
               
 
               <div className="mt-10 flex gap-2 text-gray-500 items-center">
