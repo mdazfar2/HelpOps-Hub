@@ -23,7 +23,7 @@ export default function DevopsForum() {
   return (
     <div className="w-[100vw]">
      {!id && <ForumPage  theme={theme} finalUser={finalUser} setFinalUser={setFinalUser} />
-     } {id && <ForumPost theme={theme} id={id}/>
+     } {id && <ForumPost theme={theme} finalUser={finalUser}  id={id}/>
 }
     </div>
   );

@@ -85,6 +85,20 @@ function ForumPost({theme,id,finalUser}) {
     console.log(data)
     setIssue(data.data)
   }
+  async function handleCloseQuestion(){
+    let ques=await fetch("/api/closequestion",{
+      method:"POST",
+      body:JSON.stringify({id:id})
+
+    })
+    let issue1=issue
+    if(issue1.isCLose){
+      issue1.isCLose=false
+    }else{
+      issue1.isCLose=true
+    }
+    window.location.reload()
+  }
   async function handleAddComment(){
       let data=await fetch("/api/questioncomment",{
         method:"POST",
@@ -125,6 +139,10 @@ function ForumPost({theme,id,finalUser}) {
       const customFormattedDate = `${month}  at ${hour}:${minute} ${period}`;
       return customFormattedDate;
     }
+    useEffect(()=>{
+      fetch("/api/questionviews",{method:"POST",body:JSON.stringify({id:id})})
+      
+    },[])
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
@@ -191,6 +209,7 @@ function ForumPost({theme,id,finalUser}) {
                 <div className="border-[#6089a4] px-4 py-1 rounded-md text-base text-[#6089a4] border-2">
                   I have this Question Too
                 </div>
+                
               </div>
               {
                   isComment &&<div className="mt-[25px] mb-[25px] w-[100%]">
@@ -360,6 +379,9 @@ function ForumPost({theme,id,finalUser}) {
                     <hr className="border-[1px] border-gray-200 mt-10" />
                   </div>
                 ))}
+                <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
+                 {issue.isCLose ?"Mark As UnSolved": "Mark As Solved"}
+                </div>
               </div>
             </div>
           </div>

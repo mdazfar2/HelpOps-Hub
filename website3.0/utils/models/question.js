@@ -69,6 +69,10 @@ type:String
   views:{
     type:Number,
     default:0
+  },
+  isCLose:{
+    type:Boolean,
+    default:false
   }
 });
 
