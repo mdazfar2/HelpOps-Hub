@@ -1,8 +1,10 @@
 'use client'
-import ForumPost from "@components/forumpage/ForumPost";
+// import ForumPost from "@components/forumpage/ForumPost";
 import { Context } from "@context/store";
 import ForumPage from "@pages/ForumPage";
+import dynamic from "next/dynamic";
 import { useContext, useEffect, useState } from "react";
+const ForumPost = dynamic(() => import("@components/forumpage/ForumPost"), { ssr: false });
 
 export default function DevopsForum() {
   let {theme,finalUser,setFinalUser}=useContext(Context)
