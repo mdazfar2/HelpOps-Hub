@@ -116,6 +116,21 @@ function ForumPost({theme,id,finalUser}) {
     })
     window.location.reload()
   }
+  async function handleAccept(index){
+
+      
+    await fetch('/api/addsolution',{
+      method:"PUT",
+      body:JSON.stringify({
+        index:index,
+        id:id
+      })
+    })
+    let iss=issue
+    iss.solutions[index].isAccepted=true
+    setIssue(iss)
+    window.location.reload()
+  } 
   async function handleAddComment(){
       let data=await fetch("/api/questioncomment",{
         method:"POST",
@@ -160,18 +175,7 @@ function ForumPost({theme,id,finalUser}) {
       fetch("/api/questionviews",{method:"POST",body:JSON.stringify({id:id})})
       
     },[])
-    async function handleAccept(index){
-      await fetch('/api/addsolution',{
-        method:"PUT",
-        body:JSON.stringify({
-          index:index,
-          id:id
-        })
-      })
-      let iss=issue
-      iss.solutions[index].isAccepted=true
-      setIssue(iss)
-    } 
+   
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
