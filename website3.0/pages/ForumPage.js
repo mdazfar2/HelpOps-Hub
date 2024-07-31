@@ -1301,7 +1301,7 @@ const handlePageChange = (page) => {
       setTimeout(()=>{
         setIsPopup(false)
         setMsg('')
-      },1000)
+      },3000)
       return
       }
     router.push("/createforum")
