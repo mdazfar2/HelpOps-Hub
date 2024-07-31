@@ -147,6 +147,7 @@ function ForumPost({theme,id,finalUser}) {
       let date=new Date(Date.now())
       obj.comments.push({image:finalUser.image1,comment:comment.current.value,user:finalUser._id,userEmail:finalUser.email,userName:finalUser.name,date:date})
       setIssue(obj)
+      window.location.reload()
     }
     function formatDate(dateStr) {
       try{
