@@ -171,6 +171,7 @@ function ForumPost({theme,id,finalUser}) {
       let iss=issue
       iss.solutions[index].isAccepted=true
       setIssue(iss)
+      window.location.reload()
     } 
   return (
     <div className="mt-20 overflow-x-hidden">

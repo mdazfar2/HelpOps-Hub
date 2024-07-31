@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faList,
@@ -1170,7 +1170,18 @@ function ForumPage({ theme,finalUser }) {
 
     setOriginalIssues([...data])
   }
-
+  let search=useRef()
+function handleSearch(){
+    let arr=originalIssues
+    let value=search.current.value
+    if(value.length==0){
+      setIssues([...originalIssues])
+    }
+    console.log(value)
+    value=value.toLowerCase()
+    arr=arr.filter((data)=>data.title.toLowerCase().includes(value))
+    setIssues([...arr])
+}
   let sortLabels=[
     'Newest','Oldest','Most liked','Most Viewed','Most Commented','Recently Updated','Least Commented']
 
@@ -1327,6 +1338,8 @@ const handlePageChange = (page) => {
         <div className="w-full flex flex-col items-center justify-center">
           <input
             type="text"
+            ref={search}
+            onChange={handleSearch}
             placeholder="Search for Topics..."
             className={` py-3 shadow-md px-4 border rounded-full w-full z-50 max-w-md focus:outline-none`}
           />
