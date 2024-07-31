@@ -114,10 +114,10 @@ function ForumPost({theme,id,finalUser}) {
         authorName:finalUser.name
       })
     })
-    let arr=[...issue.solutions,{ans:content.current.value,
+    let arr=[{ans:content.current.value,
       id:id,
       authorImage:finalUser.image1,
-      authorName:finalUser.name}]
+      authorName:finalUser.name},...issue.solutions]
     let newObj={...issue,solutions:[...arr]}
 
     setIssue(newObj)
@@ -188,7 +188,7 @@ function ForumPost({theme,id,finalUser}) {
         let newIssue = {
             ...issue, // Spread the existing properties
             comments: [
-                ...issue.comments, // Spread the existing comments
+               
                 {
                     image: finalUser.image1,
                     comment: comment.current.value,
@@ -196,13 +196,16 @@ function ForumPost({theme,id,finalUser}) {
                     userEmail: finalUser.email,
                     userName: finalUser.name,
                     date: date
-                }
+                }, ...issue.comments, // Spread the existing comments
             ]
         };
 
         setIssue(newIssue);
         setIsComment(false);
-        comment.current.value=""
+      let arr= document.getElementsByClassName("ql-editor")
+      Array.from(arr).map((data)=>{
+        data.innerHTML=""
+      })
 
     } catch (error) {
         console.error('Error adding comment:', error);
@@ -261,8 +264,8 @@ function ForumPost({theme,id,finalUser}) {
         <img src="/forum.webp" alt="img" className="w-[95%] absolute bottom-0" />
       </div>
       <div className={`px-10 flex pt-24 pb-16 justify-center gap-10 min-h-screen w-full max-md:pl-[0.4rem] max-md:mr-[0.2rem] max-md:px-4 flex-wrap ${theme?"bg-white":"bg-[#1e1d1d]"}`}>
-        <div className="w-[75%] max-md:w-[99%]">
-          <div className="flex w-full justify-between  max-md:flex-wrap">
+        <div className="w-[75%] min-w-[800px] max-xl:min-w-[99%] max-md:w-[99%]">
+          <div className="flex w-full justify-between   max-md:flex-wrap">
             <div className="flex gap-5">
               <img
                 src="https://randomuser.me/api/portraits/men/5.jpg"
@@ -287,12 +290,17 @@ function ForumPost({theme,id,finalUser}) {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex text-gray-600 gap-4">
+          <div className="mt-10 flex  text-gray-600 gap-4">
             <div className="text-5xl font-bold max-md:hidden">Q:</div>
-            <div className="mt-2">
-              <div className={`${theme?"":"text-white"} text-3xl max-md:flex font-bold`}>
-              <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  <p dangerouslySetInnerHTML={{__html:issue?.title}}/>
-              </div>
+            <div className="mt-2 w-[90%]">
+            <div className={`${theme ? "" : "text-white"} text-3xl max-md:flex font-bold`}>
+    <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  
+    <div 
+        className="break-words" // Ensure long words wrap to the next line
+        dangerouslySetInnerHTML={{ __html: issue?.title }}
+    />
+</div>
+
               <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
               
 
@@ -371,15 +379,17 @@ function ForumPost({theme,id,finalUser}) {
                   <div className={`${theme?"":"text-gray-300"}`}>Page 1 to 4</div>
                 </div>
               </div>
-             <div className="mt-[25px] mb-[25px] w-[100%]">
-                   <input
+             <div className="mt-[25px] h-[100px] mb-[65px] items-center flex w-[100%]">
+                   {/* <input
                       type="text"
                       className="w-[82%] p-4 border-[1px] border-gray-300 rounded-lg"
                       placeholder="Add a Reply"
                       ref={comment}
-                   /> 
-                   
-                    <button onClick={handleAddComment}  className="border bg-blue-500 ml-[20px] p-[15px]  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
+                   />  */}
+                    <ReactQuill className="h-[50px]  w-[82%] "
+                  ref={comment}
+                />
+                    <button onClick={handleAddComment}  className="border bg-blue-500 ml-[20px] h-[50px] p-[15px] pt-2 text-xl  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
                       Submit
                     </button>
                     </div>
@@ -409,7 +419,7 @@ function ForumPost({theme,id,finalUser}) {
                         </div>
                       </div>
                     </div>
-                    <div className={`${theme?"":"text-gray-300"} mt-5`}>{com.comment}</div>
+                    <div className={`${theme?"":"text-gray-300"} mt-5`} dangerouslySetInnerHTML={{__html:com.comment}}/>
                     <div className="absolute bottom-0 right-0 flex gap-2 p-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 bg-white rounded-md shadow-md transition-all duration-300">
                       <button className="bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-1">
                         <FontAwesomeIcon icon={faReply} /> Reply
@@ -423,7 +433,7 @@ function ForumPost({theme,id,finalUser}) {
                   }
                 )
                 }
-                {replies.map((reply, index) => (
+                {/* {replies.map((reply, index) => (
                   <div
                     key={index}
                     className="relative group mt-8 cursor-pointer"
@@ -457,7 +467,7 @@ function ForumPost({theme,id,finalUser}) {
                     </div>
                     <hr className="border-[1px] border-gray-200 mt-10" />
                   </div>
-                ))}
+                ))} */}
                 <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
                  {issue?.isCLose ?"Mark As UnSolved": "Mark As Solved"}
                 </div>

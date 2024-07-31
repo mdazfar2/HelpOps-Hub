@@ -47,13 +47,13 @@ const RecentTopics = ({ topic, img, user, theme }) => (
   <div
     className={`${
       theme ? "text-gray-500" : "text-white"
-    } flex flex-wrap items-center gap-2 text-[13px] `}
+    } flex flex-wrap items-center gap-2 text-[13px] w-[240px] max-xl:w-[96vw] `}
   >
-    <span className="block w-[100%]">
+    <span className="block  w-[200px] overflow-hidden text-ellipsis ">
       <FontAwesomeIcon icon={faComments} /> {topic}
     </span><br/>
     <span className="inline">Question By -</span>
-    <span className="flex items-center gap-2">
+    <span className="flex items-center gap-2 w-[200px] overflow-hidden text-ellipsis">
       <img src={img?img:"data:image/jpeg;base64,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"} onError={(e)=>{e.target.src="data:image/jpeg;base64,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"}} alt="User" className="rounded-full w-5 h-5" />
       <span className={`${theme ? "text-black" : "text-white"} `}>{user}</span>
     </span>
@@ -81,13 +81,13 @@ const TopIssue = ({ title, index }) => (
     <span className=" text-base mr-4 max-sm:mr-0 border-gray-300 border-[1px] px-2 py-1 rounded-full ">
       {index + 1 < 10 ? `0${index + 1}` : index + 1}
     </span>
-    <span className="text-[12px]" style={{ lineHeight: "17px" }}>
+    <span className="text-[12px] w-[80%] overflow-hidden text-ellipsis" style={{ lineHeight: "17px" }}>
       {title}
     </span>
   </div>
 );
 
-function ForumPage({ theme,finalUser }) {
+function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   const [activeMenuItem, setActiveMenuItem] = useState("View All");
   const router = useRouter();
   const [hoveredUser, setHoveredUser] = useState(null);
@@ -1295,6 +1295,15 @@ const handlePageChange = (page) => {
   };
 
   function handleAskQuestion(){
+    if(!finalUser||!localStorage.getItem('finalUser')){
+      setIsPopup(true)
+      setMsg("Please Login to Ask Question")
+      setTimeout(()=>{
+        setIsPopup(false)
+        setMsg('')
+      },1000)
+      return
+      }
     router.push("/createforum")
   }
   async function handleLike(e,question){
@@ -1513,7 +1522,7 @@ const handlePageChange = (page) => {
                             <div
                               className={`${
                                 theme ? "" : "text-white"
-                              } font-medium`}
+                              } font-medium overflow-hidden max-w-[370px] text-ellipsis`}
                             >
                               {issue.title}
                             </div>
@@ -1728,7 +1737,7 @@ className="flex items-center gap-4">
                 ))}
               </div>
             </div>
-            <div className="mt-10  w-[229px]">
+            <div className="mt-10  w-[96vw]">
               <div
                 className={`${theme ? "" : "text-white"} text-lg font-semibold`}
               >
@@ -1739,13 +1748,13 @@ className="flex items-center gap-4">
                   theme ? "" : "text-white"
                 } flex flex-wrap mt-5 gap-4  cursor-pointer`}
               >
-                {recent.map((item, index) => (
+               {sortedArray.slice(0,4).map((item, index) => (
                   <RecentTopics
                     theme={theme}
                     key={index}
-                    topic={item.topic}
-                    img={item.img}
-                    user={item.user}
+                    topic={item.title}
+                    img={item.authorImage}
+                    user={item.authorName}
                   />
                 ))}
               </div>
