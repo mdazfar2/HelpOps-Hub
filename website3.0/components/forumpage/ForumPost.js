@@ -149,27 +149,32 @@ function ForumPost({theme,id,finalUser}) {
       setIssue(obj)
     }
     function formatDate(dateStr) {
-      const date = new Date(dateStr);
-    
-      // Format the date using `toLocaleString`
-      const options = {
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      };
-      const formattedDate = date.toLocaleString('en-US', options);
-    
-      // Split the formatted date into parts
-      const [monthDay, time] = formattedDate.split(' at ');
-      const [month, day] = monthDay.split(', ');
-      const [hourMinute, period] = time.split(' ');
-      const [hour, minute] = hourMinute.split(':');
-    
-      // Custom format
-      const customFormattedDate = `${month}  at ${hour}:${minute} ${period}`;
-      return customFormattedDate;
+      try{
+
+        const date = new Date(dateStr);
+      
+        // Format the date using `toLocaleString`
+        const options = {
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        };
+        const formattedDate = date.toLocaleString('en-US', options);
+      
+        // Split the formatted date into parts
+        const [monthDay, time] = formattedDate.split(' at ');
+        const [month, day] = monthDay.split(', ');
+        const [hourMinute, period] = time.split(' ');
+        const [hour, minute] = hourMinute.split(':');
+      
+        // Custom format
+        const customFormattedDate = `${month}  at ${hour}:${minute} ${period}`;
+        return customFormattedDate;
+      }catch{
+        return
+      }
     }
     useEffect(()=>{
       fetch("/api/questionviews",{method:"POST",body:JSON.stringify({id:id})})
@@ -337,7 +342,7 @@ function ForumPost({theme,id,finalUser}) {
                             <FontAwesomeIcon icon={faCoffee} /> {"Converstaion Starter"}
                           </div>
                           <div className={`${theme?"":"text-gray-300"}`}>
-                            <FontAwesomeIcon icon={faCalendar} /> {formatDate(com.date)}
+                            <FontAwesomeIcon icon={faCalendar} /> {formatDate(com?.date)}
                           </div>
                         </div>
                       </div>
