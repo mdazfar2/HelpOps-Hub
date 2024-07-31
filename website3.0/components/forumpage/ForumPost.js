@@ -114,41 +114,102 @@ function ForumPost({theme,id,finalUser}) {
         authorName:finalUser.name
       })
     })
-    window.location.reload()
-  }
-  async function handleAccept(index){
+    let arr=[...issue.solutions,{ans:content.current.value,
+      id:id,
+      authorImage:finalUser.image1,
+      authorName:finalUser.name}]
+    let newObj={...issue,solutions:[...arr]}
 
-      
-    await fetch('/api/addsolution',{
-      method:"PUT",
-      body:JSON.stringify({
-        index:index,
-        id:id
-      })
-    })
-    let iss=issue
-    iss.solutions[index].isAccepted=true
-    setIssue(iss)
-    window.location.reload()
-  } 
-  async function handleAddComment(){
-      let data=await fetch("/api/questioncomment",{
-        method:"POST",
-        body:JSON.stringify({
-          id:issue._id,
-          comment:comment.current.value,
-          user_id:finalUser._id,
-          userEmail:finalUser.email,
-          userName:finalUser.name,image:finalUser.image1
-        })
-      })
-      setIsComment(false)
-      let obj=issue
-      let date=new Date(Date.now())
-      obj.comments.push({image:finalUser.image1,comment:comment.current.value,user:finalUser._id,userEmail:finalUser.email,userName:finalUser.name,date:date})
-      setIssue(obj)
-      window.location.reload()
+    setIssue(newObj)
+    content.current.value=""
+    setIsComment(false)
+    // window.location.reload()
+  }
+  async function handleAccept(index) {
+    try {
+        // Make the PUT request to update the solution on the server
+        const response = await fetch('/api/addsolution', {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                index: index,
+                id: id
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // Create a new issue object with the updated state
+        const updatedSolutions = issue.solutions.map((solution, i) =>
+            i === index ? { ...solution, isAccepted: true } : solution
+        );
+
+        const updatedIssue = {
+            ...issue,
+            solutions: updatedSolutions
+        };
+
+        // Update the state with the new issue object
+        setIssue(updatedIssue);
+
+    } catch (error) {
+        console.error('Error accepting solution:', error);
     }
+}
+
+  async function handleAddComment() {
+    try {
+        // Send the POST request
+        let response = await fetch("/api/questioncomment", {
+            method: "POST",
+            body: JSON.stringify({
+                id: issue._id,
+                comment: comment.current.value,
+                user_id: finalUser._id,
+                userEmail: finalUser.email,
+                userName: finalUser.name,
+                image: finalUser.image1
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // Update the state with a new object
+        let date = new Date(Date.now());
+        let newIssue = {
+            ...issue, // Spread the existing properties
+            comments: [
+                ...issue.comments, // Spread the existing comments
+                {
+                    image: finalUser.image1,
+                    comment: comment.current.value,
+                    user: finalUser._id,
+                    userEmail: finalUser.email,
+                    userName: finalUser.name,
+                    date: date
+                }
+            ]
+        };
+
+        setIssue(newIssue);
+        setIsComment(false);
+        comment.current.value=""
+
+    } catch (error) {
+        console.error('Error adding comment:', error);
+    }
+}
+
+
     function formatDate(dateStr) {
       try{
 
