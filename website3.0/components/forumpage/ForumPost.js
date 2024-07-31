@@ -160,6 +160,18 @@ function ForumPost({theme,id,finalUser}) {
       fetch("/api/questionviews",{method:"POST",body:JSON.stringify({id:id})})
       
     },[])
+    async function handleAccept(index){
+      await fetch('/api/addsolution',{
+        method:"PUT",
+        body:JSON.stringify({
+          index:index,
+          id:id
+        })
+      })
+      let iss=issue
+      iss.solutions[index].isAccepted=true
+      setIssue(iss)
+    } 
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
@@ -239,7 +251,7 @@ function ForumPost({theme,id,finalUser}) {
                     </button>
                     </div>
                 }
-       {                            issue?.solutions?.map((data)=>{
+       {                            issue?.solutions?.map((data,index)=>{
 
       return  <div className="mt-10">
                 <div className={`min-h-20 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
@@ -264,8 +276,8 @@ function ForumPost({theme,id,finalUser}) {
                         </div>
                       </div>
                     </div>
-                    <div className="max-md:mt-[20px] text-green text-sm flex gap-2 items-center text-green-500">
-                      <FontAwesomeIcon icon={faCheck} /> Accepted Solution
+                    <div className={`max-md:mt-[20px] text-green text-sm flex gap-2 items-center ${data.isAccepted?"text-green-500":"text-red-500"}`}>
+                    {data.isAccepted &&  <FontAwesomeIcon icon={faCheck} />}{!data.isAccepted?(issue.authorId==finalUser._id&&<button onClick={()=>handleAccept(index)}>Mark as Accepted</button>): "Accepted Solution"}
                     </div>
                   </div>
                   <div className="mt-10 flex text-gray-600 gap-4">
