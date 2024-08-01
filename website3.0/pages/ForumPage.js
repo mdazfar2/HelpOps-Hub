@@ -92,12 +92,19 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   const router = useRouter();
   const [hoveredUser, setHoveredUser] = useState(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  let [users,setUsers]=useState([])
   let [top,setTop]=useState([])
   const [isClosed,setIsClosed]=useState(false)
   let [sortedArray,setSortedArray]=useState([])
-  const handleMouseEnter = (event, userImg) => {
+  const handleMouseEnter =async (event, userImg) => {
     setCursorPosition({ x: event.clientX, y: event.clientY });
-    setHoveredUser(userImg);
+    let obj={...userImg}
+    console.log(userImg)
+    let u=await fetch("/api/getuser",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
+    u=await u.json()
+    u=u.msg
+    obj={...obj,count:Object.keys(u.followers).length,questions:u.questions,answers:u.answers}
+    setHoveredUser(obj);
   };
 
   const handleMouseLeave = () => {
@@ -130,21 +137,47 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   useEffect(()=>{
     fetchData()
   },[])
-  async function fetchData(){
-    let data=await fetch("/api/createquestion",{method:"GET"})
-    data=await data.json()
-    data=data.data
-    let arr=data.filter((data)=>data.createdAt!==undefined)
-    arr=arr.sort((a,b)=>a.createdAt-b.createdAt)
-    // data=data.sort((a,b)=>b.dateTime-a.dateTime)
-    setSortedArray([...arr])
-    let arr1=arr.sort((a,b)=>b.views-a.views)
-    setTop([...arr1])
-    console.log(data,'dsjidddddddddddd')
-  data.reverse()
-    setIssues([...data])
-    setOriginalIssues([...data])
-  }
+  useEffect(()=>{
+    console.log(users,'users')
+  },[users])
+  async function fetchData() {
+    try {
+        // Fetch initial data
+        let response = await fetch("/api/createquestion", { method: "GET" });
+        let data = await response.json();
+        data = data.data;
+
+        // Filter out items without 'createdAt'
+        let arr = data.filter(item => item.createdAt !== undefined);
+
+        // Create an empty object to store user messages
+        let obj1 = [];
+
+        // Collect all user IDs to fetch in parallel
+        let userPromises = data.flatMap(item =>
+            item.relatedUser.map(async (userRef) => {
+                console.log(userRef)
+             setUsers(prev=>[...prev,userRef.authorId])
+                
+            })
+          );      
+        // Sort and update state
+        arr = arr.sort((a, b) => a.createdAt - b.createdAt);
+        setSortedArray([...arr]);
+
+        let arr1 = [...arr].sort((a, b) => b.views - a.views);
+        setTop([...arr1]);
+
+        // Reverse the data and update state
+        data.reverse();
+        setIssues([...data]);
+        setOriginalIssues([...data]);
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+}
+
   let search=useRef()
 function handleSearch(){
     let arr=originalIssues
@@ -152,7 +185,6 @@ function handleSearch(){
     if(value.length==0){
       setIssues([...originalIssues])
     }
-    console.log(value)
     value=value.toLowerCase()
     arr=arr.filter((data)=>data.title.toLowerCase().includes(value))
     setIssues([...arr])
@@ -509,16 +541,18 @@ const handlePageChange = (page) => {
 
                         <div className="flex max-md:pl-[50px] max-sm:gap-[1rem] max-sm:items-center items-center gap-6 max-sm:mt-2 text-gray-500 flex-wrap">
                           <div className="flex items-center gap-1 hover:gap-2  transition-all duration-500 mt-2 max-sm:mt-0">
-                            {issue?.discussionUsers?.map((userImg, idx) => (
-                              <img
-                                key={idx}
-                                src={userImg}
-                                alt="Discussion User"
-                                className="rounded-full w-5 h-5"
-                                onMouseEnter={(event) => handleMouseEnter(event, userImg)}
-                                onMouseLeave={handleMouseLeave}
-                              />
-                            ))}
+                          {issue?.relatedUser.map((user, idx) => {
+                        return  <img
+                              key={idx} 
+                              onClick={()=>router.push(`/profile?id=${user.authorId}`)}
+                              src={user.authorImage}
+                              id="img"
+                              alt="Discussion User"
+                              className="rounded-full w-5 h-5"
+                              onMouseEnter={(event) => handleMouseEnter(event, user)}
+                              onMouseLeave={handleMouseLeave}
+                            />
+})}
                           </div>
                           <div onClick={(e)=>handleLike(e,issue)} className=" flex items-center gap-2 max-sm:text-[11px]">
                             <FontAwesomeIcon color={`${finalUser&&issue?.likes?.includes(finalUser._id)?"blue":""}`} icon={faHeart} />
@@ -567,16 +601,16 @@ className="flex items-center gap-4">
 
                       <div className="flex max-md:pl-[50px] max-sm:gap-[1rem] max-sm:items-center items-center gap-6 max-sm:mt-2 text-gray-500 flex-wrap">
                         <div className="flex items-center gap-1 hover:gap-2  transition-all duration-500 mt-2 max-sm:mt-0">
-                          {issue?.discussionUsers?.map((userImg, idx) => (
-                            <img
+                          {issue?.relatedUser.map((user, idx) => {
+                        return  <img
                               key={idx}
-                              src={userImg}
+                              src={user.authorImage}
                               alt="Discussion User"
                               className="rounded-full w-5 h-5"
-                              onMouseEnter={(event) => handleMouseEnter(event, userImg)}
+                              onMouseEnter={(event) => handleMouseEnter(event, user)}
                               onMouseLeave={handleMouseLeave}
                             />
-                          ))}
+})}
                         </div>
                         <div onClick={(e)=>handleLike(e,issue)} className=" flex items-center gap-2 max-sm:text-[11px]">
                           <FontAwesomeIcon color={`${finalUser&&issue?.likes?.includes(finalUser._id)?"blue":""}`} icon={faHeart} />
@@ -595,23 +629,26 @@ className="flex items-center gap-4">
                   </div>
                   ))}
                    {hoveredUser && (
+        <label htmlFor="id">
+
         <div
           className={`forummodal ease-out fixed  border  p-4 w-[400px] h-[200px] rounded-lg ${theme?"bg-white border-gray-300": "bg-[#2b2b2b] border-slate-50 border-[1px] text-gray-400"} shadow-lg`}
           style={{ top: cursorPosition.y + 10, left: cursorPosition.x - 400 }}
         >
          <div className="w-[100%] flex gap-4 items-center">
-           <img src={hoveredUser} alt="Hovered User" className="w-20 h-20 rounded-full" />
+           <img src={hoveredUser.authorImage} alt="Hovered User" className="w-20 h-20 rounded-full" />
           <div className="flex w-[100%] items-start gap-2 h-[100%] justify-center flex-col ">
-            <p>User Name</p>
+            <p>{hoveredUser.authorName}</p>
             <button className={`bg-transparent pt-1 pb-1 pl-3 pr-3 rounded-md border-[1px] border-gray-500 `}>Follow</button>
             </div>
           </div>
           <div className="p-[20px] mt-4 flex gap-6 w-[100%] justify-center">
-            <p className="flex flex-col h-[100%] items-center"><h2>Answers</h2><p>40</p></p>
-            <p className="flex h-[100%] flex-col items-center"><h2>Questions</h2><p>40</p></p>
-            <p className="flex h-[100%] items-center flex-col"><h2>Followers</h2><p>40</p></p>
+            <p className="flex flex-col h-[100%] items-center"><h2>Answers</h2><p>{hoveredUser&&hoveredUser.answers}</p></p>
+            <p className="flex h-[100%] flex-col items-center"><h2>Questions</h2><p>{hoveredUser&&hoveredUser.questions}</p></p>
+            <p className="flex h-[100%] items-center flex-col"><h2>Followers</h2><p>{hoveredUser&&hoveredUser.count}</p></p>
           </div>
         </div>
+        </label>
       )}
                 </div>
               </div>

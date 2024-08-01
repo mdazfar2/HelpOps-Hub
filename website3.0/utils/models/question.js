@@ -81,6 +81,10 @@ type:String
   solutions:{
     type:Array,
     default:[]
+  },
+  relatedUser:{
+    type:Array,
+    default:[]
   }
 });
 
