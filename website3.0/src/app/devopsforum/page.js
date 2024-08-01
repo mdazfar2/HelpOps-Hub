@@ -25,7 +25,7 @@ export default function DevopsForum() {
   return (
     <div className="w-[100vw]">
      {!id && <ForumPage setIsPopup={setIsPopup} setMsg={setMsg}  theme={theme} finalUser={finalUser} setFinalUser={setFinalUser} />
-     } {id && <ForumPost theme={theme} finalUser={finalUser}  id={id}/>
+     } {id && <ForumPost setIsPopup={setIsPopup} setMsg={setMsg} theme={theme} finalUser={finalUser}  id={id}/>
 }
     </div>
   );

@@ -67,13 +67,22 @@ const Tag = ({ name ,theme}) => (
     {name}
   </div>
 );
-function ForumPost({theme,id,finalUser}) {
+function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
   const router = useRouter();
   let [isComment,setIsComment]=useState(false)
   let [issue,setIssue]=useState({})
   let content=useRef()
   let comment=useRef()
   function handleAskQuestion(){
+    if(!finalUser||!localStorage.getItem("finalUser")){
+      setIsPopup(true)
+    setMsg("Please Login to Ask Question")
+    setTimeout(()=>{
+      setIsPopup(false)
+      setMsg('')
+    },3000)
+    return
+    }
     router.push("/createforum")
   }
   useEffect(()=>{
@@ -105,25 +114,40 @@ function ForumPost({theme,id,finalUser}) {
     window.location.reload()
   }
   async function handleAddSolution(){
+    if(!finalUser||!localStorage.getItem("finalUser")){
+      setIsPopup(true)
+    setMsg("Please Login to Add Solution")
+    setTimeout(()=>{
+      setIsPopup(false)
+      setMsg('')
+    },3000)
+    return
+    }
     let data=await fetch("/api/addsolution",{
       method:"POST",
       body:JSON.stringify({
         ans:content.current.value,
         id:id,
         authorImage:finalUser.image1,
-        authorName:finalUser.name
+        authorName:finalUser.name,
+        userId:finalUser._id
       })
     })
+    let date=Date.now()
+    date=formatDate(date)
     let arr=[{ans:content.current.value,
       id:id,
       authorImage:finalUser.image1,
-      authorName:finalUser.name},...issue.solutions]
+      authorName:finalUser.name,date:date},...issue.solutions]
     let newObj={...issue,solutions:[...arr]}
 
     setIssue(newObj)
     content.current.value=""
     setIsComment(false)
     // window.location.reload()
+  }
+  function handleOpenProfile(id){
+    router.push(`/profile?id=${id}`)
   }
   async function handleAccept(index) {
     try {
@@ -163,6 +187,15 @@ function ForumPost({theme,id,finalUser}) {
 
   async function handleAddComment() {
     try {
+      if(!finalUser){
+        setIsPopup(true)
+      setMsg("Please Login to Add Solution")
+      setTimeout(()=>{
+        setIsPopup(false)
+        setMsg('')
+      },3000)
+      return
+      }
         // Send the POST request
         let response = await fetch("/api/questioncomment", {
             method: "POST",
@@ -266,20 +299,20 @@ function ForumPost({theme,id,finalUser}) {
       <div className={`px-10 flex pt-24 pb-16 justify-center gap-10 min-h-screen w-full max-md:pl-[0.4rem] max-md:mr-[0.2rem] max-md:px-4 flex-wrap ${theme?"bg-white":"bg-[#1e1d1d]"}`}>
         <div className="w-[75%] min-w-[800px] max-xl:min-w-[99%] max-md:w-[99%]">
           <div className="flex w-full justify-between   max-md:flex-wrap">
-            <div className="flex gap-5">
+            <div className="flex gap-5 cursor-pointer" onClick={()=>handleOpenProfile(issue.authorId)}>
               <img
-                src="https://randomuser.me/api/portraits/men/5.jpg"
+                src={issue.authorImage}
                 alt="User"
                 className="w-12 h-12 rounded-full"
               />
               <div className="text-lg">
-                <div className={`${theme?"":"text-white"}`}>Billy Woosh</div>
+                <div className={`${theme?"":"text-white"}`}>{issue.authorName}</div>
                 <div className="flex gap-5 text-sm text-gray-500">
                   <div className={`${theme?"":"text-[#767677]"}`}>
                     <FontAwesomeIcon icon={faCoffee} /> Conversation Starter
                   </div>
                   <div  className={`${theme?"":"text-[#767677]"}`}>
-                    <FontAwesomeIcon icon={faCalendar} /> January 16 at 10:32 PM
+                    <FontAwesomeIcon icon={faCalendar} /> {formatDate(issue.createdAt)}
                   </div>
                 </div>
               </div>
@@ -335,7 +368,7 @@ function ForumPost({theme,id,finalUser}) {
       return  <div className="mt-10">
                 <div className={`min-h-20 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
                   <div className="flex w-full justify-between flex-wrap">
-                    <div className="flex gap-5">
+                    <div className="flex gap-5 cursor-pointer" onClick={()=>handleOpenProfile(data.authorId)}>
                       <img
                         src={data.authorImage?data.authorImage:"https://randomuser.me/api/portraits/men/6.jpg"}
                         alt="User"
@@ -349,8 +382,7 @@ function ForumPost({theme,id,finalUser}) {
                             Starter
                           </div>
                           <div className={`${theme?"":"text-gray-300"}`}>
-                            <FontAwesomeIcon icon={faCalendar} /> January 16 at
-                            10:32 PM
+                            <FontAwesomeIcon icon={faCalendar} /> {formatDate(data.date)}
                           </div>
                         </div>
                       </div>
@@ -372,20 +404,15 @@ function ForumPost({theme,id,finalUser}) {
                 </div>
               </div>   })
 }
-              <div className="mt-10">
+              {/* <div className="mt-10">
                 <div className={`text-xl font-medium ${theme?"":"text-gray-200"}` }>All Replies</div>
                 <div className={`min-h-16 rounded-md border border-[#d3cabd] flex items-center px-10 mt-10 justify-between w-full ${theme?"bg-[#e3e3e3]":"bg-[#383838]"}`}>
                   <div className={`${theme?"":"text-gray-300"}`}>Sort By</div>
                   <div className={`${theme?"":"text-gray-300"}`}>Page 1 to 4</div>
                 </div>
-              </div>
-             <div className="mt-[25px] h-[100px] mb-[65px] items-center flex w-[100%]">
-                   {/* <input
-                      type="text"
-                      className="w-[82%] p-4 border-[1px] border-gray-300 rounded-lg"
-                      placeholder="Add a Reply"
-                      ref={comment}
-                   />  */}
+              </div> */}
+             {/* <div className="mt-[25px] h-[100px] mb-[65px] items-center flex w-[100%]">
+                  
                     <ReactQuill className="h-[50px]  w-[82%] "
                   ref={comment}
                 />
@@ -468,10 +495,10 @@ function ForumPost({theme,id,finalUser}) {
                     <hr className="border-[1px] border-gray-200 mt-10" />
                   </div>
                 ))} */}
-                <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
+                {/* <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
                  {issue?.isCLose ?"Mark As UnSolved": "Mark As Solved"}
-                </div>
-              </div>
+                </div> */}
+              {/* </div> */} 
             </div>
           </div>
         </div>
