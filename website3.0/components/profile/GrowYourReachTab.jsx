@@ -66,7 +66,6 @@ function GrowYourReachTab() {
                   </div>
                   <a
                     href={`/profile?id=${user.username}&&isView=true`}
-                    target="_blank"
                     rel="noopener noreferrer"
                     className={`${theme?"bg-[#6089a4]":"bg-[#979797]"}  text-lg max-md:text-sm text-white px-4 py-2 rounded-md`}
                   >
