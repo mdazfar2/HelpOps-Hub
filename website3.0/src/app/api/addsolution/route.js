@@ -1,6 +1,7 @@
 import Questions from "@utils/models/question";  // Importing Mongoose model for blog collection
 import mongoose from "mongoose";  // Importing Mongoose for MongoDB interactions
 import { NextResponse } from "next/server";  // Importing Next.js server response utility
+import user from "@utils/models/user"; // Importing Mongoose model for newsletter subscription
 
 
 export async function POST(req) {
@@ -13,8 +14,22 @@ export async function POST(req) {
         // Connect to MongoDB using Mongoose
         await mongoose.connect(MONGO_URI);
         let date= Date.now()
+        let users=await user.findById(userId)
+        users.answers+=1
+        await user.findByIdAndUpdate(userId,{
+            $set:users
+        })
         // Create a new instance of Blogs model with the received payload
         let blog = await Questions.findById(id)
+        let isHave=false
+        blog.relatedUser.map((data)=>{
+            if(data.authorName==authorName){
+                isHave=true
+            }
+        })
+        if(!isHave){
+            blog.relatedUser.push({authorImage:authorImage,authorName:authorName,authorId:userId})
+        }
         blog.solutions.push({ans:ans,authorImage:authorImage,authorName:authorName,isAccepted:false,authorId:userId,date:date})
         // Save the new blog record to MongoDB
         const result = await Questions.findByIdAndUpdate(id,{

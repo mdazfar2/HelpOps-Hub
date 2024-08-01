@@ -130,7 +130,7 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
         id:id,
         authorImage:finalUser.image1,
         authorName:finalUser.name,
-        userId:finalUser._id
+        userId:finalUser._id,
       })
     })
     let date=Date.now()
