@@ -543,7 +543,8 @@ const handlePageChange = (page) => {
                           <div className="flex items-center gap-1 hover:gap-2  transition-all duration-500 mt-2 max-sm:mt-0">
                           {issue?.relatedUser.map((user, idx) => {
                         return  <img
-                              key={idx}
+                              key={idx} 
+                              onClick={()=>router.push(`/profile?id=${user.authorId}`)}
                               src={user.authorImage}
                               id="img"
                               alt="Discussion User"
