@@ -52,9 +52,9 @@ const BlogDetails = () => <div className="min-h-screen mt-10 rounded-xl"><Dashbo
 const DeletedBlogs1=()=><div  className="min-h-screen mt-10 rounded-xl"><DeletedBlogs/></div>
 const UnblockBlogs1=()=><div  className="min-h-screen mt-10 rounded-xl"><Unblock/></div>
 
-const Profile = ({ id }) => (
+const Profile = ({ id ,isView}) => (
   <div className="bg-gray-100 mt-10 rounded-xl">
-    <ProfilepageDetails isViewProfile={id.length > 0} id={id} />
+    <ProfilepageDetails  isViewProfile={isView} id={id} />
   </div>
 );
 
@@ -130,6 +130,7 @@ const ProfilePage = () => {
   const [notificationCount, setNotificationCount] = useState(0); // State for unread notifications count
   const pathname = usePathname(); // Get current path
   const [id, setId] = useState("");
+  let [isView,setIsView]=useState(false)
   const isViewProfile = id.length > 0;
   const router = useRouter();
 
@@ -142,7 +143,10 @@ const ProfilePage = () => {
 
     // Get the 'id' query parameter from the URL
     const idFromQuery = getUrlParameter("id");
-
+    let isView=getUrlParameter("isView")
+    if(isView){
+      setIsView(true)
+    }
     if (idFromQuery) {
       const storedUser = localStorage.getItem("finalUser");
       const parsedUser = storedUser ? JSON.parse(storedUser) : isViewProfile;
@@ -150,7 +154,7 @@ const ProfilePage = () => {
         setId(idFromQuery);
       }
     }
-    setActiveComponent(<Profile id={id} />);
+    setActiveComponent(<Profile id={id} isView={isView} />);
     setActiveMenuItem("Profile");
   }, [id, isViewProfile]); // Adjust dependencies if needed
 
@@ -262,7 +266,7 @@ const ProfilePage = () => {
                 title="Profile"
                 icon={faAddressCard}
                 isCollapsible={true}
-                onClick={() => handleMenuClick(<Profile id={id} />, "Profile")}
+                onClick={() => handleMenuClick(<Profile isView={isView} id={id} />, "Profile")}
                 isActive={activeMenuItem === "Profile"}
                 theme={theme}
               >
