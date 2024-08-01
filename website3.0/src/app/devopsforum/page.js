@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 const ForumPost = dynamic(() => import("@components/forumpage/ForumPost"), { ssr: false });
 
 export default function DevopsForum() {
-  let {theme,finalUser,setFinalUser}=useContext(Context)
+  let {theme,finalUser,setFinalUser,setIsPopup,setMsg}=useContext(Context)
   let [id,setId]=useState('')
   useEffect(() => {
     // Function to get query parameters from URL
@@ -24,7 +24,7 @@ export default function DevopsForum() {
   }, []);
   return (
     <div className="w-[100vw]">
-     {!id && <ForumPage  theme={theme} finalUser={finalUser} setFinalUser={setFinalUser} />
+     {!id && <ForumPage setIsPopup={setIsPopup} setMsg={setMsg}  theme={theme} finalUser={finalUser} setFinalUser={setFinalUser} />
      } {id && <ForumPost theme={theme} finalUser={finalUser}  id={id}/>
 }
     </div>
