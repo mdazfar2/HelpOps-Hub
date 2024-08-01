@@ -24,10 +24,16 @@ function GrowYourReachTab() {
 
           if (finalUser && finalUser.following) {
             const followingIds = Object.keys(finalUser.following);
-            const nonFollowersList = allUsers.filter(
+            let nonFollowersList = allUsers.filter(
               user => !followingIds.includes(user._id) && user._id !== finalUser._id
             );
-
+            let arr=[finalUser.name]
+            nonFollowersList=nonFollowersList.filter((dataa)=>{
+              if(!arr.includes(dataa.name)){
+                arr.push(dataa.name)
+                return dataa
+              }
+            })
             setNonFollowers(nonFollowersList);
           }
         } else {
@@ -59,7 +65,7 @@ function GrowYourReachTab() {
                     {user.name}
                   </div>
                   <a
-                    href={`/profile?id=${user._id}`}
+                    href={`/profile?id=${user.username}&&isView=true`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`${theme?"bg-[#6089a4]":"bg-[#979797]"}  text-lg max-md:text-sm text-white px-4 py-2 rounded-md`}

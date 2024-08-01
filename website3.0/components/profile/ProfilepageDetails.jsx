@@ -171,6 +171,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
     });
     data = await data.json();
     if (data.success) {
+      console.log(data.msg,finalUser,'user')
       setViewUserDetails(data.msg);
       if (isLogin1) {
         if (data.msg.followers.hasOwnProperty(finalUser._id)) {
@@ -319,7 +320,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
 
         <div className="w-full h-72 overflow-hidden">
           <img
-            src={finalUser.banner}
+            src={isViewProfile?viewUserDetails.banner:finalUser.banner}
             alt="banner"
             className="w-full h-full object-cover object-center"
           />
@@ -428,7 +429,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                       : finalUser.linkedin
                   }
                 >
-                  <a href={`${finalUser.linkedin}`}>
+                  <a href={`${isViewProfile?viewUserDetails.linkedin:finalUser.linkedin}`}>
                     <FontAwesomeIcon icon={faLinkedinIn} color="#0072b1" />
                   </a>
                 </div>

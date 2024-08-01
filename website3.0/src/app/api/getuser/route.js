@@ -11,12 +11,14 @@ export async function POST(req) {
   // Connect to MongoDB using Mongoose
   await mongoose.connect(MONGO_URI);
   try {
-    let data = await user.findOne({ _id: id });
+    let data = await user.findOne({ username: username });
+
     // checking if user exist or not
     if (data) {
+
       return NextResponse.json({ success: true, msg: data }, { status: "200" });
     } else {
-      let data = await user.findOne({ username: username });
+      let data = await user.findById( id );
       if(!data){
 
         return NextResponse.json({ success: false }, { status: "200" });
