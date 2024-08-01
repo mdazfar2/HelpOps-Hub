@@ -61,21 +61,21 @@ const RecentTopics = ({ topic, img, user, theme }) => (
   </div>
 );
 
-const HelpfulUser = ({ user }) => (
-  <div>
+const HelpfulUser = ({ user }) => {
+return <div>
     <div className="flex items-center justify-between gap-2 mt-6">
       <div className="flex gap-2 items-center">
-        <img src={user.img} alt="User" className="rounded-full w-8 h-8" />
+        <img src={user.image1} alt="User" className="rounded-full w-8 h-8" />
         <div>{user.name}</div>
       </div>
       <div className="text-sm text-gray-500 flex gap-2 items-center">
         <FontAwesomeIcon icon={faCheckCircle} />
-        {user.issuesSolved}
+        {user.answers}
       </div>
     </div>
     <hr className="border-gray-200 border-[1px] mt-2" />
   </div>
-);
+};
 const TopIssue = ({ title, index }) => (
   <div className="flex items-center 2xl:justify-between max-md:gap-2 ">
     <span className=" text-base mr-4 max-sm:mr-0 border-gray-300 border-[1px] px-2 py-1 rounded-full ">
@@ -96,13 +96,15 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   let [top,setTop]=useState([])
   const [isClosed,setIsClosed]=useState(false)
   let [sortedArray,setSortedArray]=useState([])
+  let [mostHelpful,setMostHelpful]=useState([])
   const handleMouseEnter =async (event, userImg) => {
     setCursorPosition({ x: event.clientX, y: event.clientY });
     let obj={...userImg}
     console.log(userImg)
-    let u=await fetch("/api/getuser",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
+    let u=await fetch("/api/getuserbyid",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
     u=await u.json()
     u=u.msg
+    console.log(u,"user")
     obj={...obj,count:Object.keys(u.followers).length,questions:u.questions,answers:u.answers}
     setHoveredUser(obj);
   };
@@ -137,9 +139,6 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   useEffect(()=>{
     fetchData()
   },[])
-  useEffect(()=>{
-    console.log(users,'users')
-  },[users])
   async function fetchData() {
     try {
         // Fetch initial data
@@ -156,7 +155,6 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
         // Collect all user IDs to fetch in parallel
         let userPromises = data.flatMap(item =>
             item.relatedUser.map(async (userRef) => {
-                console.log(userRef)
              setUsers(prev=>[...prev,userRef.authorId])
                 
             })
@@ -172,7 +170,12 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
         data.reverse();
         setIssues([...data]);
         setOriginalIssues([...data]);
-
+        let a=data.sort((c,b)=>b.solutions.length-c.solutions.length)
+        let ar=[]
+        for(let i=0;i<a.length;i++){
+          ar.push({image1:a[i].authorImage,name:a[i].authorName,answers:a[i].solutions.length})
+        }
+        setMostHelpful([...ar])
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -709,7 +712,7 @@ className="flex items-center gap-4">
                     theme ? "" : "text-[#c4bbbb]"
                   }`}
                 >
-                  {helpfulUsers.map((user, index) => (
+                  {mostHelpful.slice(0,mostHelpful.length>=4?4:mostHelpful.length).map((user, index) => (
                     <HelpfulUser key={index} user={user} />
                   ))}
                 </div>
