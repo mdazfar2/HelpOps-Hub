@@ -100,9 +100,11 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   const handleMouseEnter =async (event, userImg) => {
     setCursorPosition({ x: event.clientX, y: event.clientY });
     let obj={...userImg}
-    let u=await fetch("/api/getuser",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
+    console.log(userImg)
+    let u=await fetch("/api/getuserbyid",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
     u=await u.json()
     u=u.msg
+    console.log(u,"user")
     obj={...obj,count:Object.keys(u.followers).length,questions:u.questions,answers:u.answers}
     setHoveredUser(obj);
   };
