@@ -88,6 +88,9 @@ type:String
   },
   tags:{
     type:Array,default:[]
+  },
+  questionrelatedusers:{
+    type:Array,defualt:[]
   }
 });
 

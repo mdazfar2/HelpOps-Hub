@@ -72,7 +72,12 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
   let [isComment,setIsComment]=useState(false)
   let [issue,setIssue]=useState({})
   let content=useRef()
+  let [isRelated,setIsRelated]=useState(false)
+  let [relatedUsers,setRelatedUsers]=useState([])
   let comment=useRef()
+  const [hoveredUser, setHoveredUser] = useState(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  let [users,setUsers]=useState([])
   function handleAskQuestion(){
     if(!finalUser||!localStorage.getItem("finalUser")){
       setIsPopup(true)
@@ -98,6 +103,7 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
  
     console.log(data)
     setIssue(data.data)
+    setRelatedUsers(data.data.questionrelatedusers)
   }
   async function handleCloseQuestion(){
     let ques=await fetch("/api/closequestion",{
@@ -278,7 +284,52 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
       fetch("/api/questionviews",{method:"POST",body:JSON.stringify({id:id})})
       
     },[])
-   
+   async function handlequestiontoo(){
+     console.log("CLiking")
+     setIsRelated(true)
+      await fetch('/api/addrelated',{
+        method:"POST",
+        body:JSON.stringify({
+          authorImage:finalUser.image1,
+          authorName:finalUser.name,
+          userId:finalUser._id,
+          id:issue._id
+        })
+      })
+      let arr=relatedUsers
+      arr.push({authorImage:finalUser.image1,authorName:finalUser.name,authorId:finalUser._id})
+      setRelatedUsers([...arr])
+   }
+   const handleMouseEnter =async (event, userImg) => {
+    setCursorPosition({ x: event.clientX, y: event.clientY });
+    let obj={...userImg}
+    console.log(userImg)
+    let u=await fetch("/api/getuserbyid",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
+    u=await u.json()
+    u=u.msg
+    console.log(u,"user")
+    obj={...obj,count:Object.keys(u.followers).length,questions:u.questions,answers:u.answers}
+    setHoveredUser(obj);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredUser(null);
+  };
+  async function handleRemoveQuestion(){
+    console.log("CLiking")
+    setIsRelated(false)
+     await fetch('/api/addrelated',{
+       method:"DELETE",
+       body:JSON.stringify({
+         userId:finalUser._id,
+         id:issue._id
+       })
+     })
+     let arr=relatedUsers
+     arr=arr.filter((data)=>{data.authorName!==finalUser.name})
+    //  arr.push({authorImage:finalUser.image1,authorName:finalUser.name,authorId:finalUser._id})
+     setRelatedUsers([...arr])
+  }
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
@@ -333,6 +384,29 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
         dangerouslySetInnerHTML={{ __html: issue?.title }}
     />
 </div>
+
+          {hoveredUser && (
+        <label htmlFor="id">
+
+        <div
+          className={`forummodal ease-out fixed  border  p-4 w-[400px] h-[200px] rounded-lg ${theme?"bg-white border-gray-300": "bg-[#2b2b2b] border-slate-50 border-[1px] text-gray-400"} shadow-lg`}
+          style={{ top: cursorPosition.y + 10, left: cursorPosition.x  }}
+        >
+         <div className="w-[100%] flex gap-4 items-center">
+           <img src={hoveredUser.authorImage} alt="Hovered User" className="w-20 h-20 rounded-full" />
+          <div className="flex w-[100%] items-start gap-2 h-[100%] justify-center flex-col ">
+            <p>{hoveredUser.authorName}</p>
+            <button className={`bg-transparent pt-1 pb-1 pl-3 pr-3 rounded-md border-[1px] border-gray-500 `}>Follow</button>
+            </div>
+          </div>
+          <div className="p-[20px] mt-4 flex gap-6 w-[100%] justify-center">
+            <p className="flex flex-col h-[100%] items-center"><h2>Answers</h2><p>{hoveredUser&&hoveredUser.answers}</p></p>
+            <p className="flex h-[100%] flex-col items-center"><h2>Questions</h2><p>{hoveredUser&&hoveredUser.questions}</p></p>
+            <p className="flex h-[100%] items-center flex-col"><h2>Followers</h2><p>{hoveredUser&&hoveredUser.count}</p></p>
+          </div>
+        </div>
+        </label>
+      )}
     <div className="mt-[30px] flex gap-3">{issue.tags?.map((data)=><span>#{data}</span>)}</div>
 
               <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
@@ -348,9 +422,26 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
                   Reply
                 </div>
                 
-                <div className="border-[#6089a4] px-4 py-1 rounded-md text-base text-[#6089a4] border-2">
+              {(!finalUser?.questiontoo?.includes(issue._id)&&!isRelated&&issue.authorId!==finalUser._id)?  <div onClick={handlequestiontoo} className="border-[#6089a4] px-4 py-1 cursor-pointer rounded-md text-base text-[#6089a4] border-2">
                   I have this Question Too
-                </div>
+                </div>:finalUser._id!==issue.authorId&&<div onClick={handleRemoveQuestion} className="border-[#6089a4] px-4 py-1 cursor-pointer rounded-md text-base text-[#6089a4] border-2">
+                  I Don't Have This Question Too
+                  </div>}
+                {
+  issue?.questionrelatedusers?.length>4?<span>+{issue?.questionrelatedusers?.length-4}</span>:<span></span>
+}
+{issue?.questionrelatedusers?.slice(0,issue?.questionrelatedusers.length>4?4:issue?.questionrelatedusers.length).map((user, idx) => {
+                        return  <img
+                              key={idx} 
+                              onClick={()=>router.push(`/profile?id=${user.authorId}`)}
+                              src={user.authorImage}
+                              id="img"
+                              alt="Discussion User"
+                              className="rounded-full mt-1 w-5 h-5"
+                              onMouseEnter={(event) => handleMouseEnter(event, user)}
+                              onMouseLeave={handleMouseLeave}
+                            />
+})}
                 
               </div>
               {
