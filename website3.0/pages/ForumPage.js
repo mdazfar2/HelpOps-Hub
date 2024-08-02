@@ -577,7 +577,7 @@ useEffect(()=>{
                             <div  className="text-gray-500 flex gap-2 text-sm mt-2">
                               {
                                 issue.tags.slice(0,tags.length>4?4:tags.length).map((data)=>{
-                                  return <span>#{data}</span>
+                                  return <span>{data}</span>
                                 })
                               }
                             </div>
@@ -589,7 +589,10 @@ useEffect(()=>{
 
                         <div className="flex max-md:pl-[50px] max-sm:gap-[1rem] max-sm:items-center items-center gap-6 max-sm:mt-2 text-gray-500 flex-wrap">
                           <div className="flex items-center gap-1 hover:gap-2  transition-all duration-500 mt-2 max-sm:mt-0">
-                          {issue?.relatedUser.map((user, idx) => {
+                        {
+                          issue?.relatedUser.length>4&&<span>+ {issue?.relatedUser.length-4}</span>
+                        } 
+                         {issue?.relatedUser.slice(0,issue?.relatedUser.length>4?4:issue?.relatedUser.length).map((user, idx) => {
                         return  <img
                               key={idx} 
                               onClick={()=>router.push(`/profile?id=${user.authorId}`)}
