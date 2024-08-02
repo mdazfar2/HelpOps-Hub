@@ -407,7 +407,7 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
         </div>
         </label>
       )}
-    <div className="mt-[30px] flex gap-3">{issue.tags?.map((data)=><span>#{data}</span>)}</div>
+    <div className="mt-[30px] flex gap-3">{issue.tags?.map((data)=><span  className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200">{data}</span>)}</div>
 
               <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
               
