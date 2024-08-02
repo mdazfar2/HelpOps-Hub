@@ -333,6 +333,7 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
         dangerouslySetInnerHTML={{ __html: issue?.title }}
     />
 </div>
+    <div className="mt-[30px]">{issue.tags.map((data)=><span>#{data}</span>)}</div>
 
               <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
               

@@ -85,6 +85,9 @@ type:String
   relatedUser:{
     type:Array,
     default:[]
+  },
+  tags:{
+    type:Array,default:[]
   }
 });
 
