@@ -55,6 +55,10 @@ const newsletterModel = new mongoose.Schema({
   questions:{
     type:Number,
     default:0
+  },
+  questiontoo:{
+    type:Array,
+    default:[]
   }
 }, {
   timestamps: true // Add timestamps (createdAt, updatedAt)
