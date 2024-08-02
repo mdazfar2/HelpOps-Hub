@@ -22,6 +22,7 @@ import {
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
 import styles from '../stylesheets/forumanimation.css'
+
 const Sidebar01Item = ({ title, isActive, onClick, icon, theme }) => {
   return (
     <div
@@ -38,7 +39,11 @@ const Sidebar01Item = ({ title, isActive, onClick, icon, theme }) => {
 };
 
 const Tag = ({ name }) => (
-  <div className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200">
+  <div onClick={()=>{
+    if(selectedTags.includes(name)){let arr=selectedTags;
+      arr=arr.filter((data)=>data!==name)
+      setSelectedTags([...arr])
+    }else{setSelectedTags(prev=>[...prev,name])}}} className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200">
     {name}
   </div>
 );
@@ -97,6 +102,7 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   const [isClosed,setIsClosed]=useState(false)
   let [sortedArray,setSortedArray]=useState([])
   let [mostHelpful,setMostHelpful]=useState([])
+  let [selectedTags,setSelectedTags]=useState([])
   const handleMouseEnter =async (event, userImg) => {
     setCursorPosition({ x: event.clientX, y: event.clientY });
     let obj={...userImg}
@@ -345,6 +351,28 @@ const handlePageChange = (page) => {
     
 
   }
+useEffect(()=>{
+  let arr=[]
+  if(selectedTags.length==0){
+    setIssues([...originalIssues])
+    return
+  }
+  console.log(selectedTags)
+  originalIssues.map((data)=>{
+    let ans=false
+    data.tags.forEach((name)=>{
+      if(selectedTags.includes(name)){
+        ans=true
+      }
+    })
+    if(ans){
+      arr.push(data)
+    }
+  })
+  console.log(arr)
+  setIssues([...arr])
+},[selectedTags])
+
 
 
   return (
@@ -424,9 +452,19 @@ const handlePageChange = (page) => {
                 Tags
               </div>
               <div className="flex flex-wrap mt-5 gap-4">
-                {tags.map((tag, index) => (
-                  <Tag key={index} name={tag} />
+                {tags.map((name, index) => (
+                    <div onClick={()=>{
+    if(selectedTags.includes(name)){let arr=selectedTags;
+      arr=arr.filter((data)=>data!==name)
+      setSelectedTags([...arr])
+    }else{
+      setSelectedTags(prev=>[...prev,name])}
+  }
+    } className={` ${selectedTags.includes(name)?"bg-gray-400":"bg-gray-200"} px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200`}>
+    {name}
+  </div>
                 ))}
+              
               </div>
             </div>
             <div className="mt-10 max-xl:hidden">
@@ -535,6 +573,13 @@ const handlePageChange = (page) => {
                               } font-medium overflow-hidden max-w-[370px] text-ellipsis`}
                             >
                               {issue.title}
+                            </div>
+                            <div  className="text-gray-500 flex gap-2 text-sm mt-2">
+                              {
+                                issue.tags.slice(0,tags.length>4?4:tags.length).map((data)=>{
+                                  return <span>#{data}</span>
+                                })
+                              }
                             </div>
                             <div className="text-gray-500 text-sm mt-2">
                               {issue.type} • {issue.dateTime}

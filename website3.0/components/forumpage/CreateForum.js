@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Context } from "@context/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,8 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill, { Quill } from 'react-quill';
 import { useRouter } from "next/navigation";
 function CreateForum() {
+  let [selectedTags,setSelectedTags]=useState([])
+
   const { theme ,finalUser} = useContext(Context);
   const [activeSection, setActiveSection] = useState("title");
   let router=useRouter()
@@ -28,7 +30,24 @@ function CreateForum() {
       toolbar.style.background = 'transparent';
     }
   }, []);
+  const Tag = ({ name }) => {
+  
+  return  <div onClick={()=>{
+    if(selectedTags.includes(name)){let arr=selectedTags;
+      arr=arr.filter((data)=>data!==name)
+      setSelectedTags([...arr])
+    }else{setSelectedTags(prev=>[...prev,name])}}} className={` ${selectedTags.includes(name)?"bg-gray-400":"bg-gray-200"} px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200`}>
+      {name}
+    </div>
+  };
+  const Tag1 = ({ name }) => {
+  
+    return  <div  className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200">
+        {name}
+      </div>
+    };
   async function postQuestion(){
+ 
     let payload={
       title:title,
       content:content,
@@ -36,7 +55,8 @@ function CreateForum() {
       authorEmail:finalUser.email,
       authorId:finalUser._id,
       authorName:finalUser.name,
-      authorImage:finalUser.image1
+      authorImage:finalUser.image1,
+      tags:selectedTags
     }
     await fetch('/api/createquestion',{
       method:"POST",
@@ -45,6 +65,23 @@ function CreateForum() {
     router.push("/devopsforum")
   }
   const renderSection = () => {
+    const tags = [
+      "Docker",
+      "Devops",
+      "Azure",
+      "Ubuntu",
+      "NeedHelp",
+      "Dockerization",
+      "CI/CD",
+      "AWS",
+      "Kubernetes",
+    ]
+    let tagValue=useRef()
+    function handleAddTag(){
+      let a=tagValue.current.value
+      setSelectedTags((prev)=>[...prev,a])
+      tagValue.current.value=""
+    }
     switch (activeSection) {
       case "title":
         return (
@@ -96,7 +133,7 @@ function CreateForum() {
                 </div>
                 <div
                   className="w-20 rounded-xl h-12 flex justify-center items-center text-white bg-[#6089a4]"
-                  onClick={() => setActiveSection("member")}
+                  onClick={() => setActiveSection("tags")}
                 >
                   Next
                 </div>
@@ -143,7 +180,7 @@ function CreateForum() {
             <div className="flex justify-between mt-4">
               <div
                 className="w-20 rounded-xl h-12 flex justify-center items-center text-white bg-[#6089a4] cursor-pointer"
-                onClick={() => setActiveSection("content")}
+                onClick={() => setActiveSection("tags")}
               >
                 Prev
               </div>
@@ -187,7 +224,45 @@ function CreateForum() {
             </div>
           </div>
         );
-      default:
+      case "tags":return (
+        <div className="my-10 w-[80%] m-auto">
+        <div className="text-xl my-5 px-3 text-center">
+         Select Your Tags
+        </div>
+      <div className="bg-white shadow-md rounded-xl p-4">
+        <div className="mb-4 ">
+        <div className="flex justify-center flex-wrap mt-5 gap-4">
+                {tags.map((tag, index) => (
+                  <Tag key={index}  name={tag} />
+                ))}
+              </div>
+               {selectedTags.length>0&& <h1 className="text-xl text-center mt-[20px] ">Selected Tags</h1>}
+                <div className="w-[100%] mt-[25px] mb-[20px] justify-center flex gap-5"><input placeholder="Add Your Tag" className="border-b-gray-500 border-b-[1px]" ref={tagValue}/><button onClick={handleAddTag}>Add Tag</button></div>
+              <div className="flex  flex-wrap mt-5 gap-4 justify-center">
+                {selectedTags.map((tag, index) => (
+                  <Tag1 key={index} name={tag} />
+                ))}
+              </div>
+        </div>
+        
+      </div>
+      <div className="flex justify-between mt-4">
+        <div
+          className="w-20 rounded-xl h-12 flex justify-center items-center text-white bg-[#6089a4] cursor-pointer"
+          onClick={() => setActiveSection("content")}
+        >
+          Prev
+        </div>
+        <div
+          className="w-20 rounded-xl h-12 flex justify-center items-center text-white bg-[#6089a4] cursor-pointer"
+          onClick={() => setActiveSection("member")}
+        >
+          Next
+        </div>
+      </div>
+    </div>
+      )
+        default:
         return null;
     }
   };
