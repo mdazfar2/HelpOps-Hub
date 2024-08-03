@@ -449,7 +449,7 @@ Question Owner
               </div>
               <hr className="border-[1px] border-gray-300 mt-5" />
               <div className="flex gap-5 mt-5">
-                <div onClick={()=>isComment?setIsComment(false):setIsComment(true)} className="bg-[#6089a4] px-4 py-1 rounded-md text-base text-white">
+                <div onClick={()=>isComment?setIsComment(false):setIsComment(true)} className="bg-[#6089a4] px-4 py-1 rounded-md text-base text-white cursor-pointer">
                   Reply
                 </div>
                 
