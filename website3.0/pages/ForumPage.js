@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   faList,
   faExclamationCircle,
@@ -99,6 +102,7 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   let [users,setUsers]=useState([])
   let [top,setTop]=useState([])
+  let [loading,setLoading]=useState(true)
   const [isClosed,setIsClosed]=useState(false)
   let [sortedArray,setSortedArray]=useState([])
   let [mostHelpful,setMostHelpful]=useState([])
@@ -182,6 +186,7 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
           ar.push({image1:a[i].authorImage,name:a[i].authorName,answers:a[i].solutions.length})
         }
         setMostHelpful([...ar])
+        setLoading(false)
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -549,7 +554,28 @@ useEffect(()=>{
                   </div>
                 </div>
                 <div className="p-4">
-                  {currentIssues.map((issue, index) => (
+           {
+            loading?Array.from({ length: 10 }).map((_, index) => (
+              <div key={index} className="mb-10">
+                <div className="flex max-md:flex-col items-end gap-5">
+                  <div className="flex flex-col gap-1 w-full">
+                    <div className="flex gap-2 w-full h-full ">
+                      <Skeleton height={80} width={80} borderRadius={100} />
+                     <div className="flex flex-col">
+                      <Skeleton height={10} width={170} />
+                      <Skeleton height={10} width={400} />
+                      <Skeleton height={10} width={600} />
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+                </div>
+                <hr className="w-full mt-5 mb-5 border-gray-200" />
+              </div>
+            )):
+           
+                  currentIssues.map((issue, index) => (
              (!isClosed&&
                 !issue.isCLose)||(issue.discussionUsers)? 
                    <div
