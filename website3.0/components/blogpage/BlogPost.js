@@ -12,6 +12,9 @@ import {
   faBookmark as regularBookmark,
 
 } from "@fortawesome/free-regular-svg-icons";
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Tooltip } from 'react-tooltip'
 
 import { FaTrashCan,FaShare,FaLink,FaArrowUpFromBracket, FaHandsClapping, FaEllipsisVertical, FaEllipsis} from "react-icons/fa6";
@@ -998,19 +1001,22 @@ data-tooltip-content="Reaction"
           theme ? "bg-white text-black " : " bg-[#0f0e0e] text-white "
         } transition-colors duration-500 w-[55%] shadow-lg rounded-lg max-lg:w-full max-lg:order-1`}
       >
-        <img
+       {loading?<Skeleton height={"30%"} width={"100%"}  />: <img
           src={blog.image}
           alt={blog.title}
           onError={handleError}
           id="image-section"
           className="w-full h-96 object-cover mb-5 rounded-lg max-md:mt-[30px] max-md:p-[8px]"
-        />
+        />}
         <div className="px-10 max-[425px]:px-8">
           <div
             className="flex items-center mb-5 cursor-pointer"
             
           >
+         {
+          loading? <Skeleton  borderRadius={100} height={40} width={40}  />:
             <img onClick={handleOpenProfile}
+
               src={
                 fetchedUser
                   ? fetchedUser.image1
@@ -1018,12 +1024,12 @@ data-tooltip-content="Reaction"
               }
               alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-10 h-10 rounded-full mr-3"
-            />
+            />}
             <div onClick={handleOpenProfile}>
-              <div className="text-base font-bold">{blog.authorName}</div>
+              <div className="text-base font-bold">{loading? <Skeleton height={10} width={200}  />:blog.authorName}</div>
               <div className="text-gray-500 text-xs">
                 Posted on{" "}
-                {new Date(blog.date).toLocaleDateString("en-US", {
+                {loading? <Skeleton   height={10} width={200}  />: new Date(blog.date).toLocaleDateString("en-US", {
                   month: "long",
                   day: "numeric",
                 })}
@@ -1057,10 +1063,41 @@ data-tooltip-content="Reaction"
               </span>
             </div>
           </div>
-          <h1 className="text-4xl max-md:text-3xl max-[425px]:text-2xl font-normal mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>
-          <div className="text-gray-600 mb-5">{blog.introduction}</div>
+       {
+        loading? <Skeleton  height={10} width={400}  />:
+          <h1 className="text-4xl max-md:text-3xl max-[425px]:text-2xl font-normal mb-5" dangerouslySetInnerHTML={{ __html: blog.title}}></h1>}
+          {loading? <div className="flex flex-col gap-1"><Skeleton height={10} width={400}  />
+          </div>:<div className="text-gray-600 mb-5">{blog.introduction}</div>}
           <div className="mb-5">
-            {blog.sections?.map((section, index) => (
+    {
+      loading? blog.sections?.map((section, index) => (
+        <div key={index} className="mb-5">
+          <h2 className="text-2xl max-[425px]:text-xl font-semibold mb-3">
+          <Skeleton height={10} width={100} />      
+
+          </h2>
+          
+          <p className="text-gray-600 mb-3">          <Skeleton height={10} width={100} /> 
+          <Skeleton height={10} width={200} />      
+          <Skeleton height={10} width={300} />      
+          <Skeleton height={10} width={400} />      
+          <Skeleton height={10} width={500} />      
+     
+          </p>
+          
+            <div key={subIndex} className="ml-5 mb-3">
+              <h3 className="text-xl font-semibold mb-2">
+              <Skeleton height={10} width={100} />      
+
+              </h3>
+              <p className="text-gray-600">          <Skeleton height={10} width={200} />      
+              </p>
+            </div>
+      
+          
+        </div>
+      )):
+            blog.sections?.map((section, index) => (
               <div key={index} className="mb-5">
                 <h2 className="text-2xl max-[425px]:text-xl font-semibold mb-3">
                   {section.heading}
@@ -1099,7 +1136,13 @@ data-tooltip-content="Reaction"
                            {blog.tags && blog.tags.map(data=>{
                         return <div className="text-[14px] max-sm:text-[13px] max-[425px]:text-[12px]">{"#"+data}</div>})}
                           </div>
-          <div className="pb-10 " dangerouslySetInnerHTML={{ __html: blog.description }}></div>
+                          {loading? <div className="flex flex-col gap-1"><Skeleton height={10} width={250}  />
+                          <Skeleton height={10} width={300}  />
+                          <Skeleton height={10} width={350}  />
+                          <Skeleton height={10} width={400}  />
+                          <Skeleton height={10} width={450}  />
+                          <Skeleton height={10} width={500}  />
+                          </div>:  <div className="pb-10 " dangerouslySetInnerHTML={{ __html: blog.description }}></div>}
           <hr className="w-full h-1 pb-5" />
           <div className="text-2xl font-bold pb-5 max-[425px]:text-xl" id="comment">Top Comments</div>
              <div className="flex items-center justify-center mb-4 max-[425px]:mb-2">
@@ -1217,7 +1260,7 @@ data-tooltip-content="Reaction"
           {/* <img src="/banner.png" alt="" /> */}
           <div className="w-full  h-10"></div>
           <div className="flex px-5 cursor-pointer" onClick={handleOpenProfile}>
-            <img
+           {loading?<Skeleton height={40} width={40}  borderRadius={100}/>: <img
               src={
                 fetchedUser
                   ? fetchedUser.image1
@@ -1225,9 +1268,9 @@ data-tooltip-content="Reaction"
               }
               alt={fetchedUser?fetchedUser.name:"User Image"}
               className="w-12 h-12 rounded-full mr-3 relative -top-3"
-            />
-            <div className="py-1">
-              <div className="text-xl font-bold">{blog.authorName}</div>
+            />}
+            <div className="py-1 ml-3">
+              <div className="text-xl font-bold">{loading?<Skeleton height={10} width={200}  />:blog.authorName}</div>
             </div>
           </div>
           <div className="w-full px-4">

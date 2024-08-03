@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+import Image from 'next/image';
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   faCalendar,
   faCheck,
@@ -76,6 +79,8 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
   let [isRelated,setIsRelated]=useState(false)
   let [relatedUsers,setRelatedUsers]=useState([])
   let comment=useRef()
+  let [loading,setLoading]=useState(true)
+
   const [hoveredUser, setHoveredUser] = useState(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   let [users,setUsers]=useState([])
@@ -105,6 +110,7 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
     console.log(data)
     setIssue(data.data)
     setRelatedUsers(data.data.questionrelatedusers)
+    setLoading(false)
   }
   async function handleCloseQuestion(){
     let ques=await fetch("/api/closequestion",{
@@ -352,13 +358,15 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
         <div className="w-[75%] min-w-[800px] max-xl:min-w-[99%] max-md:w-[99%]">
           <div className="flex w-full justify-between   max-md:flex-wrap">
             <div className="flex gap-5 cursor-pointer" onClick={()=>handleOpenProfile(issue.authorId)}>
-              <img
+           {loading?                      <Skeleton height={60} width={60} borderRadius={100} />
+:   <img
                 src={issue.authorImage}
                 alt="User"
                 className="w-12 h-12 rounded-full"
-              />
+              />}
               <div className="text-lg">
-                <div className={`${theme?"":"text-white"}`}>{issue.authorName}</div>
+                <div className={`${theme?"":"text-white"}`}>{loading?  <Skeleton height={10} width={200}  />:
+issue.authorName}</div>
                 <div className="flex gap-5 text-sm text-gray-500">
                   <div className={`flex gap-1 mt-1 items-center ${theme?"":"text-[#767677]"}`}>
                   <svg version="1.1" viewBox="0 0 2048 2048" width="19" height="19" xmlns="http://www.w3.org/2000/svg">
@@ -391,10 +399,10 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
 <path transform="translate(1359,188)" d="m0 0h2l-1 3h-2l-2 4-5 7-1-3z" fill="#6b7280"/>
 <path transform="translate(1392,173)" d="m0 0 11 1 5 2-2 1-13-2z" fill="#6b7280"/>
 </svg>
-Question Owner
+{loading?  <Skeleton height={10} width={100}  />:"Question Owner"}
                   </div>
                   <div  className={ `mt-1 ${theme?"":"text-[#767677]"}`}>
-                    <FontAwesomeIcon icon={faCalendar} /> {formatDate(issue.createdAt)}
+                    <FontAwesomeIcon icon={faCalendar} /> {loading?  <Skeleton height={10} width={100}  />:formatDate(issue.createdAt)}
                   </div>
                 </div>
               </div>
@@ -410,10 +418,12 @@ Question Owner
             <div className="mt-2 w-[90%]">
             <div className={`${theme ? "" : "text-white"} text-3xl max-md:flex font-bold`}>
     <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  
+  {
+    loading?  <Skeleton height={30} width={400}  />:
     <div 
         className="break-words" // Ensure long words wrap to the next line
         dangerouslySetInnerHTML={{ __html: issue?.title }}
-    />
+    />}
 </div>
 
           {hoveredUser && (
@@ -440,8 +450,18 @@ Question Owner
       )}
     <div className="mt-[30px] flex gap-3">{issue.tags?.map((data)=><span  className="bg-gray-200 px-4 py-1 text-gray-700 cursor-pointer hover:bg-[#deecf5] hover:text-[#6089a4] transition-all duration-200">{data}</span>)}</div>
 
-              <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
-              
+         {
+          loading? <div className="flex flex-col gap-1">
+             <Skeleton height={10} width={200}  />
+             <Skeleton height={10} width={300}  />
+             <Skeleton height={10} width={400}  />
+             <Skeleton height={10} width={500}  />
+             <Skeleton height={10} width={600}  />
+             <Skeleton height={10} width={700}  />
+
+            </div>:
+            <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
+           }     
 
               <div className="mt-10 flex gap-2 text-gray-500 items-center">
                 <FontAwesomeIcon icon={faTags} />
@@ -461,7 +481,11 @@ Question Owner
                 {
   issue?.questionrelatedusers?.length>4?<span>+{issue?.questionrelatedusers?.length-4}</span>:<span></span>
 }
-{issue?.questionrelatedusers?.slice(0,issue?.questionrelatedusers.length>4?4:issue?.questionrelatedusers.length).map((user, idx) => {
+{
+  loading?             <Skeleton height={10} width={200}  />
+:
+
+issue?.questionrelatedusers?.slice(0,issue?.questionrelatedusers.length>4?4:issue?.questionrelatedusers.length).map((user, idx) => {
                         return  <img
                               key={idx} 
                               onClick={()=>router.push(`/profile?id=${user.authorId}`)}
@@ -489,7 +513,45 @@ Question Owner
                 {
                   issue?.solutions && <div className="text-xl mt-[20px]">{issue.solutions.length} Answers</div>
                 }
-       {                            issue?.solutions?.map((data,index)=>{
+   {
+    loading?     <div className="mt-10">
+    <div className={`min-h-20 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>
+      <div className="flex w-full justify-between flex-wrap">
+        <div className="flex gap-5 cursor-pointer" >
+        <Skeleton baseColor="white" height={50} width={50} borderRadius={100}  />
+          <div className="text-lg">
+            <div className={`${theme?"":"text-white"}`}>{  <Skeleton height={10} width={200}  />}</div>
+            <div className="flex gap-5 text-sm text-gray-500">
+              <div className={`${theme?"":"text-gray-300"}`}>
+                <FontAwesomeIcon icon={faCoffee} /> Solution Provider
+              </div>
+              <div className={`${theme?"":"text-gray-300"}`}>
+              <Skeleton baseColor="white" height={10} width={100}  />
+              
+
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+      <div className="mt-10 flex text-gray-600 gap-4">
+        <div className={`${theme?"":"text-white"} text-5xl font-bold`}>A:</div>
+       
+          <div className="flex flex-col gap-1">
+
+          <Skeleton height={10} width={100}  baseColor="white"/>      
+          <Skeleton baseColor="white" height={10} width={200}  />
+              <Skeleton baseColor="white" height={10} width={300}  />
+              <Skeleton baseColor="white" height={10} width={400}  />
+              <Skeleton baseColor="white" height={10} width={500}  />  </div>
+       
+      </div>
+    </div>
+  </div> 
+:
+   
+                                   issue?.solutions?.map((data,index)=>{
 
       return  <div className="mt-10">
                 <div className={`min-h-20 w-full ${theme?"bg-[#eeeeee]":"bg-[#383838] rounded-md "} p-8`}>

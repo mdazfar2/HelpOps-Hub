@@ -9,7 +9,10 @@ import { Context } from "@context/store";
 import EditProfileModal from "./EditProfileModal";
 import { useSession } from "next-auth/react";
 import FollowersTab from "./FollowersTab";
+import Image from 'next/image';
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const TabHeader = ({ selectedTab, setSelectedTab, theme }) => (
   <div className={`flex border-b ${theme ? "text-black" : "text-white"}`}>
     <button
@@ -43,11 +46,29 @@ const TabContent = ({
   theme,
   blogs,
 }) => {
+  let [loading,setLoading]=useState(true)
+  useEffect(()=>{
+    if(blogs.length>0){
+      setLoading(false)
+    }
+  },[blogs])
   return (
     <div className="p-4">
       {selectedTab === "Posts" && (
         <div className={`${theme ? "text-black" : "text-white"}`}>
-          {blogs && blogs.length > 0 ? (
+      {loading?  
+      <div  className="flex mt-5 gap-5 items-center">
+        <Skeleton  height={100} width={100}  />
+        <div className="flex flex-col gap-1"
+                    
+                  >        <Skeleton  height={10} width={200}  />
+                    <Skeleton  height={10} width={250}  />
+                    <Skeleton  height={10} width={300}  />
+                    <Skeleton  height={10} width={350}  />
+                    <Skeleton  height={10} width={400}  />
+</div>
+                </div>:   
+                 blogs && blogs.length > 0 ? (
             blogs
               .filter(
                 (blog) =>
@@ -56,8 +77,14 @@ const TabContent = ({
               )
               .map((blog) => (
                 <div key={blog.id} className="flex mt-5 gap-5 items-center">
-                  <img src={blog.image} alt="blog" width={150} height={150} />
-                  <div
+  <Image
+        src={blog.image}  // The path to your image
+        alt="blog"        // Alt text for accessibility
+        width={150}       // Width of the image
+        height={150}      // Height of the image
+        className="rounded-xl" // Optional: Apply additional styles
+        draggable="false" // Prevents image dragging
+      />                  <div
                     dangerouslySetInnerHTML={{
                       __html: blog.title,
                     }}
@@ -70,7 +97,7 @@ const TabContent = ({
                 <h2>No Blogs Available</h2>
               </div>
             </div>
-          )}
+      )}
         </div>
       )}
 
@@ -111,6 +138,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
   const [blogs, setBlogs] = useState([]);
   const [sortBy, setSortBy] = useState("date");
   const [selectedTab, setSelectedTab] = useState("Posts");
+  let [loading,setLoading]=useState(true)
   const [FollowTab,setFollowTab] = useState(false);
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric" };
@@ -147,8 +175,10 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
         } else {
           setError("Failed to fetch blogs.");
         }
-      } catch (err) {
-        setError("An error occurred while fetching blogs.");
+     setLoading(false) } catch (err) {
+      setLoading(false)   
+      setError("An error occurred while fetching blogs.");
+
       }
     };
     setTimeout(() => {
@@ -179,6 +209,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
         }
       }
     }
+    setLoading(false)
   }
   // State to control the visibility of the edit profile modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -327,7 +358,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
         </div>
         <div className="mx-10 flex my-4 max-sm:flex-col max-sm:relative max-sm:-top-20 gap-5 justify-between max-sm:h-[300px]">
           <div className="flex max-sm:flex-col max-sm:items-center gap-5">
-            <img
+          {loading?<Skeleton height={100} width={100} borderRadius={100}/>:   <img
               src={
                 isViewProfile
                   ? viewUserDetails.image1
@@ -337,11 +368,11 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
               }
               alt="Profile Picture"
               className="w-36 h-36 relative -top-20 max-sm:top-0 rounded-full object-cover overflow-hidden"
-            />
+            />}
             <div>
               <h1 className={`text-2xl font-bold max-sm:text-center`}>
-                {isViewProfile ? viewUserDetails.name : finalUser.name}
-              </h1>
+               {loading?<Skeleton height={10} width={200}/>: isViewProfile ? viewUserDetails.name : finalUser.name
+  }  </h1>
               <p
                 className={`mt-1 text-sm ${
                   theme ? "text-[#5a5151]" : "text-white"
