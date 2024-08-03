@@ -49,7 +49,7 @@ export async function POST(req) {
       username: username,
       password: hash,
       image1: String(image),
-      banner: String(image),
+      banner: 'https://res.cloudinary.com/dwgd3as6k/image/upload/v1721762646/f3wmliwhhqvwlh5yisnw.png',
       designation: "",
       linkedin: "",
       github: "",
