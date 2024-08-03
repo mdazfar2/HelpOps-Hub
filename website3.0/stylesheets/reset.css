@@ -13,7 +13,8 @@
 }
 .auth-btn:hover {
   transform: translateX(10px);
-  background: none;
+  color: white;
+  /* background: none; */
   border: 1px solid rgb(245, 245, 245);
 }
 
