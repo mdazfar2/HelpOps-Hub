@@ -7,6 +7,7 @@ import Overview from '@components/admin/dashboard/Overview';
 import Blogs from '@components/admin/dashboard/Blogcreation';
 import BlogCreation from '@components/admin/dashboard/Blogcreation';
 import AllBlogs from '@components/admin/dashboard/AllBlogs';
+import Image from 'next/image';
 
 const Users = () => <div>Users Component</div>;
 const Settings = () => <div>Settings Component</div>;
@@ -96,8 +97,14 @@ const AdminPanel = ({authKey}) => {
           {/* Sidebar */}
           <div className="w-64 bg-[#607f90] text-white flex flex-col fixed h-full">
             <div className="p-4 text-center text-2xl font-bold border-b border-gray-700">
-              <img src="HelpOps-H Fevicon.webp" width={60} className='m-auto mb-5'/>
-              HelpOps Hub
+            <Image
+        src="/HelpOps-H Fevicon.webp" // Path to your image file
+        alt="Logo"
+        layout="fill" // Makes the image fill the container
+        objectFit="contain" // Ensures the image is contained within the container without distortion
+        className="rounded-xl" // Optional: Apply additional styles if needed
+        draggable="false" // Prevents image dragging
+      />              HelpOps Hub
             </div>
             <div className="flex-1 p-4 overflow-y-auto space-y-4">
               <MenuItem
@@ -138,11 +145,19 @@ const AdminPanel = ({authKey}) => {
                   placeholder="Search..."
                   className="p-2 border border-gray-300 rounded-md flex-grow"
                 />
-                <img
+                {/* <img
                   src="https://via.placeholder.com/40"
                   alt="Admin Profile"
                   className="w-10 h-10 rounded-full ml-4"
-                />
+                /> */}
+                 <Image
+        src="https://via.placeholder.com/40" // URL to your image
+        alt="Admin Profile"
+        layout="fill" // Fills the container
+        objectFit="cover" // Ensures the image covers the container while preserving aspect ratio
+        className="rounded-full" // Applies rounded corners
+        draggable="false" // Prevents image dragging
+      />
               </div>
             </div>
 

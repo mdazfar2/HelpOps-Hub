@@ -5,6 +5,7 @@ import "@stylesheets/login-signup.css";
 import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { Context } from "@context/store";
+import Image from 'next/image';
 
 // Login component definition, receives onClose and onSignupClick as props from AuthButton
 const Login = ({ onClose, onSignupClick }) => {
@@ -204,11 +205,14 @@ setLoading(false)
                 } cursor-pointer flex justify-center items-center m-auto gap-[18px] font-semibold`}
                 onClick={() => signIn("google")}
               >
-                <img
-                  className="w-[30px] h-[30px] ml-[5px]"
-                  src="google.webp"
-                  alt="Google"
-                />
+               <Image
+        src="/google.webp" // The path to your image file
+        alt="Google"
+        width={30}         // Width of the image
+        height={30}        // Height of the image
+        className="ml-[5px]" // Apply margin-left
+        draggable="false"  // Prevents image dragging
+      />
                 Sign in with Google
               </button>
               <button
@@ -220,11 +224,13 @@ setLoading(false)
                 onClick={() => signIn("github")}
               >
                 {theme ? (
-                  <img
-                    className="w-[35px] h-[30px] ml-[5px]"
-                    src="github.webp"
-                    alt="GitHub"
-                  />
+                  <Image
+                  src="/github.webp" // Path to your image file
+                  alt="GitHub"
+                  width={35}         // Width of the image
+                  height={30}        // Height of the image
+                  draggable="false"  // Prevents image dragging
+                />
                 ) : (
                   <FaGithub size={"2rem"} />
                 )}

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
 import "@stylesheets/header.css";
+import Image from 'next/image';
 
 //Importing TogleSwitch Component
 import ToggleSwitch from "./ToggleSwitch";
@@ -115,12 +116,14 @@ const Header = () => {
           {/* Logo with VanillaTilt animation */}
           <Link href="/">
             <div data-tilt data-tilt-scale="1.1">
-              <img
-                src="HelpOps-H Fevicon.webp"
-                alt="Logo"
-                className="w-20 h-20 top-2 max-[400px]:relative max-[400px]:left-36"
-                draggable="false"
-              />
+            <Image
+        src="/path/to/HelpOps-H Fevicon.webp" // Use the correct path to the image
+        alt="Logo"
+        width={80}  // Equivalent to `w-20` in tailwind (20 * 4px = 80px)
+        height={80} // Equivalent to `h-20` in tailwind (20 * 4px = 80px)
+        className="top-2 max-[400px]:relative max-[400px]:left-36" // Apply your custom styles
+        draggable="false" // To prevent dragging
+      />
             </div>
           </Link>
 
@@ -317,12 +320,14 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center">
               <div data-tilt data-tilt-scale="1.1">
-                <img
-                  src="HelpOps-H Fevicon.webp"
-                  alt="Logo"
-                  className="w-12 h-12 max-[445px]:w-10 max-[445px]:h-10"
-                  draggable="false"
-                />
+              <Image
+        src="/HelpOps-H Fevicon.webp" // Use the correct path to the image
+        alt="Logo"
+        width={48}   // Equivalent to `w-12` in Tailwind (12 * 4px = 48px)
+        height={48}  // Equivalent to `h-12` in Tailwind (12 * 4px = 48px)
+        className="relative max-w-full max-h-full" // Apply custom styles and responsiveness
+        draggable="false" // To prevent dragging
+      />
               </div>
               <div className="text-2xl max-md:text-xl max-sm:text-lg max-[475px]:text-base max-[445px]:text-[14px]">
                 elpOps Hub

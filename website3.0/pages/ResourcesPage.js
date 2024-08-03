@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
 import { color, motion } from "framer-motion";
+import Image from 'next/image';
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -101,11 +102,25 @@ const ListView = ({ data, theme, handleShare, handleLike, likedFolders }) => {
               }}
             >
               <div className="w-16 h-16 bg-gray-200 flex justify-center items-center rounded-lg overflow-hidden">
-                <img
+                {/* <img
                   src="/HelpOps-H Fevicon.webp"
                   className="w-12 h-12"
                   alt="Icon"
-                />
+                /> */}
+                 <div
+      className="w-12 h-12"
+      style={{
+        width: '3rem', // Equivalent to Tailwind's w-12
+        height: '3rem', // Equivalent to Tailwind's h-12
+      }}
+    >
+      <Image
+        src="/HelpOps-H Fevicon.webp"  // Path to your image file in the `public` directory
+        alt="Icon"
+        layout="fill"  // Fills the container dimensions
+        objectFit="contain"  // Ensure the image fits within the container without distortion
+      />
+    </div>
               </div>
               <div className="ml-4 flex-1">
                 <h3
