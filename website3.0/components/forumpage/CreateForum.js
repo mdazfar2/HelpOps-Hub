@@ -16,20 +16,30 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill, { Quill } from 'react-quill';
 import { useRouter } from "next/navigation";
 function CreateForum() {
-  let [selectedTags,setSelectedTags]=useState([])
+  // Initialize state for selected tags
+let [selectedTags, setSelectedTags] = useState([]);
 
-  const { theme ,finalUser} = useContext(Context);
-  const [activeSection, setActiveSection] = useState("title");
-  let router=useRouter()
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  useEffect(() => {
-    const toolbar = document.querySelector('.ql-toolbar');
-    if (toolbar) {
-      toolbar.style.visibility = 'visible';
-      toolbar.style.background = 'transparent';
-    }
-  }, []);
+// Extract theme and finalUser from context
+const { theme, finalUser } = useContext(Context);
+
+// Initialize state for the active section, title, and content
+const [activeSection, setActiveSection] = useState("title");
+let router = useRouter();
+const [title, setTitle] = useState("");
+const [content, setContent] = useState("");
+
+// Effect to adjust the toolbar visibility and background on component mount
+useEffect(() => {
+  // Select the toolbar element with the class 'ql-toolbar'
+  const toolbar = document.querySelector('.ql-toolbar');
+  
+  // If toolbar exists, modify its style properties
+  if (toolbar) {
+    toolbar.style.visibility = 'visible'; // Make toolbar visible
+    toolbar.style.background = 'transparent'; // Set toolbar background to transparent
+  }
+}, []); // Empty dependency array ensures this effect runs only once after initial render
+
   const Tag = ({ name }) => {
   
   return  <div onClick={()=>{
@@ -46,24 +56,44 @@ function CreateForum() {
         {name}
       </div>
     };
-  async function postQuestion(){
- 
-    let payload={
-      title:title,
-      content:content,
-      authorUsername:finalUser.username,
-      authorEmail:finalUser.email,
-      authorId:finalUser._id,
-      authorName:finalUser.name,
-      authorImage:finalUser.image1,
-      tags:selectedTags
+    async function postQuestion() {
+      // Construct the payload object with the question details and author information
+      let payload = {
+        title: title, // Title of the question
+        content: content, // Content or body of the question
+        authorUsername: finalUser.username, // Username of the author
+        authorEmail: finalUser.email, // Email address of the author
+        authorId: finalUser._id, // Unique ID of the author
+        authorName: finalUser.name, // Full name of the author
+        authorImage: finalUser.image1, // URL or path to the author's profile image
+        tags: selectedTags // Array of tags associated with the question
+      };
+    
+      try {
+        // Send a POST request to the server with the question data
+        const response = await fetch('/api/createquestion', {
+          method: "POST", // Specify that this request is a POST request
+          headers: {
+            'Content-Type': 'application/json' // Indicate that the request body contains JSON data
+          },
+          body: JSON.stringify(payload) // Convert the payload object to a JSON string
+        });
+    
+        // Check if the server responded with a successful status code
+        if (response.ok) {
+          // Redirect the user to the DevOps forum page after successful submission
+          router.push("/devopsforum");
+        } else {
+          // Log an error if the server response indicates a failure
+          console.error('Failed to post question:', response.statusText);
+          // Optionally, display an error message to the user
+        }
+      } catch (error) {
+        // Catch and log any errors that occurred during the fetch operation
+        console.error('An error occurred while posting the question:', error);
+        // Optionally, display an error message to the user
+      }
     }
-    await fetch('/api/createquestion',{
-      method:"POST",
-      body:JSON.stringify(payload)
-    })
-    router.push("/devopsforum")
-  }
   const renderSection = () => {
     const tags = [
       "Docker",

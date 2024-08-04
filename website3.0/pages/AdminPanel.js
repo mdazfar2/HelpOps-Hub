@@ -54,22 +54,35 @@ const MenuItem = ({ title, icon, children, isCollapsible, onClick }) => {
 };
 
 const AdminPanel = ({authKey}) => {
+  // State to keep track of the currently active component to display
   const [activeComponent, setActiveComponent] = useState(null);
+
+  // State to determine if the admin panel should be shown
   const [showAdminPanel, setShowAdminPanel] = useState(false);
+
+  // State to store the input key from the user
   const [inputKey, setInputKey] = useState("");
+
+  // Handler function to manage the submission of the DB key
   const handleDbKeySubmit = (event) => {
+    // Prevent the default form submission behavior
     event.preventDefault();
+
+    // Check if the entered key matches the expected authentication key
     if (inputKey === authKey) {
+      // If keys match, show the admin panel
       setShowAdminPanel(true);
     } else {
+      // If keys do not match, alert the user
       alert("Incorrect DB_KEY. Please try again.");
     }
   };
 
+  // Handler function to set the currently active component
   const handleMenuClick = (component) => {
+    // Set the active component based on the menu click
     setActiveComponent(component);
   };
-
   return (
     <div className="flex h-screen bg-gray-100">
       {!showAdminPanel ? (

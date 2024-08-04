@@ -4,48 +4,78 @@ import { Context } from "@context/store";
 import React, { useContext, useEffect, useState } from "react";
 import {FaEye} from 'react-icons/fa6'
 export default function DashboardTab() {
-  const { finalUser, setFinalUser, theme } = useContext(Context);
-  let [totalViews,setTotalViews]=useState(0)
-  let [totalComment,setTotalComments]=useState(0)
-  let [totalReactions,setTotalReactions]=useState(0)
-  let [topViewsBlogs,setTopViewsBlogs]=useState([])
-  let [relatedAllBlogs,setRelatedAllBlogs]=useState([])
-  useEffect(()=>{ 
-    fetchBlogs()
-  },[])
-  async function fetchBlogs(){
-    let blogs=await fetch('/api/blog',{
-      method:"GET"
-    })
-    blogs=await blogs.json()
-    blogs=blogs.data
-    let relatedBlogs=[]
-    blogs.map((data)=>{
-      data.comments.map((res)=>{
-        if(res.user.username==finalUser.username){
-          relatedBlogs.push(data)
+  // Extract context values for user and theme
+const { finalUser, setFinalUser, theme } = useContext(Context);
+
+// State to manage total views, comments, and reactions
+let [totalViews, setTotalViews] = useState(0);
+let [totalComment, setTotalComments] = useState(0);
+let [totalReactions, setTotalReactions] = useState(0);
+
+// State to store top-viewed blogs
+let [topViewsBlogs, setTopViewsBlogs] = useState([]);
+
+// State to store related blogs based on user comments
+let [relatedAllBlogs, setRelatedAllBlogs] = useState([]);
+
+// Fetch blogs on component mount
+useEffect(() => {
+  fetchBlogs();
+}, []);
+
+// Function to fetch and process blog data
+async function fetchBlogs() {
+  try {
+    // Fetch blog data from the API
+    let response = await fetch('/api/blog', { method: "GET" });
+    let blogs = await response.json();
+    blogs = blogs.data;
+
+    // Initialize arrays for related blogs and statistics
+    let relatedBlogs = [];
+    let viewArray = [];
+    let views = 0;
+    let reactions = 0;
+    let comments = 0;
+
+    // Filter related blogs based on user comments
+    blogs.forEach((data) => {
+      data.comments.forEach((res) => {
+        if (res.user.username === finalUser.username) {
+          relatedBlogs.push(data);
         }
-      })
-    })
-    setRelatedAllBlogs([...relatedBlogs])
-    blogs=blogs.filter((data)=>data.authorId==finalUser._id)
-    let views=0
-    let reactions=0
-    let comments=0
-    let viewArray=[]
-    blogs.map((res)=>{
-      views+=res.views
-      viewArray.push({blog:res,views:res.views})
-    })
-    blogs.map((res)=>reactions+=res.reactionList.length)
-    blogs.map((res)=>comments+=res.comments.length)
-    setTotalComments(comments)
-    setTotalReactions(reactions)
-    setTotalViews(views)
-    viewArray.sort((a,b)=>a.views-b.views)
-    
-    setTopViewsBlogs([...viewArray])
+      });
+    });
+
+    // Set the related blogs state
+    setRelatedAllBlogs([...relatedBlogs]);
+
+    // Filter blogs written by the current user
+    blogs = blogs.filter((data) => data.authorId === finalUser._id);
+
+    // Calculate total views, reactions, and comments
+    blogs.forEach((res) => {
+      views += res.views;
+      viewArray.push({ blog: res, views: res.views });
+      reactions += res.reactionList.length;
+      comments += res.comments.length;
+    });
+
+    // Update state with the calculated values
+    setTotalComments(comments);
+    setTotalReactions(reactions);
+    setTotalViews(views);
+
+    // Sort blogs by views in ascending order
+    viewArray.sort((a, b) => b.views - a.views);
+
+    // Set the top-viewed blogs state
+    setTopViewsBlogs([...viewArray]);
+
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
   }
+}
   function handleError(e){
     e.target.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAPFBMVEX///+hoaGenp6mpqaZmZn5+fn8/PzX19e3t7e/v7/t7e2pqann5+fCwsLg4OCtra3IyMjOzs7z8/OTk5PhY2O7AAAC2klEQVR4nO3a6XKbMBRAYUkIIRazvv+7VtjGYAKkA8xwac/3147rU7SgBKUAAAAAAAAAAAAAAAAAAAAAAAAAAFeKT3VpSpn6UzXthTG1OVdVXNfiHkbr81K0qcpLY2xTnCQrvb065rx/vv2XYjJBMU455458mqSYw4TEhCviyvpRH/sqUmJU4SNtdOSPbHpCYsL30D1jfLt/2kiJSc0zRke22X9/JSSmqN4x2uT7B5qQmCQaYrTNdn+akJhGf3S3jynz8crcfpi1ldXRq8VvLgBx2JBWXxQSoxL9vjR280CSal2r1RwhMc7V1oalzNpk6/Ystf1OtPqykJig9OHi+GJry0zsc/Fu1l6XE6Nc3Mabd81Z99qJdLYy0uTEbN/F9JXDXmTylTfJifntnWHCRMPyvTJtbhOjkm7cWHWy+JbbxMR20mKibGlY3iZmvHlbnzb3iHHqMR1kvXRhybhHjCrnLcYs/Ng9Yr4mzDBtft6QyowppseAsMVU5kfMc32eDTSJMXHVdZP/d6fqnxemV98hpj8OGD3WFPMJ8x5oev6T4mLCwvUcU9YPJ5eFCTOsz7NpIy7mc7Lphptjvxaj56cBcTHt5wDdvY5pzWqLnp/UZMWEkeUnc6I/QJdbLSYq5Mb0v6YZV2Gbhi+ql1bl8S3V9DcGwmLKr1uwLlF+syVcm1SNBzpZMe1sd7QrO8wkRjdKZIxz3kTf3/W3ln59Lj+LgKSYrwnz18z4VxBJMUW+oyXUPIYPEBQTL95O/kXM5xAtKCbd1xJqqvdNtpyYJtobE6ZNLCum2DnIXl63NVJi2t92x+1LEz2njZSY+kCKHqaNkJhk/4R516SxE/LsTJbbw09n1U7GlXGPKM+r/IAqj3wpIybOztBKGGbJaU+bFpfHGJ+exedXP9bY/yHzJGEduDJGNXl0qnT/IxHHtWVyqitbAAAAAAAAAAAAAAAAAAAAAAAAAOC/9we2/TfNeTuRKgAAAABJRU5ErkJggg=="
   }

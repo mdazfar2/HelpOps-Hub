@@ -96,45 +96,70 @@ const TopIssue = ({ title, index }) => (
 );
 
 function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
-  const [activeMenuItem, setActiveMenuItem] = useState("View All");
-  const router = useRouter();
-  const [hoveredUser, setHoveredUser] = useState(null);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  let [users,setUsers]=useState([])
-  let [top,setTop]=useState([])
-  let [loading,setLoading]=useState(true)
-  const [isClosed,setIsClosed]=useState(false)
-  let [sortedArray,setSortedArray]=useState([])
-  let [mostHelpful,setMostHelpful]=useState([])
-  let [selectedTags,setSelectedTags]=useState([])
-  const handleMouseEnter =async (event, userImg) => {
-    setCursorPosition({ x: event.clientX, y: event.clientY });
-    let obj={...userImg}
-    console.log(userImg)
-    let u=await fetch("/api/getuserbyid",{method:"POST",body:JSON.stringify({id:userImg.authorId})})
-    u=await u.json()
-    u=u.msg
-    console.log(u,"user")
-    obj={...obj,count:Object.keys(u.followers).length,questions:u.questions,answers:u.answers}
-    setHoveredUser(obj);
+  const [activeMenuItem, setActiveMenuItem] = useState("View All"); // Tracks the currently selected menu item
+  const router = useRouter(); // Provides access to router functions and properties
+  const [hoveredUser, setHoveredUser] = useState(null); // Stores the user being hovered over for displaying additional info
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 }); // Tracks the cursor position for positioning user info display
+  const [users, setUsers] = useState([]); // Holds the list of users
+  const [top, setTop] = useState([]); // Stores top users or data, based on context
+  const [loading, setLoading] = useState(true); // Indicates loading state
+  const [isClosed, setIsClosed] = useState(false); // Indicates if a particular UI element or feature is closed
+  const [sortedArray, setSortedArray] = useState([]); // Stores an array of sorted data
+  const [mostHelpful, setMostHelpful] = useState([]); // Holds the most helpful data or users
+  const [selectedTags, setSelectedTags] = useState([]); // Stores the tags that have been selected by the user
+  
+  // Function to handle mouse entering an element (e.g., user profile)
+  const handleMouseEnter = async (event, userImg) => {
+      // Update cursor position for positioning additional info display
+      setCursorPosition({ x: event.clientX, y: event.clientY });
+  
+      // Create a copy of the user image object
+      let obj = { ...userImg };
+      console.log(userImg); // Debugging: Log the user image object
+  
+      // Fetch user details by user ID from the API
+      let u = await fetch("/api/getuserbyid", {
+          method: "POST",
+          body: JSON.stringify({ id: userImg.authorId }), // Send user ID to fetch details
+      });
+      u = await u.json();
+      u = u.msg; // Extract the user details from the response
+      console.log(u, "user"); // Debugging: Log the fetched user details
+  
+      // Update the user object with additional information
+      obj = {
+          ...obj,
+          count: Object.keys(u.followers).length, // Count of followers
+          questions: u.questions, // User's questions
+          answers: u.answers, // User's answers
+      };
+      setHoveredUser(obj); // Update the state to display user info
   };
-
+  
+  // Function to handle mouse leaving the element
   const handleMouseLeave = () => {
-    setHoveredUser(null);
+      setHoveredUser(null); // Clear the hovered user info
   };
+  
+  // Function to handle sidebar menu item clicks
   const handleSidebar01 = (title) => {
-    setActiveMenuItem(title);
-    if(title=="View All"){
-      setIssues([...originalIssues])
-      return
-    }
-    let arr=[...originalIssues]
-    arr=arr.filter((data)=>data.type==title)
-    setIssues([...arr])
+      setActiveMenuItem(title); // Update the active menu item
+  
+      if (title === "View All") {
+          // If "View All" is selected, reset to the original issues list
+          setIssues([...originalIssues]);
+          return;
+      }
+  
+      // Filter the issues based on the selected title/type
+      let arr = [...originalIssues];
+      arr = arr.filter((data) => data.type === title);
+      setIssues([...arr]); // Update the issues state with the filtered list
   };
- let [issues,setIssues]=useState([])
- let [originalIssues,setOriginalIssues]=useState([])
-
+  
+  // State and variables related to issues
+  const [issues, setIssues] = useState([]); // Stores the list of issues to display
+  const [originalIssues, setOriginalIssues] = useState([]); // Holds the original list of issues for resetting
   const tags = [
     "Docker",
     "Devops",
@@ -225,26 +250,7 @@ function handleSearch(){
     },
   ];
 
-
-  const [currentPage, setCurrentPage] = useState(1);
-  let [sortModal,setShowSortModal]=useState(false)
-  const issuesPerPage = 10; // Number of issues per page
-  const totalPages = Math.ceil(issues.length / issuesPerPage);
-// Get current issues
-let [currentIssues,setCurrentIssues]=useState([])
-useEffect(()=>{
-setCurrentIssues(issues.slice(
-  (currentPage - 1) * issuesPerPage,
-  currentPage * issuesPerPage
-))
-},[issues,currentPage])
-
-// Handle page change
-const handlePageChange = (page) => {
-  if (page < 1 || page > totalPages) return; // Prevent invalid pages
-  setCurrentPage(page);
-};
-  const helpfulUsers = [
+const helpfulUsers = [
     {
       name: "cleo-parra",
       img: "https://randomuser.me/api/portraits/men/13.jpg",
@@ -266,118 +272,151 @@ const handlePageChange = (page) => {
       issuesSolved: 3,
     },
   ];
-  const devopsIssues = [
+// State and variables initialization
+const [currentPage, setCurrentPage] = useState(1); // Tracks the current page for pagination
+let [sortModal, setShowSortModal] = useState(false); // Manages the visibility of the sort modal
+const issuesPerPage = 10; // Number of issues displayed per page
+const totalPages = Math.ceil(issues.length / issuesPerPage); // Total number of pages based on issues count
+
+// State to manage current issues being displayed based on pagination
+let [currentIssues, setCurrentIssues] = useState([]);
+
+// Effect to update current issues when issues list or current page changes
+useEffect(() => {
+    setCurrentIssues(issues.slice(
+        (currentPage - 1) * issuesPerPage, // Start index of issues for current page
+        currentPage * issuesPerPage // End index (exclusive) for current page
+    ));
+}, [issues, currentPage]);
+
+// Function to handle page changes
+const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return; // Prevent invalid page numbers
+    setCurrentPage(page); // Update current page
+};
+
+// Array of sample DevOps issues for demonstration or testing
+const devopsIssues = [
     "Issue with Kubernetes Pod Scaling",
     "Troubleshooting Docker Container Networking",
     "Configuring AWS IAM Roles for EKS",
     "Azure DevOps Pipeline Failure",
     "Docker Compose Not Starting Services",
     "Kubernetes Cluster Authentication Issue",
-  ];
-  function handleOnClick(id){
-    // router.push(`/devopsforum?id=${id}`)
-    window.location.href=`/devopsforum?id=${id}`
-  }
-  function handleReset(){
-    setIssues([...originalIssues])
-  }
-  const handleSortClick = (title) => {
-    let arr = [...issues];
+];
+
+// Function to handle click event on a question
+function handleOnClick(id) {
+    // Redirects to the DevOps forum page with the question ID
+    window.location.href = `/devopsforum?id=${id}`;
+}
+
+// Function to reset issues to the original list
+function handleReset() {
+    setIssues([...originalIssues]);
+}
+
+// Function to handle sorting of issues based on various criteria
+const handleSortClick = (title) => {
+    let arr = [...issues]; // Create a copy of the issues array to sort
     switch (title) {
-      case 'Most Commented':
-        arr.sort((a, b) => b.reactions.comments - a.reactions.comments);
-        break;
-      case 'Least Commented':
-        arr.sort((a, b) => a.reactions.comments - b.reactions.comments);
-        break;
-      case 'Most liked':
-        arr.sort((a, b) => b.reactions.likes - a.reactions.likes);
-        break;
-      case 'Least liked':
-        arr.sort((a, b) => a.reactions.likes - b.reactions.likes);
-        break;
-      case 'Most Viewed':
-        arr.sort((a, b) => b.reactions.views - a.reactions.views);
-        break;
-      case 'Least Viewed':
-        arr.sort((a, b) => a.reactions.views - b.reactions.views);
-        break;
-      case 'Oldest':
-        arr.sort((a, b) => new Date(a.date) - new Date(b.date));
-        break;
-      case 'Recently Updated':
-        arr.sort((a, b) => new Date(b.updatedDate) - new Date(a.updatedDate));
-        break;
-      default:
-        break;
+        case 'Most Commented':
+            arr.sort((a, b) => b.reactions.comments - a.reactions.comments); // Sort by most comments
+            break;
+        case 'Least Commented':
+            arr.sort((a, b) => a.reactions.comments - b.reactions.comments); // Sort by least comments
+            break;
+        case 'Most liked':
+            arr.sort((a, b) => b.reactions.likes - a.reactions.likes); // Sort by most likes
+            break;
+        case 'Least liked':
+            arr.sort((a, b) => a.reactions.likes - b.reactions.likes); // Sort by least likes
+            break;
+        case 'Most Viewed':
+            arr.sort((a, b) => b.reactions.views - a.reactions.views); // Sort by most views
+            break;
+        case 'Least Viewed':
+            arr.sort((a, b) => a.reactions.views - b.reactions.views); // Sort by least views
+            break;
+        case 'Oldest':
+            arr.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by oldest date
+            break;
+        case 'Recently Updated':
+            arr.sort((a, b) => new Date(b.updatedDate) - new Date(a.updatedDate)); // Sort by most recent update
+            break;
+        default:
+            break;
     }
-    setIssues(arr);
+    setIssues(arr); // Update issues with sorted array
+    // Update currentIssues based on the new sorted order
     // setCurrentIssues(arr.slice((currentPage - 1) * issuesPerPage, currentPage * issuesPerPage));
-  };
+};
 
-  function handleAskQuestion(){
-    if(!finalUser||!localStorage.getItem('finalUser')){
-      setIsPopup(true)
-      setMsg("Please Login to Ask Question")
-      setTimeout(()=>{
-        setIsPopup(false)
-        setMsg('')
-      },3000)
-      return
-      }
-    router.push("/createforum")
-  }
-  async function handleLike(e,question){
-    e.preventDefault()
-    if(!finalUser){
-      return
+// Function to handle asking a question
+function handleAskQuestion() {
+    if (!finalUser || !localStorage.getItem('finalUser')) {
+        setIsPopup(true);
+        setMsg("Please Login to Ask Question");
+        setTimeout(() => {
+            setIsPopup(false);
+            setMsg('');
+        }, 3000);
+        return;
     }
-    let data=await fetch("/api/questionlikes",{
-      method:"POST",
-      body:JSON.stringify({
-        id:question._id,
-        user_id:finalUser._id
-      })
+    router.push("/createforum"); // Redirect to the forum creation page
+}
 
-    })
+// Function to handle liking a question
+async function handleLike(e, question) {
+    e.preventDefault(); // Prevent default link behavior
+    if (!finalUser) return; // If no user is logged in, do nothing
 
-    let arr=issues
-  arr.map((data)=>{
-    if(data._id==question._id){
-      if(data.likes.includes(finalUser._id)){
-        data.likes=data.likes.filter((d)=>d!==finalUser._id)
-      }else{
-        data.likes.push(finalUser._id)
-      }
+    // Send like data to the server
+    let data = await fetch("/api/questionlikes", {
+        method: "POST",
+        body: JSON.stringify({
+            id: question._id, // Question ID
+            user_id: finalUser._id // Logged-in user ID
+        }),
+    });
+
+    let arr = issues;
+    arr.map((data) => {
+        if (data._id === question._id) {
+            // Toggle like status
+            if (data.likes.includes(finalUser._id)) {
+                data.likes = data.likes.filter((d) => d !== finalUser._id);
+            } else {
+                data.likes.push(finalUser._id);
+            }
+        }
+        return data;
+    });
+    setIssues([...arr]); // Update issues with new like status
+    setOriginalIssues([...arr]); // Also update original issues list
+}
+
+// Effect to filter issues based on selected tags
+useEffect(() => {
+    let arr = [];
+    if (selectedTags.length === 0) {
+        setIssues([...originalIssues]); // Reset issues if no tags are selected
+        return;
     }
-    setIssues([...arr])
-    setOriginalIssues([...arr])
-  })
-    
-
-  }
-useEffect(()=>{
-  let arr=[]
-  if(selectedTags.length==0){
-    setIssues([...originalIssues])
-    return
-  }
-  console.log(selectedTags)
-  originalIssues.map((data)=>{
-    let ans=false
-    data.tags.forEach((name)=>{
-      if(selectedTags.includes(name)){
-        ans=true
-      }
-    })
-    if(ans){
-      arr.push(data)
-    }
-  })
-  console.log(arr)
-  setIssues([...arr])
-},[selectedTags])
-
+    // Filter issues based on selected tags
+    originalIssues.forEach((data) => {
+        let ans = false;
+        data.tags.forEach((name) => {
+            if (selectedTags.includes(name)) {
+                ans = true;
+            }
+        });
+        if (ans) {
+            arr.push(data);
+        }
+    });
+    setIssues([...arr]); // Update issues with filtered data
+}, [selectedTags]); // Re-run effect when selectedTags changes
 
 
   return (

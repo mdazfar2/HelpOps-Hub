@@ -4,243 +4,249 @@ import { Context } from "@context/store";
 import Link from 'next/link';
 
 function NotificationTab() {
-  const { finalUser, theme, setisReadNotif,setIsNotification } = useContext(Context);
-  const [notifications, setNotifications] = useState({
-    followers: [],
-    blogs: [],
-    comments: [],
+ // Destructure necessary functions and values from context
+ const { finalUser, theme, setisReadNotif, setIsNotification } = useContext(Context);
 
-  });
+ // State to hold notifications categorized by type
+ const [notifications, setNotifications] = useState({
+   followers: [],
+   blogs: [],
+   comments: [],
+ });
 
-  useEffect(() => {
-    if (!finalUser || !finalUser.email) return;
-setIsNotification(false)
-    const updateNotifications = async () => {
-      try {
-        // Fetch user data
-        const response = await fetch("/api/getuserbyemail", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: finalUser.email }),
-        });
+ useEffect(() => {
+   // If user data is not available, do not proceed
+   if (!finalUser || !finalUser.email) return;
 
-        if (response.ok) {
-          const userData = await response.json();
-          const followers = userData.msg.followers;
+   setIsNotification(false);
 
-          // Fetch existing notifications
-          const checkResponse = await fetch(
-            `/api/notifications?userEmail=${finalUser.email}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+   // Function to update notifications
+   const updateNotifications = async () => {
+     try {
+       // Fetch user data based on email
+       const response = await fetch("/api/getuserbyemail", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify({ email: finalUser.email }),
+       });
 
-          let existingNotifications = { followerList: {}, blogList: {} , blogCommentList:{}};
+       if (response.ok) {
+         const userData = await response.json();
+         const followers = userData.msg.followers;
 
-          if (checkResponse.ok) {
-            existingNotifications = await checkResponse.json();
-          } else if (checkResponse.status === 404) {
-          } else {
-            console.error(
-              "Error fetching existing notifications:",
-              checkResponse.statusText
-            );
-            return;
-          }
+         // Fetch existing notifications for the user
+         const checkResponse = await fetch(
+           `/api/notifications?userEmail=${finalUser.email}`,
+           {
+             method: "GET",
+             headers: {
+               "Content-Type": "application/json",
+             },
+           }
+         );
 
-          const { followerList = {}, blogList = {},blogCommentList={} } = existingNotifications;
+         let existingNotifications = { followerList: {}, blogList: {}, blogCommentList: {} };
 
-          // Handle follower notifications
-          const updatedFollowers = await Promise.all(
-            Object.entries(followerList).map(async ([followerId, details]) => {
-              const userResponse = await fetch("/api/getuser", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ id: followerId }),
-              });
+         if (checkResponse.ok) {
+           existingNotifications = await checkResponse.json();
+         } else if (checkResponse.status === 404) {
+           // Handle case where notifications are not found
+         } else {
+           console.error("Error fetching existing notifications:", checkResponse.statusText);
+           return;
+         }
 
-              if (userResponse.ok) {
-                const userData = await userResponse.json();
-                const followerName = userData.msg.name;
-                return {
-                  followerId,
-                  followerName,
-                  dateTime: details.dateTime,
-                  isRead: details.isRead,
-                };
-              }
-              return {
-                followerId,
-                followerName: "Unknown",
-                dateTime: details.dateTime,
-                isRead: details.isRead,
-              };
-            })
-          );
+         const { followerList = {}, blogList = {}, blogCommentList = {} } = existingNotifications;
 
-          // Handle blog notifications
-          const blogResponse = await fetch("/api/blog", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+         // Handle follower notifications
+         const updatedFollowers = await Promise.all(
+           Object.entries(followerList).map(async ([followerId, details]) => {
+             const userResponse = await fetch("/api/getuser", {
+               method: "POST",
+               headers: {
+                 "Content-Type": "application/json",
+               },
+               body: JSON.stringify({ id: followerId }),
+             });
 
-          let latestBlogId = null;
-          let blogDataMap = {};
+             if (userResponse.ok) {
+               const userData = await userResponse.json();
+               const followerName = userData.msg.name;
+               return {
+                 followerId,
+                 followerName,
+                 dateTime: details.dateTime,
+                 isRead: details.isRead,
+               };
+             }
+             return {
+               followerId,
+               followerName: "Unknown",
+               dateTime: details.dateTime,
+               isRead: details.isRead,
+             };
+           })
+         );
 
-          if (blogResponse.ok) {
-            const blogs = await blogResponse.json();
-            blogDataMap = blogs.data.reduce((map, blog) => {
-              map[blog._id] = blog;
-              return map;
-            }, {});
+         // Handle blog notifications
+         const blogResponse = await fetch("/api/blog", {
+           method: "GET",
+           headers: {
+             "Content-Type": "application/json",
+           },
+         });
 
-            blogs.data.map((res)=>{
-              res.comments.map(async (comment)=>{
-                if(!Object.keys(blogCommentList).includes(comment._id)){
-                    const response3 = await fetch("/api/notifications", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        userEmail: finalUser.email,
-                        commentId: comment._id,
-                        blogId:res._id,
-                        blogName:res.title
-                        }),
-                    });
-                }
-              })
-            })
-            if (blogs.data.length > 0) {
-              latestBlogId = blogs.data[blogs.data.length - 1]._id;
-              const isNewBlog = !Object.keys(blogList).includes(latestBlogId);
+         let latestBlogId = null;
+         let blogDataMap = {};
 
-              if (isNewBlog) {
-                const response2 = await fetch("/api/notifications", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    userEmail: finalUser.email,
-                    blogId: latestBlogId
-                                    }),
-                });
+         if (blogResponse.ok) {
+           const blogs = await blogResponse.json();
+           blogDataMap = blogs.data.reduce((map, blog) => {
+             map[blog._id] = blog;
+             return map;
+           }, {});
 
-              }
-            }
-          }
-         
-          
-          setNotifications({
-            followers: updatedFollowers,
-            blogs: Object.entries(blogList).map(([blogId, details]) => ({
-              blogId,
-              blogName: blogDataMap[blogId]?.title || "Unknown Blog",
-              dateTime: details.dateTime,
-              isRead: details.isRead,
-              
-            })),
-            comments: Object.entries(blogCommentList).map(([commentId, details]) => ({
+           // Check for new comments and blogs
+           blogs.data.forEach(async (res) => {
+             res.comments.forEach(async (comment) => {
+               if (!Object.keys(blogCommentList).includes(comment._id)) {
+                 // Add notification for new comment
+                 await fetch("/api/notifications", {
+                   method: "POST",
+                   headers: {
+                     "Content-Type": "application/json",
+                   },
+                   body: JSON.stringify({
+                     userEmail: finalUser.email,
+                     commentId: comment._id,
+                     blogId: res._id,
+                     blogName: res.title
+                   }),
+                 });
+               }
+             });
+           });
+
+           if (blogs.data.length > 0) {
+             latestBlogId = blogs.data[blogs.data.length - 1]._id;
+             const isNewBlog = !Object.keys(blogList).includes(latestBlogId);
+
+             if (isNewBlog) {
+               // Add notification for new blog
+               await fetch("/api/notifications", {
+                 method: "POST",
+                 headers: {
+                   "Content-Type": "application/json",
+                 },
+                 body: JSON.stringify({
+                   userEmail: finalUser.email,
+                   blogId: latestBlogId,
+                 }),
+               });
+             }
+           }
+         }
+
+         // Update state with notifications
+         setNotifications({
+           followers: updatedFollowers,
+           blogs: Object.entries(blogList).map(([blogId, details]) => ({
+             blogId,
+             blogName: blogDataMap[blogId]?.title || "Unknown Blog",
+             dateTime: details.dateTime,
+             isRead: details.isRead,
+           })),
+           comments: Object.entries(blogCommentList).map(([commentId, details]) => ({
              _id: commentId,
-              dateTime: details.dateTime,
-              isRead: details.isRead,
-              id:details.blogId,
-              blogName:details.blogName
-              
-            })),          });
+             dateTime: details.dateTime,
+             isRead: details.isRead,
+             id: details.blogId,
+             blogName: details.blogName,
+           })),
+         });
 
-          // Handle new follower notifications
-          for (const followerId in followers) {
-            if (followers.hasOwnProperty(followerId)) {
-              const isDuplicate =
-                Object.keys(followerList).includes(followerId);
+         // Handle new follower notifications
+         for (const followerId in followers) {
+           if (followers.hasOwnProperty(followerId)) {
+             const isDuplicate = Object.keys(followerList).includes(followerId);
 
-              if (!isDuplicate) {
-                const response2 = await fetch("/api/notifications", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    userEmail: finalUser.email,
-                    followerId,
-                  }),
-                });
+             if (!isDuplicate) {
+               // Add notification for new follower
+               await fetch("/api/notifications", {
+                 method: "POST",
+                 headers: {
+                   "Content-Type": "application/json",
+                 },
+                 body: JSON.stringify({
+                   userEmail: finalUser.email,
+                   followerId,
+                 }),
+               });
+             }
+           }
+         }
+       } else {
+         console.error("Error fetching user data:", response.statusText);
+       }
+     } catch (error) {
+       console.error("Error updating notifications:", error);
+     }
+   };
 
-              }
-            }
-          }
-        } else {
-          console.error("Error fetching user data:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error updating notifications:", error);
-      }
-    };
+   // Set interval to update notifications every second
+   const interval = setInterval(updateNotifications, 1000);
 
-    const interval = setInterval(updateNotifications, 1000);
+   // Clean up interval on component unmount
+   return () => clearInterval(interval);
+ }, [finalUser]);
 
-    return () => clearInterval(interval);
-  }, [finalUser]);
+ // Function to handle click on a notification and mark it as read
+ const handleNotificationClick = async (type, id) => {
+   try {
+     const response = await fetch("/api/updateNotificationStatus", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({ userEmail: finalUser.email, type, id }),
+     });
 
-  const handleNotificationClick = async (type, id) => {
-    try {
-      const response = await fetch("/api/updateNotificationStatus", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userEmail: finalUser.email, type, id }),
-      });
-  
-      if (response.ok) {
-        // Update the state to mark the notification as read
-        setNotifications((prevNotifications) => {
-          if (type === "follower") {
-            return {
-              ...prevNotifications,
-              followers: prevNotifications.followers.map((notif) =>
-                notif.followerId === id ? { ...notif, isRead: true } : notif
-              ),
-            };
-          } else if (type === "blog") {
-            return {
-              ...prevNotifications,
-              blogs: prevNotifications.blogs.map((notif) =>
-                notif.blogId === id ? { ...notif, isRead: true } : notif
-              ),
-            };
-          }else if(type=="comments"){
-            return {
-              ...prevNotifications,
-              comments: prevNotifications.comments.map((notif) =>
-                notif._id === id ? { ...notif, isRead: true } : notif
-              ),
-            };
-          }
-          return prevNotifications;
-        });
-      } else {
-        console.error("Failed to update notification status");
-      }
-    } catch (error) {
-      console.error("Error marking notification as read:", error);
-    }
-  };
-  
-
+     if (response.ok) {
+       // Update the state to mark the notification as read
+       setNotifications((prevNotifications) => {
+         if (type === "follower") {
+           return {
+             ...prevNotifications,
+             followers: prevNotifications.followers.map((notif) =>
+               notif.followerId === id ? { ...notif, isRead: true } : notif
+             ),
+           };
+         } else if (type === "blog") {
+           return {
+             ...prevNotifications,
+             blogs: prevNotifications.blogs.map((notif) =>
+               notif.blogId === id ? { ...notif, isRead: true } : notif
+             ),
+           };
+         } else if (type === "comments") {
+           return {
+             ...prevNotifications,
+             comments: prevNotifications.comments.map((notif) =>
+               notif._id === id ? { ...notif, isRead: true } : notif
+             ),
+           };
+         }
+         return prevNotifications;
+       });
+     } else {
+       console.error("Failed to update notification status");
+     }
+   } catch (error) {
+     console.error("Error marking notification as read:", error);
+   }
+ };
   return (
     <div className="h-screen overflow-scroll p-4">
       <div className={`${theme ? "bg-gray-100 text-black" : "bg-[#111111] text-white"} p-4 rounded-xl overflow-scroll flex flex-col gap-4 `}>

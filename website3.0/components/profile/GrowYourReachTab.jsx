@@ -3,53 +3,74 @@ import { Context } from "@context/store";
 import { useRouter } from "next/navigation";
 
 function GrowYourReachTab() {
-  const { finalUser, theme } = useContext(Context);
-  const [nonFollowers, setNonFollowers] = useState([]);
-  const router = useRouter();
+ // Destructure necessary values from context
+const { finalUser, theme } = useContext(Context);
 
-  useEffect(() => {
-    const fetchAllUsers = async () => {
-      try {
-        const response = await fetch("/api/alluser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+// State to store users who are not followed by the current user
+const [nonFollowers, setNonFollowers] = useState([]);
 
-        if (response.ok) {
-          const data = await response.json();
-          const allUsers = data.msg;
+// Next.js router for navigation
+const router = useRouter();
 
+// Effect hook to fetch all users when `finalUser` changes
+useEffect(() => {
+  // Function to fetch all users from the server
+  const fetchAllUsers = async () => {
+    try {
+      // Fetch all users from the API
+      const response = await fetch("/api/alluser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-          if (finalUser && finalUser.following) {
-            const followingIds = Object.keys(finalUser.following);
-            let nonFollowersList = allUsers.filter(
-              user => !followingIds.includes(user._id) && user._id !== finalUser._id
-            );
-            let arr=[finalUser.name]
-            nonFollowersList=nonFollowersList.filter((dataa)=>{
-              if(!arr.includes(dataa.name)){
-                arr.push(dataa.name)
-                return dataa
-              }
-            })
-            setNonFollowers(nonFollowersList);
-          }
-        } else {
-          console.error("Error fetching all users:", response.statusText);
+      if (response.ok) {
+        // Parse the response data
+        const data = await response.json();
+        const allUsers = data.msg;
+
+        // Check if `finalUser` and its following list are available
+        if (finalUser && finalUser.following) {
+          // Extract the IDs of users that the current user is following
+          const followingIds = Object.keys(finalUser.following);
+
+          // Filter users to get those who are not followed by the current user
+          let nonFollowersList = allUsers.filter(
+            user => !followingIds.includes(user._id) && user._id !== finalUser._id
+          );
+
+          // Array to track unique user names
+          let arr = [finalUser.name];
+          
+          // Further filter to ensure unique user names
+          nonFollowersList = nonFollowersList.filter((dataa) => {
+            if (!arr.includes(dataa.name)) {
+              arr.push(dataa.name);
+              return dataa;
+            }
+          });
+
+          // Update the state with the filtered list of non-followers
+          setNonFollowers(nonFollowersList);
         }
-      } catch (error) {
-        console.error("Error fetching all users:", error);
+      } else {
+        console.error("Error fetching all users:", response.statusText);
       }
-    };
-
-    fetchAllUsers();
-  }, [finalUser]);
-
-  const handleFollowClick = (userId) => {
-    router.push(`/profile?id=${userId}`);
+    } catch (error) {
+      console.error("Error fetching all users:", error);
+    }
   };
+
+  // Call the function to fetch all users
+  fetchAllUsers();
+}, [finalUser]); // Dependency array: re-run effect if `finalUser` changes
+
+// Function to handle clicking a user's profile
+const handleFollowClick = (userId) => {
+  // Navigate to the user's profile page
+  router.push(`/profile?id=${userId}`);
+};
 
   return (
     <div className="min-h-screen p-10">
