@@ -3,44 +3,73 @@ import { Context } from '@context/store'
 import React, { useContext, useEffect, useState } from 'react'
 
 export default function DeletedBlogs() {
-    let {theme,finalUser}=useContext(Context)
-    let [blogs,setBlogs]=useState([])
-    useEffect(() => {
-      const fetchBlogs = async () => {
-        try {
-          let response;
-         
-             response = await fetch("/api/blog", {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json"              },
-            });
-        
-       
-         
-          if (response.ok) {
-            const data = await response.json();
-            setBlogs(data.data);
-          } else {
-            setError("Failed to fetch blogs.");
-          }
-        } catch (err) {
-          setError("An error occurred while fetching blogs.");
+   // Destructure context values for theme and finalUser
+let { theme, finalUser } = useContext(Context);
+
+// State to manage the list of blogs
+let [blogs, setBlogs] = useState([]);
+
+// State to handle errors (initialize with an empty string)
+let [error, setError] = useState('');
+
+// Fetch blogs on component mount
+useEffect(() => {
+  // Async function to fetch blogs from the server
+  const fetchBlogs = async () => {
+    try {
+      // Send GET request to fetch blog data
+      let response = await fetch("/api/blog", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
         }
-      };
-     
-  
-      fetchBlogs();
-    }, []);
-    async function handleRecoverBlog(id){
-      let res=await fetch('/api/recoverblog',{
-        method:"PUT",
-        body:JSON.stringify({
-          id:id
-        })
-      })
-      window.location.reload()
+      });
+
+      // Check if the response is OK (status code in the range 200-299)
+      if (response.ok) {
+        // Parse the JSON data from the response
+        const data = await response.json();
+        // Set the blogs state with the fetched data
+        setBlogs(data.data);
+      } else {
+        // Set error message if response is not OK
+        setError("Failed to fetch blogs.");
+      }
+    } catch (err) {
+      // Set error message if an exception is thrown
+      setError("An error occurred while fetching blogs.");
     }
+  };
+
+  // Call the fetchBlogs function to fetch data
+  fetchBlogs();
+}, []); // Empty dependency array means this effect runs only once when the component mounts
+
+// Function to handle blog recovery by ID
+async function handleRecoverBlog(id) {
+  try {
+    // Send PUT request to recover the blog with the specified ID
+    let res = await fetch('/api/recoverblog', {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id: id })
+    });
+
+    // Check if the response is OK (status code in the range 200-299)
+    if (res.ok) {
+      // Reload the page to reflect the changes
+      window.location.reload();
+    } else {
+      // Handle error if response is not OK
+      setError("Failed to recover the blog.");
+    }
+  } catch (err) {
+    // Handle error if an exception is thrown
+    setError("An error occurred while recovering the blog.");
+  }
+}
   return (
     <div
       className={`${

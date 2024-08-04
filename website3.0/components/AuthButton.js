@@ -10,210 +10,276 @@ import { Context } from '@context/store';
 import { useSession } from 'next-auth/react';
 
 const AuthButton = () => {
-  const [showAuth, setShowAuth] = useState(false);
-  const [isLogin1, setIsLogin1] = useState(true);
-  const [profile, showProfile] = useState(false);
-  let [usernameValue, setusernameValue] = useState('');
-  const [oneTime, setOneTime] = useState('');
-  let [usernameModal, setUsernameModal] = useState(false);
-  const [currentModal, setCurrentModal] = useState('login');
-  let [showProfile1, setShowProfile1] = useState(false);
-  let { setIsAdminShow, finalUser,isNotification, userName, setFinalUser, setIsLogin, setUserGithub, setUserName, setUserEmail, userImage, setUserImage, isLogin, theme, setIsPopup, setMsg } = useContext(Context);
+ // State to control the visibility of the authentication modal
+const [showAuth, setShowAuth] = useState(false);
 
-  let router = useRouter();
-  useEffect(() => {
-    if (userName) {
-      showProfile(true);
-    }
-  }, [profile]);
-  let session = useSession();
-  if (session.status == 'unauthenticated' && !isLogin) {
-    setUserEmail('');
-    setUserImage('');
-    setUserName('');
+// State to toggle between login and signup views
+const [isLogin1, setIsLogin1] = useState(true);
+
+// State to manage the profile visibility
+const [profile, showProfile] = useState(false);
+
+// State to store the username value for input
+let [usernameValue, setusernameValue] = useState('');
+
+// State to manage one-time operations
+const [oneTime, setOneTime] = useState('');
+
+// State to control the visibility of the username modal
+let [usernameModal, setUsernameModal] = useState(false);
+
+// State to manage the current modal view ('login', 'signup', etc.)
+const [currentModal, setCurrentModal] = useState('login');
+
+// State to manage another profile visibility
+let [showProfile1, setShowProfile1] = useState(false);
+
+// Context variables for managing user and admin states
+let {
+  setIsAdminShow,
+  finalUser,
+  isNotification,
+  userName,
+  setFinalUser,
+  setIsLogin,
+  setUserGithub,
+  setUserName,
+  setUserEmail,
+  userImage,
+  setUserImage,
+  isLogin,
+  theme,
+  setIsPopup,
+  setMsg
+} = useContext(Context);
+
+// Router instance for navigation
+let router = useRouter();
+
+// Effect to show profile if username is available
+useEffect(() => {
+  if (userName) {
+    showProfile(true);
   }
+}, [profile]);
 
-  async function fetchData1() {
-    setIsLogin(true);
-    let session = await JSON.parse(localStorage.getItem('finalUser'));
-    let a = await fetch("/api/createaccount", {
-      method: "POST",
-      body: JSON.stringify({
-        email: session.email
-      })
-    });
+// Handle session and authentication status
+let session = useSession();
+if (session.status === 'unauthenticated' && !isLogin) {
+  setUserEmail('');
+  setUserImage('');
+  setUserName('');
+}
 
-    let e = await a.json();
-    setFinalUser(e.msg);
-    let dt = await JSON.stringify(e.msg);
-    localStorage.setItem('finalUser', dt);
-    setIsLogin(true);
+// Function to fetch user data from local storage and server if logged in
+async function fetchData1() {
+  setIsLogin(true);
+  let session = await JSON.parse(localStorage.getItem('finalUser'));
+
+  // Fetch or create account on the server
+  let response = await fetch("/api/createaccount", {
+    method: "POST",
+    body: JSON.stringify({ email: session.email })
+  });
+
+  let data = await response.json();
+  setFinalUser(data.msg);
+
+  // Update local storage with fetched user data
+  localStorage.setItem('finalUser', JSON.stringify(data.msg));
+  setIsLogin(true);
+}
+
+// Effect to fetch user data if logged in (based on local storage)
+useEffect(() => {
+  if (localStorage.getItem('loggedin')) {
+    fetchData1();
   }
+}, []);
 
-  useEffect(() => {
-    if (localStorage.getItem('loggedin')) {
-      fetchData1();
-    }
-  }, []);
+// Function to fetch user data from server and handle account setup
+async function fetchData() {
+  let response = await fetch("/api/createaccount", {
+    method: "POST",
+    body: JSON.stringify({
+      email: session.data.user.email,
+      name: session.data.user.name,
+      image: session.data.user.image,
+      banner: 'https://res.cloudinary.com/dwgd3as6k/image/upload/v1721762646/f3wmliwhhqvwlh5yisnw.png'
+    })
+  });
 
-  async function fetchData() {
-    let a = await fetch("/api/createaccount", {
-      method: "POST",
-      body: JSON.stringify({
-        email: session.data.user.email,
-        name: session.data.user.name,
-        image: session.data.user.image,
-        banner: 'https://res.cloudinary.com/dwgd3as6k/image/upload/v1721762646/f3wmliwhhqvwlh5yisnw.png'
-      })
-    });
-    a = await fetch("/api/createaccount", {
-      method: "POST",
-      body: JSON.stringify({
-        email: session.data.user.email,
-        name: session.data.user.name,
-        image: session.data.user.image,
-        banner: 'https://res.cloudinary.com/dwgd3as6k/image/upload/v1721762646/f3wmliwhhqvwlh5yisnw.png'
-      })
-    });
-    let e = await a.json();
-    if (!e.msg.username) {
-      localStorage.setItem("userId1", e.msg._id);
-      setUsernameModal(true);
-      return;
-    }
-    if (e.msg ? e.msg.email == process.env.NEXT_PUBLIC_ADMIN_URL : "") {
-      setIsAdminShow(true);
-    }
-    setFinalUser(e.msg);
-    let dt = await JSON.stringify(e.msg);
-    localStorage.setItem('finalUser', dt);
-    setIsLogin(true);
-  }
+  response = await fetch("/api/createaccount", {
+    method: "POST",
+    body: JSON.stringify({
+      email: session.data.user.email,
+      name: session.data.user.name,
+      image: session.data.user.image,
+      banner: 'https://res.cloudinary.com/dwgd3as6k/image/upload/v1721762646/f3wmliwhhqvwlh5yisnw.png'
+    })
+  });
 
-  useEffect(() => {
-    if (session.status == 'authenticated') {
-      if (!oneTime) {
-        setOneTime(true);
-        fetchData();
-        setIsLogin1(true);
-      }
-    }
-  }, [session.status, oneTime]);
+  let data = await response.json();
 
-  const toggleAuth = () => {
-    setShowAuth(!showAuth);
-    setCurrentModal('login');
-  };
-
-  const switchToSignup = () => {
-    setIsLogin1(false);
-    setCurrentModal('signup');
-  };
-  
-  const onBack = () => {
-    setIsLogin1(true);
-    setCurrentModal('login');
-  };
-
-  const switchToLogin = () => {
-    setIsLogin1(true);
-    setCurrentModal('login');
-  };
-
-  async function handleLogout() {
-    if (session.status == "authenticated") {
-      setUserEmail('');
-      setUserImage('');
-      setUserName('');
-      router.push('https://www.helpopshub.com/api/auth/signout?csrf=true');
-    }
-    setUserEmail('');
-    setUserImage('');
-    setUserName('');
-    window.location.reload();
-  }
-
-  const closeAuth = () => {
-    if (['login', 'signup'].includes(currentModal)) {
-      setShowAuth(false);
-      setIsLogin1(true);
-      setCurrentModal('login');
-    }
-  };
-
-  function handleProfileShow() {
-    setShowProfile1(true);
-  }
-
-  function closeProfile() {
-    setShowProfile1(false);
-  }
-
-  useEffect(() => {
-  }, [userName]);
-
-  const handleOTPStart = () => {
-    setCurrentModal('otp');
-  };
-
-  const handleProfileStart = () => {
-    setCurrentModal('profile');
-  };
-
-  async function getUser(name) {
-    let user = await fetch("/api/getuser", {
-      method: "POST",
-      body: JSON.stringify({
-        username: name
-      })
-    });
-    let e = await user.json();
-    if (!e.msg.username) {
-      localStorage.setItem("userId1", e.msg._id);
-      setUsernameModal(true);
-      return;
-    }
-    if (e.msg ? e.msg.email == process.env.NEXT_PUBLIC_ADMIN_URL : "") {
-      setIsAdminShow(true);
-    }
-    setFinalUser(e.msg);
-    let dt = await JSON.stringify(e.msg);
-    localStorage.setItem('finalUser', dt);
-    setIsLogin(true);
-    setUsernameModal(false);
-  }
-
-  const handleProfileComplete = () => {
-    setShowAuth(false);
-    setCurrentModal('login');
-  };
-
-  async function handleCheckUsername() {
-    let canCreate = await fetch('/api/checkusername', {
-      method: "POST",
-      body: JSON.stringify({
-        username: usernameValue
-      })
-    });
-    canCreate = await canCreate.json();
-    if (!canCreate.success) {
-      setIsPopup(true);
-      setMsg("This Username is Not Available");
-      return;
-    }
-    canCreate = await fetch('/api/checkusername', {
-      method: "PUT",
-      body: JSON.stringify({
-        username: usernameValue,
-        id: localStorage.getItem('userId1')
-      })
-    });
-    localStorage.removeItem('userId1');
-    getUser(usernameValue);
+  // Check if username is set, if not, show username modal
+  if (!data.msg.username) {
+    localStorage.setItem("userId1", data.msg._id);
+    setUsernameModal(true);
     return;
   }
-useEffect(()=>{
-}),[isNotification]
+
+  // Check if the user is an admin
+  if (data.msg.email === process.env.NEXT_PUBLIC_ADMIN_URL) {
+    setIsAdminShow(true);
+  }
+
+  setFinalUser(data.msg);
+  localStorage.setItem('finalUser', JSON.stringify(data.msg));
+  setIsLogin(true);
+}
+
+// Effect to fetch user data if authenticated
+useEffect(() => {
+  if (session.status === 'authenticated') {
+    if (!oneTime) {
+      setOneTime(true);
+      fetchData();
+      setIsLogin1(true);
+    }
+  }
+}, [session.status, oneTime]);
+
+// Toggle the visibility of the authentication modal
+const toggleAuth = () => {
+  setShowAuth(!showAuth);
+  setCurrentModal('login');
+};
+
+// Switch to the signup view
+const switchToSignup = () => {
+  setIsLogin1(false);
+  setCurrentModal('signup');
+};
+
+// Switch back to the login view
+const onBack = () => {
+  setIsLogin1(true);
+  setCurrentModal('login');
+};
+
+// Switch to the login view
+const switchToLogin = () => {
+  setIsLogin1(true);
+  setCurrentModal('login');
+};
+
+// Handle logout and redirection
+async function handleLogout() {
+  if (session.status === "authenticated") {
+    setUserEmail('');
+    setUserImage('');
+    setUserName('');
+    router.push('https://www.helpopshub.com/api/auth/signout?csrf=true');
+  }
+  setUserEmail('');
+  setUserImage('');
+  setUserName('');
+  window.location.reload();
+}
+
+// Close authentication modal
+const closeAuth = () => {
+  if (['login', 'signup'].includes(currentModal)) {
+    setShowAuth(false);
+    setIsLogin1(true);
+    setCurrentModal('login');
+  }
+};
+
+// Show profile modal
+function handleProfileShow() {
+  setShowProfile1(true);
+}
+
+// Close profile modal
+function closeProfile() {
+  setShowProfile1(false);
+}
+
+// Handle OTP modal display
+const handleOTPStart = () => {
+  setCurrentModal('otp');
+};
+
+// Handle profile modal display
+const handleProfileStart = () => {
+  setCurrentModal('profile');
+};
+
+// Fetch user data based on username and update profile
+async function getUser(name) {
+  let user = await fetch("/api/getuser", {
+    method: "POST",
+    body: JSON.stringify({ username: name })
+  });
+
+  let data = await user.json();
+
+  // Check if username is set, if not, show username modal
+  if (!data.msg.username) {
+    localStorage.setItem("userId1", data.msg._id);
+    setUsernameModal(true);
+    return;
+  }
+
+  // Check if the user is an admin
+  if (data.msg.email === process.env.NEXT_PUBLIC_ADMIN_URL) {
+    setIsAdminShow(true);
+  }
+
+  setFinalUser(data.msg);
+  localStorage.setItem('finalUser', JSON.stringify(data.msg));
+  setIsLogin(true);
+  setUsernameModal(false);
+}
+
+// Handle profile completion and modal close
+const handleProfileComplete = () => {
+  setShowAuth(false);
+  setCurrentModal('login');
+};
+
+// Check if a username is available and handle account creation
+async function handleCheckUsername() {
+  let response = await fetch('/api/checkusername', {
+    method: "POST",
+    body: JSON.stringify({ username: usernameValue })
+  });
+
+  let canCreate = await response.json();
+  if (!canCreate.success) {
+    setIsPopup(true);
+    setMsg("This Username is Not Available");
+    return;
+  }
+
+  // Update username if available
+  response = await fetch('/api/checkusername', {
+    method: "PUT",
+    body: JSON.stringify({
+      username: usernameValue,
+      id: localStorage.getItem('userId1')
+    })
+  });
+
+  localStorage.removeItem('userId1');
+  getUser(usernameValue);
+  return;
+}
+
+// Effect to monitor notifications (currently does nothing)
+useEffect(() => {
+}, [isNotification]);
   return (
     <>
       {!isLogin && userName.length == 0 && <button className={` ${theme ? "bg-gray-100/80 text-black border-none" : "text-white bg-black border-white border"} auth-btn`} onClick={toggleAuth}>Login/Signup</button>}

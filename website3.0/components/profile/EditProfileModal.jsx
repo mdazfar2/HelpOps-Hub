@@ -14,122 +14,154 @@ export default function EditProfileModal({
   banner,
   finalUserData
 }) {
-  const [formData, setFormData] = useState({ ...finalUserData, password: "" });
-useEffect(()=>{
-  console.log(formData,finalUserData)
-},[formData])
-  let {
-    userName,
-    finalUser,
-    setFinalUser,
-    setUserName,
-    setUserGithub,
-    userEmail,
-    setUserCaption,
-    setUserDesignation,
-    setUserEmail,
-    userImage,
-    setUserImage,
-    isLogin,
-    theme,
-  } = useContext(Context);
-  let [url, setUrl] = useState(img);
-  let [bannerUrl, setBannerUrl] = useState(banner);
-  const profileImageInputRef = useRef(null);
-  const bannerImageInputRef = useRef(null);
+ // Initialize state for form data, including user details and an empty password field
+const [formData, setFormData] = useState({ ...finalUserData, password: "" });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+// Effect to log formData and finalUserData whenever formData changes
+useEffect(() => {
+  console.log(formData, finalUserData);
+}, [formData]);
+
+// Destructure context values and functions for managing user details and authentication
+let {
+  userName,
+  finalUser,
+  setFinalUser,
+  setUserName,
+  setUserGithub,
+  userEmail,
+  setUserCaption,
+  setUserDesignation,
+  setUserEmail,
+  userImage,
+  setUserImage,
+  isLogin,
+  theme,
+} = useContext(Context);
+
+// Initialize state for profile and banner image URLs
+let [url, setUrl] = useState(img);
+let [bannerUrl, setBannerUrl] = useState(banner);
+
+// Refs for file inputs to handle image uploads
+const profileImageInputRef = useRef(null);
+const bannerImageInputRef = useRef(null);
+
+// Handle changes to form inputs
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+};
+
+// Save changes to the user's profile
+const handleSaveChanges = async () => {
+  // Send updated profile data to the server
+  await fetch("/api/editaccount", {
+    method: "POST",
+    body: JSON.stringify({
+      formData: formData,
+      image: url,
+      banner: bannerUrl,
+      email: finalUser.email,
+    }),
+  });
+
+  // Fetch the updated user data
+  let a = await fetch("/api/createaccount", {
+    method: "POST",
+    body: JSON.stringify({
+      email: finalUser.email,
+    }),
+  });
+
+  let e = await a.json();
   
-  const handleSaveChanges = async () => {
-    await fetch("/api/editaccount", {
-      method: "POST",
-      body: JSON.stringify({
-        formData: formData,
-        image: url,
-        banner: bannerUrl,
-        email: finalUser.email,
-      }),
-    });
-    let a = await fetch("/api/createaccount", {
-      method: "POST",
-      body: JSON.stringify({
-        email: finalUser.email,
-      }),
-    });
+  // Update the context and localStorage with the new user data
+  setFinalUser(e.msg);
+  let dt = await JSON.stringify(e.msg);
+  localStorage.setItem("finalUser", dt);
+  setUrl(e.msg.image1);
+  setBannerUrl(e.msg.banner);
 
-    let e = await a.json();
-    setFinalUser(e.msg);
-    let dt = await JSON.stringify(e.msg);
-    localStorage.setItem("finalUser", dt);
-    setUrl(e.msg.image1);
-    setBannerUrl(e.msg.banner);
+  // Close the profile modal after saving changes
+  onRequestClose();
+};
+
+// Handle changes to profile image
+async function handlefilechange(event) {
+  let imageFile = event.target.files[0];
+  if (imageFile) {
+    const formData1 = new FormData();
+    formData1.append("file", imageFile);
+    formData1.append("upload_preset", "e_image");
+
+    // Upload the image to Cloudinary
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`,
+      {
+        method: "POST",
+        body: formData1,
+      }
+    );
+
+    const data = await response.json();
+
+    // Update the formData and image URL state with the uploaded image's URL
+    setFormData({ ...formData, ["userImage"]: data.secure_url });
+    setFormData({ ...formData, ["image"]: data.secure_url });
+    setUrl(data.secure_url);
+  }
+}
+
+// Handle changes to banner image
+async function handleBannerChange(event) {
+  let imageFile = event.target.files[0];
+  if (imageFile) {
+    const formData1 = new FormData();
+    formData1.append("file", imageFile);
+    formData1.append("upload_preset", "e_image");
+
+    // Upload the image to Cloudinary
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`,
+      {
+        method: "POST",
+        body: formData1,
+      }
+    );
+
+    const data = await response.json();
+
+    // Update the banner URL state with the uploaded image's URL
+    setBannerUrl(data.secure_url);
+  }
+}
+
+// Close the modal when clicking outside of it
+const handleClickOutside = (e) => {
+  if (e.target.className.includes("modal-overlay")) {
     onRequestClose();
+  }
+};
+
+// Effect to manage the click event listener for closing the modal
+useEffect(() => {
+  if (isOpen) {
+    document.addEventListener("click", handleClickOutside);
+  } else {
+    document.removeEventListener("click", handleClickOutside);
+  }
+
+  // Clean up event listener on component unmount
+  return () => {
+    document.removeEventListener("click", handleClickOutside);
   };
+}, [isOpen]);
 
-  async function handlefilechange(event) {
-    let imageFile = event.target.files[0];
-    if (imageFile) {
-      const formData1 = new FormData();
-      formData1.append("file", imageFile);
-      formData1.append("upload_preset", "e_image");
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`,
-        {
-          method: "POST",
-          body: formData1,
-        }
-      );
-
-      const data = await response.json();
-      setFormData({ ...formData, ["userImage"]: data.secure_url });
-      setFormData({ ...formData, ["image"]: data.secure_url });
-      setUrl(data.secure_url);
-    }
-  }
-
-  async function handleBannerChange(event) {
-    let imageFile = event.target.files[0];
-    if (imageFile) {
-      const formData1 = new FormData();
-      formData1.append("file", imageFile);
-      formData1.append("upload_preset", "e_image");
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`,
-        {
-          method: "POST",
-          body: formData1,
-        }
-      );
-
-      const data = await response.json();
-      setBannerUrl(data.secure_url);
-    }
-  }
-
-  const handleClickOutside = (e) => {
-    if (e.target.className.includes("modal-overlay")) {
-      onRequestClose();
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.addEventListener("click", handleClickOutside);
-    } else {
-      document.removeEventListener("click", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [isOpen]);
-
-  if (!isOpen) {
-    return null;
-  }
+// Render nothing if the modal is not open
+if (!isOpen) {
+  return null;
+}
 
   return (
     <div className="fixed inset-0 z-500 flex items-center justify-center bg-black bg-opacity-75 modal-overlay">

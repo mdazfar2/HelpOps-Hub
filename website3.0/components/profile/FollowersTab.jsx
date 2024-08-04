@@ -2,55 +2,78 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "@context/store";
 
 export default function FollowersTab({ setFollowTab, FollowTab, id }) {
-  const { finalUser, setFinalUser, theme } = useContext(Context);
-  const [firstShow, setFirstShow] = useState(true);
-  const [userDetails, setUserDetails] = useState({});
+ // Destructure necessary values from context
+const { finalUser, setFinalUser, theme } = useContext(Context);
 
-  useEffect(() => {
-    fetchData();
-  }, [id]);
+// State to manage the visibility of certain UI elements
+const [firstShow, setFirstShow] = useState(true);
 
-  async function fetchData() {
+// State to store user details fetched from the server
+const [userDetails, setUserDetails] = useState({});
+
+// Fetch user data when the component mounts or `id` changes
+useEffect(() => {
+  fetchData();
+}, [id]);
+
+// Fetch user details from the server based on `id`
+async function fetchData() {
+  try {
     const response = await fetch('/api/getuser', {
       method: "POST",
       body: JSON.stringify({
-        id: id || finalUser._id,
+        id: id || finalUser._id, // Use the provided `id` or fallback to `finalUser._id`
       }),
     });
     const data = await response.json();
     setUserDetails(data.msg);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
   }
+}
 
-  async function handleFollow(userId) {
+// Handle following a user
+async function handleFollow(userId) {
+  try {
     const updatedData = await fetch("/api/setfollow", {
       method: "POST",
       body: JSON.stringify({
         user_id: userId,
-        other_user_id: finalUser.email,
+        other_user_id: finalUser.email, // Use `finalUser.email` to identify the current user
       }),
     }).then(res => res.json());
 
+    // Update context and local storage with the new user data
     setFinalUser(updatedData.user1);
     localStorage.setItem('finalUser', JSON.stringify(updatedData.user1));
+  } catch (error) {
+    console.error("Error following user:", error);
   }
+}
 
-  async function handleUnFollow(userId) {
+// Handle unfollowing a user
+async function handleUnFollow(userId) {
+  try {
     const updatedData = await fetch("/api/unfollow", {
       method: "POST",
       body: JSON.stringify({
         user_id: userId,
-        other_user_id: finalUser.email,
+        other_user_id: finalUser.email, // Use `finalUser.email` to identify the current user
       }),
     }).then(res => res.json());
 
+    // Update context and local storage with the new user data
     setFinalUser(updatedData.user1);
     localStorage.setItem('finalUser', JSON.stringify(updatedData.user1));
+  } catch (error) {
+    console.error("Error unfollowing user:", error);
   }
+}
 
-  const handleClose = () => {
-    setFollowTab(!FollowTab);
-  };
-
+// Toggle the visibility of the follow tab
+const handleClose = () => {
+  setFollowTab(!FollowTab);
+};
   return (
     <div className="auth-overlay">
       <div className="auth-modal flex justify-center">

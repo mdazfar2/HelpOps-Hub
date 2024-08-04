@@ -501,42 +501,56 @@ setTimeout(()=>{setLoading(false)},4000)
   let [isShowFollow,setIsShowFollow]=useState(false)
   let [isShowHide,setIsShowHide]=useState(false)
 
-  function showFollow(){
-    if(isShowFollow){
-      let arr=tagsData.filter((Data)=>!hiddenTags.includes(Data.tagName))
-      setIsShowFollow(false)
-      setIsShowHide(false)
-      setTags([...arr])
-    }else{
-      let arr=tagsData.filter((data)=>followedTags.includes(data.tagName))
-      setTags([...arr])
-      setIsShowHide(false)
-      setIsShowFollow(true)
-    }
+  // Function to toggle between showing followed tags and all tags
+function showFollow() {
+  if (isShowFollow) {
+      // If currently showing followed tags, filter out hidden tags and set the tag list to all tags excluding hidden ones
+      let arr = tagsData.filter((data) => !hiddenTags.includes(data.tagName));
+      setIsShowFollow(false);  // Update state to indicate that followed tags are no longer being shown
+      setIsShowHide(false);    // Ensure that hidden tags view is also turned off
+      setTags([...arr]);       // Update the tags displayed
+  } else {
+      // If not currently showing followed tags, filter tags to only include followed ones
+      let arr = tagsData.filter((data) => followedTags.includes(data.tagName));
+      setTags([...arr]);       // Update the tags displayed to only show followed tags
+      setIsShowHide(false);    // Ensure that hidden tags view is turned off
+      setIsShowFollow(true);   // Update state to indicate that followed tags are now being shown
   }
-  function showHide(){
+}
 
-    if(isShowHide){
-      let arr=tagsData.filter((data)=>!hiddenTags.includes(data.tagName))
-      setTags([...arr])
-      setIsShowHide(false)
-      setIsShowFollow(false)
-    }else{
-      let arr=tagsData.filter((data)=>hiddenTags.includes(data.tagName))
-      setTags([...arr])
-      setIsShowHide(true)
-      setIsShowFollow(false)
-    }
+// Function to toggle between showing hidden tags and all tags
+function showHide() {
+  if (isShowHide) {
+      // If currently showing hidden tags, filter out hidden tags and set the tag list to all tags excluding hidden ones
+      let arr = tagsData.filter((data) => !hiddenTags.includes(data.tagName));
+      setTags([...arr]);       // Update the tags displayed to exclude hidden tags
+      setIsShowHide(false);    // Update state to indicate that hidden tags are no longer being shown
+      setIsShowFollow(false);  // Ensure that followed tags view is also turned off
+  } else {
+      // If not currently showing hidden tags, filter tags to only include hidden ones
+      let arr = tagsData.filter((data) => hiddenTags.includes(data.tagName));
+      setTags([...arr]);       // Update the tags displayed to only show hidden tags
+      setIsShowHide(true);     // Update state to indicate that hidden tags are now being shown
+      setIsShowFollow(false);  // Ensure that followed tags view is turned off
   }
-  async function handleRecoverBlog(id){
-    let res=await fetch('/api/recoverblog',{
-      method:"PUT",
-      body:JSON.stringify({
-        id:id
-      })
-    })
-    window.location.reload()
-  }
+}
+
+// Function to handle the recovery of a blog
+async function handleRecoverBlog(id) {
+  // Send a request to the server to recover a blog with the given ID
+  let res = await fetch('/api/recoverblog', {
+      method: "PUT",
+      body: JSON.stringify({
+          id: id
+      }),
+      headers: {
+          "Content-Type": "application/json",  // Ensure the request body is treated as JSON
+      }
+  });
+  
+  // Reload the page to reflect the changes after recovering the blog
+  window.location.reload();
+}
   return (
    <>
     {confetti && <Confetti/>}

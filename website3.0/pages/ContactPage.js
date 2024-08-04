@@ -53,69 +53,74 @@ function ContactPage({theme,setIsPopup,setIsMsg,setColor}) {
   }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   const handleStarClick = (value) => {
-    setSelectedRating(value);
-  };
+    setSelectedRating(value); // Updates the selected rating value when a star is clicked
+};
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+// Handles form submission
+const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevents the default form submission behavior
 
+    // Check if a rating has been selected
     if (selectedRating === 0) {
-      setShowError(true);
-      
-      setIsPopup(true)
-      setIsMsg("Please Give Any Rating")
-      return;
+        setShowError(true);  // Show an error if no rating is selected
+        setIsPopup(true);    // Show a popup with an error message
+        setIsMsg("Please Give Any Rating"); // Set the error message
+        return; // Exit the function if no rating is given
     }
 
+    // Collect form data
     const formData = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      comment: event.target.comment.value,
-      rating: selectedRating,
+        name: event.target.name.value,     // Retrieve name from form
+        email: event.target.email.value,   // Retrieve email from form
+        comment: event.target.comment.value, // Retrieve comment from form
+        rating: selectedRating,            // Include the selected rating
     };
 
-    setLoading(true);
-    setBlur(true);
-    setDisableSubmit(true); // Disable the submit button
+    // Set UI states for loading and disabling form
+    setLoading(true);      // Show loading indicator
+    setBlur(true);         // Apply blur effect to background
+    setDisableSubmit(true); // Disable the submit button to prevent multiple submissions
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+        // Send form data to the server
+        const response = await fetch('/api/contact', {
+            method: 'POST',                      // HTTP method
+            headers: {
+                'Content-Type': 'application/json', // Specify the content type
+            },
+            body: JSON.stringify(formData),  // Convert form data to JSON format
+        });
 
-      if (response.ok) {
-        setShowThankYouMessage(true);
-        setIsPopup(true)
-        setColor('green')
-        setIsMsg("Thank you! We will connect soon.")
-        setTimeout(() => {
-          setShowThankYouMessage(false);
-          document.getElementById("contact-form").reset();
-          setSelectedRating(0);
-          setError("");
-        }, 3000);
-      } else {
-        
-        setIsPopup(true)
-        setIsMsg("Failed to submit the form. Please try again.")
-      }
+        // Check if the response is successful
+        if (response.ok) {
+            setShowThankYouMessage(true); // Show thank you message
+            setIsPopup(true);            // Show popup
+            setColor('green');           // Set popup color to green
+            setIsMsg("Thank you! We will connect soon."); // Set success message
+            setTimeout(() => {
+                setShowThankYouMessage(false); // Hide thank you message after 3 seconds
+                document.getElementById("contact-form").reset(); // Reset the form
+                setSelectedRating(0);   // Reset the selected rating
+                setError("");            // Clear any previous error messages
+            }, 3000);
+        } else {
+            // If response is not successful, show an error message
+            setIsPopup(true);      // Show popup
+            setIsMsg("Failed to submit the form. Please try again."); // Set failure message
+        }
     } catch (error) {
-      
-      setIsPopup(true)
-      setIsMsg("An error occurred. Please try again.")
+        // Handle any errors that occur during form submission
+        setIsPopup(true);      // Show popup
+        setIsMsg("An error occurred. Please try again."); // Set error message
     }
 
     // Re-enable the submit button and stop loading after 5 seconds
     setTimeout(() => {
-      setDisableSubmit(false);
-      setLoading(false);
-      setBlur(false);
+        setDisableSubmit(false); // Re-enable the submit button
+        setLoading(false);       // Hide loading indicator
+        setBlur(false);          // Remove blur effect from background
     }, 5000);
-  };
+};
 
   return (
     <div className={`flex ${theme?"bg-[#eeeeee]":"bg-[#1e1d1d] "} flex-col-reverse items-center justify-center space-x-0 p-10 md:flex-row lg:space-x-40 max-lg:space-x-20 h-[100vh] pt-40 max-md:flex-col-reverse max-lg:h-full max-md:h-full max-md:pt-20 max-md:space-x-0 max-sm:p-[0rem]`}>
