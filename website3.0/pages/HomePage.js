@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import Lodaernewletter from "../components/Loadernewletter";
 import Spline from "@splinetool/react-spline";
 //Importing FontAwesome for Icons
+import Image from 'next/image';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
@@ -378,8 +380,14 @@ async   function func() {
           } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
         >
           <div className="flex p-4 gap-5 items-center">
-            <img src="i1.webp" className="w-14 rounded-full" alt="ask-questions" />
-            <div className="font-medium text-2xl">Ask Questions</div>
+          <Image
+        src="/i1.webp"        // Path to your image file
+        alt="ask-questions"  // Alt text for accessibility
+        layout="fill"        // Makes the image fill the container
+        objectFit="cover"    // Ensures the image covers the container while preserving its aspect ratio
+        className="rounded-full" // Apply rounded corners
+        draggable="false"    // Prevents image dragging
+      />            <div className="font-medium text-2xl">Ask Questions</div>
           </div>
           <div className="text-center">
             Easily post detailed queries about your DevOps challenges.
@@ -681,13 +689,29 @@ async   function func() {
             } rounded-3xl flex p-16 px-4 w-[90%] mx-auto shadow-lg max-[900px]:flex-col items-center align-center`}
           >
             <div className="w-2/5 flex justify-center items-center max-[900px]:w-full">
-              <img
+              {/* <img
                 src="HelpOps-H Fevicon.webp"
                 alt="Logo"
                 data-tilt
                 className="h-20"
                 draggable="false"
-              />
+              /> */}
+               <div
+      className="h-20"
+      style={{
+        height: '5rem', // Equivalent to Tailwind's h-20
+        display: 'inline-block', // Keeps the image inline if needed
+      }}
+      data-tilt // Preserves the data-tilt attribute
+    >
+      <Image
+        src="/HelpOps-H Fevicon.webp"  // Path to your image file in the `public` directory
+        alt="Logo"
+        layout="fill"  // Fills the container dimensions
+        objectFit="contain"  // Ensures the image fits within the container without distortion
+        draggable="false" // Disables dragging
+      />
+    </div>
               <h3 className="text-5xl font-normal max-[1100px]:text-4xl">
                 elpOps-Hub
               </h3>

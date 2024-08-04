@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "@/stylesheets/teams.css";
+import Image from 'next/image';
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -307,11 +308,28 @@ function TeamsPage({ theme }) {
                       className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0"
                       id="rank1"
                     >
-                      <img
+                      {/* <img
                         src="crown.webp"
                         className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none"
                         alt="crown"
-                      />
+                      /> */}
+                       <div
+      className="relative"
+      style={{
+        left: '80px',
+        transform: 'rotate(20deg) scale(1.5)',
+        width: '200px',
+        height: '200px',
+        overflow: 'hidden', // Ensure the image fits within the container without overflow
+      }}
+    >
+      <Image
+        src="/crown.webp"  // Path to your image file in the `public` directory
+        alt="crown"
+        layout="fill"  // Fills the container dimensions
+        objectFit="contain"  // Adjust the image to fit the container while maintaining aspect ratio
+      />
+    </div>
                     </div>
                     <p
                       id="name1"
@@ -354,10 +372,28 @@ function TeamsPage({ theme }) {
                       className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0"
                       id="rank"
                     >
-                      <img
+                      {/* <img
                         className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                         src="crown.webp"
-                      />
+                      /> */}
+                       <div
+      style={{
+        position: 'relative',
+        left: '50px',
+        top: '0',
+        width: '160px',
+        height: '160px',
+        transform: 'rotate(20deg)',
+        overflow: 'hidden', // Ensures no overflow outside the container
+      }}
+    >
+      <Image
+        src="/crown.webp"  // Path to your image file in the `public` directory
+        alt="crown"
+        layout="fill"  // Fills the container dimensions
+        objectFit="contain"  // Fit the image within the container while preserving aspect ratio
+      />
+    </div>
                     </div>
                     <p
                       id="name2"
@@ -400,10 +436,28 @@ function TeamsPage({ theme }) {
                       className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0"
                       id="rank"
                     >
-                      <img
+                      {/* <img
                         className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                         src="crown.webp"
-                      />
+                      /> */}
+                       <div
+      className="relative"
+      style={{
+        left: '50px',
+        top: '0',
+        width: '160px',
+        height: '160px',
+        transform: 'rotate(20deg)',
+        overflow: 'hidden', // Ensure the image fits within the container without overflow
+      }}
+    >
+      <Image
+        src="/crown.webp"  // Path to your image file in the `public` directory
+        alt="crown"
+        layout="fill"  // Fill the container dimensions
+        objectFit="contain"  // Adjust the image to fit the container without distortion
+      />
+    </div>
                     </div>
                     <p
                       id="name3"
@@ -451,10 +505,28 @@ function TeamsPage({ theme }) {
               className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0"
               id="rank"
             >
-              <img
+              {/* <img
                 className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                 src="crown.webp"
-              />
+              /> */}
+              <div
+      className="relative"
+      style={{
+        left: '50px',
+        top: '0',
+        width: '160px',
+        height: '160px',
+        transform: 'rotate(20deg)',
+        overflow: 'hidden', // Ensure no overflow outside the container
+      }}
+    >
+      <Image
+        src="/crown.webp"  // Path to your image file in the `public` directory
+        alt="crown"
+        layout="fill"  // Fill the container dimensions
+        objectFit="contain"  // Adjust the image to fit the container without distortion
+      />
+    </div>
             </div>
             <p
               id="name2"
@@ -494,11 +566,28 @@ function TeamsPage({ theme }) {
               className="crown absolute top-[-132px] left-1/2 transform -translate-x-1/2 z-0"
               id="rank1"
             >
-              <img
+              {/* <img
                 src="crown.webp"
                 alt="crown"
                 className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none"
-              />
+              /> */}
+              <div
+      className="relative"
+      style={{
+        left: '80px',
+        transform: 'rotate(20deg) scale(1.5)',
+        width: '200px',
+        height: '200px',
+        overflow: 'hidden', // Ensures the image fits within the container without overflow
+      }}
+    >
+      <Image
+        src="/crown.webp"  // Path to your image file in the `public` directory
+        alt="crown"
+        layout="fill"  // Fill the container dimensions
+        objectFit="contain"  // Adjust the image to fit the container without distortion
+      />
+    </div>
             </div>
             <p
               id="name1"
@@ -538,10 +627,30 @@ function TeamsPage({ theme }) {
               className="crown absolute -top-[100px] left-2/4 -translate-x-1/2 z-0"
               id="rank"
             >
-              <img
+              {/* <img
                 className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                 src="crown.webp"
-              />
+              /> */}
+               <div className="relative">
+      <div
+        style={{
+          position: 'relative',
+          left: '50px',
+          top: '0',
+          width: '160px',
+          height: '160px',
+          transform: 'rotate(20deg)',
+          overflow: 'hidden', // Ensure no overflow outside the container
+        }}
+      >
+        <Image
+          src="/crown.webp"  // Path to your image file in the `public` directory
+          alt="Crown"
+          layout="fill"  // Fill the container dimensions
+          objectFit="contain"  // Adjust the image to fit the container without distortion
+        />
+      </div>
+    </div>
             </div>
             <p
               id="name3"
@@ -624,11 +733,21 @@ function TeamsPage({ theme }) {
           >
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
-                <img
+                {/* <img
                   className="rounded-[50%] w-[28%]"
                   src="founder.webp"
                   alt="Azfar Alam"
-                />
+                /> */}
+                   <div className="relative w-[28%] h-auto">
+      <Image
+        src="/founder.webp"  // Path to your image file in the `public` directory
+        alt="Azfar Alam"
+        layout="responsive"  // Adjusts the image size based on the container
+        width={500}          // Set width according to your design; this is used to maintain aspect ratio
+        height={500}         // Set height accordingly
+        className="rounded-full"  // Apply rounded corners
+      />
+    </div>
               </div>
               <div className="info-div text-center mt-[5px]">
                 <h2 className="mt-[10px] text-[1.5em] font-bold mb-2 font-arial">
@@ -1153,11 +1272,17 @@ function TeamsPage({ theme }) {
       {/* Section: Trophy Card and Call to Action */}
 
       <div className="trophy-card flex pl-[20px] ml-[74px] mr-[51px] bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
-        <img
-          src="trophy.webp"
-          alt="Trophy"
-          className="trophy h-[66px] relative"
-        />
+      <div className="relative h-[66px] w-auto">
+      <Image
+        src="/trophy.webp"  // Path to your image file in the `public` directory
+        alt="Trophy"        // Alt text for accessibility
+        layout="intrinsic"  // Adjust the layout to fit the given dimensions
+        width={66}          // Set the width to match your original height
+        height={66}         // Set the height to match your original height
+        className="trophy"  // Apply custom className if needed
+      />
+    </div>
+
         <div className="team-invite pl-8">
           <h2 className="text-[1.5em] font-bold mb-2 font-arial">
             Join our awesome team!
