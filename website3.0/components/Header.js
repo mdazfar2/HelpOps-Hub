@@ -115,15 +115,13 @@ const Header = () => {
         <nav className="flex justify-between flex-wrap items-center w-[90%] my-5 mx-auto">
           {/* Logo with VanillaTilt animation */}
           <Link href="/">
-            <div data-tilt data-tilt-scale="1.1">
-            <Image
-        src="/path/to/HelpOps-H Fevicon.webp" // Use the correct path to the image
-        alt="Logo"
-        width={80}  // Equivalent to `w-20` in tailwind (20 * 4px = 80px)
-        height={80} // Equivalent to `h-20` in tailwind (20 * 4px = 80px)
-        className="top-2 max-[400px]:relative max-[400px]:left-36" // Apply your custom styles
-        draggable="false" // To prevent dragging
-      />
+          <div data-tilt data-tilt-scale="1.1">
+              <img
+                src="HelpOps-H Fevicon.webp"
+                alt="Logo"
+                className="w-20 h-20 top-2 max-[400px]:relative max-[400px]:left-36"
+                draggable="false"
+              />
             </div>
           </Link>
 
