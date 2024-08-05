@@ -203,7 +203,10 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
 
         // Reverse the data and update state
         data.reverse();
-        setIssues([...data]);
+        let a1=[...data]
+        a1=a1.filter((data)=>!data.isCLose)
+        console.log("A!!!!!!!!!!!!!!!!",a1)
+        setIssues([...a1]);
         setOriginalIssues([...data]);
         let a=data.sort((c,b)=>b.solutions.length-c.solutions.length)
         let ar=[]
@@ -417,7 +420,18 @@ useEffect(() => {
     });
     setIssues([...arr]); // Update issues with filtered data
 }, [selectedTags]); // Re-run effect when selectedTags changes
+useEffect(()=>{
+if(isClosed){
+  let arr=originalIssues
+  arr=arr.filter((data)=>data.isCLose)
+  setCurrentIssues([...arr])
+}else{
 
+  let arr=originalIssues
+  arr=arr.filter((data)=>!data.isCLose)
+  setCurrentIssues([...arr])
+}
+},[isClosed])
 
   return (
     <div className="mt-20 overflow-x-hidden">
