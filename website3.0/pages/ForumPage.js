@@ -107,7 +107,7 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
   const [sortedArray, setSortedArray] = useState([]); // Stores an array of sorted data
   const [mostHelpful, setMostHelpful] = useState([]); // Holds the most helpful data or users
   const [selectedTags, setSelectedTags] = useState([]); // Stores the tags that have been selected by the user
-  
+  const [openCount,setOpenCount]=useState(0)
   // Function to handle mouse entering an element (e.g., user profile)
   const handleMouseEnter = async (event, userImg) => {
       // Update cursor position for positioning additional info display
@@ -180,7 +180,13 @@ function ForumPage({ theme,finalUser,setIsPopup,setMsg }) {
         let response = await fetch("/api/createquestion", { method: "GET" });
         let data = await response.json();
         data = data.data;
-
+        let count=0
+        data.map((d)=>{
+          if(!d.isCLose){
+            count++
+          }
+        })
+        setOpenCount(count)
         // Filter out items without 'createdAt'
         let arr = data.filter(item => item.createdAt !== undefined);
 
@@ -567,11 +573,11 @@ if(isClosed){
                     <div className="max-sm:relative max-sm:top-1 flex  max-sm:px-2 gap-5 max-sm:gap-6 max-sm:w-[100%] items-center ">
                       <div  onClick={()=>setIsClosed(false)}className="flex items-center gap-2 max-sm:text-[14px] cursor-pointer">
                         <FontAwesomeIcon icon={faExclamationCircle} />
-                        <span>15 Open</span>
+                        <span>{openCount} Open</span>
                       </div>
                       <div onClick={()=>setIsClosed(true)} className="flex items-center gap-2 max-sm:text-[14px] cursor-pointer">
                         <FontAwesomeIcon icon={faCheckCircle} />
-                        <span>202 Closed</span>
+                        <span>{originalIssues.length-openCount} Closed</span>
                       </div>
                       <div onClick={handleReset} className="flex items-center gap-2 max-sm:text-[14px] cursor-pointer">
                         <FontAwesomeIcon icon={faSyncAlt} />
