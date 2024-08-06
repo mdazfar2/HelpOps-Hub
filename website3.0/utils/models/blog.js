@@ -69,6 +69,10 @@ type:String
     type: String,
     default: "",
   },
+  authorImage:{
+    type:String,
+    default:""
+  },
   authorId:{
     type: String,
     default: "",
