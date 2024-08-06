@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Context } from "@context/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,8 @@ import ReactQuill, { Quill } from 'react-quill';
 import { useRouter } from "next/navigation";
 function CreateForum() {
   // Initialize state for selected tags
+  let [isImg,setIsImg]=useState('')
+
 let [selectedTags, setSelectedTags] = useState([]);
 
 // Extract theme and finalUser from context
@@ -66,7 +68,8 @@ useEffect(() => {
         authorId: finalUser._id, // Unique ID of the author
         authorName: finalUser.name, // Full name of the author
         authorImage: finalUser.image1, // URL or path to the author's profile image
-        tags: selectedTags // Array of tags associated with the question
+        tags: selectedTags, // Array of tags associated with the question,
+        image:isImg
       };
     
       try {
@@ -95,6 +98,56 @@ useEffect(() => {
       }
     }
   const renderSection = () => {
+    
+    const imageHandler = async (e) => {
+      const editor = quillRef.current.getEditor();
+      const input = document.createElement("input");
+      input.setAttribute("type", "file");
+      input.setAttribute("accept", "image/*");
+      input.click();
+    
+      input.onchange = async () => {
+        const file = input.files[0];
+        if (/^image\//.test(file.type)) {
+          try {
+            const base64Url = await convertToBase64(file); // Convert image file to base64
+            setIsImg(base64Url)
+            editor.insertEmbed(editor.getSelection(), "image", base64Url); // Insert the base64 image into the editor
+          } catch (error) {
+            console.error('Error converting image to base64:', error);
+            ErrorToast('Failed to convert image.');
+          }
+        } else {
+          ErrorToast('You can only upload images.');
+        }
+      };
+    };
+    
+    let quillRef=useRef()
+
+    const modules = useMemo(() => ({
+      toolbar: {
+        container: [
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          ['bold', 'italic', 'underline', "strike"],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' },
+          { 'indent': '-1' }, { 'indent': '+1' }],
+          ['image', "link",],
+          [{ 'color': ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#facccc', '#ffebcc', '#ffffcc', '#cce8cc', '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66', '#66b966', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466'] }]
+        ],
+        handlers: {
+          image: imageHandler
+        }
+      },
+    }), [])
+    const convertToBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    };
     const tags = [
       "Docker",
       "Devops",
@@ -148,6 +201,8 @@ useEffect(() => {
                 <ReactQuill
                   className="h-[340px] !visible !bg-transparent"
                   value={content}
+                  ref={quillRef}
+                  modules={modules}
                   onChange={setContent}
                 />
               </div>
@@ -223,6 +278,8 @@ useEffect(() => {
             </div>
           </div>
         );
+      
+         
       case "post":
         return (
           <div className="my-10 w-[80%] m-auto">

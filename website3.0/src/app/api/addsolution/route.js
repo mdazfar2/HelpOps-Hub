@@ -7,7 +7,7 @@ import user from "@utils/models/user"; // Importing Mongoose model for newslette
 export async function POST(req) {
     try {
         // Parse JSON payload from request body
-        const {ans,id,authorImage,authorName,userId} = await req.json();
+        const {ans,id,authorImage,authorName,userId,image} = await req.json();
 
         const { MONGO_URI } = process.env;  
         
@@ -30,7 +30,7 @@ export async function POST(req) {
         if(!isHave){
             blog.relatedUser.push({authorImage:authorImage,authorName:authorName,authorId:userId})
         }
-        blog.solutions.push({ans:ans,authorImage:authorImage,authorName:authorName,isAccepted:false,authorId:userId,date:date})
+        blog.solutions.push({ans:ans,authorImage:authorImage,authorName:authorName,isAccepted:false,authorId:userId,date:date,image:image})
         // Save the new blog record to MongoDB
         const result = await Questions.findByIdAndUpdate(id,{
             $set:blog

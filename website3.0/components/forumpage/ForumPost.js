@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from 'next/image';
 
@@ -78,6 +78,7 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
   let content=useRef()
   let [isRelated,setIsRelated]=useState(false)
   let [relatedUsers,setRelatedUsers]=useState([])
+  let [isImg,setIsImg]=useState('')
   let comment=useRef()
   let [loading,setLoading]=useState(true)
 
@@ -144,12 +145,13 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
         authorImage:finalUser.image1,
         authorName:finalUser.name,
         userId:finalUser._id,
+        image:isImg
       })
     })
     let date=Date.now()
     date=formatDate(date)
     let arr=[{ans:content.current.value,
-      id:id,
+      id:id,image:isImg,
       authorImage:finalUser.image1,
       authorName:finalUser.name,date:date},...issue.solutions]
     let newObj={...issue,solutions:[...arr]}
@@ -337,6 +339,55 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
     //  arr.push({authorImage:finalUser.image1,authorName:finalUser.name,authorId:finalUser._id})
      setRelatedUsers([...arr])
   }
+  const imageHandler = async (e) => {
+    const editor = content.current.getEditor();
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+  
+    input.onchange = async () => {
+      const file = input.files[0];
+      if (/^image\//.test(file.type)) {
+        try {
+          const base64Url = await convertToBase64(file); // Convert image file to base64
+          setIsImg(base64Url)
+          editor.insertEmbed(editor.getSelection(), "image", base64Url); // Insert the base64 image into the editor
+        } catch (error) {
+          console.error('Error converting image to base64:', error);
+          ErrorToast('Failed to convert image.');
+        }
+      } else {
+        ErrorToast('You can only upload images.');
+      }
+    };
+  };
+  
+  let quillRef=useRef()
+
+  const modules = useMemo(() => ({
+    toolbar: {
+      container: [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        ['bold', 'italic', 'underline', "strike"],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' },
+        { 'indent': '-1' }, { 'indent': '+1' }],
+        ['image', "link",],
+        [{ 'color': ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#facccc', '#ffebcc', '#ffffcc', '#cce8cc', '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66', '#66b966', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466'] }]
+      ],
+      handlers: {
+        image: imageHandler
+      }
+    },
+  }), [])
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
   return (
     <div className="mt-20 overflow-x-hidden">
       <div className={`h-80 ${
@@ -420,10 +471,13 @@ issue.authorName}</div>
     <span className="text-4xl hidden max-md:block font-bold w-[100px]">Q :</span>  
   {
     loading?  <Skeleton height={30} width={400}  />:
-    <div 
+   <>
+   <div 
         className="break-words" // Ensure long words wrap to the next line
         dangerouslySetInnerHTML={{ __html: issue?.title }}
-    />}
+    />
+  </> 
+   }
 </div>
 
           {hoveredUser && (
@@ -462,7 +516,7 @@ issue.authorName}</div>
             </div>:
             <div className={`${theme?"":"text-gray-300"} max-md:pl-[64px] text-base mt-5  text-justify`} dangerouslySetInnerHTML={{__html:issue?.content}}/>
            }     
-
+ 
               <div className="mt-10 flex gap-2 text-gray-500 items-center">
                 <FontAwesomeIcon icon={faTags} />
                 Bug,Feature,Error
@@ -500,11 +554,13 @@ issue?.questionrelatedusers?.slice(0,issue?.questionrelatedusers.length>4?4:issu
                 
               </div>
               {
-                  isComment &&<div className="mt-[25px] mb-[25px] w-[100%]">
+                  isComment &&<div className="mt-[25px] flex flex-col gap-10 mb-[25px] w-[100%]">
                   
                   <ReactQuill className="h-[200px]"
                   ref={content}
+                  modules={modules}
                 />
+
                     <button  onClick={handleAddSolution}  className="border mt-16 bg-blue-500 ml-[20px] p-[15px]  border-blue-500 text-white w-[150px] rounded-md cursor-pointer">
                       Submit
                     </button>
@@ -581,9 +637,10 @@ issue?.questionrelatedusers?.slice(0,issue?.questionrelatedusers.length>4?4:issu
                   <div className="mt-10 flex text-gray-600 gap-4">
                     <div className={`${theme?"":"text-white"} text-5xl font-bold`}>A:</div>
                    
-                      <div className="">
+                      <div className="flex flex-col gap-2">
 
                     <div className={`${theme?"":"text-gray-300"} text-base text-justify`} dangerouslySetInnerHTML={{__html:data.ans}}/>
+                  
                     </div>
                  
                    

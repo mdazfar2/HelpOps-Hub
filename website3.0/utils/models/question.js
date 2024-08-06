@@ -91,6 +91,10 @@ type:String
   },
   questionrelatedusers:{
     type:Array,defualt:[]
+  },
+  image:{
+    type:String,
+    default:""
   }
 });
 
