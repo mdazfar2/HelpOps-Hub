@@ -35,6 +35,7 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
   const [modalIndex,setModalIndex]=useState(-1)
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
+  let [top3,setTop3]=useState([])
   let tagSearch=useRef()
   const [confetti,setShowConfetti]=useState(false)
   let [tags,setTags]=useState([])
@@ -153,6 +154,12 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
               : new Date(b.date) - new Date(a.date);
           });
           setBlogs(sortedBlogs);
+          let arr1=[...sortedBlogs]
+
+          arr1=arr1.sort((a,b)=>b.reactionList.length-a.reactionList.length)
+          console.log(arr1)
+          setTop3([...arr1])
+          // console.log([...arr1[0],...arr1[1],...arr1[2]],'sddddddddddddddddddddddd')
           fetchAuthorDetails(sortedBlogs);
         } else {
           setError("Failed to fetch blogs.");
@@ -689,7 +696,7 @@ async function handleRecoverBlog(id) {
                       >
                         <div className="flex items-center mb-2" onClick={() => navigateToBlogDetails(blog._id)}>
                           <img
-                            src={author.image1}
+                            src={blog.authorImage}
                             onError={handleImageError}
                             className="w-6 h-6 rounded-full mr-3"
                           />
@@ -854,9 +861,8 @@ async function handleRecoverBlog(id) {
                     <Skeleton count={2} />
                   </div>
                 ))
-              : finalEditorsPick.length==0?<div className="text-center w-[100%] relative m-auto ">No more Editor's Choice</div>:finalEditorsPick.map((blog, index) => {
-                  const author = authorDetails[blog.authorId];
-                  if (!author) return null;
+              : finalEditorsPick.length==0?<div className="text-center w-[100%] relative m-auto ">No more Editor's Choice</div>:top3.slice(0,3).map((blog, index) => {
+                  // if (!author) return null;
 
                   return (
                     <div
@@ -866,11 +872,11 @@ async function handleRecoverBlog(id) {
                     >
                       <div className="flex items-center mb-2">
                         <img
-                          src={author.image1}
+                          src={blog.authorImage}
                           onError={handleImageError}
                           className="w-5 h-5 rounded-full mr-3"
                         />
-                        <div className="text-xs font-bold">{author.name}</div>
+                        <div className="text-xs font-bold">{blog.authorName}</div>
                       </div>
                       <div
                         className="text-sm font-normal"
@@ -895,7 +901,7 @@ async function handleRecoverBlog(id) {
                     <Skeleton width={100} />
                   </div>
                 ))
-              :topAuthors.length==0?<div className="text-center w-[100%] relative m-auto ">No more Key Influencers </div>: topAuthors.map((author, index) => (
+              :topAuthors.length==0?<div className="text-center w-[100%] relative m-auto ">No more Key Influencers </div>: topAuthors.slice(0,topAuthors.length>6?6:topAuthors.length).map((author, index) => (
                   <div key={index}>
                     <div className="flex gap-2 items-center mb-2">
                       <img
