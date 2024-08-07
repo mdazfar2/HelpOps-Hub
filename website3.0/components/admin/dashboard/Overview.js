@@ -15,48 +15,54 @@ const Overview = () => {
   useEffect(()=>{
     fetchBlogs()
   },[])
-  async function fetchBlogs(){
-    let blog=await fetch("/api/blog",{method:"GET"}) 
-    blog=await blog.json()
-    let totalCount=blog.data.reduce((total,data)=>{
-      console.log(data.views)
-      return data.views+total},0
-    )
-    let likeCount=blog.data.reduce((total,data)=>total+data.reactionList.length,0)
-      console.log(totalCount)
-    setTotalViews(totalCount)
-    setTotalBlogs(blog.data.length)
-    setTotalLikes(likeCount)
-
-
-    const blogCountsByDate = blog.data.reduce((acc, blog) => {
-      const date = new Date(blog.date).toISOString().split('T')[0]; // Get YYYY-MM-DD
-      if (!acc[date]) {
-        acc[date] = 0;
+  async function fetchBlogs() {
+    try {
+      const response = await fetch('/api/blog', { method: 'GET' });
+  
+      if (!response.ok) {
+        throw new Error(`Error fetching blogs: ${response.statusText}`);
       }
-      acc[date]++;
-      return acc;
-    }, {});
-
-    // Convert to arrays for Chart.js
-    const labels = Object.keys(blogCountsByDate).sort();
-    const data = labels.map(label => blogCountsByDate[label]);
-
-    setChartData({
-      labels,
-      datasets: [
-        {
-          label: 'Blogs Posted',
-          data,
-          backgroundColor: '#4caf50',
-          borderColor: '#388e3c',
-          borderWidth: 1
-        }
-      ]
-    });
-
-    setTotalBlogs(blog.data.length);
+  
+      const { data } = await response.json();
+  
+      // Calculate total views
+      const totalCount = data.reduce((total, blog) => total + blog.views, 0);
+      // Calculate total likes
+      const likeCount = data.reduce((total, blog) => total + blog.reactionList.length, 0);
+  
+      // Update state with calculated values
+      setTotalViews(totalCount);
+      setTotalLikes(likeCount);
+      setTotalBlogs(data.length);
+  
+      // Calculate blog counts by date
+      const blogCountsByDate = data.reduce((acc, blog) => {
+        const date = new Date(blog.date).toISOString().split('T')[0]; // Get YYYY-MM-DD
+        acc[date] = (acc[date] || 0) + 1;
+        return acc;
+      }, {});
+  
+      // Convert to arrays for Chart.js
+      const labels = Object.keys(blogCountsByDate).sort();
+      const chartData = labels.map(label => blogCountsByDate[label]);
+  
+      setChartData({
+        labels,
+        datasets: [
+          {
+            label: 'Blogs Posted',
+            data: chartData,
+            backgroundColor: '#4caf50',
+            borderColor: '#388e3c',
+            borderWidth: 1
+          }
+        ]
+      });
+    } catch (error) {
+      console.error('Error in fetchBlogs:', error);
+    }
   }
+  
 
   return (
     <div className="">

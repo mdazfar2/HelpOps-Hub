@@ -4,16 +4,41 @@ import React, { useContext, useEffect, useState } from 'react'
 export default function Questions() {
     let {theme,finalUser}=useContext(Context)
     let [questions,setQuestions]=useState([])
-    async function fetchData(){
-        let data=await fetch("/api/createquestion",{
-            method:"GET"
-        })
-        data=await data.json()
-        data=data.data
-        data=data.filter((d)=>d.authorId==finalUser._id)
-        console.log(data)
-        setQuestions(data)
+    async function fetchData() {
+      try {
+        // Fetch data from the server
+        const response = await fetch("/api/createquestion", {
+          method: "GET",
+        });
+    
+        // Check if the response is successful
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    
+        // Parse the response data
+        let data = await response.json();
+        
+        // Ensure data is in the expected format
+        if (!data || !data.data) {
+          throw new Error("Invalid data format received from the server");
+        }
+    
+        // Filter data based on the author's ID
+        data = data.data.filter(d => d.authorId === finalUser._id);
+    
+        console.log(data);
+        
+        // Update state with the filtered data
+        setQuestions(data);
+      } catch (error) {
+        // Handle errors
+        console.error('Error fetching data:', error);
+        // Optionally, you can set an error state here to display a message to the user
+        // setError(error.message); // Example of setting an error state
+      }
     }
+    
     useEffect(()=>{
         fetchData()
     },[])

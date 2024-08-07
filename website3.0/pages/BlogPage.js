@@ -85,36 +85,62 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
     }
   ]
   let [allTags,setAllTags]=useState([])
-  async function fetchTagsData(){
-    let user=await JSON.parse(localStorage.getItem('finalUser'))
-    if(!user){
-      return
-    }
-      let arr=  tagsData.filter((data)=> !user.hidedTags.includes(data.tagName))
-      
-      setTags([...arr])
-        setHiddenTags([...user.hidedTags])
-        setFollowedTags([...user.followedTags])
-    }
-  useEffect(()=>{
-      fetchTagsData()
-  },[])
-  useEffect(()=>{
-  },[])
-  async function handleBlockBlog(data){
-    let user=finalUser
-    user.blockedBlogs=[...user.blockedBlogs,data]
-    updateUser(user)
-  let res=await fetch("/api/blockblog",{
-    method:"POST",
-    body:JSON.stringify({
-      user_id:finalUser._id,
-      blog_id:data
-    })
-  })
-  window.location.reload()
+  async function fetchTagsData() {
+    try {
+      // Retrieve user data from localStorage
+      const user = JSON.parse(localStorage.getItem('finalUser'));
+      if (!user) {
+        // Handle the case where user data is not found
+        console.warn('User not found in localStorage');
+        return;
+      }
   
-}
+      // Filter tags based on hidden tags
+      const visibleTags = tagsData.filter(data => !user.hidedTags.includes(data.tagName));
+      setTags([...visibleTags]);
+      setHiddenTags([...user.hidedTags]);
+      setFollowedTags([...user.followedTags]);
+    } catch (error) {
+      console.error('Error fetching tags data:', error);
+    }
+  }
+  
+  useEffect(() => {
+    fetchTagsData();
+  }, []); // The empty dependency array ensures this runs once when the component mounts
+  
+  async function handleBlockBlog(data) {
+    try {
+      // Update local user data
+      let user = { ...finalUser, blockedBlogs: [...finalUser.blockedBlogs, data] };
+      await updateUser(user); // Assuming updateUser is a function that updates user data
+  
+      // Send request to block the blog
+      const response = await fetch("/api/blockblog", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: finalUser._id,
+          blog_id: data
+        })
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to block blog: ${response.statusText}`);
+      }
+  
+      // Optionally handle the successful blocking of the blog here
+  
+      // Refresh the page
+      window.location.reload();
+    } catch (error) {
+      console.error('Error blocking blog:', error);
+      // Optionally show an error message to the user
+    }
+  }
+  
   useEffect(() => {
     const fetchBlogs = async () => {
       try {

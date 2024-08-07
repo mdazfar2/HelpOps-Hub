@@ -23,23 +23,36 @@ export default function Editblog({ id }) {
   const [showInTitle, setShowInTitle] = useState(true);
   let router = useRouter();
 
-  async function fetchData() {
-    let data = await fetch(`/api/getblog`,{
-      method:"POST",
-      body:JSON.stringify({id:id})
-    });
-    data = await data.json();
-  
-    setValue(data.title);
-    setDesc(data.description);
-    setIsImg(data.image);
-  }
   useEffect(() => {
-    fetchData();
-  }, []);
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/getblog', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id })
+        });
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setValue(data.title);
+        setDesc(data.description);
+        setIsImg(data.image);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, [id]);
+
+  // Handle paste events for Quill editors
   useEffect(() => {
-    const handlePaste = (event, setValueCallback, setImgCallback) => {
+    function handlePaste(event, setValueCallback, setImgCallback) {
       event.preventDefault(); // Prevent the default paste behavior
 
       const clipboardData = event.clipboardData;
@@ -47,91 +60,80 @@ export default function Editblog({ id }) {
 
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-        if (item.kind === "file" && item.type.startsWith("image/")) {
+        if (item.kind === 'file' && item.type.startsWith('image/')) {
           const file = item.getAsFile();
           const reader = new FileReader();
-          reader.onload = async (e) => {
-            // Handle image data
+          reader.onload = (e) => {
             const imageSrc = e.target.result;
-            // For demonstration, we'll just log the image source
             setImgCallback(imageSrc);
           };
           reader.readAsDataURL(file);
         } else if (
-          item.kind === "string" &&
-          (items.length > 1 ? items[1].kind !== "file" : true)
+          item.kind === 'string' &&
+          (items.length > 1 ? items[1].kind !== 'file' : true)
         ) {
           item.getAsString((text) => {
-            // Handle text data
             setValueCallback((prevContent) => prevContent + text);
           });
         }
       }
-    };
+    }
 
     const quill = quillRef.current?.getEditor();
     const quill1 = quillRef1.current?.getEditor();
 
+    const handlePasteForQuill = (event) => {
+      handlePaste(event, setValue, setIsImg);
+    };
+
+    const handlePasteForQuill1 = (event) => {
+      handlePaste(event, setDesc, setIsImg);
+    };
+
     if (quill) {
-      const handlePasteForQuill = (event) => {
-        handlePaste(event, setValue, setIsImg);
-      };
-      const handlePasteForQuill1 = (event) => {
-        handlePaste(event, setDesc, setIsImg);
-      };
-      quill1.root.addEventListener("paste", handlePasteForQuill1);
-
-      quill.root.addEventListener("paste", handlePasteForQuill);
-
-      return () => {
-        quill.root.removeEventListener("paste", handlePasteForQuill);
-        quill1.root.removeEventListener("paste", handlePasteForQuill1);
-      };
+      quill.root.addEventListener('paste', handlePasteForQuill);
     }
 
     if (quill1) {
-      const handlePasteForQuill1 = (event) => {
-        handlePaste(event, setDesc, setIsImg);
-      };
-      quill1.root.addEventListener("paste", handlePasteForQuill1);
-
-      return () => {
-        quill1.root.removeEventListener("paste", handlePasteForQuill1);
-      };
+      quill1.root.addEventListener('paste', handlePasteForQuill1);
     }
+
+    return () => {
+      if (quill) {
+        quill.root.removeEventListener('paste', handlePasteForQuill);
+      }
+      if (quill1) {
+        quill1.root.removeEventListener('paste', handlePasteForQuill1);
+      }
+    };
   }, []);
-  function handleToolbar(e) {
+
+  // Handle toolbar position for Quill editors
+  function handleToolbar(editor, e) {
+    const quillInstance = editor.getEditor();
+    const toolbar = quillInstance.container.parentNode.querySelector('.ql-toolbar');
+
+    if (e && e.length > 0) {
+      const { top, left } = quillInstance.getBounds(e.index, e.length);
+      toolbar.style.visibility = 'visible';
+      toolbar.style.position = 'absolute';
+      toolbar.style.left = `${left}px`;
+      toolbar.style.top = `${top - toolbar.offsetHeight}px`;
+    } else {
+      toolbar.style.visibility = 'hidden';
+    }
+  }
+
+  function handleToolbarForQuill() {
     const quillInstance = quillRef.current.getEditor();
-    const toolbar =
-      quillInstance.container.parentNode.querySelector(".ql-toolbar");
-
-    if (e && e.length > 0) {
-      const { top, left, height } = quillInstance.getBounds(e.index, e.length);
-      toolbar.style.visibility = "visible";
-      toolbar.style.position = "absolute";
-      toolbar.style.left = `${left}px`;
-      toolbar.style.top = `${top - toolbar.offsetHeight + 50}px`;
-    } else {
-      toolbar.style.visibility = "hidden";
-    }
+    handleToolbar(quillInstance, ...arguments);
   }
-  function handleToolbar1(e) {
+
+  function handleToolbarForQuill1() {
     const quillInstance = quillRef1.current.getEditor();
-    const toolbar =
-      quillInstance.container.parentNode.querySelector(".ql-toolbar");
-
-    if (e && e.length > 0) {
-      const { top, left, height } = quillInstance.getBounds(e.index, e.length);
-
-      toolbar.style.visibility = "visible";
-
-      toolbar.style.position = "absolute";
-      toolbar.style.left = `${left}px`;
-      toolbar.style.top = `${top - toolbar.offsetHeight + 200}px`;
-    } else {
-      toolbar.style.visibility = "hidden";
-    }
+    handleToolbar(quillInstance, ...arguments);
   }
+
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
