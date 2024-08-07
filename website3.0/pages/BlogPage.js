@@ -425,9 +425,7 @@ useEffect(()=>{
     setFilter("delete")
     filteredBlogs()
   }
-  useEffect(()=>{
-setTimeout(()=>{setLoading(false)},4000)
-  },[])
+
 
   function handleSearchChange(){
     let value=tagSearch.current.value.toLowerCase()
