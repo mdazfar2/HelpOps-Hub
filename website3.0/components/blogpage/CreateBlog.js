@@ -129,35 +129,53 @@ export default function CreateBlog({id}) {
   }, [ ]);
 
   const saveDraftOnUnload = async () => {
-    const savedDraft = JSON.parse(localStorage.getItem("draftBlog"));
-    const draftData = {
-      title: savedDraft.title,
-      image: savedDraft.image,
-      description: savedDraft.description,
-      id: draftId,
-      author_id: finalUser._id,
-    };
-    // Convert data to FormData for sendBeacon
-    const formData = new FormData();
-    for (const key in draftData) {
-      formData.append(key, draftData[key]);
-    }
-    localStorage.removeItem("draftBlog");
-    let id1=  localStorage.getItem('draftId')
-    await fetch('/api/updatedraft',{
-      method:"POST",
-      body:JSON.stringify({
+    try {
+      // Retrieve and parse the draft data from localStorage
+      const savedDraft = JSON.parse(localStorage.getItem("draftBlog"));
+  
+      if (!savedDraft) {
+        console.error("No draft found in localStorage.");
+        return;
+      }
+  
+      // Prepare the draft data
+      const draftData = {
         title: savedDraft.title,
         image: savedDraft.image,
         description: savedDraft.description,
-        id:     localStorage.getItem('draftId')
-        ,
-        author_id: JSON.parse(localStorage.getItem("finalUser"))._id,
-      })
-    })
-    // navigator.sendBeacon("/api/updatedraft", formData);
-    localStorage.removeItem("draftBlog");
+        id: localStorage.getItem('draftId'),
+        author_id: finalUser._id,
+      };
+  
+      // Optionally, use FormData if necessary (commented out if not needed)
+      // const formData = new FormData();
+      // for (const key in draftData) {
+      //   formData.append(key, draftData[key]);
+      // }
+  
+      // Send the draft data to the server
+      const response = await fetch('/api/updatedraft', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(draftData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to save draft: ${response.statusText}`);
+      }
+  
+      // Clean up localStorage after successful request
+      localStorage.removeItem("draftBlog");
+      localStorage.removeItem('draftId');
+  
+    } catch (error) {
+      console.error('Error saving draft:', error);
+      // Optionally, show an error message to the user
+    }
   };
+  
 
   async function saveDraft() {
     setIsDraftSaved(true);
@@ -182,48 +200,89 @@ export default function CreateBlog({id}) {
 
   useEffect(() => {
     const autoSaveDraft = async () => {
-      const draft = { title: value, description: desc, image: isImg };
-      localStorage.setItem("draftBlog", JSON.stringify(draft));
-      let id1=  localStorage.getItem('draftId')
-      await fetch('/api/updatedraft',{
-        method:"POST",
-        body:JSON.stringify({
+      if (!value.length && !desc.length && !isImg.length) {
+        return; // No need to save if there's no data
+      }
+  
+      try {
+        // Save draft to localStorage
+        const draft = { title: value, description: desc, image: isImg };
+        localStorage.setItem("draftBlog", JSON.stringify(draft));
+  
+        // Prepare draft data
+        const draftData = {
           title: draft.title,
           image: draft.image,
           description: draft.description,
-          id:     localStorage.getItem('draftId')
-          ,
+          id: localStorage.getItem('draftId'),
           author_id: JSON.parse(localStorage.getItem("finalUser"))._id,
-        })
-      })
-      if (!isDraftSaved) {
-        await saveDraft();
+        };
+  
+        // Update draft via API
+        const response = await fetch('/api/updatedraft', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(draftData),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Failed to save draft: ${response.statusText}`);
+        }
+  
+        // Optionally handle any additional save logic
+        if (!isDraftSaved) {
+          await saveDraft();
+        }
+      } catch (error) {
+        console.error('Error saving draft:', error);
+        // Optionally show an error message to the user
       }
     };
-    let intervalId;
-    if(value.length>0||desc.length>0||isImg.length>0){
-
-        autoSaveDraft()
+  
+    // Only auto-save if there are changes and draftId is present
+    if (value.length > 0 || desc.length > 0 || isImg.length > 0) {
+      autoSaveDraft();
     }
-    if((value.length>0||desc.length>0||isImg.length>0)&&id){
-
-      autoSaveDraft()
-  }
+    
+    // Optional: Clear localStorage or perform any cleanup if needed
+    return () => {
+      // Cleanup logic if needed
+    };
+    
   }, [value, desc, isImg, isDraftSaved]);
-
+  
   async function fetchDraft() {
-    let response = await fetch("/api/getdraft", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id })
-    });
-    if (response.ok) {
-      let data = await response.json();
-      setValue(data.blog.title);
-      setDesc(data.blog.description);
-      setIsImg(data.blog.image);
+    try {
+      const response = await fetch("/api/getdraft", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+      });
+  
+      if (!response.ok) {
+        // If response is not OK, handle the error
+        throw new Error(`Error fetching draft: ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+  
+      // Check if data contains the expected structure
+      if (data && data.blog) {
+        setValue(data.blog.title || ''); // Default to empty string if title is missing
+        setDesc(data.blog.description || ''); // Default to empty string if description is missing
+        setIsImg(data.blog.image || ''); // Default to empty string if image is missing
+      } else {
+        // Handle unexpected data structure
+        console.warn('Unexpected data structure:', data);
+      }
+    } catch (error) {
+      console.error('Error fetching draft:', error);
+      // Optionally show an error message to the user
     }
   }
+  
  useEffect(()=>{
 
    if (id) {
@@ -407,63 +466,77 @@ export default function CreateBlog({id}) {
     async function handleTagTaker(){
       setModal(true)
     }
-    async function handleFormSubmit(){
-      if(!isLogin){
-        setIsPopup(true)
-        setMsg("Please Login First")
-        return
+    async function handleFormSubmit() {
+      try {
+        // Check if the user is logged in
+        if (!isLogin) {
+          setIsPopup(true);
+          setMsg("Please Login First");
+          return;
+        }
+    
+        setLoading(true);
+    
+        // Delete the draft if it exists
+        const draftId = localStorage.getItem('draftId');
+        if (draftId) {
+          await fetch('/api/getdraft', {
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: draftId })
+          });
+        }
+    
+        // Retrieve user information from localStorage
+        const user = JSON.parse(localStorage.getItem("finalUser"));
+        if (!user) {
+          throw new Error('User not found in localStorage');
+        }
+    
+        const requestBody = {
+          title: value,
+          image: isImg,
+          type: 'blog',
+          description: desc,
+          username: user.username,
+          tags: selectedTag,
+          length: desc.length,
+          authorName: user.name,
+          authorImage: user.image1,
+          authorId: user._id
+        };
+    
+        // Handle blog submission or scheduling
+        const endpoint = ifSchedule ? '/api/scheduleblog' : '/api/blog';
+        requestBody.datetime = ifSchedule ? datetime.current.value : undefined;
+    
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Failed to submit: ${response.statusText}`);
+        }
+    
+        // Set localStorage item and navigate to the blogs page
+        localStorage.setItem("showConfetti", true);
+        router.push('/blogs');
+      } catch (error) {
+        console.error('Error in handleFormSubmit:', error);
+        // Optionally set an error message or handle the error further
+        setIsPopup(true);
+        setMsg("An error occurred while submitting. Please try again.");
+      } finally {
+        setLoading(false);
       }
-      setLoading(true)
-      fetch('/api/getdraft',{
-        method:"DELETE",
-        body:JSON.stringify({
-          id:localStorage.getItem('draftId')
-        })
-      })
-      let user=await JSON.parse(localStorage.getItem("finalUser"))
-      if(!ifSchedule){
-  
-          await fetch('/api/blog',{
-            method:"POST",
-            body:JSON.stringify({
-              title:value,
-              image:isImg,
-              type:'blog',
-              description:desc,
-              username:user.username,
-              tags:selectedTag,
-              length:desc.length,
-              authorName:user.name,
-              authorImage:user.image1,
-              authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
-              
-            })
-          })
-          localStorage.setItem("showConfetti",true)
-
-      }else{
-        await fetch('/api/scheduleblog',{
-          method:"POST",
-          body:JSON.stringify({
-            title:value,
-            image:isImg,
-            type:'blog',
-            description:desc,
-            username:user.username,
-            tags:selectedTag,
-            datetime:datetime.current.value,
-            length:desc.length,
-            authorName:user.name,
-            authorImage:user.image1,
-            authorId: JSON.parse(localStorage.getItem('finalUser'))._id,
-            
-          })
-        })
-
-      }
-        setLoading(false)
-        router.push('/blogs')
-      }
+    }
+    
   
   //  async function handleFormSubmit(){
   //   if(!isLogin){

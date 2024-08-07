@@ -4,24 +4,42 @@ import { Context } from '@context/store'
 export default function Answers() {
     let {theme,finalUser}=useContext(Context)
     let [questions,setQuestions]=useState([])
-    async function fetchData(){
-        let data=await fetch("/api/createquestion",{
-            method:"GET"
-        })
-        data=await data.json()
-        data=data.data
-        let arr=[]
-        data=data.map((d)=>{
-            console.log(d.solutions,'dddd')
-           d.solutions= d.solutions.filter((da)=>(da.authorId==finalUser._id||da.authorName==finalUser.name))
-           arr=[...arr,d]
-        })
-        console.log(arr,'sdsdsdsd')
-        setQuestions([...arr])
-    }
-    useEffect(()=>{
-        fetchData()
-    },[])
+    async function fetchData() {
+      try {
+          let response = await fetch("/api/createquestion", {
+              method: "GET"
+          });
+          
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          
+          let data = await response.json();
+          data = data.data;
+  
+          let arr = [];
+          data = data.map((d) => {
+              console.log(d.solutions, 'dddd');
+              d.solutions = d.solutions.filter((da) =>
+                  da.authorId === finalUser._id || da.authorName === finalUser.name
+              );
+              arr = [...arr, d];
+              return d;
+          });
+  
+          console.log(arr, 'sdsdsdsd');
+          setQuestions([...arr]);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+          // Optionally, you can set an error state here to display a message to the user
+          // setError(error.message); // Example of setting an error state
+      }
+  }
+  
+  useEffect(() => {
+      fetchData();
+  }, []);
+  
     function handleOnClick(id){
         // router.push(`/devopsforum?id=${id}`)
         window.location.href=`/devopsforum?id=${id}`

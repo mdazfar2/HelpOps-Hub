@@ -8,22 +8,44 @@ export default function AllBlogs() {
  useEffect(()=>{
     fetchBlogs()
  },[])
- async function fetchBlogs(){
-    let data=await fetch('/api/blog',{method:"GET"})
+ async function fetchBlogs() {
+  try {
+    const response = await fetch('/api/blog', { method: 'GET' });
 
-    data=await data.json()
-    
-    setBLogs(data.data)
- }
- async function handleBlogDelete(blog){
-    await fetch('/api/blog',{
-      method:"DELETE",
-      body:JSON.stringify({
-        id:blog._id
-      })
-    })
-    window.location.reload()
+    if (!response.ok) {
+      throw new Error(`Error fetching blogs: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    setBLogs(data.data);
+  } catch (error) {
+    console.error('Error in fetchBlogs:', error);
   }
+}
+
+async function handleBlogDelete(blog) {
+  try {
+    const response = await fetch('/api/blog', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: blog._id })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error deleting blog: ${response.statusText}`);
+    }
+
+    // Optionally refresh the blog list here if needed
+    // You can also call fetchBlogs() to reload the blogs without a full page reload
+    await fetchBlogs(); 
+
+  } catch (error) {
+    console.error('Error in handleBlogDelete:', error);
+  }
+}
+
     return (
     <div className="">
     <div className="flex w-[100%] flex-col gap-4 flex-wrap lg:flex-nowrap justify-center ">

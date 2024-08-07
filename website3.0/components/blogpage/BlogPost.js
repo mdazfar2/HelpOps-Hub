@@ -330,32 +330,62 @@ useEffect(()=>{
       // }
     }
   }
-  async function handleAddReply(index){
-    let input=document.getElementById(index)
-     await fetch('/api/addreply',{
-      method:"POST",
-      body:JSON.stringify({
-        user_name:finalUser.name,
-        index:index,
-        blog_id:id,
-        username:finalUser.username,
-        image:finalUser.image1||            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
-        
-        comment:input.value
-      })
-    })
-    let arr={
-      name:finalUser.name,
-      index:index,
-      blog_id:id,
-      image:finalUser.image1||            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
-            comment:input.value
+  async function handleAddReply(index) {
+    try {
+      const input = document.getElementById(index);
+  
+      // Check if input value is not empty
+      if (!input || !input.value.trim()) {
+        console.error('Comment cannot be empty');
+        return;
+      }
+  
+      // Perform the POST request to add the reply
+      const response = await fetch('/api/addreply', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_name: finalUser.name,
+          index: index,
+          blog_id: id,
+          username: finalUser.username,
+          image: finalUser.image1 || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
+          comment: input.value
+        })
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error adding reply: ${response.statusText}`);
+      }
+  
+      // Update local reply state
+      const newReply = {
+        name: finalUser.name,
+        index: index,
+        blog_id: id,
+        image: finalUser.image1 || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s",
+        comment: input.value
+      };
+  
+      // Update replies state immutably
+      setReply(prevReplies => {
+        const updatedReplies = [...prevReplies];
+        if (!updatedReplies[index]) {
+          updatedReplies[index] = [];
+        }
+        updatedReplies[index].push(newReply);
+        return updatedReplies;
+      });
+  
+      // Clear the input field
+      input.value = '';
+    } catch (error) {
+      console.error('Error in handleAddReply:', error);
     }
-    let arr1=reply
-    arr1[index].push(arr)
-    setReply([...arr1])
-    input.value=""
-  } 
+  }
+  
 
   async function handleUnfollow() {
     if (!isLogin) {
@@ -693,48 +723,51 @@ useEffect(()=>{
     clearTimeout(timerRef.current);
     setHovered(true);
   };
-  async function handleCommentLike(index){
-    let comment_id=comments[index]
-    if(isLiked[index]){
-      let arr=isLiked
-      arr[index]=false
-      setIsLiked([...arr])
-      await fetch('/api/commentlike',{
-        method:"POST",
-        body:JSON.stringify({
-          comment_id:comment_id,
-          blog_id:id,
-          isDelete:true,
-          index:index,
-          user_id:finalUser._id
-        })
-      })
-      let tempcomments=comments
-    tempcomments[index].likes=tempcomments[index].likes-1
-    
-    setComments([...tempcomments])
-      return
+  async function handleCommentLike(index) {
+    try {
+      const commentId = comments[index]._id; // Assuming each comment has a unique _id
+      const isCurrentlyLiked = isLiked[index];
+      
+      // Update the local liked state
+      const updatedIsLiked = [...isLiked];
+      updatedIsLiked[index] = !isCurrentlyLiked;
+      setIsLiked(updatedIsLiked);
+  
+      // Prepare the request body
+      const requestBody = {
+        comment_id: commentId,
+        blog_id: id,
+        isDelete: isCurrentlyLiked, // If it was liked, it will be unliked now
+        index: index,
+        user_id: finalUser._id
+      };
+  
+      // Make the request to update the like status
+      const response = await fetch('/api/commentlike', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to update like status: ${response.statusText}`);
+      }
+  
+      // Update the comments state
+      const updatedComments = [...comments];
+      updatedComments[index] = {
+        ...updatedComments[index],
+        likes: updatedComments[index].likes + (isCurrentlyLiked ? -1 : 1)
+      };
+      setComments(updatedComments);
+    } catch (error) {
+      console.error('Error handling comment like:', error);
+      // Optionally, show an error message to the user
     }
-    let arr=isLiked
-    arr[index]=true
-    setIsLiked([...arr])
-    let updatedComment=await fetch('/api/commentlike',{
-      method:"POST",
-      body:JSON.stringify({
-        comment_id:comment_id,
-        blog_id:id,
-        isDelete:false,
-        index:index,
-        user_id:finalUser._id
-      })
-    })
-
-    let tempcomments=comments
-    tempcomments[index].likes=tempcomments[index].likes+1
-    
-    setComments([...tempcomments])
-    
   }
+  
   const handleMouseLeavePanel = (e) => {
     if (!iconRef.current.contains(e.relatedTarget)) {
       timerRef.current = setTimeout(() => setHovered(false), 1000);
@@ -792,15 +825,47 @@ useEffect(()=>{
       return
     }
   }
-  async function handleBlogDelete(){
-    await fetch('/api/blog',{
-      method:"DELETE",
-      body:JSON.stringify({
-        id:blog._id
-      })
-    })
-    router.push('/blogs')
+  async function handleBlogDelete() {
+    try {
+      // Set a loading state if needed
+      // setLoading(true);
+  
+      // Check if the blog ID is defined
+      if (!blog || !blog._id) {
+        throw new Error("Invalid blog data");
+      }
+  
+      // Send the DELETE request
+      const response = await fetch('/api/blog', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: blog._id
+        })
+      });
+  
+      // Check if the response is OK
+      if (!response.ok) {
+        throw new Error(`Failed to delete blog: ${response.statusText}`);
+      }
+  
+      // Optionally, handle successful deletion
+      // setSuccessMessage('Blog deleted successfully');
+  
+      // Redirect to the blogs page
+      router.push('/blogs');
+    } catch (error) {
+      // Handle errors, show messages to the user
+      console.error('Error deleting blog:', error);
+      // setErrorMessage('Failed to delete blog. Please try again.');
+    } finally {
+      // Reset loading state if used
+      // setLoading(false);
+    }
   }
+  
   function handleLinkCopy(){
     navigator.clipboard.writeText(`https://www.helpopshub.com/blogs/${id}`)
     setIsPopup(true)

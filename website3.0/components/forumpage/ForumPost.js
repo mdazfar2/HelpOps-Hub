@@ -100,67 +100,113 @@ function ForumPost({theme,id,finalUser,setMsg,setIsPopup}) {
   useEffect(()=>{
     fetchData()
   },[id])
-  async function fetchData(){
-    
-    let data=await fetch("/api/getquestion",{
-      method:"POST",
-      body:JSON.stringify({id:id})
-    })
-    data=await data.json()
- 
-    console.log(data)
-    setIssue(data.data)
-    setRelatedUsers(data.data.questionrelatedusers)
-    setLoading(false)
-  }
-  async function handleCloseQuestion(){
-    let ques=await fetch("/api/closequestion",{
-      method:"POST",
-      body:JSON.stringify({id:id})
-
-    })
-    let issue1=issue
-    if(issue1.isCLose){
-      issue1.isCLose=false
-    }else{
-      issue1.isCLose=true
+  async function fetchData() {
+    try {
+      const response = await fetch("/api/getquestion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id: id })
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log(data);
+      
+      setIssue(data.data);
+      setRelatedUsers(data.data.questionrelatedusers);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false);
+      // Optionally, set an error state or display a message to the user
     }
-    window.location.reload()
   }
-  async function handleAddSolution(){
-    if(!finalUser||!localStorage.getItem("finalUser")){
-      setIsPopup(true)
-    setMsg("Please Login to Add Solution")
-    setTimeout(()=>{
-      setIsPopup(false)
-      setMsg('')
-    },3000)
-    return
+  
+  async function handleCloseQuestion() {
+    try {
+      const response = await fetch("/api/closequestion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id: id })
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const updatedIssue = { ...issue, isCLose: !issue.isCLose };
+      setIssue(updatedIssue);
+      
+      // Optionally, reload or navigate after updating state
+      // window.location.reload(); // Avoid using reload; consider updating the state directly
+    } catch (error) {
+      console.error('Error closing question:', error);
+      // Optionally, set an error state or display a message to the user
     }
-    let data=await fetch("/api/addsolution",{
-      method:"POST",
-      body:JSON.stringify({
-        ans:content.current.value,
-        id:id,
-        authorImage:finalUser.image1,
-        authorName:finalUser.name,
-        userId:finalUser._id,
-        image:isImg
-      })
-    })
-    let date=Date.now()
-    date=formatDate(date)
-    let arr=[{ans:content.current.value,
-      id:id,image:isImg,
-      authorImage:finalUser.image1,
-      authorName:finalUser.name,date:date},...issue.solutions]
-    let newObj={...issue,solutions:[...arr]}
-
-    setIssue(newObj)
-    content.current.value=""
-    setIsComment(false)
-    // window.location.reload()
   }
+  
+  async function handleAddSolution() {
+    if (!finalUser || !localStorage.getItem("finalUser")) {
+      setIsPopup(true);
+      setMsg("Please Login to Add Solution");
+      setTimeout(() => {
+        setIsPopup(false);
+        setMsg('');
+      }, 3000);
+      return;
+    }
+  
+    try {
+      const response = await fetch("/api/addsolution", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ans: content.current.value,
+          id: id,
+          authorImage: finalUser.image1,
+          authorName: finalUser.name,
+          userId: finalUser._id,
+          image: isImg
+        })
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const date = Date.now();
+      const formattedDate = formatDate(date);
+  
+      const newSolution = {
+        ans: content.current.value,
+        id: id,
+        image: isImg,
+        authorImage: finalUser.image1,
+        authorName: finalUser.name,
+        date: formattedDate
+      };
+  
+      const updatedSolutions = [newSolution, ...issue.solutions];
+      const updatedIssue = { ...issue, solutions: updatedSolutions };
+  
+      setIssue(updatedIssue);
+      content.current.value = "";
+      setIsComment(false);
+    } catch (error) {
+      console.error('Error adding solution:', error);
+      // Optionally, set an error state or display a message to the user
+    }
+  }
+  
   function handleOpenProfile(id){
     router.push(`/profile?id=${id}`)
   }

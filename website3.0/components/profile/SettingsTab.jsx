@@ -32,75 +32,129 @@ function SettingsTab() {
   }
 
   async function handleDeleteAccount() {
-    let ans = true;
-    if (finalUser.password.length > 0) {
-      let a = await fetch("/api/login", {
-        method: "POST",
-        body: JSON.stringify({
-          email: finalUser.email,
-          password: passwordRef.current.value,
-        }),
-      });
-      a = await a.json();
-      if (!a.success) {
-        ans = false;
+    try {
+      let ans = true;
+  
+      // Verify user password if provided
+      if (finalUser.password.length > 0) {
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: finalUser.email,
+            password: passwordRef.current.value,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const result = await response.json();
+        if (!result.success) {
+          ans = false;
+        }
       }
-    }
-    if (ans) {
-      await fetch("/api/deleteaccount", {
-        method: "POST",
-        body: JSON.stringify({
-          email: finalUser.email,
-        }),
-      });
-      setIsAdminShow(false);
-      localStorage.removeItem("loggedin");
-      localStorage.removeItem("finalUser");
-      setFinalUser({});
-      setIsLogin(false);
-      if (session.status === "authenticated") {
-        session.status = "unauthenticated";
-        router.push("https://www.helpopshub.com/");
-      } else {
+  
+      // Proceed with account deletion if verification is successful
+      if (ans) {
+        const deleteResponse = await fetch("/api/deleteaccount", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: finalUser.email,
+          }),
+        });
+  
+        if (!deleteResponse.ok) {
+          throw new Error(`HTTP error! Status: ${deleteResponse.status}`);
+        }
+  
+        setIsAdminShow(false);
+        localStorage.removeItem("loggedin");
+        localStorage.removeItem("finalUser");
+        setFinalUser({});
+        setIsLogin(false);
+  
+        if (session.status === "authenticated") {
+          session.status = "unauthenticated";
+        }
+        
         router.push("https://www.helpopshub.com/");
       }
+    } catch (error) {
+      console.error('Error handling account deletion:', error);
+      // Optionally, you can set an error state here to display a message to the user
+      // setError(error.message); // Example of setting an error state
     }
   }
+  
 
   async function handleGoogleDeleteAccount() {
-    let ans = true;
-    if (finalUser.email ? finalUser.email.length > 0 : false) {
-      let a = await fetch("/api/getuserbyemail", {
-        method: "POST",
-        body: JSON.stringify({
-          email: finalUser.email,
-        }),
-      });
-      a = await a.json();
-      if (!a.success) {
-        ans = false;
+    try {
+      let ans = true;
+  
+      // Verify user email if provided
+      if (finalUser.email?.length > 0) {
+        const response = await fetch("/api/getuserbyemail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: finalUser.email,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const result = await response.json();
+        if (!result.success) {
+          ans = false;
+        }
       }
-    }
-    if (ans) {
-      await fetch("/api/deleteaccount", {
-        method: "POST",
-        body: JSON.stringify({
-          email: finalUser.email,
-        }),
-      });
-      setIsAdminShow(false);
-      localStorage.removeItem("loggedin");
-      localStorage.removeItem("finalUser");
-      setFinalUser({});
-      setIsLogin(false);
-      if (session.status === "authenticated") {
-        session.status = "unauthenticated";
-        router.push("https://www.helpopshub.com/");
-      } else {
+  
+      // Proceed with account deletion if verification is successful
+      if (ans) {
+        const deleteResponse = await fetch("/api/deleteaccount", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: finalUser.email,
+          }),
+        });
+  
+        if (!deleteResponse.ok) {
+          throw new Error(`HTTP error! Status: ${deleteResponse.status}`);
+        }
+  
+        setIsAdminShow(false);
+        localStorage.removeItem("loggedin");
+        localStorage.removeItem("finalUser");
+        setFinalUser({});
+        setIsLogin(false);
+  
+        if (session.status === "authenticated") {
+          session.status = "unauthenticated";
+        }
+        
         router.push("https://www.helpopshub.com/");
       }
+    } catch (error) {
+      console.error('Error handling Google account deletion:', error);
+      // Optionally, you can set an error state here to display a message to the user
+      // setError(error.message); // Example of setting an error state
     }
   }
+  
 
   function passwordClose() {
     setIsPassword(false);

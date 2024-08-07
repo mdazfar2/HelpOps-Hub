@@ -55,63 +55,90 @@ const handleChange = (e) => {
 
 // Save changes to the user's profile
 const handleSaveChanges = async () => {
-  // Send updated profile data to the server
-  await fetch("/api/editaccount", {
-    method: "POST",
-    body: JSON.stringify({
-      formData: formData,
-      image: url,
-      banner: bannerUrl,
-      email: finalUser.email,
-    }),
-  });
+  try {
+    // Send updated profile data to the server
+    await fetch("/api/editaccount", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        formData: formData,
+        image: url,
+        banner: bannerUrl,
+        email: finalUser.email,
+      }),
+    });
 
-  // Fetch the updated user data
-  let a = await fetch("/api/createaccount", {
-    method: "POST",
-    body: JSON.stringify({
-      email: finalUser.email,
-    }),
-  });
+    // Fetch the updated user data
+    let response = await fetch("/api/createaccount", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: finalUser.email,
+      }),
+    });
 
-  let e = await a.json();
-  
-  // Update the context and localStorage with the new user data
-  setFinalUser(e.msg);
-  let dt = await JSON.stringify(e.msg);
-  localStorage.setItem("finalUser", dt);
-  setUrl(e.msg.image1);
-  setBannerUrl(e.msg.banner);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-  // Close the profile modal after saving changes
-  onRequestClose();
+    let data = await response.json();
+    
+    // Update the context and localStorage with the new user data
+    setFinalUser(data.msg);
+    localStorage.setItem("finalUser", JSON.stringify(data.msg));
+    setUrl(data.msg.image1);
+    setBannerUrl(data.msg.banner);
+
+    // Close the profile modal after saving changes
+    onRequestClose();
+  } catch (error) {
+    console.error('Error saving changes:', error);
+    // Optionally, you can set an error state here to display a message to the user
+    // setError(error.message); // Example of setting an error state
+  }
 };
+
 
 // Handle changes to profile image
 async function handlefilechange(event) {
-  let imageFile = event.target.files[0];
-  if (imageFile) {
-    const formData1 = new FormData();
-    formData1.append("file", imageFile);
-    formData1.append("upload_preset", "e_image");
+  try {
+    let imageFile = event.target.files[0];
+    if (imageFile) {
+      const formData1 = new FormData();
+      formData1.append("file", imageFile);
+      formData1.append("upload_preset", "e_image");
 
-    // Upload the image to Cloudinary
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`,
-      {
-        method: "POST",
-        body: formData1,
+      // Upload the image to Cloudinary
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dwgd3as6k/image/upload`,
+        {
+          method: "POST",
+          body: formData1,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    );
 
-    const data = await response.json();
+      const data = await response.json();
 
-    // Update the formData and image URL state with the uploaded image's URL
-    setFormData({ ...formData, ["userImage"]: data.secure_url });
-    setFormData({ ...formData, ["image"]: data.secure_url });
-    setUrl(data.secure_url);
+      // Update the formData and image URL state with the uploaded image's URL
+      setFormData({ ...formData, ["userImage"]: data.secure_url });
+      setFormData({ ...formData, ["image"]: data.secure_url });
+      setUrl(data.secure_url);
+    }
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    // Optionally, you can set an error state here to display a message to the user
+    // setError(error.message); // Example of setting an error state
   }
 }
+
 
 // Handle changes to banner image
 async function handleBannerChange(event) {
