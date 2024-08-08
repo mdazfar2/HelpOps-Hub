@@ -27,11 +27,37 @@ export default function CreateBlog({id}) {
     const [draftLink,setDraftLink]=useState('')
     let [ifSchedule,setISSchedule]=useState(false)
   let router=useRouter()
+  const [isEditorFocused, setIsEditorFocused] = useState(false); // State to track editor focus
+
   const [value, setValue] = useState('');
   const datetime = useRef(null);
 
   const quillRef = useRef(null);
   const quillRef1 = useRef(null);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        e.preventDefault();
+        if(modal){
+          handleFormSubmit()
+        }else{
+
+          
+          handleTagTaker()
+        }
+      }else if(e.key === 'Escape' ){
+        setModal(false)
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [ isEditorFocused,modal]);
+  
+  const handleEditorFocus = () => setIsEditorFocused(true);
+  const handleEditorBlur = () => setIsEditorFocused(false);
   useEffect(() => {
     if(ifSchedule){
 
@@ -397,11 +423,13 @@ export default function CreateBlog({id}) {
     function changeShow1() {
       setIsTagModalShow(false)
       setShowInTitle(true)
+      setIsEditorFocused(true)
     }
     function changeShow2() {
       setIsTagModalShow(false)
 
         setShowInTitle(false);
+        setIsEditorFocused(true)
      
     }
     async function handleTagTaker(){
@@ -557,7 +585,7 @@ export default function CreateBlog({id}) {
         <div
           className={`h-[100%] w-[1px] ${theme ? "bg-black" : "bg-white"}`}
         ></div>
-        <ReactQuill  onFocus={changeShow1}  placeholder="Title"  ref={quillRef} className={` w-[100vw] ${theme?"text-black":"text-white"}`}  onChangeSelection={handleToolbar}  theme="snow" value={value} onChange={setValue} />
+        <ReactQuill       onBlur={handleEditorBlur}  onFocus={changeShow1}  placeholder="Title"  ref={quillRef} className={` w-[100vw] ${theme?"text-black":"text-white"}`}  onChangeSelection={handleToolbar}  theme="snow" value={value} onChange={setValue} />
         {/* <input
           style={{height1,
             fontFamily:
@@ -598,7 +626,7 @@ export default function CreateBlog({id}) {
             )}
           </div>
         )}
-                  <ReactQuill   onFocus={changeShow2} ref={quillRef1} className={` w-[100vw] ${theme?"text-black quill-placeholder-light ":"text-white quill-placeholder-dark"}`}  placeholder="Write Something Amazing" onChangeSelection={handleToolbar1}  theme="snow" value={desc} onChange={setDesc} />
+                  <ReactQuill       onBlur={handleEditorBlur}   onFocus={changeShow2} ref={quillRef1} className={` w-[100vw] ${theme?"text-black quill-placeholder-light ":"text-white quill-placeholder-dark"}`}  placeholder="Write Something Amazing" onChangeSelection={handleToolbar1}  theme="snow" value={desc} onChange={setDesc} />
 
         {/* <textarea
    onClick={changeShow}
