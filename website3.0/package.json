@@ -19,6 +19,7 @@
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/runtime": "^1.9.5",
     "@syncfusion/ej2-react-charts": "^26.2.5",
     "@tsparticles/all": "^3.4.0",
     "@tsparticles/react": "^3.0.0",
