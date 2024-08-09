@@ -442,7 +442,7 @@ const ProfilePage = () => {
                 </ul>
               </MenuItem1>
               <MenuItem
-                title="Resources"
+                title="Saved Resources"
                 icon={faChartBar}
                 isCollapsible={false}
                 onClick={() => handleMenuClick(<Resources />, "Resources")}
