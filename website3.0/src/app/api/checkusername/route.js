@@ -14,13 +14,9 @@ const connectToDatabase = async () => {
 // POST endpoint for user registration
 export async function POST(req) {
   try {
-    const { email, username, password, image } = await req.json();
+    const {username } = await req.json();
 
-    // Validate input
-    if (!email || !username || !password) {
-      return NextResponse.json({ success: false, msg: "Email, username, and password are required" }, { status: 400 });
-    }
-
+   
     await connectToDatabase();
 
     // Check if username already exists
@@ -28,18 +24,7 @@ export async function POST(req) {
     if (existingUser) {
       return NextResponse.json({ success: false, msg: "This username is already taken" }, { status: 409 });
     }
-
-    // Hash the password before saving
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Create a new user
-    const newUser = new user({
-      email,
-      username,
-      password: hashedPassword,
-      image,
-    });
-    await newUser.save();
+    
 
     // Return success response
     return NextResponse.json({ success: true, msg: "User registered successfully" }, { status: 201 });
