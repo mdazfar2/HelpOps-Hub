@@ -253,7 +253,7 @@ const handleProfileComplete = () => {
 async function handleCheckUsername() {
   let response = await fetch('/api/checkusername', {
     method: "POST",
-    body: JSON.stringify({ username: usernameValue })
+    body: JSON.stringify({ username: usernameValue,id:finalUser._id})
   });
 
   let canCreate = await response.json();
