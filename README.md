@@ -94,15 +94,15 @@ The goal of our project is to empower DevOps professionals by providing a compre
   <table border="1" cellpadding="10">
         <tr>
             <td rowspan="2">
-                <img src="https://github.com/Meetjain1/wanderlust/assets/133582566/21b2bc42-bdd5-487a-a083-1b262c2f6d9b" alt="GSSOC Logo" width="100" height="55">
+                <img src="https://github.com/user-attachments/assets/bff28059-b266-4b8c-b73b-b8fed21885d7" alt="Hacktoberfest Logo" width="100" height="55">
             </td>
             <td>
-                <strong>GSSOC 2024</strong>
+                <strong>Hacktoberfest 2024</strong>
             </td>
         </tr>
         <tr>
             <td>
-                This project is part of GirlScript Summer of Code. We warmly welcome contributions from the community to help elevate HelpOps-Hub.
+                This project is part of Hacktoberfest. We warmly welcome contributions from the community to help elevate HelpOps-Hub.
             </td>
         </tr>
     </table>
