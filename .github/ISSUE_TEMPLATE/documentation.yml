@@ -38,8 +38,7 @@ body:
       options:
         - label: "I agree to follow this project's Code of Conduct"
           required: true
-        - label: "I'm a GSSOC'24 contributor"
-        - label: "I'm a VSoC'24 contributor"
+        - label: "I'm a Hacktoberfest'24 contributor"
         - label: "I'm DevOps professional"
         - label: "Soon, I'll complete it and create a Pull Request."
         - label: "I'm a beginner in DevOps, but I'll try to contribute the best resources with hands-on experience."

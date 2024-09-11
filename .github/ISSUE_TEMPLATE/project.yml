@@ -1,4 +1,4 @@
-name: "📝 Project Proposal"
+name: "📝 DevOps Project Proposal"
 description: "Suggest a new project or resource for HelpOps-Hub"
 title: "Project Proposal: "
 labels: [project, enhancement]
@@ -6,7 +6,7 @@ body:
   - type: textarea
     attributes:
       label: "Overview"
-      description: "What is the goal of the project? Why is it valuable for the DevOps community?"
+      description: "What is the goal of the project? And which type of technology you are using?"
     validations:
       required: true
 
@@ -30,6 +30,5 @@ body:
       options:
         - label: "I agree to follow this project's Code of Conduct"
           required: true
-        - label: "I'm a GSSOC'24 contributor"
-        - label: "I'm a VSoC'24 contributor"
+        - label: "I'm a Hacktoberfest'24 contributor"
         - label: "I want to work on this project proposal"
