@@ -3,7 +3,7 @@
     "@splidejs/react-splide": "^0.7.12",
     "@splinetool/react-spline": "^4.0.0",
     "bcrypt": "^5.1.1",
-    "framer-motion": "^11.3.2",
+    "framer-motion": "^11.5.4",
     "jsonwebtoken": "^9.0.2",
     "next-auth": "^4.24.7",
     "resend": "^3.4.0",
