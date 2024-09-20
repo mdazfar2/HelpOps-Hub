@@ -1,0 +1,118 @@
+/* Importing the font used in the HelpOps-Hub website */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Base Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background-color: #f5f6f7; /* Light background color */
+  color: #212529; /* Dark text color */
+}
+
+.terms-container {
+  background-color: #ffffff; /* White background for the container */
+  color: #212529; /* Dark text color */
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2.8rem;
+  color: #1a73e8; /* Blue color to match the website */
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  color: #6c757d; /* Secondary color for subtitles */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #212529; /* Dark text color */
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: #1a73e8; /* Blue color for section titles */
+  margin-top: 40px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.link {
+  color: #1a73e8; /* Primary color for links */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.toc {
+  margin-bottom: 40px;
+}
+
+.toc ol {
+  padding-left: 20px;
+}
+
+.toc li {
+  margin-bottom: 10px;
+}
+
+.toc a {
+  color: #343a40; /* Dark gray for ToC links */
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #343a40; /* Dark background color */
+  color: #f8f9fa; /* Light text color */
+}
+
+.terms-container.dark-mode {
+  background-color: #495057; /* Darker background for the container */
+  color: #f8f9fa; /* Light text color */
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+.title.dark-mode,
+.subtitle.dark-mode,
+.section-title.dark-mode {
+  color: #1a73e8; /* Primary color for titles */
+}
+
+.link.dark-mode {
+  color: #1a73e8; /* Primary color for links */
+}
+
+.link.dark-mode:hover {
+  color: #0c5da5; /* Darker shade for hover effect */
+}
+
+.toc a.dark-mode {
+  color: #ced4da; /* Light gray for ToC links */
+}
+
+

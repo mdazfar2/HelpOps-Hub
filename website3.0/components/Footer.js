@@ -8,13 +8,15 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Context } from "@context/store";
 import { usePathname } from "next/navigation";
+
 function Footer() {
   const pathname = usePathname(); // Get current path
   const isAdmin = pathname && pathname.startsWith("/admin"); // Check if path starts with '/admin'
-  const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/admin'
+  const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/profile'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
   const isCreateForum = pathname && pathname.startsWith("/createforum");
   let { theme } = useContext(Context);
+
   return (
     <div
       className={`${theme ? "bg-gray-100" : "bg-[#1e1d1d]"} ${
@@ -66,6 +68,23 @@ function Footer() {
           />
         </a>
       </div>
+
+      {/* Terms and Conditions Link */}
+      <p
+        className={`${
+          theme ? "text-black" : "text-gray-100"
+        } font-sans text-xs py-2 font-normal mb-0 transition-colors duration-500`}
+      >
+        <a
+          href="/termsandconditions"
+          className={`underline ${
+            theme ? "text-black hover:text-gray-700" : "text-gray-100 hover:text-gray-400"
+          }`}
+        >
+          Terms and Conditions
+        </a>
+      </p>
+
       {/* Copyright notice */}
       <p
         className={`${
@@ -74,6 +93,7 @@ function Footer() {
       >
         © HelpOps-Hub | MIT License
       </p>
+
       {/* Developer and contributors */}
       <p
         className={`${
