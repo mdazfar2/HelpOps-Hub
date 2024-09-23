@@ -16,6 +16,9 @@
 # Welcome to HelpOps-Hub 👋
 At HelpOps-Hub, we're building a comprehensive collection of resources, guides, and tools to empower DevOps enthusiasts and professionals of all experience levels.  Navigate the vast landscape of DevOps with ease –  whether you're a beginner looking to get started or an experienced engineer seeking advanced solutions, our repository is designed to ensure you never get stuck again.
 
+
+<!-- Outreach section -->
+
 ## 💪 Outreach
 
 HelpOps-Hub is proudly part of global initiatives engaging with passionate developers and open-source enthusiasts worldwide:
