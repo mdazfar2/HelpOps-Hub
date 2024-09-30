@@ -1,25 +1,34 @@
-name: "✨ Feature Request"
-description: "Suggest an idea for this project "
-title: "Feat:"
+name: Feature Request 💡
+description: Have any new idea or new feature for HelpOps-Hub? Please suggest!
+title: '[Feat]'
 labels: [enhancement]
 body:
   - type: textarea
+    id: description
     attributes:
-      label: "Describe the feature"
-      description:
+      label: Description
+      description: A clear and concise description of any alternative solution or features you've considered.
     validations:
       required: true
   - type: textarea
+    id: screenshots
     attributes:
-      label: "Add ScreenShots"
-      description: "Add sufficient SS to explain your issue."
+      label: Screenshots
+      description: Please add screenshots if applicable
     validations:
-      required: true
+      required: false
   - type: checkboxes
+    id: no-duplicate-issues
     attributes:
-      label: "Record"
+      label: 'Checklist'
       options:
-        - label: "I agree to follow this project's Code of Conduct"
+        - label: 'I have checked the existing issues'
           required: true
+
+        - label: 'I have read the [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md)'
+          required: true
+        - label: "I'm a GSSoC'24-Extd contributor"
         - label: "I'm a Hacktoberfest'24 contributor"
-        - label: "I want to work on this issue"
+
+        - label: 'I am willing to work on this issue (optional)'
+          required: false
