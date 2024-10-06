@@ -693,9 +693,9 @@ issue?.questionrelatedusers?.slice(0,issue?.questionrelatedusers.length>4?4:issu
                   </div>
                 </div>
               </div>   })
-} <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
+}{issue.authorId==finalUser._id &&  <div onClick={handleCloseQuestion} className="cursor-pointer border-[#6089a4] px-4 py-1 w-[200px] text-center mt-[30px] hover:bg-[#78b3ce] hover:text-white  rounded-md text-base text-[#6089a4] border-2">
                  {issue.isCLose ?"Mark As UnSolved": "Mark As Solved"}
-                </div>
+                </div>}
               {/* <div className="mt-10">
                 <div className={`text-xl font-medium ${theme?"":"text-gray-200"}` }>All Replies</div>
                 <div className={`min-h-16 rounded-md border border-[#d3cabd] flex items-center px-10 mt-10 justify-between w-full ${theme?"bg-[#e3e3e3]":"bg-[#383838]"}`}>
