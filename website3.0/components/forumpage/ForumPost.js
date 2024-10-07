@@ -980,7 +980,7 @@ function ForumPost({ theme, id, finalUser, setMsg, setIsPopup }) {
                       className="mt-10 sm:mr-0"
                     >
                       <div
-                        className={`min-h-20 w-full overflow-scroll lg:overflow-hidden ${
+                        className={`min-h-20 w-full break-all ${
                           theme ? "bg-[#eeeeee]" : "bg-[#383838] rounded-md "
                         } p-8 `}
                       >
