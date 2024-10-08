@@ -5,8 +5,10 @@ import Image from 'next/image';
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"; // Import the Github and linkedin icon
+import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the Heart icon
+import { faLink } from '@fortawesome/free-solid-svg-icons'; // Import the link icon
+
 
 //Importing the CardSkeleton Component
 import CardSkeleton from "@components/CardSkeleton";
@@ -787,12 +789,12 @@ function TeamsPage({ theme }) {
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#4285f45c]">
               <a
-                href="https://github.com/mdazfar2"
+                href="https://www.azfaralam.xyz/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
-                  icon={faGithub}
+                  icon={faLink}
                   className={`${
                     theme ? "text-[#6e6e6e]" : "text-white"
                   } social-icon scale-[2.5] max-[525px]:scale-125 `}
@@ -803,7 +805,7 @@ function TeamsPage({ theme }) {
                   theme ? "text-[#000000]" : "text-white"
                 } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
-                Github
+                Porfolio
               </p>
             </div>
             <div className="social-links-items [transition:0.3s_ease-in-out] flex justify-center flex-col items-center pt-[25px] rounded-[10px] w-full mx-[0rem] my-[0.6rem] hover:bg-[#4285f45c]">
