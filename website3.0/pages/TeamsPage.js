@@ -5,8 +5,8 @@ import Image from 'next/image';
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"; // Import the Github and linkedin icon
+import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the Heart icon
 import { faLink } from '@fortawesome/free-solid-svg-icons'; // Import the link icon
 
 
