@@ -21,7 +21,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
         !/[a-z]/.test(password) || 
         !/[A-Z]/.test(password) || 
         !/[@#$%^&*()\-_=+{}[\]\|\\;:'",.<>\/?~`!]/.test(password)){
-        setMsg('password must be 8 charachters long must contains 1 lowercase 1 uppercase and 1 special charachter')
+        setMsg('password must be 8 characters long must contains 1 lowercase, 1 uppercase and 1 special charachter')
         setIsPopup(true)
         return false
       }else{
