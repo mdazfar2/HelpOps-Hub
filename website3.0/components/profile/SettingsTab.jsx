@@ -221,7 +221,7 @@ function SettingsTab() {
             className="auth-modal z-500"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="z-500 w-[500px] gap-6 rounded-lg p-6 bg-slate-100 flex flex-col items-center ">
+            <div className={`${theme ? "bg-white text-black" : "bg-[#1e1d1d] "}z-500 w-[500px] gap-6 rounded-lg p-6 flex flex-col items-center`}>
               <h1>Type "Confirm" to Delete Your Account</h1>
               <input
                 className="w-[90%] bg-transparent border-b-black border-b-[1px] focus:outline-none"
