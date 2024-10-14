@@ -1,0 +1,114 @@
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+.sponsor-btn {
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow effect */
+    color: #000000; /* Black text color */
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Space between icon and text */
+    transition: transform 0.1s ease; /* Smooth click effect */
+    width: 150px;
+    padding: 7px 7px ;
+    font-family:cursive;
+    margin-right: 7px;
+
+}
+a{
+  text-decoration: none;
+}
+.sponsor-btn:active{
+  transform:translateY(1px) ;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    margin: 25px;
+    padding:12px 20px;
+    background-color: #FDD86C;
+    border-radius: 25px;
+    
+    box-shadow: 0 4px 6px #FF7D1F;
+}
+.nav-links a:hover{
+    text-decoration: underline;
+}
+.nav-links li a {
+    text-decoration: none !important;
+    color: #101010;
+    padding: 10px 15px;
+    font-size: 22px;
+    position: relative;
+}
+.nav-links li a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: 4px;
+    left: 0;
+    background-color: #FF7D1F;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .nav-links li a:hover::after{ 
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+#social-links{
+    display: flex;
+    flex-direction: column;
+    /* margin-left: 20px; */
+    margin-right: 20px;
+    font-size: 40px;
+    gap: 60px;
+  }
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-btn, .sponsor-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  
+}
+
+.search-btn {
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+#heart{
+    color: red;;
+}

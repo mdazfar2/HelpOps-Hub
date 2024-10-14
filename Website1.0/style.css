@@ -1,0 +1,955 @@
+/* styles.css */ /* Reset some default styles */
+body,
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+.team-grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap !important;
+}
+.img-div{
+  width: 40%;
+
+}
+.team-member{
+  display: flex;
+  flex-direction: row;
+position: relative;
+}
+/* Add CSS for hover and transitions */
+.nav__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav__item {
+  margin-right: 15px;
+}
+.nav__item a {
+  color: #333;
+  font-size: 24px;
+  transition: color 0.3s, transform 0.3s;
+}
+.nav__item a:hover {
+  color: #007BFF;
+  transform: scale(1.2);
+}
+body.dark-mode .nav__item a {
+  color: #fff;
+}
+body.dark-mode .nav__item a:hover {
+  color: #FFD700; 
+}
+/* style search container */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 13px;
+}
+
+/* Style for the search bar */
+#search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 2rem;
+  /* margin: 10px; */
+  margin-top: 1rem;
+  padding: 17px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 24px;
+  background-color: white;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+#search-box:hover {
+  border: 2px solid #00ccff; /* Color of border after hover the cursor*/
+  box-shadow: 4px 4px 20px #00ccff; /*Shadow effect after hover the cursor*/
+}
+
+input {
+  width: 90%;
+  /* margin-left: 12px; */
+  outline: none;
+  border: none;
+  font-size: 20px;
+  border: none;
+  outline: none; /*Not display the default color border*/
+  border-radius: 24px; /* Rounded corners */
+  background-color: white; /* Light grey background */
+  position: relative;
+  z-index: 1;
+}
+
+.icon {
+  position: relative;
+  align-self: left;
+  font-size: 21px;
+  color: #00ccff; /* Icon color */
+  pointer-events: none;
+}
+
+/* Placeholder text color */
+#search-bar::placeholder {
+  color: #9e9e9e;
+}
+/* scrollbar.css */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #00ccff;
+}
+::-webkit-scrollbar-thumb {
+  background: darkgray;
+  border-radius: 10px;
+  min-height: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darkgrey;
+}
+header h1 {
+  font-size: 80px;
+  margin: 10px;
+}
+/* Set a background color */
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+/* Adjust the logo size as needed */
+.logo img {
+  width: 200px;
+  height: 200px;
+}
+/* maincontainer */
+#maincontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+}
+/* Header styles */
+header {
+  background-color: #00ccff;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+/* loading  */
+.loading{
+  margin-top:20px ;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* loading container  */
+
+.loading-gears {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.gear {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  fill: #3498db;
+}
+
+.gear.one {
+  top: 25px; /* Adjusted for proper interlocking */
+  left: 25px; /* Adjusted for proper interlocking */
+  animation: spin 2s linear infinite;
+}
+
+.gear.two {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: spin 2s linear infinite reverse;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+/* .loading:after {
+overflow: hidden;
+display: inline-block;
+vertical-align: bottom;
+-webkit-animation: ellipsis steps(4, end) 900ms infinite;
+animation: ellipsis steps(4, end) 900ms infinite;
+content: "\2026"; */
+/* ascii code for the ellipsis character */
+/* width: 0px;
+} */
+
+/* @keyframes ellipsis {
+to {
+width: 40px;
+}
+}
+
+@-webkit-keyframes ellipsis {
+to {
+width: 40px;
+}
+} */
+/* Container for folder cards */
+#folders-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  /* justify-content: space-between; Distribute cards evenly */
+}
+
+/* Individual folder card */
+.folder-card {
+  flex: 0 0 calc(25% - 20px); /* Four cards per row (adjust margin as needed) */
+  margin: 10px;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.folder-card:hover {
+  background-color: white;
+  box-shadow: 5px 5px 20px #00ccff;
+  transform: scale(1.1);
+  transition: 0.5s;
+  border-radius: 1.5rem;
+  /* font-family: cursive; */
+  font-size: 0.9rem;
+}
+
+/* Heading for folder name */
+.folder-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+/* Dark mode styles */
+.dark-mode #folders-container {
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
+.dark-mode .folder-card {
+  background-color: #1a1a1a; /* Dark card background */
+  color: #fff; /* Light text color */
+  border-color: #555; /* Darker border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker box shadow */
+}
+
+.dark-mode .folder-card:hover {
+  background-color: #333; /* Dark hover background */
+  box-shadow: 5px 5px 20px #00ccff; /* Example hover effect in dark mode */
+  transform: scale(1.1);
+  border-radius: 1.5rem;
+}
+
+/* Example: Dark mode heading for folder name */
+.dark-mode .folder-card h3 {
+  color: #fff; /* Light heading color */
+}
+
+.about-button{
+  display: flex;
+  align-items: center;
+  color: black;
+  color: #00ccff;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s;
+  text-decoration: none;
+}
+.about-button:hover {
+  transform: scale(1.2);
+  background-color: white;
+}
+/* Path text */
+.folder-card p {
+  font-size: 14px;
+  color: #777;
+}
+/* sponser button */
+.sponsor-button {
+  display: flex;
+  align-items: center;
+  color: black;
+  box-shadow: 5px 5px 20px #00ccff;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px; /* Padding around text */
+  font-size: 16px; /* Text size */
+  cursor: pointer;
+  outline: none;
+  top: 20px; /* Distance from the top */
+  right: 20px; /* Distance from the right */
+  transition: 0.5s;
+}
+
+.heart {
+  color: #ff5c5c; /* Heart color */
+  margin-right: 8px; /* Space between heart and text */
+  font-size: 18px; /* Heart size */
+}
+
+.sponsor-button:hover {
+  transform: scale(1.2);
+  background-color: white;
+  /* color: black;
+  box-shadow: 5px 5px 20px #00ccff; */
+}
+.logo {
+  width: 30%;
+  z-index: 1; /* Ensure it's above other content */
+}
+@media only screen and (max-width: 672px) {
+  .logo {
+    width: 100%;
+  }
+}
+
+@media (max-width: 769px) {
+  .logo img {
+    width: 150px;
+    height: 150px;
+  }
+  .logo {
+    top: 70px;
+    left: 10px;
+  }
+}
+.header {
+  height: 9rem;
+}
+@media only screen and (max-width: 812px) {
+  .header {
+    height: auto !important;
+  }
+}
+@media only screen and (max-width: 544px) {
+  .header {
+    flex-direction: column !important;
+  }
+}
+.header {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 544px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo {
+    left: 0px;
+    top: 70px;
+  }
+  .header {
+    flex-direction: column !important;
+  }
+  #search-bar {
+    width: 80%;
+    margin-top: 40px;
+  }
+  .sponsor-button {
+    margin-top: 40px;
+    right: 5px;
+    top: 55px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  header p {
+    font-size: 0.7rem;
+  }
+  #folders-container {
+    padding: 20px 20px;
+    gap: 8px;
+    /* justify-content: space-between; Distribute cards evenly */
+    margin-top: 10px;
+  }
+
+  .folder-card {
+    margin: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    flex: 0 0 calc(100% - 20px);
+  }
+}
+
+/* icons */
+.icons {
+  display: flex;
+  gap: 22px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 130px; /* Distance from the top */
+  right: 165px; /* Distance from the right */
+}
+.icons a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 20px; /* Adjust as needed */
+}
+
+/* Feedback section */
+/* .feedback {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.feedback img {
+  margin-left: 8rem;
+  align-items: center;
+  width: 40rem;
+}
+
+#feedback-section {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  width: 30%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+#feedback-section h2 {
+  text-align: center;
+  color: #00ccff;
+  margin-bottom: 1rem;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 0.5rem;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.feedback-form textarea {
+  resize: vertical;
+  height: 100px; /* Fixed height for textarea */
+
+
+/* Rating stars */
+.rating {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 1.5rem;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating input:checked ~ label ~ label {
+  color: #ffc700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffc700;
+}
+
+.feedback-form button {
+  padding: 0.75rem;
+  font-size: 16px;
+  color: #fff;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #009ec3;
+} */
+
+/*Scroll to top*/
+.scrollToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: #00ccff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+.scrollToTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* team */
+#team {
+  gap: 5px;
+  display: flex;
+  display: flex;
+  align-items: center;
+}
+#team h4 {
+  font-size: 10px;
+}
+
+/* Adding footer in the website */
+.footer {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Heart styling */
+#heart {
+  font-size: 2rem;
+  color: #00ccff;
+  margin-bottom: 2rem;
+}
+/* logo styling */
+.logo-link {
+  display: inline-block;
+}
+
+.logo img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2); 
+}
+
+/* Feedback section */
+.feedback {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.feedback img {
+  width: 516px;
+  align-items: center;
+}
+@media only screen and (max-width:940px){
+  .feedback{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #search-box{
+    width: 50% !important;
+  }
+  #feedback-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #feedback-section{
+    width: 80% !important;
+  }
+}
+.footer a{
+  color: black !important;
+  text-decoration: underline;
+}
+.h{
+  line-height: 1.75rem !important;
+}
+.footer{
+  flex-direction: column;
+  font-family: sans-serif;
+
+}
+.font{
+  font-size: .875rem;
+}
+#collapseOne{
+  height: auto !important;
+}
+#collapseTwo{
+  height: auto !important;
+}
+#collapseThree{
+  height: auto !important;
+}
+#collapseFour{
+  height: auto !important;
+}
+#collapseFive{
+  height: auto !important;
+}
+
+
+
+.im{
+  width: 100px !important;
+    position: absolute !important;
+    right: 0px !important;
+}
+@media only screen and (max-width:447px){
+  .feedback img{
+    width: 450px !important;
+  }
+}
+@media only screen and (max-width:610px){
+  #search-box{
+    width: 70% !important;
+  }
+}
+@media only screen and (max-width:398px){
+  .feedback img{
+    width: 350px !important;
+  }
+}
+#feedback-section {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  margin-left: 0px ;
+  margin-right: 0px;
+  width: 30%;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+#feedback-section.dark-mode {
+  background-color: #1c1c1c;
+  border: 1px solid #333333;
+  color:white;
+
+}
+.dark-mode label{
+  color :white;
+}
+#feedback-section h2 {
+  text-align: center;
+  color: #00ccff;
+  margin-bottom: 1rem;
+}
+
+#feedback-section.dark-mode h2 {
+  color: #ffffff;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}
+.feedback-form.dark-mode label {
+  color: white;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 0.5rem;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.feedback-form input.dark-mode,
+.feedback-form textarea.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 1.5rem;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating input:checked ~ label ~ label {
+  color: #ffc700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffc700;
+}
+
+.feedback-form button {
+  padding: 0.75rem;
+  font-size: 16px;
+  color: #fff;
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #009ec3;
+}
+
+.feedback-form button.dark-mode {
+  background-color: #444444;
+  color:white;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.header.dark-mode {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
+.dark-mode nav {
+  background-color: #1c1c1c;
+  color: #ffffff;
+}
+.nav__item a{
+  color:black;
+}
+.dark-mode  .nav__item a{
+  color: #ffffff;
+}
+
+.about-button.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+  box-shadow: 5px 5px 20px #ffffff;
+}
+     /* Custom CSS for Accordion */
+     .accordion .card-header {
+      cursor: pointer;
+  }
+  .accordion .card-header .btn {
+      text-align: left;
+      width: 100%;
+  }
+  
+  /* .accordion .card-header i {
+      transition: transform 0.2s;
+  }
+  .accordion .collapse.show .card-header i {
+      transform: rotate(180deg);
+  }
+  .accordion .card-body {
+      animation: fadeIn 0.3s ease-in-out;
+  } */
+  @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
+  body{
+      overflow-y: scroll;
+  }
+  .about-button1 {
+display: flex;
+align-items: center;
+color: black;
+position: fixed;
+bottom: 50px;
+right: 50px;
+color: #00ccff;
+background-color: #00ccff;
+box-shadow: 5px 5px 20px #00ccff;
+border: none;
+padding: 5px 5px;
+border-radius: 8px; /* Rounded corners */
+font-size: 16px; /* Text size */
+cursor: pointer;
+text-decoration: none;
+transition: 0.5s;
+}
+  .about-button1:hover {
+transform: scale(1.2);
+/* background-color: white; */
+}
+.about-button1 a{
+text-decoration: none;
+}
+.nav_item {
+text-decoration: none;
+}
+.dark-mode .card-header{
+  background-color: #444444;
+  color:white;
+}
+.dark-mode .collapse-heading{
+  color:white;
+}
+.btn{
+  color: #02566b;
+}
+.dark-mode .btn {
+  color:white;
+}
+.dark-mode .card-body{
+  background-color: black;
+}
+.dark-mode .team-member{
+  background-color: #333333;
+  color: whitesmoke;
+}
+.team-member{
+    background-color:#f5f5f5;
+}
+#social-links a {
+  display: flex;
+  align-items: center;
+  color: black;
+  margin: 5px 0;
+  text-decoration: none;
+}
+.dark-mode #social-links a {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin: 5px 0;
+  text-decoration: none;
+}
+.info-div h2 {
+  margin: 10px 0 5px;
+  font-size: 2em;
+  color: black;
+}
+
+.dark-mode .info-div h2 {
+  margin: 10px 0 5px;
+  font-size: 2em;
+  color: white;
+}
+
+.dark-mode .info-div p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: blwhiteack;
+}
+.dark-mode .team-member7{
+  background-color: #333;
+}
+.dark-mode .card7{
+  background-color: #1a1a1a;
+}
+.dark-mode .contributions-label7{
+color: white;
+}
+.dark-mode .social-links7 a{
+  color:white;
+}
+.dark-mode .github-label7{
+  color:white;
+}
+.dark-mode .card1{
+  background-color: #1c1c1c;
+}
+.dark-mode .card2{
+  background-color: #1c1c1c;
+}
+.trophy-card{
+background-color: white;
+color:black;
+}
+.dark-mode .trophy-card{
+  background-color: black;
+  color:white;
+}

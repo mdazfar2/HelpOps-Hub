@@ -1,0 +1,210 @@
+
+
+.container {
+    text-align: center;
+}
+.contri{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #1f1f1f;
+}
+#contributors {
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
+}
+
+.contributor {
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0px;
+}
+#rank1 img{
+    position: relative;
+    left: 80px;
+    transform: rotate(20deg) scale(1.5);
+    /* transform: scale(1.5); */
+}
+#name2,#name3{
+    position: relative;
+bottom: 55px;
+gap: 0px;
+opacity: 0px;
+font-family: 'Poppins', sans-serif;
+font-size: 20px;
+font-weight: 700;
+color: #000000;
+
+}
+#name1{
+    position: relative;
+bottom: 55px;
+gap: 0px;
+opacity: 0px;
+font-family:'Poppins', sans-serif;
+font-size: 30px;
+font-weight: 700;
+color: #000000;
+
+}
+#co2,#co3{
+    position: relative;
+bottom: 80px;
+gap: 0px;
+opacity: 0px;
+font-family: 'Poppins', sans-serif;
+font-size: 20px;
+font-weight: 500;
+color:#00000094;
+
+
+}
+#co1{
+    position: relative;
+bottom: 100px;
+gap: 0px;
+opacity: 0px;
+font-family: Poppins;
+font-size: 30px;
+font-weight: 500;
+color:#00000094;
+
+
+}
+#card2,#card3{
+    bottom: 65px;
+}
+.crown {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    /* font-size: 24px; */
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    background-color: #ff9800;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+.circle{
+    /* box-shadow: 1px 5px 6.8px 4px #00000040; */
+    transition: all 0.3s ease-in-out;
+}
+.circle:hover{
+    box-shadow: 0 0px 20px rgba(48, 48, 48, 0.8);
+    transform: scale(1.09);
+}
+.circle img :hover{
+    transform: scale(1.7);
+}
+.circle .rank {
+    font-size: 24px;
+    color: white;
+}
+
+.contributor:nth-child(2) .circle {
+    width:260px;
+    height: 260px;
+}
+#rank img{
+    position: relative;
+    left: 50px;
+    top: 10px;
+    height: 160px;
+    width: 160px;
+    transform: rotate(20deg);
+}
+#left{
+    position: relative;
+    left: 50px;
+    top: 10px;
+    height: 160px;
+    width: 160px;
+    transform: rotate(-50deg);
+
+}
+#rank1 img{
+    height: 200px;
+    width: 200px;
+}
+#rank1 {
+    top: -132px;
+}
+.contributor:nth-child(1) .circle,
+.contributor:nth-child(3) .circle {
+    width: 160px;
+    height: 160px;
+}
+.rank {
+    width: 50px;
+    height: 50px;
+    background: #E7E7E7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 44px;
+    left: 50px;
+    z-index: 2;
+}
+.dark-mode .rank{
+    background:black;
+}
+
+.dark-mode .contributor #name1 {
+    color: #E7E7E7;
+}
+
+.dark-mode .contributor #name2 {
+    color: #E7E7E7;
+}
+
+.dark-mode .contributor #name3 {
+    color: #E7E7E7;
+}
+
+.dark-mode .contributor #co1 {
+    color: #929292;
+}
+
+.dark-mode .contributor #co2 {
+    color: #929292;
+}
+
+.dark-mode .contributor #co3 {
+    color: #929292;
+}
+
+.dark-mode .contributor .circle{
+    transition: transform 0.3s ease-in-out;
+}
+
+.dark-mode .contributor .circle:hover{
+    box-shadow: 0 0px 50px rgba(255, 125, 31, 1);
+    transform: scale(1.1);
+}
+
+
+h1{
+    color: #2F7191;
+    font-family: Poppins;
+font-size: 48px;
+font-weight: 800;
+line-height: 72px;
+
+}

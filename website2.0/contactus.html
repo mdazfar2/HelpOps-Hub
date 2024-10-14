@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpOps-Hub</title>
+    <link rel="shortcut icon" href="HelpOps-H Fevicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PRVV+ejsK+y4J0F5QKdKqz2xk5+6RzSyZjNzkRcbEXfz6/Rk+6RD7Vh+x2DlJ2CgWNLcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="contributor.css">
+    <link rel="stylesheet" href="newCards.css">
+    <link rel="stylesheet" href="skeleton.css">
+    <link rel="stylesheet" href="banner.css">
+    <link rel="stylesheet" href="contactus.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+  textarea::placeholder {
+            color: #0000006B; /* Change placeholder text color to black */
+            text-align: left;
+}
+#comment {
+    border-bottom: solid 2.3px;
+    color: #000000;
+    
+}
+.dark-mode .form-container{
+    background: #0a0a0a;
+}
+.dark-mode .form-container input::placeholder{
+    color: rgb(242, 249, 249);
+}
+.dark-mode .form-container textarea::placeholder{
+    color: rgb(242, 249, 249);
+}
+.dark-mode .star{
+    color: white;
+}
+.hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px;
+            transition: 0.4s;
+        }
+        @media only screen and (max-width:200px) {
+    .sponsor-btn{
+        font-size: 12px !important;
+        width: 90px !important;
+        height: 46px !important;
+    }
+    .star-button{
+        font-size: 12px !important;
+        width: 90px !important;
+    }
+}
+@media only screen and (max-width:497px){
+h1{
+    font-size: 40px !important;
+}
+.main-content{
+    gap: 30px;
+}
+}
+@media only screen and (max-width:347px){
+ 
+h1{
+    font-size: 30px !important;
+}
+.get-started-btn{
+    position: relative;
+}
+p{
+    font-size: 17px !important;
+}
+}
+
+.toast {
+      font-family: 'Poppins',sans-serif;
+      font-weight: 200;
+      color: white;
+      border-left: 5px solid rgb(75, 25, 124);
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .toast i{
+        color: yellow;
+        font-size: 20px;
+        margin: 0 10px;
+    }
+
+    .toast-close{
+        color: white;
+        margin-left: 10px;
+      
+    }
+
+    .toast-close:hover{
+        background-color: #3a3a3acf;
+        border-radius: 5px;
+    }
+
+.toastify.toastify-top {
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 2px 2px 2px rgba(255, 234, 0);
+  }
+  100% {
+    box-shadow: 2px 2px 2px rgba(255, 234, 0);
+  }
+}
+
+</style>
+
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div class="loaderbox">
+            <svg class="loader" width="240" height="240" viewBox="0 0 240 240">
+                <circle class="loader-ring loader-ring-a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+                <circle class="loader-ring loader-ring-b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+                <circle class="loader-ring loader-ring-c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+                <circle class="loader-ring loader-ring-d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            </svg>
+        </div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <header>
+        <nav>
+            <a href="index.html">
+                <div class="logo" data-tilt data-tilt-scale="1.1">
+                    <img src="HelpOps-H Fevicon.png" alt="Logo">
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="abouts.html">About</a></li>
+                <li><a href="contributor.html">Team</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+          
+            <div class="nav-actions">
+                <a href="https://github.com/sponsors/mdazfar2">
+                    <button class="sponsor-btn">Sponsor <i id="heart"  class="fas fa-heart"></i></button>
+                  </a>  
+                  <div class="toggle-switch">
+                    <!-- <input type="checkbox" id="toggle" /> -->
+                    <!-- <label for="toggle" class="switch" id="toggle"></label> -->
+
+                   <i class="fa-regular moon1 fa-moon" onclick="toggleMode()" id="moon"></i><svg onclick="toggleMode1()"  id="sun" class="sun1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                  </svg>
+                </div>
+            </div>
+         
+        </nav>
+    </header>
+    <ul class="nav-links1" id="navlinks1">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="abouts.html">About</a></li>
+        <li><a href="contributor.html">Team</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+        
+    </ul>
+   
+    <div class="container">
+        <img src="rateus.png" class="contact-img" alt="rateus">
+        <div class="form-container">
+            <h1>Contact Us</h1>
+            <form id="contact-form">
+                <!-- <label for="name">Name:</label> -->
+                <input type="text" id="name" name="name" required placeholder="Name:">
+                <!-- <label for="email">Email:</label> -->
+                <input type="email" id="email" name="email" required placeholder="Email:">
+    
+                <!-- <label for="comment">Comment:</label> -->
+                <textarea id="comment" name="comment" required placeholder="Comment:"></textarea>
+    
+                <label for="rating" id="rate">Rating:</label>
+                <div id="rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+    <p id="error">Please Give Any Rating</p>
+                <button type="submit" id="button" onclick="handleSubmit()">Submit</button>
+            <!--<p id="thank-you-message" style="color: white; display: none;">Thank you !!<br>We will connect soon.</p>-->
+            </form>
+            </div>        
+            <img src="rateus.png" class="contact-img1" alt="rateus">
+
+            </div>    
+    <div class="marg">
+        <div class="footer">
+            <p class="iconsclass mm">
+                <a  href="https://www.linkedin.com/company/HelpOps-Hub/" target="_blank" class="fab fa-linkedin"></a>
+                <a href="https://discord.gg/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+                <a  href="https://github.com/mdazfar2/HelpOps-Hub/" target="_blank" class="fab fa-github"></a>
+
+              </p>
+            <p class="font h mm">© HelpOps-Hub | MIT License</p>
+            <p class="font h mm"  >Developed by <a href="https://github.com/mdazfar2" target="_blank" class="font">Azfar Alam</a> & <a class="font" target="_blank" href="contributor.html">Open Source Community</a> </p>
+          </div>
+
+        </div>
+        <div class="menu-bar">
+            <div class="menu-item" onclick="window.location.href='/website2.0/index.html';"><i class="fa-solid fa-house"></i><p>Home</p></div>
+            <div class="menu-item" onclick="window.location.href='/website2.0/abouts.html';"><i class="fa-solid fa-circle-info"></i><p>About</p></div>
+            <div class="menu-item" onclick="window.location.href='/website2.0/contributor.html';"><i class="fa-solid fa-user-group"></i><p>Group</p></div>
+            <div class="menu-item" onclick="window.location.href='/website2.0/contactus.html';"><i class="fa-solid fa-phone"></i><p onclick="window.location.href('/contact')">Contact</p></div>
+          </div>
+<script src="contactus.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"> </script>
+<script type="text/javascript"> 
+    VanillaTilt.init(document.querySelectorAll(".logo"), { 
+        max: 25, 
+        speed: 400, 
+    }); 
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    const stars = document.querySelectorAll('.star');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedRating = star.getAttribute('data-value');            
+        });
+    });
+</script>
+
+<script>
+document.getElementById('error').style.display='none'
+</script>
+<script>
+
+    // if(window.innerWidth>800){
+    //     document.getElementById("navlinks1").style.display='none'
+    // }
+    document.getElementById('hamburger').addEventListener('click',(e)=>{
+        let ele=document.getElementById("navlinks1")
+        document.querySelector('.nav-links1').classList.toggle('active');
+    })
+   </script>
+   <script src="darkmode.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            document.querySelector("body").classList.add("loaded");
+        }, 500)
+    });
+
+    </script>
+
+</body>
+</html>

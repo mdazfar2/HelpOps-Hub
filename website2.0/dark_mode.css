@@ -1,0 +1,95 @@
+/* dark_mode.css */
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+  background: linear-gradient(180deg, #333 8.1%, #121212 100%);
+}
+
+.dark-mode .iconsclass > a {
+  color: #e0e0e0;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+}
+
+.dark-mode .iconsclass > a:hover {
+  box-shadow: 0 0px 8px rgba(255, 125, 31, 1);
+  color: #ff7d1f;
+}
+
+.dark-mode .font {
+  color: #e0e0e0;
+}
+
+.dark-mode .active {
+  background-color: #333;
+}
+
+.dark-mode .nav-links {
+  background-color: #333;
+  box-shadow: 0 4px 6px rgba(255, 125, 31, 0.5);
+}
+
+.dark-mode .nav-links li a {
+  color: #e0e0e0;
+}
+
+.dark-mode .sponsor-btn,
+.dark-mode .get-started-btn {
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .sponsor-btn:hover,
+.dark-mode .get-started-btn:hover {
+  color: #e0e0e0;
+}
+
+.dark-mode .hamburger div {
+  background-color: #e0e0e0;
+}
+
+.dark-mode p {
+  color: #e0e0e0;
+}
+
+.dark-mode h1 {
+  color: #e0e0e0;
+}
+
+.dark-mode .about_title{
+  color: #e0e0e0;
+}
+
+.dark-mode .main-content {
+  gap: 30px;
+}
+
+.dark-mode .logo img {
+  opacity: 1;
+}
+.drak-mode .rank{
+  background:black;
+}
+.dark-mode #search-box{
+  background-color: #2c2c2c;
+}
+.dark-mode #search-bar {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+.dark-mode #name{
+  color: #e0e0e0;
+}
+.dark-mode #email{
+  color: #e0e0e0;
+}
+.dark-mode #comment{
+  color: #e0e0e0;
+}
+.dark-mode .text-section h1{
+color: #e0e0e0;
+}
+.dark-mode .text-section p{
+  color: #e0e0e0;
+  }

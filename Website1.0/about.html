@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>HelpOps-Hub</title>
+    <!-- Added Favicon for website -->
+    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon"> 
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="aboutstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navstyle.css">
+    <script src="darkmode.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+
+        <div class="logo">
+            <a href="./index.html"
+            ><img src="logo.png" alt="HelpOps-Hub Logo"
+          /></a>
+        </div>
+        <div>
+            <h1>About Us</h1>
+        </div>
+    </header>
+    <nav class="nav " id="navbar">
+           
+        <ul class="nav__list" id="navlinkitems">
+            <li class="nav__item">
+                <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+            </li>
+
+            <li class="nav__item">
+                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>   
+            </li>
+            <li>
+                <button class="about-button">
+
+                    <a  href="./index.html">
+                        BACK
+                    </a>
+                </button>
+               
+            </li>
+            <li><button class="about-button">
+      
+                <a  href="./faq.html">
+                    FAQ's
+                </a>
+            </button></li>
+            <li>
+                <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                    <span class="heart">&#10084;</span> Sponsor
+                </button>
+            </li>
+            
+        </ul>
+
+    </nav>
+    <div>
+        <div class="start">
+            <div class="img-container">
+                <img class="right-img mt" src="./logo.png" alt="no">
+            </div>
+            <div class="text-container">
+                <h1 class="abeezee-regular">What is HelpOps-Hub?</h1>
+                <p class="text-animate" style="text-align: center;">
+                    HelpOps-Hub is an open-source, community-driven repository designed<br>
+                    to support and enhance DevOps practices. It serves as a comprehensive,<br>
+                    centralized resource aimed at helping DevOps professionals and teams<br>
+                    optimize their workflows, stay updated with the latest tools and trends,<br>
+                    and implement best practices effectively.
+                </p>
+            </div>
+        </div>
+        <div class="end">
+            <div class="img-container">
+                <img class="left-img" src="./mission.png" alt="no">
+            </div>
+            <div class="text-container">
+                <h1 class="abeezee-regular">Our Mission</h1>
+                <p class="text-animate" style="text-align: center;"> 
+                    Our mission is to create an all-encompassing resource that empowers DevOps<br>
+                    practitioners to achieve higher efficiency, reliability, and performance in<br>
+                    their operations. We strive to build a dynamic, ever-evolving repository that<br>
+                    reflects the latest advancements in DevOps, driven by the collective knowledge<br>
+                    and experience of our community.
+                </p>
+            </div>
+        </div>
+        <div class="start mb">
+            <div class="img-container">
+                <img class="right-img benefit" style="margin-top: 40px;" src="./benefit.png" alt="no">
+            </div>
+            <div class="text-container">
+                <h1 class="abeezee-regular" style="margin-top: 60px;">Benefits of HelpOps-Hub</h1>
+                <ul class="abeezee-regular text-animate">
+                    <li><b>Unified Knowledge Base</b>: Centralizes valuable DevOps resources, making them easily accessible to everyone</li>
+                    <li><b>Enhanced Learning</b>: Supports continuous skill development for DevOps professionals at all levels.</li>
+                    <li><b>Streamlined Practices</b>: Helps teams implement best practices efficiently, reducing errors and improving reliability.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="video">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/MCCc5mT5Pio?autoplay=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-text">
+            <p>Visit the official channel and subscribe to HelpOps:</p>
+            <a href="https://www.youtube.com/@HelpOps-Hub" target="_blank" class="subscribe-link">Subscribe to HelpOps</a>
+        </div>
+    </div>
+    <div id="scrollToTopBtn" class="scrollToTopBtn" onclick="scrollToTop()">
+        <img src="scrollToTop.png" class="im" alt="Scroll to top">
+      </div>
+      <script src="app.js"></script>
+      
+    
+
+</body>
+
+</html>

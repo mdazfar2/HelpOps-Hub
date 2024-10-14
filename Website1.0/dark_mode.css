@@ -1,0 +1,32 @@
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+header.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.icons a.dark-mode {
+    color: #e0e0e0;
+}
+
+.sponsor-button.dark-mode {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+#search-bar.dark-mode {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+#folders-container div.dark-mode {
+    background-color: #2c2c2c;
+    border: 1px solid #444444;
+}
+
+#search-box.dark-mode{
+    background-color: #2c2c2c;
+}
