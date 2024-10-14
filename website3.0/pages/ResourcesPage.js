@@ -3,11 +3,17 @@ import React, { useState, useEffect } from "react";
 import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
 import { color, motion } from "framer-motion";
-import Image from 'next/image';
+import Image from "next/image";
 
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faSortAlphaDown, faSortAlphaUp, faSortAmountDown, faSortAmountUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faSortAlphaDown,
+  faSortAlphaUp,
+  faSortAmountDown,
+  faSortAmountUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { FaHeart } from "react-icons/fa6";
 import Login from "@components/LoginSignup/Login";
 import Signup from "@components/LoginSignup/Signup";
@@ -28,11 +34,13 @@ const CustomDropdown = ({
   }, [value]);
 
   const handleOptionSelect = (option) => {
-    if(typeof option === 'object'){
-      setCurrentValue(option.value.charAt(0).toUpperCase() + option.value.slice(1));
+    if (typeof option === "object") {
+      setCurrentValue(
+        option.value.charAt(0).toUpperCase() + option.value.slice(1)
+      );
       onSelect(option.value);
       onChange({ target: { value: option.value } });
-    } else if(typeof option === 'string'){
+    } else if (typeof option === "string") {
       setCurrentValue(option.charAt(0).toUpperCase() + option.slice(1));
       onSelect(option);
       onChange({ target: { value: option } });
@@ -107,20 +115,21 @@ const ListView = ({ data, theme, handleShare, handleLike, likedFolders }) => {
                   className="w-12 h-12"
                   alt="Icon"
                 /> */}
-                 <div
-      className="w-12 h-12"
-      style={{
-        width: '3rem', // Equivalent to Tailwind's w-12
-        height: '3rem', // Equivalent to Tailwind's h-12
-      }}
-    >
-      <Image
-        src="/HelpOps-H Fevicon.webp"  // Path to your image file in the `public` directory
-        alt="Icon"
-        layout="fill"  // Fills the container dimensions
-        objectFit="contain"  // Ensure the image fits within the container without distortion
-      />
-    </div>
+                <div
+                  className="w-12 h-12"
+                  style={{
+                    width: "3rem", // Equivalent to Tailwind's w-12
+                    height: "3rem", // Equivalent to Tailwind's h-12
+                  }}
+                >
+                  <Image
+                    src="/HelpOps-H Fevicon.webp" // Path to your image file in the `public` directory
+                    alt="Icon"
+                    width="100"
+                    height="100"
+                    objectFit="contain" // Ensure the image fits within the container without distortion
+                  />
+                </div>
               </div>
               <div className="ml-4 flex-1">
                 <h3
@@ -476,8 +485,8 @@ function ResourcesPage({
           : b.name.localeCompare(a.name);
       } else if (option === "date") {
         return sortOrder === "ascending"
-        ? new Date(a.created_at) - new Date(b.created_at)
-        : new Date(b.created_at) - new Date(a.created_at);
+          ? new Date(a.created_at) - new Date(b.created_at)
+          : new Date(b.created_at) - new Date(a.created_at);
       }
       return 0;
     });
@@ -512,37 +521,39 @@ function ResourcesPage({
   // to get the appropriate sort icon
   const getSortIcon = (option) => {
     if (sortOption === option) {
-      if (option === 'name') {
-        return sortOrder === 'asc' ? faSortAlphaDown : faSortAlphaUp;
-      } else if (option === 'date') {
-        return sortOrder === 'asc' ? faSortAmountDown : faSortAmountUp;
+      if (option === "name") {
+        return sortOrder === "asc" ? faSortAlphaDown : faSortAlphaUp;
+      } else if (option === "date") {
+        return sortOrder === "asc" ? faSortAmountDown : faSortAmountUp;
       }
     } else {
-      if (option === 'name') {
+      if (option === "name") {
         return faSortAlphaDown;
-      } else if (option === 'date') {
+      } else if (option === "date") {
         return faSortAmountDown;
       }
     }
     return null;
   };
-  
+
   // to get the appropriate sort title on hovering the icon
   const getSortTitle = (option) => {
     if (sortOption === option) {
-      if (option === 'name') {
-        return sortOrder === 'asc' ? 'Sort from A to Z' : 'Sort from Z to A';
-      } else if (option === 'date') {
-        return sortOrder === 'asc' ? 'Sort by earliest date' : 'Sort by latest date';
+      if (option === "name") {
+        return sortOrder === "asc" ? "Sort from A to Z" : "Sort from Z to A";
+      } else if (option === "date") {
+        return sortOrder === "asc"
+          ? "Sort by earliest date"
+          : "Sort by latest date";
       }
     } else {
-      if (option === 'name') {
-        return 'Sort from A to Z';
-      } else if (option === 'date') {
-        return 'Sort by earliest date';
+      if (option === "name") {
+        return "Sort from A to Z";
+      } else if (option === "date") {
+        return "Sort by earliest date";
       }
     }
-    return '';
+    return "";
   };
 
   async function handleLike(e, folderName) {
@@ -854,12 +865,18 @@ function ResourcesPage({
         <div className="sort-filter-container flex justify-center gap-[20px]">
           <div className="flex max-sm:flex-col gap-4">
             <CustomDropdown
-              options={sortOptions.map(option => ({
+              options={sortOptions.map((option) => ({
                 value: option,
                 label: (
-                  <span>    {/* Add relevant icon for sorting purpose */}
-                    {option.label} 
-                    <FontAwesomeIcon icon={getSortIcon(option.value)} className="ml-2" title= {getSortTitle(option.value)} />
+                  <span>
+                    {" "}
+                    {/* Add relevant icon for sorting purpose */}
+                    {option.label}
+                    <FontAwesomeIcon
+                      icon={getSortIcon(option.value)}
+                      className="ml-2"
+                      title={getSortTitle(option.value)}
+                    />
                   </span>
                 ),
               }))}
