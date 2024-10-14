@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion with Animation</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon"> 
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="aboutstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navstyle.css">
+    <script src="darkmode.js"></script>
+   
+</head>
+<body>
+    <header class="header">
+
+        <div class="logo">
+            <a href="./index.html"
+            ><img src="logo.png" alt="HelpOps-Hub Logo"
+          /></a>
+        </div>
+        <div>
+
+            <h1>FAQ's</h1>
+        </div>
+       
+       
+    </header>
+    <nav class="nav " id="navbar">
+           
+
+
+        <ul class="nav__list" id="navlinkitems">
+            <li class="nav__item">
+                <a href="contributor-index.html" class="fa-solid fa-people-group"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://github.com/mdazfar2/HelpOps-Hub" target="_blank" class="fab fa-github"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://www.linkedin.com/company/helpops-hub/" target="_blank" class="fab fa-linkedin"></a>
+            </li>
+            <li class="nav__item">
+                <a href="https://discord.com/invite/UWTrRhqywt" target="_blank" class="fab fa-discord"></a>
+            </li>
+
+            <li class="nav__item">
+                <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>
+            </li>
+            <li><button class="about-button">
+      
+                <a  href="./index.html">
+                    BACK
+                </a>
+            </button></li>
+            <li>
+                <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                    <span class="heart">&#10084;</span> Sponsor
+                </button>
+            </li>
+            
+        </ul>
+
+    </nav>
+
+<div class="container mt-5">
+   
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0 collapse-heading">
+                    <button class="btn abeezee-regular"  type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        1. What is HelpOps-Hub? <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    HelpOps-Hub is the ultimate destination for seamless DevOps support. This innovative platform is designed to eliminate roadblocks and streamline your DevOps processes. With expert solutions, comprehensive resources, and a dedicated support team, HelpOps-Hub ensures that you can focus on what you do best—delivering exceptional software. Whether you're a seasoned DevOps professional or just starting, HelpOps-Hub is your go-to partner for achieving operational excellence and driving success. Experience hassle-free DevOps with HelpOps-Hub!
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0 collapse-heading">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        2. How can I use HelpOps-Hub? <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    Using HelpOps-Hub is easy and intuitive. Start by visiting the platform to explore a wide array of DevOps resources and solutions. Navigate through the to find expert articles, troubleshooting guides, and best practices tailored to your needs. Engage with the community, ask questions, and get personalized support from experienced professionals. Additionally, you can provide feedback and rate your experience to help improve the platform. Embrace a smoother DevOps journey with HelpOps-Hub!
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0 collapse-heading">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        3. Is there a cost associated with using HelpOps-Hub?
+                        <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    The best part about HelpOps-Hub is that it's completely free to use! This incredible platform offers a wealth of resources, tools, and community support without any cost, making it accessible to everyone from beginners to seasoned professionals. Dive into a world of DevOps knowledge and elevate your skills without spending a dime. Explore all the amazing features and join the community at HelpOps-Hub.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0 collapse-heading">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        4. How can I contribute to HelpOps-Hub?
+                        <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    Contributing to HelpOps-Hub is a rewarding way to support the DevOps community. You can share your expertise by submitting insightful articles, developing useful tools, answering frequently asked questions, and providing valuable feedback to enhance the platform. Each contribution helps build a more robust resource hub, empowering others in their DevOps journey. Dive in and make a difference at HelpOps-Hub, where your input can inspire and guide fellow professionals.Just go to Github repository Find Valuable Issues , raise issues and then Raise Pr .                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h5 class="mb-0 collapse-heading">
+                    <button class="btn abeezee-regular" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        5. Who can benefit from HelpOps-Hub?
+                        <i class="fas fa-chevron-down float-right"></i>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body abeezee-regular">
+                    HelpOps-Hub is a goldmine for anyone immersed in the DevOps ecosystem. DevOps engineers will find tools and resources to streamline their workflows, while beginners can tap into a wealth of knowledge to kickstart their journey. Project managers can use the platform to understand and implement DevOps best practices, and companies can enhance their team’s efficiency with community-driven insights. Whether you're a seasoned professional or just starting out, HelpOps-Hub is your go-to resource for mastering the art of DevOps. Explore more at HelpOps-Hub.
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <button class="about-button1">
+      <a href="./about.html"> About Us </a>
+    </button>
+    <div id="scrollToTopBtn" onclick="scrollToTop()">
+        <img src="scrollToTop.png" alt="Scroll to Top">
+    </div>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script src="app.js"></script>
+<!-- jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

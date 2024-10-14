@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <title>HelpOps-Hub</title>
+  <link rel="stylesheet" href="square.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="Favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="dark_mode.css" />
+  <link rel="stylesheet" href="navstyle.css" />
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="/"><img src="logo.png" alt="HelpOps-Hub Logo" /></a>
+    </div>
+    <div>
+      <h1>HelpOps-Hub</h1>
+      <p>Ensuring You Never Get Stuck In DevOps Again!</p>
+    </div>
+  </header>
+  <nav class="nav " id="navbar">
+           
+
+
+    <ul class="nav__list" id="navlinkitems">
+        <li class="nav__item">
+            <a href="https://linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+        </li>
+        <li class="nav__item">
+            <a href="https://discord.com" target="_blank" class="fab fa-discord"></a>
+        </li>
+
+        <li class="nav__item">
+            <a href="javascript:void(0);" class="fas fa-adjust" onclick="toggleTheme()"></a>   
+        </li>
+        <li>
+            <a href="contributor-index.html">
+            <button class="team-button">
+               <svg viewBox="0 0 20 20" width="25" height="25" fill="none" class="text-primary dark:text-white"><path d="M9.95757 12.1164C12.8169 12.1164 15.2584 12.5697 15.2584 14.3837C15.2584 16.1969 12.8326 16.6667 9.95757 16.6667C7.09825 16.6667 4.65678 16.2134 4.65678 14.4002C4.65678 12.5862 7.08258 12.1164 9.95757 12.1164ZM14.5293 11.0241C15.6224 11.0038 16.7976 11.1539 17.2319 11.2605C18.1519 11.4414 18.7571 11.8106 19.0078 12.3472C19.2197 12.7878 19.2197 13.2989 19.0078 13.7387C18.6242 14.571 17.3878 14.8382 16.9073 14.9072C16.8081 14.9222 16.7282 14.8359 16.7387 14.7361C16.9842 12.4298 15.0314 11.3363 14.5263 11.0849C14.5046 11.0736 14.5002 11.0564 14.5024 11.0459C14.5039 11.0384 14.5129 11.0264 14.5293 11.0241ZM5.47137 11.0244C5.48779 11.0267 5.496 11.0387 5.49749 11.0454C5.49973 11.0567 5.49525 11.0732 5.47436 11.0852C4.96846 11.3366 3.01573 12.4301 3.26122 14.7357C3.27167 14.8362 3.19257 14.9218 3.09333 14.9075C2.6128 14.8385 1.3764 14.5713 0.992868 13.739C0.780209 13.2984 0.780209 12.7881 0.992868 12.3475C1.24358 11.8109 1.84798 11.4417 2.768 11.2601C3.20302 11.1542 4.37749 11.0041 5.47137 11.0244ZM9.95757 3.33337C11.9043 3.33337 13.4653 4.90193 13.4653 6.86075C13.4653 8.81882 11.9043 10.3889 9.95757 10.3889C8.01081 10.3889 6.44982 8.81882 6.44982 6.86075C6.44982 4.90193 8.01081 3.33337 9.95757 3.33337ZM14.7195 3.92162C16.5999 3.92162 18.0766 5.70107 17.5736 7.68315C17.2341 9.01755 16.0052 9.9039 14.636 9.86788C14.4987 9.86412 14.3636 9.85137 14.233 9.82885C14.1383 9.81234 14.0905 9.70502 14.1442 9.62546C14.6666 8.85244 14.9643 7.92257 14.9643 6.92439C14.9643 5.88269 14.639 4.91154 14.0741 4.11525C14.0562 4.09048 14.0428 4.05221 14.0607 4.02369C14.0756 4.00042 14.1032 3.98842 14.1293 3.98241C14.3196 3.94339 14.5151 3.92162 14.7195 3.92162ZM5.27998 3.92155C5.48443 3.92155 5.67993 3.94331 5.87095 3.98234C5.89632 3.98834 5.92467 4.0011 5.93959 4.02361C5.95676 4.05213 5.94407 4.09041 5.92616 4.11518C5.36131 4.91146 5.03598 5.88262 5.03598 6.92432C5.03598 7.92249 5.33371 8.85237 5.85602 9.62539C5.90975 9.70494 5.86199 9.81226 5.76723 9.82878C5.6359 9.85204 5.50159 9.86405 5.3643 9.8678C3.99508 9.90383 2.76614 9.01748 2.42663 7.68308C1.92297 5.70099 3.39964 3.92155 5.27998 3.92155Z" fill="currentColor"></path></svg> Our Team
+            </button>
+            </a>
+        </li>
+        <li>
+            <button class="about-button">
+
+                <a  href="./about.html">
+                    About Us
+                </a>
+            </button>
+           
+        </li>
+        <li><button class="about-button">
+  
+            <a  href="./faq.html">
+                FAQ's
+            </a>
+        </button></li>
+        <li>
+            <button class="sponsor-button" onclick="window.location.href='https://github.com/sponsors/mdazfar2'">
+                <span class="heart">&#10084;</span> Sponsor
+            </button>
+        </li>
+        
+    </ul>
+
+</nav>
+
+  <div class="search-container">
+    <div id="search-box">
+      <div class="icon">
+        <i class="fas fa-duotone fa-magnifying-glass"></i>
+      </div>
+      <input type="text" id="search-bar" placeholder="Search topics..." />
+    </div>
+  </div>
+
+  <div id="maincontainer">
+    <div id="loading">
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+      <div class="📦"></div>
+    </div>
+  </div>
+  <div id="folders-container"></div>
+
+  <div class="feedback">
+    <div id="feedback-image">
+      <img src="feedback.png" alt="feedback-image" />
+    </div>
+    <div id="feedback-section">
+      <h2>Feedback</h2>
+      <form class="feedback-form"  id="feedback-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="user_email" required />
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="message" required></textarea>
+
+        <label for="rating">Rating</label>
+        <div class="rating">
+     <label for="star1" title="1 star">&#9733;</label>     <input type="radio" id="star1" name="rating" value="1" />
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">&#9733;</label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">&#9733;</label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">&#9733;</label>
+          <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">&#9733;</label>
+        </div>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <div id="message" style="display: none; color: green; font-size: 1.2em; margin-top: 20px;"></div>
+      <div id="error-message" style="display: none; color: red; font-size: 1.2em; margin-top: 20px;"></div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer">
+      <p class="font h">© HelpOps-Hub | MIT License</p>
+      <p class="font h"  >Developed by <a href="https://github.com/mdazfar2" target="_blank" class="font">Azfar Alam</a> & <a class="font" target="_blank" href="https://helpops-hub.vercel.app/contributor-index.html">Open Source Community</a> </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="darkmode.js"></script>
+  <script type="text/javascript">
+    (function(){
+       emailjs.init({
+         publicKey: "Q-bwaE4CPQZ-cMlKt",
+       });
+    })();
+  </script>
+  <script>
+                 document.getElementById("feedback-form").reset();
+
+  </script>
+  <script>
+    // Feedback JS
+    document.getElementById("feedback-form").addEventListener("submit", function(event) {
+     event.preventDefault();
+     var rating = document.querySelector('input[name="rating"]:checked').value
+      if (!rating) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = "Please select a Rating!";
+        errorMessage.style.display = "block";
+        setTimeout(function() {
+          errorMessage.style.display = "none";
+        }, 3000);
+        return;
+      }
+      let temp=document.getElementById('comments').value
+      document.getElementById('comments').value= `Message : ${document.getElementById("comments").value}            Rating : ${document.querySelector('input[name="rating"]:checked').value}`;
+
+    emailjs.sendForm('service_y9hxdqs', 'template_h9uoq69',"#feedback-form").then(
+  (response) => {
+    console.log('SUCCESS!',  response.status, response.text);
+  },
+  (error) => {
+    console.log('FAILED...', error);
+  },
+);
+document.getElementById('comments').value= temp   
+
+
+
+     if (!document.querySelector('input[name="rating"]:checked')) {
+         var errorMessage = document.getElementById("error-message");
+         errorMessage.innerText = "Please select a rating!";
+         errorMessage.style.display = "block";
+         setTimeout(function() {
+             errorMessage.style.display = "none";
+         }, 3000);
+         return;
+     }
+     const formData = {
+       name: document.getElementById("name").value,
+       email: document.getElementById("email").value,
+       comments: document.getElementById("comments").value,
+       rating: document.querySelector('input[name="rating"]:checked').value
+     };
+    //  fetch('https://helpops-hub.vercel.app/feedback', {
+    //      method: 'POST',
+    //      headers: {
+    //          'Content-Type': 'application/json'
+    //      },
+    //      body: JSON.stringify(formData)
+    //  })
+    //  .then(response => response.json())
+    //  .then(data => {
+    //      console.log('Success:', data);
+    //      document.getElementById("message").innerText = "Thank you for your feedback!";
+    //      document.getElementById("message").style.display = "block";
+    //      setTimeout(function() {
+    //          document.getElementById("message").style.display = "none";
+    //          document.getElementById("feedback-form").reset();
+    //      }, 3000);
+    //  })
+    //  .catch((error) => {
+    //      console.error('Error:', error);
+    //      var errorMessage = document.getElementById("error-message");
+    //      errorMessage.innerText = "There was an error submitting your feedback.";
+    //      errorMessage.style.display = "block";
+    //      setTimeout(function() {
+    //          errorMessage.style.display = "none";
+    //      }, 3000);
+    //  }); 
+   var messageElement = document.getElementById("message");
+      messageElement.innerText = "Thank you for your feedback!";
+      messageElement.style.display = "block";
+
+      setTimeout(function() {
+        messageElement.style.display = "none";
+        document.getElementById("feedback-form").reset();
+      }, 3000);
+  
+
+    
+
+
+
+    });
+  </script>
+</body>
+</html>

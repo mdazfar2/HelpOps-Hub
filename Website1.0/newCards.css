@@ -1,0 +1,108 @@
+
+
+/* #team-grid1 {
+  display: flex;
+  gap: 20px;
+} */
+
+.team-member7 {
+  background-color: rgb(254, 251, 251);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+}
+
+.card7 {
+  background-color: rgb(217, 244, 255);
+  padding: 60px;
+  border-radius: 10px;
+  text-align: center;
+}
+.team-member7:hover{
+transform: scale(1.05);
+}
+.badge7 {
+  left: 120px;
+  bottom:60px ;
+  position: relative;
+  background-color: rgb(94, 225, 109);
+  color: #6e6e6e;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 80px;
+}
+
+.image-div7 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-div7 img {
+  border-radius: 10%;
+  width: 100px;
+  height: 100px;
+}
+
+.info-div7 {
+  text-align: center;
+}
+
+.info-div7 h2 {
+  margin: 10px 0 5px;
+  font-size: 1.3em;
+}
+
+.info-div7 p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.data7 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.contributions7 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 45px;
+}
+
+.contributions-count7 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contributions-label7 {
+  font-size: 14px;
+  color: #777;
+}
+
+.social-links7 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-links7 a {
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.github-label7 {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
