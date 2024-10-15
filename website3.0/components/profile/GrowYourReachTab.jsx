@@ -83,7 +83,7 @@ const handleFollowClick = (userId) => {
                 <li key={user._id} className={`${theme?"bg-gray-200 text-black":"bg-[#383838] text-white"} py-3 px-2 rounded-xl mb-2 flex justify-between items-center`}>
                   <div className="flex items-center">
                     <img src={user.image1} alt={user.name} className="w-10 h-10 rounded-full inline-block mr-3" />
-                    {user.name}
+                    <div className="hidden md:block">{user.name}</div>
                   </div>
                   <a
                     href={`/profile?id=${user.username}&&isView=true`}

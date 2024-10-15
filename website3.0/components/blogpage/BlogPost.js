@@ -1071,7 +1071,7 @@ data-tooltip-content="Reaction"
           alt={blog.title}
           onError={handleError}
           id="image-section"
-          className="w-full h-96 object-cover mb-5 rounded-lg max-md:mt-[30px] max-md:p-[8px]"
+          className="w-full lg:h-96 object-contain mb-5 rounded-lg max-md:mt-[30px] max-md:p-[8px]"
         />}
         <div className="px-10 max-[425px]:px-8">
           <div
@@ -1199,7 +1199,7 @@ data-tooltip-content="Reaction"
           </div>
           <div className="flex gap-[20px] mb-[30px] ">
                            {blog.tags && blog.tags.map(data=>{
-                        return <div className="text-[14px] max-sm:text-[13px] max-[425px]:text-[12px]">{"#"+data}</div>})}
+                        return <div className="text-[14px] break-all max-sm:text-[13px] max-[425px]:text-[12px]">{"#"+data}</div>})}
                           </div>
                           {loading? <div className="flex flex-col gap-1"><Skeleton height={10} width={250}  />
                           <Skeleton height={10} width={300}  />
