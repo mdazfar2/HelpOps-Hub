@@ -205,15 +205,13 @@ function TeamsPage({ theme }) {
         const contri = contributor.contributions;
         return (
           <div
-            className={`${
-              theme ? " bg-[#2f9ed62b] border-black" : "bg-black border-white"
-            } team-member-card rounded-[10%] p-[20px] flex gap-[10px] mt-0 flex-col items-center [transition:0.5s] scale-[0.95] border-[2.5px] border-dashed hover:scale-[0.9]`}
+            className={`${theme ? " bg-[#2f9ed62b] border-black" : "bg-black border-white"
+              } team-member-card rounded-[10%] p-[20px] flex gap-[10px] mt-0 flex-col items-center [transition:0.5s] scale-[0.95] border-[2.5px] border-dashed hover:scale-[0.9]`}
             key={contributor.login}
           >
             <div
-              className={`${
-                theme ? " bg-[#ffffff82]" : "bg-white"
-              } member-card  px-0 py-[50px] w-full rounded-[10%] text-center`}
+              className={`${theme ? " bg-[#ffffff82]" : "bg-white"
+                } member-card  px-0 py-[50px] w-full rounded-[10%] text-center`}
             >
               <div className="dev-badge right-[40px] top-[30px] absolute bg-[rgba(217,_217,_217,_1)] text-[#6e6e6e] rounded-[10px] px-[8px] py-[4px] text-[12px] font-bold w-[80px]">
                 Developer
@@ -236,11 +234,10 @@ function TeamsPage({ theme }) {
             </div>
             <div className="member-data flex flex-row items-center justify-center mt-[5px] w-full">
               <div
-                className={`${
-                  theme
+                className={`${theme
                     ? " text-black  hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black]"
                     : "text-white  hover:bg-[rgb(255,255,255)] hover:text-[black]"
-                }  member-contributions group flex flex-col items-center mr-[10px] w-28 [transition:0.5s_ease-in-out] pl-4 pr-4 pt-2 pb-2 rounded-2xl hover:[box-shadow:2px_2px_10px_2px_#0000002f]`}
+                  }  member-contributions group flex flex-col items-center mr-[10px] w-28 [transition:0.5s_ease-in-out] pl-4 pr-4 pt-2 pb-2 rounded-2xl hover:[box-shadow:2px_2px_10px_2px_#0000002f]`}
               >
                 <a
                   href={`https://github.com/mdazfar2/HelpOps-Hub/commits/main/?author=${name}`}
@@ -255,11 +252,10 @@ function TeamsPage({ theme }) {
                 </a>
               </div>
               <div
-                className={`${
-                  theme
+                className={`${theme
                     ? " text-black  hover:bg-[rgba(255,_255,_255,_0.624)] hover:text-[black]"
                     : "text-white  hover:bg-[rgb(255,255,255)] hover:text-[black]"
-                } member-social-links group flex flex-col items-center [transition:0.5s_ease-in-out] w-28 pl-4 pr-4 pt-2 pb-2 rounded-2xl cursor-pointer hover:[box-shadow:2px_2px_10px_2px_#0000002f]`}
+                  } member-social-links group flex flex-col items-center [transition:0.5s_ease-in-out] w-28 pl-4 pr-4 pt-2 pb-2 rounded-2xl cursor-pointer hover:[box-shadow:2px_2px_10px_2px_#0000002f]`}
               >
                 <a href={loginLink} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon
@@ -315,37 +311,35 @@ function TeamsPage({ theme }) {
                         className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none"
                         alt="crown"
                       /> */}
-                       <div
-      className="relative"
-      style={{
-        left: '80px',
-        transform: 'rotate(20deg) scale(1.5)',
-        width: '200px',
-        height: '200px',
-        overflow: 'hidden', // Ensure the image fits within the container without overflow
-      }}
-    >
-      <Image
-        src="/crown.webp"  // Path to your image file in the `public` directory
-        alt="crown"
-        layout="fill"  // Fills the container dimensions
-        objectFit="contain"  // Adjust the image to fit the container while maintaining aspect ratio
-      />
-    </div>
+                      <div
+                        className="relative"
+                        style={{
+                          left: '80px',
+                          transform: 'rotate(20deg) scale(1.5)',
+                          width: '200px',
+                          height: '200px',
+                          overflow: 'hidden', // Ensure the image fits within the container without overflow
+                        }}
+                      >
+                        <Image
+                          src="/crown.webp"  // Path to your image file in the `public` directory
+                          alt="crown"
+                          layout="fill"  // Fills the container dimensions
+                          objectFit="contain"  // Adjust the image to fit the container while maintaining aspect ratio
+                        />
+                      </div>
                     </div>
                     <p
                       id="name1"
-                      className={`${
-                        theme ? " text-black" : "text-white"
-                      } relative bottom-[25px] font-poppins text-[30px] font-bold`}
+                      className={`${theme ? " text-black" : "text-white"
+                        } relative bottom-[25px] font-poppins text-[30px] font-bold`}
                     >
                       {contributors[0].name || contributors[0].login}
                     </p>
                     <p
                       id="co1"
-                      className={`${
-                        theme ? " text-[#00000094]" : "text-white"
-                      } relative bottom-[25px] font-poppins text-[30px] font-medium`}
+                      className={`${theme ? " text-[#00000094]" : "text-white"
+                        } relative bottom-[25px] font-poppins text-[30px] font-medium`}
                     >
                       contributions {contributors[0].contributions}
                     </p>
@@ -378,38 +372,36 @@ function TeamsPage({ theme }) {
                         className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                         src="crown.webp"
                       /> */}
-                       <div
-      style={{
-        position: 'relative',
-        left: '50px',
-        top: '0',
-        width: '160px',
-        height: '160px',
-        transform: 'rotate(20deg)',
-        overflow: 'hidden', // Ensures no overflow outside the container
-      }}
-    >
-      <Image
-        src="/crown.webp"  // Path to your image file in the `public` directory
-        alt="crown"
-        layout="fill"  // Fills the container dimensions
-        objectFit="contain"  // Fit the image within the container while preserving aspect ratio
-      />
-    </div>
+                      <div
+                        style={{
+                          position: 'relative',
+                          left: '50px',
+                          top: '0',
+                          width: '160px',
+                          height: '160px',
+                          transform: 'rotate(20deg)',
+                          overflow: 'hidden', // Ensures no overflow outside the container
+                        }}
+                      >
+                        <Image
+                          src="/crown.webp"  // Path to your image file in the `public` directory
+                          alt="crown"
+                          layout="fill"  // Fills the container dimensions
+                          objectFit="contain"  // Fit the image within the container while preserving aspect ratio
+                        />
+                      </div>
                     </div>
                     <p
                       id="name2"
-                      className={`${
-                        theme ? " text-black" : "text-white"
-                      } relative bottom-[35px] font-poppins text-[20px] font-bold`}
+                      className={`${theme ? " text-black" : "text-white"
+                        } relative bottom-[35px] font-poppins text-[20px] font-bold`}
                     >
                       {contributors[1].name || contributors[1].login}
                     </p>
                     <p
                       id="co2"
-                      className={`${
-                        theme ? " text-[#00000094]" : "text-white"
-                      } relative bottom-[25px] font-poppins text-[20px] font-medium`}
+                      className={`${theme ? " text-[#00000094]" : "text-white"
+                        } relative bottom-[25px] font-poppins text-[20px] font-medium`}
                     >
                       contributions {contributors[1].contributions}
                     </p>
@@ -442,38 +434,36 @@ function TeamsPage({ theme }) {
                         className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                         src="crown.webp"
                       /> */}
-                       <div
-      className="relative"
-      style={{
-        left: '50px',
-        top: '0',
-        width: '160px',
-        height: '160px',
-        transform: 'rotate(20deg)',
-        overflow: 'hidden', // Ensure the image fits within the container without overflow
-      }}
-    >
-      <Image
-        src="/crown.webp"  // Path to your image file in the `public` directory
-        alt="crown"
-        layout="fill"  // Fill the container dimensions
-        objectFit="contain"  // Adjust the image to fit the container without distortion
-      />
-    </div>
+                      <div
+                        className="relative"
+                        style={{
+                          left: '50px',
+                          top: '0',
+                          width: '160px',
+                          height: '160px',
+                          transform: 'rotate(20deg)',
+                          overflow: 'hidden', // Ensure the image fits within the container without overflow
+                        }}
+                      >
+                        <Image
+                          src="/crown.webp"  // Path to your image file in the `public` directory
+                          alt="crown"
+                          layout="fill"  // Fill the container dimensions
+                          objectFit="contain"  // Adjust the image to fit the container without distortion
+                        />
+                      </div>
                     </div>
                     <p
                       id="name3"
-                      className={`${
-                        theme ? " text-black" : "text-white"
-                      } relative bottom-[35px] font-poppins text-[20px] font-bold text-black`}
+                      className={`${theme ? " text-black" : "text-white"
+                        } relative bottom-[35px] font-poppins text-[20px] font-bold text-black`}
                     >
                       {contributors[2].name || contributors[2].login}
                     </p>
                     <p
                       id="co3"
-                      className={`${
-                        theme ? " text-[#00000094]" : "text-white"
-                      } relative bottom-[25px] font-poppins text-[20px] font-medium`}
+                      className={`${theme ? " text-[#00000094]" : "text-white"
+                        } relative bottom-[25px] font-poppins text-[20px] font-medium`}
                     >
                       contributions {contributors[2].contributions}
                     </p>
@@ -512,37 +502,35 @@ function TeamsPage({ theme }) {
                 src="crown.webp"
               /> */}
               <div
-      className="relative"
-      style={{
-        left: '50px',
-        top: '0',
-        width: '160px',
-        height: '160px',
-        transform: 'rotate(20deg)',
-        overflow: 'hidden', // Ensure no overflow outside the container
-      }}
-    >
-      <Image
-        src="/crown.webp"  // Path to your image file in the `public` directory
-        alt="crown"
-        layout="fill"  // Fill the container dimensions
-        objectFit="contain"  // Adjust the image to fit the container without distortion
-      />
-    </div>
+                className="relative"
+                style={{
+                  left: '50px',
+                  top: '0',
+                  width: '160px',
+                  height: '160px',
+                  transform: 'rotate(20deg)',
+                  overflow: 'hidden', // Ensure no overflow outside the container
+                }}
+              >
+                <Image
+                  src="/crown.webp"  // Path to your image file in the `public` directory
+                  alt="crown"
+                  layout="fill"  // Fill the container dimensions
+                  objectFit="contain"  // Adjust the image to fit the container without distortion
+                />
+              </div>
             </div>
             <p
               id="name2"
-              className={`${
-                theme ? " text-black" : "text-white"
-              } relative bottom-[35px] font-poppins text-[20px] font-bold`}
+              className={`${theme ? " text-black" : "text-white"
+                } relative bottom-[35px] font-poppins text-[20px] font-bold`}
             >
               {contributors[1].name || contributors[1].login}
             </p>
             <p
               id="co2"
-              className={`${
-                theme ? " text-[#00000094]" : "text-white"
-              } relative bottom-[25px] font-poppins text-[20px] font-medium `}
+              className={`${theme ? " text-[#00000094]" : "text-white"
+                } relative bottom-[25px] font-poppins text-[20px] font-medium `}
             >
               contributions {contributors[1].contributions}
             </p>
@@ -574,36 +562,34 @@ function TeamsPage({ theme }) {
                 className="relative left-[80px] transform rotate-[20deg] scale-[1.5] w-[200px] h-[200px] max-w-none"
               /> */}
               <div
-      className="relative"
-      style={{
-        left: '80px',
-        transform: 'rotate(20deg) scale(1.5)',
-        width: '200px',
-        height: '200px',
-        overflow: 'hidden', // Ensures the image fits within the container without overflow
-      }}
-    >
-      <Image
-        src="/crown.webp"  // Path to your image file in the `public` directory
-        alt="crown"
-        layout="fill"  // Fill the container dimensions
-        objectFit="contain"  // Adjust the image to fit the container without distortion
-      />
-    </div>
+                className="relative"
+                style={{
+                  left: '80px',
+                  transform: 'rotate(20deg) scale(1.5)',
+                  width: '200px',
+                  height: '200px',
+                  overflow: 'hidden', // Ensures the image fits within the container without overflow
+                }}
+              >
+                <Image
+                  src="/crown.webp"  // Path to your image file in the `public` directory
+                  alt="crown"
+                  layout="fill"  // Fill the container dimensions
+                  objectFit="contain"  // Adjust the image to fit the container without distortion
+                />
+              </div>
             </div>
             <p
               id="name1"
-              className={`${
-                theme ? " text-black" : "text-white"
-              } relative bottom-[25px] font-poppins text-[30px] font-bold `}
+              className={`${theme ? " text-black" : "text-white"
+                } relative bottom-[25px] font-poppins text-[30px] font-bold `}
             >
               {contributors[0].name || contributors[0].login}
             </p>
             <p
               id="co1"
-              className={`${
-                theme ? " text-[#00000094]" : "text-white"
-              } relative bottom-[25px] font-poppins text-[30px] font-medium `}
+              className={`${theme ? " text-[#00000094]" : "text-white"
+                } relative bottom-[25px] font-poppins text-[30px] font-medium `}
             >
               contributions {contributors[0].contributions}
             </p>
@@ -633,40 +619,38 @@ function TeamsPage({ theme }) {
                 className="max-w-none relative left-[50px] top-0 h-[160px] w-[160px] rotate-[20deg]"
                 src="crown.webp"
               /> */}
-               <div className="relative">
-      <div
-        style={{
-          position: 'relative',
-          left: '50px',
-          top: '0',
-          width: '160px',
-          height: '160px',
-          transform: 'rotate(20deg)',
-          overflow: 'hidden', // Ensure no overflow outside the container
-        }}
-      >
-        <Image
-          src="/crown.webp"  // Path to your image file in the `public` directory
-          alt="Crown"
-          layout="fill"  // Fill the container dimensions
-          objectFit="contain"  // Adjust the image to fit the container without distortion
-        />
-      </div>
-    </div>
+              <div className="relative">
+                <div
+                  style={{
+                    position: 'relative',
+                    left: '50px',
+                    top: '0',
+                    width: '160px',
+                    height: '160px',
+                    transform: 'rotate(20deg)',
+                    overflow: 'hidden', // Ensure no overflow outside the container
+                  }}
+                >
+                  <Image
+                    src="/crown.webp"  // Path to your image file in the `public` directory
+                    alt="Crown"
+                    layout="fill"  // Fill the container dimensions
+                    objectFit="contain"  // Adjust the image to fit the container without distortion
+                  />
+                </div>
+              </div>
             </div>
             <p
               id="name3"
-              className={`${
-                theme ? " text-black" : "text-white"
-              } relative bottom-[35px] font-poppins text-[20px] font-bold`}
+              className={`${theme ? " text-black" : "text-white"
+                } relative bottom-[35px] font-poppins text-[20px] font-bold`}
             >
               {contributors[2].name || contributors[2].login}
             </p>
             <p
               id="co3"
-              className={`${
-                theme ? " text-[#00000094]" : "text-white"
-              } relative bottom-[25px] font-poppins text-[20px] font-medium`}
+              className={`${theme ? " text-[#00000094]" : "text-white"
+                } relative bottom-[25px] font-poppins text-[20px] font-medium`}
             >
               contributions {contributors[2].contributions}
             </p>
@@ -691,24 +675,21 @@ function TeamsPage({ theme }) {
 
   return (
     <div
-      className={`${
-        theme ? "bg-gray-100" : "bg-[#1e1d1d]"
-      } m-0 font-arial min-h-screen w-full block  transition-colors duration-500`}
+      className={`${theme ? "bg-gray-100" : "bg-[#1e1d1d]"
+        } m-0 font-arial min-h-screen w-full block  transition-colors duration-500`}
     >
       {/* Section: Meet Our Team */}
 
       <div
         id="ourteam"
-        className={`${
-          theme ? "text-black" : "text-white"
-        } flex justify-center items-center font-semibold text-4xl pt-[160px] text-center`}
+        className={`${theme ? "text-black" : "text-white"
+          } flex justify-center items-center font-semibold text-4xl pt-[160px] text-center`}
       >
         Our Team
       </div>
       <div
-        className={`${
-          theme ? "text-black" : "text-white"
-        } team-description text-center w-[60vw] m-auto mt-[20px] mb-[20px] leading-normal`}
+        className={`${theme ? "text-black" : "text-white"
+          } team-description text-center w-[60vw] m-auto mt-[20px] mb-[20px] leading-normal`}
       >
         Meet our team driving HelpOps-Hub's success with expertise and passion,
         turning every challenge into a milestone.
@@ -722,16 +703,14 @@ function TeamsPage({ theme }) {
       >
         {/* Team Member 1 */}
         <div
-          className={`${
-            theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
-          } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
+          className={`${theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
+            } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
         >
           <div
-            className={`${
-              theme
+            className={`${theme
                 ? "bg-[#4285f430] border-[#3498db]"
                 : "bg-gray-200 border-white"
-            } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
+              } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
           >
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
@@ -740,16 +719,16 @@ function TeamsPage({ theme }) {
                   src="founder.webp"
                   alt="Azfar Alam"
                 /> */}
-                   <div className="relative w-[28%] h-auto">
-      <Image
-        src="/founder.webp"  // Path to your image file in the `public` directory
-        alt="Azfar Alam"
-        layout="responsive"  // Adjusts the image size based on the container
-        width={500}          // Set width according to your design; this is used to maintain aspect ratio
-        height={500}         // Set height accordingly
-        className="rounded-full"  // Apply rounded corners
-      />
-    </div>
+                <div className="relative w-[28%] h-auto">
+                  <Image
+                    src="/founder.webp"  // Path to your image file in the `public` directory
+                    alt="Azfar Alam"
+                    layout="responsive"  // Adjusts the image size based on the container
+                    width={500}          // Set width according to your design; this is used to maintain aspect ratio
+                    height={500}         // Set height accordingly
+                    className="rounded-full"  // Apply rounded corners
+                  />
+                </div>
               </div>
               <div className="info-div text-center mt-[5px]">
                 <h2 className="mt-[10px] text-[1.5em] font-bold mb-2 font-arial">
@@ -774,15 +753,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faHeart}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Sponsor
               </p>
@@ -795,15 +772,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faLink}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Porfolio
               </p>
@@ -816,15 +791,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faLinkedin}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 LinkedIn
               </p>
@@ -833,16 +806,14 @@ function TeamsPage({ theme }) {
         </div>
         {/* Team Member 2 */}
         <div
-          className={`${
-            theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
-          } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
+          className={`${theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
+            } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
         >
           <div
-            className={`${
-              theme
+            className={`${theme
                 ? "bg-[#fbbc0530] border-[#3498db]"
                 : "bg-gray-200 border-white"
-            } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
+              } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
           >
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
@@ -875,15 +846,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faHeart}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Sponsor
               </p>
@@ -896,15 +865,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faGithub}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Github
               </p>
@@ -917,15 +884,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faLinkedin}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 LinkedIn
               </p>
@@ -934,16 +899,14 @@ function TeamsPage({ theme }) {
         </div>
         {/* Team Member 3 */}
         <div
-          className={`${
-            theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
-          } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
+          className={`${theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
+            } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
         >
           <div
-            className={`${
-              theme
+            className={`${theme
                 ? "bg-[#34a85330] border-[#3498db]"
                 : "bg-gray-200 border-white"
-            } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
+              } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
           >
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
@@ -976,15 +939,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faHeart}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Sponsor
               </p>
@@ -997,15 +958,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faGithub}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Github
               </p>
@@ -1018,15 +977,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faLinkedin}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 LinkedIn
               </p>
@@ -1035,16 +992,14 @@ function TeamsPage({ theme }) {
         </div>
         {/* Team Member 4 */}
         <div
-          className={`${
-            theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
-          } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
+          className={`${theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
+            } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
         >
           <div
-            className={`${
-              theme
+            className={`${theme
                 ? "bg-[#ea433530] border-[#3498db]"
                 : "bg-gray-200 border-white"
-            } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
+              } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
           >
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
@@ -1077,15 +1032,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faHeart}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Sponsor
               </p>
@@ -1098,15 +1051,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faGithub}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Github
               </p>
@@ -1119,15 +1070,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faLinkedin}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 LinkedIn
               </p>
@@ -1136,16 +1085,14 @@ function TeamsPage({ theme }) {
         </div>
         {/* Team Member 5 */}
         <div
-          className={`${
-            theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
-          } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
+          className={`${theme ? "bg-[#f1faff] border-[#ff7d1f]" : "bg-black border-white"
+            } team-member flex items-center  border-[2.5px] border-dashed  rounded-[20px] p-[20px] ml-[20px] bg-center bg-cover bg-no-repeat transition-all duration-500 pr-0 hover:scale-[1.03]`}
         >
           <div
-            className={`${
-              theme
+            className={`${theme
                 ? "bg-[#ffd70030] border-[#3498db]"
                 : "bg-gray-200 border-white"
-            } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
+              } card1 pt-8 rounded-[2rem]  flex flex-col items-center relative w-[85%] h-full`}
           >
             <div className="margin h-[90%] flex flex-col justify-center items-center">
               <div className="image-div flex-none flex justify-center items-center">
@@ -1178,15 +1125,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faHeart}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Sponsor
               </p>
@@ -1199,15 +1144,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faGithub}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 Github
               </p>
@@ -1220,15 +1163,13 @@ function TeamsPage({ theme }) {
               >
                 <FontAwesomeIcon
                   icon={faLinkedin}
-                  className={`${
-                    theme ? "text-[#6e6e6e]" : "text-white"
-                  } social-icon scale-[2.5] max-[525px]:scale-125 `}
+                  className={`${theme ? "text-[#6e6e6e]" : "text-white"
+                    } social-icon scale-[2.5] max-[525px]:scale-125 `}
                 />
               </a>
               <p
-                className={`${
-                  theme ? "text-[#000000]" : "text-white"
-                } text-[14px] mt-[10px] font-arial cursor-pointer`}
+                className={`${theme ? "text-[#000000]" : "text-white"
+                  } text-[14px] mt-[10px] font-arial cursor-pointer`}
               >
                 LinkedIn
               </p>
@@ -1241,9 +1182,8 @@ function TeamsPage({ theme }) {
 
       <div className="teams-container text-center h-[95vh] flex flex-col justify-center items-center">
         <h1
-          className={`${
-            theme ? "text-[#1f1f1f]" : "text-white"
-          } contri text-[48px] font-poppins font-extrabold [transition:0.5s_ease-in-out]`}
+          className={`${theme ? "text-[#1f1f1f]" : "text-white"
+            } contri text-[48px] font-poppins font-extrabold [transition:0.5s_ease-in-out]`}
         >
           Top 3 Contributors
         </h1>
@@ -1264,26 +1204,26 @@ function TeamsPage({ theme }) {
         {/* Conditionally render loading skeleton or contributor cards */}
         {loading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
-              <CardSkeleton key={index} theme={theme} />
-            ))
+            <CardSkeleton key={index} theme={theme} />
+          ))
           : renderContributors(
-              otherContri.slice(0, currentPage * itemsPerPage)
-            )}
+            otherContri.slice(0, currentPage * itemsPerPage)
+          )}
       </div>
 
       {/* Section: Trophy Card and Call to Action */}
 
-      <div className="trophy-card flex pl-[20px] ml-[74px] mr-[51px] bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
-      <div className="relative h-[66px] w-auto">
-      <Image
-        src="/trophy.webp"  // Path to your image file in the `public` directory
-        alt="Trophy"        // Alt text for accessibility
-        layout="intrinsic"  // Adjust the layout to fit the given dimensions
-        width={66}          // Set the width to match your original height
-        height={66}         // Set the height to match your original height
-        className="trophy"  // Apply custom className if needed
-      />
-    </div>
+      <div className="trophy-card flex items-center pl-[20px] ml-[74px] mr-[51px] bg-[rgba(47,_158,_214,_0.35)] text-[black] rounded-[18px] p-4 relative">
+        <div className="relative h-[66px] w-auto">
+          <Image
+            src="/trophy.webp"  // Path to your image file in the `public` directory
+            alt="Trophy"        // Alt text for accessibility
+            layout="intrinsic"  // Adjust the layout to fit the given dimensions
+            width={66}          // Set the width to match your original height
+            height={66}         // Set the height to match your original height
+            className="trophy"  // Apply custom className if needed
+          />
+        </div>
 
         <div className="team-invite pl-8">
           <h2 className="text-[1.5em] font-bold mb-2 font-arial">
@@ -1308,16 +1248,16 @@ function TeamsPage({ theme }) {
       {/* Section: Load More Button */}
 
       {!allLoaded && (
-           <div className="load p-5">
-             <button
-               id="load-more"
-               className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
-               onClick={loadMore}
-             >
-               Load More
-             </button>
-           </div>
-         )}
+        <div className="load p-5">
+          <button
+            id="load-more"
+            className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
+            onClick={loadMore}
+          >
+            Load More
+          </button>
+        </div>
+      )}
     </div>
   );
 }
