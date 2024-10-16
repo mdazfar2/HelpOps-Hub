@@ -1251,13 +1251,13 @@ function TeamsPage({ theme }) {
         <div className="load p-5">
           <button
             id="load-more"
-            className="block mx-[auto] px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
+            className="block mt-10 mx-[auto] rounded-lg px-[20px] py-[10px] text-[16px] bg-[white] text-[black] border-solid border border-black [box-shadow:-5px_5px_0px_0px_#000000] cursor-pointer [transition:all_0.3s_ease] hover:bg-[linear-gradient(to_right,_#ff7d1f,_#ffd700)]"
             onClick={loadMore}
           >
             Load More
           </button>
         </div>
-      )}
+
     </div>
   );
 }
