@@ -609,10 +609,10 @@ async function handleRecoverBlog(id) {
               className={`${
                 theme
                   ? filter === "recentBlogs"
-                    ? "text-gray-900 underline underline-offset-[30px]"
+                    ? "text-gray-900 underline underline-offset-[10px]"
                     : ""
                   : filter === "recentBlogs"
-                  ? "underline text-gray-400 underline-offset-[30px]"
+                  ? "underline text-gray-400 underline-offset-[10px]"
                   : ""
               }`}
               onClick={handleRecentBlogsClick}
@@ -624,10 +624,10 @@ async function handleRecoverBlog(id) {
               className={`${
                 theme
                   ? filter === "topPosts"
-                    ? "text-gray-900 underline underline-offset-[30px]"
+                    ? "text-gray-900 underline underline-offset-[10px]"
                     : ""
                   : filter === "topPosts"
-                  ? "underline text-gray-400 underline-offset-[30px]"
+                  ? "underline text-gray-400 underline-offset-[10px]"
                   : ""
               }`}
             >
@@ -637,10 +637,10 @@ async function handleRecoverBlog(id) {
               className={`${
                 theme
                   ? filter === "bookmarked"
-                    ? "text-gray-900 underline underline-offset-[30px]"
+                    ? "text-gray-900 underline underline-offset-[10px]"
                     : ""
                   : filter === "bookmarked"
-                  ? "underline text-gray-400 underline-offset-[30px]"
+                  ? "underline text-gray-400 underline-offset-[10px]"
                   : ""
               }`}
               onClick={handleBookmarkedClick}
@@ -651,10 +651,10 @@ async function handleRecoverBlog(id) {
               className={`${
                 theme
                   ? filter === "mustRead"
-                    ? "text-gray-900 underline underline-offset-[30px]"
+                    ? "text-gray-900 underline underline-offset-[10px]"
                     : ""
                   : filter === "mustRead"
-                  ? "underline text-gray-400 underline-offset-[30px]"
+                  ? "underline text-gray-400 underline-offset-[10px]"
                   : ""
               }`}
               onClick={handleMustReadClick}
@@ -665,10 +665,10 @@ async function handleRecoverBlog(id) {
               className={`w-[100px] ${
                 theme
                   ? filter === "Tags"
-                    ? "text-gray-900 underline underline-offset-[30px]"
+                    ? "text-gray-900 underline underline-offset-[10px]"
                     : ""
                   : filter === "Tags"
-                  ? "underline text-gray-400 underline-offset-[30px]"
+                  ? "underline text-gray-400 underline-offset-[10px]"
                   : ""
               }`}
               onClick={handleTagsClick}
