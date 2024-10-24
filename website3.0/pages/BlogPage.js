@@ -31,7 +31,7 @@ function BlogPage({ theme,finalUser,searchedBlog,setFinalUser,subject,updateUser
   const [editorsChoiceCount, setEditorsChoiceCount] = useState(3);
   const [sortBy, setSortBy] = useState("date");
   let [showTags,setShowTags]=useState(false)
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("recentBlogs");
   const [modalIndex,setModalIndex]=useState(-1)
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
