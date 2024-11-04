@@ -72,7 +72,7 @@ function Footer() {
           theme ? "text-black" : "text-gray-100"
         } font-sans text-xs py-2 font-normal mb-0 transition-colors duration-500`}
       >
-        © HelpOps-Hub | MIT License
+        © {new Date().getFullYear()} HelpOps-Hub | MIT License
       </p>
       {/* Developer and contributors */}
       <p
