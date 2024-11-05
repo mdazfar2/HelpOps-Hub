@@ -209,7 +209,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
             const newUsername = e.target.value;
             // Check if the new username contains any spaces
             if (/\s/.test(newUsername)) {
-                setMsg("This username cannot contain spaces. Please choose a different username.");
+                setMsg("Usernames cannot contain spaces. Please enter a valid username without spaces.");
                 setIsPopup(true);
             } else {
                 // If no spaces, update the username state
