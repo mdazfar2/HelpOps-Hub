@@ -65,23 +65,24 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
-    // TODO: Add account creation logic here
+     // TODO: Add account creation logic here
     if(validateDetails()){
-
+      // Check if the username already exists
       let canCreate=await fetch('/api/checkusername',{
         method:"POST",
-        body:JSON.stringify({
-          username:username1
+        body:JSON.stringify({ 
+          username:username1 
         }),
       })
       canCreate=await canCreate.json()
-      if(!canCreate.success){
-        setMsg(canCreate.msg)
+      // If the username already exists, show a message and stop the process
+      if (!canCreate.success){
+        setMsg("This username is already taken. Please choose a different username.");
         setIsPopup(true)
         setLoading(false)
         return
       }
-     let d= await fetch('/api/createaccount', {
+      let d= await fetch('/api/createaccount', {
         method: 'POST',
         body: JSON.stringify({
           email:localStorage.getItem('useremail1'),
@@ -104,7 +105,7 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
         setLoading(false)
       }, 2000);
     }
-   
+  
   };
   function toggle1(){
     if(showConfirmPassword){
@@ -198,15 +199,25 @@ const Profile = ({ onClose,theme, setFinalUser,setIsLogin,setMsg, setIsPopup, on
           />
         </div>
         <div className={`mb-[15px] mt-[20px] relative`}>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            value={username1}
-            ref={usernameRef1} // Added ref
-            className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
-            onChange={(e) => setUsername1(e.target.value)}
-            required
-          />
+        <input
+          type="text"
+          placeholder="Enter Username"
+          value={username1}
+          ref={usernameRef1} // Added ref
+          className={` p-[10px]  ${theme?"border-gray-500":"border-white  text-white"}   text-black outline-none borderinput ml-0 md:w-[100%] max-sm:w-[70%]`}
+          onChange={(e) => {
+            const newUsername = e.target.value;
+            // Check if the new username contains any spaces
+            if (/\s/.test(newUsername)) {
+                setMsg("This username cannot contain spaces. Please choose a different username.");
+                setIsPopup(true);
+            } else {
+                // If no spaces, update the username state
+                setUsername1(newUsername);
+            }
+          }}
+          required
+        />
         </div>
         {/* Password input */}
         <div className={`mb-[15px] mt-[20px] relative`}>
