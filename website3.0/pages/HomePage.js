@@ -5,7 +5,7 @@ import Lodaernewletter from "../components/Loadernewletter";
 import Spline from "@splinetool/react-spline";
 //Importing FontAwesome for Icons
 import Image from 'next/image';
-
+import Testimonial from "@components/Testmonial";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
@@ -738,6 +738,12 @@ async   function func() {
             </div>
           </div>
         </div>
+      </div>
+      {/*Section: Testimonial*/}
+      <div className={`${theme ? "bg-gray-200" : "bg-[#26272b] text-white"
+            } mx-14 shadow-lg rounded-3xl`}>
+
+      <Testimonial theme={theme} />
       </div>
     </div>
   );
