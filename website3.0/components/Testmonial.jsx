@@ -129,11 +129,11 @@ const Testimonial = ({ theme }) => {
     }, [autoNextReview]);
 
     return (
-        <section className="py-16 px-4 overflow-hidden">
+        <section className="py-5 px-4 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <h2 className={`${
                     theme ? "text-gray-700" : "text-white"
-                } mb-10 text-center text-5xl max-sm:text-4xl max-sm:mt-20 font-semibold`}>
+                } mb-5 text-center text-4xl max-sm:text-4xl max-sm:mt-20 font-semibold`}>
                     What Our Community Says
                 </h2>
                 <div className="relative">

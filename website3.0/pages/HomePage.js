@@ -740,10 +740,13 @@ async   function func() {
         </div>
       </div>
       {/*Section: Testimonial*/}
+      <div className="w-[95vw] mt-14 z-[50] max-sm:w-full mx-auto">
+
       <div className={`${theme ? "bg-gray-200" : "bg-[#26272b] text-white"
-            } mx-14 shadow-lg rounded-3xl`}>
+            } rounded-3xl flex w-[90%] mx-auto shadow-lg max-[900px]:flex-col items-center align-center`}>
 
       <Testimonial theme={theme} />
+      </div>
       </div>
     </div>
   );
