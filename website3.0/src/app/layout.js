@@ -10,7 +10,7 @@ import React from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Helpops-Hub",
+  title: "Helpops-Hub • Home",
   description: "Ensuring You Never Get Stuck In DevOps Again!",
   icons: {
     icon: "HelpOps-H Fevicon.webp",
