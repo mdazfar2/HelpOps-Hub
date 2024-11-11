@@ -133,11 +133,11 @@ const Testimonial = ({ theme }) => {
             <div className="max-w-7xl mx-auto">
                 <h2 className={`${
                     theme ? "text-gray-700" : "text-white"
-                } mb-5 text-center text-4xl max-sm:text-4xl max-sm:mt-20 font-semibold`}>
+                } mb-5 text-center text-4xl max-sm:text-2xl font-semibold`}>
                     What Our Community Says
                 </h2>
                 <div className="relative">
-                    <div className="overflow-visible">
+                    <div className="w-[85vw] lg:w-full overflow-hidden">
                         <div
                             className={`flex transition-transform duration-500 ease-in-out ${!isTransitioning ? 'transition-none' : ''}`}
                             style={{
