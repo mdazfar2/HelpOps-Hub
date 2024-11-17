@@ -6,10 +6,7 @@ Terraform is an open-source Infrastructure as Code (IaC) tool by HashiCorp, enab
 
 ### When is Terraform Used? 🤔
 
-Terraform is used:
-- To automate the provisioning and management of infrastructure.
-- For creating and updating infrastructure components in a repeatable and scalable manner.
-- To enforce consistency and reliability across deployments.
+
 
 ### Real World Application of Terraform 🌐
 
