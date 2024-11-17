@@ -80,7 +80,7 @@ Whether you're new to Kubernetes or looking to deploy it on your Ubuntu EC2 inst
       sudo kubeadm init
      ```
 
-### Troubleshoot-
+### **Troubleshoot**-
 
 If you facing issue while running `sudo kubeadm init` related this-
 
@@ -91,7 +91,9 @@ error execution phase preflight: [preflight] Some fatal errors occurred:
 [preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
 To see the stack trace of this error execute with --v=5 or higher
 
-**Then you must have to use the below command-**
+<br> 
+
+**Then you must have to use the below command** 👇 
 
 ```bash
  sudo sysctl net.ipv4.ip_forward=1
