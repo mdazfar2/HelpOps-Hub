@@ -20,30 +20,30 @@ Kubernetes provides a way to schedule and deploy containers, scale them to your 
 
 1. **Creation of Pods**
 
-    ```bash
-   kubectl run azfarpod --image=httpd
+   ```bash
+    kubectl run azfarpod --image=httpd
    ```
 
 2. **To check the Pods**
 
     ```bash
-    kubectl get pods
+     kubectl get pods
     ```
 
 3. **To delete a Pods**
 
     ```bash
-    kubectl delete pods --all 
+     kubectl delete pods --all 
     ```
     **or**
    ```bash
-   kubectl delete pods azfarpod
+    kubectl delete pods azfarpod
    ```
 
 4. **To create a pod from a YAML code**
 
      ```bash
-       kubectl create -f filename.yml
+      kubectl create -f filename.yml
      ```
 
 5. **Now, if you want to create a ReplicaSet or ReplicationController, it will be created by the YAML code only. You'll find both codes in the above repo.**
