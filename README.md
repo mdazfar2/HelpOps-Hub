@@ -9,7 +9,7 @@
 <a href="https://github.com/mdazfar2/HelpOps-Hub/network/members"><img src="https://img.shields.io/github/forks/mdazfar2/HelpOps-Hub?color=yellow"></a>
 <a href="https://github.com/mdazfar2/HelpOps-Hub/issues"><img src="https://img.shields.io/github/issues/mdazfar2/HelpOps-Hub?color=0059b3"></a>
 
-<hr/>
+<hr/>.
 
 <a name="Welcome to HelpOps-Hub "></a>
 
