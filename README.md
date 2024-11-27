@@ -58,7 +58,7 @@ Visit https://www.helpopshub.com to see the live demo!
 The goal of our project is to empower DevOps professionals by providing a comprehensive, community-driven platform that consolidates tools, best practices, tutorials, and real-world examples. We aim to streamline workflows, enhance productivity, and foster collaboration, innovation, and continuous learning within the DevOps community.
 
 <div>
-  <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/1ee5934a-27be-4502-a7bf-e6a8c78fe5a3" width="35" height="35"> Benefits</h2>
+  <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/1ee5934a-27be-4502-a7bf-e6a8c78fe5a3" width="35" height="35"> Benefits</h2>.
 </div>
 
 - **Community-Driven Q&A:** Post questions and find answers to DevOps-related queries across a variety of tools and technologies.
