@@ -1,6 +1,6 @@
 ![HelpOps cover](https://github.com/mdazfar2/HelpOps-Hub/assets/100375390/c6d22673-5dd4-482b-8c5c-e84a50cd0ccd)
 
-<p align="center">
+<p align="center">.
  <a href="https://github.com/mdazfar2/HelpOps-Hub"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"></a>
      <a href="https://github.com/mdazfar2/"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?v=103"></a>
 <a href="https://github.com/mdazfar2/HelpOps-Hub/blob/main/LICENSE"><img src="https://img.shields.io/badge/MIT-Licence-blue.svg?v=103"></a>  
