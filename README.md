@@ -90,6 +90,9 @@ The goal of our project is to empower DevOps professionals by providing a compre
   <a href="https://www.mongodb.com/">
     <img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB official Website"/>
   </a>
+ <a href="https://www.figma.com/">
+  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma Official Website"/>
+</a>
 </p>
 
 
