@@ -104,12 +104,13 @@ function page() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSkill, setSelectedSkill] = useState("All");
 
-  const handleConnect = () => {
+  const handleConnect = (expert) => {
     setSelectedExpert(expert);
     setShowPayment(true);
   };
 
   const filteredExperts = experts.filter(expert => {
+    console.log(expert)
     const matchesSearch = expert.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          expert.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesSkill = selectedSkill === "All" || expert.skills.some(skill => skill.includes(selectedSkill));
