@@ -27,7 +27,7 @@ const Header = () => {
   const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/profile'
   const isCreateBlog = pathname && pathname.startsWith("/createblog"); // Check if path starts with '/createblog'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
-  const isPremium = pathname && pathname.startsWith("/plans");
+  const isPremium = pathname && pathname.startsWith("/infrawise");
 
   const isCreateForum = pathname && pathname.startsWith("/createforum");
   let { theme, isAdminShow, isLogin, setIsPopup, setMsg, setSearchedBlog } =

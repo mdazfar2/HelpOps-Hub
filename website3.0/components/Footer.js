@@ -14,7 +14,7 @@ function Footer() {
   const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/admin'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
   const isCreateForum = pathname && pathname.startsWith("/createforum");
-  const isPremium = pathname && pathname.startsWith("/plans");
+  const isPremium = pathname && pathname.startsWith("/infrawise");
 
   let { theme } = useContext(Context);
   return (
