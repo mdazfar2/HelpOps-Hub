@@ -229,7 +229,7 @@ function BlogPost() {
           setReply(arr)
           setComments(data.comments || []);
           updateTotalReactionCount(data.reactionList);
-          let userid=JSON.parse(localStorage.getItem('finalUser'))._id
+          let userid=JSON.parse(localStorage.getItem('finalUser'))?._id || ""
           data.comments.map((res)=>{
             let ans=false
             res.likeusers.map(r=>{
@@ -892,7 +892,7 @@ return formattedDate
 let [modalIndex,setModalIndex]=useState(false)
 function handleError(){
   
-  document.getElementById("image-section").src='https://via.placeholder.com/600x400.png?text=No+Image+Available'
+  document.getElementById("image-section").src='https://dummyimage.com/600x300'
 }
   return (
     <>
