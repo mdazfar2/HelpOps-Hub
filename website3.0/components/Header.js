@@ -27,6 +27,8 @@ const Header = () => {
   const isProfile = pathname && pathname.startsWith("/profile"); // Check if path starts with '/profile'
   const isCreateBlog = pathname && pathname.startsWith("/createblog"); // Check if path starts with '/createblog'
   const isDevopsForum = pathname && pathname.startsWith("/devopsforum");
+  const isPremium = pathname && pathname.startsWith("/plans");
+
   const isCreateForum = pathname && pathname.startsWith("/createforum");
   let { theme, isAdminShow, isLogin, setIsPopup, setMsg, setSearchedBlog } =
     useContext(Context);
@@ -107,7 +109,7 @@ const Header = () => {
         } z-50 fixed top-0  transition-all overflow-hidden py-2 ${
           show ? "top-0" : "top-[-550px]"
         } ${isAdmin ? "hidden" : "block"} ${
-          isBlogs || isCreateBlog || isProfile || isDevopsForum || isCreateForum
+          isBlogs || isCreateBlog || isProfile || isDevopsForum || isCreateForum 
             ? "hidden"
             : "block"
         }  `}
@@ -132,7 +134,7 @@ const Header = () => {
                 theme
                   ? "bg-white shadow-gray-300"
                   : "bg-[#393838] shadow-[#000000a6]"
-              } list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
+              } ${isPremium?"opacity-0":""} list-none flex gap-5 py-2 px-5 nav_links rounded-3xl flex-wrap justify-center shadow-md  justify-self-end max-xl:hidden transition-colors duration-500`}
             >
               <li
                 className={`${
@@ -164,8 +166,8 @@ const Header = () => {
               </li>
             </ul>
             {/* Navigation actions (sponsor button and toggle switch) */}
-            <div className="flex items-center gap-2">
-              {isAdminShow ? (
+            <div className={`${isPremium?"hidden":""} flex items-center gap-2 `}>
+             {(isAdminShow ? (
                 <a href="https://www.helpopshub.com/admin" target="_blank">
                   <button
                     className={`${
@@ -192,7 +194,7 @@ const Header = () => {
                     Sponsor
                   </button>
                 </a>
-              )}
+              ))}
               <div className="block max-xl:hidden">
                 <AuthButton />
               </div>
@@ -204,7 +206,7 @@ const Header = () => {
           </div>
           {/* Hamburger menu icon for mobile */}
           <div
-            className={`hamburger ${isActive ? "open" : ""}`}
+            className={`hamburger ${isActive ? "open" : ""} ${isPremium?"hidden":""}`}
             id="hamburger"
             onClick={toggleMenu}
           >
