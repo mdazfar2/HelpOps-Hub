@@ -164,7 +164,7 @@ const AdminPanel = ({authKey}) => {
                   className="w-10 h-10 rounded-full ml-4"
                 /> */}
                  <Image
-        src="https://via.placeholder.com/40" // URL to your image
+        src="https://dummyimage.com/600x300" // URL to your image
         alt="Admin Profile"
         layout="fill" // Fills the container
         objectFit="cover" // Ensures the image covers the container while preserving aspect ratio
