@@ -28,7 +28,7 @@ body:
         - label: 'I have read the [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md)'
           required: true
 
-        - lable: 'I am a SWoC'25 contributor.'
+        - lable: 'I am a ACWoC'25 contributor.'
 
         - label: 'I am willing to work on this issue (optional)'
           required: false
