@@ -7,7 +7,7 @@ def filter_structure(structure, folder):
     return [line for line in structure if line.startswith(folder)]
 
 # Helper function to recursively build the repo structure and include file extensions
-def get_repo_structure(path='.', prefix=''):
+def get_repo_structure(path='website3.0', prefix=''):
     structure = []
     try:
         items = sorted(os.listdir(path))
@@ -87,8 +87,9 @@ def main():
 
     # Get the current structure of the repository
     current_structure = get_repo_structure()
+
     # Filter the structure to only include the website3.0 folder
-    filtered_structure = filter_structure(current_structure, 'website3.0')
+    # filtered_structure = filter_structure(current_structure, 'website3.0')
 
     try:
         # Fetch the contents of repo_structure.txt from GitHub
@@ -97,9 +98,9 @@ def main():
     except github.GithubException:
         existing_structure = None
 
-    if filtered_structure != existing_structure:
-        update_structure_file(filtered_structure)
-        update_README(filtered_structure)
+    if current_structure != existing_structure:
+        update_structure_file(current_structure)
+        update_README(current_structure)
         print("Repository structure updated.")
     else:
         print("No changes in repository structure.")
