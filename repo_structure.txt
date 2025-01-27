@@ -1,0 +1,331 @@
+├── Dockerfile
+├── README.md
+├── components/
+│   ├── AuthButton.js
+│   ├── CardSkeleton.js
+│   ├── Footer.js
+│   ├── Header.js
+│   ├── Loader.js
+│   ├── Loadernewletter.jsx
+│   ├── LoginSignup/
+│   │   ├── Login.js
+│   │   └── Signup.js
+│   ├── ParticleBackground.js
+│   ├── Popup.jsx
+│   ├── Popup1.js
+│   ├── Reset.js
+│   ├── ScrollToTop.js
+│   ├── Scrolltab.js
+│   ├── Testmonial.jsx
+│   ├── Textarea.jsx
+│   ├── ToggleSwitch.js
+│   ├── UserProfile.js
+│   ├── admin/
+│   │   ├── Charts/
+│   │   │   ├── Charts.jsx
+│   │   │   └── SparkLine.jsx
+│   │   └── dashboard/
+│   │       ├── AllBlogs.jsx
+│   │       ├── Blogcreation.js
+│   │       ├── Dashboard.js
+│   │       └── Overview.js
+│   ├── auth/
+│   │   └── Authprovider.js
+│   ├── blogpage/
+│   │   ├── BlogPost.js
+│   │   ├── CreateBlog.js
+│   │   └── Editblog.jsx
+│   ├── forumpage/
+│   │   ├── CreateForum.js
+│   │   └── ForumPost.js
+│   └── profile/
+│       ├── Answers.jsx
+│       ├── DashboardTab.jsx
+│       ├── DeletedBlogs.jsx
+│       ├── EditProfileModal.jsx
+│       ├── FollowersTab.jsx
+│       ├── GrowYourReachTab.jsx
+│       ├── Logout.jsx
+│       ├── NotificationTab.jsx
+│       ├── ProfilepageDetails.jsx
+│       ├── Questions.jsx
+│       ├── ResourcesTab.jsx
+│       ├── SettingsTab.jsx
+│       └── Unblock.jsx
+├── context/
+│   └── store.jsx
+├── jsconfig.json
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── pages/
+│   ├── AboutPage.js
+│   ├── AdminPanel.js
+│   ├── BlogPage.js
+│   ├── ContactPage.js
+│   ├── ForumPage.js
+│   ├── HomePage.js
+│   ├── OTP.js
+│   ├── Profile.js
+│   ├── ResourcesDetailsPage.js
+│   ├── ResourcesPage.js
+│   └── TeamsPage.js
+├── particlesjs-config.js
+├── postcss.config.mjs
+├── public/
+│   ├── 404.webp
+│   ├── Arrow.webp
+│   ├── Blog_Sample_1.webp
+│   ├── Blog_Sample_2.webp
+│   ├── Blog_Sample_3.webp
+│   ├── Blog_Sample_4.webp
+│   ├── Devops-Dark.mp4
+│   ├── HelpOps-H Fevicon-144.webp
+│   ├── HelpOps-H Fevicon-152.webp
+│   ├── HelpOps-H Fevicon-16.webp
+│   ├── HelpOps-H Fevicon-180.webp
+│   ├── HelpOps-H Fevicon-192.webp
+│   ├── HelpOps-H Fevicon-256.webp
+│   ├── HelpOps-H Fevicon-32.webp
+│   ├── HelpOps-H Fevicon-384.webp
+│   ├── HelpOps-H Fevicon-512.webp
+│   ├── HelpOps-H Fevicon.png
+│   ├── HelpOps-H Fevicon.webp
+│   ├── HelpOps-H.mp4
+│   ├── Mobile-Devops.mp4
+│   ├── Section1_Scene.splinecode
+│   ├── Section2_Scene.splinecode
+│   ├── Section3_Scene.splinecode
+│   ├── b1.webp
+│   ├── b2.webp
+│   ├── b3.webp
+│   ├── b4.webp
+│   ├── b5.webp
+│   ├── b6.webp
+│   ├── benefit.webp
+│   ├── circle.webp
+│   ├── crown.webp
+│   ├── default_banner.webp
+│   ├── dev1.webp
+│   ├── dev2.webp
+│   ├── dev3.webp
+│   ├── discord-icon.svg
+│   ├── forum.webp
+│   ├── founder.webp
+│   ├── github.webp
+│   ├── google.webp
+│   ├── i1.webp
+│   ├── i2.webp
+│   ├── i3.webp
+│   ├── i4.webp
+│   ├── icon1.webp
+│   ├── icon2.webp
+│   ├── icon3.webp
+│   ├── img1.webp
+│   ├── img2.webp
+│   ├── linkedin-icon.svg
+│   ├── mail_icon.webp
+│   ├── maintainer.webp
+│   ├── maintainer2.webp
+│   ├── maintainer3.webp
+│   ├── manifest.json
+│   ├── mission.webp
+│   ├── rateus.webp
+│   ├── robots.txt
+│   ├── screenshot1-1280x720.webp
+│   ├── screenshot2-1280x720.webp
+│   ├── serviceWorker.js
+│   ├── sitemap.xml
+│   ├── temp_bg.png
+│   ├── temp_bg.webp
+│   ├── trophy.webp
+│   └── youtube-icon.svg
+├── src/
+│   └── app/
+│       ├── [...not_found]/
+│       │   └── page.js
+│       ├── about/
+│       │   ├── layout.js
+│       │   └── page.js
+│       ├── admin/
+│       │   └── page.js
+│       ├── api/
+│       │   ├── addrelated/
+│       │   │   └── route.js
+│       │   ├── addreply/
+│       │   │   └── route.js
+│       │   ├── addsolution/
+│       │   │   └── route.js
+│       │   ├── alluser/
+│       │   │   └── route.js
+│       │   ├── auth/
+│       │   │   └── [...nextauth]/
+│       │   │       └── route.js
+│       │   ├── averagetime/
+│       │   │   └── route.js
+│       │   ├── blockblog/
+│       │   │   └── route.js
+│       │   ├── blog/
+│       │   │   ├── [id]/
+│       │   │   │   └── route.js
+│       │   │   └── route.js
+│       │   ├── changepass/
+│       │   │   └── route.js
+│       │   ├── checkusername/
+│       │   │   └── route.js
+│       │   ├── closequestion/
+│       │   │   └── route.js
+│       │   ├── commentlike/
+│       │   │   └── route.js
+│       │   ├── commentoperations/
+│       │   │   └── route.js
+│       │   ├── contact/
+│       │   │   └── route.js
+│       │   ├── createaccount/
+│       │   │   └── route.js
+│       │   ├── createquestion/
+│       │   │   └── route.js
+│       │   ├── deleteaccount/
+│       │   │   └── route.js
+│       │   ├── editaccount/
+│       │   │   └── route.js
+│       │   ├── filterblogs/
+│       │   │   └── route.js
+│       │   ├── forgotpassword/
+│       │   │   └── route.js
+│       │   ├── getblog/
+│       │   │   └── route.js
+│       │   ├── getdraft/
+│       │   │   └── route.js
+│       │   ├── getfollowers/
+│       │   │   └── route.js
+│       │   ├── getnumber/
+│       │   │   └── route.js
+│       │   ├── getquestion/
+│       │   │   └── route.js
+│       │   ├── getuser/
+│       │   │   └── route.js
+│       │   ├── getuserbyemail/
+│       │   │   └── route.js
+│       │   ├── getuserbyid/
+│       │   │   └── route.js
+│       │   ├── like/
+│       │   │   └── route.js
+│       │   ├── likedfolder/
+│       │   │   └── route.js
+│       │   ├── login/
+│       │   │   └── route.js
+│       │   ├── notifications/
+│       │   │   └── route.js
+│       │   ├── questioncomment/
+│       │   │   └── route.js
+│       │   ├── questionlikes/
+│       │   │   └── route.js
+│       │   ├── questionviews/
+│       │   │   └── route.js
+│       │   ├── recoverblog/
+│       │   │   └── route.js
+│       │   ├── savedraft/
+│       │   │   └── route.js
+│       │   ├── scheduleblog/
+│       │   │   └── route.js
+│       │   ├── setfollow/
+│       │   │   └── route.js
+│       │   ├── setreaction/
+│       │   │   └── route.js
+│       │   ├── signup/
+│       │   │   └── route.js
+│       │   ├── subscribe/
+│       │   │   └── route.js
+│       │   ├── tagfollow/
+│       │   │   └── route.js
+│       │   ├── taghide/
+│       │   │   └── route.js
+│       │   ├── unblock/
+│       │   │   └── route.js
+│       │   ├── unfollow/
+│       │   │   └── route.js
+│       │   ├── updateNotificationStatus/
+│       │   │   └── route.js
+│       │   ├── updatedraft/
+│       │   │   └── route.js
+│       │   └── viewincrease/
+│       │       └── route.js
+│       ├── blogs/
+│       │   ├── [id]/
+│       │   │   └── page.js
+│       │   ├── layout.js
+│       │   └── page.js
+│       ├── contact/
+│       │   ├── layout.js
+│       │   └── page.js
+│       ├── createblog/
+│       │   └── page.js
+│       ├── createforum/
+│       │   └── page.js
+│       ├── devopsforum/
+│       │   ├── [id]/
+│       │   │   └── page.js
+│       │   ├── layout.js
+│       │   └── page.js
+│       ├── editblog/
+│       │   └── page.js
+│       ├── globals.css
+│       ├── infrawise/
+│       │   └── page.js
+│       ├── layout.js
+│       ├── news/
+│       │   └── page.js
+│       ├── not-found.js
+│       ├── page.js
+│       ├── profile/
+│       │   └── page.js
+│       ├── provider.js
+│       ├── resources/
+│       │   ├── layout.js
+│       │   └── page.js
+│       ├── resourcesdetails/
+│       │   └── page.js
+│       └── team/
+│           ├── layout.js
+│           └── page.js
+├── stylesheets/
+│   ├── Loadernewsletter.css
+│   ├── Popup.css
+│   ├── abouts.css
+│   ├── admin.css
+│   ├── blogspage.css
+│   ├── contact.css
+│   ├── darkmode.css
+│   ├── editor.css
+│   ├── followers.css
+│   ├── forumanimation.css
+│   ├── header.css
+│   ├── homepage.css
+│   ├── loader.css
+│   ├── login-signup.css
+│   ├── otp.css
+│   ├── profile.css
+│   ├── profilecontainer.css
+│   ├── profilepage.css
+│   ├── reset.css
+│   ├── resourceloader.css
+│   ├── resources.css
+│   ├── resourcesdetails.css
+│   ├── tags-cards.css
+│   ├── teams.css
+│   └── toggleswitch.css
+├── tailwind.config.js
+└── utils/
+    ├── cn.js
+    ├── models/
+    │   ├── blog.js
+    │   ├── contactus.js
+    │   ├── draftBlogs.js
+    │   ├── newaccounts.js
+    │   ├── newslettersub.js
+    │   ├── notification.js
+    │   ├── question.js
+    │   ├── resource.js
+    │   └── user.js
+    └── registerServiceWorker.js
