@@ -51,6 +51,9 @@ HelpOps-Hub is proudly part of global initiatives engaging with passionate devel
 
 Visit https://www.helpopshub.com to see the live demo!
 
+## Project Structure
+Check the project structure here [Project Structure](/PROJECT_STRUCTURE.md) before Contributing to the repository.
+
 <div>
   <h2><img src="https://github.com/Meetjain1/wanderlust/assets/133582566/4a07b161-b8d6-4803-804a-3b0db699023e" width="35" height="35"> Goal of our project </h2>
 </div>
