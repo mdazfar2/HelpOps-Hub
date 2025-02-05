@@ -66,7 +66,7 @@ export async function POST(req) {
       await send()
       let otp = users.get(email)
       users.delete(email)
-      return NextResponse.json({ success: true, otp: otp })
+      return NextResponse.json({ success: true })
     } else {
       // for checking the otp 
       let otp = await users.get(email)
