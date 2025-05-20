@@ -4,7 +4,8 @@ import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
 import { color, motion } from "framer-motion";
 import Image from "next/image";
-
+import dotenv from "dotenv";
+dotenv.config();
 //Importing FontAwesome for Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -284,55 +285,6 @@ function ResourcesPage({
       // Function to delay execution for visual effect
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-      // Function to fetch API key from external source
-      (function (_0x25f1f8, _0x2c8548) {
-        const _0x3d2bd2 = _0x26f2,
-          _0xfb22ad = _0x25f1f8();
-        while (!![]) {
-          try {
-            const _0x4d92e6 =
-              parseInt(_0x3d2bd2(0x1ed)) / 0x1 +
-              parseInt(_0x3d2bd2(0x1ee)) / 0x2 +
-              (-parseInt(_0x3d2bd2(0x1f0)) / 0x3) *
-                (parseInt(_0x3d2bd2(0x1e9)) / 0x4) +
-              -parseInt(_0x3d2bd2(0x1e8)) / 0x5 +
-              (-parseInt(_0x3d2bd2(0x1e3)) / 0x6) *
-                (parseInt(_0x3d2bd2(0x1e7)) / 0x7) +
-              (parseInt(_0x3d2bd2(0x1e4)) / 0x8) *
-                (-parseInt(_0x3d2bd2(0x1ef)) / 0x9) +
-              parseInt(_0x3d2bd2(0x1eb)) / 0xa;
-            if (_0x4d92e6 === _0x2c8548) break;
-            else _0xfb22ad["push"](_0xfb22ad["shift"]());
-          } catch (_0x2a8803) {
-            _0xfb22ad["push"](_0xfb22ad["shift"]());
-          }
-        }
-      })(_0xff61, 0x46615);
-      async function getkey() {
-        const _0xaefe02 = _0x26f2;
-        try {
-          const _0x5465ca = await fetch(
-            "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjOmtWdB9cjg2ryTWT_kLUKUBoAANntsvwgDc9W7uMOn46G-Zuh0r2NyikEhx6U1eniRTUvlqHmB3LBkubrz1Cg1w1yeB8NeAACdZrxD-DxxBRrPRORKN7h0vxucBNlxlvCiLsAhhNZITDxI8uDGS57KOEykI9acGZvQu9qy5QPg3lOe7nwoWc72BzuIrnzO7khrKPyrXpcdmtuCidMzoz5g53g0qPKFHB4Ywg17sfFx6GJbyGxbbrkF0Y9KzRFaf98JmPxGrYXPwv2Gxu9ihiKdTTENw&lib=MjyKE0CtWnEGB8SSZjHlO0qJGBFN6q3R9"
-          );
-          if (!_0x5465ca["ok"]) throw new Error(_0xaefe02(0x1ec));
-          const _0x5ec22f = await _0x5465ca[_0xaefe02(0x1e5)]();
-          return _0x5ec22f["apik"][0x0][_0xaefe02(0x1ea)];
-        } catch (_0x122dd6) {
-          console[_0xaefe02(0x1e6)]("Error\x20fetching\x20data:", _0x122dd6);
-        }
-      }
-      function _0x26f2(_0x4e567a, _0x167364) {
-        const _0xff6186 = _0xff61();
-        return (
-          (_0x26f2 = function (_0x26f251, _0x134099) {
-            _0x26f251 = _0x26f251 - 0x1e3;
-            let _0x5572bc = _0xff6186[_0x26f251];
-            return _0x5572bc;
-          }),
-          _0x26f2(_0x4e567a, _0x167364)
-        );
-      }
-      const token = await getkey();
       function _0xff61() {
         const _0x133e0b = [
           "json",
@@ -357,6 +309,7 @@ function ResourcesPage({
       }
 
       try {
+        const token = process.env.Git_Token;
         // Fetch repository contents using provided URL and API token
         const response = await fetch(url, {
           headers: {
