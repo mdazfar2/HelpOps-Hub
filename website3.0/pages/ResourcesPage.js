@@ -309,7 +309,7 @@ function ResourcesPage({
       }
 
       try {
-        const token = process.env.Git_Token;
+        const token = process.env.NEXT_PUBLIC_GIT_TOKEN;
         // Fetch repository contents using provided URL and API token
         const response = await fetch(url, {
           headers: {
