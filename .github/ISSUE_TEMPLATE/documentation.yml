@@ -38,8 +38,6 @@ body:
       options:
         - label: 'I have read the [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md)'
           required: true
-          
-        - lable: 'I am a ACWoC'25 contributor.'
 
         - label: "Soon, I'll complete it and create a Pull Request."
         - label: "I'm a beginner in DevOps, but I'll try to contribute the best resources with hands-on experience."

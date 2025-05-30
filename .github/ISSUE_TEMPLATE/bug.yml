@@ -42,8 +42,6 @@ body:
         - label: 'I have checked the existing issues'
           required: true
 
-        - lable: 'I am a ACWoC'25 contributor.'
-
         - label: 'I have read the [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md)'
           required: true
 
