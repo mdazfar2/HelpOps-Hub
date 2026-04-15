@@ -31,9 +31,7 @@ function HeroSection({ theme, getStartedHref = "/resources" }) {
           } p-16 max-[450px]:w-[95%] max-[450px]:py-14 max-[420px]:px-0 rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center transition-colors duration-500`}
         >
           <h1
-            className={`${
-              theme ? "text-[#63B5C3]" : "text-white"
-            } text-[85px] max-lg:text-7xl max-sm:text-6xl max-[420px]:text-5xl max-sm:text-center mb-5 font-bold transition-colors duration-500`}
+            className="text-[#63B5C3] text-[85px] max-lg:text-7xl max-sm:text-6xl max-[420px]:text-5xl max-sm:text-center mb-5 font-bold transition-colors duration-500"
           >
             HelpOps-Hub
           </h1>
