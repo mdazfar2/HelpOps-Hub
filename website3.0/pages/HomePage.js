@@ -227,6 +227,7 @@ async   function func() {
 
   return (
     <div
+      id="home-top"
       className={`${
         theme ? "bg-gray-100" : " bg-[#1e1d1d]"
       } transition-colors duration-500 overflow-x-hidden md:overflow-x-auto`}
@@ -267,7 +268,13 @@ async   function func() {
         writeBlogHref={createBlogHref}
       />
 
-      <div className="flex items-center max-lg:flex-col max-lg:h-auto max-lg:justify-center max-sm:my-0 relative h-[600px] mt-16 mb-16 px-32 max-md:px-3">
+      <div
+        className={`flex items-center max-lg:flex-col max-lg:h-auto max-lg:justify-center max-sm:my-0 relative h-[600px] mt-16 mb-16 px-32 max-md:px-3 ${
+          theme
+            ? "bg-gradient-to-br from-orange-100 via-sky-100 to-cyan-100"
+            : "bg-gradient-to-br from-[#2f3c4b] via-[#304e63] to-[#375a73]"
+        }`}
+      >
         <div className="w-1/2 max-lg:w-3/4 max-md:w-full max-md:scale-75 mt-16 mb-8">
           <div
             className={`${

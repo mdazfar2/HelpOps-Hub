@@ -35,6 +35,7 @@ const steps = [
 function HowItWorksSection({ theme, tryItNowHref = "/devopsforum" }) {
   return (
     <section
+      id="how-it-works"
       className={`relative px-6 sm:px-10 lg:px-16 py-20 overflow-hidden ${
         theme
           ? "bg-gradient-to-b from-[#f2fbff] via-[#f7fcff] to-[#f6fff9]"

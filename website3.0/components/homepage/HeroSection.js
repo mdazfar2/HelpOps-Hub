@@ -5,12 +5,16 @@ function HeroSection({ theme, getStartedHref = "/resources" }) {
   return (
     <div
       className={`${
-        theme ? "bg-gray-100" : "bg-[#656566]"
+        theme
+          ? "bg-gradient-to-br from-orange-100 via-sky-100 to-cyan-100"
+          : "bg-gradient-to-br from-[#2f3c4b] via-[#304e63] to-[#375a73]"
       } relative h-screen max-sm:h-[560px] overflow-hidden transition-colors duration-500`}
     >
       <div
         className={`${
-          theme ? "bg-[#DCDDDC]" : "bg-[#1e1d1d]"
+          theme
+            ? "bg-gradient-to-r from-orange-50/90 via-sky-50/90 to-cyan-50/90"
+            : "bg-gradient-to-r from-[#1b222d]/85 via-[#1e2d3a]/80 to-[#213340]/85"
         } shadow-inner w-full h-[300px] absolute bottom-0 transition-colors duration-500`}
       ></div>
       <img

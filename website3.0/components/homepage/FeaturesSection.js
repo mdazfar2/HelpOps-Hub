@@ -54,6 +54,7 @@ const featureCards = [
 function FeaturesSection({ theme, exploreFeaturesHref = "/resources" }) {
   return (
     <section
+      id="features"
       className={`relative px-6 sm:px-10 lg:px-16 py-20 overflow-hidden ${
         theme
           ? "bg-gradient-to-b from-[#f8fcff] via-[#f7fbff] to-[#f1f9f7]"
