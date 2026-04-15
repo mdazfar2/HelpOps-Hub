@@ -176,6 +176,7 @@ input{
 .fade-in.visible {
   opacity: 1;
 }
+
 @media screen and (max-width:400px) {
   .input-field{
     width:200px;

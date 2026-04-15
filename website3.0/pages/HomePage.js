@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import "@stylesheets/homepage.css";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Lodaernewletter from "../components/Loadernewletter";
-import Spline from "@splinetool/react-spline";
 //Importing FontAwesome for Icons
 import Image from 'next/image';
 import Testimonial from "@components/Testmonial";
+import ProblemSection from "../components/homepage/ProblemSection";
+import SolutionSection from "../components/homepage/SolutionSection";
+import FeaturesSection from "../components/homepage/FeaturesSection";
+import HowItWorksSection from "../components/homepage/HowItWorksSection";
+import DiscoverSection from "../components/homepage/DiscoverSection";
+import HeroSection from "../components/homepage/HeroSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
@@ -102,28 +107,6 @@ async   function func() {
     };
   }, []);
 
-  useEffect(() => {
-    const splideMobile = new Splide("#splideMobile", {
-      type: "loop",
-      perPage: 2,
-      pagination: false,
-      arrows: true,
-      breakpoints: {
-        960: {
-          perPage: 1,
-        },
-      },
-    });
-
-    splideMobile.mount();
-
-    return () => {
-      splideMobile.destroy();
-    };
-  }, []);
-
-  const router = useRouter();
-
   // Initialize AOS (Animate on Scroll) library for scroll animations
   useEffect(() => {
     const initAOS = () => {
@@ -141,17 +124,10 @@ async   function func() {
     };
   }, [theme]);
 
-  const handleDevopsForum=()=>{
-    router.push("/devopsforum");
-  }
-
-  // Navigate to the /resources page when "Get started" button is clicked
-  const handleGetStartedClick = () => {
-    router.push("/resources");
-  };
-  const handleStartNowClick = () => {
-    router.push("/blogs");
-  };
+  const resourcesHref = "/resources";
+  const devopsForumHref = "/devopsforum";
+  const blogsHref = "/blogs";
+  const createBlogHref = "/createblog";
 
   const [email, setEmail] = useState(""); // State to hold email input
 
@@ -248,6 +224,7 @@ async   function func() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <div
       className={`${
@@ -265,261 +242,30 @@ async   function func() {
      
       {showModal && <Reset />}
       
-      <div
-        className={`${
-          theme ? "bg-gray-100" : "bg-[#656566]"
-        } relative h-screen max-sm:h-0 overflow-hidden transition-colors duration-500`}
-      >
-        {/* {loadSpline && (
-            <div className={`block min-h-[720px] h-screen max-xl:hidden fade-in ${visible ? "visible" : ""}`} ref={splineRef}>
-              <Spline scene="/Section1_Scene.splinecode" key={splineKey} />
-            </div>
-          )} */}
-        <div
-          className={`${
-            theme ? "bg-[#DCDDDC]" : "bg-[#1e1d1d]"
-          } shadow-inner w-full h-[300px] absolute bottom-0 transition-colors duration-500`}
-        ></div>
-        <img
-          src="temp_bg.webp"
-          alt="HelpOps-Hub"
-          className="absolute top-[340px] max-2xl:top-[390px] max-2xl:text-black translate-y-[-200px] max-xl:hidden right-0 max-2xl:-right-12 w-[47%] transition-all duration-500 ease-in-out"
-          draggable="false"
-        />
-      </div>
+      <HeroSection theme={theme} getStartedHref={resourcesHref} />
 
-      <div className="absolute max-sm:static max-sm:mt-48 z-10 top-48 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:ml-0 flex justify-left ml-24 max-2xl:ml-10 items-center transition-all duration-500">
-        <div
-          className={`${
-            theme ? "bg-white" : "bg-[#292727]  shadow-md"
-          } p-16 max-[450px]:w-[95%] max-[450px]:py-14 max-[420px]:px-0 rounded-3xl shadow-xl max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center transition-colors duration-500`}
-        >
-          <h1
-            className={`${
-              theme ? "text-[#63B5C3] " : "text-white"
-            } text-[85px] max-lg:text-7xl max-sm:text-6xl max-[420px]:text-5xl max-sm:text-center mb-5 font-bold transition-colors duration-500`}
-          >
-            HelpOps-Hub
-          </h1>
-          <p
-            className={`${
-              theme ? "text-black " : "text-white"
-            } ubuntu  max-[420px]:p-4 font-extralight max-sm:text-center text-4xl max-sm:text-3xl max-[420px]:text-2xl w-96 mb-5 transition-colors duration-500`}
-          >
-            Ensuring You Never Get Stuck In DevOps Again!
-          </p>
-          <button
-              className={`${
-              theme ? "bg-[#63B5C3] text-white" : "bg-gray-100 text-black"
-              } rounded-full max-sm:w-32 max-sm:px-3 max-sm:py-2 px-5 py-3 transition duration-500 transform hover:scale-105`}
-              onClick={handleGetStartedClick}
-          >
-            Get started
-          </button>
-        </div>
-      </div>
-      <div className="w-full h-[400px] mt-4 flex justify-center items-center focus:outline-0 sm:hidden">
-        <video
-          src={`${theme ? "/Mobile-Devops.mp4" : "/Devops-Dark.mp4"}`}
-          className={`${theme ? "" : "brightness-95 contrast-[1.01]"}`}
-          loop
-          autoPlay
-          muted
-          playsInline
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div className="flex flex-col justify-center items-center transition-colors duration-300">
-        <div className=" relative mt-32 flex justify-center max-sm:mt-4 h-[650px] w-[1024px] max-lg:w-full max-lg:h-[520px]">
-          <Spline scene="/Section2_Scene.splinecode" />
-          <div className="absolute top-16 max-xl:scale-90 max-lg:scale-75 max-[620px]:scale-[0.6] max-[580px]:w-[160%] max-lg:top-0 flex flex-col justify-center items-center">
-            <div
-              className={`${
-                theme ? "text-[#2C939E] " : "text-white"
-              } text-center transition-colors duration-500 text-[108px] leading-[1.2] font-bold`}
-            >
-              Discover,
-              <br />
-              Learn, and
-              <br /> Grow
-            </div>
-            <div
-              className={`${
-                theme ? "text-black" : "text-white"
-              } w-[60%] text-center text-xl text-black`}
-            >
-              Discover the Latest Trends and Innovations in Devops Practices and
-              Technologies
-            </div>
-            <div
-              className={`${
-                theme ? "text-gray-700" : "text-white"
-              } relative mt-8 cursor-pointer transition-all w-full flex`}
-            >
-            <div className="relative left-[45%] max-[620px]:left-[38%] group">
-                <div
-                className="text-black h-12 w-32 bg-white absolute z-10 text-lg flex justify-center items-center transition-transform duration-100 group-hover:scale-105 origin-left"
-                 onClick={handleStartNowClick}
-                 >
-               Start Now
-                 </div>
-                <div className="h-12 w-32 absolute bg-gray-400 top-2 -left-2 z-0 transition-transform duration-100 group-hover:scale-105 origin-left"></div>
-             </div> 
-            </div>
-          </div>
-        </div>
-      </div>
+      <ProblemSection theme={theme} />
 
-      <div className="h-56 flex gap-5 mt-40 px-16 relative max-xl:hidden">
-        <div
-          className={`${
-            theme
-              ? "text-black border-black"
-              : "text-white bg-[#26272b] border-white border-dashed"
-          } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
-        >
-          <div className="flex p-4 gap-5 items-center">
-            <img src="i1.webp" className="w-14 rounded-full" alt="ask-questions" />
-            <div className="font-medium text-2xl">Ask Questions</div>
-          </div>
-          <div className="text-center">
-            Easily post detailed queries about your DevOps challenges.
-          </div>
-        </div>
-        <div
-          className={`${
-            theme
-              ? "text-black border-black"
-              : "text-white bg-[#26272b] border-white border-dashed"
-          } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
-        >
-          <div className="flex p-4 gap-5 items-center">
-            <img src="i2.webp" className="w-14 rounded-full"  alt="receive ecpert help" />
-            <div className="font-medium text-2xl">Receive Expert Help</div>
-          </div>
-          <div className="text-center">
-            Tap into the collective knowledge of experienced DevOps
-            professionals.
-          </div>
-        </div>
-        <div
-          className={`${
-            theme
-              ? "text-black border-black"
-              : "text-white bg-[#26272b] border-white border-dashed"
-          } text-black w-1/4 h-full border-2 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
-        >
-          <div className="flex p-4 gap-5 items-center">
-            <img src="i4.webp" className="w-14 rounded-full"  alt="collaborate and learn" />
-            <div className="font-medium text-2xl">Collaborate and Learn</div>
-          </div>
-          <div className="text-center px-4">
-            Engage with a community dedicated to sharing knowledge and solving
-            problems.
-          </div>
-        </div>
-        <div
-          className={`${
-            theme
-              ? "text-black border-black"
-              : "text-white bg-[#26272b] border-white border-dashed"
-          } text-black w-1/4 h-full border-2 relative -top-10 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointerz`}
-        >
-          <div className="flex p-4 gap-5 items-center">
-            <img src="i3.webp" className="w-14 rounded-full"  alt="save time" />
-            <div className="font-medium text-2xl">Save Time</div>
-          </div>
-          <div className="text-center">
-            Quickly resolve issues and focus on what matters most - driving your
-            projects forward.
-          </div>
-        </div>
-      </div>
+      <SolutionSection
+        theme={theme}
+        startLearningHref={devopsForumHref}
+      />
 
-      <div className="h-56 flex items-center justify-center max-sm:px-0 gap-5 mt-16 px-16 relative xl:hidden">
-        <div id="splideMobile" className="splide w-full">
-          <div className="splide__track">
-            <ul className="splide__list">
-              <li className="splide__slide p-2">
-                <div
-                  className={`${
-                    theme
-                      ? "text-black border-black"
-                      : "text-white bg-[#26272b] border-white border-dashed"
-                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
-                >
-                  <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="i1.webp" className="w-16 rounded-full"  alt="Ask questions" />
-                    <div className="font-medium text-3xl">Ask Questions</div>
-                  </div>
-                  <div className="text-center text-2xl">
-                    Easily post detailed queries about your DevOps challenges.
-                  </div>
-                </div>
-              </li>
-              <li className="splide__slide p-2">
-              <div
-                  className={`${
-                    theme
-                      ? "text-black border-black"
-                      : "text-white bg-[#26272b] border-white border-dashed"
-                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
-                >
-                  <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="i2.webp" className="w-16 rounded-full" />
-                    <div className="font-medium text-3xl">
-                      Receive Expert Help
-                    </div>
-                  </div>
-                  <div className="text-center text-2xl">
-                    Tap into the collective knowledge of experienced DevOps
-                    professionals.
-                  </div>
-                </div>
-              </li>
-              <li className="splide__slide p-2">
-              <div
-                  className={`${
-                    theme
-                      ? "text-black border-black"
-                      : "text-white bg-[#26272b] border-white border-dashed"
-                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
-                >
-                  <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="i4.webp" className="w-16 rounded-full"  alt="collaborate and learn" />
-                    <div className="font-medium text-3xl">
-                      Collaborate and Learn
-                    </div>
-                  </div>
-                  <div className="text-center text-2xl">
-                    Engage with a community dedicated to sharing knowledge and
-                    solving problems.
-                  </div>
-                </div>
-              </li>
-              <li className="splide__slide p-2">
-              <div
-                  className={`${
-                    theme
-                      ? "text-black border-black"
-                      : "text-white bg-[#26272b] border-white border-dashed"
-                  } w-full h-full border-2 rounded-xl cursor-pointer p-4`}
-                >
-                  <div className="flex p-4 gap-5 items-center justify-center">
-                    <img src="i3.webp" className="w-16 rounded-full"  alt="access resources" />
-                    <div className="font-medium text-3xl">Access Resources</div>
-                  </div>
-                  <div className="text-center text-2xl">
-                    Explore a library of articles, guides, and tools for your
-                    DevOps journey.
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <FeaturesSection
+        theme={theme}
+        exploreFeaturesHref={resourcesHref}
+      />
+
+      <HowItWorksSection
+        theme={theme}
+        tryItNowHref={devopsForumHref}
+      />
+
+      <DiscoverSection
+        theme={theme}
+        startNowHref={blogsHref}
+        writeBlogHref={createBlogHref}
+      />
 
       <div className="flex items-center max-lg:flex-col max-lg:h-auto max-lg:justify-center max-sm:my-0 relative h-[600px] mt-16 mb-16 px-32 max-md:px-3">
         <div className="w-1/2 max-lg:w-3/4 max-md:w-full max-md:scale-75 mt-16 mb-8">
@@ -543,9 +289,9 @@ async   function func() {
             } ml-5 mt-8 cursor-pointer hover:scale-105 transition-all hover:translate-x-4`}
           >
             <div className="relative w-1/4 max-[450px]:w-2/4 max-lg:m-auto h-full">
-              <div className="text-black h-12 w-32 bg-white absolute z-10 text-2xl flex justify-center items-center" onClick={handleDevopsForum}>
+              <Link href={devopsForumHref} className="text-black h-12 w-32 bg-white absolute z-10 text-2xl flex justify-center items-center">
                 Let's Go
-              </div>
+              </Link>
               <div className="h-12 w-32 absolute bg-black top-1.5 -left-1.5 z-0"></div>
             </div>
           </div>
