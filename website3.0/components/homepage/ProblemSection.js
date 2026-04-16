@@ -142,93 +142,26 @@ function ProblemSection({ theme }) {
           data-aos-delay="200"
         >
           <div
-            className={`relative rounded-3xl border p-6 shadow-2xl overflow-hidden ${
+            className={`relative flex min-h-[390px] items-center justify-center rounded-3xl border p-5 shadow-2xl overflow-hidden ${
               theme
                 ? "bg-white/70 border-slate-200"
                 : "bg-[#1f242c]/75 border-white/10"
             } backdrop-blur-xl`}
           >
             <div
-              className={`flex items-center justify-between pb-4 border-b ${
-                theme ? "border-slate-200" : "border-white/10"
+              className={`absolute inset-0 opacity-60 pointer-events-none ${
+                theme
+                  ? "bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.14),transparent_38%)]"
+                  : "bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.10),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.08),transparent_38%)]"
               }`}
-            >
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400"></span>
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400"></span>
-                <span className="h-2.5 w-2.5 rounded-full bg-green-400"></span>
-              </div>
-              <span
-                className={`text-xs font-semibold tracking-wider ${
-                  theme ? "text-slate-500" : "text-slate-300"
-                }`}
-              >
-                incident.log
-              </span>
-            </div>
+            ></div>
 
-            <div className="mt-5 space-y-3 font-mono text-sm">
-              <div style={buildLogAnimation(0.2)} className="text-red-400">
-                [ERROR] Docker build failed: missing layer checksum
-              </div>
-              <div style={buildLogAnimation(0.45)} className="text-orange-400">
-                [WARN] Pod restart loop detected in production cluster
-              </div>
-              <div style={buildLogAnimation(0.7)} className="text-amber-300">
-                [ALERT] Pipeline blocked: integration tests timeout
-              </div>
-              <div
-                style={buildLogAnimation(0.95)}
-                className={theme ? "text-slate-700" : "text-slate-300"}
-              >
-                [INFO] Retrying deploy with fallback configuration
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <div
-                className={`rounded-xl px-3 py-2 text-sm border ${
-                  theme
-                    ? "bg-[#fff3f2] border-red-200 text-red-600"
-                    : "bg-red-500/10 border-red-400/30 text-red-200"
-                }`}
-              >
-                17 Active Failures
-              </div>
-              <div
-                className={`rounded-xl px-3 py-2 text-sm border ${
-                  theme
-                    ? "bg-[#fff7ed] border-orange-200 text-orange-600"
-                    : "bg-orange-500/10 border-orange-400/30 text-orange-200"
-                }`}
-              >
-                4 Broken Pipelines
-              </div>
-            </div>
-          </div>
-
-          <div
-            style={floatDelayOne}
-            className={`absolute -left-4 top-12 rounded-xl border px-4 py-3 shadow-lg ${
-              theme
-                ? "bg-white border-red-200 text-red-600"
-                : "bg-[#282c34] border-red-300/40 text-red-200"
-            }`}
-          >
-            <div className="text-xs uppercase tracking-wider opacity-80">Cluster Alert</div>
-            <div className="font-semibold text-sm">Pod CrashLoopBackOff</div>
-          </div>
-
-          <div
-            style={floatDelayTwo}
-            className={`absolute -right-3 bottom-8 rounded-xl border px-4 py-3 shadow-lg ${
-              theme
-                ? "bg-white border-orange-200 text-orange-600"
-                : "bg-[#282c34] border-orange-300/40 text-orange-200"
-            }`}
-          >
-            <div className="text-xs uppercase tracking-wider opacity-80">Pipeline</div>
-            <div className="font-semibold text-sm">Stage 4 Failed</div>
+            <img
+              src={theme ? "/problem.webp" : "/problem%20dark%20mode.webp"}
+              alt="DevOps problem illustration"
+              className="relative z-10 w-full max-w-[560px] rounded-2xl object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.18)]"
+              draggable="false"
+            />
           </div>
         </div>
       </div>

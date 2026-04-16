@@ -8,23 +8,7 @@ import {
   faMagnifyingGlass,
   faCodeFork,
   faSparkles,
-  faTerminal,
-  faArrowTrendUp,
 } from "@fortawesome/free-solid-svg-icons";
-
-const floatAnimation = {
-  animation: "solutionFloat 5.8s ease-in-out infinite",
-};
-
-const floatDelayOne = {
-  ...floatAnimation,
-  animationDelay: "0.4s",
-};
-
-const floatDelayTwo = {
-  ...floatAnimation,
-  animationDelay: "1.1s",
-};
 
 const solutionPoints = [
   {
@@ -157,119 +141,21 @@ function SolutionSection({ theme, startLearningHref = "/devopsforum" }) {
           data-aos-delay="220"
         >
           <div
-            className={`relative rounded-3xl border p-6 shadow-2xl overflow-hidden ${
+            className={`relative flex min-h-[430px] items-center justify-center rounded-3xl border p-5 shadow-2xl overflow-hidden ${
               theme
                 ? "bg-white/75 border-slate-200"
                 : "bg-[#14202a]/80 border-white/10"
             } backdrop-blur-xl`}
           >
-            <div className="flex items-center justify-between pb-4 border-b border-cyan-500/20">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
-                <span className="h-2.5 w-2.5 rounded-full bg-sky-400"></span>
-              </div>
-              <span className={`text-xs font-semibold tracking-wider ${theme ? "text-slate-500" : "text-slate-300"}`}>
-                helpops-dashboard
-              </span>
-            </div>
-
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <div className={`rounded-xl border p-3 ${theme ? "bg-cyan-50 border-cyan-100" : "bg-cyan-500/10 border-cyan-400/30"}`}>
-                <div className={`text-xs ${theme ? "text-slate-600" : "text-slate-300"}`}>Resolved Issues</div>
-                <div className="text-2xl font-bold text-cyan-500">1,248</div>
-              </div>
-              <div className={`rounded-xl border p-3 ${theme ? "bg-emerald-50 border-emerald-100" : "bg-emerald-500/10 border-emerald-400/30"}`}>
-                <div className={`text-xs ${theme ? "text-slate-600" : "text-slate-300"}`}>Avg. Fix Time</div>
-                <div className="text-2xl font-bold text-emerald-500">4m</div>
-              </div>
-            </div>
-
-            <div className={`mt-5 rounded-2xl border p-4 ${theme ? "bg-white border-slate-200" : "bg-[#0f1722]/70 border-white/10"}`}>
-              <div className="flex items-center justify-between">
-                <div className={`text-sm font-semibold ${theme ? "text-slate-700" : "text-slate-200"}`}>
-                  CI pipeline issue detected
-                </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-amber-500/20 text-amber-500">Before</span>
-              </div>
-              <div className="mt-3 h-2 rounded-full bg-slate-200/60 overflow-hidden">
-                <div className="h-full w-[30%] bg-gradient-to-r from-amber-400 to-orange-400"></div>
-              </div>
-              <div className="mt-4 flex items-center justify-between">
-                <div className={`text-sm font-semibold ${theme ? "text-slate-700" : "text-slate-200"}`}>
-                  Fix applied from community answer
-                </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-500">After</span>
-              </div>
-              <div className="mt-3 h-2 rounded-full bg-slate-200/60 overflow-hidden">
-                <div className="h-full w-[96%] bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
-              </div>
-            </div>
-
-            <div className="mt-5 space-y-2 font-mono text-sm">
-              <div className="text-emerald-500">[FIXED] Kubernetes probe timeout resolved</div>
-              <div className="text-cyan-500">[MATCHED] 14 similar issues with verified solutions</div>
-              <div className={theme ? "text-slate-700" : "text-slate-300"}>
-                [SUCCESS] Deployment status: healthy and stable
-              </div>
-            </div>
-          </div>
-
-          <div
-            style={floatDelayOne}
-            className={`absolute -left-4 top-14 rounded-xl border px-4 py-3 shadow-lg ${
-              theme
-                ? "bg-white border-emerald-200 text-emerald-600"
-                : "bg-[#1a2833] border-emerald-300/40 text-emerald-300"
-            }`}
-          >
-            <div className="text-xs uppercase tracking-wider opacity-80">Success Rate</div>
-            <div className="font-semibold text-sm">96.4% Resolved</div>
-          </div>
-
-          <div
-            style={floatDelayTwo}
-            className={`absolute -right-3 bottom-8 rounded-xl border px-4 py-3 shadow-lg ${
-              theme
-                ? "bg-white border-cyan-200 text-cyan-600"
-                : "bg-[#1a2833] border-cyan-300/40 text-cyan-300"
-            }`}
-          >
-            <div className="text-xs uppercase tracking-wider opacity-80">Community Help</div>
-            <div className="font-semibold text-sm">24x7 Active Threads</div>
-          </div>
-
-          <div
-            className={`absolute right-20 -top-6 h-12 w-12 rounded-xl border flex items-center justify-center ${
-              theme ? "bg-white border-cyan-200 text-cyan-500" : "bg-[#1a2833] border-cyan-300/40 text-cyan-300"
-            }`}
-            style={floatAnimation}
-          >
-            <FontAwesomeIcon icon={faArrowTrendUp} width={18} />
-          </div>
-
-          <div
-            className={`absolute left-24 -bottom-8 h-12 w-12 rounded-xl border flex items-center justify-center ${
-              theme ? "bg-white border-emerald-200 text-emerald-500" : "bg-[#1a2833] border-emerald-300/40 text-emerald-300"
-            }`}
-            style={floatDelayOne}
-          >
-            <FontAwesomeIcon icon={faTerminal} width={18} />
+            <img
+              src={theme ? "/solution.webp" : "/solution%20dark%20mode.webp"}
+              alt="DevOps solution illustration"
+              className="relative z-10 w-full max-w-[560px] rounded-2xl object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.18)]"
+              draggable="false"
+            />
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes solutionFloat {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-9px);
-          }
-        }
-      `}</style>
     </section>
   );
 }
