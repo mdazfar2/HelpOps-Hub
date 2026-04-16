@@ -4,28 +4,25 @@ import Draftblogs from "@utils/models/draftBlogs";
 
 const { MONGO_URI } = process.env;
 
-// Ensure mongoose connects to MongoDB
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+async function connectDB() {
+  if (!MONGO_URI) {
+    throw new Error("MONGO_URI is not set");
+  }
 
-// Create a Mongoose connection instance
-const db = mongoose.connection;
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
 
-// Event handlers for MongoDB connection
-db.on("error", (error) => {
-  console.error("MongoDB connection error:", error);
-});
-
-db.once("open", () => {
-});
+  await mongoose.connect(MONGO_URI);
+}
 
 // Define your POST request handler
 export async function POST(req) {
   let { id} = await req.json();
 
   try {
+    await connectDB();
+
     // Create a new draft blog document
 
    
@@ -44,6 +41,8 @@ export async function DELETE(req) {
   let { id} = await req.json();
 
   try {
+    await connectDB();
+
     // Create a new draft blog document
 
    
@@ -59,5 +58,3 @@ export async function DELETE(req) {
   }
 }
 
-// Export your database connection instance for reuse
-export { db };
