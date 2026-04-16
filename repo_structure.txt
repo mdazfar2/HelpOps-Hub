@@ -38,13 +38,6 @@
 │   ├── forumpage/
 │   │   ├── CreateForum.js
 │   │   └── ForumPost.js
-│   ├── homepage/
-│   │   ├── DiscoverSection.js
-│   │   ├── FeaturesSection.js
-│   │   ├── HeroSection.js
-│   │   ├── HowItWorksSection.js
-│   │   ├── ProblemSection.js
-│   │   └── SolutionSection.js
 │   └── profile/
 │       ├── Answers.jsx
 │       ├── DashboardTab.jsx
