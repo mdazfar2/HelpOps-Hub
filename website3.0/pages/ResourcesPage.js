@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "@stylesheets/resources.css";
 import "@stylesheets/resourceloader.css";
 import { color, motion } from "framer-motion";
@@ -26,14 +26,34 @@ const CustomDropdown = ({
   onSelect,
   value,
   onChange,
+  dropdownOpen,
+  setDropdownOpen,
+  closeOtherDropdown
 }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
-
+  const dropdownRef = useRef(null);
   useEffect(() => {
     setCurrentValue(value.charAt(0).toUpperCase() + value.slice(1));
   }, [value]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
 
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    };
+  }, [setDropdownOpen]);
   const handleOptionSelect = (option) => {
     if (typeof option === "object") {
       setCurrentValue(
@@ -50,9 +70,12 @@ const CustomDropdown = ({
   };
 
   return (
-    <div className="relative w-52">
+    <div className="relative w-52" ref={dropdownRef}>
       <button
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={() => {
+          closeOtherDropdown();
+          setDropdownOpen(!dropdownOpen);
+        }}
         className=" w-full px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-md flex items-center justify-between focus:outline-none transition-all duration-300 ease-in-out outline-none"
       >
         {currentValue || "Select an option"}
@@ -228,6 +251,8 @@ function ResourcesPage({
   const [showAuth, setShowAuth] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [selectedFilterOption, setSelectedFilterOption] = useState("");
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
   const [viewMode, setViewMode] = useState("card");
   const [activeModalIndex, setActiveModalIndex] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
@@ -837,6 +862,9 @@ function ResourcesPage({
               onSelect={handleSortOrderChange}
               value={sortOption}
               onChange={(e) => handleSort(e.target.value)}
+              dropdownOpen={sortDropdownOpen}
+              setDropdownOpen={setSortDropdownOpen}
+              closeOtherDropdown={() => setFilterDropdownOpen(false)}
             />
             <CustomDropdown
               options={filterOptions}
@@ -844,6 +872,9 @@ function ResourcesPage({
               onSelect={setSelectedFilterOption}
               value={filterOption}
               onChange={(e) => handleFilter(e.target.value)}
+              dropdownOpen={filterDropdownOpen}
+              setDropdownOpen={setFilterDropdownOpen}
+              closeOtherDropdown={() => setSortDropdownOpen(false)}
             />
           </div>
         </div>
