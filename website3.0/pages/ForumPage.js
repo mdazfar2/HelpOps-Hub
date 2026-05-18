@@ -532,7 +532,7 @@ function ForumPage({ theme, finalUser, setIsPopup, setMsg }) {
   };
 
   return (
-    <div className="mt-20 overflow-x-hidden">
+    <div className="overflow-x-hidden">
       <div
         className={`h-80 ${
           theme ? "bg-gray-200" : "bg-[#1e1d1d]"
