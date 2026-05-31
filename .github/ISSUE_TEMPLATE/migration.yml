@@ -1,0 +1,63 @@
+name: Migration ��
+description: Track migration tasks for the HelpOps-Hub modernization (JS→TS, Node→Flask, etc.)
+title: '[Migration] '
+labels: ["migration"]
+body:
+  - type: textarea
+    attributes:
+      label: Migration Scope
+      id: scope
+      description: What is being migrated? (e.g., component, page, utility, backend endpoint)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Current Implementation
+      id: current
+      description: Current file(s) or architecture being migrated
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Target Implementation
+      id: target
+      description: Expected outcome after migration (e.g., TypeScript types, Flask route structure)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Dependencies
+      id: dependencies
+      description: Any blocking issues or prerequisites for this migration task
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: Breaking Changes
+      options:
+        - label: This migration introduces breaking changes that require updates elsewhere
+          required: false
+  - type: textarea
+    attributes:
+      label: Additional Context
+      id: context
+      description: Any other details, screenshots, or references
+    validations:
+      required: false
+  - type: checkboxes
+    id: no-duplicate-issues
+    attributes:
+      label: 'Checklist'
+      options:
+        - label: 'I have checked the existing issues'
+          required: true
+        - label: 'I have read the [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md)'
+          required: true
+        - label: 'I am willing to work on this issue (optional)'
+          required: false
+  - type: checkboxes
+    attributes:
+      label: "GSSoC Participation"
+      options:
+        - label: "I am a GSSoC'26 contributor"
+          required: false
