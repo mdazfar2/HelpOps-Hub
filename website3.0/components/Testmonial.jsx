@@ -154,7 +154,7 @@ const Testimonial = ({ theme }) => {
                     {currentIndex !== 1 && (
                         <button
                             onClick={prevReview}
-                            className="absolute top-1/2 -left-4 transform -translate-y-1/2 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 hover:shadow-lg ml-1 bg-white hover:bg-gray-100"
+                            className="absolute top-1/2 left-2 transform -translate-y-1/2 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 hover:shadow-lg z-10 bg-white hover:bg-gray-100"
                         >
                             <ChevronLeft className="w-6 h-6 text-gray-600" />
                         </button>
@@ -162,7 +162,7 @@ const Testimonial = ({ theme }) => {
                     {currentIndex !== infiniteReviews.length - 2 && (
                         <button
                             onClick={nextReview}
-                            className="absolute top-1/2 -right-4 transform -translate-y-1/2 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 hover:shadow-lg mr-1 bg-white hover:bg-gray-100"
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 rounded-full p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 hover:shadow-lg z-10 bg-white hover:bg-gray-100"
                         >
                             <ChevronRight className="w-6 h-6 text-gray-600" />
                         </button>
