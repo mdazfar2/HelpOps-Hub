@@ -259,15 +259,23 @@ function ForumPage({ theme, finalUser, setIsPopup, setMsg }) {
   }
 
   let search = useRef();
+  let [searchTerm, setSearchTerm] = useState("");
   function handleSearch() {
     let arr = originalIssues;
     let value = search.current.value;
+    setSearchTerm(value);
     if (value.length == 0) {
       setIssues([...originalIssues]);
     }
     value = value.toLowerCase();
     arr = arr.filter((data) => data.title.toLowerCase().includes(value));
     setIssues([...arr]);
+  }
+  function handleClearSearch() {
+    setSearchTerm("");
+    setIssues([...originalIssues]);
+    search.current.value = "";
+    search.current.focus();
   }
   let sortLabels = [
     "Newest",
@@ -539,13 +547,26 @@ function ForumPage({ theme, finalUser, setIsPopup, setMsg }) {
         } px-10 pt-20 relative`}
       >
         <div className="w-full flex flex-col items-center justify-center">
-          <input
-            type="text"
-            ref={search}
-            onChange={handleSearch}
-            placeholder="Search for Topics..."
-            className={` py-3 shadow-md px-4 border rounded-full w-full z-50 max-w-md focus:outline-none`}
-          />
+          <div className="relative w-full max-w-md">
+            <input
+              type="text"
+              ref={search}
+              onChange={handleSearch}
+              placeholder="Search for Topics..."
+              className={`py-3 shadow-md px-4 border rounded-full w-full z-50 max-w-md focus:outline-none ${
+                theme ? "" : "bg-gray-800 text-white"
+              }`}
+            />
+            {searchTerm && (
+              <button
+                onClick={handleClearSearch}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 z-50 text-xl leading-none"
+                aria-label="Clear search"
+              >
+                &times;
+              </button>
+            )}
+          </div>
           <div className={`${theme ? "" : "text-white"} mt-4`}>
             Popular Searches: Docker, Azure, CI/CD
           </div>
