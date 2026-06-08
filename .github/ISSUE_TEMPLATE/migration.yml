@@ -1,0 +1,89 @@
+name: Migration Task
+description: Track migration work for the Next.js + Flask transition.
+title: "[Migration]"
+labels:
+  - migration
+body:
+  - type: dropdown
+    id: migration_type
+    attributes:
+      label: Migration Type
+      description: Select the component being migrated.
+      options:
+        - Frontend (Next.js)
+        - Backend (Flask)
+    validations:
+      required: true
+
+  - type: input
+    id: page_or_feature
+    attributes:
+      label: Page / Feature / Functionality
+      description: What page, API, module, or functionality is being migrated?
+      placeholder: Login Page, Dashboard, User Profile API, Authentication Module
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_implementation
+    attributes:
+      label: Current Implementation
+      description: Briefly describe how this functionality currently works.
+    validations:
+      required: true
+
+  - type: textarea
+    id: migration_changes
+    attributes:
+      label: Planned Changes
+      description: Describe the migration work that will be performed.
+      placeholder: |
+        - Convert React components to Next.js
+        - Move APIs to Flask
+        - Update routing and API calls
+        - Refactor authentication flow
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What conditions must be met for this migration to be considered complete?
+      placeholder: |
+        - Existing functionality is preserved
+        - No UI regressions
+        - API endpoints function correctly
+        - Tests pass successfully
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References / Screenshots
+      description: Add screenshots, designs, documentation, or related links.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have reviewed the existing implementation.
+          required: true
+        - label: I have checked for duplicate migration issues.
+          required: true
+        - label: I have read the Contributing Guidelines.
+          required: true
+        - label: I am willing to work on this issue (optional).
+          required: false
+
+  - type: checkboxes
+    id: gssoc
+    attributes:
+      label: GSSoC Participation
+      options:
+        - label: I am a GSSoC'26 contributor
+          required: false
