@@ -155,7 +155,7 @@ The goal of our project is to empower DevOps professionals by providing a compre
 
 We welcome contributors from the Developers & DevOps community to enrich HelpOps-Hub and make it even more valuable for everyone. Please follow our [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) for the following:-
 
-***Want to contribute to our website you must have to read [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md).***
+***If you want to contribute to our website, you must first read the [CONTRIBUTING guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md).***
 - Setup HelpOps-Hub on your local machine
 - Append new Documentation of Installation or anything
 - Append new DevOps Tools
