@@ -301,7 +301,7 @@ function ForumPost({ theme, id, finalUser, setMsg, setIsPopup }) {
       setIsComment(false);
       let arr = document.getElementsByClassName("ql-editor");
       Array.from(arr).map((data) => {
-        data.innerHTML = "";
+        data.textContent = "";
       });
     } catch (error) {
       console.error("Error adding comment:", error);
