@@ -44,7 +44,7 @@ const Overview = () => {
   
       // Convert to arrays for Chart.js
       const labels = Object.keys(blogCountsByDate).sort((a, b) => a - b);
-      const chartData = labels.map(label => blogCountsByDate[label]);
+      const chartData = (labels ?? []).map(label => blogCountsByDate[label]);
   
       setChartData({
         labels,

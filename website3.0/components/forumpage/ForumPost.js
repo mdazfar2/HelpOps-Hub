@@ -233,7 +233,7 @@ function ForumPost({ theme, id, finalUser, setMsg, setIsPopup }) {
       }
 
       // Create a new issue object with the updated state
-      const updatedSolutions = issue.solutions.map((solution, i) =>
+      const updatedSolutions = issue.(solutions ?? []).map((solution, i) =>
         i === index ? { ...solution, isAccepted: true } : solution
       );
 

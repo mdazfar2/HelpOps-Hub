@@ -74,7 +74,7 @@ if (session.status === 'unauthenticated' && !isLogin) {
 // Function to fetch user data from local storage and server if logged in
 async function fetchData1() {
   setIsLogin(true);
-  let session = await (() => { try { return JSON.parse(localStorage.getItem('finalUser')) } catch { return null } })();
+  let session = await (() => { try { return (JSON.parse(localStorage.getItem('finalUser') ?? "null") ?? null) } catch { return null } })();
 
   // Fetch or create account on the server
   let response = await fetch("/api/createaccount", {
