@@ -25,7 +25,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme,setMsg, setIsPo
     if (Number.isNaN(element.value)) return false;
 
     // Update the OTP state
-    setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
+    setOtp([...(otp ?? []).map((d, idx) => (idx === index ? element.value : d))]);
 
     // Move focus to the next input field if value is entered
     if (element.value !== '') {
