@@ -74,7 +74,7 @@ const CustomDropdown = ({
 
       {dropdownOpen && (
         <div className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-md">
-          {options.map((option) => (
+          {(options ?? []).map((option) => (
             <div
               key={option.value}
               onClick={() => handleOptionSelect(option.value)}
