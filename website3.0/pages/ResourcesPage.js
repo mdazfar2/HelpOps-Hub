@@ -31,18 +31,18 @@ const CustomDropdown = ({
   const [currentValue, setCurrentValue] = useState(value);
 
   useEffect(() => {
-    setCurrentValue(value.charAt(0).toUpperCase() + value.slice(1));
+    setCurrentValue(value[0].toUpperCase() + value.slice(1));
   }, [value]);
 
   const handleOptionSelect = (option) => {
     if (typeof option === "object") {
       setCurrentValue(
-        option.value.charAt(0).toUpperCase() + option.value.slice(1)
+        option.value[0].toUpperCase() + option.value.slice(1)
       );
       onSelect(option.value);
       onChange({ target: { value: option.value } });
     } else if (typeof option === "string") {
-      setCurrentValue(option.charAt(0).toUpperCase() + option.slice(1));
+      setCurrentValue(option[0].toUpperCase() + option.slice(1));
       onSelect(option);
       onChange({ target: { value: option } });
     }
