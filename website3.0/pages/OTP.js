@@ -9,7 +9,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme,setMsg, setIsPo
   const handlePaste = (e) => {
     const pasteData = e.clipboardData.getData('text').slice(0, 6); // Get the pasted data and limit it to 6 characters
     if (pasteData) {
-      const newOtp = otp.map((char, idx) => pasteData[idx] || '');
+      const newOtp = (otp ?? []).map((char, idx) => pasteData[idx] || '');
       setOtp(newOtp);
 
       // Move focus to the last filled input
