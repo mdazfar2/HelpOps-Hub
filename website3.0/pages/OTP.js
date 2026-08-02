@@ -22,7 +22,7 @@ const OTP = ({ onClose, onOTPSubmit, onBack ,isError,email,theme,setMsg, setIsPo
   };
   // Handle input change for OTP fields
   const handleChange = (element, index) => {
-    if (isNaN(element.value)) return false;
+    if (Number.isNaN(element.value)) return false;
 
     // Update the OTP state
     setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
