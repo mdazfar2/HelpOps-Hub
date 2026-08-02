@@ -1124,7 +1124,7 @@ function ForumPost({ theme, id, finalUser, setMsg, setIsPopup }) {
                   }
                 )
                 }
-                {/* {replies.map((reply, index) => (
+                {/* {(replies ?? []).map((reply, index) => (
                   <div
                     key={index}
                     className="relative group mt-8 cursor-pointer"
