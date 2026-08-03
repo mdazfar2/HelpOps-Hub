@@ -313,3 +313,5 @@ function NotificationTab() {
 }
 
 export default NotificationTab;
+
+.catch(err => console.error("Promise.all failed:", err));

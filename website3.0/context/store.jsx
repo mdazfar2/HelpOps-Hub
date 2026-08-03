@@ -223,3 +223,5 @@ export const GlobalContext = ({ children }) => {
     </Context.Provider>
   );
 };
+
+.catch(err => console.error("Promise.all failed:", err));
