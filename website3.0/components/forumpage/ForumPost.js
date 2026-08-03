@@ -1029,7 +1029,7 @@ function ForumPost({ theme, id, finalUser, setMsg, setIsPopup }) {
                               <FontAwesomeIcon icon={faCheck} />
                             )}
                             {!data.isAccepted
-                              ? issue.authorId == finalUser._id && (
+                              ? issue.authorId === finalUser._id && (
                                   <button onClick={() => handleAccept(index)}>
                                     Mark as Accepted
                                   </button>
