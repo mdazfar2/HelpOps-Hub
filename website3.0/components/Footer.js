@@ -78,7 +78,7 @@ function Footer() {
                 className="group bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 hover:scale-110 hover:bg-[#777]"
                 type="button"
               >
-                <a href="https://www.helpopshub.com/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.helpopshub.vercel.app/" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon
                     icon={faGlobe}
                     className="group-hover:brightness-0 group-hover:invert"
@@ -196,7 +196,7 @@ function Footer() {
             <div className={`text-sm font-semibold py-1 ${theme ? "text-blueGray-500" : "text-white"}`}>
               Copyright © <span id="get-current-year">{new Date().getFullYear()}</span>
               <a
-                href="https://www.helpopshub.com"
+                href="https://www.helpopshub.vercel.app"
                 className={`${theme ? "hover:text-gray-800" : "hover:text-gray-500"} ml-1`}
                 target="_blank"
                 rel="noopener noreferrer"

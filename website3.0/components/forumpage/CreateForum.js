@@ -521,7 +521,7 @@ useEffect(() => {
                   className="group bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 hover:scale-110 hover:bg-[#777]"
                   type="button"
                 >
-                  <a href="https://www.helpopshub.com/" target="blank">
+                  <a href="https://www.helpopshub.vercel.app/" target="blank">
                   <FontAwesomeIcon icon={faGlobe} className="group-hover:brightness-0 group-hover:invert" />
                   </a>
                 </button>

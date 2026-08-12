@@ -49,7 +49,7 @@ HelpOps-Hub is proudly part of global initiatives engaging with passionate devel
 <a name="demo"></a>
 ## 👩‍💻 Live demo 
 
-Visit https://www.helpopshub.com to see the live demo!
+Visit https://www.helpopshub.vercel.app to see the live demo!
 
 ## Project Structure
 Check the project structure here [Project Structure](/PROJECT_STRUCTURE.md) before Contributing to the repository.

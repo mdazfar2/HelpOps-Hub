@@ -535,7 +535,7 @@ export default function ProfilepageDetails({ isViewProfile, id }) {
                         : "border-b-white text-white"
                     }`}
                     ref={password}
-                    value={`https://www.helpopshub.com/profile?id=${
+                    value={`https://www.helpopshub.vercel.app/profile?id=${
                       isViewProfile ? id : finalUser._id
                     }`}
                     readOnly

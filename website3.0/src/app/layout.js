@@ -30,7 +30,7 @@ export const metadata = {
   author: "Azfar Alam",
   openGraph: {
     /* Details to display when website is shared */ type: "website",
-    url: "https://helpopshub.com",
+    url: "https://helpopshub.vercel.app",
     title: "Helpops-Hub",
     description: "Ensuring You Never Get Stuck In DevOps Again!",
     site_name: "Helpops-Hub",
@@ -39,7 +39,7 @@ export const metadata = {
   twitter: {
     /* Details to display when website shared on twitter (now X) */
     card: "summary_large_image",
-    url: "https://helpopshub.com",
+    url: "https://helpopshub.vercel.app",
     title: "Helpops-Hub",
     description: "Ensuring You Never Get Stuck In DevOps Again!",
   },
@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
         sizes="180x180"
         href="/HelpOps-H Fevicon-180.webp"
       />
-      <link rel="canonical" href="https://www.helpopshub.com/" />
+      <link rel="canonical" href="https://www.helpopshub.vercel.app/" />
       <link rel="manifest" href="./manifest.json" />
       <body className={inter.className}>
         <div id="Background1"></div>

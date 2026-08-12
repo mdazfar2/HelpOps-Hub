@@ -188,7 +188,7 @@ export async function POST(req) {
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                     <td style="padding-right: 0px;padding-left: 0px;" align="center">
-                    <a href="https://www.helpopshub.com/" target="_blank">
+                    <a href="https://www.helpopshub.vercel.app/" target="_blank">
                     <img align="center" border="0" src="https://assets.unlayer.com/projects/0/1719567626194-hub.png" alt="HelpOps-Hub" title="HelpOps-Hub" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 480px;" width="480"/>
                     </a>
                     </td>

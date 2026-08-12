@@ -867,7 +867,7 @@ useEffect(()=>{
   }
   
   function handleLinkCopy(){
-    navigator.clipboard.writeText(`https://www.helpopshub.com/blogs/${id}`)
+    navigator.clipboard.writeText(`https://www.helpopshub.vercel.app/blogs/${id}`)
     setIsPopup(true)
     setMsg("Link Copied")
     setColor('green')
@@ -1021,12 +1021,12 @@ data-tooltip-content="Reaction"
                                 <p onClick={handleLinkCopy} className=" hover:cursor-pointer  font-semibold text-gray-600 flex gap-6 items-center">
                             <FaLink/>    Copy Link</p>
                 <p className="flex  hover:cursor-pointer font-semibold text-gray-600 gap-2 items-center">
-                  <FacebookShareButton className="hover:cursor-pointer flex items-center gap-[10px]" url={`https://www.helpopshub.com/blogs/${id}`}>
+                  <FacebookShareButton className="hover:cursor-pointer flex items-center gap-[10px]" url={`https://www.helpopshub.vercel.app/blogs/${id}`}>
                     <FacebookIcon borderRadius={50} size={30}/>
 
                    Share on Facebook </FacebookShareButton></p>
                     <p className="flex hover:cursor-pointer  font-semibold text-gray-600 gap-2 items-center">
-                    <LinkedinShareButton  className="hover:cursor-pointer flex items-center gap-[10px]"  url={`https://www.helpopshub.com/blogs/${id}`}>
+                    <LinkedinShareButton  className="hover:cursor-pointer flex items-center gap-[10px]"  url={`https://www.helpopshub.vercel.app/blogs/${id}`}>
                     <LinkedinIcon borderRadius={50} size={30}/>
 
                    Share On Linkedin </LinkedinShareButton></p>

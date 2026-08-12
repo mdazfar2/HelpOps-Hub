@@ -35,7 +35,7 @@ Disallow: /static/
 Disallow: /build/
 
 # Specify the location of your XML sitemap
-Sitemap: https://www.helpopshub.com/sitemap.xml
+Sitemap: https://www.helpopshub.vercel.app/sitemap.xml
 
 # Specify the location of your Progressive Web App manifest
 Allow: /manifest.json

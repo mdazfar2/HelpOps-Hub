@@ -35,7 +35,7 @@ export async function POST(req) {
     to: email,
     subject: "Welcome to HelpOps-Hub Community!",
     html: `
-            Please click on this link to change your password https://www.helpopshub.com/?token=${token}
+            Please click on this link to change your password https://www.helpopshub.vercel.app/?token=${token}
 `,
   };
 

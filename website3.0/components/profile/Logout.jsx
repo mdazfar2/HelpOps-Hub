@@ -31,10 +31,10 @@ async function handleLogout() {
   // Check session status and navigate to appropriate URL
   if (session.status === "authenticated") {
     // If the user is authenticated, log them out on the external authentication service
-    router.push("https://www.helpopshub.com/api/auth/signout?csrf=true");
+    router.push("https://www.helpopshub.vercel.app/api/auth/signout?csrf=true");
   } else {
     // If the user is not authenticated, redirect them to the home page
-    router.push("https://www.helpopshub.com");
+    router.push("https://www.helpopshub.vercel.app");
   }
 }
   return (

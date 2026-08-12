@@ -7,43 +7,43 @@
             xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
         >
 <url>
-	<loc>https://www.helpopshub.com/</loc>
+	<loc>https://www.helpopshub.vercel.app/</loc>
 	<priority>1</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/about</loc>
+	<loc>https://www.helpopshub.vercel.app/about</loc>
 	<priority>0.2</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/team</loc>
+	<loc>https://www.helpopshub.vercel.app/team</loc>
 	<priority>0.4</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/contact</loc>
+	<loc>https://www.helpopshub.vercel.app/contact</loc>
 	<priority>0.2</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/api/auth/signout?csrf=true</loc>
+	<loc>https://www.helpopshub.vercel.app/api/auth/signout?csrf=true</loc>
 	<priority>0.4</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/admin</loc>
+	<loc>https://www.helpopshub.vercel.app/admin</loc>
 	<priority>0.4</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/blogs</loc>
+	<loc>https://www.helpopshub.vercel.app/blogs</loc>
 	<priority>0.7</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/createblogs</loc>
+	<loc>https://www.helpopshub.vercel.app/createblogs</loc>
 	<priority>0.6</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/resources</loc>
+	<loc>https://www.helpopshub.vercel.app/resources</loc>
 	<priority>0.7</priority>
 </url>
 <url>
-	<loc>https://www.helpopshub.com/resourcesdetails</loc>
+	<loc>https://www.helpopshub.vercel.app/resourcesdetails</loc>
 	<priority>0.7</priority>
 </url>
 </urlset>

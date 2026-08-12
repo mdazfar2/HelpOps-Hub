@@ -923,7 +923,7 @@ function ResourcesPage({
                                 ? "border-b-black text-black"
                                 : "border-b-white text-white"
                             }`}
-                            value={`https://www.helpopshub.com/resourcesdetails?folder=${
+                            value={`https://www.helpopshub.vercel.app/resourcesdetails?folder=${
                               currentItem.name
                             }&htmlUrl=${currentItem.html_url}&isLike=${
                               likedFolders.has(currentItem.name)
@@ -935,7 +935,7 @@ function ResourcesPage({
                           <button
                             onClick={() => {
                               navigator.clipboard.writeText(
-                                `https://www.helpopshub.com/resourcesdetails?folder=${
+                                `https://www.helpopshub.vercel.app/resourcesdetails?folder=${
                                   currentItem.name
                                 }&htmlUrl=${currentItem.html_url}&isLike=${
                                   likedFolders.has(currentItem.name)
