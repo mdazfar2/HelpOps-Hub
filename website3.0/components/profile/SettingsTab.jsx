@@ -84,7 +84,7 @@ function SettingsTab() {
           session.status = "unauthenticated";
         }
         
-        router.push("https://www.helpopshub.vercel.app/");
+        router.push("https://helpopshub.vercel.app/");
       }
     } catch (error) {
       console.error('Error handling account deletion:', error);
@@ -146,7 +146,7 @@ function SettingsTab() {
           session.status = "unauthenticated";
         }
         
-        router.push("https://www.helpopshub.vercel.app/");
+        router.push("https://helpopshub.vercel.app/");
       }
     } catch (error) {
       console.error('Error handling Google account deletion:', error);

@@ -179,7 +179,7 @@ async function handleLogout() {
     setUserEmail('');
     setUserImage('');
     setUserName('');
-    router.push('https://www.helpopshub.vercel.app/api/auth/signout?csrf=true');
+    router.push('https://helpopshub.vercel.app/api/auth/signout?csrf=true');
   }
   setUserEmail('');
   setUserImage('');

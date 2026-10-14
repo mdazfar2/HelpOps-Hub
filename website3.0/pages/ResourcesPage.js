@@ -923,7 +923,7 @@ function ResourcesPage({
                                 ? "border-b-black text-black"
                                 : "border-b-white text-white"
                             }`}
-                            value={`https://www.helpopshub.vercel.app/resourcesdetails?folder=${
+                            value={`https://helpopshub.vercel.app/resourcesdetails?folder=${
                               currentItem.name
                             }&htmlUrl=${currentItem.html_url}&isLike=${
                               likedFolders.has(currentItem.name)

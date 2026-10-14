@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
         sizes="180x180"
         href="/HelpOps-H Fevicon-180.webp"
       />
-      <link rel="canonical" href="https://www.helpopshub.vercel.app/" />
+      <link rel="canonical" href="https://helpopshub.vercel.app/" />
       <link rel="manifest" href="./manifest.json" />
       <body className={inter.className}>
         <div id="Background1"></div>
