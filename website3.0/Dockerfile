@@ -1,5 +1,5 @@
 # Step 1: Use an official Node.js image as the base image
-FROM node:18-alpine AS builder
+FROM node:24-alpine AS builder
 
 # Step 2: Set the working directory inside the container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Step 7: Use a lightweight image for running the app
-FROM node:18-alpine AS runner
+FROM node:24-alpine AS runner
 
 # Step 8: Set the working directory inside the container
 WORKDIR /app
