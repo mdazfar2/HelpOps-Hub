@@ -1,140 +1,143 @@
-import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale } from 'chart.js';
-import 'chartjs-adapter-date-fns';
+"use client";
 
-// Register necessary Chart.js components
-ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale);
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  Title,
+  Tooltip,
+} from "chart.js";
 
-// const data = [
-//   { date: new Date('2024-07-01'), accountsCreated: 30, userVisits: 120 },
-//   { date: new Date('2024-07-02'), accountsCreated: 45, userVisits: 150 },
-//   { date: new Date('2024-07-03'), accountsCreated: 28, userVisits: 135 },
-//   { date: new Date('2024-07-04'), accountsCreated: 60, userVisits: 170 },
-//   // Add more data points here
-// ];
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale
+);
 
 export default function Charts() {
-  useEffect(()=>{
-    fetchData()
-  },[])
-  let [chartData,setChartData]=useState()
-  let [data,setData]=useState({})
-  let [options,setOptions]=useState({})
-  async function fetchData(){
-    let data1=await fetch('/api/getnumber',{method:"GET"})
-    data1=await data1.json()
-    data1=data1.result
-    let arr=[]
-    for(let i in data1.accounts){
-      console.log(data1.accounts[i][1],'ayushmaan')
-        arr.push({date:new Date(i),accountsCreated:data1.accounts[i][0],userVisits:data1.accounts[i][1]/2})
-    }
-    setData([...arr])
-    console.log(arr)
-    setChartData({
-      labels: arr.map(d => d.date.toLocaleDateString('en-GB')), // Format date to DD/MM/YYYY
-      datasets: [
-        {
-          label: 'Accounts Created',
-          data: arr.map(d => d.accountsCreated),
-          borderColor: '#FF5733', // Line color
-          backgroundColor: 'rgba(255, 87, 51, 0.2)', // Area color
-          borderWidth: 2,
-          fill: true,
-          pointRadius: 5, // Size of points on the line
-          pointBackgroundColor: '#FF5733', // Point color
-          pointBorderColor: '#FF5733', // Point border color
-        },
-        {
-          label: 'User Visits',
-          data: arr.map(d => d.userVisits),
-          borderColor: '#33C1FF', // Line color
-          backgroundColor: 'rgba(51, 193, 255, 0.2)', // Area color
-          borderWidth: 2,
-          fill: true,
-          pointRadius: 5, // Size of points on the line
-          pointBackgroundColor: '#33C1FF', // Point color
-          pointBorderColor: '#33C1FF', // Point border color
+  const [chartData, setChartData] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getnumber", { method: "GET" });
+        if (!response.ok) {
+          throw new Error(`Could not load activity data (${response.status}).`);
         }
-      ]
-    })
-    setOptions({
-    
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom',
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              return `${context.dataset.label}: ${context.raw}`;
-            }
-          }
+
+        const payload = await response.json();
+        const accounts = payload?.result?.accounts;
+        if (!accounts || typeof accounts !== "object") {
+          throw new Error("The activity service returned an unexpected response.");
         }
-      },
-      scales: {
-        x: {
-         
-         
-          title: {
-            display: true,
-            text: 'Date'
-          },
-          grid: {
-            display: false
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Count'
-          },
-          beginAtZero: true,
-          grid: {
-            display: false
-          }
+
+        const activity = Object.entries(accounts)
+          .map(([date, counts]) => {
+            const parsedDate = new Date(date);
+            if (Number.isNaN(parsedDate.getTime())) return null;
+            return {
+              date: parsedDate,
+              accountsCreated: Number(Array.isArray(counts) ? counts[0] : 0) || 0,
+              existingAccountRequests: Number(Array.isArray(counts) ? counts[1] : 0) || 0,
+            };
+          })
+          .filter(Boolean)
+          .sort((first, second) => first.date - second.date);
+
+        if (isCurrent) {
+          setChartData({
+            labels: activity.map((item) =>
+              item.date.toLocaleDateString(undefined, { month: "short", day: "numeric" })
+            ),
+            datasets: [
+              {
+                label: "Accounts created",
+                data: activity.map((item) => item.accountsCreated),
+                borderColor: "#e85d3f",
+                backgroundColor: "rgba(232, 93, 63, 0.12)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.35,
+                pointRadius: 3,
+              },
+              {
+                label: "Existing account activity",
+                data: activity.map((item) => item.existingAccountRequests),
+                borderColor: "#0891b2",
+                backgroundColor: "rgba(8, 145, 178, 0.12)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.35,
+                pointRadius: 3,
+              },
+            ],
+          });
+        }
+      } catch (fetchError) {
+        console.error("Error loading community activity:", fetchError);
+        if (isCurrent) {
+          setError(fetchError.message || "Could not load activity data.");
         }
       }
-    })
+    };
+
+    fetchData();
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
+
+  if (error) {
+    return (
+      <div role="alert" className="flex h-full items-center justify-center rounded-xl bg-rose-50 p-4 text-center text-sm text-rose-700">
+        {error}
+      </div>
+    );
   }
-  
-  // Prepare data for Chart.js
-  // const chartData = 
-  // {
-  //   labels: data.map(d => d.date.toLocaleDateString('en-GB')), // Format date to DD/MM/YYYY
-  //   datasets: [
-  //     {
-  //       label: 'Accounts Created',
-  //       data: data.map(d => d.accountsCreated),
-  //       borderColor: '#FF5733', // Line color
-  //       backgroundColor: 'rgba(255, 87, 51, 0.2)', // Area color
-  //       borderWidth: 2,
-  //       fill: true,
-  //       pointRadius: 5, // Size of points on the line
-  //       pointBackgroundColor: '#FF5733', // Point color
-  //       pointBorderColor: '#FF5733', // Point border color
-  //     },
-  //     {
-  //       label: 'User Visits',
-  //       data: data.map(d => d.userVisits),
-  //       borderColor: '#33C1FF', // Line color
-  //       backgroundColor: 'rgba(51, 193, 255, 0.2)', // Area color
-  //       borderWidth: 2,
-  //       fill: true,
-  //       pointRadius: 5, // Size of points on the line
-  //       pointBackgroundColor: '#33C1FF', // Point color
-  //       pointBorderColor: '#33C1FF', // Point border color
-  //     }
-  //   ]
-  // };
+
+  if (!chartData) {
+    return (
+      <div role="status" className="flex h-full items-center justify-center text-sm text-slate-500">
+        Loading activity...
+      </div>
+    );
+  }
+
+  if (chartData.labels.length === 0) {
+    return (
+      <div className="flex h-full items-center justify-center rounded-xl bg-slate-50 text-center text-sm text-slate-500">
+        No community activity to show yet.
+      </div>
+    );
+  }
 
   return (
-    <>
-    
-    {chartData && options &&   <Line data={chartData}  options={options} />
-     }
-    </>
+    <Line
+      data={chartData}
+      options={{
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { position: "bottom", labels: { usePointStyle: true, boxWidth: 8 } },
+        },
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true, grid: { color: "#e2e8f0" } },
+        },
+      }}
+    />
   );
 }
