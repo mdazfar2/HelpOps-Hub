@@ -35,13 +35,19 @@ const BlogCreation = () => {
     authorId: '',
   });
   const [showPopup, setShowPopup] = useState(false);
-  const [blur, setBlur] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [disableSubmit, setDisableSubmit] = useState(false);
-  const { finalUser,isLogin } = useContext(Context);
+  const { finalUser = {} } = useContext(Context);
 
   useEffect(() => {
+    if (!finalUser.email) {
+      setFormData((prevData) => ({
+        ...prevData,
+        authorName: finalUser.name || "HelpOps Admin",
+      }));
+      return;
+    }
+
     const fetchUserInfo = async () => {
       try {
         const response = await fetch('/api/getuserbyemail', {
@@ -66,12 +72,13 @@ const BlogCreation = () => {
           setError("Failed to fetch user info.");
         }
       } catch (error) {
+        console.error("Error fetching blog author:", error);
         setError("An error occurred while fetching user info.");
       }
     };
 
     fetchUserInfo();
-  }, [finalUser.email]);
+  }, [finalUser.email, finalUser.name]);
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -85,8 +92,7 @@ const BlogCreation = () => {
     event.preventDefault();
 
     setLoading(true);
-    setBlur(true);
-    setDisableSubmit(true);
+    setError("");
 
     const convertToBase64 = (file) => {
       return new Promise((resolve, reject) => {
@@ -106,7 +112,7 @@ const BlogCreation = () => {
       const blogData = {
         ...formData,
         image: base64Image,
-        authorName: finalUser.name,
+        authorName: finalUser.name || formData.authorName || "HelpOps Admin",
         date: formData.date.toISOString(),
       };
 
@@ -118,38 +124,32 @@ const BlogCreation = () => {
         body: JSON.stringify(blogData),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      if (response.ok && result.success) {
         setShowPopup(true);
-        setError("Blog created successfully!");
-        setTimeout(() => {
-          document.getElementById("blog-form").reset();
-          setFormData({
-            title: '',
-            image: null,
-            type: '',
-            date: new Date(),
-            length: '',
-            description: '',
-            mustRead: false,
-            editorsPick: false,
-            authorName: '',
-            authorId: '',
-          });
-          setError("");
-          setShowPopup(false);
-        }, 3000);
+        setFormData({
+          title: '',
+          image: null,
+          type: '',
+          date: new Date(),
+          length: '',
+          description: '',
+          mustRead: false,
+          editorsPick: false,
+          authorName: finalUser.name || "HelpOps Admin",
+          authorId: formData.authorId,
+        });
+        const imageInput = document.querySelector('input[name="image"]');
+        if (imageInput) imageInput.value = "";
       } else {
-        setError("Failed to create the blog. Please try again.");
+        setError(result.error || "Failed to create the blog. Please try again.");
       }
-    } catch (error) {
-      setError("An error occurred. Please try again.");
-    }
-
-    setTimeout(() => {
-      setDisableSubmit(false);
+    } catch (submitError) {
+      console.error("Error creating blog:", submitError);
+      setError("An error occurred while creating the blog. Please try again.");
+    } finally {
       setLoading(false);
-      setBlur(false);
-    }, 5000);
+    }
   };
 
   const closePopup = () => {
@@ -157,88 +157,104 @@ const BlogCreation = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-bold mb-4">Create New Blog</h2>
-      {error && <Popup msg={error} error={`${error === "Blog created successfully!" ? "green1" : "red1"}`} />}
-      <form id="blog-form" className={`${blur ? "blurclass" : ""}`} onSubmit={handleSubmit}>
+    <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+      <h2 className="mb-2 text-2xl font-bold text-slate-900">Create a blog post</h2>
+      <p className="mb-6 text-sm text-slate-500">Share a new article with the HelpOps Hub community.</p>
+      {error && (
+        <p role="alert" className="mb-5 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+          {error}
+        </p>
+      )}
+      <form id="blog-form" className="space-y-5" onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block mb-2">Title</label>
+          <label htmlFor="blog-title" className="mb-2 block text-sm font-medium text-slate-700">Title</label>
           <input
+            id="blog-title"
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Image</label>
+          <label htmlFor="blog-image" className="mb-2 block text-sm font-medium text-slate-700">Cover image</label>
           <input
+            id="blog-image"
             type="file"
             name="image"
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            accept="image/*"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-cyan-50 file:px-3 file:py-2 file:font-medium file:text-cyan-800"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Type</label>
+          <label htmlFor="blog-type" className="mb-2 block text-sm font-medium text-slate-700">Category</label>
           <input
+            id="blog-type"
             type="text"
             name="type"
             value={formData.type}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Length</label>
+          <label htmlFor="blog-length" className="mb-2 block text-sm font-medium text-slate-700">Reading time</label>
           <input
+            id="blog-length"
             type="text"
             name="length"
             value={formData.length}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Description</label>
+          <label htmlFor="blog-description" className="mb-2 block text-sm font-medium text-slate-700">Description</label>
           <textarea
+            id="blog-description"
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            rows={6}
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
             required
           />
         </div>
-        <div className="mb-4 flex items-center">
+        <label className="flex items-center gap-2 text-sm text-slate-700">
           <input
             type="checkbox"
             name="mustRead"
             checked={formData.mustRead}
             onChange={handleChange}
-            className="mr-2"
+            className="h-4 w-4 rounded border-slate-300 text-cyan-700 focus:ring-cyan-600"
           />
-          <label>Must Read</label>
-        </div>
-        <div className="mb-4 flex items-center">
+          Mark as a must-read
+        </label>
+        <label className="flex items-center gap-2 text-sm text-slate-700">
           <input
             type="checkbox"
             name="editorsPick"
             checked={formData.editorsPick}
             onChange={handleChange}
-            className="mr-2"
+            className="h-4 w-4 rounded border-slate-300 text-cyan-700 focus:ring-cyan-600"
           />
-          <label>Editor's Pick</label>
-        </div>
-        <button type="submit" disabled={disableSubmit} className="w-full p-2 bg-blue-500 text-white rounded">
-          Create Blog
+          Mark as editor&apos;s pick
+        </label>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full rounded-lg bg-cyan-800 px-4 py-3 font-semibold text-white transition hover:bg-cyan-900 disabled:cursor-wait disabled:opacity-60"
+        >
+          {loading ? "Creating post..." : "Create blog post"}
         </button>
-        {showPopup && <Popup msg="Blog created successfully!" onClose={closePopup} />}
       </form>
+      {showPopup && <Popup msg="Blog created successfully!" onClose={closePopup} />}
     </div>
   );
 };

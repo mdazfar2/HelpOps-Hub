@@ -65,24 +65,24 @@ export async function PUT(req) {
 
 export async function DELETE(req) {
     try {
-        // Parse JSON payload from request body
         const {id} = await req.json();
 
-        const { MONGO_URI } = process.env;  
-        
-        // Connect to MongoDB using Mongoose
+        const { MONGO_URI } = process.env;
         await mongoose.connect(MONGO_URI);
-       
-        // Create a new instance of Blogs model with the received payload
-        let blog =await  Blogs.findById(id)
-        blog.isDeleted=true
+
+        const blog = await Blogs.findById(id);
+        if (!blog) {
+            return NextResponse.json({ success: false, error: "Blog not found." }, { status: 404 });
+        }
+
+        blog.isDeleted = true;
         const expiryDate = new Date();
-        expiryDate.setDate(expiryDate.getDate() + 30)
-        blog.expiryDate = expiryDate; 
-        await blog.save()
+        expiryDate.setDate(expiryDate.getDate() + 30);
+        blog.expiryDate = expiryDate;
+        const result = await blog.save();
         return NextResponse.json({ result, success: true });
     } catch (error) {
-        console.error("Error in POST /api/blog:", error);
-        return NextResponse.json({ success: false, error: error.message });
+        console.error("Error in DELETE /api/blog:", error);
+        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }

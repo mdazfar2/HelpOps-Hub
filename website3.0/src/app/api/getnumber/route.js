@@ -2,6 +2,7 @@ import user from "@utils/models/user"; // Importing Mongoose model for newslette
 import mongoose from "mongoose"; // Importing Mongoose for MongoDB interactions
 import nodemailer from "nodemailer"; // Importing nodemailer to send welcome email
 import { NextResponse } from "next/server"; // Importing Next.js server response utility
+export const dynamic = "force-dynamic";
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 import newaccount from "@utils/models/newaccounts"; // Importing Mongoose model for newsletter subscription
