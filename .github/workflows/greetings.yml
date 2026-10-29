@@ -1,21 +1,94 @@
 name: Greetings
 
 on:
-  fork:
-  push:
-    branches: [main]
   issues:
-    types: [opened]
+    types: [opened, assigned, closed]
   pull_request_target:
-    types: [opened]
+    types: [opened, closed]
 
 jobs:
   welcome:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    env:
+      AZFARAI_APP_ID: ${{ secrets.AZFARAI_APP_ID }}
+      AZFARAI_PRIVATE_KEY: ${{ secrets.AZFARAI_PRIVATE_KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: EddieHubCommunity/gh-action-community/src/welcome@main
+      - name: Check for GitHub App credentials
+        id: app-credentials
+        shell: bash
+        run: |
+          if [[ -n "$AZFARAI_APP_ID" && -n "$AZFARAI_PRIVATE_KEY" ]]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate AzfarAi token
+        id: app-token
+        if: steps.app-credentials.outputs.available == 'true'
+        uses: actions/create-github-app-token@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: "Hello ${{ github.actor }}, Thanks for opening an issue in HelpOps-Hub! 🚀 \n\n - Please make sure to follow our [Contributing Guidelines.](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md) \n\n - Hope you star our [Repo](https://github.com/mdazfar2/HelpOps-Hub). \n\n - Join our official [Discord server](https://discord.gg/Gk9vTsNZ), where we can collaborate and discuss how to make HelpOps-Hub even better and more professional. \n\n - Don’t forget to follow us on [LinkedIn](https://www.linkedin.com/company/helpops-hub/)!  "
-          pr-message: "Thank you, ${{ github.actor }}, for creating this pull request and contributing to HelpOps-Hub! 💗\n\n The maintainers will review this Pull Request and provide feedback as soon as possible! 😇\n\n - We appreciate your patience and contribution, Keep up the great work! 😀"
+          app-id: ${{ secrets.AZFARAI_APP_ID }}
+          private-key: ${{ secrets.AZFARAI_PRIVATE_KEY }}
+          permission-issues: write
+          permission-pull-requests: write
+
+      - name: Comment as AzfarAi
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.app-token.outputs.token || secrets.AZFARAI_TOKEN || secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue = context.payload.issue || context.payload.pull_request;
+            const issueNumber = issue.number;
+            let body;
+
+            if (context.eventName === 'issues') {
+              if (context.payload.action === 'opened') {
+                body = `## Welcome to HelpOps-Hub! 👋
+
+            Hi @${issue.user.login}, thanks for opening an issue and helping make DevOps knowledge and problem-solving more accessible to everyone! Our maintainers will take a look and respond soon.
+
+            **To help us get started, please read our [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md)** and include any useful context, steps to reproduce, or details about the improvement you have in mind.
+
+            In the meantime, join the community:
+            - ⭐ [Star HelpOps-Hub](https://github.com/mdazfar2/HelpOps-Hub) to support the project
+            - 💬 [Join us on Discord](https://discord.com/invite/UWTrRhqywt) to connect with other DevOps enthusiasts
+            - 💼 [Follow HelpOps-Hub on LinkedIn](https://www.linkedin.com/company/HelpOps-Hub) for project updates`;
+              } else if (context.payload.action === 'assigned') {
+                body = `👤 Issue assigned to @${context.payload.assignee.login}.`;
+              } else if (context.payload.action === 'closed') {
+                body = '✅ This issue has been closed. Thank you for your contribution!';
+              }
+            } else if (context.eventName === 'pull_request_target') {
+              const pullRequest = context.payload.pull_request;
+
+              if (context.payload.action === 'opened') {
+                body = `## Thanks for contributing, @${pullRequest.user.login}! 🚀
+
+            Your pull request is now in the queue. Contributions help grow HelpOps-Hub as a community-driven place to learn, share, and solve DevOps challenges.
+
+            Our maintainers will review your changes, suggest adjustments if needed, and decide whether to merge. Please make sure your pull request follows our [Contributing Guidelines](https://github.com/mdazfar2/HelpOps-Hub/blob/main/CONTRIBUTING.md), including linking an issue and getting it assigned before opening a PR.
+
+            While you wait, connect with the community:
+            - ⭐ [Star HelpOps-Hub](https://github.com/mdazfar2/HelpOps-Hub)
+            - 💬 [Join us on Discord](https://discord.com/invite/UWTrRhqywt)
+            - 💼 [Follow HelpOps-Hub on LinkedIn](https://www.linkedin.com/company/HelpOps-Hub)`;
+              } else if (context.payload.action === 'closed' && pullRequest.merged) {
+                body = `🎉 Congratulations, @${pullRequest.user.login}! Your pull request has been successfully merged. Thank you so much for your contribution!`;
+              } else if (context.payload.action === 'closed' && !pullRequest.merged) {
+                body = `This pull request has been closed without being merged. Thank you, @${pullRequest.user.login}, for your time and contribution!`;
+              }
+            }
+
+            if (body) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body
+              });
+            }

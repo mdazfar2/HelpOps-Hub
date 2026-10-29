@@ -33,7 +33,7 @@ jobs:
 
       - name: Commit and push if changed    # Commit and push changes to the head branch(main)
         run: |
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com" 
-          git config user.name "github-actions[bot]"
+          git config user.email "AzfarAi[bot]@users.noreply.github.com"
+          git config user.name "AzfarAi[bot]"
           git add . 
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update repo structure" && git push)
