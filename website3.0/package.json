@@ -28,7 +28,7 @@
     "@tsparticles/react": "^3.0.0",
     "aos": "^3.0.0-beta.6",
     "autoprefixer": "^10.4.19",
-    "axios": "^1.20.0",
+    "axios": "^1.21.0",
     "bcrypt": "^5.1.1",
     "chart.js": "^4.4.3",
     "chartjs-adapter-date-fns": "^3.0.0",
@@ -41,10 +41,10 @@
     "lucide-react": "^0.454.0",
     "mongodb": "^6.7.0",
     "mongoose": "^8.24.1",
-    "next": "16.4.2",
+    "next": "16.4.5",
     "next-auth": "^4.24.15",
     "node-schedule": "^2.1.1",
-    "nodemailer": "^10.0.9",
+    "nodemailer": "^10.1.4",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-confetti": "^6.1.0",
@@ -59,13 +59,13 @@
     "react-share": "^5.1.0",
     "react-tooltip": "^5.27.1",
     "rellax": "^1.12.1",
-    "resend": "^3.4.0",
+    "resend": "^6.37.0",
     "showdown": "^2.1.0",
     "styled-components": "^6.1.12",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
-    "postcss": "^8.4.39",
+    "postcss": "^8.5.24",
     "tailwindcss": "^4.3.3"
   }
 }
